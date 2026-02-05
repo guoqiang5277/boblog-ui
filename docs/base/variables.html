@@ -49,7 +49,7 @@
 
         <!-- 品牌蓝 -->
         <div class="doc-section">
-            <h2 id="section-brand-blue">品牌蓝（3 级）</h2>
+            <h2 id="section-brand-blue">品牌蓝（8 级）</h2>
             <div class="doc-spec">
                 <p>Bo-Blog 标志性蓝白配色的核心。</p>
                 <div class="boblog-codeblock">
@@ -60,6 +60,8 @@
     --boblog-blue-wash: #F4FBFF;    /* 极浅蓝底：Tab 按钮、Tag 内容区 */
     --boblog-blue-accent: #0D80BD;  /* 强调蓝：Tab 激活文字、Tag 标题 */
     --boblog-blue-bar: #BEE6FD;     /* 导航粗边框蓝 */
+    --boblog-blue-primary: #0D80BD; /* 主蓝色：同 blue-accent */
+    --boblog-blue-header: #2E93C9;  /* 标题蓝：同 blue-light */
 }</code></pre>
                 </div>
             </div>
@@ -67,14 +69,17 @@
 
         <!-- 边框色 -->
         <div class="doc-section">
-            <h2 id="section-border">边框色（3 级）</h2>
+            <h2 id="section-border">边框色（6 级）</h2>
             <div class="doc-spec">
                 <p>偏灰的蓝调，安静但保持蓝白主题感。</p>
                 <div class="boblog-codeblock">
                     <pre><code class="language-css">:root {
-    --boblog-border: #C4D7E8;       /* 主边框：面板、卡片、表格 */
-    --boblog-border-light: #DDE8F0; /* 次边框：分隔线、列表线 */
-    --boblog-border-blue: #9EC9FF;  /* 蓝色边框：Tab 栏、Tag 面板 */
+    --boblog-border: #C4D7E8;             /* 主边框：面板、卡片、表格 */
+    --boblog-border-light: #DDE8F0;       /* 次边框：分隔线、列表线 */
+    --boblog-border-blue: #9EC9FF;        /* 蓝色边框：Tab 栏、Tag 面板 */
+    --boblog-blue-border: #9EC9FF;        /* 蓝色边框：表单、输入框（同 border-blue）*/
+    --boblog-blue-border-light: #A9DBF6;  /* 浅蓝边框：hover 状态 */
+    --boblog-blue-border-list: #D3E7FC;   /* 极浅蓝边框：列表分隔线 */
 }</code></pre>
                 </div>
             </div>
@@ -82,13 +87,16 @@
 
         <!-- 背景色 -->
         <div class="doc-section">
-            <h2 id="section-background">背景色（3 级）</h2>
+            <h2 id="section-background">背景色（6 级）</h2>
             <div class="doc-spec">
                 <div class="boblog-codeblock">
                     <pre><code class="language-css">:root {
     --boblog-bg: #FFFFFF;           /* 主背景 */
     --boblog-bg-subtle: #F5F8FB;    /* 次背景：侧边栏、面板、斑马条 */
     --boblog-bg-muted: #EBF0F5;     /* 强调背景：表头、代码块、日期卡 */
+    --boblog-bg-white: #FFFFFF;     /* 纯白背景：同 bg */
+    --boblog-bg-content: #F4FBFF;   /* 内容区背景：同 blue-wash */
+    --boblog-bg-panel: #F5FBFE;     /* 面板背景：极浅蓝 */
 }</code></pre>
                 </div>
             </div>
@@ -96,7 +104,7 @@
 
         <!-- 文字色 -->
         <div class="doc-section">
-            <h2 id="section-text">文字色（4 级）</h2>
+            <h2 id="section-text">文字色（7 级）</h2>
             <div class="doc-spec">
                 <div class="boblog-codeblock">
                     <pre><code class="language-css">:root {
@@ -104,6 +112,9 @@
     --boblog-text-secondary: #555555; /* 次要文字：描述、日期 */
     --boblog-text-muted: #888888;     /* 弱化文字：占位符 */
     --boblog-text-disabled: #AAAAAA;  /* 禁用文字 */
+    --boblog-text-dark: #333333;      /* 深色文字 */
+    --boblog-text-gray: #999999;      /* 灰色文字 */
+    --boblog-text-link-hover: #000000; /* 链接 hover 文字 */
 }</code></pre>
                 </div>
             </div>
@@ -111,12 +122,13 @@
 
         <!-- 基础色板 -->
         <div class="doc-section">
-            <h2 id="section-palette">基础色板（6 色）</h2>
+            <h2 id="section-palette">基础色板（7 色）</h2>
             <div class="doc-spec">
                 <p>2000 年代博客风格，沉稳不鲜艳。</p>
                 <div class="boblog-codeblock">
                     <pre><code class="language-css">:root {
     --boblog-red: #CC3333;      /* 红色：删除、必填星号、错误文字 */
+    --boblog-red-error: #E03E2D; /* 错误红：表单错误提示 */
     --boblog-green: #3C8C30;    /* 绿色：成功、通过、在线 */
     --boblog-yellow: #D4A017;   /* 黄色：警告、星标、置顶 */
     --boblog-orange: #D07020;   /* 橙色：待审核、提醒、关注 */
