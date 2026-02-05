@@ -95,7 +95,7 @@
 .boblog-form-actions {
   padding-top: var(--boblog-spacing-md);
   margin-top: var(--boblog-spacing-lg);
-  border-top: 1px solid var(--boblog-blue-border-list);
+  border-top: 1px solid var(--boblog-border-blue-lighter);
   display: flex;
   gap: var(--boblog-spacing-sm);
 }

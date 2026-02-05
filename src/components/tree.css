@@ -253,7 +253,7 @@
   font-size: var(--boblog-font-size-xs); /* 字号 11px */
   color: var(--boblog-text-gray); /* 灰色文字 */
   background-color: var(--boblog-bg-panel); /* 浅蓝背景 #F5FBFE */
-  border: 1px solid var(--boblog-blue-border-list, #D3E7FC); /* 边框 #D3E7FC */
+  border: 1px solid var(--boblog-border-blue-lighter, #D3E7FC); /* 边框 #D3E7FC */
 }
 
 /* ========== 节点操作按钮（可选扩展功能） ========== */
@@ -273,7 +273,7 @@
 /* 单个操作按钮 */
 .boblog-tree-action-btn {
   padding: 2px var(--boblog-spacing-xs); /* 内边距 2px 6px */
-  border: 1px solid var(--boblog-blue-border); /* 边框 #9EC9FF */
+  border: 1px solid var(--boblog-border-blue); /* 边框 #9EC9FF */
   background-color: var(--boblog-bg-white); /* 白色背景 */
   color: var(--boblog-blue-primary); /* 蓝色文字 #0D80BD */
   cursor: pointer; /* 鼠标手型 */

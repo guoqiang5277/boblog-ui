@@ -79,7 +79,7 @@
 .boblog-admin-sidebar {
   width: var(--boblog-admin-sidebar-width, 240px);
   background-color: var(--boblog-bg-white, #fff);
-  border-right: 1px solid var(--boblog-blue-border, #9EC9FF);
+  border-right: 1px solid var(--boblog-border-blue, #9EC9FF);
   flex-shrink: 0;
   overflow-y: auto;
   position: fixed;
@@ -113,7 +113,7 @@
   font-size: 18px;
   font-weight: bold;
   color: var(--boblog-blue-primary, #0D80BD);
-  border-bottom: 1px solid var(--boblog-blue-border, #9EC9FF);
+  border-bottom: 1px solid var(--boblog-border-blue, #9EC9FF);
   padding-bottom: var(--boblog-spacing-sm, 10px);
   margin-bottom: var(--boblog-spacing-lg, 20px);
 }
@@ -137,7 +137,7 @@
 /* 内容区块 */
 .boblog-content-block {
   background-color: var(--boblog-bg-white, #fff);
-  border: 1px solid var(--boblog-blue-border-light, #A9DBF6);
+  border: 1px solid var(--boblog-border-blue-light, #A9DBF6);
   padding: var(--boblog-spacing-md, 15px);
   margin-bottom: var(--boblog-spacing-md, 15px);
 }

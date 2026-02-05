@@ -14,13 +14,13 @@
     font-weight: bold;
     color: var(--boblog-text-dark, #333);
     padding-bottom: 10px;
-    border-bottom: 2px solid var(--boblog-blue-border, #9EC9FF);
+    border-bottom: 2px solid var(--boblog-border-blue, #9EC9FF);
     margin-bottom: 15px;
 }
 
 .boblog-comment-item {
     padding: 15px 0;
-    border-bottom: 1px dashed var(--boblog-blue-border-list, #D3E7FC);
+    border-bottom: 1px dashed var(--boblog-border-blue-lighter, #D3E7FC);
     display: flex;
     gap: 10px;
 }
@@ -34,7 +34,7 @@
     width: 32px;
     height: 32px;
     background-color: #e0e0e0;
-    border: 1px solid var(--boblog-blue-border-light, #A9DBF6);
+    border: 1px solid var(--boblog-border-blue-light, #A9DBF6);
 }
 
 .boblog-comment-body {
@@ -91,14 +91,14 @@
     margin-left: 40px;
     margin-top: 10px;
     padding-left: 10px;
-    border-left: 2px solid var(--boblog-blue-border, #9EC9FF);
+    border-left: 2px solid var(--boblog-border-blue, #9EC9FF);
 }
 
 .boblog-comment-form {
     margin-top: 20px;
     padding: 15px;
     background-color: var(--boblog-bg-panel, #F5FBFE);
-    border: 1px solid var(--boblog-blue-border, #9EC9FF);
+    border: 1px solid var(--boblog-border-blue, #9EC9FF);
 }
 
 .boblog-comment-form .form-group {
@@ -118,7 +118,7 @@
     padding: 8px;
     font-size: var(--boblog-font-size-sm, 12px);
     font-family: Tahoma, Arial, sans-serif;
-    border: 1px solid var(--boblog-blue-border, #9EC9FF);
+    border: 1px solid var(--boblog-border-blue, #9EC9FF);
     background-color: var(--boblog-bg-white, #fff);
     resize: vertical;
     box-sizing: border-box;

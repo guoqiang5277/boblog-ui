@@ -192,7 +192,7 @@ code {
     font-size: 0.9em;
     padding: 0.2em 0.4em;
     background-color: var(--boblog-bg-panel, #F5FBFE);
-    border: 1px solid var(--boblog-blue-border-list, #D3E7FC);
+    border: 1px solid var(--boblog-border-blue-lighter, #D3E7FC);
     color: var(--boblog-red-error, #e03e2d);
 }
 
@@ -202,7 +202,7 @@ pre {
     line-height: var(--boblog-line-height-normal, 1.5);
     padding: var(--boblog-spacing-md, 15px);
     background-color: var(--boblog-bg-panel, #F5FBFE);
-    border: 1px solid var(--boblog-blue-border, #9EC9FF);
+    border: 1px solid var(--boblog-border-blue, #9EC9FF);
     overflow-x: auto;
     margin-bottom: var(--boblog-spacing-md, 15px);
 }
@@ -219,7 +219,7 @@ pre code {
 blockquote {
     margin: 0 0 var(--boblog-spacing-md, 15px) 0;
     padding: var(--boblog-spacing-sm, 10px) var(--boblog-spacing-md, 15px);
-    border-left: 3px solid var(--boblog-blue-border, #9EC9FF);
+    border-left: 3px solid var(--boblog-border-blue, #9EC9FF);
     background-color: var(--boblog-bg-panel, #F5FBFE);
     color: var(--boblog-text-light, #666666);
 }
@@ -255,7 +255,7 @@ blockquote p:last-child {
 /* ========== 水平线 ========== */
 hr {
     border: 0;
-    border-top: 1px solid var(--boblog-blue-border-list, #D3E7FC);
+    border-top: 1px solid var(--boblog-border-blue-lighter, #D3E7FC);
     margin: var(--boblog-spacing-lg, 20px) 0;
 }
 

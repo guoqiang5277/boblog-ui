@@ -108,7 +108,7 @@ hr {
     height: 0;
     overflow: visible;
     border: 0;
-    border-top: 1px solid var(--boblog-blue-border-list, #D3E7FC);
+    border-top: 1px solid var(--boblog-border-blue-lighter, #D3E7FC);
 }
 
 code,

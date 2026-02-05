@@ -11,7 +11,7 @@
 
 /* 基础面板 */
 .boblog-panel {
-  border: 1px solid var(--boblog-blue-border);
+  border: 1px solid var(--boblog-border-blue);
   background-color: var(--boblog-bg-white);
   margin-bottom: var(--boblog-spacing-md);
 }
@@ -23,7 +23,7 @@
   justify-content: space-between;
   padding: var(--boblog-spacing-sm) var(--boblog-spacing-md);
   background-color: var(--boblog-bg-panel);
-  border-bottom: 1px solid var(--boblog-blue-border-list);
+  border-bottom: 1px solid var(--boblog-border-blue-lighter);
 }
 
 .boblog-panel-title {
@@ -52,7 +52,7 @@
 .boblog-panel-footer {
   padding: var(--boblog-spacing-sm) var(--boblog-spacing-md);
   background-color: var(--boblog-bg-panel);
-  border-top: 1px solid var(--boblog-blue-border-list);
+  border-top: 1px solid var(--boblog-border-blue-lighter);
   font-size: var(--boblog-font-size-sm);
 }
 
@@ -65,8 +65,8 @@
 /* 带完整边框的面板 */
 .boblog-panel-bordered .boblog-panel-body,
 .boblog-panel-bordered .boblog-panel-content {
-  border-left: 1px solid var(--boblog-blue-border-list);
-  border-right: 1px solid var(--boblog-blue-border-list);
+  border-left: 1px solid var(--boblog-border-blue-lighter);
+  border-right: 1px solid var(--boblog-border-blue-lighter);
 }
 
 /* 紧凑模式 */

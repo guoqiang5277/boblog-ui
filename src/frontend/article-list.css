@@ -11,7 +11,7 @@
 .boblog-article-item {
     display: flex;
     padding: 15px 0;
-    border-bottom: 1px dashed var(--boblog-blue-border-list, #D3E7FC);
+    border-bottom: 1px dashed var(--boblog-border-blue-lighter, #D3E7FC);
 }
 
 .boblog-article-item:last-child {
@@ -78,7 +78,7 @@
 .boblog-article-tag {
     font-size: var(--boblog-font-size-xs, 11px);
     background-color: var(--boblog-bg-content, #F4FBFF);
-    border: 1px solid var(--boblog-blue-border, #9EC9FF);
+    border: 1px solid var(--boblog-border-blue, #9EC9FF);
     padding: 1px 6px;
     color: var(--boblog-blue-primary, #0D80BD);
     text-decoration: none;

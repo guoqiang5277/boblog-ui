@@ -72,7 +72,7 @@
 /* 面包屑在浅蓝背景中的样式 */
 .boblog-breadcrumb-panel {
   background-color: var(--boblog-bg-panel);
-  border: 1px solid var(--boblog-blue-border-light);
+  border: 1px solid var(--boblog-border-blue-light);
   padding: var(--boblog-spacing-sm) var(--boblog-spacing-md);
 }
 
