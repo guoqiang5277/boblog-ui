@@ -51,6 +51,8 @@ go install github.com/evanw/esbuild/cmd/esbuild@latest
 ## 构建
 
 ```bash
+# 加载构建提示功能
+source ./build-completion.bash
 # 构建 CSS 和 JS
 ./build.sh
 ```
