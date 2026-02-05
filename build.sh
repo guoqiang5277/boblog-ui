@@ -8,6 +8,20 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 SRC_DIR="$SCRIPT_DIR/src"
 DIST_DIR="$SCRIPT_DIR/dist"
 
+# 读取版本号和构建号
+VERSION=$(cat "$SCRIPT_DIR/VERSION" | tr -d '[:space:]')
+BUILD_NUM=$(cat "$SCRIPT_DIR/BUILD" | tr -d '[:space:]')
+
+# 检查是否为发布构建
+if [ "$1" = "--release" ]; then
+    # 递增构建号
+    BUILD_NUM=$((BUILD_NUM + 1))
+    echo "$BUILD_NUM" > "$SCRIPT_DIR/BUILD"
+    echo "🚀 Release build: build $BUILD_NUM"
+fi
+
+FULL_VERSION="${VERSION}-build.${BUILD_NUM}"
+
 # 创建 dist 目录
 mkdir -p "$DIST_DIR"
 
@@ -82,9 +96,9 @@ CSS_OUTPUT_MIN="$DIST_DIR/boblog-ui.min.css"
 echo "Building boblog-ui.css..."
 
 # 写入 CSS 文件头
-cat > "$CSS_OUTPUT" << 'EOF'
+cat > "$CSS_OUTPUT" << EOF
 /**
- * Bo-Blog UI v1.0.0
+ * Bo-Blog UI v${FULL_VERSION}
  * 基于 Bo-Blog V2.1 Default Skin 的 UI 组件库
  * 蓝白配色 | 无圆角 | Tahoma 字体 | 12px 基础字号
  */
@@ -147,11 +161,17 @@ echo ""
 echo "Building boblog-ui.js..."
 
 # 写入 JS 文件头
-cat > "$JS_OUTPUT" << 'EOF'
+cat > "$JS_OUTPUT" << EOF
 /**
- * Bo-Blog UI v1.0.0 - JavaScript 组件
+ * Bo-Blog UI v${FULL_VERSION} - JavaScript 组件
  * Prism.js 语法高亮引擎 + 代码块（行号、复制）+ 浮动目录（生成、折叠、滚动高亮）+ Tab 切换面板 + 自定义下拉选择 + 文本域字符计数 + 表格排序 + 日期选择器格式化
  */
+
+/* 版本信息 */
+window.BoblogUI = window.BoblogUI || {};
+window.BoblogUI.version = '${VERSION}';
+window.BoblogUI.build = '${BUILD_NUM}';
+window.BoblogUI.fullVersion = '${FULL_VERSION}';
 
 /* 禁用 Prism.js 自动高亮，由 codeblock.js 统一控制高亮时机 */
 window.Prism = window.Prism || {};
