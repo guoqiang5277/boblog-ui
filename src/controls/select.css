@@ -1,0 +1,361 @@
+/**
+ * Bo-Blog Select Control
+ * 下拉选择控件 - 基于 Bo-Blog V2.1 经典风格
+ * 无圆角设计，蓝白配色
+ *
+ * 结构：.boblog-select（容器）> select（原生下拉）
+ * 容器负责自定义箭头，select 负责交互
+ *
+ * 包含：
+ *   - .boblog-select          — 下拉容器（含自定义箭头）
+ *   - .boblog-select-error    — 错误状态
+ *   - .boblog-select-sm/lg    — 尺寸变体
+ */
+
+/* ========== 基础下拉框容器 ========== */
+.boblog-select {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+/* ========== 原生 select 元素 ========== */
+.boblog-select select {
+  display: block;
+  width: 100%;
+  padding: 6px 30px 6px 10px;                 /* 右侧留空放箭头 */
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: var(--boblog-font-size-sm);       /* 12px */
+  line-height: 1.5;
+  color: var(--boblog-text);                   /* 正文文字 #1A1A1A */
+  background-color: var(--boblog-bg);          /* 白色背景 #FFFFFF */
+  border: 1px solid var(--boblog-border-light);/* 次边框 #DDE8F0 */
+  border-radius: 0;                            /* Bo-Blog 无圆角 */
+  outline: none;
+  cursor: pointer;
+  transition: all var(--boblog-transition-normal);
+  appearance: none;                            /* 移除浏览器默认箭头 */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  box-sizing: border-box;
+}
+
+/* ========== 自定义下拉箭头 ========== */
+/* 用 CSS 三角形模拟下拉箭头 */
+.boblog-select::after {
+  content: '';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid var(--boblog-text-muted);  /* 弱化文字色 #888888 */
+  pointer-events: none;                             /* 不阻挡点击 */
+  transition: transform var(--boblog-transition-normal);
+}
+
+/* ========== 交互状态 ========== */
+
+/* 鼠标悬停：边框加深 */
+.boblog-select select:hover {
+  border-color: var(--boblog-border);          /* 主边框 #C4D7E8 */
+}
+
+/* 聚焦状态：蓝色边框 + 浅蓝背景 */
+.boblog-select select:focus {
+  border-color: var(--boblog-blue);            /* 品牌蓝 #0D6EAA */
+  background-color: var(--boblog-blue-pale);   /* 浅蓝底 #E8F0F7 */
+  outline: 2px solid rgba(13, 128, 189, 0.1);
+  outline-offset: 0;
+}
+
+/* 聚焦时箭头变蓝 */
+.boblog-select select:focus + .boblog-select::after {
+  border-top-color: var(--boblog-blue);
+}
+
+/* ========== 禁用状态 ========== */
+.boblog-select select:disabled,
+.boblog-select.disabled select {
+  background-color: #f5f5f5;
+  border-color: #d9d9d9;
+  color: var(--boblog-text-muted);
+  cursor: not-allowed;
+}
+
+/* 禁用时箭头变灰 */
+.boblog-select.disabled::after {
+  border-top-color: #d9d9d9;
+}
+
+/* ========== 错误状态 ========== */
+.boblog-select-error select,
+.boblog-select.error select {
+  border-color: var(--boblog-danger);          /* 危险红 #CC3333 */
+}
+
+.boblog-select-error select:focus,
+.boblog-select.error select:focus {
+  border-color: var(--boblog-danger);
+  outline: 2px solid rgba(224, 62, 45, 0.1);
+}
+
+/* ==========================================================
+ * 自定义下拉组件（JS 增强模式）
+ *
+ * 由 select.js 自动将原生 <select> 转换为自定义下拉面板，
+ * 解决原生 <option> 无法自定义样式的限制。
+ *
+ * 转换后结构：
+ *   .boblog-select.boblog-select-custom
+ *       select (display:none)          ← 隐藏的原生 select
+ *       .boblog-select-display         ← 显示区域（替代原生 select 外观）
+ *       .boblog-select-dropdown        ← 下拉面板
+ *           .boblog-select-option      ← 单个选项
+ *           .boblog-select-option.selected   ← 选中项
+ *           .boblog-select-option.disabled   ← 禁用项
+ * ========================================================== */
+
+/* ---------- 自定义模式：隐藏原生箭头伪元素 ---------- */
+/* JS 转换后不再需要 CSS 三角形箭头，由显示区域自带箭头 */
+.boblog-select-custom::after {
+  display: none;
+}
+
+/* ---------- 显示区域：替代原生 select 的外观 ---------- */
+.boblog-select-display {
+  display: block;
+  width: 100%;
+  padding: 6px 30px 6px 10px;                 /* 右侧留空放箭头图标 */
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: var(--boblog-font-size-sm);       /* 12px */
+  line-height: 1.5;
+  color: var(--boblog-text);                   /* 正文文字 #1A1A1A */
+  background-color: var(--boblog-bg);          /* 白色背景 #FFFFFF */
+  border: 1px solid var(--boblog-border-light);/* 次边框 #DDE8F0 */
+  border-radius: 0;                            /* Bo-Blog 无圆角 */
+  outline: none;
+  cursor: pointer;
+  transition: all var(--boblog-transition-normal);
+  box-sizing: border-box;
+  position: relative;
+  user-select: none;                           /* 禁止选中文字 */
+}
+
+/* 显示区域：右侧下拉箭头（CSS 三角形） */
+.boblog-select-display::after {
+  content: '';
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid var(--boblog-text-muted);  /* 弱化文字色 #888888 */
+  pointer-events: none;
+  transition: transform var(--boblog-transition-normal);
+}
+
+/* 显示区域悬停：边框加深 */
+.boblog-select-custom .boblog-select-display:hover {
+  border-color: var(--boblog-border);          /* 主边框 #C4D7E8 */
+}
+
+/* 显示区域聚焦：蓝色边框 + 浅蓝背景 */
+.boblog-select-custom .boblog-select-display:focus {
+  border-color: var(--boblog-blue);            /* 品牌蓝 #0D6EAA */
+  background-color: var(--boblog-blue-pale);   /* 浅蓝底 #E8F0F7 */
+  outline: 2px solid rgba(13, 128, 189, 0.1);
+  outline-offset: 0;
+}
+
+/* 下拉展开时：箭头旋转 180° 朝上 */
+.boblog-select-custom.open .boblog-select-display::after {
+  transform: translateY(-50%) rotate(180deg);
+}
+
+/* 下拉展开时：显示区域保持蓝色边框 */
+.boblog-select-custom.open .boblog-select-display {
+  border-color: var(--boblog-blue);
+  background-color: var(--boblog-blue-pale);
+}
+
+/* ---------- 下拉面板：选项列表容器 ---------- */
+.boblog-select-dropdown {
+  display: none;                               /* 默认隐藏 */
+  position: absolute;
+  top: 100%;                                   /* 紧贴显示区域下方 */
+  left: 0;
+  right: 0;
+  z-index: 1000;                               /* 确保浮在其他内容之上 */
+  max-height: 200px;                           /* 最大高度，超出滚动 */
+  overflow-y: auto;                            /* 垂直滚动 */
+  background-color: var(--boblog-bg);          /* 白色背景 */
+  border: 1px solid var(--boblog-border);      /* 主边框 #C4D7E8 */
+  border-top: none;                            /* 与显示区域共享上边框 */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);   /* 轻微阴影增加层次感 */
+  box-sizing: border-box;
+}
+
+/* 下拉展开时显示面板 */
+.boblog-select-custom.open .boblog-select-dropdown {
+  display: block;
+}
+
+/* ---------- 单个选项 ---------- */
+.boblog-select-option {
+  padding: 6px 10px;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: var(--boblog-font-size-sm);       /* 12px */
+  line-height: 1.5;
+  color: var(--boblog-text);                   /* 正文文字 #1A1A1A */
+  cursor: pointer;
+  transition: background-color var(--boblog-transition-normal),
+              color var(--boblog-transition-normal);
+  user-select: none;
+}
+
+/* 选项悬停：浅蓝背景 + 蓝色文字 */
+.boblog-select-option:hover {
+  background-color: var(--boblog-blue-pale);   /* 浅蓝底 #E8F0F7 */
+  color: var(--boblog-blue);                   /* 品牌蓝 #0D6EAA */
+}
+
+/* 选中项：蓝色背景 + 白色文字 */
+.boblog-select-option.selected {
+  background-color: var(--boblog-blue);        /* 品牌蓝 #0D6EAA */
+  color: var(--boblog-bg);                     /* 白色文字 #FFFFFF */
+}
+
+/* 选中项悬停：稍深蓝色 */
+.boblog-select-option.selected:hover {
+  background-color: var(--boblog-blue-light);  /* 亮蓝 #2E93C9 */
+  color: var(--boblog-bg);
+}
+
+/* 禁用选项：灰色文字，不可点击 */
+.boblog-select-option.disabled {
+  color: var(--boblog-text-muted);             /* 弱化文字 #888888 */
+  cursor: not-allowed;
+  background-color: transparent;
+}
+
+/* 禁用选项悬停：无变化 */
+.boblog-select-option.disabled:hover {
+  background-color: transparent;
+  color: var(--boblog-text-muted);
+}
+
+/* ---------- 禁用状态下的自定义下拉 ---------- */
+.boblog-select-custom.disabled .boblog-select-display {
+  background-color: #f5f5f5;
+  border-color: #d9d9d9;
+  color: var(--boblog-text-muted);
+  cursor: not-allowed;
+}
+
+.boblog-select-custom.disabled .boblog-select-display::after {
+  border-top-color: #d9d9d9;
+}
+
+/* ---------- 错误状态下的自定义下拉 ---------- */
+.boblog-select-error .boblog-select-display,
+.boblog-select-custom.error .boblog-select-display {
+  border-color: var(--boblog-danger);          /* 危险红 #CC3333 */
+}
+
+.boblog-select-error .boblog-select-display:focus,
+.boblog-select-custom.error .boblog-select-display:focus {
+  border-color: var(--boblog-danger);
+  outline: 2px solid rgba(224, 62, 45, 0.1);
+}
+
+/* ========== 多选下拉框 ========== */
+/* 多选模式：使用原生渲染，不被 JS 转换 */
+.boblog-select select[multiple] {
+  padding: 5px 10px;
+  height: auto;
+  overflow-y: auto;                            /* 内容超出时显示竖向滚动条 */
+}
+
+/* 多选时隐藏容器的自定义下拉箭头 */
+.boblog-select:has(select[multiple])::after {
+  display: none;
+}
+
+/* ==========================================================
+ * 尺寸变体
+ *
+ * 小尺寸 (sm): padding 1px 22px 1px 6px, font-size 10px  → 紧凑
+ * 标准尺寸:    padding 6px 30px 6px 10px, font-size 12px  → 基准
+ * 大尺寸 (lg): padding 12px 36px 12px 14px, font-size 16px → 大号
+ * ========================================================== */
+
+/* ---------- 小尺寸：原生 select ---------- */
+.boblog-select-sm select {
+  padding: 1px 22px 1px 6px;
+  font-size: 10px;
+}
+
+.boblog-select-sm::after {
+  right: 8px;
+  border-left-width: 3px;
+  border-right-width: 3px;
+  border-top-width: 4px;
+}
+
+/* ---------- 小尺寸：自定义下拉显示区域 ---------- */
+.boblog-select-sm .boblog-select-display {
+  padding: 1px 22px 1px 6px;
+  font-size: 10px;
+}
+
+.boblog-select-sm .boblog-select-display::after {
+  right: 8px;
+  border-left-width: 3px;
+  border-right-width: 3px;
+  border-top-width: 4px;
+}
+
+/* ---------- 小尺寸：自定义下拉选项 ---------- */
+.boblog-select-sm .boblog-select-option {
+  padding: 1px 6px;
+  font-size: 10px;
+}
+
+/* ---------- 大尺寸：原生 select ---------- */
+.boblog-select-lg select {
+  padding: 12px 36px 12px 14px;
+  font-size: 16px;
+}
+
+.boblog-select-lg::after {
+  right: 14px;
+  border-left-width: 5px;
+  border-right-width: 5px;
+  border-top-width: 6px;
+}
+
+/* ---------- 大尺寸：自定义下拉显示区域 ---------- */
+.boblog-select-lg .boblog-select-display {
+  padding: 12px 36px 12px 14px;
+  font-size: 16px;
+}
+
+.boblog-select-lg .boblog-select-display::after {
+  right: 14px;
+  border-left-width: 5px;
+  border-right-width: 5px;
+  border-top-width: 6px;
+}
+
+/* ---------- 大尺寸：自定义下拉选项 ---------- */
+.boblog-select-lg .boblog-select-option {
+  padding: 12px 14px;
+  font-size: 16px;
+}

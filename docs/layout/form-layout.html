@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单布局 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+<!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <!-- 导航栏 -->
+    <div class="boblog-doc-nav">
+        <a href="../forms.html">← 返回表单组件</a> |
+        <a href="../index.html">返回总纲</a>
+    </div>
+
+    <h1>表单布局 (Form Layout)</h1>
+
+    <!-- ====== 表单组 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="表单组">表单组 (.boblog-form-group)</h2>
+
+        <!-- 规范说明：与 form-layout.css 实际变量值对应 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>容器间距</strong>: margin-bottom 15px (--boblog-spacing-md)，最后一个 margin-bottom 0</li>
+                <li><strong>标签</strong> (.boblog-form-label): display block，font-weight bold，字号 12px (--boblog-font-size-sm)，颜色 #333 (--boblog-text-dark)，margin-bottom 5px (--boblog-spacing-xs)</li>
+                <li><strong>帮助文本</strong> (.boblog-form-help): 字号 11px，颜色 #666 (--boblog-text-gray)，margin-top 5px (--boblog-spacing-xs)</li>
+                <li><strong>错误提示</strong> (.boblog-form-error): 字号 11px，颜色 #CC3333 (--boblog-red-error)，margin-top 5px (--boblog-spacing-xs)</li>
+                <li><strong>必填标记</strong> (.boblog-form-required): 伪元素 ::after 添加红色星号 *</li>
+                <li>本组件为纯 CSS 实现，无需引入 JavaScript</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-form-group">
+                            <label class="boblog-form-label">用户名</label>
+                            <input type="text" class="boblog-input" placeholder="请输入用户名" style="width: 300px;">
+                            <div class="boblog-form-help">用户名长度为 4-16 个字符</div>
+                        </div>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-form-group">
+                            <label class="boblog-form-label boblog-form-required">密码</label>
+                            <div class="boblog-input-password" style="width: 300px;">
+                                <input type="password" class="boblog-input boblog-input-error" placeholder="请输入密码">
+                            </div>
+                            <div class="boblog-form-error">密码不能为空</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 带帮助文本 --&gt;
+&lt;div class="boblog-form-group"&gt;
+    &lt;label class="boblog-form-label"&gt;用户名&lt;/label&gt;
+    &lt;input type="text" class="boblog-input" placeholder="请输入用户名"&gt;
+    &lt;div class="boblog-form-help"&gt;用户名长度为 4-16 个字符&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 带错误提示 + 必填标记 --&gt;
+&lt;div class="boblog-form-group"&gt;
+    &lt;label class="boblog-form-label boblog-form-required"&gt;密码&lt;/label&gt;
+    &lt;div class="boblog-input-password"&gt;
+        &lt;input type="password" class="boblog-input boblog-input-error" placeholder="请输入密码"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-error"&gt;密码不能为空&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;表单组示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-form-group"&gt;
+    &lt;label class="boblog-form-label"&gt;用户名&lt;/label&gt;
+    &lt;input type="text" class="boblog-input" placeholder="请输入用户名"&gt;
+    &lt;div class="boblog-form-help"&gt;用户名长度为 4-16 个字符&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="boblog-form-group"&gt;
+    &lt;label class="boblog-form-label boblog-form-required"&gt;密码&lt;/label&gt;
+    &lt;div class="boblog-input-password"&gt;
+        &lt;input type="password" class="boblog-input boblog-input-error" placeholder="请输入密码"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-error"&gt;密码不能为空&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 垂直布局 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="垂直布局">垂直布局 (.boblog-form)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>默认布局方式，标签在控件上方</li>
+                <li>字号 12px (--boblog-font-size-sm)，字体 Tahoma, Arial, sans-serif</li>
+                <li>各表单组垂直堆叠，间距 15px (--boblog-spacing-md)</li>
+                <li>适合字段较多的完整表单</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <form class="boblog-form">
+                        <div class="boblog-form-group">
+                            <label class="boblog-form-label">邮箱</label>
+                            <input type="email" class="boblog-input" placeholder="请输入邮箱" style="width: 300px;">
+                        </div>
+                        <div class="boblog-form-group">
+                            <label class="boblog-form-label">备注</label>
+                            <textarea class="boblog-textarea" rows="3" placeholder="请输入备注" style="width: 300px;"></textarea>
+                        </div>
+                        <div class="boblog-form-group">
+                            <button type="submit" class="boblog-btn boblog-btn-primary">提交</button>
+                            <button type="button" class="boblog-btn">取消</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;form class="boblog-form"&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;邮箱&lt;/label&gt;
+        &lt;input type="email" class="boblog-input" placeholder="请输入邮箱"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;备注&lt;/label&gt;
+        &lt;textarea class="boblog-textarea" rows="3" placeholder="请输入备注"&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;button type="submit" class="boblog-btn boblog-btn-primary"&gt;提交&lt;/button&gt;
+        &lt;button type="button" class="boblog-btn"&gt;取消&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;垂直布局示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;form class="boblog-form"&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;邮箱&lt;/label&gt;
+        &lt;input type="email" class="boblog-input" placeholder="请输入邮箱"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;备注&lt;/label&gt;
+        &lt;textarea class="boblog-textarea" rows="3" placeholder="请输入备注"&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;button type="submit" class="boblog-btn boblog-btn-primary"&gt;提交&lt;/button&gt;
+        &lt;button type="button" class="boblog-btn"&gt;取消&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 水平布局 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="水平布局">水平布局 (.boblog-form-horizontal)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>标签与控件同行排列，display flex，align-items flex-start</li>
+                <li>标签宽度固定 120px，右对齐，padding-top 8px 与输入框文字对齐</li>
+                <li>标签与控件间距 10px (--boblog-spacing-sm)</li>
+                <li>适合中等规模的表单</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <form class="boblog-form boblog-form-horizontal">
+                        <div class="boblog-form-group">
+                            <label class="boblog-form-label">姓名</label>
+                            <input type="text" class="boblog-input" placeholder="请输入姓名" style="width: 200px;">
+                        </div>
+                        <div class="boblog-form-group">
+                            <label class="boblog-form-label">性别</label>
+                            <div class="boblog-form-control-wrap" style="display: flex; align-items: center; gap: 15px; padding-top: 8px;">
+                                <label class="boblog-radio">
+                                    <input type="radio" class="boblog-radio-input" name="gender" checked>
+                                    <span class="boblog-radio-label">男</span>
+                                </label>
+                                <label class="boblog-radio">
+                                    <input type="radio" class="boblog-radio-input" name="gender">
+                                    <span class="boblog-radio-label">女</span>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="boblog-form-group">
+                            <label class="boblog-form-label"></label>
+                            <button type="submit" class="boblog-btn boblog-btn-primary">提交</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;form class="boblog-form boblog-form-horizontal"&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;姓名&lt;/label&gt;
+        &lt;input type="text" class="boblog-input" placeholder="请输入姓名"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;性别&lt;/label&gt;
+        &lt;div class="boblog-form-control-wrap" style="display: flex; align-items: center; gap: 15px; padding-top: 8px;"&gt;
+            &lt;label class="boblog-radio"&gt;
+                &lt;input type="radio" class="boblog-radio-input" name="gender" checked&gt;
+                &lt;span class="boblog-radio-label"&gt;男&lt;/span&gt;
+            &lt;/label&gt;
+            &lt;label class="boblog-radio"&gt;
+                &lt;input type="radio" class="boblog-radio-input" name="gender"&gt;
+                &lt;span class="boblog-radio-label"&gt;女&lt;/span&gt;
+            &lt;/label&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;&lt;/label&gt;
+        &lt;button type="submit" class="boblog-btn boblog-btn-primary"&gt;提交&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;水平布局示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;form class="boblog-form boblog-form-horizontal"&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;姓名&lt;/label&gt;
+        &lt;input type="text" class="boblog-input" placeholder="请输入姓名"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;性别&lt;/label&gt;
+        &lt;div class="boblog-form-control-wrap" style="display: flex; align-items: center; gap: 15px; padding-top: 8px;"&gt;
+            &lt;label class="boblog-radio"&gt;
+                &lt;input type="radio" class="boblog-radio-input" name="gender" checked&gt;
+                &lt;span class="boblog-radio-label"&gt;男&lt;/span&gt;
+            &lt;/label&gt;
+            &lt;label class="boblog-radio"&gt;
+                &lt;input type="radio" class="boblog-radio-input" name="gender"&gt;
+                &lt;span class="boblog-radio-label"&gt;女&lt;/span&gt;
+            &lt;/label&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;&lt;/label&gt;
+        &lt;button type="submit" class="boblog-btn boblog-btn-primary"&gt;提交&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 行内布局 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="行内布局">行内布局 (.boblog-form-inline)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>表单组横向排列，display flex，align-items center，flex-wrap wrap</li>
+                <li>表单组间距 10px (--boblog-spacing-sm)</li>
+                <li>行内表单组内标签与控件间距 5px (--boblog-spacing-xs)，标签无 margin-bottom</li>
+                <li>适合搜索框和简单筛选</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <form class="boblog-form boblog-form-inline">
+                        <div class="boblog-form-group">
+                            <label class="boblog-form-label">关键词</label>
+                            <input type="text" class="boblog-input" placeholder="搜索" style="width: 150px;">
+                        </div>
+                        <div class="boblog-form-group">
+                            <label class="boblog-form-label">类型</label>
+                            <div class="boblog-select" style="width: 120px;">
+                                <select>
+                                    <option>全部</option>
+                                    <option>文章</option>
+                                    <option>评论</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="boblog-form-group">
+                            <button type="submit" class="boblog-btn boblog-btn-primary">搜索</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;form class="boblog-form boblog-form-inline"&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;关键词&lt;/label&gt;
+        &lt;input type="text" class="boblog-input" placeholder="搜索"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;类型&lt;/label&gt;
+        &lt;div class="boblog-select"&gt;
+            &lt;select&gt;
+                &lt;option&gt;全部&lt;/option&gt;
+                &lt;option&gt;文章&lt;/option&gt;
+                &lt;option&gt;评论&lt;/option&gt;
+            &lt;/select&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;button type="submit" class="boblog-btn boblog-btn-primary"&gt;搜索&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;行内布局示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;form class="boblog-form boblog-form-inline"&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;关键词&lt;/label&gt;
+        &lt;input type="text" class="boblog-input" placeholder="搜索"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;类型&lt;/label&gt;
+        &lt;div class="boblog-select"&gt;
+            &lt;select&gt;
+                &lt;option&gt;全部&lt;/option&gt;
+                &lt;option&gt;文章&lt;/option&gt;
+                &lt;option&gt;评论&lt;/option&gt;
+            &lt;/select&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;button type="submit" class="boblog-btn boblog-btn-primary"&gt;搜索&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 表单操作栏 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="表单操作栏">表单操作栏 (.boblog-form-actions)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>display flex，按钮间距 10px (--boblog-spacing-sm)</li>
+                <li>padding-top 15px (--boblog-spacing-md)，margin-top 20px (--boblog-spacing-lg)</li>
+                <li>顶部分隔线 1px solid (--boblog-blue-border-list)</li>
+                <li><strong>右对齐</strong>: .boblog-form-actions-right (justify-content flex-end)</li>
+                <li><strong>居中</strong>: .boblog-form-actions-center (justify-content center)</li>
+                <li><strong>两端对齐</strong>: .boblog-form-actions-between (justify-content space-between)</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <p><strong>默认（左对齐）</strong></p>
+                    <div class="boblog-panel">
+                        <div class="boblog-panel-body">
+                            <div class="boblog-form-group">
+                                <label class="boblog-form-label">标题</label>
+                                <input type="text" class="boblog-input" value="示例文章标题" style="width: 300px;">
+                            </div>
+                            <div class="boblog-form-actions">
+                                <button type="submit" class="boblog-btn boblog-btn-primary">保存</button>
+                                <button type="button" class="boblog-btn">取消</button>
+                            </div>
+                        </div>
+                    </div>
+                    <p><strong>右对齐</strong></p>
+                    <div class="boblog-panel">
+                        <div class="boblog-panel-body">
+                            <div class="boblog-form-group">
+                                <label class="boblog-form-label">标题</label>
+                                <input type="text" class="boblog-input" value="示例文章标题" style="width: 300px;">
+                            </div>
+                            <div class="boblog-form-actions boblog-form-actions-right">
+                                <button type="button" class="boblog-btn">取消</button>
+                                <button type="submit" class="boblog-btn boblog-btn-primary">保存</button>
+                            </div>
+                        </div>
+                    </div>
+                    <p><strong>居中</strong></p>
+                    <div class="boblog-panel">
+                        <div class="boblog-panel-body">
+                            <div class="boblog-form-group">
+                                <label class="boblog-form-label">标题</label>
+                                <input type="text" class="boblog-input" value="示例文章标题" style="width: 300px;">
+                            </div>
+                            <div class="boblog-form-actions boblog-form-actions-center">
+                                <button type="submit" class="boblog-btn boblog-btn-primary">提交</button>
+                                <button type="button" class="boblog-btn">重置</button>
+                            </div>
+                        </div>
+                    </div>
+                    <p><strong>两端对齐</strong></p>
+                    <div class="boblog-panel">
+                        <div class="boblog-panel-body">
+                            <div class="boblog-form-group">
+                                <label class="boblog-form-label">标题</label>
+                                <input type="text" class="boblog-input" value="示例文章标题" style="width: 300px;">
+                            </div>
+                            <div class="boblog-form-actions boblog-form-actions-between">
+                                <button type="button" class="boblog-btn boblog-btn-danger">删除</button>
+                                <button type="submit" class="boblog-btn boblog-btn-primary">保存</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 默认（左对齐） --&gt;
+&lt;div class="boblog-form-group"&gt;
+    &lt;label class="boblog-form-label"&gt;标题&lt;/label&gt;
+    &lt;input type="text" class="boblog-input" value="示例文章标题"&gt;
+&lt;/div&gt;
+&lt;div class="boblog-form-actions"&gt;
+    &lt;button type="submit" class="boblog-btn boblog-btn-primary"&gt;保存&lt;/button&gt;
+    &lt;button type="button" class="boblog-btn"&gt;取消&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- 右对齐 --&gt;
+&lt;div class="boblog-form-actions boblog-form-actions-right"&gt;
+    &lt;button type="button" class="boblog-btn"&gt;取消&lt;/button&gt;
+    &lt;button type="submit" class="boblog-btn boblog-btn-primary"&gt;保存&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- 居中 --&gt;
+&lt;div class="boblog-form-actions boblog-form-actions-center"&gt;
+    &lt;button type="submit" class="boblog-btn boblog-btn-primary"&gt;提交&lt;/button&gt;
+    &lt;button type="button" class="boblog-btn"&gt;重置&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- 两端对齐 --&gt;
+&lt;div class="boblog-form-actions boblog-form-actions-between"&gt;
+    &lt;button type="button" class="boblog-btn boblog-btn-danger"&gt;删除&lt;/button&gt;
+    &lt;button type="submit" class="boblog-btn boblog-btn-primary"&gt;保存&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;表单操作栏示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 默认（左对齐） --&gt;
+&lt;div class="boblog-form-group"&gt;
+    &lt;label class="boblog-form-label"&gt;标题&lt;/label&gt;
+    &lt;input type="text" class="boblog-input" value="示例文章标题"&gt;
+&lt;/div&gt;
+&lt;div class="boblog-form-actions"&gt;
+    &lt;button type="submit" class="boblog-btn boblog-btn-primary"&gt;保存&lt;/button&gt;
+    &lt;button type="button" class="boblog-btn"&gt;取消&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- 右对齐 --&gt;
+&lt;div class="boblog-form-actions boblog-form-actions-right"&gt;
+    &lt;button type="button" class="boblog-btn"&gt;取消&lt;/button&gt;
+    &lt;button type="submit" class="boblog-btn boblog-btn-primary"&gt;保存&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- 居中 --&gt;
+&lt;div class="boblog-form-actions boblog-form-actions-center"&gt;
+    &lt;button type="submit" class="boblog-btn boblog-btn-primary"&gt;提交&lt;/button&gt;
+    &lt;button type="button" class="boblog-btn"&gt;重置&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- 两端对齐 --&gt;
+&lt;div class="boblog-form-actions boblog-form-actions-between"&gt;
+    &lt;button type="button" class="boblog-btn boblog-btn-danger"&gt;删除&lt;/button&gt;
+    &lt;button type="submit" class="boblog-btn boblog-btn-primary"&gt;保存&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 表单行（垂直标签） ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="表单行">表单行 - 垂直标签 (.boblog-form-row)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>display flex，子表单组 flex: 1 等宽分布</li>
+                <li>列间距 15px (--boblog-spacing-md)</li>
+                <li>行间距 15px (--boblog-spacing-md)，最后一行 margin-bottom 0</li>
+                <li>标签在控件上方（默认垂直布局）</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <form class="boblog-form">
+                        <div class="boblog-form-row">
+                            <div class="boblog-form-group">
+                                <label class="boblog-form-label">姓</label>
+                                <input type="text" class="boblog-input" placeholder="请输入姓">
+                            </div>
+                            <div class="boblog-form-group">
+                                <label class="boblog-form-label">名</label>
+                                <input type="text" class="boblog-input" placeholder="请输入名">
+                            </div>
+                        </div>
+                        <div class="boblog-form-row">
+                            <div class="boblog-form-group">
+                                <label class="boblog-form-label">城市</label>
+                                <input type="text" class="boblog-input" placeholder="请输入城市">
+                            </div>
+                            <div class="boblog-form-group">
+                                <label class="boblog-form-label">邮编</label>
+                                <input type="text" class="boblog-input" placeholder="请输入邮编">
+                            </div>
+                            <div class="boblog-form-group">
+                                <label class="boblog-form-label">电话</label>
+                                <input type="text" class="boblog-input" placeholder="请输入电话">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 两列 --&gt;
+&lt;div class="boblog-form-row"&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;姓&lt;/label&gt;
+        &lt;input type="text" class="boblog-input" placeholder="请输入姓"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;名&lt;/label&gt;
+        &lt;input type="text" class="boblog-input" placeholder="请输入名"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 三列 --&gt;
+&lt;div class="boblog-form-row"&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;城市&lt;/label&gt;
+        &lt;input type="text" class="boblog-input" placeholder="请输入城市"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;邮编&lt;/label&gt;
+        &lt;input type="text" class="boblog-input" placeholder="请输入邮编"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;电话&lt;/label&gt;
+        &lt;input type="text" class="boblog-input" placeholder="请输入电话"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;表单行 - 垂直标签示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;form class="boblog-form"&gt;
+    &lt;div class="boblog-form-row"&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;姓&lt;/label&gt;
+            &lt;input type="text" class="boblog-input" placeholder="请输入姓"&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;名&lt;/label&gt;
+            &lt;input type="text" class="boblog-input" placeholder="请输入名"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-row"&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;城市&lt;/label&gt;
+            &lt;input type="text" class="boblog-input" placeholder="请输入城市"&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;邮编&lt;/label&gt;
+            &lt;input type="text" class="boblog-input" placeholder="请输入邮编"&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;电话&lt;/label&gt;
+            &lt;input type="text" class="boblog-input" placeholder="请输入电话"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 表单行（水平标签） ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="表单行水平">表单行 - 水平标签 (.boblog-form-row + .boblog-form-horizontal)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>结合 .boblog-form-horizontal 使标签与控件同行排列</li>
+                <li>每个 form-group 内标签 120px 右对齐 + 控件 flex: 1</li>
+                <li>多列 form-row 中各列等宽分布</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <form class="boblog-form boblog-form-horizontal">
+                        <div class="boblog-form-row">
+                            <div class="boblog-form-group">
+                                <label class="boblog-form-label">姓</label>
+                                <input type="text" class="boblog-input" placeholder="请输入姓">
+                            </div>
+                            <div class="boblog-form-group">
+                                <label class="boblog-form-label">名</label>
+                                <input type="text" class="boblog-input" placeholder="请输入名">
+                            </div>
+                        </div>
+                        <div class="boblog-form-row">
+                            <div class="boblog-form-group">
+                                <label class="boblog-form-label">城市</label>
+                                <input type="text" class="boblog-input" placeholder="请输入城市">
+                            </div>
+                            <div class="boblog-form-group">
+                                <label class="boblog-form-label">邮编</label>
+                                <input type="text" class="boblog-input" placeholder="请输入邮编">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;form class="boblog-form boblog-form-horizontal"&gt;
+    &lt;div class="boblog-form-row"&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;姓&lt;/label&gt;
+            &lt;input type="text" class="boblog-input" placeholder="请输入姓"&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;名&lt;/label&gt;
+            &lt;input type="text" class="boblog-input" placeholder="请输入名"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-row"&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;城市&lt;/label&gt;
+            &lt;input type="text" class="boblog-input" placeholder="请输入城市"&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;邮编&lt;/label&gt;
+            &lt;input type="text" class="boblog-input" placeholder="请输入邮编"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;表单行 - 水平标签示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;form class="boblog-form boblog-form-horizontal"&gt;
+    &lt;div class="boblog-form-row"&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;姓&lt;/label&gt;
+            &lt;input type="text" class="boblog-input" placeholder="请输入姓"&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;名&lt;/label&gt;
+            &lt;input type="text" class="boblog-input" placeholder="请输入名"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-row"&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;城市&lt;/label&gt;
+            &lt;input type="text" class="boblog-input" placeholder="请输入城市"&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;邮编&lt;/label&gt;
+            &lt;input type="text" class="boblog-input" placeholder="请输入邮编"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 表单分区（垂直标签） ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="表单分区">表单分区 - 垂直标签 (.boblog-form-section)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>四面边框 1px solid #C4D7E8 (--boblog-border)，内边距 15px (--boblog-spacing-md)</li>
+                <li>分区间距 margin-bottom 20px (--boblog-spacing-lg)，最后一个分区 margin-bottom 0</li>
+                <li><strong>分区标题</strong> (.boblog-form-section-title): font-size 14px (--boblog-font-size-md)，font-weight bold，颜色 #0D6EAA (--boblog-blue-primary)，底部 2px 蓝色下划线</li>
+                <li>标签在控件上方（默认垂直布局）</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <form class="boblog-form">
+                        <div class="boblog-form-section">
+                            <div class="boblog-form-section-title">基本信息</div>
+                            <div class="boblog-form-group">
+                                <label class="boblog-form-label">用户名</label>
+                                <input type="text" class="boblog-input" placeholder="请输入用户名" style="width: 300px;">
+                            </div>
+                            <div class="boblog-form-group">
+                                <label class="boblog-form-label">邮箱</label>
+                                <input type="email" class="boblog-input" placeholder="请输入邮箱" style="width: 300px;">
+                            </div>
+                        </div>
+                        <div class="boblog-form-section">
+                            <div class="boblog-form-section-title">安全设置</div>
+                            <div class="boblog-form-group">
+                                <label class="boblog-form-label">密码</label>
+                                <div class="boblog-input-password" style="width: 300px;">
+                                    <input type="password" class="boblog-input" placeholder="请输入密码">
+                                </div>
+                            </div>
+                            <div class="boblog-form-group">
+                                <label class="boblog-form-label">确认密码</label>
+                                <div class="boblog-input-password" style="width: 300px;">
+                                    <input type="password" class="boblog-input" placeholder="请再次输入密码">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-form-section"&gt;
+    &lt;div class="boblog-form-section-title"&gt;基本信息&lt;/div&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;用户名&lt;/label&gt;
+        &lt;input type="text" class="boblog-input" placeholder="请输入用户名"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;邮箱&lt;/label&gt;
+        &lt;input type="email" class="boblog-input" placeholder="请输入邮箱"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="boblog-form-section"&gt;
+    &lt;div class="boblog-form-section-title"&gt;安全设置&lt;/div&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;密码&lt;/label&gt;
+        &lt;div class="boblog-input-password"&gt;
+            &lt;input type="password" class="boblog-input" placeholder="请输入密码"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;确认密码&lt;/label&gt;
+        &lt;div class="boblog-input-password"&gt;
+            &lt;input type="password" class="boblog-input" placeholder="请再次输入密码"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;表单分区 - 垂直标签示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;form class="boblog-form"&gt;
+    &lt;div class="boblog-form-section"&gt;
+        &lt;div class="boblog-form-section-title"&gt;基本信息&lt;/div&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;用户名&lt;/label&gt;
+            &lt;input type="text" class="boblog-input" placeholder="请输入用户名"&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;邮箱&lt;/label&gt;
+            &lt;input type="email" class="boblog-input" placeholder="请输入邮箱"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-section"&gt;
+        &lt;div class="boblog-form-section-title"&gt;安全设置&lt;/div&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;密码&lt;/label&gt;
+            &lt;div class="boblog-input-password"&gt;
+                &lt;input type="password" class="boblog-input" placeholder="请输入密码"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;确认密码&lt;/label&gt;
+            &lt;div class="boblog-input-password"&gt;
+                &lt;input type="password" class="boblog-input" placeholder="请再次输入密码"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 表单分区（水平标签） ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="表单分区水平">表单分区 - 水平标签 (.boblog-form-section + .boblog-form-horizontal)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>结合 .boblog-form-horizontal 使分区内标签与控件同行排列</li>
+                <li>标签 120px 右对齐，控件 flex: 1</li>
+                <li>每个分区自带四面边框 1px solid #C4D7E8 (--boblog-border) 和内边距</li>
+                <li>分区标题和样式不变</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <form class="boblog-form boblog-form-horizontal">
+                        <div class="boblog-form-section">
+                            <div class="boblog-form-section-title">基本信息</div>
+                            <div class="boblog-form-group">
+                                <label class="boblog-form-label">用户名</label>
+                                <input type="text" class="boblog-input" placeholder="请输入用户名" style="width: 200px;">
+                            </div>
+                            <div class="boblog-form-group">
+                                <label class="boblog-form-label">邮箱</label>
+                                <input type="email" class="boblog-input" placeholder="请输入邮箱" style="width: 200px;">
+                            </div>
+                        </div>
+                        <div class="boblog-form-section">
+                            <div class="boblog-form-section-title">安全设置</div>
+                            <div class="boblog-form-group">
+                                <label class="boblog-form-label">密码</label>
+                                <div class="boblog-input-password" style="width: 200px;">
+                                    <input type="password" class="boblog-input" placeholder="请输入密码">
+                                </div>
+                            </div>
+                            <div class="boblog-form-group">
+                                <label class="boblog-form-label">确认密码</label>
+                                <div class="boblog-input-password" style="width: 200px;">
+                                    <input type="password" class="boblog-input" placeholder="请再次输入密码">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;form class="boblog-form boblog-form-horizontal"&gt;
+    &lt;div class="boblog-form-section"&gt;
+        &lt;div class="boblog-form-section-title"&gt;基本信息&lt;/div&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;用户名&lt;/label&gt;
+            &lt;input type="text" class="boblog-input" placeholder="请输入用户名"&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;邮箱&lt;/label&gt;
+            &lt;input type="email" class="boblog-input" placeholder="请输入邮箱"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-section"&gt;
+        &lt;div class="boblog-form-section-title"&gt;安全设置&lt;/div&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;密码&lt;/label&gt;
+            &lt;div class="boblog-input-password"&gt;
+                &lt;input type="password" class="boblog-input" placeholder="请输入密码"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;确认密码&lt;/label&gt;
+            &lt;div class="boblog-input-password"&gt;
+                &lt;input type="password" class="boblog-input" placeholder="请再次输入密码"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;表单分区 - 水平标签示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;form class="boblog-form boblog-form-horizontal"&gt;
+    &lt;div class="boblog-form-section"&gt;
+        &lt;div class="boblog-form-section-title"&gt;基本信息&lt;/div&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;用户名&lt;/label&gt;
+            &lt;input type="text" class="boblog-input" placeholder="请输入用户名"&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;邮箱&lt;/label&gt;
+            &lt;input type="email" class="boblog-input" placeholder="请输入邮箱"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-section"&gt;
+        &lt;div class="boblog-form-section-title"&gt;安全设置&lt;/div&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;密码&lt;/label&gt;
+            &lt;div class="boblog-input-password"&gt;
+                &lt;input type="password" class="boblog-input" placeholder="请输入密码"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-form-label"&gt;确认密码&lt;/label&gt;
+            &lt;div class="boblog-input-password"&gt;
+                &lt;input type="password" class="boblog-input" placeholder="请再次输入密码"&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

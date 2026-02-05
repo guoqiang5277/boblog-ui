@@ -1,0 +1,91 @@
+/**
+ * Bo-Blog 文章列表组件
+ * 包含日期卡片、标题、元信息、摘要和标签
+ * 风格：Bo-Blog V2.1 经典列表布局
+ */
+
+.boblog-article-list {
+    width: 100%;
+}
+
+.boblog-article-item {
+    display: flex;
+    padding: 15px 0;
+    border-bottom: 1px dashed var(--boblog-blue-border-list, #D3E7FC);
+}
+
+.boblog-article-item:last-child {
+    border-bottom: none;
+}
+
+.boblog-article-date {
+    flex-shrink: 0;
+    margin-right: 15px;
+}
+
+.boblog-article-content {
+    flex: 1;
+    min-width: 0;
+}
+
+.boblog-article-title {
+    font-size: var(--boblog-font-size-lg, 16px);
+    font-weight: bold;
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+}
+
+.boblog-article-title a {
+    color: var(--boblog-blue-primary, #0D80BD);
+    text-decoration: none;
+}
+
+.boblog-article-title a:hover {
+    text-decoration: underline;
+}
+
+.boblog-article-meta {
+    font-size: var(--boblog-font-size-sm, 12px);
+    color: var(--boblog-text-gray, #999);
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.boblog-article-meta > span {
+    margin-right: 8px;
+}
+
+.boblog-article-meta > span:not(:last-child)::after {
+    content: " | ";
+    margin-left: 8px;
+}
+
+.boblog-article-summary {
+    font-size: var(--boblog-font-size-sm, 12px);
+    color: var(--boblog-text-dark, #333);
+    line-height: 1.8;
+    margin-top: 8px;
+    word-wrap: break-word;
+}
+
+.boblog-article-tags {
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.boblog-article-tag {
+    font-size: var(--boblog-font-size-xs, 11px);
+    background-color: var(--boblog-bg-content, #F4FBFF);
+    border: 1px solid var(--boblog-blue-border, #9EC9FF);
+    padding: 1px 6px;
+    color: var(--boblog-blue-primary, #0D80BD);
+    text-decoration: none;
+    display: inline-block;
+    line-height: 1.6;
+}
+
+.boblog-article-tag:hover {
+    background-color: var(--boblog-bg-panel, #F5FBFE);
+}

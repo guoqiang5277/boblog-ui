@@ -1,0 +1,180 @@
+/**
+ * Bo-Blog Empty State Component
+ * 空状态组件
+ *
+ * 特点：
+ * - 居中显示图标和提示文字
+ * - 支持操作按钮
+ * - 简洁版表格空数据提示
+ * - 灰色调，经典 Bo-Blog 风格
+ */
+
+/* 空状态容器 */
+.boblog-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px var(--boblog-spacing-lg);
+  text-align: center;
+  min-height: 200px;
+}
+
+/* 空状态图标 */
+.boblog-empty-icon {
+  display: block;
+  font-size: 48px;
+  color: var(--boblog-text-muted);
+  line-height: 1;
+  margin-bottom: var(--boblog-spacing-md);
+  opacity: 0.6;
+}
+
+.boblog-empty-icon img {
+  width: 80px;
+  height: 80px;
+  opacity: 0.5;
+}
+
+/* 空状态文字 */
+.boblog-empty-text {
+  font-size: var(--boblog-font-size-md);
+  color: var(--boblog-text-muted);
+  line-height: 1.6;
+  margin-top: var(--boblog-spacing-md);
+  margin-bottom: 0;
+}
+
+.boblog-empty-description {
+  font-size: var(--boblog-font-size-sm);
+  color: var(--boblog-text-muted);
+  line-height: 1.5;
+  margin-top: var(--boblog-spacing-xs);
+  max-width: 400px;
+}
+
+/* 空状态操作按钮区 */
+.boblog-empty-action {
+  margin-top: var(--boblog-spacing-lg);
+  display: flex;
+  gap: var(--boblog-spacing-sm);
+  justify-content: center;
+}
+
+/* 紧凑模式 */
+.boblog-empty-compact {
+  padding: var(--boblog-spacing-lg);
+  min-height: 120px;
+}
+
+.boblog-empty-compact .boblog-empty-icon {
+  font-size: 32px;
+  margin-bottom: var(--boblog-spacing-sm);
+}
+
+.boblog-empty-compact .boblog-empty-icon img {
+  width: 48px;
+  height: 48px;
+}
+
+.boblog-empty-compact .boblog-empty-text {
+  font-size: var(--boblog-font-size-sm);
+  margin-top: var(--boblog-spacing-sm);
+}
+
+.boblog-empty-compact .boblog-empty-action {
+  margin-top: var(--boblog-spacing-md);
+}
+
+/* 简洁版空数据提示（表格内使用） */
+.boblog-no-data {
+  padding: var(--boblog-spacing-lg) var(--boblog-spacing-md);
+  text-align: center;
+  font-size: var(--boblog-font-size-sm);
+  color: var(--boblog-text-muted);
+  background-color: var(--boblog-bg);
+  border: 1px solid var(--boblog-border-light);
+}
+
+/* 表格行内空数据 */
+td.boblog-no-data {
+  background-color: transparent;
+  border: none;
+  border-top: 1px solid var(--boblog-border-light);
+}
+
+/* 空状态变体 */
+.boblog-empty-search {
+  /* 搜索无结果 */
+}
+
+.boblog-empty-search .boblog-empty-icon::before {
+  content: "🔍";
+}
+
+.boblog-empty-filter {
+  /* 筛选无结果 */
+}
+
+.boblog-empty-filter .boblog-empty-icon::before {
+  content: "📋";
+}
+
+.boblog-empty-error {
+  /* 加载错误 */
+}
+
+.boblog-empty-error .boblog-empty-icon {
+  color: var(--boblog-danger);
+}
+
+.boblog-empty-error .boblog-empty-icon::before {
+  content: "⚠️";
+}
+
+/* 加载中状态（可选） */
+.boblog-empty-loading .boblog-empty-icon::before {
+  content: "⏳";
+  animation: boblog-loading-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes boblog-loading-pulse {
+  0%, 100% {
+    opacity: 0.4;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* 背景容器版本 */
+.boblog-empty-box {
+  background-color: var(--boblog-bg);
+  border: 1px solid var(--boblog-border-light);
+}
+
+/* 响应式处理 */
+@media (max-width: 768px) {
+  .boblog-empty {
+    padding: var(--boblog-spacing-lg) var(--boblog-spacing-md);
+    min-height: 160px;
+  }
+
+  .boblog-empty-icon {
+    font-size: 40px;
+  }
+
+  .boblog-empty-icon img {
+    width: 64px;
+    height: 64px;
+  }
+
+  .boblog-empty-action {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .boblog-empty-action > * {
+    width: 100%;
+  }
+}

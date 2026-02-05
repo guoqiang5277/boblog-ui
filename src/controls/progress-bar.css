@@ -1,0 +1,243 @@
+/**
+ * Bo-Blog UI - 进度条组件
+ * Progress Bar Component
+ *
+ * 设计理念：
+ * - 经典 2000 年代博客风格，无圆角设计（border-radius: 0）
+ * - 使用 CSS 变量统一配色方案
+ * - 简洁清爽的蓝白色调
+ * - 支持多种颜色状态、尺寸和样式变体
+ */
+
+/* ========================================
+   基础进度条容器
+   ======================================== */
+
+/**
+ * 进度条外层容器
+ * - 高度 16px，符合 Bo-Blog 紧凑布局风格
+ * - 浅灰蓝背景（#EBF0F5），与整体配色协调
+ * - 使用浅蓝边框（#C4D7E8），保持经典博客边框样式
+ * - 方角设计，无圆角效果
+ * - overflow: hidden 确保内部进度条不会溢出
+ */
+.boblog-progress {
+  height: 16px;
+  background-color: var(--boblog-bg-muted, #EBF0F5);
+  border: 1px solid var(--boblog-border, #C4D7E8);
+  border-radius: 0; /* 方角设计 */
+  overflow: hidden;
+  font-family: var(--boblog-font-family, Tahoma, Arial, sans-serif);
+  font-size: 11px;
+  display: flex; /* 支持堆叠进度条 */
+  position: relative;
+}
+
+/* ========================================
+   进度条内部条形
+   ======================================== */
+
+/**
+ * 进度条内部填充条
+ * - 默认使用主题蓝色（--boblog-blue, #0D80BD）
+ * - 高度 100% 填满容器
+ * - 300ms 过渡动画，平滑展示进度变化
+ * - display: flex 用于居中显示文本标签
+ */
+.boblog-progress-bar {
+  height: 100%;
+  background-color: var(--boblog-blue, #0D80BD);
+  transition: width 300ms ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+/**
+ * 进度条内部文本标签（可选）
+ * - 白色文字，11px 字号
+ * - 居中显示在进度条内
+ * - 使用 Tahoma/Arial 字体保持经典博客风格
+ */
+.boblog-progress-text {
+  color: #fff;
+  font-size: 11px;
+  font-family: var(--boblog-font-family, Tahoma, Arial, sans-serif);
+  line-height: 1;
+  padding: 0 4px;
+}
+
+/* ========================================
+   颜色变体（状态语义化）
+   ======================================== */
+
+/**
+ * 成功状态 - 绿色
+ * 适用场景：上传成功、任务完成等
+ */
+.boblog-progress-bar.success {
+  background-color: var(--boblog-success, #28a745);
+}
+
+/**
+ * 警告状态 - 橙色
+ * 适用场景：接近限制、需要注意等
+ */
+.boblog-progress-bar.warning {
+  background-color: var(--boblog-warning, #ffc107);
+}
+
+/**
+ * 危险状态 - 红色
+ * 适用场景：错误、超出限制等
+ */
+.boblog-progress-bar.danger {
+  background-color: var(--boblog-danger, #dc3545);
+}
+
+/**
+ * 信息状态 - 浅蓝色
+ * 适用场景：一般信息提示
+ */
+.boblog-progress-bar.info {
+  background-color: var(--boblog-info, #17a2b8);
+}
+
+/* ========================================
+   尺寸变体
+   ======================================== */
+
+/**
+ * 小尺寸进度条
+ * - 高度 8px，适用于紧凑布局或次要信息展示
+ * - 不建议显示文本标签（空间有限）
+ */
+.boblog-progress.small {
+  height: 8px;
+  font-size: 9px;
+}
+
+/**
+ * 大尺寸进度条
+ * - 高度 24px，适用于重要进度展示
+ * - 有足够空间显示文本标签
+ */
+.boblog-progress.large {
+  height: 24px;
+  font-size: 12px;
+}
+
+/* ========================================
+   条纹样式（动态效果）
+   ======================================== */
+
+/**
+ * 条纹进度条
+ * - 使用 CSS 渐变创建 45 度对角线条纹
+ * - 条纹宽度 8px，使用半透明白色（rgba(255,255,255,0.15)）
+ * - 保持经典简洁风格，不使用动画
+ * - 可用于表示正在处理中的任务
+ */
+.boblog-progress-bar.striped {
+  background-image: linear-gradient(
+    45deg,
+    rgba(255, 255, 255, 0.15) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.15) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 8px 8px;
+}
+
+/* ========================================
+   堆叠进度条
+   ======================================== */
+
+/**
+ * 堆叠进度条支持
+ * - 容器已设置 display: flex，支持多个 .boblog-progress-bar 并排显示
+ * - 每个条形会按照设置的宽度（width）自动排列
+ * - 适用场景：磁盘空间占用、任务分类统计等
+ *
+ * 使用示例：
+ * <div class="boblog-progress">
+ *   <div class="boblog-progress-bar success" style="width: 30%">30%</div>
+ *   <div class="boblog-progress-bar warning" style="width: 20%">20%</div>
+ *   <div class="boblog-progress-bar danger" style="width: 10%">10%</div>
+ * </div>
+ */
+
+/* 堆叠进度条中的每个条形无需额外样式，已在 .boblog-progress-bar 中定义 */
+
+/* ========================================
+   竖向进度条
+   ======================================== */
+
+/**
+ * 竖向进度条容器
+ * - 宽度 16px（与横向高度一致）
+ * - 需要通过 style="height: Xpx" 设置容器高度
+ * - flex-direction: column-reverse 使进度从底部向上填充
+ * - 适用场景：温度计、音量指示器等
+ */
+.boblog-progress.vertical {
+  width: 16px;
+  height: 200px; /* 默认高度，可通过 style 覆盖 */
+  display: flex;
+  flex-direction: column-reverse; /* 从底部向上填充 */
+}
+
+/**
+ * 竖向进度条的填充条
+ * - 宽度 100% 填满容器
+ * - 高度由 style="height: X%" 控制（替代横向的 width）
+ * - 过渡动画改为 height
+ */
+.boblog-progress.vertical .boblog-progress-bar {
+  width: 100%;
+  height: 0; /* 由 style 控制 */
+  transition: height 300ms ease;
+}
+
+/**
+ * 竖向小尺寸进度条
+ * - 宽度 8px
+ */
+.boblog-progress.vertical.small {
+  width: 8px;
+}
+
+/**
+ * 竖向大尺寸进度条
+ * - 宽度 24px
+ */
+.boblog-progress.vertical.large {
+  width: 24px;
+}
+
+/* ========================================
+   竖向进度条文字显示
+   ======================================== */
+
+/**
+ * 竖向进度条内部文字
+ * - 使用 writing-mode: vertical-lr 让文字竖排（从左到右，从上到下）
+ * - text-orientation: mixed 保持数字和英文的可读性
+ * - 文字在条内垂直和水平居中显示
+ * - 字号缩小为 10px，适应竖向空间
+ * - line-height: 1 避免行高影响布局
+ */
+.boblog-progress.vertical .boblog-progress-bar {
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  justify-content: center;
+  align-items: center;
+  font-size: 10px;
+  line-height: 1;
+}

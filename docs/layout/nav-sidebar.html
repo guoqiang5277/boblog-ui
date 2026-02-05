@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>后台侧边栏导航 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+<!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <div class="boblog-doc-nav">
+        <a href="nav-menu.html">← 返回导航菜单</a> |
+        <a href="../index.html">返回总纲</a>
+    </div>
+
+    <h1>后台侧边栏导航 (Sidebar Nav)</h1>
+
+    <!-- ====== 基础侧边栏 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="基础侧边栏">基础侧边栏 (.boblog-sidebar-nav)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>容器: <code>.boblog-sidebar-nav</code>，font-size 12px (--boblog-font-size-sm)</li>
+                <li><strong>链接</strong> (.boblog-sidebar-link): display block，height 40px，padding 10px 15px，左侧 3px 透明边框，hover 时背景 --boblog-blue-wash + 文字 --boblog-blue-accent</li>
+                <li><strong>当前项</strong> (.boblog-sidebar-active): 背景 --boblog-blue-wash，文字 --boblog-blue-accent，左侧 3px 蓝色边框，font-weight bold</li>
+                <li>样式为纯 CSS 实现，当前项高亮需要 JS 切换 <code>.boblog-sidebar-active</code> 类</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div style="max-width: 220px;">
+                        <ul class="boblog-sidebar-nav">
+                            <li>
+                                <a href="#" class="boblog-sidebar-link boblog-sidebar-active">⚡ 控制面板</a>
+                            </li>
+                            <li>
+                                <a href="#" class="boblog-sidebar-link">📝 文章管理</a>
+                            </li>
+                            <li>
+                                <a href="#" class="boblog-sidebar-link">📁 分类管理</a>
+                            </li>
+                            <li>
+                                <a href="#" class="boblog-sidebar-link">💬 评论管理</a>
+                            </li>
+                            <li>
+                                <a href="#" class="boblog-sidebar-link">📎 附件管理</a>
+                            </li>
+                            <li>
+                                <a href="#" class="boblog-sidebar-link">⚙️ 系统设置</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;ul class="boblog-sidebar-nav"&gt;
+    &lt;li&gt;
+        &lt;a href="#" class="boblog-sidebar-link boblog-sidebar-active"&gt;⚡ 控制面板&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;a href="#" class="boblog-sidebar-link"&gt;📝 文章管理&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;a href="#" class="boblog-sidebar-link"&gt;📁 分类管理&lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;后台侧边栏导航示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div style="max-width: 220px;"&gt;
+    &lt;ul class="boblog-sidebar-nav"&gt;
+        &lt;li&gt;
+            &lt;a href="#" class="boblog-sidebar-link boblog-sidebar-active"&gt;⚡ 控制面板&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href="#" class="boblog-sidebar-link"&gt;📝 文章管理&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href="#" class="boblog-sidebar-link"&gt;📁 分类管理&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href="#" class="boblog-sidebar-link"&gt;💬 评论管理&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href="#" class="boblog-sidebar-link"&gt;📎 附件管理&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href="#" class="boblog-sidebar-link"&gt;⚙️ 系统设置&lt;/a&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 侧边栏分组 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="侧边栏分组">侧边栏分组 (.boblog-sidebar-group)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>分组容器: <code>.boblog-sidebar-group</code>，margin-bottom --boblog-spacing-md，底部 1px solid --boblog-border-light，最后一个分组无底边框</li>
+                <li><strong>分组标题</strong> (.boblog-sidebar-group-title): padding 10px 15px，font-size --boblog-font-size-md，font-weight bold，颜色 --boblog-blue-accent</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div style="max-width: 220px;">
+                        <div class="boblog-sidebar-group">
+                            <div class="boblog-sidebar-group-title">内容管理</div>
+                            <ul class="boblog-sidebar-nav">
+                                <li>
+                                    <a href="#" class="boblog-sidebar-link">📝 文章管理</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="boblog-sidebar-link">📁 分类管理</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="boblog-sidebar-link">🏷️ 标签管理</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="boblog-sidebar-group">
+                            <div class="boblog-sidebar-group-title">互动管理</div>
+                            <ul class="boblog-sidebar-nav">
+                                <li>
+                                    <a href="#" class="boblog-sidebar-link boblog-sidebar-active">💬 评论管理</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="boblog-sidebar-link">👥 用户管理</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="boblog-sidebar-group">
+                            <div class="boblog-sidebar-group-title">系统设置</div>
+                            <ul class="boblog-sidebar-nav">
+                                <li>
+                                    <a href="#" class="boblog-sidebar-link">⚙️ 基本设置</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="boblog-sidebar-link">🎨 外观设置</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-sidebar-group"&gt;
+    &lt;div class="boblog-sidebar-group-title"&gt;内容管理&lt;/div&gt;
+    &lt;ul class="boblog-sidebar-nav"&gt;
+        &lt;li&gt;
+            &lt;a href="#" class="boblog-sidebar-link"&gt;📝 文章管理&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href="#" class="boblog-sidebar-link"&gt;📁 分类管理&lt;/a&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div class="boblog-sidebar-group"&gt;
+    &lt;div class="boblog-sidebar-group-title"&gt;互动管理&lt;/div&gt;
+    &lt;ul class="boblog-sidebar-nav"&gt;
+        &lt;li&gt;
+            &lt;a href="#" class="boblog-sidebar-link boblog-sidebar-active"&gt;💬 评论管理&lt;/a&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;侧边栏分组示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div style="max-width: 220px;"&gt;
+    &lt;div class="boblog-sidebar-group"&gt;
+        &lt;div class="boblog-sidebar-group-title"&gt;内容管理&lt;/div&gt;
+        &lt;ul class="boblog-sidebar-nav"&gt;
+            &lt;li&gt;
+                &lt;a href="#" class="boblog-sidebar-link"&gt;📝 文章管理&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;a href="#" class="boblog-sidebar-link"&gt;📁 分类管理&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;a href="#" class="boblog-sidebar-link"&gt;🏷️ 标签管理&lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-sidebar-group"&gt;
+        &lt;div class="boblog-sidebar-group-title"&gt;互动管理&lt;/div&gt;
+        &lt;ul class="boblog-sidebar-nav"&gt;
+            &lt;li&gt;
+                &lt;a href="#" class="boblog-sidebar-link boblog-sidebar-active"&gt;💬 评论管理&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;a href="#" class="boblog-sidebar-link"&gt;👥 用户管理&lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-sidebar-group"&gt;
+        &lt;div class="boblog-sidebar-group-title"&gt;系统设置&lt;/div&gt;
+        &lt;ul class="boblog-sidebar-nav"&gt;
+            &lt;li&gt;
+                &lt;a href="#" class="boblog-sidebar-link"&gt;⚙️ 基本设置&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;a href="#" class="boblog-sidebar-link"&gt;🎨 外观设置&lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 可展开子菜单 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="可展开子菜单">可展开子菜单 (.boblog-sidebar-parent)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>可展开父级: <code>.boblog-sidebar-parent</code>，右侧 CSS 伪元素 ::after 显示展开图标 ▶</li>
+                <li><strong>展开状态</strong> (.boblog-sidebar-expanded): 图标旋转 90 度</li>
+                <li><strong>子菜单</strong> (.boblog-sidebar-submenu): 默认 display none，展开时 display block（通过 .boblog-sidebar-expanded > .boblog-sidebar-submenu 控制）</li>
+                <li><strong>子项缩进</strong>: padding-left 45px，height 36px，font-size 11px</li>
+                <li><strong>子项前缀</strong>: CSS ::before 伪元素显示 └</li>
+                <li>展开图标和子项前缀由 CSS 自动生成，无需在 HTML 中手动添加</li>
+                <li>展开/收起需要 JS 切换 <code>.boblog-sidebar-expanded</code> 类（CSS 只负责显示状态）</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div style="max-width: 220px;">
+                        <ul class="boblog-sidebar-nav">
+                            <li>
+                                <a href="#" class="boblog-sidebar-link">⚡ 控制面板</a>
+                            </li>
+                            <li class="boblog-sidebar-parent boblog-sidebar-expanded">
+                                <a href="#" class="boblog-sidebar-link">📝 文章管理</a>
+                                <ul class="boblog-sidebar-submenu">
+                                    <li>
+                                        <a href="#" class="boblog-sidebar-link">所有文章</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="boblog-sidebar-link boblog-sidebar-active">写新文章</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="boblog-sidebar-link">草稿箱</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="boblog-sidebar-parent">
+                                <a href="#" class="boblog-sidebar-link">📁 分类管理</a>
+                                <ul class="boblog-sidebar-submenu">
+                                    <li>
+                                        <a href="#" class="boblog-sidebar-link">所有分类</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="boblog-sidebar-link">添加分类</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#" class="boblog-sidebar-link">💬 评论管理</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;ul class="boblog-sidebar-nav"&gt;
+    &lt;!-- 普通项 --&gt;
+    &lt;li&gt;
+        &lt;a href="#" class="boblog-sidebar-link"&gt;⚡ 控制面板&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;!-- 已展开的父级 --&gt;
+    &lt;li class="boblog-sidebar-parent boblog-sidebar-expanded"&gt;
+        &lt;a href="#" class="boblog-sidebar-link"&gt;📝 文章管理&lt;/a&gt;
+        &lt;ul class="boblog-sidebar-submenu"&gt;
+            &lt;li&gt;
+                &lt;a href="#" class="boblog-sidebar-link"&gt;所有文章&lt;/a&gt;
+            &lt;/li&gt;
+            &lt;li&gt;
+                &lt;a href="#" class="boblog-sidebar-link boblog-sidebar-active"&gt;写新文章&lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    &lt;!-- 未展开的父级 --&gt;
+    &lt;li class="boblog-sidebar-parent"&gt;
+        &lt;a href="#" class="boblog-sidebar-link"&gt;📁 分类管理&lt;/a&gt;
+        &lt;ul class="boblog-sidebar-submenu"&gt;
+            &lt;li&gt;
+                &lt;a href="#" class="boblog-sidebar-link"&gt;所有分类&lt;/a&gt;
+            &lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;可展开子菜单示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div style="max-width: 220px;"&gt;
+    &lt;ul class="boblog-sidebar-nav"&gt;
+        &lt;li&gt;
+            &lt;a href="#" class="boblog-sidebar-link"&gt;⚡ 控制面板&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li class="boblog-sidebar-parent boblog-sidebar-expanded"&gt;
+            &lt;a href="#" class="boblog-sidebar-link"&gt;📝 文章管理&lt;/a&gt;
+            &lt;ul class="boblog-sidebar-submenu"&gt;
+                &lt;li&gt;
+                    &lt;a href="#" class="boblog-sidebar-link"&gt;所有文章&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a href="#" class="boblog-sidebar-link boblog-sidebar-active"&gt;写新文章&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a href="#" class="boblog-sidebar-link"&gt;草稿箱&lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;li class="boblog-sidebar-parent"&gt;
+            &lt;a href="#" class="boblog-sidebar-link"&gt;📁 分类管理&lt;/a&gt;
+            &lt;ul class="boblog-sidebar-submenu"&gt;
+                &lt;li&gt;
+                    &lt;a href="#" class="boblog-sidebar-link"&gt;所有分类&lt;/a&gt;
+                &lt;/li&gt;
+                &lt;li&gt;
+                    &lt;a href="#" class="boblog-sidebar-link"&gt;添加分类&lt;/a&gt;
+                &lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href="#" class="boblog-sidebar-link"&gt;💬 评论管理&lt;/a&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 禁用状态 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="禁用状态">禁用状态 (.boblog-sidebar-disabled)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>禁用类: <code>.boblog-sidebar-disabled</code> 添加到 .boblog-sidebar-link 上</li>
+                <li>颜色 --boblog-text-muted，cursor not-allowed，opacity 0.5</li>
+                <li>hover 时无背景变化</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div style="max-width: 220px;">
+                        <ul class="boblog-sidebar-nav">
+                            <li>
+                                <a href="#" class="boblog-sidebar-link boblog-sidebar-active">⚡ 控制面板</a>
+                            </li>
+                            <li>
+                                <a href="#" class="boblog-sidebar-link">📝 文章管理</a>
+                            </li>
+                            <li>
+                                <a href="#" class="boblog-sidebar-link boblog-sidebar-disabled">🔌 插件管理（禁用）</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;ul class="boblog-sidebar-nav"&gt;
+    &lt;li&gt;
+        &lt;a href="#" class="boblog-sidebar-link boblog-sidebar-active"&gt;⚡ 控制面板&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;a href="#" class="boblog-sidebar-link"&gt;📝 文章管理&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;a href="#" class="boblog-sidebar-link boblog-sidebar-disabled"&gt;🔌 插件管理（禁用）&lt;/a&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;禁用状态示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div style="max-width: 220px;"&gt;
+    &lt;ul class="boblog-sidebar-nav"&gt;
+        &lt;li&gt;
+            &lt;a href="#" class="boblog-sidebar-link boblog-sidebar-active"&gt;⚡ 控制面板&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href="#" class="boblog-sidebar-link"&gt;📝 文章管理&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href="#" class="boblog-sidebar-link boblog-sidebar-disabled"&gt;🔌 插件管理（禁用）&lt;/a&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 使用说明 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="使用说明">使用说明</h2>
+
+        <div class="boblog-doc-spec">
+            <h3>适用场景</h3>
+            <ul>
+                <li>后台管理系统左侧导航</li>
+                <li>多级菜单导航</li>
+                <li>设置页面侧边栏</li>
+            </ul>
+
+            <h3>设计要点</h3>
+            <ul>
+                <li>当前项使用左侧 3px 蓝色竖线标识</li>
+                <li>展开图标（▶/旋转 90 度）由 CSS ::after 自动生成</li>
+                <li>子菜单项前缀（└）由 CSS ::before 自动生成</li>
+                <li>子菜单显隐通过 CSS 子选择器控制（.boblog-sidebar-expanded > .boblog-sidebar-submenu）</li>
+                <li>样式为纯 CSS 实现，展开/收起交互需要 JS 切换 .boblog-sidebar-expanded 类</li>
+            </ul>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+<script>
+/**
+ * 侧边栏导航预览交互
+ * 点击链接切换 active 状态，点击可展开父级切换子菜单展开/收起
+ */
+(function () {
+    /* 获取所有预览面板中的侧边栏导航 */
+    var demos = document.querySelectorAll('.boblog-doc-demo .boblog-sidebar-nav');
+
+    demos.forEach(function (nav) {
+        nav.addEventListener('click', function (e) {
+            var link = e.target.closest('.boblog-sidebar-link');
+            if (!link) return;
+
+            /* 禁用项不响应 */
+            if (link.classList.contains('boblog-sidebar-disabled')) {
+                e.preventDefault();
+                return;
+            }
+
+            var li = link.parentElement;
+
+            /* 可展开父级：切换展开/收起 */
+            if (li.classList.contains('boblog-sidebar-parent')) {
+                e.preventDefault();
+                li.classList.toggle('boblog-sidebar-expanded');
+                return;
+            }
+
+            /* 普通链接：切换 active 状态（同一 nav 内） */
+            e.preventDefault();
+            var allLinks = nav.querySelectorAll('.boblog-sidebar-link');
+            allLinks.forEach(function (a) {
+                a.classList.remove('boblog-sidebar-active');
+            });
+            link.classList.add('boblog-sidebar-active');
+        });
+    });
+})();
+</script>
+</body>
+</html>

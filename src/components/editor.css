@@ -1,0 +1,66 @@
+/**
+ * Bo-Blog UI Components - Editor (TinyMCE 封装层)
+ * 富文本编辑器容器样式
+ * 经典蓝白配色，无圆角设计
+ *
+ * 注意：编辑器主体样式由 TinyMCE bobo 皮肤提供，
+ *       此文件仅定义外层容器和禁用状态的样式补充。
+ */
+
+/* ========== 编辑器容器 ========== */
+
+/* 编辑器外层容器 */
+.boblog-editor {
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: var(--boblog-font-size, 12px);
+}
+
+/* ========== TinyMCE 工具栏紧凑样式（仅 simple 预设） ========== */
+
+/* 缩小工具栏按钮间距 */
+.boblog-editor.boblog-editor--compact .tox .tox-toolbar__group {
+  padding: 0 2px;
+}
+
+/* 缩小按钮尺寸和内边距 */
+.boblog-editor.boblog-editor--compact .tox .tox-tbtn {
+  margin: 0;
+  padding: 0 2px;
+  min-width: 26px;
+  width: 26px;
+}
+
+/* 缩小下拉按钮宽度 */
+.boblog-editor.boblog-editor--compact .tox .tox-tbtn--select {
+  padding: 0 4px;
+  width: auto;
+  min-width: 0;
+}
+
+/* 缩小段落/格式下拉框宽度 */
+.boblog-editor.boblog-editor--compact .tox .tox-tbtn--bespoke {
+  width: auto;
+  min-width: 60px;
+}
+
+.boblog-editor.boblog-editor--compact .tox .tox-tbtn--bespoke .tox-tbtn__select-label {
+  width: auto;
+  min-width: 0;
+}
+
+/* 缩小分隔线间距 */
+.boblog-editor.boblog-editor--compact .tox .tox-toolbar__group:not(:last-of-type) {
+  border-right: 1px solid #ccc;
+  margin-right: 2px;
+  padding-right: 2px;
+}
+
+/* ========== 禁用状态 ========== */
+
+/* 编辑器禁用态
+   灰色背景，降低透明度 */
+.boblog-editor.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+  background-color: #f5f5f5;
+}

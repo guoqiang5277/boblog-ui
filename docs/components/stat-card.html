@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>统计卡片 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-gray">
+<!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <!-- 导航栏 -->
+    <div class="boblog-doc-nav">
+        <a href="../index.html">← 返回总纲</a>
+    </div>
+
+    <h1>统计卡片</h1>
+
+    <!-- ====== 基础用法 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="基础用法">基础用法</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>网格容器</strong>: .boblog-stats-grid（2~4列自适应网格）</li>
+                <li><strong>卡片</strong>: .boblog-stat-card（蓝色边框，白底，居中，hover 变主色边框）</li>
+                <li><strong>数值</strong>: .boblog-stat-value（24px 加粗，主色）</li>
+                <li><strong>标签</strong>: .boblog-stat-label（小字灰色）</li>
+                <li><strong>变化指示</strong>: .boblog-stat-change + .boblog-stat-change-positive（绿）/ .boblog-stat-change-negative（红）/ .boblog-stat-change-neutral（灰）</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-stats-grid">
+                        <div class="boblog-stat-card">
+                            <div class="boblog-stat-value">1,234</div>
+                            <div class="boblog-stat-label">总访问量</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 12.5%</div>
+                        </div>
+                        <div class="boblog-stat-card">
+                            <div class="boblog-stat-value">89</div>
+                            <div class="boblog-stat-label">文章总数</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 3</div>
+                        </div>
+                        <div class="boblog-stat-card">
+                            <div class="boblog-stat-value">456</div>
+                            <div class="boblog-stat-label">评论总数</div>
+                            <div class="boblog-stat-change boblog-stat-change-negative">↓ 5.2%</div>
+                        </div>
+                        <div class="boblog-stat-card">
+                            <div class="boblog-stat-value">23</div>
+                            <div class="boblog-stat-label">分类数量</div>
+                            <div class="boblog-stat-change boblog-stat-change-neutral">--</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-stats-grid"&gt;
+    &lt;div class="boblog-stat-card"&gt;
+        &lt;div class="boblog-stat-value"&gt;1,234&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;总访问量&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 12.5%&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card"&gt;
+        &lt;div class="boblog-stat-value"&gt;89&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;文章总数&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 3&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card"&gt;
+        &lt;div class="boblog-stat-value"&gt;456&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;评论总数&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-negative"&gt;↓ 5.2%&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card"&gt;
+        &lt;div class="boblog-stat-value"&gt;23&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;分类数量&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-neutral"&gt;--&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;统计卡片示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-stats-grid"&gt;
+    &lt;div class="boblog-stat-card"&gt;
+        &lt;div class="boblog-stat-value"&gt;1,234&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;总访问量&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 12.5%&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card"&gt;
+        &lt;div class="boblog-stat-value"&gt;89&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;文章总数&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 3&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card"&gt;
+        &lt;div class="boblog-stat-value"&gt;456&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;评论总数&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-negative"&gt;↓ 5.2%&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card"&gt;
+        &lt;div class="boblog-stat-value"&gt;23&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;分类数量&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-neutral"&gt;--&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 变化指示 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="变化指示">变化指示</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>上升</strong>: .boblog-stat-change-positive（绿色文字+绿色边框+浅绿背景）</li>
+                <li><strong>下降</strong>: .boblog-stat-change-negative（红色文字+红色边框+浅红背景）</li>
+                <li><strong>无变化</strong>: .boblog-stat-change-neutral（灰色文字+蓝色边框+浅蓝背景）</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-stats-grid">
+                        <div class="boblog-stat-card">
+                            <div class="boblog-stat-value">3,456</div>
+                            <div class="boblog-stat-label">今日访问</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 23.8%</div>
+                        </div>
+                        <div class="boblog-stat-card">
+                            <div class="boblog-stat-value">128</div>
+                            <div class="boblog-stat-label">异常请求</div>
+                            <div class="boblog-stat-change boblog-stat-change-negative">↓ 15.3%</div>
+                        </div>
+                        <div class="boblog-stat-card">
+                            <div class="boblog-stat-value">42</div>
+                            <div class="boblog-stat-label">系统模块</div>
+                            <div class="boblog-stat-change boblog-stat-change-neutral">--</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 上升 --&gt;
+&lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 23.8%&lt;/div&gt;
+
+&lt;!-- 下降 --&gt;
+&lt;div class="boblog-stat-change boblog-stat-change-negative"&gt;↓ 15.3%&lt;/div&gt;
+
+&lt;!-- 无变化 --&gt;
+&lt;div class="boblog-stat-change boblog-stat-change-neutral"&gt;--&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;变化指示示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-stats-grid"&gt;
+    &lt;div class="boblog-stat-card"&gt;
+        &lt;div class="boblog-stat-value"&gt;3,456&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;今日访问&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 23.8%&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card"&gt;
+        &lt;div class="boblog-stat-value"&gt;128&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;异常请求&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-negative"&gt;↓ 15.3%&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card"&gt;
+        &lt;div class="boblog-stat-value"&gt;42&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;系统模块&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-neutral"&gt;--&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 紧凑模式 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="紧凑模式">紧凑模式</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>类名</strong>: .boblog-stat-card-compact（加在 .boblog-stat-card 上）</li>
+                <li><strong>效果</strong>: 缩小内边距和字号，适合空间紧凑场景</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-stats-grid">
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">512</div>
+                            <div class="boblog-stat-label">在线用户</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 8.1%</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">67</div>
+                            <div class="boblog-stat-label">待审评论</div>
+                            <div class="boblog-stat-change boblog-stat-change-negative">↓ 2</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">15</div>
+                            <div class="boblog-stat-label">草稿文章</div>
+                            <div class="boblog-stat-change boblog-stat-change-neutral">--</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">99.9%</div>
+                            <div class="boblog-stat-label">可用率</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 0.1%</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-stat-card boblog-stat-card-compact"&gt;
+    &lt;div class="boblog-stat-value"&gt;512&lt;/div&gt;
+    &lt;div class="boblog-stat-label"&gt;在线用户&lt;/div&gt;
+    &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 8.1%&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;紧凑模式示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-stats-grid"&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-compact"&gt;
+        &lt;div class="boblog-stat-value"&gt;512&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;在线用户&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 8.1%&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-compact"&gt;
+        &lt;div class="boblog-stat-value"&gt;67&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;待审评论&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-negative"&gt;↓ 2&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-compact"&gt;
+        &lt;div class="boblog-stat-value"&gt;15&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;草稿文章&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-neutral"&gt;--&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-compact"&gt;
+        &lt;div class="boblog-stat-value"&gt;99.9%&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;可用率&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 0.1%&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 强调样式 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="强调样式">强调样式</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>类名</strong>: .boblog-stat-card-primary（加在 .boblog-stat-card 上）</li>
+                <li><strong>效果</strong>: 浅蓝背景 + 主色边框，用于突出关键指标</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-stats-grid">
+                        <div class="boblog-stat-card boblog-stat-card-primary">
+                            <div class="boblog-stat-value">8,901</div>
+                            <div class="boblog-stat-label">本月访问量</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 32.6%</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-primary">
+                            <div class="boblog-stat-value">256</div>
+                            <div class="boblog-stat-label">新增用户</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 18</div>
+                        </div>
+                        <div class="boblog-stat-card">
+                            <div class="boblog-stat-value">1,024</div>
+                            <div class="boblog-stat-label">总评论数</div>
+                            <div class="boblog-stat-change boblog-stat-change-neutral">--</div>
+                        </div>
+                        <div class="boblog-stat-card">
+                            <div class="boblog-stat-value">78</div>
+                            <div class="boblog-stat-label">标签总数</div>
+                            <div class="boblog-stat-change boblog-stat-change-negative">↓ 3</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 强调卡片 --&gt;
+&lt;div class="boblog-stat-card boblog-stat-card-primary"&gt;
+    &lt;div class="boblog-stat-value"&gt;8,901&lt;/div&gt;
+    &lt;div class="boblog-stat-label"&gt;本月访问量&lt;/div&gt;
+    &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 32.6%&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 普通卡片 --&gt;
+&lt;div class="boblog-stat-card"&gt;
+    &lt;div class="boblog-stat-value"&gt;1,024&lt;/div&gt;
+    &lt;div class="boblog-stat-label"&gt;总评论数&lt;/div&gt;
+    &lt;div class="boblog-stat-change boblog-stat-change-neutral"&gt;--&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;强调样式示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-stats-grid"&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-primary"&gt;
+        &lt;div class="boblog-stat-value"&gt;8,901&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;本月访问量&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 32.6%&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-primary"&gt;
+        &lt;div class="boblog-stat-value"&gt;256&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;新增用户&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 18&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card"&gt;
+        &lt;div class="boblog-stat-value"&gt;1,024&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;总评论数&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-neutral"&gt;--&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card"&gt;
+        &lt;div class="boblog-stat-value"&gt;78&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;标签总数&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-negative"&gt;↓ 3&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 无边框样式 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="无边框样式">无边框样式</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>类名</strong>: .boblog-stat-card-borderless（加在 .boblog-stat-card 上）</li>
+                <li><strong>效果</strong>: 去除边框和背景，只保留数值内容，适合嵌入其他容器</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <p><strong>有卡片背景（默认）：</strong></p>
+                    <div class="boblog-stats-grid boblog-stats-grid-4">
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">1,234</div>
+                            <div class="boblog-stat-label">总访问量</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 12.5%</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">89</div>
+                            <div class="boblog-stat-label">文章总数</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 3</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">456</div>
+                            <div class="boblog-stat-label">评论总数</div>
+                            <div class="boblog-stat-change boblog-stat-change-negative">↓ 5.2%</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">23</div>
+                            <div class="boblog-stat-label">分类数量</div>
+                            <div class="boblog-stat-change boblog-stat-change-neutral">--</div>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 20px;"><strong>无卡片背景（borderless）：</strong></p>
+                    <div class="boblog-stats-grid boblog-stats-grid-4">
+                        <div class="boblog-stat-card boblog-stat-card-compact boblog-stat-card-borderless">
+                            <div class="boblog-stat-value">1,234</div>
+                            <div class="boblog-stat-label">总访问量</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 12.5%</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact boblog-stat-card-borderless">
+                            <div class="boblog-stat-value">89</div>
+                            <div class="boblog-stat-label">文章总数</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 3</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact boblog-stat-card-borderless">
+                            <div class="boblog-stat-value">456</div>
+                            <div class="boblog-stat-label">评论总数</div>
+                            <div class="boblog-stat-change boblog-stat-change-negative">↓ 5.2%</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact boblog-stat-card-borderless">
+                            <div class="boblog-stat-value">23</div>
+                            <div class="boblog-stat-label">分类数量</div>
+                            <div class="boblog-stat-change boblog-stat-change-neutral">--</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 有卡片背景（默认） --&gt;
+&lt;div class="boblog-stat-card boblog-stat-card-compact"&gt;
+    &lt;div class="boblog-stat-value"&gt;1,234&lt;/div&gt;
+    &lt;div class="boblog-stat-label"&gt;总访问量&lt;/div&gt;
+    &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 12.5%&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 无卡片背景 --&gt;
+&lt;div class="boblog-stat-card boblog-stat-card-compact boblog-stat-card-borderless"&gt;
+    &lt;div class="boblog-stat-value"&gt;1,234&lt;/div&gt;
+    &lt;div class="boblog-stat-label"&gt;总访问量&lt;/div&gt;
+    &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 12.5%&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;无边框样式示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 有卡片背景（默认） --&gt;
+&lt;div class="boblog-stats-grid boblog-stats-grid-4"&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-compact"&gt;
+        &lt;div class="boblog-stat-value"&gt;1,234&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;总访问量&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 12.5%&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-compact"&gt;
+        &lt;div class="boblog-stat-value"&gt;89&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;文章总数&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 3&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-compact"&gt;
+        &lt;div class="boblog-stat-value"&gt;456&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;评论总数&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-negative"&gt;↓ 5.2%&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-compact"&gt;
+        &lt;div class="boblog-stat-value"&gt;23&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;分类数量&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-neutral"&gt;--&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 无卡片背景 --&gt;
+&lt;div class="boblog-stats-grid boblog-stats-grid-4"&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-compact boblog-stat-card-borderless"&gt;
+        &lt;div class="boblog-stat-value"&gt;1,234&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;总访问量&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 12.5%&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-compact boblog-stat-card-borderless"&gt;
+        &lt;div class="boblog-stat-value"&gt;89&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;文章总数&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 3&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-compact boblog-stat-card-borderless"&gt;
+        &lt;div class="boblog-stat-value"&gt;456&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;评论总数&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-negative"&gt;↓ 5.2%&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-compact boblog-stat-card-borderless"&gt;
+        &lt;div class="boblog-stat-value"&gt;23&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;分类数量&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-neutral"&gt;--&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 指定列数 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="指定列数">指定列数</h2>
+
+        <div class="boblog-doc-spec">
+            <table class="boblog-table boblog-table-bordered boblog-table-striped">
+                <thead>
+                    <tr>
+                        <th>类名</th>
+                        <th>列数</th>
+                        <th>说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>.boblog-stats-grid</code>（默认）</td>
+                        <td>自适应</td>
+                        <td>≤768px: 1列 / 769px+: 3列 / 1200px+: 4列</td>
+                    </tr>
+                    <tr>
+                        <td><code>.boblog-stats-grid-4</code></td>
+                        <td>4</td>
+                        <td rowspan="7">始终生效，不受断点限制，固定为指定列数</td>
+                    </tr>
+                    <tr>
+                        <td><code>.boblog-stats-grid-5</code></td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td><code>.boblog-stats-grid-6</code></td>
+                        <td>6</td>
+                    </tr>
+                    <tr>
+                        <td><code>.boblog-stats-grid-7</code></td>
+                        <td>7</td>
+                    </tr>
+                    <tr>
+                        <td><code>.boblog-stats-grid-8</code></td>
+                        <td>8</td>
+                    </tr>
+                    <tr>
+                        <td><code>.boblog-stats-grid-9</code></td>
+                        <td>9</td>
+                    </tr>
+                    <tr>
+                        <td><code>.boblog-stats-grid-10</code></td>
+                        <td>10</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>列数类加在 <code>.boblog-stats-grid</code> 元素上。指定列数后固定为该列数，不再随屏幕宽度变化；仅默认（不加列数类）才走响应式降级。</p>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <p><strong>6 列：</strong></p>
+                    <div class="boblog-stats-grid boblog-stats-grid-6">
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">1,234</div>
+                            <div class="boblog-stat-label">访问量</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 12.5%</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">89</div>
+                            <div class="boblog-stat-label">文章</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 3</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">456</div>
+                            <div class="boblog-stat-label">评论</div>
+                            <div class="boblog-stat-change boblog-stat-change-negative">↓ 5.2%</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">23</div>
+                            <div class="boblog-stat-label">分类</div>
+                            <div class="boblog-stat-change boblog-stat-change-neutral">--</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">78</div>
+                            <div class="boblog-stat-label">标签</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 6</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">12</div>
+                            <div class="boblog-stat-label">用户</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 2</div>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 20px;"><strong>8 列：</strong></p>
+                    <div class="boblog-stats-grid boblog-stats-grid-8">
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">1,234</div>
+                            <div class="boblog-stat-label">访问量</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 12.5%</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">89</div>
+                            <div class="boblog-stat-label">文章</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 3</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">456</div>
+                            <div class="boblog-stat-label">评论</div>
+                            <div class="boblog-stat-change boblog-stat-change-negative">↓ 5.2%</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">23</div>
+                            <div class="boblog-stat-label">分类</div>
+                            <div class="boblog-stat-change boblog-stat-change-neutral">--</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">78</div>
+                            <div class="boblog-stat-label">标签</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 6</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">12</div>
+                            <div class="boblog-stat-label">用户</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 2</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">5</div>
+                            <div class="boblog-stat-label">草稿</div>
+                            <div class="boblog-stat-change boblog-stat-change-negative">↓ 1</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">3</div>
+                            <div class="boblog-stat-label">页面</div>
+                            <div class="boblog-stat-change boblog-stat-change-neutral">--</div>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 20px;"><strong>10 列：</strong></p>
+                    <div class="boblog-stats-grid boblog-stats-grid-10">
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">1,234</div>
+                            <div class="boblog-stat-label">访问</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 12%</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">89</div>
+                            <div class="boblog-stat-label">文章</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 3</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">456</div>
+                            <div class="boblog-stat-label">评论</div>
+                            <div class="boblog-stat-change boblog-stat-change-negative">↓ 5%</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">23</div>
+                            <div class="boblog-stat-label">分类</div>
+                            <div class="boblog-stat-change boblog-stat-change-neutral">--</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">78</div>
+                            <div class="boblog-stat-label">标签</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 6</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">12</div>
+                            <div class="boblog-stat-label">用户</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 2</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">5</div>
+                            <div class="boblog-stat-label">草稿</div>
+                            <div class="boblog-stat-change boblog-stat-change-negative">↓ 1</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">3</div>
+                            <div class="boblog-stat-label">页面</div>
+                            <div class="boblog-stat-change boblog-stat-change-neutral">--</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">7</div>
+                            <div class="boblog-stat-label">插件</div>
+                            <div class="boblog-stat-change boblog-stat-change-positive">↑ 1</div>
+                        </div>
+                        <div class="boblog-stat-card boblog-stat-card-compact">
+                            <div class="boblog-stat-value">2</div>
+                            <div class="boblog-stat-label">主题</div>
+                            <div class="boblog-stat-change boblog-stat-change-neutral">--</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 6 列 --&gt;
+&lt;div class="boblog-stats-grid boblog-stats-grid-6"&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-compact"&gt;
+        &lt;div class="boblog-stat-value"&gt;1,234&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;访问量&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 12.5%&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- 共 6 个卡片 --&gt;
+&lt;/div&gt;
+
+&lt;!-- 8 列 --&gt;
+&lt;div class="boblog-stats-grid boblog-stats-grid-8"&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-compact"&gt;
+        &lt;div class="boblog-stat-value"&gt;1,234&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;访问量&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 12.5%&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- 共 8 个卡片 --&gt;
+&lt;/div&gt;
+
+&lt;!-- 10 列 --&gt;
+&lt;div class="boblog-stats-grid boblog-stats-grid-10"&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-compact"&gt;
+        &lt;div class="boblog-stat-value"&gt;1,234&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;访问&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 12%&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- 共 10 个卡片 --&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;指定列数示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 8 列网格 --&gt;
+&lt;div class="boblog-stats-grid boblog-stats-grid-8"&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-compact"&gt;
+        &lt;div class="boblog-stat-value"&gt;1,234&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;访问量&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 12.5%&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-compact"&gt;
+        &lt;div class="boblog-stat-value"&gt;89&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;文章&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 3&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-compact"&gt;
+        &lt;div class="boblog-stat-value"&gt;456&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;评论&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-negative"&gt;↓ 5.2%&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-compact"&gt;
+        &lt;div class="boblog-stat-value"&gt;23&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;分类&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-neutral"&gt;--&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-compact"&gt;
+        &lt;div class="boblog-stat-value"&gt;78&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;标签&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 6&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-compact"&gt;
+        &lt;div class="boblog-stat-value"&gt;12&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;用户&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-positive"&gt;↑ 2&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-compact"&gt;
+        &lt;div class="boblog-stat-value"&gt;5&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;草稿&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-negative"&gt;↓ 1&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-stat-card boblog-stat-card-compact"&gt;
+        &lt;div class="boblog-stat-value"&gt;3&lt;/div&gt;
+        &lt;div class="boblog-stat-label"&gt;页面&lt;/div&gt;
+        &lt;div class="boblog-stat-change boblog-stat-change-neutral"&gt;--&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

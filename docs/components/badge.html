@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>徽章 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+<!-- 浮动目录 -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <!-- 导航栏 -->
+    <div class="boblog-doc-nav">
+        <a href="../index.html">&larr; 返回总纲</a>
+    </div>
+
+    <h1>徽章 (Badge)</h1>
+
+    <!-- ====== 基础用法 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="基础用法">基础用法</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>基础类名</strong>: .boblog-badge</li>
+                <li><strong>内边距</strong>: 2px 8px</li>
+                <li><strong>字体大小</strong>: 11px，Tahoma, Arial, sans-serif</li>
+                <li><strong>默认样式</strong>: 边框 1px solid #9EC9FF (--boblog-border-blue)，背景 #FFFFFF (--boblog-bg)，文字 #0D6EAA (--boblog-blue)</li>
+                <li><strong>颜色修饰类</strong>: .primary / .success / .warning / .danger / .info / .gray</li>
+                <li><strong>颜色变体为实底</strong>: 对应色背景 + 白色文字</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <span class="boblog-badge">默认</span>
+                    <span class="boblog-badge primary">主要</span>
+                    <span class="boblog-badge success">成功</span>
+                    <span class="boblog-badge warning">警告</span>
+                    <span class="boblog-badge danger">危险</span>
+                    <span class="boblog-badge info">信息</span>
+                    <span class="boblog-badge gray">灰色</span>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;span class="boblog-badge"&gt;默认&lt;/span&gt;
+&lt;span class="boblog-badge primary"&gt;主要&lt;/span&gt;
+&lt;span class="boblog-badge success"&gt;成功&lt;/span&gt;
+&lt;span class="boblog-badge warning"&gt;警告&lt;/span&gt;
+&lt;span class="boblog-badge danger"&gt;危险&lt;/span&gt;
+&lt;span class="boblog-badge info"&gt;信息&lt;/span&gt;
+&lt;span class="boblog-badge gray"&gt;灰色&lt;/span&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;基础徽章示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;span class="boblog-badge"&gt;默认&lt;/span&gt;
+&lt;span class="boblog-badge primary"&gt;主要&lt;/span&gt;
+&lt;span class="boblog-badge success"&gt;成功&lt;/span&gt;
+&lt;span class="boblog-badge warning"&gt;警告&lt;/span&gt;
+&lt;span class="boblog-badge danger"&gt;危险&lt;/span&gt;
+&lt;span class="boblog-badge info"&gt;信息&lt;/span&gt;
+&lt;span class="boblog-badge gray"&gt;灰色&lt;/span&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 轮廓版徽章 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="轮廓版徽章">轮廓版徽章</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>修饰类</strong>: .outline（追加到颜色修饰类之后）</li>
+                <li><strong>样式</strong>: 白色背景 + 彩色边框 + 彩色文字</li>
+                <li><strong>适用场景</strong>: 需要更轻量视觉的标签、分类标记</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <span class="boblog-badge outline">默认</span>
+                    <span class="boblog-badge primary outline">主要</span>
+                    <span class="boblog-badge success outline">成功</span>
+                    <span class="boblog-badge warning outline">警告</span>
+                    <span class="boblog-badge danger outline">危险</span>
+                    <span class="boblog-badge info outline">信息</span>
+                    <span class="boblog-badge gray outline">灰色</span>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;span class="boblog-badge outline"&gt;默认&lt;/span&gt;
+&lt;span class="boblog-badge primary outline"&gt;主要&lt;/span&gt;
+&lt;span class="boblog-badge success outline"&gt;成功&lt;/span&gt;
+&lt;span class="boblog-badge warning outline"&gt;警告&lt;/span&gt;
+&lt;span class="boblog-badge danger outline"&gt;危险&lt;/span&gt;
+&lt;span class="boblog-badge info outline"&gt;信息&lt;/span&gt;
+&lt;span class="boblog-badge gray outline"&gt;灰色&lt;/span&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;轮廓版徽章示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;span class="boblog-badge outline"&gt;默认&lt;/span&gt;
+&lt;span class="boblog-badge primary outline"&gt;主要&lt;/span&gt;
+&lt;span class="boblog-badge success outline"&gt;成功&lt;/span&gt;
+&lt;span class="boblog-badge warning outline"&gt;警告&lt;/span&gt;
+&lt;span class="boblog-badge danger outline"&gt;危险&lt;/span&gt;
+&lt;span class="boblog-badge info outline"&gt;信息&lt;/span&gt;
+&lt;span class="boblog-badge gray outline"&gt;灰色&lt;/span&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 小号徽章 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="小号徽章">小号徽章</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>修饰类</strong>: .small</li>
+                <li><strong>内边距</strong>: 1px 6px</li>
+                <li><strong>字体大小</strong>: 10px</li>
+                <li><strong>适用场景</strong>: 紧凑布局、列表项内的状态标记</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <span class="boblog-badge small">小号</span>
+                    <span class="boblog-badge primary small">小号主要</span>
+                    <span class="boblog-badge success small">小号成功</span>
+                    <span class="boblog-badge warning small">小号警告</span>
+                    <span class="boblog-badge danger small">小号危险</span>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;span class="boblog-badge small"&gt;小号&lt;/span&gt;
+&lt;span class="boblog-badge primary small"&gt;小号主要&lt;/span&gt;
+&lt;span class="boblog-badge success small"&gt;小号成功&lt;/span&gt;
+&lt;span class="boblog-badge warning small"&gt;小号警告&lt;/span&gt;
+&lt;span class="boblog-badge danger small"&gt;小号危险&lt;/span&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;小号徽章示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;span class="boblog-badge small"&gt;小号&lt;/span&gt;
+&lt;span class="boblog-badge primary small"&gt;小号主要&lt;/span&gt;
+&lt;span class="boblog-badge success small"&gt;小号成功&lt;/span&gt;
+&lt;span class="boblog-badge warning small"&gt;小号警告&lt;/span&gt;
+&lt;span class="boblog-badge danger small"&gt;小号危险&lt;/span&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 圆点徽章 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="圆点徽章">圆点徽章</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>修饰类</strong>: .dot</li>
+                <li><strong>实现方式</strong>: ::before 伪元素生成 8px 彩色指示器</li>
+                <li><strong>默认形状</strong>: 方形（与 Bo-Blog 无圆角设计一致）</li>
+                <li><strong>圆形指示器</strong>: 追加 .round 修饰类，圆点变为圆形</li>
+                <li><strong>圆点颜色</strong>: 继承 currentColor（随文字颜色变化）</li>
+                <li><strong>垂直对齐</strong>: flex 布局居中对齐</li>
+                <li><strong>适用场景</strong>: 在线/离线等状态指示</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <p style="margin: 0 0 8px; color: #888; font-size: 11px;">方形圆点（默认）：</p>
+                    <span class="boblog-badge success dot">在线</span>
+                    <span class="boblog-badge danger dot">离线</span>
+                    <span class="boblog-badge warning dot">忙碌</span>
+                    <span class="boblog-badge info dot">空闲</span>
+
+                    <p style="margin: 15px 0 8px; color: #888; font-size: 11px;">圆形圆点（加 .round）：</p>
+                    <span class="boblog-badge success dot round">在线</span>
+                    <span class="boblog-badge danger dot round">离线</span>
+                    <span class="boblog-badge warning dot round">忙碌</span>
+                    <span class="boblog-badge info dot round">空闲</span>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 方形圆点（默认） --&gt;
+&lt;span class="boblog-badge success dot"&gt;在线&lt;/span&gt;
+&lt;span class="boblog-badge danger dot"&gt;离线&lt;/span&gt;
+&lt;span class="boblog-badge warning dot"&gt;忙碌&lt;/span&gt;
+&lt;span class="boblog-badge info dot"&gt;空闲&lt;/span&gt;
+
+&lt;!-- 圆形圆点（加 .round） --&gt;
+&lt;span class="boblog-badge success dot round"&gt;在线&lt;/span&gt;
+&lt;span class="boblog-badge danger dot round"&gt;离线&lt;/span&gt;
+&lt;span class="boblog-badge warning dot round"&gt;忙碌&lt;/span&gt;
+&lt;span class="boblog-badge info dot round"&gt;空闲&lt;/span&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;圆点徽章示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 方形圆点（默认） --&gt;
+&lt;span class="boblog-badge success dot"&gt;在线&lt;/span&gt;
+&lt;span class="boblog-badge danger dot"&gt;离线&lt;/span&gt;
+&lt;span class="boblog-badge warning dot"&gt;忙碌&lt;/span&gt;
+&lt;span class="boblog-badge info dot"&gt;空闲&lt;/span&gt;
+
+&lt;!-- 圆形圆点（加 .round） --&gt;
+&lt;span class="boblog-badge success dot round"&gt;在线&lt;/span&gt;
+&lt;span class="boblog-badge danger dot round"&gt;离线&lt;/span&gt;
+&lt;span class="boblog-badge warning dot round"&gt;忙碌&lt;/span&gt;
+&lt;span class="boblog-badge info dot round"&gt;空闲&lt;/span&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 圆形徽章 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="圆形徽章">圆形徽章</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>修饰类</strong>: .round</li>
+                <li><strong>圆角</strong>: border-radius: 10px（药丸形状）</li>
+                <li><strong>可组合</strong>: 与所有颜色修饰类、.outline、.small、.dot 组合使用</li>
+                <li><strong>适用场景</strong>: 标签、分类、柔和风格的状态指示</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <p style="margin: 0 0 8px; color: #888; font-size: 11px;">实底圆形：</p>
+                    <span class="boblog-badge round">默认</span>
+                    <span class="boblog-badge primary round">主要</span>
+                    <span class="boblog-badge success round">成功</span>
+                    <span class="boblog-badge warning round">警告</span>
+                    <span class="boblog-badge danger round">危险</span>
+                    <span class="boblog-badge info round">信息</span>
+                    <span class="boblog-badge gray round">灰色</span>
+
+                    <p style="margin: 15px 0 8px; color: #888; font-size: 11px;">轮廓圆形：</p>
+                    <span class="boblog-badge primary outline round">主要</span>
+                    <span class="boblog-badge success outline round">成功</span>
+                    <span class="boblog-badge danger outline round">危险</span>
+                    <span class="boblog-badge info outline round">信息</span>
+
+                    <p style="margin: 15px 0 8px; color: #888; font-size: 11px;">小号圆形：</p>
+                    <span class="boblog-badge primary small round">小号</span>
+                    <span class="boblog-badge success small round">小号</span>
+                    <span class="boblog-badge danger small round">小号</span>
+
+                    <p style="margin: 15px 0 8px; color: #888; font-size: 11px;">圆点圆形：</p>
+                    <span class="boblog-badge success dot round">在线</span>
+                    <span class="boblog-badge danger dot round">离线</span>
+                    <span class="boblog-badge warning dot round">忙碌</span>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 实底圆形 --&gt;
+&lt;span class="boblog-badge round"&gt;默认&lt;/span&gt;
+&lt;span class="boblog-badge primary round"&gt;主要&lt;/span&gt;
+&lt;span class="boblog-badge success round"&gt;成功&lt;/span&gt;
+&lt;span class="boblog-badge warning round"&gt;警告&lt;/span&gt;
+&lt;span class="boblog-badge danger round"&gt;危险&lt;/span&gt;
+&lt;span class="boblog-badge info round"&gt;信息&lt;/span&gt;
+&lt;span class="boblog-badge gray round"&gt;灰色&lt;/span&gt;
+
+&lt;!-- 轮廓圆形 --&gt;
+&lt;span class="boblog-badge primary outline round"&gt;主要&lt;/span&gt;
+&lt;span class="boblog-badge success outline round"&gt;成功&lt;/span&gt;
+&lt;span class="boblog-badge danger outline round"&gt;危险&lt;/span&gt;
+&lt;span class="boblog-badge info outline round"&gt;信息&lt;/span&gt;
+
+&lt;!-- 小号圆形 --&gt;
+&lt;span class="boblog-badge primary small round"&gt;小号&lt;/span&gt;
+&lt;span class="boblog-badge success small round"&gt;小号&lt;/span&gt;
+&lt;span class="boblog-badge danger small round"&gt;小号&lt;/span&gt;
+
+&lt;!-- 圆点圆形 --&gt;
+&lt;span class="boblog-badge success dot round"&gt;在线&lt;/span&gt;
+&lt;span class="boblog-badge danger dot round"&gt;离线&lt;/span&gt;
+&lt;span class="boblog-badge warning dot round"&gt;忙碌&lt;/span&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;圆形徽章示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 实底圆形 --&gt;
+&lt;span class="boblog-badge round"&gt;默认&lt;/span&gt;
+&lt;span class="boblog-badge primary round"&gt;主要&lt;/span&gt;
+&lt;span class="boblog-badge success round"&gt;成功&lt;/span&gt;
+&lt;span class="boblog-badge warning round"&gt;警告&lt;/span&gt;
+&lt;span class="boblog-badge danger round"&gt;危险&lt;/span&gt;
+&lt;span class="boblog-badge info round"&gt;信息&lt;/span&gt;
+&lt;span class="boblog-badge gray round"&gt;灰色&lt;/span&gt;
+
+&lt;!-- 轮廓圆形 --&gt;
+&lt;span class="boblog-badge primary outline round"&gt;主要&lt;/span&gt;
+&lt;span class="boblog-badge success outline round"&gt;成功&lt;/span&gt;
+&lt;span class="boblog-badge danger outline round"&gt;危险&lt;/span&gt;
+&lt;span class="boblog-badge info outline round"&gt;信息&lt;/span&gt;
+
+&lt;!-- 小号圆形 --&gt;
+&lt;span class="boblog-badge primary small round"&gt;小号&lt;/span&gt;
+&lt;span class="boblog-badge success small round"&gt;小号&lt;/span&gt;
+&lt;span class="boblog-badge danger small round"&gt;小号&lt;/span&gt;
+
+&lt;!-- 圆点圆形 --&gt;
+&lt;span class="boblog-badge success dot round"&gt;在线&lt;/span&gt;
+&lt;span class="boblog-badge danger dot round"&gt;离线&lt;/span&gt;
+&lt;span class="boblog-badge warning dot round"&gt;忙碌&lt;/span&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 计数器徽章 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="计数器徽章">计数器徽章</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>容器类名</strong>: .boblog-badge-counter（包裹目标元素 + 角标）</li>
+                <li><strong>角标定位</strong>: position: absolute，top: 0，left: 100%，transform: translateY(-50%)</li>
+                <li><strong>角标尺寸</strong>: 最小宽 14px，高 14px，字号 9px，内边距 0 4px</li>
+                <li><strong>适用场景</strong>: 通知数、未读消息等角标</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <span class="boblog-badge-counter" style="margin-right: 25px;">
+                        <span style="font-size: 14px;">消息</span>
+                        <span class="boblog-badge danger">5</span>
+                    </span>
+                    <span class="boblog-badge-counter" style="margin-right: 25px;">
+                        <span style="font-size: 14px;">通知</span>
+                        <span class="boblog-badge primary">12</span>
+                    </span>
+                    <span class="boblog-badge-counter" style="margin-right: 25px;">
+                        <span style="font-size: 14px;">评论</span>
+                        <span class="boblog-badge success">99+</span>
+                    </span>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;span class="boblog-badge-counter"&gt;
+    &lt;span&gt;消息&lt;/span&gt;
+    &lt;span class="boblog-badge danger"&gt;5&lt;/span&gt;
+&lt;/span&gt;
+
+&lt;span class="boblog-badge-counter"&gt;
+    &lt;span&gt;通知&lt;/span&gt;
+    &lt;span class="boblog-badge primary"&gt;12&lt;/span&gt;
+&lt;/span&gt;
+
+&lt;span class="boblog-badge-counter"&gt;
+    &lt;span&gt;评论&lt;/span&gt;
+    &lt;span class="boblog-badge success"&gt;99+&lt;/span&gt;
+&lt;/span&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;计数器徽章示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;span class="boblog-badge-counter"&gt;
+    &lt;span&gt;消息&lt;/span&gt;
+    &lt;span class="boblog-badge danger"&gt;5&lt;/span&gt;
+&lt;/span&gt;
+
+&lt;span class="boblog-badge-counter"&gt;
+    &lt;span&gt;通知&lt;/span&gt;
+    &lt;span class="boblog-badge primary"&gt;12&lt;/span&gt;
+&lt;/span&gt;
+
+&lt;span class="boblog-badge-counter"&gt;
+    &lt;span&gt;评论&lt;/span&gt;
+    &lt;span class="boblog-badge success"&gt;99+&lt;/span&gt;
+&lt;/span&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

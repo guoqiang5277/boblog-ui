@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模态框 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-gray">
+<!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <!-- 导航栏 -->
+    <div class="boblog-doc-nav">
+        <a href="../index.html">← 返回总纲</a>
+    </div>
+
+    <h1>模态框</h1>
+
+    <!-- ====== 基础用法 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="基础用法">基础用法</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>遮罩层</strong>: .boblog-modal-backdrop（全屏固定，半透明黑底，弹性居中）</li>
+                <li><strong>模态框容器</strong>: .boblog-modal（白底蓝边，默认自适应：宽 640px，高度由内容撑开）</li>
+                <li><strong>三段式结构</strong>: .boblog-modal-header / .boblog-modal-body / .boblog-modal-footer</li>
+                <li><strong>头部标题</strong>: .boblog-modal-title（默认 14px 加粗）</li>
+                <li><strong>关闭按钮</strong>: .boblog-modal-close（默认 20×20，右侧 × 号，hover 变深）</li>
+                <li><strong>头/底背景</strong>: #F5F8FB (--boblog-bg-subtle)</li>
+                <li><strong>边框</strong>: #9EC9FF (--boblog-border-blue)</li>
+                <li><strong>分隔线</strong>: #DDE8F0 (--boblog-border-light)</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <button class="boblog-btn boblog-btn-primary" onclick="document.getElementById('modalBasic').classList.add('boblog-modal-open')">打开基础模态框</button>
+
+                    <!-- 基础模态框 -->
+                    <div class="boblog-modal-backdrop" id="modalBasic">
+                        <div class="boblog-modal">
+                            <div class="boblog-modal-header">
+                                <h3 class="boblog-modal-title">确认操作</h3>
+                                <button class="boblog-modal-close" onclick="document.getElementById('modalBasic').classList.remove('boblog-modal-open')">×</button>
+                            </div>
+                            <div class="boblog-modal-body">
+                                <p>确定要执行此操作吗？此操作不可撤销。</p>
+                            </div>
+                            <div class="boblog-modal-footer">
+                                <button class="boblog-btn" onclick="document.getElementById('modalBasic').classList.remove('boblog-modal-open')">取消</button>
+                                <button class="boblog-btn boblog-btn-primary" onclick="document.getElementById('modalBasic').classList.remove('boblog-modal-open')">确定</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 遮罩层 --&gt;
+&lt;div class="boblog-modal-backdrop"&gt;
+    &lt;!-- 模态框容器 --&gt;
+    &lt;div class="boblog-modal"&gt;
+        &lt;div class="boblog-modal-header"&gt;
+            &lt;h3 class="boblog-modal-title"&gt;确认操作&lt;/h3&gt;
+            &lt;button class="boblog-modal-close"&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-modal-body"&gt;
+            &lt;p&gt;确定要执行此操作吗？此操作不可撤销。&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-modal-footer"&gt;
+            &lt;button class="boblog-btn"&gt;取消&lt;/button&gt;
+            &lt;button class="boblog-btn boblog-btn-primary"&gt;确定&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;模态框示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;button class="boblog-btn boblog-btn-primary"
+        onclick="document.getElementById('myModal').classList.add('boblog-modal-open')"&gt;
+    打开模态框
+&lt;/button&gt;
+
+&lt;div class="boblog-modal-backdrop" id="myModal"&gt;
+    &lt;div class="boblog-modal"&gt;
+        &lt;div class="boblog-modal-header"&gt;
+            &lt;h3 class="boblog-modal-title"&gt;确认操作&lt;/h3&gt;
+            &lt;button class="boblog-modal-close"
+                    onclick="document.getElementById('myModal').classList.remove('boblog-modal-open')"&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-modal-body"&gt;
+            &lt;p&gt;确定要执行此操作吗？此操作不可撤销。&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-modal-footer"&gt;
+            &lt;button class="boblog-btn"
+                    onclick="document.getElementById('myModal').classList.remove('boblog-modal-open')"&gt;取消&lt;/button&gt;
+            &lt;button class="boblog-btn boblog-btn-primary"
+                    onclick="document.getElementById('myModal').classList.remove('boblog-modal-open')"&gt;确定&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 尺寸变体 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="尺寸变体">尺寸变体</h2>
+
+        <div class="boblog-doc-spec">
+            <table class="boblog-table boblog-table-bordered boblog-table-striped">
+                <thead>
+                    <tr>
+                        <th>尺寸</th>
+                        <th>类名</th>
+                        <th>宽度</th>
+                        <th>固定高度</th>
+                        <th>头部高</th>
+                        <th>底部高</th>
+                        <th>标题字号</th>
+                        <th>内容字号</th>
+                        <th>适用场景</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>小</td>
+                        <td><code>.boblog-modal-sm</code></td>
+                        <td>240px</td>
+                        <td>100px</td>
+                        <td>28px</td>
+                        <td>28px</td>
+                        <td>12px</td>
+                        <td>12px</td>
+                        <td>简单提示、确认操作</td>
+                    </tr>
+                    <tr>
+                        <td>默认</td>
+                        <td><code>.boblog-modal</code></td>
+                        <td>640px</td>
+                        <td>360px</td>
+                        <td>42px</td>
+                        <td>50px</td>
+                        <td>14px</td>
+                        <td>13px</td>
+                        <td>一般对话框</td>
+                    </tr>
+                    <tr>
+                        <td>大</td>
+                        <td><code>.boblog-modal-lg</code></td>
+                        <td>1080px</td>
+                        <td>720px</td>
+                        <td>56px</td>
+                        <td>68px</td>
+                        <td>18px</td>
+                        <td>15px</td>
+                        <td>复杂表单、表格</td>
+                    </tr>
+                    <tr>
+                        <td>超大</td>
+                        <td><code>.boblog-modal-xl</code></td>
+                        <td>1440px</td>
+                        <td>960px</td>
+                        <td>72px</td>
+                        <td>88px</td>
+                        <td>22px</td>
+                        <td>17px</td>
+                        <td>数据展示、编辑器</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>尺寸类加在 <code>.boblog-modal</code> 元素上。默认自适应（高度由内容撑开），尺寸类仅控制宽度和子元素样式。</p>
+            <p>叠加 <code>.boblog-modal-fixed</code> 可启用固定模式：宽高均固定。例如 <code>.boblog-modal.boblog-modal-lg.boblog-modal-fixed</code>。</p>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <table style="border-collapse: separate; border-spacing: 6px;">
+                        <tr>
+                            <td><button class="boblog-btn" onclick="document.getElementById('modalSm').classList.add('boblog-modal-open')">sm（自适应）</button></td>
+                            <td><button class="boblog-btn" onclick="document.getElementById('modalDefault').classList.add('boblog-modal-open')">默认（自适应）</button></td>
+                            <td><button class="boblog-btn" onclick="document.getElementById('modalLg').classList.add('boblog-modal-open')">lg（自适应）</button></td>
+                            <td><button class="boblog-btn" onclick="document.getElementById('modalXl').classList.add('boblog-modal-open')">xl（自适应）</button></td>
+                        </tr>
+                        <tr>
+                            <td><button class="boblog-btn" onclick="document.getElementById('modalSmFixed').classList.add('boblog-modal-open')">sm + fixed</button></td>
+                            <td><button class="boblog-btn" onclick="document.getElementById('modalDefaultFixed').classList.add('boblog-modal-open')">默认 + fixed</button></td>
+                            <td><button class="boblog-btn" onclick="document.getElementById('modalLgFixed').classList.add('boblog-modal-open')">lg + fixed</button></td>
+                            <td><button class="boblog-btn" onclick="document.getElementById('modalXlFixed').classList.add('boblog-modal-open')">xl + fixed</button></td>
+                        </tr>
+                    </table>
+
+                    <!-- sm 自适应（默认） -->
+                    <div class="boblog-modal-backdrop" id="modalSm">
+                        <div class="boblog-modal boblog-modal-sm">
+                            <div class="boblog-modal-header">
+                                <h3 class="boblog-modal-title">提示</h3>
+                                <button class="boblog-modal-close" onclick="document.getElementById('modalSm').classList.remove('boblog-modal-open')">×</button>
+                            </div>
+                            <div class="boblog-modal-body">
+                                <p>sm 自适应，宽 240px，高度由内容撑开。</p>
+                            </div>
+                            <div class="boblog-modal-footer">
+                                <button class="boblog-btn boblog-btn-primary" onclick="document.getElementById('modalSm').classList.remove('boblog-modal-open')">知道了</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 默认自适应 -->
+                    <div class="boblog-modal-backdrop" id="modalDefault">
+                        <div class="boblog-modal">
+                            <div class="boblog-modal-header">
+                                <h3 class="boblog-modal-title">默认尺寸</h3>
+                                <button class="boblog-modal-close" onclick="document.getElementById('modalDefault').classList.remove('boblog-modal-open')">×</button>
+                            </div>
+                            <div class="boblog-modal-body">
+                                <p>默认自适应，宽 640px，高度由内容撑开。</p>
+                            </div>
+                            <div class="boblog-modal-footer">
+                                <button class="boblog-btn" onclick="document.getElementById('modalDefault').classList.remove('boblog-modal-open')">取消</button>
+                                <button class="boblog-btn boblog-btn-primary" onclick="document.getElementById('modalDefault').classList.remove('boblog-modal-open')">确定</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- lg 自适应 -->
+                    <div class="boblog-modal-backdrop" id="modalLg">
+                        <div class="boblog-modal boblog-modal-lg">
+                            <div class="boblog-modal-header">
+                                <h3 class="boblog-modal-title">详细信息</h3>
+                                <button class="boblog-modal-close" onclick="document.getElementById('modalLg').classList.remove('boblog-modal-open')">×</button>
+                            </div>
+                            <div class="boblog-modal-body">
+                                <p>lg 自适应，宽 1080px，高度由内容撑开。</p>
+                            </div>
+                            <div class="boblog-modal-footer">
+                                <button class="boblog-btn" onclick="document.getElementById('modalLg').classList.remove('boblog-modal-open')">取消</button>
+                                <button class="boblog-btn boblog-btn-primary" onclick="document.getElementById('modalLg').classList.remove('boblog-modal-open')">保存</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- xl 自适应 -->
+                    <div class="boblog-modal-backdrop" id="modalXl">
+                        <div class="boblog-modal boblog-modal-xl">
+                            <div class="boblog-modal-header">
+                                <h3 class="boblog-modal-title">数据展示</h3>
+                                <button class="boblog-modal-close" onclick="document.getElementById('modalXl').classList.remove('boblog-modal-open')">×</button>
+                            </div>
+                            <div class="boblog-modal-body">
+                                <p>xl 自适应，宽 1440px，高度由内容撑开。</p>
+                            </div>
+                            <div class="boblog-modal-footer">
+                                <button class="boblog-btn" onclick="document.getElementById('modalXl').classList.remove('boblog-modal-open')">关闭</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- sm + fixed -->
+                    <div class="boblog-modal-backdrop" id="modalSmFixed">
+                        <div class="boblog-modal boblog-modal-sm boblog-modal-fixed">
+                            <div class="boblog-modal-header">
+                                <h3 class="boblog-modal-title">sm + fixed</h3>
+                                <button class="boblog-modal-close" onclick="document.getElementById('modalSmFixed').classList.remove('boblog-modal-open')">×</button>
+                            </div>
+                            <div class="boblog-modal-body">
+                                <p>小尺寸固定，240×100。</p>
+                            </div>
+                            <div class="boblog-modal-footer">
+                                <button class="boblog-btn boblog-btn-primary" onclick="document.getElementById('modalSmFixed').classList.remove('boblog-modal-open')">确定</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 默认 + fixed -->
+                    <div class="boblog-modal-backdrop" id="modalDefaultFixed">
+                        <div class="boblog-modal boblog-modal-fixed">
+                            <div class="boblog-modal-header">
+                                <h3 class="boblog-modal-title">默认 + fixed</h3>
+                                <button class="boblog-modal-close" onclick="document.getElementById('modalDefaultFixed').classList.remove('boblog-modal-open')">×</button>
+                            </div>
+                            <div class="boblog-modal-body">
+                                <p>默认尺寸固定，640×360。</p>
+                            </div>
+                            <div class="boblog-modal-footer">
+                                <button class="boblog-btn boblog-btn-primary" onclick="document.getElementById('modalDefaultFixed').classList.remove('boblog-modal-open')">确定</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- lg + fixed -->
+                    <div class="boblog-modal-backdrop" id="modalLgFixed">
+                        <div class="boblog-modal boblog-modal-lg boblog-modal-fixed">
+                            <div class="boblog-modal-header">
+                                <h3 class="boblog-modal-title">lg + fixed</h3>
+                                <button class="boblog-modal-close" onclick="document.getElementById('modalLgFixed').classList.remove('boblog-modal-open')">×</button>
+                            </div>
+                            <div class="boblog-modal-body">
+                                <p>大尺寸固定，1080×720。</p>
+                            </div>
+                            <div class="boblog-modal-footer">
+                                <button class="boblog-btn boblog-btn-primary" onclick="document.getElementById('modalLgFixed').classList.remove('boblog-modal-open')">确定</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- xl + fixed -->
+                    <div class="boblog-modal-backdrop" id="modalXlFixed">
+                        <div class="boblog-modal boblog-modal-xl boblog-modal-fixed">
+                            <div class="boblog-modal-header">
+                                <h3 class="boblog-modal-title">xl + fixed</h3>
+                                <button class="boblog-modal-close" onclick="document.getElementById('modalXlFixed').classList.remove('boblog-modal-open')">×</button>
+                            </div>
+                            <div class="boblog-modal-body">
+                                <p>超大尺寸固定，1440×960。</p>
+                            </div>
+                            <div class="boblog-modal-footer">
+                                <button class="boblog-btn boblog-btn-primary" onclick="document.getElementById('modalXlFixed').classList.remove('boblog-modal-open')">确定</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 自适应（默认）：高度由内容撑开，宽度由尺寸类控制 --&gt;
+&lt;div class="boblog-modal boblog-modal-sm"&gt;...&lt;/div&gt;
+&lt;div class="boblog-modal"&gt;...&lt;/div&gt;
+&lt;div class="boblog-modal boblog-modal-lg"&gt;...&lt;/div&gt;
+&lt;div class="boblog-modal boblog-modal-xl"&gt;...&lt;/div&gt;
+
+&lt;!-- 固定模式：加 .boblog-modal-fixed，宽高均固定 --&gt;
+&lt;div class="boblog-modal boblog-modal-sm boblog-modal-fixed"&gt;...&lt;/div&gt;
+&lt;div class="boblog-modal boblog-modal-fixed"&gt;...&lt;/div&gt;
+&lt;div class="boblog-modal boblog-modal-lg boblog-modal-fixed"&gt;...&lt;/div&gt;
+&lt;div class="boblog-modal boblog-modal-xl boblog-modal-fixed"&gt;...&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;模态框尺寸示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;table style="border-collapse: separate; border-spacing: 6px;"&gt;
+    &lt;tr&gt;
+        &lt;td&gt;&lt;button class="boblog-btn"
+                onclick="document.getElementById('sm').classList.add('boblog-modal-open')"&gt;sm（自适应）&lt;/button&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;button class="boblog-btn"
+                onclick="document.getElementById('def').classList.add('boblog-modal-open')"&gt;默认（自适应）&lt;/button&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;button class="boblog-btn"
+                onclick="document.getElementById('lg').classList.add('boblog-modal-open')"&gt;lg（自适应）&lt;/button&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;button class="boblog-btn"
+                onclick="document.getElementById('xl').classList.add('boblog-modal-open')"&gt;xl（自适应）&lt;/button&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;&lt;button class="boblog-btn"
+                onclick="document.getElementById('smFixed').classList.add('boblog-modal-open')"&gt;sm + fixed&lt;/button&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;button class="boblog-btn"
+                onclick="document.getElementById('defFixed').classList.add('boblog-modal-open')"&gt;默认 + fixed&lt;/button&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;button class="boblog-btn"
+                onclick="document.getElementById('lgFixed').classList.add('boblog-modal-open')"&gt;lg + fixed&lt;/button&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;button class="boblog-btn"
+                onclick="document.getElementById('xlFixed').classList.add('boblog-modal-open')"&gt;xl + fixed&lt;/button&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;!-- sm 自适应（默认） --&gt;
+&lt;div class="boblog-modal-backdrop" id="sm"&gt;
+    &lt;div class="boblog-modal boblog-modal-sm"&gt;
+        &lt;div class="boblog-modal-header"&gt;
+            &lt;h3 class="boblog-modal-title"&gt;提示&lt;/h3&gt;
+            &lt;button class="boblog-modal-close"
+                    onclick="document.getElementById('sm').classList.remove('boblog-modal-open')"&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-modal-body"&gt;&lt;p&gt;sm 自适应，宽 240px，高度由内容撑开。&lt;/p&gt;&lt;/div&gt;
+        &lt;div class="boblog-modal-footer"&gt;
+            &lt;button class="boblog-btn boblog-btn-primary"
+                    onclick="document.getElementById('sm').classList.remove('boblog-modal-open')"&gt;知道了&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 默认自适应 --&gt;
+&lt;div class="boblog-modal-backdrop" id="def"&gt;
+    &lt;div class="boblog-modal"&gt;
+        &lt;div class="boblog-modal-header"&gt;
+            &lt;h3 class="boblog-modal-title"&gt;默认尺寸&lt;/h3&gt;
+            &lt;button class="boblog-modal-close"
+                    onclick="document.getElementById('def').classList.remove('boblog-modal-open')"&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-modal-body"&gt;&lt;p&gt;默认自适应，宽 640px，高度由内容撑开。&lt;/p&gt;&lt;/div&gt;
+        &lt;div class="boblog-modal-footer"&gt;
+            &lt;button class="boblog-btn"
+                    onclick="document.getElementById('def').classList.remove('boblog-modal-open')"&gt;取消&lt;/button&gt;
+            &lt;button class="boblog-btn boblog-btn-primary"
+                    onclick="document.getElementById('def').classList.remove('boblog-modal-open')"&gt;确定&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- lg 自适应 --&gt;
+&lt;div class="boblog-modal-backdrop" id="lg"&gt;
+    &lt;div class="boblog-modal boblog-modal-lg"&gt;
+        &lt;div class="boblog-modal-header"&gt;
+            &lt;h3 class="boblog-modal-title"&gt;详细信息&lt;/h3&gt;
+            &lt;button class="boblog-modal-close"
+                    onclick="document.getElementById('lg').classList.remove('boblog-modal-open')"&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-modal-body"&gt;&lt;p&gt;lg 自适应，宽 1080px，高度由内容撑开。&lt;/p&gt;&lt;/div&gt;
+        &lt;div class="boblog-modal-footer"&gt;
+            &lt;button class="boblog-btn"
+                    onclick="document.getElementById('lg').classList.remove('boblog-modal-open')"&gt;取消&lt;/button&gt;
+            &lt;button class="boblog-btn boblog-btn-primary"
+                    onclick="document.getElementById('lg').classList.remove('boblog-modal-open')"&gt;保存&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- xl 自适应 --&gt;
+&lt;div class="boblog-modal-backdrop" id="xl"&gt;
+    &lt;div class="boblog-modal boblog-modal-xl"&gt;
+        &lt;div class="boblog-modal-header"&gt;
+            &lt;h3 class="boblog-modal-title"&gt;数据展示&lt;/h3&gt;
+            &lt;button class="boblog-modal-close"
+                    onclick="document.getElementById('xl').classList.remove('boblog-modal-open')"&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-modal-body"&gt;&lt;p&gt;xl 自适应，宽 1440px，高度由内容撑开。&lt;/p&gt;&lt;/div&gt;
+        &lt;div class="boblog-modal-footer"&gt;
+            &lt;button class="boblog-btn"
+                    onclick="document.getElementById('xl').classList.remove('boblog-modal-open')"&gt;关闭&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- sm + fixed --&gt;
+&lt;div class="boblog-modal-backdrop" id="smFixed"&gt;
+    &lt;div class="boblog-modal boblog-modal-sm boblog-modal-fixed"&gt;
+        &lt;div class="boblog-modal-header"&gt;
+            &lt;h3 class="boblog-modal-title"&gt;sm + fixed&lt;/h3&gt;
+            &lt;button class="boblog-modal-close"
+                    onclick="document.getElementById('smFixed').classList.remove('boblog-modal-open')"&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-modal-body"&gt;&lt;p&gt;小尺寸固定，240×100。&lt;/p&gt;&lt;/div&gt;
+        &lt;div class="boblog-modal-footer"&gt;
+            &lt;button class="boblog-btn boblog-btn-primary"
+                    onclick="document.getElementById('smFixed').classList.remove('boblog-modal-open')"&gt;确定&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 默认 + fixed --&gt;
+&lt;div class="boblog-modal-backdrop" id="defFixed"&gt;
+    &lt;div class="boblog-modal boblog-modal-fixed"&gt;
+        &lt;div class="boblog-modal-header"&gt;
+            &lt;h3 class="boblog-modal-title"&gt;默认 + fixed&lt;/h3&gt;
+            &lt;button class="boblog-modal-close"
+                    onclick="document.getElementById('defFixed').classList.remove('boblog-modal-open')"&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-modal-body"&gt;&lt;p&gt;默认尺寸固定，640×360。&lt;/p&gt;&lt;/div&gt;
+        &lt;div class="boblog-modal-footer"&gt;
+            &lt;button class="boblog-btn boblog-btn-primary"
+                    onclick="document.getElementById('defFixed').classList.remove('boblog-modal-open')"&gt;确定&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- lg + fixed --&gt;
+&lt;div class="boblog-modal-backdrop" id="lgFixed"&gt;
+    &lt;div class="boblog-modal boblog-modal-lg boblog-modal-fixed"&gt;
+        &lt;div class="boblog-modal-header"&gt;
+            &lt;h3 class="boblog-modal-title"&gt;lg + fixed&lt;/h3&gt;
+            &lt;button class="boblog-modal-close"
+                    onclick="document.getElementById('lgFixed').classList.remove('boblog-modal-open')"&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-modal-body"&gt;&lt;p&gt;大尺寸固定，1080×720。&lt;/p&gt;&lt;/div&gt;
+        &lt;div class="boblog-modal-footer"&gt;
+            &lt;button class="boblog-btn boblog-btn-primary"
+                    onclick="document.getElementById('lgFixed').classList.remove('boblog-modal-open')"&gt;确定&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- xl + fixed --&gt;
+&lt;div class="boblog-modal-backdrop" id="xlFixed"&gt;
+    &lt;div class="boblog-modal boblog-modal-xl boblog-modal-fixed"&gt;
+        &lt;div class="boblog-modal-header"&gt;
+            &lt;h3 class="boblog-modal-title"&gt;xl + fixed&lt;/h3&gt;
+            &lt;button class="boblog-modal-close"
+                    onclick="document.getElementById('xlFixed').classList.remove('boblog-modal-open')"&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-modal-body"&gt;&lt;p&gt;超大尺寸固定，1440×960。&lt;/p&gt;&lt;/div&gt;
+        &lt;div class="boblog-modal-footer"&gt;
+            &lt;button class="boblog-btn boblog-btn-primary"
+                    onclick="document.getElementById('xlFixed').classList.remove('boblog-modal-open')"&gt;确定&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 无头部 / 无底部 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="无头部无底部">无头部 / 无底部</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>无头部</strong>: .boblog-modal-no-header（内容区顶部加大内边距 30px）</li>
+                <li><strong>无底部</strong>: .boblog-modal-no-footer（内容区底部保持 20px）</li>
+                <li><strong>用途</strong>: 纯内容展示、自定义布局等场景</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <button class="boblog-btn" onclick="document.getElementById('modalNoHeader').classList.add('boblog-modal-open')">无头部</button>
+                    <button class="boblog-btn" onclick="document.getElementById('modalNoFooter').classList.add('boblog-modal-open')">无底部</button>
+
+                    <!-- 无头部模态框 -->
+                    <div class="boblog-modal-backdrop" id="modalNoHeader">
+                        <div class="boblog-modal boblog-modal-no-header">
+                            <div class="boblog-modal-body">
+                                <p>这个模态框没有头部，内容区顶部增大了内边距。</p>
+                                <p>适合纯内容展示场景。</p>
+                            </div>
+                            <div class="boblog-modal-footer">
+                                <button class="boblog-btn" onclick="document.getElementById('modalNoHeader').classList.remove('boblog-modal-open')">关闭</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 无底部模态框 -->
+                    <div class="boblog-modal-backdrop" id="modalNoFooter">
+                        <div class="boblog-modal boblog-modal-no-footer">
+                            <div class="boblog-modal-header">
+                                <h3 class="boblog-modal-title">仅头部 + 内容</h3>
+                                <button class="boblog-modal-close" onclick="document.getElementById('modalNoFooter').classList.remove('boblog-modal-open')">×</button>
+                            </div>
+                            <div class="boblog-modal-body">
+                                <p>这个模态框没有底部操作栏，只有头部和内容。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 无头部 --&gt;
+&lt;div class="boblog-modal boblog-modal-no-header"&gt;
+    &lt;div class="boblog-modal-body"&gt;
+        &lt;p&gt;纯内容区域，无头部。&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-modal-footer"&gt;
+        &lt;button class="boblog-btn"&gt;关闭&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 无底部 --&gt;
+&lt;div class="boblog-modal boblog-modal-no-footer"&gt;
+    &lt;div class="boblog-modal-header"&gt;
+        &lt;h3 class="boblog-modal-title"&gt;标题&lt;/h3&gt;
+        &lt;button class="boblog-modal-close"&gt;×&lt;/button&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-modal-body"&gt;
+        &lt;p&gt;只有头部和内容，无底部。&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;无头部/无底部模态框示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;button class="boblog-btn"
+        onclick="document.getElementById('noHeader').classList.add('boblog-modal-open')"&gt;无头部&lt;/button&gt;
+&lt;button class="boblog-btn"
+        onclick="document.getElementById('noFooter').classList.add('boblog-modal-open')"&gt;无底部&lt;/button&gt;
+
+&lt;!-- 无头部 --&gt;
+&lt;div class="boblog-modal-backdrop" id="noHeader"&gt;
+    &lt;div class="boblog-modal boblog-modal-no-header"&gt;
+        &lt;div class="boblog-modal-body"&gt;
+            &lt;p&gt;这个模态框没有头部，内容区顶部增大了内边距。&lt;/p&gt;
+            &lt;p&gt;适合纯内容展示场景。&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-modal-footer"&gt;
+            &lt;button class="boblog-btn"
+                    onclick="document.getElementById('noHeader').classList.remove('boblog-modal-open')"&gt;关闭&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 无底部 --&gt;
+&lt;div class="boblog-modal-backdrop" id="noFooter"&gt;
+    &lt;div class="boblog-modal boblog-modal-no-footer"&gt;
+        &lt;div class="boblog-modal-header"&gt;
+            &lt;h3 class="boblog-modal-title"&gt;仅头部 + 内容&lt;/h3&gt;
+            &lt;button class="boblog-modal-close"
+                    onclick="document.getElementById('noFooter').classList.remove('boblog-modal-open')"&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-modal-body"&gt;
+            &lt;p&gt;这个模态框没有底部操作栏，只有头部和内容。&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 固定模式 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="固定模式">固定模式</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>类名</strong>: .boblog-modal-fixed（加在 .boblog-modal 上）</li>
+                <li><strong>效果</strong>: 宽高均固定（默认 640×360），取消视口限制</li>
+                <li><strong>可叠加</strong>: 配合尺寸类（sm/lg/xl）使用，各有对应固定宽高</li>
+                <li><strong>对比</strong>: 默认行为是自适应（高度由内容撑开），加 fixed 后变为固定</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <button class="boblog-btn" onclick="document.getElementById('modalFixedDefault').classList.add('boblog-modal-open')">固定（默认 640×360）</button>
+                    <button class="boblog-btn" onclick="document.getElementById('modalFixedLg').classList.add('boblog-modal-open')">固定（lg 1080×720）</button>
+
+                    <!-- 固定 - 默认尺寸 -->
+                    <div class="boblog-modal-backdrop" id="modalFixedDefault">
+                        <div class="boblog-modal boblog-modal-fixed">
+                            <div class="boblog-modal-header">
+                                <h3 class="boblog-modal-title">固定模态框</h3>
+                                <button class="boblog-modal-close" onclick="document.getElementById('modalFixedDefault').classList.remove('boblog-modal-open')">×</button>
+                            </div>
+                            <div class="boblog-modal-body">
+                                <p>固定尺寸 640×360，高度不随内容变化。</p>
+                            </div>
+                            <div class="boblog-modal-footer">
+                                <button class="boblog-btn boblog-btn-primary" onclick="document.getElementById('modalFixedDefault').classList.remove('boblog-modal-open')">确定</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 固定 - lg 尺寸 -->
+                    <div class="boblog-modal-backdrop" id="modalFixedLg">
+                        <div class="boblog-modal boblog-modal-lg boblog-modal-fixed">
+                            <div class="boblog-modal-header">
+                                <h3 class="boblog-modal-title">固定模态框（lg）</h3>
+                                <button class="boblog-modal-close" onclick="document.getElementById('modalFixedLg').classList.remove('boblog-modal-open')">×</button>
+                            </div>
+                            <div class="boblog-modal-body">
+                                <p>固定尺寸 1080×720，高度不随内容变化。</p>
+                            </div>
+                            <div class="boblog-modal-footer">
+                                <button class="boblog-btn" onclick="document.getElementById('modalFixedLg').classList.remove('boblog-modal-open')">取消</button>
+                                <button class="boblog-btn boblog-btn-primary" onclick="document.getElementById('modalFixedLg').classList.remove('boblog-modal-open')">确定</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 固定模式：加 .boblog-modal-fixed，宽高固定 --&gt;
+&lt;div class="boblog-modal boblog-modal-fixed"&gt;...&lt;/div&gt;
+
+&lt;!-- 可与尺寸类组合 --&gt;
+&lt;div class="boblog-modal boblog-modal-lg boblog-modal-fixed"&gt;...&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;固定模态框示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;button class="boblog-btn"
+        onclick="document.getElementById('fixedDef').classList.add('boblog-modal-open')"&gt;固定（默认）&lt;/button&gt;
+&lt;button class="boblog-btn"
+        onclick="document.getElementById('fixedLg').classList.add('boblog-modal-open')"&gt;固定（lg）&lt;/button&gt;
+
+&lt;!-- 固定 - 默认尺寸 640×360 --&gt;
+&lt;div class="boblog-modal-backdrop" id="fixedDef"&gt;
+    &lt;div class="boblog-modal boblog-modal-fixed"&gt;
+        &lt;div class="boblog-modal-header"&gt;
+            &lt;h3 class="boblog-modal-title"&gt;固定模态框&lt;/h3&gt;
+            &lt;button class="boblog-modal-close"
+                    onclick="document.getElementById('fixedDef').classList.remove('boblog-modal-open')"&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-modal-body"&gt;
+            &lt;p&gt;固定尺寸 640×360，高度不随内容变化。&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-modal-footer"&gt;
+            &lt;button class="boblog-btn boblog-btn-primary"
+                    onclick="document.getElementById('fixedDef').classList.remove('boblog-modal-open')"&gt;确定&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 固定 - lg 尺寸 1080×720 --&gt;
+&lt;div class="boblog-modal-backdrop" id="fixedLg"&gt;
+    &lt;div class="boblog-modal boblog-modal-lg boblog-modal-fixed"&gt;
+        &lt;div class="boblog-modal-header"&gt;
+            &lt;h3 class="boblog-modal-title"&gt;固定模态框（lg）&lt;/h3&gt;
+            &lt;button class="boblog-modal-close"
+                    onclick="document.getElementById('fixedLg').classList.remove('boblog-modal-open')"&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-modal-body"&gt;
+            &lt;p&gt;固定尺寸 1080×720，高度不随内容变化。&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-modal-footer"&gt;
+            &lt;button class="boblog-btn"
+                    onclick="document.getElementById('fixedLg').classList.remove('boblog-modal-open')"&gt;取消&lt;/button&gt;
+            &lt;button class="boblog-btn boblog-btn-primary"
+                    onclick="document.getElementById('fixedLg').classList.remove('boblog-modal-open')"&gt;确定&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 内容居中 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="内容居中">内容居中</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>类名</strong>: .boblog-modal-body-center（加在 .boblog-modal-body 上）</li>
+                <li><strong>效果</strong>: 内容水平垂直居中，文字居中对齐</li>
+                <li><strong>用途</strong>: 图标 + 文字的居中提示场景</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <button class="boblog-btn" onclick="document.getElementById('modalCenter').classList.add('boblog-modal-open')">打开居中内容模态框</button>
+
+                    <div class="boblog-modal-backdrop" id="modalCenter">
+                        <div class="boblog-modal">
+                            <div class="boblog-modal-header">
+                                <h3 class="boblog-modal-title">操作成功</h3>
+                                <button class="boblog-modal-close" onclick="document.getElementById('modalCenter').classList.remove('boblog-modal-open')">×</button>
+                            </div>
+                            <div class="boblog-modal-body boblog-modal-body-center">
+                                <div style="font-size: 32px; color: #3C8C30; margin-bottom: 10px;">✓</div>
+                                <p>数据已成功保存！</p>
+                            </div>
+                            <div class="boblog-modal-footer">
+                                <button class="boblog-btn boblog-btn-primary" onclick="document.getElementById('modalCenter').classList.remove('boblog-modal-open')">确定</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-modal-body boblog-modal-body-center"&gt;
+    &lt;div style="font-size: 32px; color: #3C8C30;"&gt;✓&lt;/div&gt;
+    &lt;p&gt;数据已成功保存！&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;居中内容模态框示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;button class="boblog-btn"
+        onclick="document.getElementById('center').classList.add('boblog-modal-open')"&gt;
+    打开
+&lt;/button&gt;
+
+&lt;div class="boblog-modal-backdrop" id="center"&gt;
+    &lt;div class="boblog-modal"&gt;
+        &lt;div class="boblog-modal-header"&gt;
+            &lt;h3 class="boblog-modal-title"&gt;操作成功&lt;/h3&gt;
+            &lt;button class="boblog-modal-close"
+                    onclick="document.getElementById('center').classList.remove('boblog-modal-open')"&gt;×&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-modal-body boblog-modal-body-center"&gt;
+            &lt;div style="font-size: 32px; color: #3C8C30; margin-bottom: 10px;"&gt;✓&lt;/div&gt;
+            &lt;p&gt;数据已成功保存！&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-modal-footer"&gt;
+            &lt;button class="boblog-btn boblog-btn-primary"
+                    onclick="document.getElementById('center').classList.remove('boblog-modal-open')"&gt;确定&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+/**
+ * Bo-Blog UI 组件 - Tab 切换面板 (tabs)
+ *
+ * 参考 Bo-Blog 经典 Tag 页面的 Tab 风格：
+ *   - 浅蓝底 var(--boblog-blue-wash) 按钮 + 蓝框 var(--boblog-border-blue)
+ *   - 激活状态白底遮盖底线，与面板无缝连接
+ *   - 面板白底蓝框，顶部无边框（与按钮栏共享）
+ *
+ * 颜色变量（定义在 src/base/variables.css）：
+ *   - --boblog-blue-wash:   #F4FBFF  极浅蓝底，Tab 按钮默认背景
+ *   - --boblog-border-blue: #9EC9FF  蓝色边框，Tab 栏底线 + 按钮边框 + 面板边框
+ *   - --boblog-blue-accent: #0D80BD  强调蓝，Tab 激活/悬停文字色
+ *
+ * HTML 结构约定：
+ *   <div class="boblog-tabs">
+ *       <div class="boblog-tabs-bar">
+ *           <button class="boblog-tabs-btn active">Tab 1</button>
+ *           <button class="boblog-tabs-btn">Tab 2</button>
+ *       </div>
+ *       <div class="boblog-tabs-panel active">面板1内容</div>
+ *       <div class="boblog-tabs-panel">面板2内容</div>
+ *   </div>
+ *
+ * 依赖：
+ *   - src/base/variables.css（颜色、字体变量）
+ *   - src/js/tabs.js（切换逻辑）
+ */
+
+
+/* ==========================================================================
+   Tab 容器
+   ========================================================================== */
+
+/* Tab 外层容器 — 不设边框，由按钮栏和面板各自管理边框 */
+.boblog-tabs {
+    margin-bottom: var(--boblog-spacing-md, 15px);
+}
+
+
+/* ==========================================================================
+   Tab 按钮栏
+   ========================================================================== */
+
+/* 按钮栏 — 底部蓝色分隔线，左侧留出 10px 起始间距 */
+.boblog-tabs-bar {
+    display: flex;
+    padding-left: 10px;
+    border-bottom: 1px solid var(--boblog-border-blue, #9EC9FF);
+    height: 28px;
+}
+
+/* 单个 Tab 按钮 — Bo-Blog 经典 tag-tabs 风格 */
+.boblog-tabs-btn {
+    display: block;
+    height: 27px;
+    line-height: 27px;
+    padding: 0 15px;
+    margin-right: 5px;
+    font-family: var(--boblog-font-family, Tahoma, Arial, sans-serif);
+    font-size: var(--boblog-font-size, 12px);
+    font-weight: bold;
+    color: var(--boblog-text, #333);
+    background: var(--boblog-blue-wash, #F4FBFF);
+    border: 1px solid var(--boblog-border-blue, #9EC9FF);
+    border-bottom: none;
+    cursor: pointer;
+}
+
+/* 按钮悬停 + 激活 — 白底遮盖底线，文字变蓝 */
+.boblog-tabs-btn:hover,
+.boblog-tabs-btn.active {
+    background: var(--boblog-white, #FFFFFF);
+    /* 底部白边遮盖按钮栏的蓝色底线，形成与面板连通的效果 */
+    border-bottom: 1px solid var(--boblog-white, #FFFFFF);
+    color: var(--boblog-blue-accent, #0D80BD);
+    position: relative;
+    top: 1px;
+}
+
+
+/* ==========================================================================
+   Tab 面板
+   ========================================================================== */
+
+/* 面板 — 默认隐藏，白底蓝框，顶部无边框（与按钮栏底线共享） */
+.boblog-tabs-panel {
+    display: none;
+    padding: 15px;
+    background: var(--boblog-white, #FFFFFF);
+    border: 1px solid var(--boblog-border-blue, #9EC9FF);
+    border-top: none;
+}
+
+/* 面板激活 — 显示 */
+.boblog-tabs-panel.active {
+    display: block;
+}

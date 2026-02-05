@@ -1,0 +1,957 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>树形组件 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-gray">
+<!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <!-- 导航栏 -->
+    <div class="boblog-doc-nav">
+        <a href="../index.html">← 返回总纲</a>
+    </div>
+
+    <h1>树形组件</h1>
+
+    <!-- ====== 基础用法 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="基础用法">基础用法</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>容器类名</strong>: .boblog-tree</li>
+                <li><strong>节点</strong>: .boblog-tree-node（加 .expanded 展开）</li>
+                <li><strong>节点内容</strong>: .boblog-tree-node-content（flex 布局）</li>
+                <li><strong>展开按钮</strong>: .boblog-tree-toggle（▶ 图标，展开时旋转 90deg 变 ▼）</li>
+                <li><strong>叶子节点</strong>: .boblog-tree-toggle.leaf（隐藏图标但保留占位）</li>
+                <li><strong>节点文字</strong>: .boblog-tree-label</li>
+                <li><strong>子节点容器</strong>: .boblog-tree-children（默认隐藏，展开时显示）</li>
+                <li><strong>展开/折叠</strong>: 通过 JavaScript 切换 .boblog-tree-node 的 .expanded 类（详见 <a href="#JS-API">JavaScript API</a>）</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <!-- 文件目录树示例 -->
+                    <div class="boblog-tree">
+                        <!-- 根节点：文档根目录（默认展开） -->
+                        <div class="boblog-tree-node expanded">
+                            <div class="boblog-tree-node-content">
+                                <span class="boblog-tree-toggle"></span>
+                                <span class="boblog-tree-label">文档根目录</span>
+                            </div>
+                            <div class="boblog-tree-children">
+                                <!-- 子节点：源代码（默认展开） -->
+                                <div class="boblog-tree-node expanded">
+                                    <div class="boblog-tree-node-content">
+                                        <span class="boblog-tree-toggle"></span>
+                                        <span class="boblog-tree-label">源代码</span>
+                                    </div>
+                                    <div class="boblog-tree-children">
+                                        <!-- 叶子节点：index.js -->
+                                        <div class="boblog-tree-node">
+                                            <div class="boblog-tree-node-content">
+                                                <span class="boblog-tree-toggle leaf"></span>
+                                                <span class="boblog-tree-label">index.js</span>
+                                            </div>
+                                        </div>
+                                        <!-- 叶子节点：utils.js -->
+                                        <div class="boblog-tree-node">
+                                            <div class="boblog-tree-node-content">
+                                                <span class="boblog-tree-toggle leaf"></span>
+                                                <span class="boblog-tree-label">utils.js</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 子节点：样式文件（默认折叠） -->
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content">
+                                        <span class="boblog-tree-toggle"></span>
+                                        <span class="boblog-tree-label">样式文件</span>
+                                    </div>
+                                    <div class="boblog-tree-children">
+                                        <!-- 叶子节点：main.css -->
+                                        <div class="boblog-tree-node">
+                                            <div class="boblog-tree-node-content">
+                                                <span class="boblog-tree-toggle leaf"></span>
+                                                <span class="boblog-tree-label">main.css</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 叶子节点：README.md -->
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">README.md</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 引入 CSS --&gt;
+&lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+
+&lt;div class="boblog-tree"&gt;
+    &lt;!-- 根节点：文档根目录（默认展开） --&gt;
+    &lt;div class="boblog-tree-node expanded"&gt;
+        &lt;div class="boblog-tree-node-content"&gt;
+            &lt;span class="boblog-tree-toggle"&gt;&lt;/span&gt;
+            &lt;span class="boblog-tree-label"&gt;文档根目录&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-tree-children"&gt;
+            &lt;!-- 子节点：源代码（默认展开） --&gt;
+            &lt;div class="boblog-tree-node expanded"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;源代码&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class="boblog-tree-children"&gt;
+                    &lt;div class="boblog-tree-node"&gt;
+                        &lt;div class="boblog-tree-node-content"&gt;
+                            &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                            &lt;span class="boblog-tree-label"&gt;index.js&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="boblog-tree-node"&gt;
+                        &lt;div class="boblog-tree-node-content"&gt;
+                            &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                            &lt;span class="boblog-tree-label"&gt;utils.js&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;!-- 子节点：样式文件（默认折叠） --&gt;
+            &lt;div class="boblog-tree-node"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;样式文件&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class="boblog-tree-children"&gt;
+                    &lt;div class="boblog-tree-node"&gt;
+                        &lt;div class="boblog-tree-node-content"&gt;
+                            &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                            &lt;span class="boblog-tree-label"&gt;main.css&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;!-- 叶子节点 --&gt;
+            &lt;div class="boblog-tree-node"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;README.md&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 引入 JS（展开/折叠交互） --&gt;
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;树形组件示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-tree"&gt;
+    &lt;!-- 根节点：文档根目录（默认展开） --&gt;
+    &lt;div class="boblog-tree-node expanded"&gt;
+        &lt;div class="boblog-tree-node-content"&gt;
+            &lt;span class="boblog-tree-toggle"&gt;&lt;/span&gt;
+            &lt;span class="boblog-tree-label"&gt;文档根目录&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-tree-children"&gt;
+            &lt;!-- 子节点：源代码（默认展开） --&gt;
+            &lt;div class="boblog-tree-node expanded"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;源代码&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class="boblog-tree-children"&gt;
+                    &lt;!-- 叶子节点：index.js --&gt;
+                    &lt;div class="boblog-tree-node"&gt;
+                        &lt;div class="boblog-tree-node-content"&gt;
+                            &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                            &lt;span class="boblog-tree-label"&gt;index.js&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;!-- 叶子节点：utils.js --&gt;
+                    &lt;div class="boblog-tree-node"&gt;
+                        &lt;div class="boblog-tree-node-content"&gt;
+                            &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                            &lt;span class="boblog-tree-label"&gt;utils.js&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;!-- 子节点：样式文件（默认折叠） --&gt;
+            &lt;div class="boblog-tree-node"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;样式文件&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class="boblog-tree-children"&gt;
+                    &lt;!-- 叶子节点：main.css --&gt;
+                    &lt;div class="boblog-tree-node"&gt;
+                        &lt;div class="boblog-tree-node-content"&gt;
+                            &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                            &lt;span class="boblog-tree-label"&gt;main.css&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;!-- 叶子节点：README.md --&gt;
+            &lt;div class="boblog-tree-node"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;README.md&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 带图标 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="带图标">带图标</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>图标类名</strong>: .boblog-tree-icon（放在 label 前）</li>
+                <li><strong>用途</strong>: 显示文件夹📁、文件📄等图标</li>
+                <li><strong>布局</strong>: toggle + icon + label 的 flex 布局</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-tree">
+                        <!-- 根节点：项目（展开） -->
+                        <div class="boblog-tree-node expanded">
+                            <div class="boblog-tree-node-content">
+                                <span class="boblog-tree-toggle"></span>
+                                <span class="boblog-tree-icon">📁</span>
+                                <span class="boblog-tree-label">项目</span>
+                            </div>
+                            <div class="boblog-tree-children">
+                                <!-- 子节点：源代码（展开） -->
+                                <div class="boblog-tree-node expanded">
+                                    <div class="boblog-tree-node-content">
+                                        <span class="boblog-tree-toggle"></span>
+                                        <span class="boblog-tree-icon">📁</span>
+                                        <span class="boblog-tree-label">src</span>
+                                    </div>
+                                    <div class="boblog-tree-children">
+                                        <!-- 叶子节点：index.js -->
+                                        <div class="boblog-tree-node">
+                                            <div class="boblog-tree-node-content">
+                                                <span class="boblog-tree-toggle leaf"></span>
+                                                <span class="boblog-tree-icon">📄</span>
+                                                <span class="boblog-tree-label">index.js</span>
+                                            </div>
+                                        </div>
+                                        <!-- 叶子节点：style.css -->
+                                        <div class="boblog-tree-node">
+                                            <div class="boblog-tree-node-content">
+                                                <span class="boblog-tree-toggle leaf"></span>
+                                                <span class="boblog-tree-icon">📄</span>
+                                                <span class="boblog-tree-label">style.css</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 叶子节点：README.md -->
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-icon">📄</span>
+                                        <span class="boblog-tree-label">README.md</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+
+&lt;div class="boblog-tree"&gt;
+    &lt;div class="boblog-tree-node expanded"&gt;
+        &lt;div class="boblog-tree-node-content"&gt;
+            &lt;span class="boblog-tree-toggle"&gt;&lt;/span&gt;
+            &lt;span class="boblog-tree-icon"&gt;📁&lt;/span&gt;
+            &lt;span class="boblog-tree-label"&gt;项目&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-tree-children"&gt;
+            &lt;div class="boblog-tree-node expanded"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-icon"&gt;📁&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;src&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class="boblog-tree-children"&gt;
+                    &lt;div class="boblog-tree-node"&gt;
+                        &lt;div class="boblog-tree-node-content"&gt;
+                            &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                            &lt;span class="boblog-tree-icon"&gt;📄&lt;/span&gt;
+                            &lt;span class="boblog-tree-label"&gt;index.js&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="boblog-tree-node"&gt;
+                        &lt;div class="boblog-tree-node-content"&gt;
+                            &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                            &lt;span class="boblog-tree-icon"&gt;📄&lt;/span&gt;
+                            &lt;span class="boblog-tree-label"&gt;style.css&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-tree-node"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-icon"&gt;📄&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;README.md&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;带图标的树形组件&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-tree"&gt;
+    &lt;!-- 根节点：项目（展开） --&gt;
+    &lt;div class="boblog-tree-node expanded"&gt;
+        &lt;div class="boblog-tree-node-content"&gt;
+            &lt;span class="boblog-tree-toggle"&gt;&lt;/span&gt;
+            &lt;span class="boblog-tree-icon"&gt;📁&lt;/span&gt;
+            &lt;span class="boblog-tree-label"&gt;项目&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-tree-children"&gt;
+            &lt;!-- 子节点：源代码（展开） --&gt;
+            &lt;div class="boblog-tree-node expanded"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-icon"&gt;📁&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;src&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class="boblog-tree-children"&gt;
+                    &lt;!-- 叶子节点：index.js --&gt;
+                    &lt;div class="boblog-tree-node"&gt;
+                        &lt;div class="boblog-tree-node-content"&gt;
+                            &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                            &lt;span class="boblog-tree-icon"&gt;📄&lt;/span&gt;
+                            &lt;span class="boblog-tree-label"&gt;index.js&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;!-- 叶子节点：style.css --&gt;
+                    &lt;div class="boblog-tree-node"&gt;
+                        &lt;div class="boblog-tree-node-content"&gt;
+                            &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                            &lt;span class="boblog-tree-icon"&gt;📄&lt;/span&gt;
+                            &lt;span class="boblog-tree-label"&gt;style.css&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;!-- 叶子节点：README.md --&gt;
+            &lt;div class="boblog-tree-node"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-icon"&gt;📄&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;README.md&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 选中与禁用 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="选中与禁用">选中与禁用</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>选中状态</strong>: .selected（加在 .boblog-tree-node-content 上）</li>
+                <li><strong>选中效果</strong>: 浅蓝背景 + 蓝色加粗文字</li>
+                <li><strong>禁用状态</strong>: .disabled（加在 .boblog-tree-node 上）</li>
+                <li><strong>禁用效果</strong>: 半透明 + 不可点击</li>
+                <li><strong>交互</strong>: 点击节点内容时切换 .selected 类</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-tree">
+                        <!-- 根节点：分类（展开） -->
+                        <div class="boblog-tree-node expanded">
+                            <div class="boblog-tree-node-content">
+                                <span class="boblog-tree-toggle"></span>
+                                <span class="boblog-tree-label">分类</span>
+                            </div>
+                            <div class="boblog-tree-children">
+                                <!-- 子节点：技术文章（选中） -->
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content selected">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">技术文章</span>
+                                    </div>
+                                </div>
+                                <!-- 子节点：生活随笔 -->
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">生活随笔</span>
+                                    </div>
+                                </div>
+                                <!-- 子节点：学习笔记（禁用） -->
+                                <div class="boblog-tree-node disabled">
+                                    <div class="boblog-tree-node-content">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">学习笔记（已禁用）</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+
+&lt;div class="boblog-tree"&gt;
+    &lt;div class="boblog-tree-node expanded"&gt;
+        &lt;div class="boblog-tree-node-content"&gt;
+            &lt;span class="boblog-tree-toggle"&gt;&lt;/span&gt;
+            &lt;span class="boblog-tree-label"&gt;分类&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-tree-children"&gt;
+            &lt;!-- 选中状态：在 .boblog-tree-node-content 上加 .selected --&gt;
+            &lt;div class="boblog-tree-node"&gt;
+                &lt;div class="boblog-tree-node-content selected"&gt;
+                    &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;技术文章&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-tree-node"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;生活随笔&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;!-- 禁用状态：在 .boblog-tree-node 上加 .disabled --&gt;
+            &lt;div class="boblog-tree-node disabled"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;学习笔记（已禁用）&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;选中与禁用状态&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-tree"&gt;
+    &lt;!-- 根节点：分类（展开） --&gt;
+    &lt;div class="boblog-tree-node expanded"&gt;
+        &lt;div class="boblog-tree-node-content"&gt;
+            &lt;span class="boblog-tree-toggle"&gt;&lt;/span&gt;
+            &lt;span class="boblog-tree-label"&gt;分类&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-tree-children"&gt;
+            &lt;!-- 子节点：技术文章（选中） --&gt;
+            &lt;div class="boblog-tree-node"&gt;
+                &lt;div class="boblog-tree-node-content selected"&gt;
+                    &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;技术文章&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;!-- 子节点：生活随笔 --&gt;
+            &lt;div class="boblog-tree-node"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;生活随笔&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;!-- 子节点：学习笔记（禁用） --&gt;
+            &lt;div class="boblog-tree-node disabled"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;学习笔记（已禁用）&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 连接线模式 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="连接线模式">连接线模式</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>类名</strong>: .boblog-tree-lined（加在 .boblog-tree 容器上）</li>
+                <li><strong>效果</strong>: 显示虚线连接线，展示层级关系</li>
+                <li><strong>样式</strong>: 浅蓝色虚线 #D3E7FC</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <!-- 带连接线的树 -->
+                    <div class="boblog-tree boblog-tree-lined">
+                        <div class="boblog-tree-node expanded">
+                            <div class="boblog-tree-node-content">
+                                <span class="boblog-tree-toggle"></span>
+                                <span class="boblog-tree-label">组织架构</span>
+                            </div>
+                            <div class="boblog-tree-children">
+                                <div class="boblog-tree-node expanded">
+                                    <div class="boblog-tree-node-content">
+                                        <span class="boblog-tree-toggle"></span>
+                                        <span class="boblog-tree-label">技术部</span>
+                                    </div>
+                                    <div class="boblog-tree-children">
+                                        <div class="boblog-tree-node">
+                                            <div class="boblog-tree-node-content">
+                                                <span class="boblog-tree-toggle leaf"></span>
+                                                <span class="boblog-tree-label">前端组</span>
+                                            </div>
+                                        </div>
+                                        <div class="boblog-tree-node">
+                                            <div class="boblog-tree-node-content">
+                                                <span class="boblog-tree-toggle leaf"></span>
+                                                <span class="boblog-tree-label">后端组</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">产品部</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+
+&lt;!-- 在容器上加 .boblog-tree-lined --&gt;
+&lt;div class="boblog-tree boblog-tree-lined"&gt;
+    &lt;div class="boblog-tree-node expanded"&gt;
+        &lt;div class="boblog-tree-node-content"&gt;
+            &lt;span class="boblog-tree-toggle"&gt;&lt;/span&gt;
+            &lt;span class="boblog-tree-label"&gt;组织架构&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-tree-children"&gt;
+            &lt;div class="boblog-tree-node expanded"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;技术部&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class="boblog-tree-children"&gt;
+                    &lt;div class="boblog-tree-node"&gt;
+                        &lt;div class="boblog-tree-node-content"&gt;
+                            &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                            &lt;span class="boblog-tree-label"&gt;前端组&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="boblog-tree-node"&gt;
+                        &lt;div class="boblog-tree-node-content"&gt;
+                            &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                            &lt;span class="boblog-tree-label"&gt;后端组&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-tree-node"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;产品部&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;连接线模式&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-tree boblog-tree-lined"&gt;
+    &lt;div class="boblog-tree-node expanded"&gt;
+        &lt;div class="boblog-tree-node-content"&gt;
+            &lt;span class="boblog-tree-toggle"&gt;&lt;/span&gt;
+            &lt;span class="boblog-tree-label"&gt;组织架构&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-tree-children"&gt;
+            &lt;div class="boblog-tree-node expanded"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;技术部&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class="boblog-tree-children"&gt;
+                    &lt;div class="boblog-tree-node"&gt;
+                        &lt;div class="boblog-tree-node-content"&gt;
+                            &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                            &lt;span class="boblog-tree-label"&gt;前端组&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="boblog-tree-node"&gt;
+                        &lt;div class="boblog-tree-node-content"&gt;
+                            &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                            &lt;span class="boblog-tree-label"&gt;后端组&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-tree-node"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;产品部&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 紧凑模式 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="紧凑模式">紧凑模式</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>类名</strong>: .boblog-tree-compact（加在 .boblog-tree 容器上）</li>
+                <li><strong>效果</strong>: 减小节点内边距和缩进，节省空间</li>
+                <li><strong>适用场景</strong>: 侧边栏、弹窗等空间有限的区域</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <!-- 紧凑模式树 -->
+                    <div class="boblog-tree boblog-tree-compact">
+                        <div class="boblog-tree-node expanded">
+                            <div class="boblog-tree-node-content">
+                                <span class="boblog-tree-toggle"></span>
+                                <span class="boblog-tree-label">导航菜单</span>
+                            </div>
+                            <div class="boblog-tree-children">
+                                <div class="boblog-tree-node expanded">
+                                    <div class="boblog-tree-node-content">
+                                        <span class="boblog-tree-toggle"></span>
+                                        <span class="boblog-tree-label">系统设置</span>
+                                    </div>
+                                    <div class="boblog-tree-children">
+                                        <div class="boblog-tree-node">
+                                            <div class="boblog-tree-node-content">
+                                                <span class="boblog-tree-toggle leaf"></span>
+                                                <span class="boblog-tree-label">用户管理</span>
+                                            </div>
+                                        </div>
+                                        <div class="boblog-tree-node">
+                                            <div class="boblog-tree-node-content">
+                                                <span class="boblog-tree-toggle leaf"></span>
+                                                <span class="boblog-tree-label">权限配置</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">内容管理</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+
+&lt;!-- 在容器上加 .boblog-tree-compact --&gt;
+&lt;div class="boblog-tree boblog-tree-compact"&gt;
+    &lt;div class="boblog-tree-node expanded"&gt;
+        &lt;div class="boblog-tree-node-content"&gt;
+            &lt;span class="boblog-tree-toggle"&gt;&lt;/span&gt;
+            &lt;span class="boblog-tree-label"&gt;导航菜单&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-tree-children"&gt;
+            &lt;div class="boblog-tree-node expanded"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;系统设置&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class="boblog-tree-children"&gt;
+                    &lt;div class="boblog-tree-node"&gt;
+                        &lt;div class="boblog-tree-node-content"&gt;
+                            &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                            &lt;span class="boblog-tree-label"&gt;用户管理&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="boblog-tree-node"&gt;
+                        &lt;div class="boblog-tree-node-content"&gt;
+                            &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                            &lt;span class="boblog-tree-label"&gt;权限配置&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-tree-node"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;内容管理&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;紧凑模式&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-tree boblog-tree-compact"&gt;
+    &lt;div class="boblog-tree-node expanded"&gt;
+        &lt;div class="boblog-tree-node-content"&gt;
+            &lt;span class="boblog-tree-toggle"&gt;&lt;/span&gt;
+            &lt;span class="boblog-tree-label"&gt;导航菜单&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-tree-children"&gt;
+            &lt;div class="boblog-tree-node expanded"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;系统设置&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class="boblog-tree-children"&gt;
+                    &lt;div class="boblog-tree-node"&gt;
+                        &lt;div class="boblog-tree-node-content"&gt;
+                            &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                            &lt;span class="boblog-tree-label"&gt;用户管理&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="boblog-tree-node"&gt;
+                        &lt;div class="boblog-tree-node-content"&gt;
+                            &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                            &lt;span class="boblog-tree-label"&gt;权限配置&lt;/span&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-tree-node"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                    &lt;span class="boblog-tree-label"&gt;内容管理&lt;/span&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== JavaScript API ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="JS-API">JavaScript API</h2>
+
+        <div class="boblog-doc-spec">
+            <h3>1. 自动初始化</h3>
+            <ul>
+                <li>引入 <code>boblog-ui.js</code> 后，点击 <code>.boblog-tree-node-content</code> 自动展开/折叠子节点</li>
+                <li>基于事件委托实现，无需手动调用任何函数</li>
+                <li>叶子节点（无 <code>.boblog-tree-children</code>）点击不做展开/折叠处理</li>
+            </ul>
+        </div>
+
+        <div class="boblog-doc-spec">
+            <h3>2. 引入方式</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-html">&lt;!-- 引入 CSS --&gt;
+&lt;link rel="stylesheet" href="dist/boblog-ui.css"&gt;
+
+&lt;!-- 引入 JS（包含 tree.js 展开/折叠交互） --&gt;
+&lt;script src="dist/boblog-ui.js"&gt;&lt;/script&gt;
+
+&lt;!-- 或开发时单独引入 --&gt;
+&lt;script src="src/js/tree.js"&gt;&lt;/script&gt;</code></pre>
+            </div>
+            <ul>
+                <li><code>boblog-ui.js</code> 已包含 tree.js，无需额外引入</li>
+                <li>tree.js 使用事件委托监听 <code>document</code> 上的 click 事件，对有子节点的 <code>.boblog-tree-node</code> 切换 <code>.expanded</code> 类</li>
+            </ul>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

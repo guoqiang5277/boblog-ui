@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>面板 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-gray">
+<!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <!-- 导航栏 -->
+    <div class="boblog-doc-nav">
+        <a href="../index.html">← 返回总纲</a>
+    </div>
+
+    <h1>面板</h1>
+
+    <!-- ====== 基础用法 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="基础用法">基础用法</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>容器</strong>: .boblog-panel（蓝色边框，白底，底部 margin 14px）</li>
+                <li><strong>三段式结构</strong>: .boblog-panel-header / .boblog-panel-body / .boblog-panel-footer</li>
+                <li><strong>头部标题</strong>: .boblog-panel-title（14px 加粗）</li>
+                <li><strong>头/底背景</strong>: --boblog-bg-panel（浅蓝）</li>
+                <li><strong>边框</strong>: --boblog-blue-border</li>
+                <li><strong>分隔线</strong>: --boblog-blue-border-list</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-panel">
+                        <div class="boblog-panel-header">
+                            <h3 class="boblog-panel-title">面板标题</h3>
+                        </div>
+                        <div class="boblog-panel-body">
+                            <p>这是面板的主体内容区域。</p>
+                            <p>可以包含任意内容，如文字、表单、图片等。</p>
+                        </div>
+                        <div class="boblog-panel-footer">
+                            <button class="boblog-btn">取消</button>
+                            <button class="boblog-btn boblog-btn-primary">确定</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-panel"&gt;
+    &lt;div class="boblog-panel-header"&gt;
+        &lt;h3 class="boblog-panel-title"&gt;面板标题&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-panel-body"&gt;
+        &lt;p&gt;这是面板的主体内容区域。&lt;/p&gt;
+        &lt;p&gt;可以包含任意内容，如文字、表单、图片等。&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-panel-footer"&gt;
+        &lt;button class="boblog-btn"&gt;取消&lt;/button&gt;
+        &lt;button class="boblog-btn boblog-btn-primary"&gt;确定&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;面板示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-panel"&gt;
+    &lt;div class="boblog-panel-header"&gt;
+        &lt;h3 class="boblog-panel-title"&gt;面板标题&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-panel-body"&gt;
+        &lt;p&gt;这是面板的主体内容区域。&lt;/p&gt;
+        &lt;p&gt;可以包含任意内容，如文字、表单、图片等。&lt;/p&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-panel-footer"&gt;
+        &lt;button class="boblog-btn"&gt;取消&lt;/button&gt;
+        &lt;button class="boblog-btn boblog-btn-primary"&gt;确定&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 仅标题和内容 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="仅标题和内容">仅标题和内容</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>用途</strong>: 省略底部区域，纯信息展示场景</li>
+                <li><strong>结构</strong>: 只包含 .boblog-panel-header + .boblog-panel-body</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-panel">
+                        <div class="boblog-panel-header">
+                            <h3 class="boblog-panel-title">简单面板</h3>
+                        </div>
+                        <div class="boblog-panel-body">
+                            <p>这个面板没有底部操作区域。</p>
+                            <p>适用于纯信息展示场景。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-panel"&gt;
+    &lt;div class="boblog-panel-header"&gt;
+        &lt;h3 class="boblog-panel-title"&gt;简单面板&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-panel-body"&gt;
+        &lt;p&gt;这个面板没有底部操作区域。&lt;/p&gt;
+        &lt;p&gt;适用于纯信息展示场景。&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;简单面板示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-panel"&gt;
+    &lt;div class="boblog-panel-header"&gt;
+        &lt;h3 class="boblog-panel-title"&gt;简单面板&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-panel-body"&gt;
+        &lt;p&gt;这个面板没有底部操作区域。&lt;/p&gt;
+        &lt;p&gt;适用于纯信息展示场景。&lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 嵌套表单 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="嵌套表单">嵌套表单</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>用途</strong>: 面板内嵌套表单等复杂内容</li>
+                <li><strong>结构</strong>: .boblog-panel-body 内放置 .boblog-form-group</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-panel">
+                        <div class="boblog-panel-header">
+                            <h3 class="boblog-panel-title">用户信息</h3>
+                        </div>
+                        <div class="boblog-panel-body">
+                            <div class="boblog-form-group">
+                                <label class="boblog-label">用户名</label>
+                                <input type="text" class="boblog-input" placeholder="请输入用户名">
+                            </div>
+                            <div class="boblog-form-group">
+                                <label class="boblog-label">邮箱</label>
+                                <input type="email" class="boblog-input" placeholder="请输入邮箱">
+                            </div>
+                        </div>
+                        <div class="boblog-panel-footer">
+                            <button class="boblog-btn">重置</button>
+                            <button class="boblog-btn boblog-btn-primary">保存</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-panel"&gt;
+    &lt;div class="boblog-panel-header"&gt;
+        &lt;h3 class="boblog-panel-title"&gt;用户信息&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-panel-body"&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-label"&gt;用户名&lt;/label&gt;
+            &lt;input type="text" class="boblog-input" placeholder="请输入用户名"&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-label"&gt;邮箱&lt;/label&gt;
+            &lt;input type="email" class="boblog-input" placeholder="请输入邮箱"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-panel-footer"&gt;
+        &lt;button class="boblog-btn"&gt;重置&lt;/button&gt;
+        &lt;button class="boblog-btn boblog-btn-primary"&gt;保存&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;嵌套表单面板示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-panel"&gt;
+    &lt;div class="boblog-panel-header"&gt;
+        &lt;h3 class="boblog-panel-title"&gt;用户信息&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-panel-body"&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-label"&gt;用户名&lt;/label&gt;
+            &lt;input type="text" class="boblog-input" placeholder="请输入用户名"&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-form-group"&gt;
+            &lt;label class="boblog-label"&gt;邮箱&lt;/label&gt;
+            &lt;input type="email" class="boblog-input" placeholder="请输入邮箱"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-panel-footer"&gt;
+        &lt;button class="boblog-btn"&gt;重置&lt;/button&gt;
+        &lt;button class="boblog-btn boblog-btn-primary"&gt;保存&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

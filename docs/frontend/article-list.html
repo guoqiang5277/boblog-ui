@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文章列表 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+<!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <div class="boblog-doc-nav">
+        <a href="../frontend.html">← 返回前台组件</a> |
+        <a href="../index.html">返回总纲</a>
+    </div>
+
+    <h1>文章列表 (Article List)</h1>
+
+    <!-- ====== 文章列表 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="文章列表">文章列表 (.boblog-article-list)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>列表容器: <code>.boblog-article-list</code>，width 100%</li>
+                <li><strong>文章项</strong> (.boblog-article-item): display flex，padding 15px 0，底部虚线分隔 1px dashed #D3E7FC (--boblog-blue-border-list)，最后一项无底边框</li>
+                <li><strong>日期区</strong> (.boblog-article-date): flex-shrink 0，右间距 15px，内嵌日期卡片 .boblog-date-card</li>
+                <li><strong>内容区</strong> (.boblog-article-content): flex 1，min-width 0</li>
+                <li><strong>标题</strong> (.boblog-article-title): font-size 16px (--boblog-font-size-lg)，font-weight bold，链接颜色 #0D80BD (--boblog-blue-primary)</li>
+                <li><strong>元信息</strong> (.boblog-article-meta): font-size 12px (--boblog-font-size-sm)，颜色 #999 (--boblog-text-gray)，各项用竖线 | 分隔</li>
+                <li><strong>摘要</strong> (.boblog-article-summary): font-size 12px，颜色 #333 (--boblog-text-dark)，行高 1.8</li>
+                <li><strong>标签</strong> (.boblog-article-tags + .boblog-article-tag): 背景 #F4FBFF，边框 1px solid #9EC9FF，文字 #0D80BD，11px</li>
+                <li>本组件为纯 CSS 实现，无需引入 JavaScript</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-article-list">
+                        <div class="boblog-article-item">
+                            <div class="boblog-article-date">
+                                <div class="boblog-date-card">
+                                    <div class="boblog-date-month">01月</div>
+                                    <div class="boblog-date-day">27</div>
+                                </div>
+                            </div>
+                            <div class="boblog-article-content">
+                                <h2 class="boblog-article-title">
+                                    <a href="#">Bo-Blog 经典 UI 设计指南发布</a>
+                                </h2>
+                                <div class="boblog-article-meta">
+                                    <span>作者：张三</span>
+                                    <span>分类：<a href="#">技术</a></span>
+                                    <span>浏览：128</span>
+                                    <span>评论：5</span>
+                                </div>
+                                <div class="boblog-article-summary">
+                                    这是一篇关于 Bo-Blog 经典 UI 设计的文章摘要。本文详细介绍了 Bo-Blog V2.1 Default Skin 的设计规范，包括配色方案、布局结构和核心元素设计。
+                                </div>
+                                <div class="boblog-article-tags">
+                                    <a href="#" class="boblog-article-tag">Bo-Blog</a>
+                                    <a href="#" class="boblog-article-tag">UI设计</a>
+                                    <a href="#" class="boblog-article-tag">前端开发</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="boblog-article-item">
+                            <div class="boblog-article-date">
+                                <div class="boblog-date-card">
+                                    <div class="boblog-date-month">01月</div>
+                                    <div class="boblog-date-day">25</div>
+                                </div>
+                            </div>
+                            <div class="boblog-article-content">
+                                <h2 class="boblog-article-title">
+                                    <a href="#">ASP.NET Core MVC 开发实战</a>
+                                </h2>
+                                <div class="boblog-article-meta">
+                                    <span>作者：李四</span>
+                                    <span>分类：<a href="#">编程</a></span>
+                                    <span>浏览：256</span>
+                                    <span>评论：12</span>
+                                </div>
+                                <div class="boblog-article-summary">
+                                    深入探讨 ASP.NET Core MVC 框架的核心特性，包括路由系统、模型绑定、视图引擎等关键技术点。
+                                </div>
+                                <div class="boblog-article-tags">
+                                    <a href="#" class="boblog-article-tag">.NET</a>
+                                    <a href="#" class="boblog-article-tag">ASP.NET Core</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-article-list"&gt;
+    &lt;div class="boblog-article-item"&gt;
+        &lt;div class="boblog-article-date"&gt;
+            &lt;div class="boblog-date-card"&gt;
+                &lt;div class="boblog-date-month"&gt;01月&lt;/div&gt;
+                &lt;div class="boblog-date-day"&gt;27&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-article-content"&gt;
+            &lt;h2 class="boblog-article-title"&gt;
+                &lt;a href="#"&gt;文章标题&lt;/a&gt;
+            &lt;/h2&gt;
+            &lt;div class="boblog-article-meta"&gt;
+                &lt;span&gt;作者：张三&lt;/span&gt;
+                &lt;span&gt;分类：&lt;a href="#"&gt;技术&lt;/a&gt;&lt;/span&gt;
+                &lt;span&gt;浏览：128&lt;/span&gt;
+                &lt;span&gt;评论：5&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-article-summary"&gt;
+                文章摘要内容...
+            &lt;/div&gt;
+            &lt;div class="boblog-article-tags"&gt;
+                &lt;a href="#" class="boblog-article-tag"&gt;标签1&lt;/a&gt;
+                &lt;a href="#" class="boblog-article-tag"&gt;标签2&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;文章列表示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-article-list"&gt;
+    &lt;div class="boblog-article-item"&gt;
+        &lt;div class="boblog-article-date"&gt;
+            &lt;div class="boblog-date-card"&gt;
+                &lt;div class="boblog-date-month"&gt;01月&lt;/div&gt;
+                &lt;div class="boblog-date-day"&gt;27&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-article-content"&gt;
+            &lt;h2 class="boblog-article-title"&gt;
+                &lt;a href="#"&gt;Bo-Blog 经典 UI 设计指南发布&lt;/a&gt;
+            &lt;/h2&gt;
+            &lt;div class="boblog-article-meta"&gt;
+                &lt;span&gt;作者：张三&lt;/span&gt;
+                &lt;span&gt;分类：&lt;a href="#"&gt;技术&lt;/a&gt;&lt;/span&gt;
+                &lt;span&gt;浏览：128&lt;/span&gt;
+                &lt;span&gt;评论：5&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-article-summary"&gt;
+                这是一篇关于 Bo-Blog 经典 UI 设计的文章摘要。本文详细介绍了 Bo-Blog V2.1 Default Skin 的设计规范，包括配色方案、布局结构和核心元素设计。
+            &lt;/div&gt;
+            &lt;div class="boblog-article-tags"&gt;
+                &lt;a href="#" class="boblog-article-tag"&gt;Bo-Blog&lt;/a&gt;
+                &lt;a href="#" class="boblog-article-tag"&gt;UI设计&lt;/a&gt;
+                &lt;a href="#" class="boblog-article-tag"&gt;前端开发&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-article-item"&gt;
+        &lt;div class="boblog-article-date"&gt;
+            &lt;div class="boblog-date-card"&gt;
+                &lt;div class="boblog-date-month"&gt;01月&lt;/div&gt;
+                &lt;div class="boblog-date-day"&gt;25&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-article-content"&gt;
+            &lt;h2 class="boblog-article-title"&gt;
+                &lt;a href="#"&gt;ASP.NET Core MVC 开发实战&lt;/a&gt;
+            &lt;/h2&gt;
+            &lt;div class="boblog-article-meta"&gt;
+                &lt;span&gt;作者：李四&lt;/span&gt;
+                &lt;span&gt;分类：&lt;a href="#"&gt;编程&lt;/a&gt;&lt;/span&gt;
+                &lt;span&gt;浏览：256&lt;/span&gt;
+                &lt;span&gt;评论：12&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-article-summary"&gt;
+                深入探讨 ASP.NET Core MVC 框架的核心特性，包括路由系统、模型绑定、视图引擎等关键技术点。
+            &lt;/div&gt;
+            &lt;div class="boblog-article-tags"&gt;
+                &lt;a href="#" class="boblog-article-tag"&gt;.NET&lt;/a&gt;
+                &lt;a href="#" class="boblog-article-tag"&gt;ASP.NET Core&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 组件结构 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="组件结构">组件结构</h2>
+
+        <div class="boblog-doc-spec">
+            <h3>布局说明</h3>
+            <ul>
+                <li><strong>文章项</strong>: display flex 横向排列，日期卡片在左，内容区在右</li>
+                <li><strong>左侧日期卡片</strong>: flex-shrink 0 固定不缩放，右间距 15px</li>
+                <li><strong>右侧内容区</strong>: flex 1 自适应宽度，min-width 0 防止溢出</li>
+                <li><strong>文章项分隔</strong>: 底部虚线 1px dashed #D3E7FC，最后一项无底边框</li>
+            </ul>
+
+            <h3>元信息说明</h3>
+            <ul>
+                <li>作者、分类、浏览量、评论数等信息</li>
+                <li>使用 CSS 伪元素 ::after 自动添加竖线 | 分隔各项</li>
+                <li>分类链接继承默认链接颜色</li>
+            </ul>
+
+            <h3>标签设计</h3>
+            <ul>
+                <li>背景色: <span class="color-swatch-inline" style="background-color: #F4FBFF;"></span>#F4FBFF (--boblog-bg-content)</li>
+                <li>边框色: <span class="color-swatch-inline" style="background-color: #9EC9FF;"></span>#9EC9FF (--boblog-blue-border)</li>
+                <li>文字色: <span class="color-swatch-inline" style="background-color: #0D80BD;"></span>#0D80BD (--boblog-blue-primary)</li>
+                <li>无圆角，保持经典风格</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ====== 使用说明 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="使用说明">使用说明</h2>
+
+        <div class="boblog-doc-spec">
+            <h3>适用场景</h3>
+            <ul>
+                <li>博客首页文章列表</li>
+                <li>分类页面文章列表</li>
+                <li>标签页面文章列表</li>
+                <li>搜索结果页面</li>
+            </ul>
+
+            <h3>设计要点</h3>
+            <ul>
+                <li>左侧日期卡片与内容区对齐，增强时间感</li>
+                <li>标题使用 16px 加粗，突出重点</li>
+                <li>摘要文字保持 12px，行高 1.8，易于阅读</li>
+                <li>标签紧贴摘要，方便快速识别文章主题</li>
+                <li>本组件为纯 CSS 实现，无需引入 JavaScript</li>
+            </ul>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

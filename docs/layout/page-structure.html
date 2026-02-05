@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>页面结构 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+<!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <div class="boblog-doc-nav">
+        <a href="../index.html">← 返回总纲</a>
+    </div>
+
+    <h1>页面结构 (Page Structure)</h1>
+
+    <!-- ====== 前台页面结构 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="前台页面结构">前台页面结构 (.boblog-page)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>页面容器: <code>.boblog-page</code>，min-height 100vh，flex 纵向布局</li>
+                <li><strong>顶部区域</strong> (.boblog-page-header): border-bottom 10px solid #BEE6FD，padding 15px 0</li>
+                <li><strong>主体区域</strong> (.boblog-page-body): display flex，flex: 1，padding 20px 0，gap 20px</li>
+                <li><strong>主内容</strong> (.boblog-page-main): flex: 1，min-width 0</li>
+                <li><strong>侧边栏</strong> (.boblog-page-sidebar): width 200px (--boblog-sidebar-width)，flex-shrink 0</li>
+                <li><strong>底部区域</strong> (.boblog-page-footer): border-top 10px solid #BEE6FD，padding 20px 0，居中 12px 文字</li>
+                <li>本组件为纯 CSS 实现，无需引入 JavaScript</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-page" style="min-height: auto;">
+                        <header class="boblog-page-header" style="padding: 10px 0; text-align: center; font-size: 12px;">Header (.boblog-page-header)</header>
+                        <div class="boblog-page-body" style="flex: none; padding: 10px 0; gap: 10px;">
+                            <div class="boblog-page-main" style="min-height: 80px; text-align: center; font-size: 12px; display: flex; align-items: center; justify-content: center;">Main (.boblog-page-main)</div>
+                            <aside class="boblog-page-sidebar" style="width: 150px; text-align: center; font-size: 12px; background: #f9f9f9; display: flex; align-items: center; justify-content: center;">Sidebar (.boblog-page-sidebar)</aside>
+                        </div>
+                        <footer class="boblog-page-footer" style="padding: 10px 0;">Footer (.boblog-page-footer)</footer>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-page" style="min-height: auto;"&gt;
+    &lt;header class="boblog-page-header" style="padding: 10px 0; text-align: center; font-size: 12px;"&gt;Header (.boblog-page-header)&lt;/header&gt;
+    &lt;div class="boblog-page-body" style="flex: none; padding: 10px 0; gap: 10px;"&gt;
+        &lt;div class="boblog-page-main" style="min-height: 80px; text-align: center; font-size: 12px; display: flex; align-items: center; justify-content: center;"&gt;Main (.boblog-page-main)&lt;/div&gt;
+        &lt;aside class="boblog-page-sidebar" style="width: 150px; text-align: center; font-size: 12px; background: #f9f9f9; display: flex; align-items: center; justify-content: center;"&gt;Sidebar (.boblog-page-sidebar)&lt;/aside&gt;
+    &lt;/div&gt;
+    &lt;footer class="boblog-page-footer" style="padding: 10px 0;"&gt;Footer (.boblog-page-footer)&lt;/footer&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-page"&gt;
+    &lt;header class="boblog-page-header"&gt;
+        &lt;div class="boblog-container"&gt;博客标题 / 导航&lt;/div&gt;
+    &lt;/header&gt;
+    &lt;div class="boblog-page-body"&gt;
+        &lt;div class="boblog-page-main"&gt;
+            &lt;!-- 主内容区 --&gt;
+        &lt;/div&gt;
+        &lt;aside class="boblog-page-sidebar"&gt;
+            &lt;!-- 侧边栏 --&gt;
+        &lt;/aside&gt;
+    &lt;/div&gt;
+    &lt;footer class="boblog-page-footer"&gt;
+        &amp;copy; 2026 My Blog
+    &lt;/footer&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 后台管理布局 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="后台管理布局">后台管理布局 (.boblog-admin-page)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>页面容器: <code>.boblog-admin-page</code>，min-height 100vh，背景 #f5f5f5</li>
+                <li><strong>顶栏</strong> (.boblog-admin-topbar): position fixed，height 50px，背景 --boblog-blue-primary，白色文字，z-index 1000</li>
+                <li><strong>内容区域</strong> (.boblog-admin-body): display flex，padding-top 50px（为固定顶栏留空）</li>
+                <li><strong>侧边栏</strong> (.boblog-admin-sidebar): width 240px (--boblog-admin-sidebar-width)，position fixed，白色背景，右侧蓝色边框</li>
+                <li><strong>侧边栏折叠</strong> (.boblog-admin-sidebar.collapsed): width 0，overflow hidden</li>
+                <li><strong>主内容区</strong> (.boblog-admin-main): flex: 1，padding 20px，margin-left 240px</li>
+                <li>本组件为纯 CSS 实现，侧边栏折叠需要 JS 切换 <code>.collapsed</code> 类</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-admin-page" style="min-height: auto;">
+                        <div class="boblog-admin-topbar" style="position: relative; left: auto; right: auto; top: auto; height: auto; padding: 10px 15px; text-align: center; font-size: 12px; box-shadow: none;">Topbar (.boblog-admin-topbar)</div>
+                        <div class="boblog-admin-body" style="padding-top: 0; min-height: auto;">
+                            <aside class="boblog-admin-sidebar" style="position: relative; top: auto; bottom: auto; left: auto; width: 150px; min-height: 100px; text-align: center; font-size: 12px; display: flex; align-items: center; justify-content: center;">Sidebar (.boblog-admin-sidebar)</aside>
+                            <main class="boblog-admin-main" style="margin-left: 0; min-height: 100px; text-align: center; font-size: 12px; display: flex; align-items: center; justify-content: center;">Main (.boblog-admin-main)</main>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-admin-page" style="min-height: auto;"&gt;
+    &lt;div class="boblog-admin-topbar" style="position: relative; left: auto; right: auto; top: auto; height: auto; padding: 10px 15px; text-align: center; font-size: 12px; box-shadow: none;"&gt;Topbar (.boblog-admin-topbar)&lt;/div&gt;
+    &lt;div class="boblog-admin-body" style="padding-top: 0; min-height: auto;"&gt;
+        &lt;aside class="boblog-admin-sidebar" style="position: relative; top: auto; bottom: auto; left: auto; width: 150px; min-height: 100px; text-align: center; font-size: 12px; display: flex; align-items: center; justify-content: center;"&gt;Sidebar (.boblog-admin-sidebar)&lt;/aside&gt;
+        &lt;main class="boblog-admin-main" style="margin-left: 0; min-height: 100px; text-align: center; font-size: 12px; display: flex; align-items: center; justify-content: center;"&gt;Main (.boblog-admin-main)&lt;/main&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-admin-page"&gt;
+    &lt;div class="boblog-admin-topbar"&gt;
+        &lt;span&gt;Bo-Blog 管理后台&lt;/span&gt;
+        &lt;span style="margin-left: auto;"&gt;admin | 退出&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-admin-body"&gt;
+        &lt;aside class="boblog-admin-sidebar"&gt;
+            &lt;nav&gt;侧边菜单&lt;/nav&gt;
+        &lt;/aside&gt;
+        &lt;main class="boblog-admin-main"&gt;
+            &lt;!-- 主内容区 --&gt;
+        &lt;/main&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 后台组合预览 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="后台组合预览">后台组合预览</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>将顶栏 (.boblog-admin-topbar)、侧边栏导航 (.boblog-sidebar-nav)、公共页面元素组合在一起的完整后台页面效果</li>
+                <li>预览中不使用 position fixed，仅演示布局组合效果</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div id="adminDemo" style="border: 1px solid #ccc; background: #f5f5f5;">
+                        <!-- 顶栏 -->
+                        <div style="height: 40px; background-color: var(--boblog-blue-primary, #0D80BD); color: #fff; display: flex; align-items: center; padding: 0 15px; font-size: 12px;">
+                            <span style="font-weight: bold; font-size: 13px; margin-right: 20px;">Bo-Blog</span>
+                            <a href="#" class="boblog-topbar-link boblog-topbar-active admin-topnav" data-module="content">内容管理</a>
+                            <a href="#" class="boblog-topbar-link admin-topnav" data-module="system">系统设置</a>
+                            <a href="#" class="boblog-topbar-link admin-topnav" data-module="user">用户管理</a>
+                            <span style="margin-left: auto; font-size: 12px;">admin &nbsp;|&nbsp; 退出</span>
+                        </div>
+                        <!-- 侧边栏 + 主内容 -->
+                        <div style="display: flex;">
+                            <!-- 侧边栏 -->
+                            <div style="width: 180px; background: #fff; border-right: 1px solid var(--boblog-border-blue, #9EC9FF); flex-shrink: 0;">
+                                <!-- 内容管理模块 -->
+                                <ul class="boblog-sidebar-nav admin-sidebar-module" data-module="content">
+                                    <li>
+                                        <a href="#" class="boblog-sidebar-link boblog-sidebar-active" data-page="dashboard">⚡ 仪表盘</a>
+                                    </li>
+                                    <li class="boblog-sidebar-parent">
+                                        <a href="#" class="boblog-sidebar-link boblog-sidebar-toggle">📝 文章管理</a>
+                                        <ul class="boblog-sidebar-submenu">
+                                            <li><a href="#" class="boblog-sidebar-link" data-page="posts">所有文章</a></li>
+                                            <li><a href="#" class="boblog-sidebar-link" data-page="new-post">写新文章</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="boblog-sidebar-link" data-page="categories">📁 分类管理</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="boblog-sidebar-link" data-page="comments">💬 评论管理</a>
+                                    </li>
+                                </ul>
+                                <!-- 系统设置模块 -->
+                                <ul class="boblog-sidebar-nav admin-sidebar-module" data-module="system" style="display: none;">
+                                    <li>
+                                        <a href="#" class="boblog-sidebar-link boblog-sidebar-active" data-page="general">🔧 基本设置</a>
+                                    </li>
+                                    <li class="boblog-sidebar-parent">
+                                        <a href="#" class="boblog-sidebar-link boblog-sidebar-toggle">🎨 外观设置</a>
+                                        <ul class="boblog-sidebar-submenu">
+                                            <li><a href="#" class="boblog-sidebar-link" data-page="theme">主题选择</a></li>
+                                            <li><a href="#" class="boblog-sidebar-link" data-page="layout">布局设置</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="boblog-sidebar-link" data-page="plugins">🧩 插件管理</a>
+                                    </li>
+                                </ul>
+                                <!-- 用户管理模块 -->
+                                <ul class="boblog-sidebar-nav admin-sidebar-module" data-module="user" style="display: none;">
+                                    <li>
+                                        <a href="#" class="boblog-sidebar-link boblog-sidebar-active" data-page="user-list">👥 用户列表</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="boblog-sidebar-link" data-page="roles">🔑 角色权限</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="boblog-sidebar-link" data-page="profile">📋 个人资料</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <!-- 主内容区 -->
+                            <div id="adminMainContent" style="flex: 1; padding: 15px;">
+                                <div class="boblog-page-title" id="adminPageTitle">仪表盘</div>
+                                <div class="boblog-content-block">
+                                    <div class="boblog-content-block-title">站点概况</div>
+                                    <p style="font-size: 12px; color: #666;">文章: 128 &nbsp;&nbsp; 评论: 356 &nbsp;&nbsp; 分类: 12</p>
+                                </div>
+                                <div class="boblog-content-block">
+                                    <div class="boblog-content-block-title">最近文章</div>
+                                    <p style="font-size: 12px; color: #999;">暂无更多内容...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 顶栏：含模块导航 --&gt;
+&lt;div style="height: 40px; background-color: var(--boblog-blue-primary); color: #fff; display: flex; align-items: center; padding: 0 15px;"&gt;
+    &lt;span style="font-weight: bold; margin-right: 20px;"&gt;Bo-Blog&lt;/span&gt;
+    &lt;a href="#" class="admin-topnav active" data-module="content"&gt;内容管理&lt;/a&gt;
+    &lt;a href="#" class="admin-topnav" data-module="system"&gt;系统设置&lt;/a&gt;
+    &lt;a href="#" class="admin-topnav" data-module="user"&gt;用户管理&lt;/a&gt;
+    &lt;span style="margin-left: auto;"&gt;admin | 退出&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- 侧边栏：每个模块一组菜单，JS 控制显示/隐藏 --&gt;
+&lt;ul class="boblog-sidebar-nav admin-sidebar-module" data-module="content"&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-sidebar-link" data-page="dashboard"&gt;⚡ 仪表盘&lt;/a&gt;&lt;/li&gt;
+    &lt;li class="boblog-sidebar-parent"&gt;
+        &lt;a href="#" class="boblog-sidebar-link boblog-sidebar-toggle"&gt;📝 文章管理&lt;/a&gt;
+        &lt;ul class="boblog-sidebar-submenu"&gt;
+            &lt;li&gt;&lt;a href="#" class="boblog-sidebar-link" data-page="posts"&gt;所有文章&lt;/a&gt;&lt;/li&gt;
+            &lt;li&gt;&lt;a href="#" class="boblog-sidebar-link" data-page="new-post"&gt;写新文章&lt;/a&gt;&lt;/li&gt;
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    ...
+&lt;/ul&gt;
+
+&lt;!-- 折叠菜单：JS 切换 boblog-sidebar-expanded 类 --&gt;
+&lt;script&gt;
+toggle.closest('.boblog-sidebar-parent').classList.toggle('boblog-sidebar-expanded');
+&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 顶栏点击 → 切换侧边栏模块 + 主内容 --&gt;
+topNavs.forEach(function(nav) {
+    nav.addEventListener('click', function(e) {
+        e.preventDefault();
+        var mod = this.getAttribute('data-module');
+        /* 切换顶部高亮 */
+        topNavs.forEach(function(n) { n.classList.remove('active'); });
+        this.classList.add('active');
+        /* 切换侧边栏 */
+        sidebars.forEach(function(s) {
+            s.style.display = s.getAttribute('data-module') === mod ? '' : 'none';
+        });
+        /* 切换主内容到默认页 */
+        mainContent.innerHTML = pageContents[moduleDefaults[mod]];
+    });
+});
+
+/* 折叠菜单 */
+toggle.closest('.boblog-sidebar-parent').classList.toggle('boblog-sidebar-expanded');
+
+/* 侧边栏菜单项点击 → 更新主内容 */
+link.addEventListener('click', function(e) {
+    e.preventDefault();
+    mainContent.innerHTML = pageContents[this.getAttribute('data-page')];
+});</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 公共页面元素 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="公共页面元素">公共页面元素</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>页面标题</strong> (.boblog-page-title): font-size 18px，bold，颜色 --boblog-blue-primary，底部 1px 蓝色边框，margin-bottom 20px</li>
+                <li><strong>工具栏</strong> (.boblog-page-toolbar): display flex，justify-content space-between，margin-bottom 15px</li>
+                <li><strong>工具栏左/右</strong> (.boblog-page-toolbar-left / -right): display flex，align-items center，gap 10px</li>
+                <li><strong>内容区块</strong> (.boblog-content-block): 白色背景，1px 浅蓝边框，padding 15px，margin-bottom 15px</li>
+                <li><strong>内容区块标题</strong> (.boblog-content-block-title): font-size 14px，bold，margin-bottom 10px</li>
+                <li><strong>空状态</strong> (.boblog-empty-state): 居中，padding 30px，灰色 14px 文字</li>
+                <li><strong>加载状态</strong> (.boblog-loading-state): 居中，padding 30px，深灰 14px 文字</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <!-- 页面标题 -->
+                    <div class="boblog-page-title">页面标题 (.boblog-page-title)</div>
+
+                    <!-- 工具栏 -->
+                    <div class="boblog-page-toolbar">
+                        <div class="boblog-page-toolbar-left">
+                            <span style="font-size: 12px; color: #666;">工具栏左侧</span>
+                        </div>
+                        <div class="boblog-page-toolbar-right">
+                            <span style="font-size: 12px; color: #666;">工具栏右侧</span>
+                        </div>
+                    </div>
+
+                    <!-- 内容区块 -->
+                    <div class="boblog-content-block">
+                        <div class="boblog-content-block-title">内容区块标题</div>
+                        <p style="font-size: 12px;">内容区块正文</p>
+                    </div>
+
+                    <!-- 空状态 -->
+                    <div class="boblog-content-block">
+                        <div class="boblog-empty-state">暂无数据</div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 页面标题 --&gt;
+&lt;div class="boblog-page-title"&gt;页面标题 (.boblog-page-title)&lt;/div&gt;
+
+&lt;!-- 工具栏 --&gt;
+&lt;div class="boblog-page-toolbar"&gt;
+    &lt;div class="boblog-page-toolbar-left"&gt;
+        &lt;span style="font-size: 12px; color: #666;"&gt;工具栏左侧&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-page-toolbar-right"&gt;
+        &lt;span style="font-size: 12px; color: #666;"&gt;工具栏右侧&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 内容区块 --&gt;
+&lt;div class="boblog-content-block"&gt;
+    &lt;div class="boblog-content-block-title"&gt;内容区块标题&lt;/div&gt;
+    &lt;p style="font-size: 12px;"&gt;内容区块正文&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- 空状态 --&gt;
+&lt;div class="boblog-content-block"&gt;
+    &lt;div class="boblog-empty-state"&gt;暂无数据&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;公共页面元素示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-container"&gt;
+    &lt;!-- 页面标题 --&gt;
+    &lt;div class="boblog-page-title"&gt;页面标题 (.boblog-page-title)&lt;/div&gt;
+
+    &lt;!-- 工具栏 --&gt;
+    &lt;div class="boblog-page-toolbar"&gt;
+        &lt;div class="boblog-page-toolbar-left"&gt;
+            &lt;span style="font-size: 12px; color: #666;"&gt;工具栏左侧&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-page-toolbar-right"&gt;
+            &lt;span style="font-size: 12px; color: #666;"&gt;工具栏右侧&lt;/span&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 内容区块 --&gt;
+    &lt;div class="boblog-content-block"&gt;
+        &lt;div class="boblog-content-block-title"&gt;内容区块标题&lt;/div&gt;
+        &lt;p style="font-size: 12px;"&gt;内容区块正文&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 空状态 --&gt;
+    &lt;div class="boblog-content-block"&gt;
+        &lt;div class="boblog-empty-state"&gt;暂无数据&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 使用说明 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="使用说明">使用说明</h2>
+
+        <div class="boblog-doc-spec">
+            <h3>适用场景</h3>
+            <ul>
+                <li>前台布局：经典 Bo-Blog 双栏博客页面（主内容 + 侧边栏）</li>
+                <li>后台布局：管理系统三区域布局（顶栏 + 侧边菜单 + 主内容）</li>
+                <li>公共元素：页面标题、工具栏、内容区块可在前后台通用</li>
+            </ul>
+
+            <h3>设计要点</h3>
+            <ul>
+                <li>前台使用 Flexbox 纵向布局，header/footer 固定，body 撑满剩余空间</li>
+                <li>前台顶/底部使用 10px 蓝色粗边框 (#BEE6FD)，还原 Bo-Blog 经典风格</li>
+                <li>后台顶栏 position fixed，侧边栏 position fixed，主内容通过 margin-left 避让</li>
+                <li>后台侧边栏支持 .collapsed 折叠，配合 CSS transition 实现动画</li>
+            </ul>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+<script>
+/* 后台组合预览 - 交互逻辑 */
+(function() {
+    var demo = document.getElementById('adminDemo');
+    if (!demo) return;
+
+    /* 各页面对应的主内容区 HTML */
+    var pageContents = {
+        /* 内容管理模块 */
+        'dashboard': '<div class="boblog-page-title">仪表盘</div><div class="boblog-content-block"><div class="boblog-content-block-title">站点概况</div><p style="font-size:12px;color:#666;">文章: 128 &nbsp;&nbsp; 评论: 356 &nbsp;&nbsp; 分类: 12</p></div><div class="boblog-content-block"><div class="boblog-content-block-title">最近文章</div><p style="font-size:12px;color:#999;">暂无更多内容...</p></div>',
+        'posts': '<div class="boblog-page-title">所有文章</div><div class="boblog-content-block"><div class="boblog-content-block-title">文章列表</div><p style="font-size:12px;color:#666;">共 128 篇文章</p></div>',
+        'new-post': '<div class="boblog-page-title">写新文章</div><div class="boblog-content-block"><p style="font-size:12px;color:#666;">标题、正文、分类...</p></div>',
+        'categories': '<div class="boblog-page-title">分类管理</div><div class="boblog-content-block"><div class="boblog-content-block-title">分类列表</div><p style="font-size:12px;color:#666;">共 12 个分类</p></div>',
+        'comments': '<div class="boblog-page-title">评论管理</div><div class="boblog-content-block"><div class="boblog-content-block-title">待审评论</div><p style="font-size:12px;color:#666;">共 5 条待审</p></div>',
+        /* 系统设置模块 */
+        'general': '<div class="boblog-page-title">基本设置</div><div class="boblog-content-block"><div class="boblog-content-block-title">站点信息</div><p style="font-size:12px;color:#666;">站点名称、描述、关键词...</p></div>',
+        'theme': '<div class="boblog-page-title">主题选择</div><div class="boblog-content-block"><p style="font-size:12px;color:#666;">当前主题: Bo-Blog Default</p></div>',
+        'layout': '<div class="boblog-page-title">布局设置</div><div class="boblog-content-block"><p style="font-size:12px;color:#666;">侧边栏位置、宽度...</p></div>',
+        'plugins': '<div class="boblog-page-title">插件管理</div><div class="boblog-content-block"><div class="boblog-content-block-title">已安装插件</div><p style="font-size:12px;color:#666;">共 3 个插件</p></div>',
+        /* 用户管理模块 */
+        'user-list': '<div class="boblog-page-title">用户列表</div><div class="boblog-content-block"><div class="boblog-content-block-title">注册用户</div><p style="font-size:12px;color:#666;">共 56 位用户</p></div>',
+        'roles': '<div class="boblog-page-title">角色权限</div><div class="boblog-content-block"><p style="font-size:12px;color:#666;">管理员、编辑、作者、订阅者</p></div>',
+        'profile': '<div class="boblog-page-title">个人资料</div><div class="boblog-content-block"><p style="font-size:12px;color:#666;">用户名: admin</p></div>'
+    };
+
+    /* 各模块的默认首页 */
+    var moduleDefaults = {
+        'content': 'dashboard',
+        'system': 'general',
+        'user': 'user-list'
+    };
+
+    var mainContent = document.getElementById('adminMainContent');
+
+    /* 顶部导航点击 - 切换模块 */
+    var topNavs = demo.querySelectorAll('.admin-topnav');
+    topNavs.forEach(function(nav) {
+        nav.addEventListener('click', function(e) {
+            e.preventDefault();
+            var mod = this.getAttribute('data-module');
+            /* 切换顶部导航高亮（使用库类 boblog-topbar-active） */
+            topNavs.forEach(function(n) {
+                n.classList.remove('boblog-topbar-active');
+            });
+            this.classList.add('boblog-topbar-active');
+            /* 切换侧边栏模块 */
+            var sidebars = demo.querySelectorAll('.admin-sidebar-module');
+            sidebars.forEach(function(s) {
+                s.style.display = s.getAttribute('data-module') === mod ? '' : 'none';
+            });
+            /* 切换主内容到该模块默认页 */
+            var defaultPage = moduleDefaults[mod];
+            mainContent.innerHTML = pageContents[defaultPage] || '';
+            /* 重置侧边栏高亮 */
+            var activeSidebar = demo.querySelector('.admin-sidebar-module[data-module="' + mod + '"]');
+            if (activeSidebar) {
+                activeSidebar.querySelectorAll('.boblog-sidebar-link').forEach(function(link) {
+                    link.classList.remove('boblog-sidebar-active');
+                });
+                var firstLink = activeSidebar.querySelector('[data-page="' + defaultPage + '"]');
+                if (firstLink) firstLink.classList.add('boblog-sidebar-active');
+            }
+        });
+    });
+    /* 侧边栏折叠菜单点击 */
+    demo.addEventListener('click', function(e) {
+        var toggle = e.target.closest('.boblog-sidebar-toggle');
+        if (toggle) {
+            e.preventDefault();
+            var parent = toggle.closest('.boblog-sidebar-parent');
+            if (parent) {
+                parent.classList.toggle('boblog-sidebar-expanded');
+            }
+            return;
+        }
+        /* 侧边栏普通菜单项点击 */
+        var link = e.target.closest('.boblog-sidebar-link[data-page]');
+        if (link) {
+            e.preventDefault();
+            var page = link.getAttribute('data-page');
+            /* 更新高亮 */
+            var currentModule = demo.querySelector('.admin-sidebar-module:not([style*="display: none"])') ||
+                                demo.querySelector('.admin-sidebar-module:not([style*="display:none"])') ||
+                                demo.querySelector('.admin-sidebar-module');
+            if (currentModule) {
+                currentModule.querySelectorAll('.boblog-sidebar-link').forEach(function(l) {
+                    l.classList.remove('boblog-sidebar-active');
+                });
+            }
+            link.classList.add('boblog-sidebar-active');
+            /* 更新主内容 */
+            mainContent.innerHTML = pageContents[page] || '<div class="boblog-empty-state">暂无内容</div>';
+        }
+    });
+})();
+</script>
+</body>
+</html>

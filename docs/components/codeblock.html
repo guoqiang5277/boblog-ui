@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>代码块组件 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="doc-white-bg">
+    <div class="page-header">
+        <h1>代码块组件 (Codeblock)</h1>
+        <a href="../index.html" class="back-link">← 返回总纲</a>
+    </div>
+
+    <!-- 右侧浮动目录 -->
+    <div class="boblog-toc" data-toc-depth="3">
+        <h4>目录</h4>
+        <ul id="tocList"></ul>
+    </div>
+
+    <!-- 基础用法 -->
+    <div class="component-section">
+        <h2 id="基础用法">基础用法</h2>
+
+        <div class="section-part">
+            <h3>1. 规范说明</h3>
+            <ul class="spec-list">
+                <li>容器类名: <code>.boblog-codeblock</code></li>
+                <li>背景色: var(--boblog-white) / #FFFFFF</li>
+                <li>左侧蓝色指示条: 3px solid var(--boblog-blue)</li>
+                <li>边框: 1px solid var(--boblog-border)</li>
+                <li>内边距: 16px 20px</li>
+                <li>代码字体: Consolas / Monaco / Courier New, 13px</li>
+                <li>行高: 1.7</li>
+                <li>语法高亮: Prism.js v1.29.0（支持 17 种语言）</li>
+                <li>语言指定: 在 <code>&lt;code&gt;</code> 上添加 <code>class="language-xxx"</code></li>
+                <li>自动功能: 行号显示、复制按钮、语法高亮</li>
+            </ul>
+        </div>
+
+        <div class="section-part">
+            <h3>2. 演示</h3>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <!-- 预览面板 -->
+                <div class="boblog-tabs-panel active">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-css">.boblog-btn {
+    background: #F0F0F0;
+    border: 1px solid #CCC;
+    color: #333;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.boblog-btn:hover {
+    background: #E5E5E5;
+}</code></pre>
+                    </div>
+                </div>
+                <!-- 关键源码面板 -->
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;div class="boblog-codeblock"&gt;
+    &lt;pre&gt;&lt;code class="language-css"&gt;.boblog-btn {
+    background: #F0F0F0;
+    border: 1px solid #CCC;
+    color: #333;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.boblog-btn:hover {
+    background: #E5E5E5;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                    </div>
+                </div>
+                <!-- 完整源码面板 -->
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;代码块基础用法 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="boblog-codeblock"&gt;
+        &lt;pre&gt;&lt;code class="language-css"&gt;.boblog-btn {
+    background: #F0F0F0;
+    border: 1px solid #CCC;
+    color: #333;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.boblog-btn:hover {
+    background: #E5E5E5;
+}&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 可选属性 -->
+    <div class="component-section">
+        <h2 id="可选属性">可选属性 (data-*)</h2>
+
+        <div class="section-part">
+            <h3>1. 规范说明</h3>
+            <ul class="spec-list">
+                <li><code>data-no-line-numbers</code> — 禁用行号显示</li>
+                <li><code>data-no-copy</code> — 禁用复制按钮</li>
+                <li><code>data-no-highlight</code> — 禁用语法高亮</li>
+            </ul>
+        </div>
+
+        <div class="section-part">
+            <h3>2. 禁用行号</h3>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <div class="boblog-tabs-panel active">
+                    <div class="boblog-codeblock" data-no-line-numbers>
+                        <pre><code class="language-css">/* 这个代码块没有行号 */
+.example {
+    color: red;
+}</code></pre>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;div class="boblog-codeblock" data-no-line-numbers&gt;
+    &lt;pre&gt;&lt;code class="language-css"&gt;/* 这个代码块没有行号 */
+.example {
+    color: red;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;禁用行号示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="boblog-codeblock" data-no-line-numbers&gt;
+        &lt;pre&gt;&lt;code class="language-css"&gt;/* 这个代码块没有行号 */
+.example {
+    color: red;
+}&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-part">
+            <h3>3. 禁用复制按钮</h3>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <div class="boblog-tabs-panel active">
+                    <div class="boblog-codeblock" data-no-copy>
+                        <pre><code class="language-css">/* 这个代码块没有复制按钮 */
+.example {
+    color: blue;
+}</code></pre>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;div class="boblog-codeblock" data-no-copy&gt;
+    &lt;pre&gt;&lt;code class="language-css"&gt;/* 这个代码块没有复制按钮 */
+.example {
+    color: blue;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;禁用复制按钮示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="boblog-codeblock" data-no-copy&gt;
+        &lt;pre&gt;&lt;code class="language-css"&gt;/* 这个代码块没有复制按钮 */
+.example {
+    color: blue;
+}&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-part">
+            <h3>4. 禁用语法高亮</h3>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <div class="boblog-tabs-panel active">
+                    <div class="boblog-codeblock" data-no-highlight>
+                        <pre><code>/* 这个代码块没有语法高亮，显示纯文本 */
+.example {
+    color: green;
+}</code></pre>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;div class="boblog-codeblock" data-no-highlight&gt;
+    &lt;pre&gt;&lt;code&gt;/* 这个代码块没有语法高亮，显示纯文本 */
+.example {
+    color: green;
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;禁用语法高亮示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="boblog-codeblock" data-no-highlight&gt;
+        &lt;pre&gt;&lt;code&gt;/* 这个代码块没有语法高亮，显示纯文本 */
+.example {
+    color: green;
+}&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 语法高亮规则 -->
+    <div class="component-section">
+        <h2 id="语法高亮">语法高亮（Prism.js）</h2>
+
+        <div class="section-part">
+            <h3>1. 规范说明</h3>
+            <ul class="spec-list">
+                <li>语法高亮引擎: Prism.js v1.29.0</li>
+                <li>语言指定: 在 <code>&lt;code&gt;</code> 上添加 <code>class="language-xxx"</code></li>
+                <li>支持语言: HTML、CSS、JavaScript、PHP、Python、C#、Java、Go、SQL、Bash、JSON、TypeScript、Ruby、Rust、YAML、Markdown、Docker</li>
+                <li><span style="color: #6A8A6A; font-style: italic;">注释</span> — .token.comment: #6A8A6A 灰绿斜体</li>
+                <li><span style="color: #0D6EAA; font-weight: bold;">关键字</span> — .token.keyword: var(--boblog-blue) 品牌蓝加粗</li>
+                <li><span style="color: #9C3328;">属性名/选择器</span> — .token.selector/.attr-name: #9C3328 深红棕</li>
+                <li><span style="color: #2E7D32;">字符串</span> — .token.string: #2E7D32 棕绿</li>
+                <li><span style="color: #1A6B8A;">标签名/函数</span> — .token.tag/.function: #1A6B8A 深蓝</li>
+                <li><span style="color: #7B5EA7;">数字/布尔值</span> — .token.number/.boolean: #7B5EA7 紫色</li>
+                <li><span style="color: #888888;">标点 { } : ;</span> — .token.punctuation: var(--boblog-text-muted) 灰色</li>
+            </ul>
+        </div>
+
+        <div class="section-part">
+            <h3>2. CSS 高亮演示</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-css">/* Bo-Blog 品牌蓝按钮样式 */
+.boblog-btn-primary {
+    background-color: #0D6EAA;
+    border: 1px solid #0D6EAA;
+    color: #FFFFFF;
+    padding: 6px 12px;
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 12px;
+}
+
+/* 悬停状态 */
+.boblog-btn-primary:hover {
+    background-color: #2E93C9;
+    border-color: #2E93C9;
+}
+
+/* 使用 CSS 变量 */
+:root {
+    --btn-bg: #0D6EAA;
+    --btn-hover: #2E93C9;
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="section-part">
+            <h3>3. HTML 高亮演示</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;Bo-Blog 经典博客&lt;/title&gt;
+    &lt;link rel="stylesheet" href="dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="boblog-codeblock"&gt;
+        &lt;pre&gt;&lt;code class="language-css"&gt;代码内容&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+    &lt;script src="dist/boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+        </div>
+
+        <div class="section-part">
+            <h3>4. JavaScript 高亮演示</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-javascript">/**
+ * 初始化代码块组件
+ * @param {Element} container - 搜索范围
+ */
+function initCodeblock(container) {
+    var blocks = document.querySelectorAll('.boblog-codeblock');
+    var count = blocks.length;
+
+    blocks.forEach(function (block, index) {
+        if (block.hasAttribute('data-no-highlight')) return;
+
+        var code = block.querySelector('code');
+        if (code &amp;&amp; typeof Prism !== 'undefined') {
+            Prism.highlightElement(code);
+        }
+        console.log('已处理第 ' + (index + 1) + '/' + count + ' 个代码块');
+    });
+
+    return true;
+}</code></pre>
+            </div>
+        </div>
+
+        <div class="section-part">
+            <h3>5. 支持的语言列表</h3>
+            <p>在 <code>&lt;code&gt;</code> 元素上添加对应的 class 即可启用语法高亮，不指定时保持纯文本。</p>
+            <table style="border-collapse: collapse; width: 100%; font-size: 12px; margin-top: 10px;">
+                <thead>
+                    <tr style="background: var(--boblog-bg-muted, #EBF0F5);">
+                        <th style="border: 1px solid var(--boblog-border); padding: 5px 8px; text-align: left;">语言</th>
+                        <th style="border: 1px solid var(--boblog-border); padding: 5px 8px; text-align: left;">class 值</th>
+                        <th style="border: 1px solid var(--boblog-border); padding: 5px 8px; text-align: left;">类型</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">HTML / XML / SVG</td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>language-html</code> 或 <code>language-markup</code></td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">内置</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">CSS</td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>language-css</code></td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">内置</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">JavaScript</td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>language-javascript</code></td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">内置</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">C-like</td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>language-clike</code></td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">内置</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">C</td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>language-c</code></td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">扩展</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">C++</td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>language-cpp</code></td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">扩展</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">PHP</td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>language-php</code></td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">扩展</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">Python</td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>language-python</code></td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">扩展</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">C#</td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>language-csharp</code></td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">扩展</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">Java</td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>language-java</code></td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">扩展</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">Go</td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>language-go</code></td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">扩展</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">SQL</td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>language-sql</code></td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">扩展</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">Bash / Shell</td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>language-bash</code></td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">扩展</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">JSON</td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>language-json</code></td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">扩展</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">TypeScript</td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>language-typescript</code></td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">扩展</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">Ruby</td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>language-ruby</code></td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">扩展</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">Rust</td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>language-rust</code></td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">扩展</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">YAML</td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>language-yaml</code></td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">扩展</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">Markdown</td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>language-markdown</code></td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">扩展</td>
+                    </tr>
+                    <tr>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">Dockerfile</td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>language-docker</code></td>
+                        <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">扩展</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 复制按钮 -->
+    <div class="component-section">
+        <h2 id="复制按钮">复制按钮</h2>
+
+        <div class="section-part">
+            <h3>1. 规范说明</h3>
+            <ul class="spec-list">
+                <li>按钮类名: <code>.boblog-copy-btn</code>（由 JS 自动注入）</li>
+                <li>位置: 代码块右上角 (absolute top:8px right:8px)</li>
+                <li>默认状态: 浅蓝背景 + 蓝色边框文字</li>
+                <li>悬停状态: 蓝色背景 + 白色文字</li>
+                <li>复制成功: 绿色边框文字 + 浅绿背景，1.5 秒后恢复</li>
+                <li>复制内容为纯文本（去除 HTML 标签和行号）</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- JS API -->
+    <div class="component-section">
+        <h2 id="JS-API">JavaScript API</h2>
+
+        <div class="section-part">
+            <h3>1. 自动初始化</h3>
+            <ul class="spec-list">
+                <li>引入 <code>boblog-ui.js</code> 后，DOMContentLoaded 自动扫描 <code>.boblog-codeblock</code></li>
+                <li>无需手动调用任何函数</li>
+            </ul>
+        </div>
+
+        <div class="section-part">
+            <h3>2. 手动调用</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-javascript">// 初始化页面所有代码块
+BoblogUI.codeblock.init();
+
+// 只初始化指定容器内的代码块
+BoblogUI.codeblock.init(document.getElementById('myContainer'));
+
+// 单独调用某个功能
+BoblogUI.codeblock.highlightAll();     // 语法高亮
+BoblogUI.codeblock.addLineNumbers();   // 行号
+BoblogUI.codeblock.addCopyButtons();   // 复制按钮</code></pre>
+            </div>
+        </div>
+
+        <div class="section-part">
+            <h3>3. 引入方式</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-html">&lt;!-- 引入 CSS（包含代码块样式 + Prism token 配色） --&gt;
+&lt;link rel="stylesheet" href="dist/boblog-ui.css"&gt;
+
+&lt;!-- 引入 JS（已集成 Prism.js 语法高亮引擎 + 代码块逻辑） --&gt;
+&lt;script src="dist/boblog-ui.js"&gt;&lt;/script&gt;
+
+&lt;!-- 或开发时单独引入 --&gt;
+&lt;script src="src/vendor/prism/prism.min.js"&gt;&lt;/script&gt;
+&lt;script src="src/js/codeblock.js"&gt;&lt;/script&gt;</code></pre>
+            </div>
+            <ul class="spec-list">
+                <li><code>boblog-ui.js</code> 已内置 Prism.js v1.29.0（含 17 种语言），无需额外引入</li>
+                <li><code>boblog-ui.css</code> 已包含 Prism token 的 Bo-Blog 配色映射</li>
+            </ul>
+        </div>
+    </div>
+
+    <script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

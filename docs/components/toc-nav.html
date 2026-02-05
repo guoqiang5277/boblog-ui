@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浮动目录组件 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="doc-white-bg">
+<!-- 本页的浮动目录（即组件自身的演示） -->
+<div class="boblog-toc" data-toc-float="push">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="doc-container">
+    <div class="doc-nav">
+        <a href="../index.html">← 返回总纲</a>
+    </div>
+
+    <h1>浮动目录组件 (TOC Nav)</h1>
+
+    <!-- 基础用法 -->
+    <div class="doc-section">
+        <h2 id="基础用法">基础用法</h2>
+
+        <div class="section-part">
+            <h3>1. 规范说明</h3>
+            <ul class="spec-list">
+                <li>容器类名: <code>.boblog-toc</code></li>
+                <li>固定定位: right:20px, top:20px</li>
+                <li>宽度: 自适应（120px~50vw），文本不换行，由最长条目撑开后自动锁定</li>
+                <li>可通过 <code>data-toc-width</code> 指定固定宽度</li>
+                <li>背景色: var(--boblog-blue-pale) / #E8F0F7</li>
+                <li>边框: 1px solid var(--boblog-border)</li>
+                <li>最大高度: calc(100vh - 40px)，超出滚动</li>
+                <li>z-index: var(--boblog-z-index-sticky) / 200</li>
+                <li>长文本单行显示，不换行不截断，面板宽度自动适配</li>
+                <li>自动功能: 目录生成、折叠切换、滚动高亮、父级高亮</li>
+            </ul>
+        </div>
+
+        <div class="section-part">
+            <h3>2. 渲染效果</h3>
+            <p>本页面右上角的目录面板即为该组件的实际效果。</p>
+            <ul class="spec-list">
+                <li>自动扫描页面中的 h2 标题生成目录列表</li>
+                <li>点击「收起目录」可折叠面板</li>
+                <li>滚动页面时，当前可见章节的目录项会高亮</li>
+            </ul>
+        </div>
+
+        <div class="section-part">
+            <h3>3. 演示</h3>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <div class="boblog-tabs-panel active">
+                    <p>本页面右上角的浮动目录即为实际预览效果。</p>
+                    <p>JS 会自动完成以下工作：</p>
+                    <ul class="spec-list">
+                        <li>扫描页面 h2 标题，为 &lt;ul&gt; 填充链接列表</li>
+                        <li>注入「收起目录/显示目录」切换按钮</li>
+                        <li>监听滚动，高亮当前章节</li>
+                    </ul>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;div class="boblog-toc"&gt;
+    &lt;h4&gt;目录&lt;/h4&gt;
+    &lt;ul id="tocList"&gt;&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div class="component-section"&gt;
+    &lt;h2 id="chapter-1"&gt;第一章&lt;/h2&gt;
+    &lt;p&gt;内容...&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;浮动目录基础用法 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="boblog-toc"&gt;
+        &lt;h4&gt;目录&lt;/h4&gt;
+        &lt;ul id="tocList"&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;div class="component-section"&gt;
+        &lt;h2 id="chapter-1"&gt;第一章&lt;/h2&gt;
+        &lt;p&gt;内容...&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 目录标题扫描范围 -->
+    <div class="doc-section">
+        <h2 id="标题扫描">标题扫描范围</h2>
+
+        <div class="section-part">
+            <h3>1. 规范说明</h3>
+            <ul class="spec-list">
+                <li>默认扫描以下容器内的标题（无 data-toc-source 时）：</li>
+                <li><code>.doc-section</code> — 灰底模板章节</li>
+                <li><code>.component-section</code> — 白底模板组件区块</li>
+                <li><code>.boblog-doc-section</code> — 文档布局组件章节</li>
+                <li><code>.boblog-toc-source</code> — 通用标记（可在任意容器上添加）</li>
+                <li>内置排除区域（以下容器内的标题不会被收录到目录中）：</li>
+                <li><code>.boblog-tabs-panel</code> — Tab 切换面板（预览/源码区域内的模拟标题）</li>
+                <li><code>.boblog-codeblock</code> — 代码块</li>
+                <li><code>.boblog-doc-demo</code> — 演示预览区域</li>
+                <li>任意容器加 <code>data-toc-exclude</code> 属性即可排除其内标题（通用排除）</li>
+                <li>默认只扫描 h2，设置 <code>data-toc-depth</code> 可扩展到 h3-h6</li>
+                <li>设置 <code>data-toc-source</code> 可完全自定义扫描容器</li>
+                <li>如果标题没有 id 属性，JS 会自动生成随机 id</li>
+            </ul>
+        </div>
+
+        <div class="section-part">
+            <h3>2. 自定义扫描范围</h3>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <div class="boblog-tabs-panel active">
+                    <p>给任意容器添加 <code>.boblog-toc-source</code> 类，其内的 h2 会被自动扫描到目录中。</p>
+                    <p>本页面右上角的浮动目录即使用了默认扫描范围（<code>.component-section</code>），自动收集了所有章节的
+                        h2 标题。</p>
+                    <p>默认扫描容器：</p>
+                    <ul class="spec-list">
+                        <li><code>.doc-section</code> — 灰底模板章节</li>
+                        <li><code>.component-section</code> — 白底模板组件区块</li>
+                        <li><code>.boblog-doc-section</code> — 文档布局组件章节</li>
+                        <li><code>.boblog-toc-source</code> — 通用标记</li>
+                    </ul>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;div class="boblog-toc"&gt;
+    &lt;h4&gt;目录&lt;/h4&gt;
+    &lt;ul id="tocList"&gt;&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;div class="boblog-toc-source"&gt;
+    &lt;h2 id="chapter-1"&gt;第一章&lt;/h2&gt;
+    &lt;p&gt;内容...&lt;/p&gt;
+    &lt;h2 id="chapter-2"&gt;第二章&lt;/h2&gt;
+    &lt;p&gt;内容...&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;自定义扫描范围示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="boblog-toc"&gt;
+        &lt;h4&gt;目录&lt;/h4&gt;
+        &lt;ul id="tocList"&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;div class="boblog-toc-source"&gt;
+        &lt;h2 id="chapter-1"&gt;第一章&lt;/h2&gt;
+        &lt;p&gt;内容...&lt;/p&gt;
+        &lt;h2 id="chapter-2"&gt;第二章&lt;/h2&gt;
+        &lt;p&gt;内容...&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 自定义扫描配置 -->
+    <div class="doc-section">
+        <h2 id="自定义配置">自定义扫描配置 (data-*)</h2>
+
+        <div class="section-part">
+            <h3>1. 属性参考</h3>
+            <p>通过 <code>.boblog-toc</code> 容器上的 data-* 属性配置扫描行为，无属性时与老版本完全一致（向后兼容）。</p>
+            <table style="border-collapse: collapse; width: 100%; font-size: 12px; margin-top: 8px;">
+                <thead>
+                <tr style="background: var(--boblog-bg-muted, #EBF0F5);">
+                    <th style="border: 1px solid var(--boblog-border); padding: 5px 8px; text-align: left; white-space: nowrap;">
+                        属性
+                    </th>
+                    <th style="border: 1px solid var(--boblog-border); padding: 5px 8px; text-align: left;">含义</th>
+                    <th style="border: 1px solid var(--boblog-border); padding: 5px 8px; text-align: left;">默认值</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px; white-space: nowrap;"><code>data-toc-source</code>
+                    </td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">扫描标题的容器选择器（如 <code>".article-body"</code>）
+                    </td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">.doc-section,
+                        .component-section, .boblog-doc-section, .boblog-toc-source
+                    </td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px; white-space: nowrap;"><code>data-toc-depth</code>
+                    </td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">标题深度 2-6（如 depth="3" 扫描
+                        h2+h3）
+                    </td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">2（仅 h2）</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px; white-space: nowrap;"><code>data-toc-collapsed</code>
+                    </td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">存在时子级目录默认折叠</td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">不存在（展开）</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px; white-space: nowrap;"><code>data-toc-numbered</code>
+                    </td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">存在时显示序号索引（1. / 1.1 /
+                        1.1.1），纯 CSS 计数器实现
+                    </td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">不存在（无编号）</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px; white-space: nowrap;"><code>data-toc-float</code>
+                    </td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">面板浮动控制，可选值：<br>"true"=浮动覆盖（fixed
+                        定位在右上角，遮挡内容），<br>"push"=浮动推开（fixed 定位+自动给 body 添加 padding-right 避让），<br>"false"=静态嵌入文档流（不浮动）
+                    </td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">"true"（浮动覆盖）</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px; white-space: nowrap;"><code>data-toc-width</code>
+                    </td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">
+                        面板宽度控制：数字=固定像素，"auto"=自适应（120px~50vw，按最长条目加粗宽度锁定）
+                    </td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">自适应</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px; white-space: nowrap;"><code>data-toc-exclude</code>
+                    </td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">
+                        布尔属性，加在任意容器上。该容器内的标题不会被目录收录（不是加在 .boblog-toc 上）
+                    </td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">不存在（不排除）</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section-part">
+            <h3>2. 配置示例</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-html">&lt;!-- 自定义扫描：只扫描 .article-body 内的 h2 和 h3 --&gt;
+&lt;div class="boblog-toc"
+     data-toc-source=".article-body"
+     data-toc-depth="3"&gt;
+    &lt;h4&gt;文章目录&lt;/h4&gt;
+    &lt;ul id="tocList"&gt;&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;!-- 多级目录 + 默认折叠 + 序号 --&gt;
+&lt;div class="boblog-toc"
+     data-toc-depth="4"
+     data-toc-collapsed
+     data-toc-numbered&gt;
+    &lt;h4&gt;文档目录&lt;/h4&gt;
+    &lt;ul id="tocList"&gt;&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;!-- 浮动推开模式（自动给 body 添加 padding-right 避让） --&gt;
+&lt;div class="boblog-toc" data-toc-float="push"&gt;
+    &lt;h4&gt;页面目录&lt;/h4&gt;
+    &lt;ul id="tocList"&gt;&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;!-- 静态目录（不浮动，嵌入页面文档流） --&gt;
+&lt;div class="boblog-toc" data-toc-float="false"&gt;
+    &lt;h4&gt;页面目录&lt;/h4&gt;
+    &lt;ul id="tocList"&gt;&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;!-- 排除某个容器内的标题：加 data-toc-exclude 即可 --&gt;
+&lt;div data-toc-exclude&gt;
+    &lt;h2&gt;这个标题不会出现在目录中&lt;/h2&gt;
+    &lt;p&gt;内容...&lt;/p&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+
+        <div class="section-part">
+            <h3>3. 宽度与浮动配置示例</h3>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <div class="boblog-tabs-panel active">
+                    <p style="margin-bottom: 12px;">以下展示不同宽度和浮动配置的实际面板效果（静态模拟）：</p>
+
+                    <div style="display: flex; gap: 20px; flex-wrap: wrap; align-items: flex-start;">
+                        <!-- 默认自适应 + 浮动 -->
+                        <div>
+                            <p style="font-size: 11px; color: #888; margin-bottom: 4px;">默认（浮动 + 自适应宽度）</p>
+                            <div style="background: var(--boblog-blue-pale, #E8F0F7); border: 1px solid var(--boblog-border, #C4D7E8); padding: 10px; font-size: 12px; font-family: Tahoma, Arial, sans-serif;">
+                                <h4 style="color: var(--boblog-blue, #0D6EAA); font-size: 14px; margin: 0 0 10px 0; padding-bottom: 5px; border-bottom: 1px solid var(--boblog-border, #C4D7E8);">
+                                    目录</h4>
+                                <ul style="list-style: none; margin: 0; padding: 0;">
+                                    <li style="margin-bottom: 5px;"><a href="javascript:void(0)"
+                                                                       style="color: #fff; text-decoration: none; display: block; padding: 3px 5px; white-space: nowrap; background: var(--boblog-blue, #0D6EAA); font-weight: bold;">项目概述</a>
+                                    </li>
+                                    <li style="margin-bottom: 5px;"><a href="javascript:void(0)"
+                                                                       style="color: var(--boblog-blue); text-decoration: none; display: block; padding: 3px 5px; white-space: nowrap;">自定义扫描配置</a>
+                                    </li>
+                                    <li style="margin-bottom: 5px;"><a href="javascript:void(0)"
+                                                                       style="color: var(--boblog-blue); text-decoration: none; display: block; padding: 3px 5px; white-space: nowrap;">多级目录与折叠</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p style="font-size: 10px; color: #aaa; margin-top: 4px;">position: fixed, 右上角悬浮</p>
+                        </div>
+
+                        <!-- 固定 200px -->
+                        <div>
+                            <p style="font-size: 11px; color: #888; margin-bottom: 4px;">data-toc-width="200"</p>
+                            <div style="width: 200px; background: var(--boblog-blue-pale, #E8F0F7); border: 1px solid var(--boblog-border, #C4D7E8); padding: 10px; font-size: 12px; font-family: Tahoma, Arial, sans-serif;">
+                                <h4 style="color: var(--boblog-blue, #0D6EAA); font-size: 14px; margin: 0 0 10px 0; padding-bottom: 5px; border-bottom: 1px solid var(--boblog-border, #C4D7E8);">
+                                    目录</h4>
+                                <ul style="list-style: none; margin: 0; padding: 0;">
+                                    <li style="margin-bottom: 5px;"><a href="javascript:void(0)"
+                                                                       style="color: #fff; text-decoration: none; display: block; padding: 3px 5px; white-space: nowrap; background: var(--boblog-blue, #0D6EAA); font-weight: bold;">项目概述</a>
+                                    </li>
+                                    <li style="margin-bottom: 5px;"><a href="javascript:void(0)"
+                                                                       style="color: var(--boblog-blue); text-decoration: none; display: block; padding: 3px 5px; white-space: nowrap;">自定义扫描配置</a>
+                                    </li>
+                                    <li style="margin-bottom: 5px;"><a href="javascript:void(0)"
+                                                                       style="color: var(--boblog-blue); text-decoration: none; display: block; padding: 3px 5px; white-space: nowrap;">多级目录与折叠</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p style="font-size: 10px; color: #aaa; margin-top: 4px;">固定 200px 宽度</p>
+                        </div>
+
+                        <!-- 静态（不浮动） -->
+                        <div>
+                            <p style="font-size: 11px; color: #888; margin-bottom: 4px;">data-toc-float="false"</p>
+                            <div style="background: var(--boblog-blue-pale, #E8F0F7); border: 1px solid var(--boblog-border, #C4D7E8); padding: 10px; font-size: 12px; font-family: Tahoma, Arial, sans-serif;">
+                                <h4 style="color: var(--boblog-blue, #0D6EAA); font-size: 14px; margin: 0 0 10px 0; padding-bottom: 5px; border-bottom: 1px solid var(--boblog-border, #C4D7E8);">
+                                    目录</h4>
+                                <ul style="list-style: none; margin: 0; padding: 0;">
+                                    <li style="margin-bottom: 5px;"><a href="javascript:void(0)"
+                                                                       style="color: #fff; text-decoration: none; display: block; padding: 3px 5px; white-space: nowrap; background: var(--boblog-blue, #0D6EAA); font-weight: bold;">项目概述</a>
+                                    </li>
+                                    <li style="margin-bottom: 5px;"><a href="javascript:void(0)"
+                                                                       style="color: var(--boblog-blue); text-decoration: none; display: block; padding: 3px 5px; white-space: nowrap;">自定义扫描配置</a>
+                                    </li>
+                                    <li style="margin-bottom: 5px;"><a href="javascript:void(0)"
+                                                                       style="color: var(--boblog-blue); text-decoration: none; display: block; padding: 3px 5px; white-space: nowrap;">多级目录与折叠</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <p style="font-size: 10px; color: #aaa; margin-top: 4px;">position: static, 嵌入文档流</p>
+                        </div>
+                    </div>
+
+                    <p style="margin-top: 10px; font-size: 12px; color: var(--boblog-text-secondary);">
+                        默认浮动覆盖在页面右上角（遮挡内容）；设置 data-toc-float="push" 后浮动并自动推开页面内容；设置
+                        data-toc-float="false" 后嵌入文档流。自适应宽度由最长条目加粗撑开后锁定，窗口变化时自动重算。</p>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!-- 默认自适应 --&gt;
+&lt;div class="boblog-toc"&gt;
+    &lt;h4&gt;目录&lt;/h4&gt;
+    &lt;ul id="tocList"&gt;&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;!-- 固定 200px 宽度 --&gt;
+&lt;div class="boblog-toc" data-toc-width="200"&gt;
+    &lt;h4&gt;目录&lt;/h4&gt;
+    &lt;ul id="tocList"&gt;&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;!-- 浮动推开模式 --&gt;
+&lt;div class="boblog-toc" data-toc-float="push"&gt;
+    &lt;h4&gt;页面目录&lt;/h4&gt;
+    &lt;ul id="tocList"&gt;&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;!-- 静态模式（不浮动） --&gt;
+&lt;div class="boblog-toc" data-toc-float="false"&gt;
+    &lt;h4&gt;页面目录&lt;/h4&gt;
+    &lt;ul id="tocList"&gt;&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;目录宽度与浮动配置 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- 默认自适应（推荐）宽度由最长条目（加粗状态）撑开后自动锁定 --&gt;
+    &lt;div class="boblog-toc"&gt;
+        &lt;h4&gt;目录&lt;/h4&gt;
+        &lt;ul id="tocList"&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 固定 200px 宽度 --&gt;
+    &lt;div class="boblog-toc" data-toc-width="200"&gt;
+        &lt;h4&gt;目录&lt;/h4&gt;
+        &lt;ul id="tocList"&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 固定 300px + 多级目录 + 序号 --&gt;
+    &lt;div class="boblog-toc"
+         data-toc-width="300"
+         data-toc-depth="4"
+         data-toc-numbered&gt;
+        &lt;h4&gt;文档目录&lt;/h4&gt;
+        &lt;ul id="tocList"&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 显式自适应（等同默认） --&gt;
+    &lt;div class="boblog-toc" data-toc-width="auto"&gt;
+        &lt;h4&gt;目录&lt;/h4&gt;
+        &lt;ul id="tocList"&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 浮动推开模式：自动给 body 添加 padding-right --&gt;
+    &lt;div class="boblog-toc" data-toc-float="push"&gt;
+        &lt;h4&gt;页面目录&lt;/h4&gt;
+        &lt;ul id="tocList"&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 静态模式：不浮动，嵌入文档流 --&gt;
+    &lt;div class="boblog-toc" data-toc-float="false"&gt;
+        &lt;h4&gt;页面目录&lt;/h4&gt;
+        &lt;ul id="tocList"&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 静态 + 固定宽度 --&gt;
+    &lt;div class="boblog-toc"
+         data-toc-float="false"
+         data-toc-width="250"&gt;
+        &lt;h4&gt;侧边目录&lt;/h4&gt;
+        &lt;ul id="tocList"&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 多级目录与折叠 -->
+    <div class="doc-section">
+        <h2 id="多级目录">多级目录与折叠</h2>
+
+        <div class="section-part">
+            <h3>1. 规范说明</h3>
+            <ul class="spec-list">
+                <li><code>data-toc-depth</code> 大于 2 时自动启用树形模式</li>
+                <li>目录生成嵌套 <code>&lt;ul&gt;</code> 结构，子级与父级文字左对齐</li>
+                <li>通过字号、颜色区分层级（h2 加粗，h3 小字浅色，h4 更浅）</li>
+                <li>有子级的条目自动添加折叠箭头按钮 <code>.boblog-toc-arrow</code></li>
+                <li>箭头文字: ▼ 展开态 / ▶ 折叠态</li>
+                <li>折叠状态通过 <code>.boblog-toc-item--collapsed</code> 类控制</li>
+                <li><code>data-toc-collapsed</code> 属性存在时，所有子级默认折叠</li>
+                <li><code>data-toc-depth="2"</code> 或无此属性时为扁平模式（与老版本一致）</li>
+            </ul>
+        </div>
+
+        <div class="section-part">
+            <h3>2. 演示</h3>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">源码</button>
+                </div>
+                <div class="boblog-tabs-panel active">
+                    <!-- 预览：用静态 HTML 模拟多级目录的实际渲染效果 -->
+                    <div style="width: 180px; background: var(--boblog-blue-pale, #E8F0F7); border: 1px solid var(--boblog-border, #C4D7E8); padding: 10px; font-family: Tahoma, Arial, sans-serif; font-size: 12px;">
+                        <h4 style="color: var(--boblog-blue, #0D6EAA); font-size: 14px; font-weight: bold; margin: 0 0 10px 0; padding-bottom: 5px; border-bottom: 1px solid var(--boblog-border, #C4D7E8);">
+                            文章目录</h4>
+                        <ul style="list-style: none; margin: 0; padding: 0;">
+                            <li class="boblog-toc-item boblog-toc-level-2">
+                                <div class="boblog-toc-node">
+                                    <button class="boblog-toc-arrow" type="button"
+                                            onclick="this.closest('.boblog-toc-item').classList.toggle('boblog-toc-item--collapsed'); this.textContent = this.closest('.boblog-toc-item').classList.contains('boblog-toc-item--collapsed') ? '\u25B6' : '\u25BC';">
+                                        &#x25BC;
+                                    </button>
+                                    <a href="javascript:void(0)"
+                                       style="color: var(--boblog-blue); text-decoration: none; display: block; padding: 3px 5px; border-left: none; flex: 1;">第一章
+                                        概述</a>
+                                </div>
+                                <ul class="boblog-toc-children">
+                                    <li class="boblog-toc-item boblog-toc-level-3" style="margin-bottom: 5px;">
+                                        <div class="boblog-toc-node">
+                                            <a href="javascript:void(0)"
+                                               style="color: var(--boblog-blue); text-decoration: none; display: block; padding: 3px 5px; font-size: 11px; border-left: none; flex: 1;">1.1
+                                                背景介绍</a>
+                                        </div>
+                                    </li>
+                                    <li class="boblog-toc-item boblog-toc-level-3" style="margin-bottom: 5px;">
+                                        <div class="boblog-toc-node">
+                                            <a href="javascript:void(0)"
+                                               style="color: var(--boblog-blue); text-decoration: none; display: block; padding: 3px 5px; font-size: 11px; border-left: none; flex: 1;">1.2
+                                                设计目标</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="boblog-toc-item boblog-toc-level-2" style="margin-bottom: 5px;">
+                                <div class="boblog-toc-node">
+                                    <button class="boblog-toc-arrow" type="button"
+                                            onclick="this.closest('.boblog-toc-item').classList.toggle('boblog-toc-item--collapsed'); this.textContent = this.closest('.boblog-toc-item').classList.contains('boblog-toc-item--collapsed') ? '\u25B6' : '\u25BC';">
+                                        &#x25BC;
+                                    </button>
+                                    <a href="javascript:void(0)"
+                                       style="color: var(--boblog-blue); text-decoration: none; display: block; padding: 3px 5px; border-left: none; flex: 1;">第二章
+                                        实现</a>
+                                </div>
+                                <ul class="boblog-toc-children">
+                                    <li class="boblog-toc-item boblog-toc-level-3" style="margin-bottom: 5px;">
+                                        <div class="boblog-toc-node">
+                                            <a href="javascript:void(0)"
+                                               style="color: var(--boblog-blue); text-decoration: none; display: block; padding: 3px 5px; font-size: 11px; border-left: none; flex: 1;">2.1
+                                                技术选型</a>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="boblog-toc-item boblog-toc-level-2" style="margin-bottom: 5px;">
+                                <div class="boblog-toc-node">
+                                    <a href="javascript:void(0)"
+                                       style="color: var(--boblog-blue); text-decoration: none; display: block; padding: 3px 5px; border-left: none; flex: 1;">第三章
+                                        总结</a>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <p style="margin-top: 10px; font-size: 12px; color: var(--boblog-text-secondary);">点击 ▼
+                        箭头可折叠/展开子级目录。</p>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!-- 用户编写：设置 depth=3 启用多级目录 --&gt;
+&lt;div class="boblog-toc" data-toc-depth="3"&gt;
+    &lt;h4&gt;文章目录&lt;/h4&gt;
+    &lt;ul id="tocList"&gt;&lt;/ul&gt;
+&lt;/div&gt;
+
+&lt;!-- 页面内容（h2、h3 会被自动扫描生成树形目录） --&gt;
+&lt;div class="component-section"&gt;
+    &lt;h2&gt;第一章 概述&lt;/h2&gt;
+    &lt;h3&gt;1.1 背景介绍&lt;/h3&gt;
+    &lt;p&gt;内容...&lt;/p&gt;
+    &lt;h3&gt;1.2 设计目标&lt;/h3&gt;
+    &lt;p&gt;内容...&lt;/p&gt;
+    &lt;h2&gt;第二章 实现&lt;/h2&gt;
+    &lt;h3&gt;2.1 技术选型&lt;/h3&gt;
+    &lt;p&gt;内容...&lt;/p&gt;
+    &lt;h2&gt;第三章 总结&lt;/h2&gt;
+    &lt;p&gt;内容...&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- JS 自动生成的 DOM 结构如下：
+&lt;ul id="tocList"&gt;
+    &lt;li class="boblog-toc-item boblog-toc-level-2"&gt;
+        &lt;div class="boblog-toc-node"&gt;
+            &lt;button class="boblog-toc-arrow"&gt;▼&lt;/button&gt;
+            &lt;a href="#..."&gt;第一章 概述&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;ul class="boblog-toc-children"&gt;
+            &lt;li class="boblog-toc-item boblog-toc-level-3"&gt;
+                &lt;div class="boblog-toc-node"&gt;
+                    &lt;a href="#..."&gt;1.1 背景介绍&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/li&gt;
+            ...
+        &lt;/ul&gt;
+    &lt;/li&gt;
+    ...
+&lt;/ul&gt;
+--&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section-part">
+            <h3>3. CSS 类说明</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-css">/* 节点行：箭头 + 链接水平排列，预留 16px 给箭头 */
+.boblog-toc-node {
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+}
+
+/* 箭头占据预留空间 */
+.boblog-toc-arrow { margin-left: -16px; }
+
+/* 子级列表 — 与父级左对齐 */
+.boblog-toc-children {
+    padding: 0;
+}
+
+/* 层级区分：字号 + 颜色 */
+.boblog-toc-level-2 > .boblog-toc-node > a { font-weight: bold; }
+.boblog-toc-level-3 > .boblog-toc-node > a { font-size: 11px; color: #4A7A9B; }
+.boblog-toc-level-4 > .boblog-toc-node > a { font-size: 10px; color: #888; }
+
+/* 折叠时隐藏子级 */
+.boblog-toc-item--collapsed > .boblog-toc-children {
+    display: none;
+}
+
+/* 当前高亮 — 蓝底白字 */
+.boblog-toc .boblog-toc-node a.active {
+    background: var(--boblog-blue);
+    color: #fff;
+}
+
+/* 父级弱高亮（子级焦点时） */
+.boblog-toc-item--ancestor > .boblog-toc-node > a {
+    background: var(--boblog-border-light);
+}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- 折叠/展开 -->
+    <div class="doc-section">
+        <h2 id="折叠展开">折叠/展开切换</h2>
+
+        <div class="section-part">
+            <h3>1. 规范说明</h3>
+            <ul class="spec-list">
+                <li>切换按钮类名: <code>.boblog-toc-toggle</code>（由 JS 自动注入）</li>
+                <li>展开状态: 显示完整目录，按钮文字「收起目录」</li>
+                <li>收起状态: 隐藏目录内容，只显示按钮「显示目录」</li>
+                <li>收起时容器添加 <code>.collapsed</code> 类</li>
+                <li>目录内容被包裹在 <code>.boblog-toc-body</code> 中（由 JS 创建）</li>
+            </ul>
+        </div>
+
+        <div class="section-part">
+            <h3>2. CSS 状态类</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-css">/* 展开状态（默认） */
+.boblog-toc { ... }
+
+/* 收起状态 */
+.boblog-toc.collapsed {
+    width: auto;
+    padding: 0;
+    background: none;
+    border: none;
+}
+
+/* 收起时隐藏内容 */
+.boblog-toc.collapsed .boblog-toc-body {
+    display: none;
+}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- 滚动高亮 -->
+    <div class="doc-section">
+        <h2 id="滚动高亮">滚动高亮</h2>
+
+        <div class="section-part">
+            <h3>1. 规范说明</h3>
+            <ul class="spec-list">
+                <li>基于滚动位置（scroll + offsetTop）判断当前章节</li>
+                <li>从后往前遍历标题，找到第一个 offsetTop ≤ scrollY + 60px 的标题</li>
+                <li>使用 requestAnimationFrame 节流，约 60fps</li>
+                <li>高亮类名: <code>.active</code> 添加到对应的 &lt;a&gt; 链接</li>
+                <li>高亮样式: 蓝底白字 + 加粗（所有层级统一）</li>
+                <li>父级高亮: 当子级处于焦点时，父级 &lt;li&gt; 添加 <code>.boblog-toc-item--ancestor</code> 类（浅灰背景）
+                </li>
+                <li>折叠后也能看出当前位置（父级弱高亮可见）</li>
+            </ul>
+        </div>
+
+        <div class="section-part">
+            <h3>2. 高亮样式</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-css">/* 目录链接默认状态 — 单行不换行 */
+.boblog-toc a {
+    border-left: 3px solid transparent;
+    transition: all 150ms ease-in-out;
+    white-space: nowrap;
+}
+
+/* 当前高亮状态 — 蓝底白字 */
+.boblog-toc .boblog-toc-node a.active,
+.boblog-toc a.active {
+    background: var(--boblog-blue);
+    color: #fff;
+    font-weight: bold;
+}
+
+/* 父级弱高亮（子级焦点时） */
+.boblog-toc-item--ancestor > .boblog-toc-node > a {
+    background: var(--boblog-border-light);
+}</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS API -->
+    <div class="doc-section">
+        <h2 id="JS-API">JavaScript API</h2>
+
+        <div class="section-part">
+            <h3>1. 自动初始化</h3>
+            <ul class="spec-list">
+                <li>引入 <code>boblog-ui.js</code> 后，DOMContentLoaded 自动扫描 <code>.boblog-toc</code></li>
+                <li>无需手动调用任何函数</li>
+            </ul>
+        </div>
+
+        <div class="section-part">
+            <h3>2. 手动调用</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-javascript">// 初始化页面所有目录
+BoblogUI.toc.init();
+
+// 只初始化指定容器内的目录
+BoblogUI.toc.init(document.getElementById('myContainer'));
+
+// 单独调用某个功能
+BoblogUI.toc.initToggle();           // 折叠/展开
+BoblogUI.toc.initGenerate();         // 目录生成
+BoblogUI.toc.initScrollHighlight();  // 滚动高亮</code></pre>
+            </div>
+        </div>
+
+        <div class="section-part">
+            <h3>3. 引入方式</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-html">&lt;!-- 引入 CSS（包含目录样式） --&gt;
+&lt;link rel="stylesheet" href="dist/boblog-ui.css"&gt;
+
+&lt;!-- 引入 JS（包含目录逻辑） --&gt;
+&lt;script src="dist/boblog-ui.js"&gt;&lt;/script&gt;
+
+&lt;!-- 或开发时单独引入 --&gt;
+&lt;script src="src/js/toc.js"&gt;&lt;/script&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /.doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

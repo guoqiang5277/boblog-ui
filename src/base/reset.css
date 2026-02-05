@@ -1,0 +1,132 @@
+/**
+ * Bo-Blog UI 基础层 - CSS 重置
+ *
+ * 轻量级样式重置，确保跨浏览器一致性
+ * 不使用完整的 normalize.css，只做必要重置
+ */
+
+/* ========== 盒模型 ========== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* ========== 边距重置 ========== */
+body,
+h1, h2, h3, h4, h5, h6,
+p,
+ul, ol,
+figure,
+blockquote,
+dl, dd {
+    margin: 0;
+    padding: 0;
+}
+
+/* ========== 列表样式 ========== */
+ul,
+ol {
+    list-style: none;
+}
+
+/* ========== 图片 ========== */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border: 0;
+}
+
+/* ========== 链接 ========== */
+a {
+    color: var(--boblog-text-link, #333333);
+    text-decoration: none;
+    background-color: transparent;
+}
+
+a:hover {
+    color: var(--boblog-text-link-hover, #000000);
+    text-decoration: underline;
+}
+
+a:focus {
+    outline: thin dotted;
+}
+
+/* ========== 表格 ========== */
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* ========== 表单元素 ========== */
+button,
+input,
+select,
+textarea {
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    margin: 0;
+}
+
+button,
+input {
+    overflow: visible;
+}
+
+button,
+select {
+    text-transform: none;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+    cursor: pointer;
+    -webkit-appearance: button;
+}
+
+button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+    padding: 0;
+    border-style: none;
+}
+
+textarea {
+    overflow: auto;
+    resize: vertical;
+}
+
+/* ========== 其他元素 ========== */
+hr {
+    box-sizing: content-box;
+    height: 0;
+    overflow: visible;
+    border: 0;
+    border-top: 1px solid var(--boblog-blue-border-list, #D3E7FC);
+}
+
+code,
+pre {
+    font-family: var(--boblog-font-family-code, monospace);
+    font-size: 1em;
+}
+
+/* ========== HTML5 元素 ========== */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+main,
+nav,
+section {
+    display: block;
+}

@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>进度条 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+<!-- 浮动目录 -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <!-- 导航栏 -->
+    <div class="boblog-doc-nav">
+        <a href="../index.html">&larr; 返回总纲</a>
+    </div>
+
+    <h1>进度条 (Progress Bar)</h1>
+
+    <!-- ====== 基础用法 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="基础用法">基础用法</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>容器类名</strong>: .boblog-progress</li>
+                <li><strong>进度条类名</strong>: .boblog-progress-bar</li>
+                <li><strong>高度</strong>: 16px（默认）</li>
+                <li><strong>背景</strong>: --boblog-bg-muted (#F4FBFF)</li>
+                <li><strong>边框</strong>: 1px solid --boblog-border (#9EC9FF)</li>
+                <li><strong>进度条背景</strong>: --boblog-blue (#0D80BD)</li>
+                <li><strong>宽度控制</strong>: 使用 style="width: X%" 设置进度</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-progress" style="margin-bottom: 12px;">
+                        <div class="boblog-progress-bar" style="width: 30%;">30%</div>
+                    </div>
+                    <div class="boblog-progress" style="margin-bottom: 12px;">
+                        <div class="boblog-progress-bar" style="width: 60%;">60%</div>
+                    </div>
+                    <div class="boblog-progress">
+                        <div class="boblog-progress-bar" style="width: 100%;">100%</div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar" style="width: 30%;"&gt;30%&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar" style="width: 60%;"&gt;60%&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar" style="width: 100%;"&gt;100%&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;基础进度条示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar" style="width: 30%;"&gt;30%&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar" style="width: 60%;"&gt;60%&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar" style="width: 100%;"&gt;100%&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 颜色变体 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="颜色变体">颜色变体</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>修饰类</strong>: .success / .warning / .danger / .info</li>
+                <li><strong>应用位置</strong>: 添加到 .boblog-progress-bar</li>
+                <li><strong>成功</strong>: --boblog-success (#5CB85C 绿色)</li>
+                <li><strong>警告</strong>: --boblog-warning (#F0AD4E 橙色)</li>
+                <li><strong>危险</strong>: --boblog-danger (#D9534F 红色)</li>
+                <li><strong>信息</strong>: --boblog-info (#5BC0DE 青色)</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-progress" style="margin-bottom: 12px;">
+                        <div class="boblog-progress-bar success" style="width: 80%;">80%</div>
+                    </div>
+                    <div class="boblog-progress" style="margin-bottom: 12px;">
+                        <div class="boblog-progress-bar warning" style="width: 60%;">60%</div>
+                    </div>
+                    <div class="boblog-progress" style="margin-bottom: 12px;">
+                        <div class="boblog-progress-bar danger" style="width: 40%;">40%</div>
+                    </div>
+                    <div class="boblog-progress">
+                        <div class="boblog-progress-bar info" style="width: 50%;">50%</div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar success" style="width: 80%;"&gt;80%&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar warning" style="width: 60%;"&gt;60%&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar danger" style="width: 40%;"&gt;40%&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar info" style="width: 50%;"&gt;50%&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;颜色变体进度条示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar success" style="width: 80%;"&gt;80%&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar warning" style="width: 60%;"&gt;60%&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar danger" style="width: 40%;"&gt;40%&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar info" style="width: 50%;"&gt;50%&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 尺寸变体 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="尺寸变体">尺寸变体</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>小号</strong>: .boblog-progress.small，高度 8px</li>
+                <li><strong>默认</strong>: 无修饰类，高度 16px</li>
+                <li><strong>大号</strong>: .boblog-progress.large，高度 24px</li>
+                <li><strong>应用位置</strong>: 添加到容器 .boblog-progress</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <p style="margin: 0 0 8px; color: #888; font-size: 11px;">小号 (8px)：</p>
+                    <div class="boblog-progress small" style="margin-bottom: 16px;">
+                        <div class="boblog-progress-bar" style="width: 70%;">70%</div>
+                    </div>
+                    <p style="margin: 0 0 8px; color: #888; font-size: 11px;">默认 (16px)：</p>
+                    <div class="boblog-progress" style="margin-bottom: 16px;">
+                        <div class="boblog-progress-bar" style="width: 70%;">70%</div>
+                    </div>
+                    <p style="margin: 0 0 8px; color: #888; font-size: 11px;">大号 (24px)：</p>
+                    <div class="boblog-progress large">
+                        <div class="boblog-progress-bar" style="width: 70%;">70%</div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 小号 (8px) --&gt;
+&lt;div class="boblog-progress small"&gt;
+    &lt;div class="boblog-progress-bar" style="width: 70%;"&gt;70%&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 默认 (16px) --&gt;
+&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar" style="width: 70%;"&gt;70%&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 大号 (24px) --&gt;
+&lt;div class="boblog-progress large"&gt;
+    &lt;div class="boblog-progress-bar" style="width: 70%;"&gt;70%&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;尺寸变体进度条示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 小号 (8px) --&gt;
+&lt;div class="boblog-progress small"&gt;
+    &lt;div class="boblog-progress-bar" style="width: 70%;"&gt;70%&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 默认 (16px) --&gt;
+&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar" style="width: 70%;"&gt;70%&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 大号 (24px) --&gt;
+&lt;div class="boblog-progress large"&gt;
+    &lt;div class="boblog-progress-bar" style="width: 70%;"&gt;70%&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 条纹样式 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="条纹样式">条纹样式</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>修饰类</strong>: .striped</li>
+                <li><strong>应用位置</strong>: 添加到 .boblog-progress-bar</li>
+                <li><strong>实现方式</strong>: 45deg 渐变条纹，rgba(255,255,255,0.15)</li>
+                <li><strong>条纹宽度</strong>: 16px</li>
+                <li><strong>可组合</strong>: 与所有颜色修饰类组合使用</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-progress" style="margin-bottom: 12px;">
+                        <div class="boblog-progress-bar striped" style="width: 70%;">70%</div>
+                    </div>
+                    <div class="boblog-progress" style="margin-bottom: 12px;">
+                        <div class="boblog-progress-bar success striped" style="width: 60%;">60%</div>
+                    </div>
+                    <div class="boblog-progress">
+                        <div class="boblog-progress-bar warning striped" style="width: 50%;">50%</div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar striped" style="width: 70%;"&gt;70%&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar success striped" style="width: 60%;"&gt;60%&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar warning striped" style="width: 50%;"&gt;50%&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;条纹样式进度条示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar striped" style="width: 70%;"&gt;70%&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar success striped" style="width: 60%;"&gt;60%&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar warning striped" style="width: 50%;"&gt;50%&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 堆叠进度条 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="堆叠进度条">堆叠进度条</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>实现方式</strong>: 在一个 .boblog-progress 容器内放置多个 .boblog-progress-bar</li>
+                <li><strong>布局</strong>: 多个进度条并排显示，各自宽度相加</li>
+                <li><strong>颜色</strong>: 每个进度条可使用不同的颜色修饰类</li>
+                <li><strong>适用场景</strong>: 展示多种状态的比例分布（如任务完成状态、存储空间占用等）</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-progress">
+                        <div class="boblog-progress-bar success" style="width: 30%;">30%</div>
+                        <div class="boblog-progress-bar warning" style="width: 20%;">20%</div>
+                        <div class="boblog-progress-bar danger" style="width: 10%;">10%</div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar success" style="width: 30%;"&gt;30%&lt;/div&gt;
+    &lt;div class="boblog-progress-bar warning" style="width: 20%;"&gt;20%&lt;/div&gt;
+    &lt;div class="boblog-progress-bar danger" style="width: 10%;"&gt;10%&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;堆叠进度条示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-progress"&gt;
+    &lt;div class="boblog-progress-bar success" style="width: 30%;"&gt;30%&lt;/div&gt;
+    &lt;div class="boblog-progress-bar warning" style="width: 20%;"&gt;20%&lt;/div&gt;
+    &lt;div class="boblog-progress-bar danger" style="width: 10%;"&gt;10%&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 竖向进度条 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="竖向进度条">竖向进度条</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>修饰类</strong>: .boblog-progress.vertical</li>
+                <li><strong>容器宽度</strong>: 16px（默认），可通过 .small (8px) / .large (24px) 调整</li>
+                <li><strong>容器高度</strong>: 200px（默认），可通过 style="height: Xpx" 覆盖</li>
+                <li><strong>进度控制</strong>: 使用 style="height: X%" 代替 width</li>
+                <li><strong>填充方向</strong>: 从底部向上填充</li>
+                <li><strong>可组合</strong>: 与所有颜色、条纹修饰类组合使用</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo" style="display: flex; gap: 20px; align-items: flex-end;">
+                    <div style="text-align: center;">
+                        <div class="boblog-progress vertical" style="height: 150px;">
+                            <div class="boblog-progress-bar" style="height: 70%;">70%</div>
+                        </div>
+                        <p style="margin: 8px 0 0; font-size: 11px; color: #888;">默认 70%</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div class="boblog-progress vertical" style="height: 150px;">
+                            <div class="boblog-progress-bar success" style="height: 85%;">85%</div>
+                        </div>
+                        <p style="margin: 8px 0 0; font-size: 11px; color: #888;">带文字 85%</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div class="boblog-progress vertical" style="height: 150px;">
+                            <div class="boblog-progress-bar warning" style="height: 45%;"></div>
+                        </div>
+                        <p style="margin: 8px 0 0; font-size: 11px; color: #888;">无文字 45%</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div class="boblog-progress vertical small" style="height: 150px;">
+                            <div class="boblog-progress-bar danger" style="height: 30%;"></div>
+                        </div>
+                        <p style="margin: 8px 0 0; font-size: 11px; color: #888;">小号 30%</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <div class="boblog-progress vertical large" style="height: 150px;">
+                            <div class="boblog-progress-bar info" style="height: 60%;">60%</div>
+                        </div>
+                        <p style="margin: 8px 0 0; font-size: 11px; color: #888;">大号带文字 60%</p>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 竖向进度条（带文字） --&gt;
+&lt;div class="boblog-progress vertical" style="height: 150px;"&gt;
+    &lt;div class="boblog-progress-bar" style="height: 70%;"&gt;70%&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 竖向 + 颜色变体（带文字） --&gt;
+&lt;div class="boblog-progress vertical" style="height: 150px;"&gt;
+    &lt;div class="boblog-progress-bar success" style="height: 85%;"&gt;85%&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 竖向 + 无文字 --&gt;
+&lt;div class="boblog-progress vertical" style="height: 150px;"&gt;
+    &lt;div class="boblog-progress-bar warning" style="height: 45%;"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 竖向 + 大号（带文字） --&gt;
+&lt;div class="boblog-progress vertical large" style="height: 150px;"&gt;
+    &lt;div class="boblog-progress-bar info" style="height: 60%;"&gt;60%&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;竖向进度条示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div style="display: flex; gap: 20px; align-items: flex-end; padding: 20px;"&gt;
+    &lt;div class="boblog-progress vertical" style="height: 150px;"&gt;
+        &lt;div class="boblog-progress-bar" style="height: 70%;"&gt;70%&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-progress vertical" style="height: 150px;"&gt;
+        &lt;div class="boblog-progress-bar success" style="height: 85%;"&gt;85%&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-progress vertical" style="height: 150px;"&gt;
+        &lt;div class="boblog-progress-bar warning" style="height: 45%;"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-progress vertical large" style="height: 150px;"&gt;
+        &lt;div class="boblog-progress-bar info" style="height: 60%;"&gt;60%&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

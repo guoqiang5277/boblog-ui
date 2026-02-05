@@ -1,0 +1,357 @@
+/**
+ * Bo-Blog UI 组件 - 浮动目录导航 (toc)
+ *
+ * 目录导航面板，支持：
+ *   - 根据页面标题自动生成目录列表（由 JS 扫描 h2-h6）
+ *   - 折叠/展开切换按钮（面板级）
+ *   - 滚动时自动高亮当前章节
+ *   - 多级标题嵌套目录（h2→h3→h4...）
+ *   - 子级目录可折叠/展开
+ *   - 浮动/静态模式切换（data-toc-float="false" 嵌入文档流）
+ *
+ * HTML 结构约定：
+ *   <div class="boblog-toc">
+ *       <h4>目录</h4>
+ *       <ul id="tocList"></ul>
+ *   </div>
+ *
+ * JS 会自动：
+ *   1. 扫描页面 h2 标题填充 <ul> 列表
+ *   2. 注入折叠/展开按钮
+ *   3. 监听滚动高亮当前项
+ *
+ * 依赖：
+ *   - src/base/variables.css（颜色、字体变量）
+ *   - src/js/toc.js（目录生成、折叠、滚动高亮逻辑）
+ */
+
+
+/* ==========================================================================
+   目录面板容器
+   ========================================================================== */
+
+/* 固定定位的目录面板
+   宽度策略：
+     - 默认自适应内容宽度（120px ~ 50vw），文本不换行，
+       由 JS 在目录生成后按最长条目（加粗状态）测量并锁定宽度
+     - 可通过 data-toc-width 属性自定义宽度行为，如：
+         <div class="boblog-toc" data-toc-width="200">   → 200px 固定宽度
+         <div class="boblog-toc" data-toc-width="auto">   → 自适应（与默认相同）
+       由 JS 在初始化时读取并设置 style.width */
+.boblog-toc {
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    width: auto;
+    min-width: 120px;
+    max-width: 50vw;
+    background: var(--boblog-blue-pale, #E8F0F7);
+    border: var(--boblog-border-width, 1px) solid var(--boblog-border, #C4D7E8);
+    padding: var(--boblog-spacing-sm, 10px);
+    font-family: var(--boblog-font-family, Tahoma, Arial, sans-serif);
+    font-size: var(--boblog-font-size-sm, 12px);
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    z-index: var(--boblog-z-index-sticky, 200);
+}
+
+
+/* 静态模式（非浮动）
+   通过 data-toc-float="false" 启用，面板嵌入页面文档流
+   不再固定定位，取消 right/top，由文档流决定位置 */
+.boblog-toc--static {
+    position: static;
+    max-height: none;
+    overflow-y: visible;
+}
+
+
+/* ==========================================================================
+   折叠/展开状态
+   ========================================================================== */
+
+/* 收起状态：隐藏目录内容，只显示切换按钮 */
+.boblog-toc.collapsed {
+    width: auto;
+    padding: 0;
+    background: none;
+    border: none;
+    overflow: visible;
+}
+
+/* 收起状态下隐藏目录主体 */
+.boblog-toc.collapsed .boblog-toc-body {
+    display: none;
+}
+
+/* 折叠/展开切换按钮（由 JS 动态注入） */
+.boblog-toc-toggle {
+    display: block;
+    background: var(--boblog-blue-pale, #E8F0F7);
+    border: var(--boblog-border-width, 1px) solid var(--boblog-border, #C4D7E8);
+    color: var(--boblog-blue, #0D6EAA);
+    font-family: var(--boblog-font-family, Tahoma, Arial, sans-serif);
+    font-size: var(--boblog-font-size-xs, 11px);
+    padding: 4px 8px;
+    cursor: pointer;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+/* 切换按钮悬停 */
+.boblog-toc-toggle:hover {
+    background: var(--boblog-blue, #0D6EAA);
+    color: var(--boblog-white, #FFFFFF);
+    border-color: var(--boblog-blue, #0D6EAA);
+}
+
+/* 收起状态下按钮无底部间距 */
+.boblog-toc.collapsed .boblog-toc-toggle {
+    margin-bottom: 0;
+}
+
+
+/* ==========================================================================
+   目录标题
+   ========================================================================== */
+
+.boblog-toc h4,
+.boblog-toc-title {
+    color: var(--boblog-blue, #0D6EAA);
+    font-size: var(--boblog-font-size-md, 14px);
+    font-weight: bold;
+    margin: 0 0 var(--boblog-spacing-sm, 10px) 0;
+    padding-bottom: var(--boblog-spacing-xs, 5px);
+    border-bottom: var(--boblog-border-width, 1px) solid var(--boblog-border, #C4D7E8);
+}
+
+
+/* ==========================================================================
+   目录列表
+   ========================================================================== */
+
+/* 列表重置 */
+.boblog-toc ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* 列表项间距 */
+.boblog-toc li {
+    margin-bottom: var(--boblog-spacing-xs, 5px);
+}
+
+/* 目录链接
+   white-space: nowrap 确保文本不换行，面板宽度由最长条目撑开后由 JS 锁定 */
+.boblog-toc a {
+    color: var(--boblog-blue, #0D6EAA);
+    text-decoration: none;
+    font-size: var(--boblog-font-size-sm, 12px);
+    display: block;
+    padding: 3px 5px;
+    border-left: 3px solid transparent;
+    white-space: nowrap;
+    transition: all var(--boblog-transition-normal, 150ms) var(--boblog-transition-timing, ease-in-out);
+}
+
+/* 链接悬停 */
+.boblog-toc a:hover {
+    background: var(--boblog-border-light, #DDE8F0);
+}
+
+/* 当前高亮的目录项（滚动到对应章节时激活）
+   注意：此样式被移至文件末尾，确保优先级高于层级样式（同特异性时后声明胜出） */
+
+
+/* ==========================================================================
+   多级目录 - 节点行
+   树形模式下，每个目录条目由 .boblog-toc-node 包裹箭头和链接
+   ========================================================================== */
+
+/* 节点行：箭头 + 链接水平排列 */
+/* 所有节点统一预留 16px 左侧空间（给箭头），保证有无箭头时文字都对齐 */
+.boblog-toc-node {
+    display: flex;
+    align-items: center;
+    padding-left: 16px;
+}
+
+/* 箭头占据预留的 16px 空间（负 margin 回退到 padding 区域） */
+.boblog-toc-arrow {
+    margin-left: -16px;
+}
+
+/* 节点行内的链接去掉左侧指示条（由子列表的左边框替代层级指示） */
+.boblog-toc-node a {
+    border-left: none;
+    flex: 1;
+    min-width: 0;
+}
+
+
+/* ==========================================================================
+   多级目录 - 折叠/展开箭头
+   仅在有子级的条目上显示，由 JS 动态注入
+   ========================================================================== */
+
+/* 折叠箭头按钮 */
+.boblog-toc-arrow {
+    flex-shrink: 0;
+    width: 16px;
+    height: 16px;
+    padding: 0;
+    border: none;
+    background: none;
+    color: var(--boblog-text-muted, #888888);
+    font-size: 8px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 16px;
+}
+
+/* 箭头悬停变蓝 */
+.boblog-toc-arrow:hover {
+    color: var(--boblog-blue, #0D6EAA);
+}
+
+
+/* ==========================================================================
+   多级目录 - 子级列表与层级缩进
+   ========================================================================== */
+
+/* 子级列表容器 — 与父级文字左对齐，通过字号/颜色/编号区分层级 */
+.boblog-toc-children {
+    list-style: none;
+    margin: 2px 0 0 0;
+    padding: 0;
+}
+
+/* h2 级（顶级）— 加粗 */
+.boblog-toc-level-2 > .boblog-toc-node > a {
+    font-weight: bold;
+}
+
+/* h3 级 — 小字号 + 浅色 + 常规粗细 */
+.boblog-toc-level-3 > .boblog-toc-node > a {
+    font-size: var(--boblog-font-size-xs, 11px);
+    color: var(--boblog-text-secondary, #4A7A9B);
+    font-weight: normal;
+}
+
+/* h4 级 — 更小 + 更浅 */
+.boblog-toc-level-4 > .boblog-toc-node > a {
+    font-size: 10px;
+    color: var(--boblog-text-muted, #888888);
+    font-weight: normal;
+}
+
+/* h5-h6 级 — 最小 + 最浅 */
+.boblog-toc-level-5 > .boblog-toc-node > a,
+.boblog-toc-level-6 > .boblog-toc-node > a {
+    font-size: 10px;
+    color: #999999;
+    font-weight: normal;
+}
+
+
+/* ==========================================================================
+   多级目录 - 子级折叠状态
+   通过 .boblog-toc-item--collapsed 类控制（由 JS 点击箭头切换）
+   ========================================================================== */
+
+/* 折叠时隐藏子级列表 */
+.boblog-toc-item--collapsed > .boblog-toc-children {
+    display: none;
+}
+
+
+/* ==========================================================================
+   多级目录 - 可选序号索引（CSS 计数器）
+   在 .boblog-toc 上添加 data-toc-numbered 属性启用，如：
+     <div class="boblog-toc" data-toc-numbered>
+   生成效果：1. / 1.1 / 1.1.1
+   ========================================================================== */
+
+/* 根列表初始化一级计数器 */
+.boblog-toc[data-toc-numbered] > .boblog-toc-body > ul {
+    counter-reset: toc-l2;
+}
+
+/* 每个一级条目（h2）递增计数器，并在链接前显示编号 */
+.boblog-toc[data-toc-numbered] > .boblog-toc-body > ul > .boblog-toc-level-2 {
+    counter-increment: toc-l2;
+}
+.boblog-toc[data-toc-numbered] > .boblog-toc-body > ul > .boblog-toc-level-2 > .boblog-toc-node a::before {
+    content: counter(toc-l2) ". ";
+}
+
+/* 二级子列表（h3）初始化并递增计数器 */
+.boblog-toc[data-toc-numbered] .boblog-toc-level-2 > .boblog-toc-children {
+    counter-reset: toc-l3;
+}
+.boblog-toc[data-toc-numbered] .boblog-toc-level-3 {
+    counter-increment: toc-l3;
+}
+.boblog-toc[data-toc-numbered] .boblog-toc-level-3 > .boblog-toc-node a::before {
+    content: counter(toc-l2) "." counter(toc-l3) " ";
+}
+
+/* 三级子列表（h4）初始化并递增计数器 */
+.boblog-toc[data-toc-numbered] .boblog-toc-level-3 > .boblog-toc-children {
+    counter-reset: toc-l4;
+}
+.boblog-toc[data-toc-numbered] .boblog-toc-level-4 {
+    counter-increment: toc-l4;
+}
+.boblog-toc[data-toc-numbered] .boblog-toc-level-4 > .boblog-toc-node a::before {
+    content: counter(toc-l2) "." counter(toc-l3) "." counter(toc-l4) " ";
+}
+
+/* 四级子列表（h5）初始化并递增计数器 */
+.boblog-toc[data-toc-numbered] .boblog-toc-level-4 > .boblog-toc-children {
+    counter-reset: toc-l5;
+}
+.boblog-toc[data-toc-numbered] .boblog-toc-level-5 {
+    counter-increment: toc-l5;
+}
+.boblog-toc[data-toc-numbered] .boblog-toc-level-5 > .boblog-toc-node a::before {
+    content: counter(toc-l2) "." counter(toc-l3) "." counter(toc-l4) "." counter(toc-l5) " ";
+}
+
+/* 编号样式 */
+.boblog-toc[data-toc-numbered] .boblog-toc-node a::before {
+    color: var(--boblog-text-muted, #888888);
+    font-size: inherit;
+}
+
+/* 扁平模式（单级 h2）的编号 */
+.boblog-toc[data-toc-numbered] > .boblog-toc-body > ul:not(:has(.boblog-toc-children)) {
+    counter-reset: toc-flat;
+}
+.boblog-toc[data-toc-numbered] > .boblog-toc-body > ul:not(:has(.boblog-toc-children)) > li {
+    counter-increment: toc-flat;
+}
+.boblog-toc[data-toc-numbered] > .boblog-toc-body > ul:not(:has(.boblog-toc-children)) > li > a::before {
+    content: counter(toc-flat) ". ";
+    color: var(--boblog-text-muted, #888888);
+}
+
+
+/* ==========================================================================
+   滚动高亮状态（放在文件末尾，确保优先级高于层级字号/颜色样式）
+   ========================================================================== */
+
+/* 当前高亮项 — 蓝底白字，所有层级统一样式 */
+.boblog-toc .boblog-toc-node a.active,
+.boblog-toc a.active {
+    background: var(--boblog-blue, #0D6EAA);
+    color: var(--boblog-white, #FFFFFF);
+    font-weight: bold;
+}
+
+/* 父级目录弱高亮（当子级处于焦点时）
+   由 JS 在父级 <li> 上添加 .boblog-toc-item--ancestor 类 */
+.boblog-toc-item--ancestor > .boblog-toc-node > a {
+    background: var(--boblog-border-light, #DDE8F0);
+}

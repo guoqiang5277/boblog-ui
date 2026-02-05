@@ -1,0 +1,136 @@
+/**
+ * Bo-Blog Message Component
+ * 消息提示/警告框组件 - 基于 Bo-Blog V2.1 经典风格
+ * 无圆角设计，四种语义状态（成功、错误、警告、信息）
+ *
+ * 包含：
+ *   - .boblog-message                — 基础消息框
+ *   - .boblog-message-success        — 成功消息（绿色主题）
+ *   - .boblog-message-error          — 错误消息（红色主题）
+ *   - .boblog-message-warning        — 警告消息（橙色主题）
+ *   - .boblog-message-info           — 信息消息（蓝色主题）
+ *   - .boblog-message-dismissible    — 可关闭消息（含关闭按钮）
+ *   - .boblog-message-compact        — 紧凑模式
+ *   - .boblog-message-center         — 内容居中
+ */
+
+/* ========== 基础消息框 ========== */
+/* 弹性布局，图标 + 内容 + 可选关闭按钮水平排列 */
+.boblog-message {
+  display: flex;
+  align-items: center;
+  padding: var(--boblog-spacing-sm) var(--boblog-spacing-md);  /* 10px 15px */
+  margin-bottom: var(--boblog-spacing-md);                     /* 底部间距 15px */
+  border: 1px solid var(--boblog-border-blue);                 /* 蓝色边框 #9EC9FF */
+  background-color: var(--boblog-bg-subtle);                   /* 次背景 #F5F8FB */
+  font-size: var(--boblog-font-size-sm);                       /* 12px */
+  line-height: 1.5;
+}
+
+/* ========== 图标区域 ========== */
+/* 固定宽度不缩小，与内容保持间距 */
+.boblog-message-icon {
+  flex-shrink: 0;
+  margin-right: var(--boblog-spacing-sm);                      /* 右间距 10px */
+  font-size: var(--boblog-font-size-md);                       /* 14px */
+}
+
+/* ========== 消息内容 ========== */
+/* 弹性填满剩余空间 */
+.boblog-message-content {
+  flex: 1;
+  color: var(--boblog-text);                                   /* 正文文字 #1A1A1A */
+}
+
+/* ========== 可关闭消息（含关闭按钮） ========== */
+/* 右侧预留关闭按钮空间 */
+.boblog-message-dismissible {
+  position: relative;
+  padding-right: var(--boblog-spacing-2xl);                    /* 右内边距 30px */
+}
+
+/* 关闭按钮：绝对定位在消息框右侧垂直居中 */
+.boblog-message-close {
+  position: absolute;
+  top: 50%;
+  right: var(--boblog-spacing-sm);                             /* 距右 10px */
+  transform: translateY(-50%);
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-size: var(--boblog-font-size-md);                       /* 14px */
+  color: var(--boblog-text-muted);                             /* 弱化文字 #888888 */
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* 关闭按钮悬停：文字加深 */
+.boblog-message-close:hover {
+  color: var(--boblog-text);                                   /* 正文文字 #1A1A1A */
+}
+
+/* ========== 成功消息 ========== */
+/* 绿色主题：边框 + 浅绿底 + 绿色文字 */
+.boblog-message-success {
+  border-color: var(--boblog-success);                         /* 成功状态 #3C8C30 */
+  background-color: var(--boblog-success-bg);                  /* 成功背景 #F0F8EE */
+  color: var(--boblog-success);                                /* 成功状态 #3C8C30 */
+}
+
+/* 成功图标颜色 */
+.boblog-message-success .boblog-message-icon {
+  color: var(--boblog-success);                                /* 成功状态 #3C8C30 */
+}
+
+/* ========== 错误消息 ========== */
+/* 红色主题：边框 + 浅红底 + 红色文字 */
+.boblog-message-error {
+  border-color: var(--boblog-danger);                          /* 危险/错误状态 #CC3333 */
+  background-color: var(--boblog-danger-bg);                   /* 错误背景 #FFF0F0 */
+  color: var(--boblog-danger);                                 /* 危险/错误状态 #CC3333 */
+}
+
+/* 错误图标颜色 */
+.boblog-message-error .boblog-message-icon {
+  color: var(--boblog-danger);                                 /* 危险/错误状态 #CC3333 */
+}
+
+/* ========== 警告消息 ========== */
+/* 橙色主题：边框 + 浅黄底 + 橙色文字 */
+.boblog-message-warning {
+  border-color: var(--boblog-orange);                          /* 橙色 #D07020 */
+  background-color: var(--boblog-warning-bg);                  /* 警告背景 #FFF8E6 */
+  color: var(--boblog-orange);                                 /* 橙色 #D07020 */
+}
+
+/* 警告图标颜色 */
+.boblog-message-warning .boblog-message-icon {
+  color: var(--boblog-orange);                                 /* 橙色 #D07020 */
+}
+
+/* ========== 信息消息 ========== */
+/* 蓝色主题：边框 + 浅蓝底 + 蓝色文字 */
+.boblog-message-info {
+  border-color: var(--boblog-info);                            /* 信息状态 #1677B5 */
+  background-color: var(--boblog-info-bg);                     /* 信息背景 #EDF5FB */
+  color: var(--boblog-info);                                   /* 信息状态 #1677B5 */
+}
+
+/* 信息图标颜色 */
+.boblog-message-info .boblog-message-icon {
+  color: var(--boblog-info);                                   /* 信息状态 #1677B5 */
+}
+
+/* ========== 紧凑模式 ========== */
+/* 缩小内边距和字号，适合空间受限场景 */
+.boblog-message-compact {
+  padding: var(--boblog-spacing-xs) var(--boblog-spacing-sm);  /* 5px 10px */
+  font-size: var(--boblog-font-size-xs);                       /* 11px */
+}
+
+/* ========== 居中对齐 ========== */
+/* 内容水平居中，适合单行简短提示 */
+.boblog-message-center {
+  justify-content: center;
+  text-align: center;
+}

@@ -1,0 +1,80 @@
+/**
+ * Bo-Blog 经典日期标签卡片组件
+ * 用于文章列表中每篇文章前的日期展示
+ * 风格：Bo-Blog V2.1 蓝白配色，无圆角直角设计
+ */
+
+.boblog-date-card {
+    width: 46px;
+    text-align: center;
+    border: 1px solid var(--boblog-blue-border, #9EC9FF);
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.boblog-date-month {
+    background-color: var(--boblog-blue-header, #2E93C9);
+    color: var(--boblog-bg-white, #fff);
+    font-size: var(--boblog-font-size-sm, 12px);
+    padding: 3px 0;
+    font-weight: normal;
+    line-height: 1.2;
+}
+
+.boblog-date-day {
+    background-color: #EFF6FE;
+    color: var(--boblog-text-dark, #333);
+    font-size: 18px;
+    font-weight: bold;
+    padding: 5px 0;
+    line-height: 1.2;
+}
+
+.boblog-date-year {
+    font-size: var(--boblog-font-size-xs, 11px);
+    color: var(--boblog-text-gray, #999);
+    padding: 2px 0;
+    background-color: var(--boblog-bg-white, #fff);
+    line-height: 1.2;
+}
+
+/**
+ * 年月日卡片变体
+ * 上方显示完整年月（如 2026-01），下方显示日期（如 04 或 4）
+ * 宽度加大以适配年月文本
+ * 用法：
+ *   <div class="boblog-date-card-full">
+ *       <div class="boblog-date-month">2026-01</div>
+ *       <div class="boblog-date-day">04</div>
+ *   </div>
+ * 前导零由 HTML 内容控制，写 04 则显示 04，写 4 则显示 4
+ */
+.boblog-date-card-full {
+    width: 60px;
+    text-align: center;
+    border: 1px solid var(--boblog-blue-border, #9EC9FF);
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: top;
+}
+
+/**
+ * 短年月卡片变体
+ * 上方显示短年月（如 26-01），下方显示日期（如 05 或 5）
+ * 宽度介于基础卡片和完整年月卡片之间
+ * 用法：
+ *   <div class="boblog-date-card-short">
+ *       <div class="boblog-date-month">26-01</div>
+ *       <div class="boblog-date-day">05</div>
+ *   </div>
+ * 前导零由 HTML 内容控制，写 05 则显示 05，写 5 则显示 5
+ */
+.boblog-date-card-short {
+    width: 56px;
+    text-align: center;
+    border: 1px solid var(--boblog-blue-border, #9EC9FF);
+    overflow: hidden;
+    display: inline-block;
+    vertical-align: top;
+}

@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>消息提示 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-gray">
+<!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <!-- 导航栏 -->
+    <div class="boblog-doc-nav">
+        <a href="../index.html">← 返回总纲</a>
+    </div>
+
+    <h1>消息提示 (Message)</h1>
+
+    <!-- ====== 基础用法 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="基础用法">基础用法</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>结构</strong>: .boblog-message > .boblog-message-icon + .boblog-message-content</li>
+                <li><strong>布局</strong>: flex 水平排列，图标 + 内容</li>
+                <li><strong>内边距</strong>: 10px 15px (--boblog-spacing-sm / --boblog-spacing-md)</li>
+                <li><strong>边框</strong>: 1px solid #9EC9FF (--boblog-border-blue)</li>
+                <li><strong>背景色</strong>: #F5F8FB (--boblog-bg-subtle)</li>
+                <li><strong>字体大小</strong>: 12px (--boblog-font-size-sm)</li>
+                <li><strong>行高</strong>: 1.5</li>
+                <li><strong>底部间距</strong>: 15px (--boblog-spacing-md)</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-message">
+                            <span class="boblog-message-icon">ℹ</span>
+                            <span class="boblog-message-content">这是一条默认消息提示。</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-message"&gt;
+    &lt;span class="boblog-message-icon"&gt;ℹ&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;这是一条默认消息提示。&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;消息提示示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-message"&gt;
+    &lt;span class="boblog-message-icon"&gt;ℹ&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;这是一条默认消息提示。&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 四种消息类型 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="消息类型">四种消息类型</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>.boblog-message-success</strong>: 成功消息，边框 #3C8C30 (--boblog-success)，背景 #F0F8EE (--boblog-success-bg)</li>
+                <li><strong>.boblog-message-error</strong>: 错误消息，边框 #CC3333 (--boblog-danger)，背景 #FFF0F0 (--boblog-danger-bg)</li>
+                <li><strong>.boblog-message-warning</strong>: 警告消息，边框 #D07020 (--boblog-orange)，背景 #FFF8E6 (--boblog-warning-bg)</li>
+                <li><strong>.boblog-message-info</strong>: 信息消息，边框 #1677B5 (--boblog-info)，背景 #EDF5FB (--boblog-info-bg)</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-message boblog-message-success">
+                            <span class="boblog-message-icon">✓</span>
+                            <span class="boblog-message-content">操作成功！数据已保存。</span>
+                        </div>
+
+                        <div class="boblog-message boblog-message-error">
+                            <span class="boblog-message-icon">✕</span>
+                            <span class="boblog-message-content">操作失败！请检查输入信息。</span>
+                        </div>
+
+                        <div class="boblog-message boblog-message-warning">
+                            <span class="boblog-message-icon">⚠</span>
+                            <span class="boblog-message-content">警告：此操作将影响系统配置。</span>
+                        </div>
+
+                        <div class="boblog-message boblog-message-info">
+                            <span class="boblog-message-icon">ℹ</span>
+                            <span class="boblog-message-content">提示：请先完成基本设置。</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 成功消息 --&gt;
+&lt;div class="boblog-message boblog-message-success"&gt;
+    &lt;span class="boblog-message-icon"&gt;✓&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;操作成功！数据已保存。&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- 错误消息 --&gt;
+&lt;div class="boblog-message boblog-message-error"&gt;
+    &lt;span class="boblog-message-icon"&gt;✕&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;操作失败！请检查输入信息。&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- 警告消息 --&gt;
+&lt;div class="boblog-message boblog-message-warning"&gt;
+    &lt;span class="boblog-message-icon"&gt;⚠&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;警告：此操作将影响系统配置。&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- 信息消息 --&gt;
+&lt;div class="boblog-message boblog-message-info"&gt;
+    &lt;span class="boblog-message-icon"&gt;ℹ&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;提示：请先完成基本设置。&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;消息类型示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 成功消息 --&gt;
+&lt;div class="boblog-message boblog-message-success"&gt;
+    &lt;span class="boblog-message-icon"&gt;✓&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;操作成功！数据已保存。&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- 错误消息 --&gt;
+&lt;div class="boblog-message boblog-message-error"&gt;
+    &lt;span class="boblog-message-icon"&gt;✕&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;操作失败！请检查输入信息。&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- 警告消息 --&gt;
+&lt;div class="boblog-message boblog-message-warning"&gt;
+    &lt;span class="boblog-message-icon"&gt;⚠&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;警告：此操作将影响系统配置。&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- 信息消息 --&gt;
+&lt;div class="boblog-message boblog-message-info"&gt;
+    &lt;span class="boblog-message-icon"&gt;ℹ&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;提示：请先完成基本设置。&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 可关闭消息 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="可关闭消息">可关闭消息</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>结构</strong>: .boblog-message.boblog-message-dismissible > .boblog-message-icon + .boblog-message-content + button.boblog-message-close</li>
+                <li><strong>右内边距</strong>: 30px (--boblog-spacing-2xl)，为关闭按钮留空间</li>
+                <li><strong>关闭按钮</strong>: 绝对定位，右侧 10px，垂直居中</li>
+                <li><strong>关闭按钮颜色</strong>: #888888 (--boblog-text-muted)，hover 变为 #1A1A1A (--boblog-text)</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-message boblog-message-error boblog-message-dismissible">
+                            <span class="boblog-message-icon">✕</span>
+                            <span class="boblog-message-content">操作失败！请检查输入信息。</span>
+                            <button class="boblog-message-close" onclick="this.parentElement.style.display='none'">×</button>
+                        </div>
+
+                        <div class="boblog-message boblog-message-warning boblog-message-dismissible">
+                            <span class="boblog-message-icon">⚠</span>
+                            <span class="boblog-message-content">警告：此操作将影响系统配置。</span>
+                            <button class="boblog-message-close" onclick="this.parentElement.style.display='none'">×</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 可关闭的错误消息 --&gt;
+&lt;div class="boblog-message boblog-message-error boblog-message-dismissible"&gt;
+    &lt;span class="boblog-message-icon"&gt;✕&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;操作失败！请检查输入信息。&lt;/span&gt;
+    &lt;button class="boblog-message-close" onclick="this.parentElement.style.display='none'"&gt;×&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- 可关闭的警告消息 --&gt;
+&lt;div class="boblog-message boblog-message-warning boblog-message-dismissible"&gt;
+    &lt;span class="boblog-message-icon"&gt;⚠&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;警告：此操作将影响系统配置。&lt;/span&gt;
+    &lt;button class="boblog-message-close" onclick="this.parentElement.style.display='none'"&gt;×&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;可关闭消息示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 可关闭的错误消息 --&gt;
+&lt;div class="boblog-message boblog-message-error boblog-message-dismissible"&gt;
+    &lt;span class="boblog-message-icon"&gt;✕&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;操作失败！请检查输入信息。&lt;/span&gt;
+    &lt;button class="boblog-message-close" onclick="this.parentElement.style.display='none'"&gt;×&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- 可关闭的警告消息 --&gt;
+&lt;div class="boblog-message boblog-message-warning boblog-message-dismissible"&gt;
+    &lt;span class="boblog-message-icon"&gt;⚠&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;警告：此操作将影响系统配置。&lt;/span&gt;
+    &lt;button class="boblog-message-close" onclick="this.parentElement.style.display='none'"&gt;×&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 紧凑模式 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="紧凑模式">紧凑模式</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>类名</strong>: .boblog-message-compact</li>
+                <li><strong>内边距</strong>: 5px 10px (--boblog-spacing-xs / --boblog-spacing-sm)</li>
+                <li><strong>字体大小</strong>: 11px (--boblog-font-size-xs)</li>
+                <li>适合空间受限场景，如表格内、侧边栏内等</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-message boblog-message-success boblog-message-compact">
+                            <span class="boblog-message-icon">✓</span>
+                            <span class="boblog-message-content">保存成功</span>
+                        </div>
+
+                        <div class="boblog-message boblog-message-error boblog-message-compact">
+                            <span class="boblog-message-icon">✕</span>
+                            <span class="boblog-message-content">保存失败</span>
+                        </div>
+
+                        <div class="boblog-message boblog-message-warning boblog-message-compact">
+                            <span class="boblog-message-icon">⚠</span>
+                            <span class="boblog-message-content">请注意</span>
+                        </div>
+
+                        <div class="boblog-message boblog-message-info boblog-message-compact">
+                            <span class="boblog-message-icon">ℹ</span>
+                            <span class="boblog-message-content">温馨提示</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 紧凑成功消息 --&gt;
+&lt;div class="boblog-message boblog-message-success boblog-message-compact"&gt;
+    &lt;span class="boblog-message-icon"&gt;✓&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;保存成功&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- 紧凑错误消息 --&gt;
+&lt;div class="boblog-message boblog-message-error boblog-message-compact"&gt;
+    &lt;span class="boblog-message-icon"&gt;✕&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;保存失败&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;紧凑消息示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-message boblog-message-success boblog-message-compact"&gt;
+    &lt;span class="boblog-message-icon"&gt;✓&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;保存成功&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class="boblog-message boblog-message-error boblog-message-compact"&gt;
+    &lt;span class="boblog-message-icon"&gt;✕&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;保存失败&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class="boblog-message boblog-message-warning boblog-message-compact"&gt;
+    &lt;span class="boblog-message-icon"&gt;⚠&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;请注意&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class="boblog-message boblog-message-info boblog-message-compact"&gt;
+    &lt;span class="boblog-message-icon"&gt;ℹ&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;温馨提示&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 居中对齐 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="居中对齐">居中对齐</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>类名</strong>: .boblog-message-center</li>
+                <li><strong>对齐方式</strong>: justify-content: center + text-align: center</li>
+                <li>适合单行简短提示，内容水平居中显示</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-message boblog-message-info boblog-message-center">
+                            <span class="boblog-message-icon">ℹ</span>
+                            <span class="boblog-message-content">居中显示的信息提示</span>
+                        </div>
+
+                        <div class="boblog-message boblog-message-success boblog-message-center">
+                            <span class="boblog-message-icon">✓</span>
+                            <span class="boblog-message-content">操作完成</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 居中信息消息 --&gt;
+&lt;div class="boblog-message boblog-message-info boblog-message-center"&gt;
+    &lt;span class="boblog-message-icon"&gt;ℹ&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;居中显示的信息提示&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- 居中成功消息 --&gt;
+&lt;div class="boblog-message boblog-message-success boblog-message-center"&gt;
+    &lt;span class="boblog-message-icon"&gt;✓&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;操作完成&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;居中消息示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-message boblog-message-info boblog-message-center"&gt;
+    &lt;span class="boblog-message-icon"&gt;ℹ&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;居中显示的信息提示&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class="boblog-message boblog-message-success boblog-message-center"&gt;
+    &lt;span class="boblog-message-icon"&gt;✓&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;操作完成&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

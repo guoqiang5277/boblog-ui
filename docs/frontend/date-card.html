@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日期标签卡片 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+<!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <div class="boblog-doc-nav">
+        <a href="../frontend.html">← 返回前台组件</a> |
+        <a href="../index.html">返回总纲</a>
+    </div>
+
+    <h1>日期标签卡片 (Date Card)</h1>
+
+    <!-- ====== 基础日期卡片 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="基础日期卡片">基础日期卡片 (.boblog-date-card)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>容器: <code>.boblog-date-card</code>，宽 42px</li>
+                <li><strong>月份区</strong> (.boblog-date-month): 背景 <span class="color-swatch-inline" style="background-color: #2E93C9;"></span>#2E93C9，白色文字</li>
+                <li><strong>日期区</strong> (.boblog-date-day): 背景 <span class="color-swatch-inline" style="background-color: #EFF6FE;"></span>#EFF6FE，深色文字</li>
+                <li><strong>年份区</strong> (.boblog-date-year): 可选，显示在日期区下方</li>
+                <li>无圆角设计，保持 2000 年代经典风格</li>
+                <li>本组件为纯 CSS 实现，无需引入 JavaScript</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>基础卡片</strong></p>
+                        <div style="display: flex; gap: 15px; align-items: flex-start;">
+                            <div class="boblog-date-card">
+                                <div class="boblog-date-month">01月</div>
+                                <div class="boblog-date-day">27</div>
+                            </div>
+                            <div class="boblog-date-card">
+                                <div class="boblog-date-month">12月</div>
+                                <div class="boblog-date-day">25</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>带年份</strong></p>
+                        <div style="display: flex; gap: 15px; align-items: flex-start;">
+                            <div class="boblog-date-card">
+                                <div class="boblog-date-month">12月</div>
+                                <div class="boblog-date-day">25</div>
+                                <div class="boblog-date-year">2026</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 基础卡片 --&gt;
+&lt;div class="boblog-date-card"&gt;
+    &lt;div class="boblog-date-month"&gt;01月&lt;/div&gt;
+    &lt;div class="boblog-date-day"&gt;27&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 带年份 --&gt;
+&lt;div class="boblog-date-card"&gt;
+    &lt;div class="boblog-date-month"&gt;12月&lt;/div&gt;
+    &lt;div class="boblog-date-day"&gt;25&lt;/div&gt;
+    &lt;div class="boblog-date-year"&gt;2026&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;基础日期卡片示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 基础卡片 --&gt;
+&lt;div class="boblog-date-card"&gt;
+    &lt;div class="boblog-date-month"&gt;01月&lt;/div&gt;
+    &lt;div class="boblog-date-day"&gt;27&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;br&gt;
+
+&lt;!-- 带年份 --&gt;
+&lt;div class="boblog-date-card"&gt;
+    &lt;div class="boblog-date-month"&gt;12月&lt;/div&gt;
+    &lt;div class="boblog-date-day"&gt;25&lt;/div&gt;
+    &lt;div class="boblog-date-year"&gt;2026&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 年月日卡片 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="年月日卡片">年月日卡片 (.boblog-date-card-full)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>容器: <code>.boblog-date-card-full</code>，宽 54px</li>
+                <li>上方显示完整年月（如 2026-01），下方显示日期</li>
+                <li>前导零由 HTML 内容控制：写 04 显示 04，写 4 显示 4</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <div style="display: flex; gap: 15px; align-items: flex-start;">
+                            <div class="boblog-date-card-full">
+                                <div class="boblog-date-month">2026-01</div>
+                                <div class="boblog-date-day">04</div>
+                            </div>
+                            <div class="boblog-date-card-full">
+                                <div class="boblog-date-month">2026-01</div>
+                                <div class="boblog-date-day">4</div>
+                            </div>
+                            <span style="color: #666; font-size: 12px; align-self: center;">← 左侧有前导零，右侧无前导零</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 有前导零 --&gt;
+&lt;div class="boblog-date-card-full"&gt;
+    &lt;div class="boblog-date-month"&gt;2026-01&lt;/div&gt;
+    &lt;div class="boblog-date-day"&gt;04&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 无前导零 --&gt;
+&lt;div class="boblog-date-card-full"&gt;
+    &lt;div class="boblog-date-month"&gt;2026-01&lt;/div&gt;
+    &lt;div class="boblog-date-day"&gt;4&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;年月日卡片示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 有前导零 --&gt;
+&lt;div class="boblog-date-card-full"&gt;
+    &lt;div class="boblog-date-month"&gt;2026-01&lt;/div&gt;
+    &lt;div class="boblog-date-day"&gt;04&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;br&gt;
+
+&lt;!-- 无前导零 --&gt;
+&lt;div class="boblog-date-card-full"&gt;
+    &lt;div class="boblog-date-month"&gt;2026-01&lt;/div&gt;
+    &lt;div class="boblog-date-day"&gt;4&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 短年月卡片 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="短年月卡片">短年月卡片 (.boblog-date-card-short)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>容器: <code>.boblog-date-card-short</code>，宽 46px</li>
+                <li>上方显示短年月（如 26-01），下方显示日期</li>
+                <li>前导零由 HTML 内容控制：写 05 显示 05，写 5 显示 5</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <div style="display: flex; gap: 15px; align-items: flex-start;">
+                            <div class="boblog-date-card-short">
+                                <div class="boblog-date-month">26-01</div>
+                                <div class="boblog-date-day">05</div>
+                            </div>
+                            <div class="boblog-date-card-short">
+                                <div class="boblog-date-month">26-01</div>
+                                <div class="boblog-date-day">5</div>
+                            </div>
+                            <span style="color: #666; font-size: 12px; align-self: center;">← 左侧有前导零，右侧无前导零</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 有前导零 --&gt;
+&lt;div class="boblog-date-card-short"&gt;
+    &lt;div class="boblog-date-month"&gt;26-01&lt;/div&gt;
+    &lt;div class="boblog-date-day"&gt;05&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 无前导零 --&gt;
+&lt;div class="boblog-date-card-short"&gt;
+    &lt;div class="boblog-date-month"&gt;26-01&lt;/div&gt;
+    &lt;div class="boblog-date-day"&gt;5&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;短年月卡片示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 有前导零 --&gt;
+&lt;div class="boblog-date-card-short"&gt;
+    &lt;div class="boblog-date-month"&gt;26-01&lt;/div&gt;
+    &lt;div class="boblog-date-day"&gt;05&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;br&gt;
+
+&lt;!-- 无前导零 --&gt;
+&lt;div class="boblog-date-card-short"&gt;
+    &lt;div class="boblog-date-month"&gt;26-01&lt;/div&gt;
+    &lt;div class="boblog-date-day"&gt;5&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 使用说明 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="使用说明">使用说明</h2>
+
+        <div class="boblog-doc-spec">
+            <h3>适用场景</h3>
+            <ul>
+                <li>文章列表左侧日期标签</li>
+                <li>时间轴视图</li>
+                <li>归档页面日期展示</li>
+            </ul>
+
+            <h3>设计要点</h3>
+            <ul>
+                <li>月份使用深蓝色背景 <span class="color-swatch-inline" style="background-color: #2E93C9;"></span>#2E93C9，增强视觉识别</li>
+                <li>日期使用浅蓝色背景 <span class="color-swatch-inline" style="background-color: #EFF6FE;"></span>#EFF6FE，与月份形成对比</li>
+                <li>无圆角设计，保持 2000 年代经典风格</li>
+                <li>年份为可选元素，适用于跨年归档场景</li>
+                <li>本组件为纯 CSS 实现，无需引入 JavaScript</li>
+            </ul>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

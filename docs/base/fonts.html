@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>字体定义 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="doc-gray-bg">
+    <!-- 右侧浮动目录 -->
+    <div class="boblog-toc">
+        <h4>目录</h4>
+        <ul id="tocList"></ul>
+    </div>
+
+    <div class="doc-container">
+        <div class="doc-nav">
+            <a href="../index.html">← 返回总纲</a>
+        </div>
+
+        <h1>字体定义</h1>
+
+        <!-- 概述 -->
+        <div class="doc-section">
+            <h2 id="section-overview">概述</h2>
+            <div class="doc-spec">
+                <p>Bo-Blog UI 引入本地托管的编程等宽字体，用于代码块显示。所有字体均为免费开源（SIL Open Font License）。</p>
+                <ul class="spec-list">
+                    <li>格式：woff2（现代浏览器通用，压缩率最高）</li>
+                    <li>子集：Latin（覆盖代码所需的 ASCII + 常用符号）</li>
+                    <li>字体文件位置：<code>dist/fonts/</code></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 预制字体 -->
+        <div class="doc-section">
+            <h2 id="section-bundled">预制字体</h2>
+            <div class="doc-spec">
+                <p>项目预置的编程等宽字体（woff2 格式）：</p>
+                <table class="boblog-table">
+                    <thead>
+                        <tr>
+                            <th>字体名称</th>
+                            <th>来源</th>
+                            <th>字重</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>JetBrains Mono</td>
+                            <td>JetBrains</td>
+                            <td>400, 700</td>
+                            <td>辨识度高，主流编程字体</td>
+                        </tr>
+                        <tr>
+                            <td>Fira Code</td>
+                            <td>Mozilla</td>
+                            <td>400, 700</td>
+                            <td>连字支持好</td>
+                        </tr>
+                        <tr>
+                            <td>Source Code Pro</td>
+                            <td>Adobe</td>
+                            <td>400, 700</td>
+                            <td>清晰稳重</td>
+                        </tr>
+                        <tr>
+                            <td>Cascadia Code</td>
+                            <td>Microsoft</td>
+                            <td>400, 700</td>
+                            <td>VS Code 默认字体</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- JetBrains Mono -->
+        <div class="doc-section">
+            <h2 id="section-jetbrains">JetBrains Mono</h2>
+            <div class="doc-spec">
+                <p>首选编程字体。来源：<a href="https://github.com/JetBrains/JetBrainsMono" target="_blank">GitHub</a></p>
+                <div class="boblog-codeblock">
+                    <pre><code class="language-css">@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('fonts/JetBrainsMono-Regular.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'JetBrains Mono';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: url('fonts/JetBrainsMono-Bold.woff2') format('woff2');
+}</code></pre>
+                </div>
+                <div class="doc-demo" style="margin-top: 15px;">
+                    <p style="font-family: 'JetBrains Mono', monospace; font-size: 14px;">
+                        JetBrains Mono Regular: const foo = (x) => x * 2;<br>
+                        <strong>JetBrains Mono Bold: function bar() { return 42; }</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Fira Code -->
+        <div class="doc-section">
+            <h2 id="section-fira">Fira Code</h2>
+            <div class="doc-spec">
+                <p>连字编程字体。来源：<a href="https://github.com/tonsky/FiraCode" target="_blank">GitHub</a></p>
+                <div class="boblog-codeblock">
+                    <pre><code class="language-css">@font-face {
+    font-family: 'Fira Code';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('fonts/FiraCode-Regular.woff2') format('woff2');
+}</code></pre>
+                </div>
+                <div class="doc-demo" style="margin-top: 15px;">
+                    <p style="font-family: 'Fira Code', monospace; font-size: 14px;">
+                        Fira Code: !== === => -> <= >= /* */
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Source Code Pro -->
+        <div class="doc-section">
+            <h2 id="section-source">Source Code Pro</h2>
+            <div class="doc-spec">
+                <p>Adobe 编程字体。来源：<a href="https://github.com/adobe-fonts/source-code-pro" target="_blank">GitHub</a></p>
+                <div class="boblog-codeblock">
+                    <pre><code class="language-css">@font-face {
+    font-family: 'Source Code Pro';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('fonts/SourceCodePro-Regular.woff2') format('woff2');
+}</code></pre>
+                </div>
+                <div class="doc-demo" style="margin-top: 15px;">
+                    <p style="font-family: 'Source Code Pro', monospace; font-size: 14px;">
+                        Source Code Pro: 0O 1lI {} [] ()
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cascadia Code -->
+        <div class="doc-section">
+            <h2 id="section-cascadia">Cascadia Code</h2>
+            <div class="doc-spec">
+                <p>Microsoft 编程字体。来源：<a href="https://github.com/microsoft/cascadia-code" target="_blank">GitHub</a></p>
+                <div class="boblog-codeblock">
+                    <pre><code class="language-css">@font-face {
+    font-family: 'Cascadia Code';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url('fonts/CascadiaCode-Regular.woff2') format('woff2');
+}</code></pre>
+                </div>
+                <div class="doc-demo" style="margin-top: 15px;">
+                    <p style="font-family: 'Cascadia Code', monospace; font-size: 14px;">
+                        Cascadia Code: let x = [1, 2, 3].map(n => n * 2);
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 使用方式 -->
+        <div class="doc-section">
+            <h2 id="section-usage">使用方式</h2>
+            <div class="doc-spec">
+                <p>代码块字体栈已在 CSS 变量中定义，直接使用即可：</p>
+                <div class="boblog-codeblock">
+                    <pre><code class="language-css">/* 变量定义（typography.css） */
+:root {
+    --boblog-font-mono: 'JetBrains Mono', 'Fira Code', 'Source Code Pro',
+                        'Cascadia Code', Consolas, Monaco, 'Courier New', monospace;
+}
+
+/* 使用 */
+.boblog-codeblock code {
+    font-family: var(--boblog-font-mono);
+}</code></pre>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

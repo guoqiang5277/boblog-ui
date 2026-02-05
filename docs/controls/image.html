@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>图片 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+<!-- 浮动目录 -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <!-- 导航栏 -->
+    <div class="boblog-doc-nav">
+        <a href="../index.html">&larr; 返回总纲</a>
+    </div>
+
+    <h1>图片 (Image)</h1>
+
+    <!-- ====== 图片展示 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="图片展示">图片展示</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>基础类名</strong>: .boblog-image</li>
+                <li><strong>边框</strong>: 1px solid --boblog-border</li>
+                <li><strong>图片样式</strong>: .boblog-image img (block，max-width 100%，高度自适应)</li>
+                <li><strong>说明文字</strong>: .boblog-image-caption (居中灰色小字，顶部分割线)</li>
+                <li><strong>尺寸变体</strong>: .boblog-image-sm (150px) / .boblog-image-md (300px) / .boblog-image-lg (500px) / .boblog-image-full (100%)</li>
+                <li><strong>样式变体</strong>: .boblog-image-bordered (蓝色边框) / .boblog-image-shadow (右下角阴影)</li>
+                <li><strong>浮动布局</strong>: .boblog-image-float-left (左浮文字环绕) / .boblog-image-float-right (右浮文字环绕)</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <p style="margin: 0 0 8px; color: #888; font-size: 11px;">基础图片（带说明文字）：</p>
+                    <div class="boblog-image" style="margin-bottom: 15px;">
+                        <div style="width:300px;height:200px;background:#BEE6FD;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:12px;">300×200</div>
+                        <div class="boblog-image-caption">这是一张示例图片的说明文字</div>
+                    </div>
+
+                    <p style="margin: 15px 0 8px; color: #888; font-size: 11px;">尺寸变体（sm / md / lg / full）：</p>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 15px;">
+                        <div class="boblog-image boblog-image-sm">
+                            <div style="width:150px;height:100px;background:#BEE6FD;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:11px;">Small 150px</div>
+                        </div>
+                        <div class="boblog-image boblog-image-md">
+                            <div style="width:300px;height:200px;background:#D3E7FC;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:12px;">Medium 300px</div>
+                        </div>
+                    </div>
+                    <div class="boblog-image boblog-image-lg" style="margin-bottom: 10px;">
+                        <div style="width:500px;height:300px;background:#A9DBF6;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:12px;">Large 500px</div>
+                    </div>
+                    <div class="boblog-image boblog-image-full" style="margin-bottom: 15px;">
+                        <div style="width:100%;height:150px;background:#9EC9FF;display:flex;align-items:center;justify-content:center;color:#FFF;font-size:12px;">Full Width 100%</div>
+                    </div>
+
+                    <p style="margin: 15px 0 8px; color: #888; font-size: 11px;">样式变体（边框 / 阴影）：</p>
+                    <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                        <div class="boblog-image boblog-image-bordered">
+                            <div style="width:150px;height:100px;background:#BEE6FD;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:11px;">蓝色边框</div>
+                        </div>
+                        <div class="boblog-image boblog-image-shadow">
+                            <div style="width:150px;height:100px;background:#BEE6FD;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:11px;">带阴影</div>
+                        </div>
+                    </div>
+
+                    <p style="margin: 15px 0 8px; color: #888; font-size: 11px;">浮动布局（左浮 / 右浮，文字环绕）：</p>
+                    <div style="overflow: auto;">
+                        <div class="boblog-image boblog-image-float-left boblog-image-sm">
+                            <div style="width:150px;height:100px;background:#BEE6FD;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:11px;">左浮动</div>
+                        </div>
+                        <p style="margin: 0; font-size: 12px; line-height: 1.8; color: #333;">
+                            这是环绕在图片右侧的文字内容。左浮动的图片会让文字自动环绕在其右侧和下方，
+                            适合图文混排的博客文章场景。这种布局方式在经典的 Bo-Blog 文章编辑器中非常常见，
+                            可以让图片与文字更紧密地结合在一起，提升阅读体验。文字会自然地流动到图片周围，
+                            形成美观的排版效果。
+                        </p>
+                    </div>
+                    <div style="overflow: auto; margin-top: 15px;">
+                        <div class="boblog-image boblog-image-float-right boblog-image-sm">
+                            <div style="width:150px;height:100px;background:#D3E7FC;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:11px;">右浮动</div>
+                        </div>
+                        <p style="margin: 0; font-size: 12px; line-height: 1.8; color: #333;">
+                            这是环绕在图片左侧的文字内容。右浮动的图片会让文字自动环绕在其左侧和下方，
+                            与左浮动相反。这种排版方式同样适合博客文章，可以根据版面需要灵活调整图片位置。
+                            文字会自然地填充图片左侧的空间，保持紧凑的视觉效果。
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 基础图片（带说明文字） --&gt;
+&lt;div class="boblog-image"&gt;
+    &lt;img src="photo.jpg" alt="示例图片"&gt;
+    &lt;div class="boblog-image-caption"&gt;这是一张示例图片的说明文字&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 尺寸变体 --&gt;
+&lt;div class="boblog-image boblog-image-sm"&gt;
+    &lt;img src="small.jpg" alt="小图"&gt;
+&lt;/div&gt;
+&lt;div class="boblog-image boblog-image-md"&gt;
+    &lt;img src="medium.jpg" alt="中图"&gt;
+&lt;/div&gt;
+&lt;div class="boblog-image boblog-image-lg"&gt;
+    &lt;img src="large.jpg" alt="大图"&gt;
+&lt;/div&gt;
+&lt;div class="boblog-image boblog-image-full"&gt;
+    &lt;img src="fullwidth.jpg" alt="全宽图"&gt;
+&lt;/div&gt;
+
+&lt;!-- 样式变体 --&gt;
+&lt;div class="boblog-image boblog-image-bordered"&gt;
+    &lt;img src="bordered.jpg" alt="蓝色边框"&gt;
+&lt;/div&gt;
+&lt;div class="boblog-image boblog-image-shadow"&gt;
+    &lt;img src="shadow.jpg" alt="带阴影"&gt;
+&lt;/div&gt;
+
+&lt;!-- 浮动布局 --&gt;
+&lt;div class="boblog-image boblog-image-float-left boblog-image-sm"&gt;
+    &lt;img src="left.jpg" alt="左浮动"&gt;
+&lt;/div&gt;
+&lt;p&gt;环绕在图片右侧的文字内容...&lt;/p&gt;
+
+&lt;div class="boblog-image boblog-image-float-right boblog-image-sm"&gt;
+    &lt;img src="right.jpg" alt="右浮动"&gt;
+&lt;/div&gt;
+&lt;p&gt;环绕在图片左侧的文字内容...&lt;/p&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;图片展示示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 基础图片（带说明文字） --&gt;
+&lt;div class="boblog-image"&gt;
+    &lt;img src="photo.jpg" alt="示例图片"&gt;
+    &lt;div class="boblog-image-caption"&gt;这是一张示例图片的说明文字&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 尺寸变体 --&gt;
+&lt;div class="boblog-image boblog-image-sm"&gt;
+    &lt;img src="small.jpg" alt="小图"&gt;
+&lt;/div&gt;
+&lt;div class="boblog-image boblog-image-md"&gt;
+    &lt;img src="medium.jpg" alt="中图"&gt;
+&lt;/div&gt;
+&lt;div class="boblog-image boblog-image-lg"&gt;
+    &lt;img src="large.jpg" alt="大图"&gt;
+&lt;/div&gt;
+&lt;div class="boblog-image boblog-image-full"&gt;
+    &lt;img src="fullwidth.jpg" alt="全宽图"&gt;
+&lt;/div&gt;
+
+&lt;!-- 样式变体 --&gt;
+&lt;div class="boblog-image boblog-image-bordered"&gt;
+    &lt;img src="bordered.jpg" alt="蓝色边框"&gt;
+&lt;/div&gt;
+&lt;div class="boblog-image boblog-image-shadow"&gt;
+    &lt;img src="shadow.jpg" alt="带阴影"&gt;
+&lt;/div&gt;
+
+&lt;!-- 浮动布局 --&gt;
+&lt;div style="overflow: auto;"&gt;
+    &lt;div class="boblog-image boblog-image-float-left boblog-image-sm"&gt;
+        &lt;img src="left.jpg" alt="左浮动"&gt;
+    &lt;/div&gt;
+    &lt;p&gt;这是环绕在图片右侧的文字内容。左浮动的图片会让文字自动环绕在其右侧和下方，
+    适合图文混排的博客文章场景。这种布局方式在经典的 Bo-Blog 文章编辑器中非常常见，
+    可以让图片与文字更紧密地结合在一起，提升阅读体验。&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;div style="overflow: auto;"&gt;
+    &lt;div class="boblog-image boblog-image-float-right boblog-image-sm"&gt;
+        &lt;img src="right.jpg" alt="右浮动"&gt;
+    &lt;/div&gt;
+    &lt;p&gt;这是环绕在图片左侧的文字内容。右浮动的图片会让文字自动环绕在其左侧和下方，
+    与左浮动相反。这种排版方式同样适合博客文章，可以根据版面需要灵活调整图片位置。&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 头像 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="头像">头像</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>基础类名</strong>: .boblog-avatar</li>
+                <li><strong>默认尺寸</strong>: 32x32px 方形</li>
+                <li><strong>边框</strong>: 1px solid --boblog-border-blue (#9EC9FF)</li>
+                <li><strong>尺寸变体</strong>: .boblog-avatar-xs (20px) / .boblog-avatar-sm (24px) / .boblog-avatar-md (40px) / .boblog-avatar-lg (64px) / .boblog-avatar-xl (96px)</li>
+                <li><strong>形状变体</strong>: .boblog-avatar-round (圆形，border-radius 50%)</li>
+                <li><strong>占位符</strong>: .boblog-avatar-placeholder (灰色背景 + 居中首字母)</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <p style="margin: 0 0 8px; color: #888; font-size: 11px;">尺寸变体（xs / sm / 默认 / md / lg / xl）：</p>
+                    <div style="display: flex; gap: 10px; align-items: flex-end; margin-bottom: 15px;">
+                        <div class="boblog-avatar boblog-avatar-xs">
+                            <div style="width:100%;height:100%;background:#BEE6FD;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:9px;">XS</div>
+                        </div>
+                        <div class="boblog-avatar boblog-avatar-sm">
+                            <div style="width:100%;height:100%;background:#D3E7FC;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:10px;">SM</div>
+                        </div>
+                        <div class="boblog-avatar">
+                            <div style="width:100%;height:100%;background:#A9DBF6;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:11px;">32</div>
+                        </div>
+                        <div class="boblog-avatar boblog-avatar-md">
+                            <div style="width:100%;height:100%;background:#9EC9FF;display:flex;align-items:center;justify-content:center;color:#FFF;font-size:12px;">MD</div>
+                        </div>
+                        <div class="boblog-avatar boblog-avatar-lg">
+                            <div style="width:100%;height:100%;background:#8CBCEB;display:flex;align-items:center;justify-content:center;color:#FFF;font-size:14px;">LG</div>
+                        </div>
+                        <div class="boblog-avatar boblog-avatar-xl">
+                            <div style="width:100%;height:100%;background:#7AAAD7;display:flex;align-items:center;justify-content:center;color:#FFF;font-size:16px;">XL</div>
+                        </div>
+                    </div>
+
+                    <p style="margin: 15px 0 8px; color: #888; font-size: 11px;">圆形头像（追加 .round）：</p>
+                    <div style="display: flex; gap: 10px; align-items: flex-end; margin-bottom: 15px;">
+                        <div class="boblog-avatar boblog-avatar-xs boblog-avatar-round">
+                            <div style="width:100%;height:100%;background:#BEE6FD;"></div>
+                        </div>
+                        <div class="boblog-avatar boblog-avatar-sm boblog-avatar-round">
+                            <div style="width:100%;height:100%;background:#D3E7FC;"></div>
+                        </div>
+                        <div class="boblog-avatar boblog-avatar-round">
+                            <div style="width:100%;height:100%;background:#A9DBF6;"></div>
+                        </div>
+                        <div class="boblog-avatar boblog-avatar-md boblog-avatar-round">
+                            <div style="width:100%;height:100%;background:#9EC9FF;"></div>
+                        </div>
+                        <div class="boblog-avatar boblog-avatar-lg boblog-avatar-round">
+                            <div style="width:100%;height:100%;background:#8CBCEB;"></div>
+                        </div>
+                        <div class="boblog-avatar boblog-avatar-xl boblog-avatar-round">
+                            <div style="width:100%;height:100%;background:#7AAAD7;"></div>
+                        </div>
+                    </div>
+
+                    <p style="margin: 15px 0 8px; color: #888; font-size: 11px;">占位符头像（追加 .placeholder，显示首字母）：</p>
+                    <div style="display: flex; gap: 10px; align-items: flex-end;">
+                        <div class="boblog-avatar boblog-avatar-placeholder">A</div>
+                        <div class="boblog-avatar boblog-avatar-placeholder boblog-avatar-round">张</div>
+                        <div class="boblog-avatar boblog-avatar-md boblog-avatar-placeholder">B</div>
+                        <div class="boblog-avatar boblog-avatar-lg boblog-avatar-placeholder boblog-avatar-round">李</div>
+                        <div class="boblog-avatar boblog-avatar-xl boblog-avatar-placeholder">C</div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 尺寸变体 --&gt;
+&lt;div class="boblog-avatar boblog-avatar-xs"&gt;
+    &lt;img src="user.jpg" alt="用户"&gt;
+&lt;/div&gt;
+&lt;div class="boblog-avatar boblog-avatar-sm"&gt;
+    &lt;img src="user.jpg" alt="用户"&gt;
+&lt;/div&gt;
+&lt;div class="boblog-avatar"&gt;
+    &lt;img src="user.jpg" alt="用户"&gt;
+&lt;/div&gt;
+&lt;div class="boblog-avatar boblog-avatar-md"&gt;
+    &lt;img src="user.jpg" alt="用户"&gt;
+&lt;/div&gt;
+&lt;div class="boblog-avatar boblog-avatar-lg"&gt;
+    &lt;img src="user.jpg" alt="用户"&gt;
+&lt;/div&gt;
+&lt;div class="boblog-avatar boblog-avatar-xl"&gt;
+    &lt;img src="user.jpg" alt="用户"&gt;
+&lt;/div&gt;
+
+&lt;!-- 圆形头像 --&gt;
+&lt;div class="boblog-avatar boblog-avatar-round"&gt;
+    &lt;img src="user.jpg" alt="用户"&gt;
+&lt;/div&gt;
+&lt;div class="boblog-avatar boblog-avatar-md boblog-avatar-round"&gt;
+    &lt;img src="user.jpg" alt="用户"&gt;
+&lt;/div&gt;
+
+&lt;!-- 占位符头像 --&gt;
+&lt;div class="boblog-avatar boblog-avatar-placeholder"&gt;A&lt;/div&gt;
+&lt;div class="boblog-avatar boblog-avatar-placeholder boblog-avatar-round"&gt;张&lt;/div&gt;
+&lt;div class="boblog-avatar boblog-avatar-md boblog-avatar-placeholder"&gt;B&lt;/div&gt;
+&lt;div class="boblog-avatar boblog-avatar-lg boblog-avatar-placeholder boblog-avatar-round"&gt;李&lt;/div&gt;
+&lt;div class="boblog-avatar boblog-avatar-xl boblog-avatar-placeholder"&gt;C&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;头像示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h3&gt;尺寸变体&lt;/h3&gt;
+&lt;div class="boblog-avatar boblog-avatar-xs"&gt;
+    &lt;img src="user.jpg" alt="用户"&gt;
+&lt;/div&gt;
+&lt;div class="boblog-avatar boblog-avatar-sm"&gt;
+    &lt;img src="user.jpg" alt="用户"&gt;
+&lt;/div&gt;
+&lt;div class="boblog-avatar"&gt;
+    &lt;img src="user.jpg" alt="用户"&gt;
+&lt;/div&gt;
+&lt;div class="boblog-avatar boblog-avatar-md"&gt;
+    &lt;img src="user.jpg" alt="用户"&gt;
+&lt;/div&gt;
+&lt;div class="boblog-avatar boblog-avatar-lg"&gt;
+    &lt;img src="user.jpg" alt="用户"&gt;
+&lt;/div&gt;
+&lt;div class="boblog-avatar boblog-avatar-xl"&gt;
+    &lt;img src="user.jpg" alt="用户"&gt;
+&lt;/div&gt;
+
+&lt;h3&gt;圆形头像&lt;/h3&gt;
+&lt;div class="boblog-avatar boblog-avatar-round"&gt;
+    &lt;img src="user.jpg" alt="用户"&gt;
+&lt;/div&gt;
+&lt;div class="boblog-avatar boblog-avatar-md boblog-avatar-round"&gt;
+    &lt;img src="user.jpg" alt="用户"&gt;
+&lt;/div&gt;
+&lt;div class="boblog-avatar boblog-avatar-lg boblog-avatar-round"&gt;
+    &lt;img src="user.jpg" alt="用户"&gt;
+&lt;/div&gt;
+
+&lt;h3&gt;占位符头像&lt;/h3&gt;
+&lt;div class="boblog-avatar boblog-avatar-placeholder"&gt;A&lt;/div&gt;
+&lt;div class="boblog-avatar boblog-avatar-placeholder boblog-avatar-round"&gt;张&lt;/div&gt;
+&lt;div class="boblog-avatar boblog-avatar-md boblog-avatar-placeholder"&gt;B&lt;/div&gt;
+&lt;div class="boblog-avatar boblog-avatar-lg boblog-avatar-placeholder boblog-avatar-round"&gt;李&lt;/div&gt;
+&lt;div class="boblog-avatar boblog-avatar-xl boblog-avatar-placeholder"&gt;C&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 缩略图列表 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="缩略图列表">缩略图列表</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>容器类名</strong>: .boblog-thumbs</li>
+                <li><strong>单个缩略图</strong>: .boblog-thumb</li>
+                <li><strong>默认尺寸</strong>: 80x80px 方形</li>
+                <li><strong>边框</strong>: 1px solid --boblog-border (#C4D7E8)</li>
+                <li><strong>尺寸变体</strong>: .boblog-thumb-sm (60px) / .boblog-thumb-lg (120px)</li>
+                <li><strong>选中态</strong>: .boblog-thumb-active (2px 蓝色粗边框)</li>
+                <li><strong>hover 效果</strong>: 蓝色边框 + 轻微阴影</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <p style="margin: 0 0 8px; color: #888; font-size: 11px;">默认缩略图（80x80px）：</p>
+                    <div class="boblog-thumbs" style="margin-bottom: 15px;">
+                        <div class="boblog-thumb">
+                            <div style="width:100%;height:100%;background:#BEE6FD;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:11px;">1</div>
+                        </div>
+                        <div class="boblog-thumb boblog-thumb-active">
+                            <div style="width:100%;height:100%;background:#D3E7FC;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:11px;">2 (选中)</div>
+                        </div>
+                        <div class="boblog-thumb">
+                            <div style="width:100%;height:100%;background:#A9DBF6;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:11px;">3</div>
+                        </div>
+                        <div class="boblog-thumb">
+                            <div style="width:100%;height:100%;background:#9EC9FF;display:flex;align-items:center;justify-content:center;color:#FFF;font-size:11px;">4</div>
+                        </div>
+                    </div>
+
+                    <p style="margin: 15px 0 8px; color: #888; font-size: 11px;">小号缩略图（60x60px）：</p>
+                    <div class="boblog-thumbs" style="margin-bottom: 15px;">
+                        <div class="boblog-thumb boblog-thumb-sm">
+                            <div style="width:100%;height:100%;background:#BEE6FD;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:10px;">1</div>
+                        </div>
+                        <div class="boblog-thumb boblog-thumb-sm">
+                            <div style="width:100%;height:100%;background:#D3E7FC;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:10px;">2</div>
+                        </div>
+                        <div class="boblog-thumb boblog-thumb-sm">
+                            <div style="width:100%;height:100%;background:#A9DBF6;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:10px;">3</div>
+                        </div>
+                    </div>
+
+                    <p style="margin: 15px 0 8px; color: #888; font-size: 11px;">大号缩略图（120x120px）：</p>
+                    <div class="boblog-thumbs">
+                        <div class="boblog-thumb boblog-thumb-lg">
+                            <div style="width:100%;height:100%;background:#BEE6FD;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:12px;">1</div>
+                        </div>
+                        <div class="boblog-thumb boblog-thumb-lg">
+                            <div style="width:100%;height:100%;background:#D3E7FC;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:12px;">2</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 默认缩略图（80x80px） --&gt;
+&lt;div class="boblog-thumbs"&gt;
+    &lt;div class="boblog-thumb"&gt;
+        &lt;img src="thumb1.jpg" alt="缩略图1"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-thumb boblog-thumb-active"&gt;
+        &lt;img src="thumb2.jpg" alt="缩略图2（选中）"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-thumb"&gt;
+        &lt;img src="thumb3.jpg" alt="缩略图3"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-thumb"&gt;
+        &lt;img src="thumb4.jpg" alt="缩略图4"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 小号缩略图（60x60px） --&gt;
+&lt;div class="boblog-thumbs"&gt;
+    &lt;div class="boblog-thumb boblog-thumb-sm"&gt;
+        &lt;img src="thumb1.jpg" alt="缩略图1"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-thumb boblog-thumb-sm"&gt;
+        &lt;img src="thumb2.jpg" alt="缩略图2"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-thumb boblog-thumb-sm"&gt;
+        &lt;img src="thumb3.jpg" alt="缩略图3"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 大号缩略图（120x120px） --&gt;
+&lt;div class="boblog-thumbs"&gt;
+    &lt;div class="boblog-thumb boblog-thumb-lg"&gt;
+        &lt;img src="thumb1.jpg" alt="缩略图1"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-thumb boblog-thumb-lg"&gt;
+        &lt;img src="thumb2.jpg" alt="缩略图2"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;缩略图列表示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h3&gt;默认缩略图（80x80px）&lt;/h3&gt;
+&lt;div class="boblog-thumbs"&gt;
+    &lt;div class="boblog-thumb"&gt;
+        &lt;img src="thumb1.jpg" alt="缩略图1"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-thumb boblog-thumb-active"&gt;
+        &lt;img src="thumb2.jpg" alt="缩略图2（选中）"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-thumb"&gt;
+        &lt;img src="thumb3.jpg" alt="缩略图3"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-thumb"&gt;
+        &lt;img src="thumb4.jpg" alt="缩略图4"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h3&gt;小号缩略图（60x60px）&lt;/h3&gt;
+&lt;div class="boblog-thumbs"&gt;
+    &lt;div class="boblog-thumb boblog-thumb-sm"&gt;
+        &lt;img src="thumb1.jpg" alt="缩略图1"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-thumb boblog-thumb-sm"&gt;
+        &lt;img src="thumb2.jpg" alt="缩略图2"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-thumb boblog-thumb-sm"&gt;
+        &lt;img src="thumb3.jpg" alt="缩略图3"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h3&gt;大号缩略图（120x120px）&lt;/h3&gt;
+&lt;div class="boblog-thumbs"&gt;
+    &lt;div class="boblog-thumb boblog-thumb-lg"&gt;
+        &lt;img src="thumb1.jpg" alt="缩略图1"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-thumb boblog-thumb-lg"&gt;
+        &lt;img src="thumb2.jpg" alt="缩略图2"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 画廊相册 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="画廊相册">画廊相册</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>容器类名</strong>: .boblog-gallery</li>
+                <li><strong>布局方式</strong>: CSS Grid 自适应列布局</li>
+                <li><strong>默认列宽</strong>: 最小 180px，自动填充可用宽度</li>
+                <li><strong>默认间距</strong>: 15px</li>
+                <li><strong>单个画廊项</strong>: .boblog-gallery-item</li>
+                <li><strong>画廊项图片</strong>: .boblog-gallery-item img (宽度 100%，固定高度 180px，object-fit cover)</li>
+                <li><strong>说明文字</strong>: .boblog-gallery-item-caption</li>
+                <li><strong>密度变体</strong>: .boblog-gallery-compact (紧凑，120px 列宽，8px 间距) / .boblog-gallery-loose (宽松，240px 列宽，20px 间距)</li>
+                <li><strong>hover 效果</strong>: 蓝色边框 + 阴影提升</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <p style="margin: 0 0 8px; color: #888; font-size: 11px;">默认画廊（180px 列宽）：</p>
+                    <div class="boblog-gallery" style="margin-bottom: 20px;">
+                        <div class="boblog-gallery-item">
+                            <div style="width:100%;height:180px;background:#BEE6FD;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:12px;">图片 1</div>
+                            <div class="boblog-gallery-item-caption">风景照片 1</div>
+                        </div>
+                        <div class="boblog-gallery-item">
+                            <div style="width:100%;height:180px;background:#D3E7FC;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:12px;">图片 2</div>
+                            <div class="boblog-gallery-item-caption">风景照片 2</div>
+                        </div>
+                        <div class="boblog-gallery-item">
+                            <div style="width:100%;height:180px;background:#A9DBF6;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:12px;">图片 3</div>
+                            <div class="boblog-gallery-item-caption">风景照片 3</div>
+                        </div>
+                        <div class="boblog-gallery-item">
+                            <div style="width:100%;height:180px;background:#9EC9FF;display:flex;align-items:center;justify-content:center;color:#FFF;font-size:12px;">图片 4</div>
+                            <div class="boblog-gallery-item-caption">风景照片 4</div>
+                        </div>
+                    </div>
+
+                    <p style="margin: 15px 0 8px; color: #888; font-size: 11px;">紧凑画廊（120px 列宽，8px 间距）：</p>
+                    <div class="boblog-gallery boblog-gallery-compact" style="margin-bottom: 20px;">
+                        <div class="boblog-gallery-item">
+                            <div style="width:100%;height:120px;background:#BEE6FD;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:11px;">1</div>
+                        </div>
+                        <div class="boblog-gallery-item">
+                            <div style="width:100%;height:120px;background:#D3E7FC;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:11px;">2</div>
+                        </div>
+                        <div class="boblog-gallery-item">
+                            <div style="width:100%;height:120px;background:#A9DBF6;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:11px;">3</div>
+                        </div>
+                        <div class="boblog-gallery-item">
+                            <div style="width:100%;height:120px;background:#9EC9FF;display:flex;align-items:center;justify-content:center;color:#FFF;font-size:11px;">4</div>
+                        </div>
+                        <div class="boblog-gallery-item">
+                            <div style="width:100%;height:120px;background:#8CBCEB;display:flex;align-items:center;justify-content:center;color:#FFF;font-size:11px;">5</div>
+                        </div>
+                        <div class="boblog-gallery-item">
+                            <div style="width:100%;height:120px;background:#7AAAD7;display:flex;align-items:center;justify-content:center;color:#FFF;font-size:11px;">6</div>
+                        </div>
+                    </div>
+
+                    <p style="margin: 15px 0 8px; color: #888; font-size: 11px;">宽松画廊（240px 列宽，20px 间距）：</p>
+                    <div class="boblog-gallery boblog-gallery-loose">
+                        <div class="boblog-gallery-item">
+                            <div style="width:100%;height:240px;background:#BEE6FD;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:14px;">图片 1</div>
+                            <div class="boblog-gallery-item-caption">大图片 1</div>
+                        </div>
+                        <div class="boblog-gallery-item">
+                            <div style="width:100%;height:240px;background:#D3E7FC;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:14px;">图片 2</div>
+                            <div class="boblog-gallery-item-caption">大图片 2</div>
+                        </div>
+                        <div class="boblog-gallery-item">
+                            <div style="width:100%;height:240px;background:#A9DBF6;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:14px;">图片 3</div>
+                            <div class="boblog-gallery-item-caption">大图片 3</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 默认画廊（180px 列宽） --&gt;
+&lt;div class="boblog-gallery"&gt;
+    &lt;div class="boblog-gallery-item"&gt;
+        &lt;img src="photo1.jpg" alt="图片1"&gt;
+        &lt;div class="boblog-gallery-item-caption"&gt;风景照片 1&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-gallery-item"&gt;
+        &lt;img src="photo2.jpg" alt="图片2"&gt;
+        &lt;div class="boblog-gallery-item-caption"&gt;风景照片 2&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-gallery-item"&gt;
+        &lt;img src="photo3.jpg" alt="图片3"&gt;
+        &lt;div class="boblog-gallery-item-caption"&gt;风景照片 3&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-gallery-item"&gt;
+        &lt;img src="photo4.jpg" alt="图片4"&gt;
+        &lt;div class="boblog-gallery-item-caption"&gt;风景照片 4&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 紧凑画廊（120px 列宽，8px 间距） --&gt;
+&lt;div class="boblog-gallery boblog-gallery-compact"&gt;
+    &lt;div class="boblog-gallery-item"&gt;
+        &lt;img src="photo1.jpg" alt="图片1"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-gallery-item"&gt;
+        &lt;img src="photo2.jpg" alt="图片2"&gt;
+    &lt;/div&gt;
+    &lt;!-- ...更多图片... --&gt;
+&lt;/div&gt;
+
+&lt;!-- 宽松画廊（240px 列宽，20px 间距） --&gt;
+&lt;div class="boblog-gallery boblog-gallery-loose"&gt;
+    &lt;div class="boblog-gallery-item"&gt;
+        &lt;img src="photo1.jpg" alt="图片1"&gt;
+        &lt;div class="boblog-gallery-item-caption"&gt;大图片 1&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-gallery-item"&gt;
+        &lt;img src="photo2.jpg" alt="图片2"&gt;
+        &lt;div class="boblog-gallery-item-caption"&gt;大图片 2&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- ...更多图片... --&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;画廊相册示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;h3&gt;默认画廊（180px 列宽）&lt;/h3&gt;
+&lt;div class="boblog-gallery"&gt;
+    &lt;div class="boblog-gallery-item"&gt;
+        &lt;img src="photo1.jpg" alt="图片1"&gt;
+        &lt;div class="boblog-gallery-item-caption"&gt;风景照片 1&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-gallery-item"&gt;
+        &lt;img src="photo2.jpg" alt="图片2"&gt;
+        &lt;div class="boblog-gallery-item-caption"&gt;风景照片 2&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-gallery-item"&gt;
+        &lt;img src="photo3.jpg" alt="图片3"&gt;
+        &lt;div class="boblog-gallery-item-caption"&gt;风景照片 3&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-gallery-item"&gt;
+        &lt;img src="photo4.jpg" alt="图片4"&gt;
+        &lt;div class="boblog-gallery-item-caption"&gt;风景照片 4&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h3&gt;紧凑画廊（120px 列宽，8px 间距）&lt;/h3&gt;
+&lt;div class="boblog-gallery boblog-gallery-compact"&gt;
+    &lt;div class="boblog-gallery-item"&gt;
+        &lt;img src="photo1.jpg" alt="图片1"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-gallery-item"&gt;
+        &lt;img src="photo2.jpg" alt="图片2"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-gallery-item"&gt;
+        &lt;img src="photo3.jpg" alt="图片3"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-gallery-item"&gt;
+        &lt;img src="photo4.jpg" alt="图片4"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-gallery-item"&gt;
+        &lt;img src="photo5.jpg" alt="图片5"&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-gallery-item"&gt;
+        &lt;img src="photo6.jpg" alt="图片6"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;h3&gt;宽松画廊（240px 列宽，20px 间距）&lt;/h3&gt;
+&lt;div class="boblog-gallery boblog-gallery-loose"&gt;
+    &lt;div class="boblog-gallery-item"&gt;
+        &lt;img src="photo1.jpg" alt="图片1"&gt;
+        &lt;div class="boblog-gallery-item-caption"&gt;大图片 1&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-gallery-item"&gt;
+        &lt;img src="photo2.jpg" alt="图片2"&gt;
+        &lt;div class="boblog-gallery-item-caption"&gt;大图片 2&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-gallery-item"&gt;
+        &lt;img src="photo3.jpg" alt="图片3"&gt;
+        &lt;div class="boblog-gallery-item-caption"&gt;大图片 3&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 幻灯片 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="幻灯片">幻灯片</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>容器类名</strong>: .boblog-slideshow</li>
+                <li><strong>实现方式</strong>: CSS scroll-snap + JS 交互控制</li>
+                <li><strong>滑动轨道</strong>: .boblog-slideshow-track (flex 横向排列，隐藏滚动条)</li>
+                <li><strong>单张幻灯片</strong>: .boblog-slideshow-slide (宽度 100%，scroll-snap-align start)</li>
+                <li><strong>说明文字</strong>: .boblog-slideshow-caption (底部半透明黑色遮罩，白色文字)</li>
+                <li><strong>指示点</strong>: .boblog-slideshow-dots > .boblog-slideshow-dot (小圆点，JS 自动更新 active)</li>
+                <li><strong>切换箭头</strong>: .boblog-slideshow-prev / .boblog-slideshow-next (两侧半透明箭头，循环切换)</li>
+                <li><strong>尺寸变体</strong>: .boblog-slideshow-sm (400px) / .boblog-slideshow-lg (800px) / .boblog-slideshow-full (100%)</li>
+                <li><strong>交互方式</strong>: 鼠标拖拽/触屏滑动、点击箭头循环切换、点击指示点跳转，滚动后自动更新焦点</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <p style="margin: 0 0 8px; color: #888; font-size: 11px;">基础幻灯片（带指示点 + 箭头 + 说明文字，箭头循环切换）：</p>
+                    <div class="boblog-slideshow" style="max-width: 500px; margin-bottom: 20px;">
+                        <div class="boblog-slideshow-track">
+                            <div class="boblog-slideshow-slide">
+                                <div style="width:100%;height:250px;background:#BEE6FD;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:16px;">幻灯片 1</div>
+                                <div class="boblog-slideshow-caption">第一张幻灯片的说明文字</div>
+                            </div>
+                            <div class="boblog-slideshow-slide">
+                                <div style="width:100%;height:250px;background:#9EC9FF;display:flex;align-items:center;justify-content:center;color:#FFF;font-size:16px;">幻灯片 2</div>
+                                <div class="boblog-slideshow-caption">第二张幻灯片的说明文字</div>
+                            </div>
+                            <div class="boblog-slideshow-slide">
+                                <div style="width:100%;height:250px;background:#7AAAD7;display:flex;align-items:center;justify-content:center;color:#FFF;font-size:16px;">幻灯片 3</div>
+                                <div class="boblog-slideshow-caption">第三张幻灯片的说明文字</div>
+                            </div>
+                        </div>
+                        <a class="boblog-slideshow-prev" href="#">&#10094;</a>
+                        <a class="boblog-slideshow-next" href="#">&#10095;</a>
+                        <div class="boblog-slideshow-dots">
+                            <a class="boblog-slideshow-dot active" href="#"></a>
+                            <a class="boblog-slideshow-dot" href="#"></a>
+                            <a class="boblog-slideshow-dot" href="#"></a>
+                        </div>
+                    </div>
+
+                    <p style="margin: 15px 0 8px; color: #888; font-size: 11px;">无箭头无说明（纯滑动 + 指示点）：</p>
+                    <div class="boblog-slideshow boblog-slideshow-sm" style="margin-bottom: 20px;">
+                        <div class="boblog-slideshow-track">
+                            <div class="boblog-slideshow-slide">
+                                <div style="width:100%;height:200px;background:#D3E7FC;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:14px;">Slide A</div>
+                            </div>
+                            <div class="boblog-slideshow-slide">
+                                <div style="width:100%;height:200px;background:#A9DBF6;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:14px;">Slide B</div>
+                            </div>
+                        </div>
+                        <div class="boblog-slideshow-dots">
+                            <a class="boblog-slideshow-dot active" href="#"></a>
+                            <a class="boblog-slideshow-dot" href="#"></a>
+                        </div>
+                    </div>
+
+                    <p style="margin: 15px 0 8px; color: #888; font-size: 11px;">尺寸变体对比（sm 400px / lg 800px / full 100%）：</p>
+                    <div style="display: flex; flex-direction: column; gap: 15px;">
+                        <div>
+                            <p style="margin: 0 0 4px; color: #888; font-size: 10px;">.boblog-slideshow-sm (max-width: 400px)</p>
+                            <div class="boblog-slideshow boblog-slideshow-sm">
+                                <div class="boblog-slideshow-track">
+                                    <div class="boblog-slideshow-slide">
+                                        <div style="width:100%;height:150px;background:#BEE6FD;display:flex;align-items:center;justify-content:center;color:#0D6EAA;font-size:12px;">Small 400px</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <p style="margin: 0 0 4px; color: #888; font-size: 10px;">.boblog-slideshow-lg (max-width: 800px)</p>
+                            <div class="boblog-slideshow boblog-slideshow-lg">
+                                <div class="boblog-slideshow-track">
+                                    <div class="boblog-slideshow-slide">
+                                        <div style="width:100%;height:150px;background:#9EC9FF;display:flex;align-items:center;justify-content:center;color:#FFF;font-size:12px;">Large 800px</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <p style="margin: 0 0 4px; color: #888; font-size: 10px;">.boblog-slideshow-full (width: 100%)</p>
+                            <div class="boblog-slideshow boblog-slideshow-full">
+                                <div class="boblog-slideshow-track">
+                                    <div class="boblog-slideshow-slide">
+                                        <div style="width:100%;height:150px;background:#7AAAD7;display:flex;align-items:center;justify-content:center;color:#FFF;font-size:12px;">Full 100%</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 基础幻灯片（带指示点 + 箭头 + 说明文字） --&gt;
+&lt;div class="boblog-slideshow"&gt;
+    &lt;div class="boblog-slideshow-track"&gt;
+        &lt;div class="boblog-slideshow-slide"&gt;
+            &lt;img src="photo1.jpg" alt="图片1"&gt;
+            &lt;div class="boblog-slideshow-caption"&gt;第一张幻灯片的说明文字&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-slideshow-slide"&gt;
+            &lt;img src="photo2.jpg" alt="图片2"&gt;
+            &lt;div class="boblog-slideshow-caption"&gt;第二张幻灯片的说明文字&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-slideshow-slide"&gt;
+            &lt;img src="photo3.jpg" alt="图片3"&gt;
+            &lt;div class="boblog-slideshow-caption"&gt;第三张幻灯片的说明文字&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;a class="boblog-slideshow-prev" href="#"&gt;&amp;#10094;&lt;/a&gt;
+    &lt;a class="boblog-slideshow-next" href="#"&gt;&amp;#10095;&lt;/a&gt;
+    &lt;div class="boblog-slideshow-dots"&gt;
+        &lt;a class="boblog-slideshow-dot active" href="#"&gt;&lt;/a&gt;
+        &lt;a class="boblog-slideshow-dot" href="#"&gt;&lt;/a&gt;
+        &lt;a class="boblog-slideshow-dot" href="#"&gt;&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 无箭头无说明（纯滑动 + 指示点） --&gt;
+&lt;div class="boblog-slideshow boblog-slideshow-sm"&gt;
+    &lt;div class="boblog-slideshow-track"&gt;
+        &lt;div class="boblog-slideshow-slide"&gt;
+            &lt;img src="photoA.jpg" alt="图片A"&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-slideshow-slide"&gt;
+            &lt;img src="photoB.jpg" alt="图片B"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-slideshow-dots"&gt;
+        &lt;a class="boblog-slideshow-dot active" href="#"&gt;&lt;/a&gt;
+        &lt;a class="boblog-slideshow-dot" href="#"&gt;&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 尺寸变体 --&gt;
+&lt;div class="boblog-slideshow boblog-slideshow-sm"&gt;
+    &lt;div class="boblog-slideshow-track"&gt;
+        &lt;div class="boblog-slideshow-slide"&gt;
+            &lt;img src="small.jpg" alt="小尺寸"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="boblog-slideshow boblog-slideshow-lg"&gt;
+    &lt;div class="boblog-slideshow-track"&gt;
+        &lt;div class="boblog-slideshow-slide"&gt;
+            &lt;img src="large.jpg" alt="大尺寸"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="boblog-slideshow boblog-slideshow-full"&gt;
+    &lt;div class="boblog-slideshow-track"&gt;
+        &lt;div class="boblog-slideshow-slide"&gt;
+            &lt;img src="full.jpg" alt="全宽"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;幻灯片示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 基础幻灯片（带指示点 + 箭头 + 说明文字） --&gt;
+&lt;div class="boblog-slideshow" style="max-width: 600px;"&gt;
+    &lt;div class="boblog-slideshow-track"&gt;
+        &lt;div class="boblog-slideshow-slide"&gt;
+            &lt;img src="photo1.jpg" alt="图片1"&gt;
+            &lt;div class="boblog-slideshow-caption"&gt;第一张幻灯片的说明文字&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-slideshow-slide"&gt;
+            &lt;img src="photo2.jpg" alt="图片2"&gt;
+            &lt;div class="boblog-slideshow-caption"&gt;第二张幻灯片的说明文字&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-slideshow-slide"&gt;
+            &lt;img src="photo3.jpg" alt="图片3"&gt;
+            &lt;div class="boblog-slideshow-caption"&gt;第三张幻灯片的说明文字&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;a class="boblog-slideshow-prev" href="#"&gt;&amp;#10094;&lt;/a&gt;
+    &lt;a class="boblog-slideshow-next" href="#"&gt;&amp;#10095;&lt;/a&gt;
+    &lt;div class="boblog-slideshow-dots"&gt;
+        &lt;a class="boblog-slideshow-dot active" href="#"&gt;&lt;/a&gt;
+        &lt;a class="boblog-slideshow-dot" href="#"&gt;&lt;/a&gt;
+        &lt;a class="boblog-slideshow-dot" href="#"&gt;&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 无箭头无说明（纯滑动 + 指示点） --&gt;
+&lt;div class="boblog-slideshow boblog-slideshow-sm"&gt;
+    &lt;div class="boblog-slideshow-track"&gt;
+        &lt;div class="boblog-slideshow-slide"&gt;
+            &lt;img src="photoA.jpg" alt="图片A"&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-slideshow-slide"&gt;
+            &lt;img src="photoB.jpg" alt="图片B"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-slideshow-dots"&gt;
+        &lt;a class="boblog-slideshow-dot active" href="#"&gt;&lt;/a&gt;
+        &lt;a class="boblog-slideshow-dot" href="#"&gt;&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 尺寸变体 --&gt;
+&lt;div class="boblog-slideshow boblog-slideshow-sm"&gt;
+    &lt;div class="boblog-slideshow-track"&gt;
+        &lt;div class="boblog-slideshow-slide"&gt;
+            &lt;img src="small.jpg" alt="小尺寸"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="boblog-slideshow boblog-slideshow-lg"&gt;
+    &lt;div class="boblog-slideshow-track"&gt;
+        &lt;div class="boblog-slideshow-slide"&gt;
+            &lt;img src="large.jpg" alt="大尺寸"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="boblog-slideshow boblog-slideshow-full"&gt;
+    &lt;div class="boblog-slideshow-track"&gt;
+        &lt;div class="boblog-slideshow-slide"&gt;
+            &lt;img src="full.jpg" alt="全宽"&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 幻灯片 JavaScript API ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="幻灯片-JavaScript-API">幻灯片 JavaScript API</h2>
+
+        <div class="boblog-doc-spec">
+            <h3>1. 自动初始化</h3>
+            <p>页面加载后自动初始化所有 <code>.boblog-slideshow</code> 组件。JS 负责：指示点点击跳转并更新 active 状态、箭头循环切换（末尾→第一张）、滚动/滑动后自动检测当前幻灯片并同步指示点。</p>
+        </div>
+
+        <div class="boblog-doc-spec">
+            <h3>2. 手动调用</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-javascript">// 初始化指定容器内的幻灯片（用于动态插入的内容）
+BoblogUI.image.init(document.getElementById('myContainer'));</code></pre>
+            </div>
+        </div>
+
+        <div class="boblog-doc-spec">
+            <h3>3. 引入方式</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-html">&lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

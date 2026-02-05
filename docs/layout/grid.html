@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网格系统 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+    <style>
+        /* 网格演示专用：让列可视化 */
+        .demo-box {
+            background-color: var(--boblog-blue-wash, #EFF6FE);
+            border: 1px solid var(--boblog-border-blue, #9EC9FF);
+            padding: 10px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--boblog-text, #333);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body class="boblog-doc-white">
+<!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <div class="boblog-doc-nav">
+        <a href="../index.html">← 返回总纲</a>
+    </div>
+
+    <h1>网格系统 (Grid)</h1>
+
+    <!-- ====== 容器 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="容器">容器 (.boblog-container)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>固定宽度容器: <code>.boblog-container</code>，max-width 980px，水平居中，左右 padding 15px</li>
+                <li>流式容器: <code>.boblog-container-fluid</code>，width 100%，左右 padding 15px</li>
+                <li>本组件为纯 CSS 实现，无需引入 JavaScript</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-container" style="border: 1px dashed #9EC9FF;">
+                        <div class="demo-box">.boblog-container（max-width: 980px）</div>
+                    </div>
+                    <div class="boblog-container-fluid" style="border: 1px dashed #9EC9FF; margin-top: 10px;">
+                        <div class="demo-box">.boblog-container-fluid（width: 100%）</div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 固定宽度容器 --&gt;
+&lt;div class="boblog-container"&gt;
+    &lt;!-- 页面内容 --&gt;
+&lt;/div&gt;
+
+&lt;!-- 流式容器 --&gt;
+&lt;div class="boblog-container-fluid"&gt;
+    &lt;!-- 页面内容 --&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;容器示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 固定宽度容器 --&gt;
+&lt;div class="boblog-container"&gt;
+    内容区域（max-width: 980px，水平居中）
+&lt;/div&gt;
+
+&lt;!-- 流式容器 --&gt;
+&lt;div class="boblog-container-fluid"&gt;
+    内容区域（width: 100%）
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 12 列网格 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="12列网格">12 列网格 (.boblog-row / .boblog-col-*)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>行容器: <code>.boblog-row</code>，display flex + flex-wrap wrap，左右负 margin -7.5px</li>
+                <li>列容器: <code>.boblog-col-1</code> 至 <code>.boblog-col-12</code>，左右 padding 7.5px（列间距合计 15px）</li>
+                <li>自适应列: <code>.boblog-col</code>，flex: 1 0 0%，均分剩余空间</li>
+                <li>自动宽度列: <code>.boblog-col-auto</code>，flex: 0 0 auto，按内容宽度</li>
+                <li>本组件为纯 CSS 实现，无需引入 JavaScript</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <!-- 12 列 -->
+                    <div class="boblog-row">
+                        <div class="boblog-col-12">
+                            <div class="demo-box">col-12</div>
+                        </div>
+                    </div>
+                    <!-- 6 + 6 -->
+                    <div class="boblog-row">
+                        <div class="boblog-col-6">
+                            <div class="demo-box">col-6</div>
+                        </div>
+                        <div class="boblog-col-6">
+                            <div class="demo-box">col-6</div>
+                        </div>
+                    </div>
+                    <!-- 4 + 4 + 4 -->
+                    <div class="boblog-row">
+                        <div class="boblog-col-4">
+                            <div class="demo-box">col-4</div>
+                        </div>
+                        <div class="boblog-col-4">
+                            <div class="demo-box">col-4</div>
+                        </div>
+                        <div class="boblog-col-4">
+                            <div class="demo-box">col-4</div>
+                        </div>
+                    </div>
+                    <!-- 3 + 9 -->
+                    <div class="boblog-row">
+                        <div class="boblog-col-3">
+                            <div class="demo-box">col-3</div>
+                        </div>
+                        <div class="boblog-col-9">
+                            <div class="demo-box">col-9</div>
+                        </div>
+                    </div>
+                    <!-- 自适应列 -->
+                    <div class="boblog-row">
+                        <div class="boblog-col">
+                            <div class="demo-box">col（自适应）</div>
+                        </div>
+                        <div class="boblog-col">
+                            <div class="demo-box">col（自适应）</div>
+                        </div>
+                        <div class="boblog-col">
+                            <div class="demo-box">col（自适应）</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 6 + 6 两列布局 --&gt;
+&lt;div class="boblog-row"&gt;
+    &lt;div class="boblog-col-6"&gt;左半&lt;/div&gt;
+    &lt;div class="boblog-col-6"&gt;右半&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 3 + 9 侧边栏布局 --&gt;
+&lt;div class="boblog-row"&gt;
+    &lt;div class="boblog-col-3"&gt;侧边栏&lt;/div&gt;
+    &lt;div class="boblog-col-9"&gt;主内容&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 自适应列（均分） --&gt;
+&lt;div class="boblog-row"&gt;
+    &lt;div class="boblog-col"&gt;自适应&lt;/div&gt;
+    &lt;div class="boblog-col"&gt;自适应&lt;/div&gt;
+    &lt;div class="boblog-col"&gt;自适应&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;网格系统示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-container"&gt;
+    &lt;!-- 全宽 --&gt;
+    &lt;div class="boblog-row"&gt;
+        &lt;div class="boblog-col-12"&gt;col-12&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 两列 --&gt;
+    &lt;div class="boblog-row"&gt;
+        &lt;div class="boblog-col-6"&gt;col-6&lt;/div&gt;
+        &lt;div class="boblog-col-6"&gt;col-6&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 三列 --&gt;
+    &lt;div class="boblog-row"&gt;
+        &lt;div class="boblog-col-4"&gt;col-4&lt;/div&gt;
+        &lt;div class="boblog-col-4"&gt;col-4&lt;/div&gt;
+        &lt;div class="boblog-col-4"&gt;col-4&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 侧边栏 + 主内容 --&gt;
+    &lt;div class="boblog-row"&gt;
+        &lt;div class="boblog-col-3"&gt;侧边栏&lt;/div&gt;
+        &lt;div class="boblog-col-9"&gt;主内容&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 自适应列 --&gt;
+    &lt;div class="boblog-row"&gt;
+        &lt;div class="boblog-col"&gt;自适应&lt;/div&gt;
+        &lt;div class="boblog-col"&gt;自适应&lt;/div&gt;
+        &lt;div class="boblog-col"&gt;自适应&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 无间距网格 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="无间距网格">无间距网格 (.boblog-no-gutters)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>在 <code>.boblog-row</code> 上添加 <code>.boblog-no-gutters</code>，移除行的负 margin 和列的 padding</li>
+                <li>适用于列之间不需要间距的场景</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <p style="font-size: 12px; color: #999; margin-bottom: 10px;">有间距（默认）：</p>
+                    <div class="boblog-row">
+                        <div class="boblog-col-4">
+                            <div class="demo-box">col-4</div>
+                        </div>
+                        <div class="boblog-col-4">
+                            <div class="demo-box">col-4</div>
+                        </div>
+                        <div class="boblog-col-4">
+                            <div class="demo-box">col-4</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 12px; color: #999; margin-bottom: 10px;">无间距：</p>
+                    <div class="boblog-row boblog-no-gutters">
+                        <div class="boblog-col-4">
+                            <div class="demo-box">col-4</div>
+                        </div>
+                        <div class="boblog-col-4">
+                            <div class="demo-box">col-4</div>
+                        </div>
+                        <div class="boblog-col-4">
+                            <div class="demo-box">col-4</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-row boblog-no-gutters"&gt;
+    &lt;div class="boblog-col-4"&gt;无间距列&lt;/div&gt;
+    &lt;div class="boblog-col-4"&gt;无间距列&lt;/div&gt;
+    &lt;div class="boblog-col-4"&gt;无间距列&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;无间距网格示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-container"&gt;
+    &lt;div class="boblog-row boblog-no-gutters"&gt;
+        &lt;div class="boblog-col-4"&gt;无间距列&lt;/div&gt;
+        &lt;div class="boblog-col-4"&gt;无间距列&lt;/div&gt;
+        &lt;div class="boblog-col-4"&gt;无间距列&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 间距工具 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="间距工具">间距工具 (.boblog-gap-*)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><code>.boblog-gap-sm</code>: gap 10px (--boblog-spacing-sm)</li>
+                <li><code>.boblog-gap-md</code>: gap 15px (--boblog-spacing-md)</li>
+                <li><code>.boblog-gap-lg</code>: gap 20px (--boblog-spacing-lg)</li>
+                <li>添加到 <code>.boblog-row</code> 上，使用 CSS gap 属性控制列间距</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <p style="font-size: 12px; color: #999; margin-bottom: 10px;">gap-sm（10px）：</p>
+                    <div class="boblog-row boblog-no-gutters boblog-gap-sm">
+                        <div class="boblog-col-4">
+                            <div class="demo-box">col-4</div>
+                        </div>
+                        <div class="boblog-col-4">
+                            <div class="demo-box">col-4</div>
+                        </div>
+                        <div class="boblog-col-4">
+                            <div class="demo-box">col-4</div>
+                        </div>
+                    </div>
+                    <p style="font-size: 12px; color: #999; margin-bottom: 10px;">gap-lg（20px）：</p>
+                    <div class="boblog-row boblog-no-gutters boblog-gap-lg">
+                        <div class="boblog-col-4">
+                            <div class="demo-box">col-4</div>
+                        </div>
+                        <div class="boblog-col-4">
+                            <div class="demo-box">col-4</div>
+                        </div>
+                        <div class="boblog-col-4">
+                            <div class="demo-box">col-4</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-row boblog-no-gutters boblog-gap-sm"&gt;
+    &lt;div class="boblog-col-4"&gt;10px 间距&lt;/div&gt;
+    &lt;div class="boblog-col-4"&gt;10px 间距&lt;/div&gt;
+    &lt;div class="boblog-col-4"&gt;10px 间距&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="boblog-row boblog-no-gutters boblog-gap-lg"&gt;
+    &lt;div class="boblog-col-4"&gt;20px 间距&lt;/div&gt;
+    &lt;div class="boblog-col-4"&gt;20px 间距&lt;/div&gt;
+    &lt;div class="boblog-col-4"&gt;20px 间距&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;间距工具示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-container"&gt;
+    &lt;div class="boblog-row boblog-no-gutters boblog-gap-sm"&gt;
+        &lt;div class="boblog-col-4"&gt;10px 间距&lt;/div&gt;
+        &lt;div class="boblog-col-4"&gt;10px 间距&lt;/div&gt;
+        &lt;div class="boblog-col-4"&gt;10px 间距&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="boblog-row boblog-no-gutters boblog-gap-md"&gt;
+        &lt;div class="boblog-col-4"&gt;15px 间距&lt;/div&gt;
+        &lt;div class="boblog-col-4"&gt;15px 间距&lt;/div&gt;
+        &lt;div class="boblog-col-4"&gt;15px 间距&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;div class="boblog-row boblog-no-gutters boblog-gap-lg"&gt;
+        &lt;div class="boblog-col-4"&gt;20px 间距&lt;/div&gt;
+        &lt;div class="boblog-col-4"&gt;20px 间距&lt;/div&gt;
+        &lt;div class="boblog-col-4"&gt;20px 间距&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 使用说明 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="使用说明">使用说明</h2>
+
+        <div class="boblog-doc-spec">
+            <h3>适用场景</h3>
+            <ul>
+                <li>博客页面双栏布局（侧边栏 + 主内容）</li>
+                <li>文章列表的多列排版</li>
+                <li>后台管理系统仪表盘布局</li>
+            </ul>
+
+            <h3>设计要点</h3>
+            <ul>
+                <li>基于 Flexbox 的 12 列栅格，不依赖 float</li>
+                <li>容器 max-width 980px，符合 Bo-Blog 经典博客宽度</li>
+                <li>列间距通过 padding 7.5px 实现（左右各半，合计 15px）</li>
+                <li>无间距模式通过 .boblog-no-gutters 移除所有间距</li>
+                <li>间距工具类 .boblog-gap-* 使用 CSS gap 属性，适合配合 .boblog-no-gutters 使用</li>
+            </ul>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

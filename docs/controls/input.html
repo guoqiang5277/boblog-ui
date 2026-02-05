@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>输入框 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+<!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <div class="boblog-doc-nav">
+        <a href="../forms.html">← 返回表单组件</a> |
+        <a href="../index.html">返回总纲</a>
+    </div>
+
+    <h1>输入框 (Input)</h1>
+
+    <!-- 基础输入框 -->
+    <div class="boblog-doc-section">
+        <h2 id="基础输入框">输入框 (.boblog-input)</h2>
+
+        <!-- 规范说明：与 input.css 实际变量值对应 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>边框: 1px solid <span class="color-swatch-inline" style="background-color: #DDE8F0;"></span>#DDE8F0 (--boblog-border-light)</li>
+                <li>内边距: 6px 10px</li>
+                <li>字体大小: 12px (--boblog-font-size-sm)</li>
+                <li>背景色: #FFFFFF (--boblog-bg)</li>
+                <li>文字颜色: #1A1A1A (--boblog-text)</li>
+                <li><strong>Hover 状态</strong>: 边框 #C4D7E8 (--boblog-border)</li>
+                <li><strong>Focus 状态</strong>: 边框 #0D6EAA (--boblog-blue)，背景 #E8F0F7 (--boblog-blue-pale)，外框 2px solid rgba(13,128,189,0.1)</li>
+                <li><strong>Disabled 状态</strong>: 背景 #F5F5F5，边框 #D9D9D9，文字 #888888 (--boblog-text-muted)，光标 not-allowed</li>
+                <li><strong>Error 状态</strong> (.boblog-input-error): 边框 #CC3333 (--boblog-danger)</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <input type="text" class="boblog-input" placeholder="默认状态" style="width: 200px;">
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <input type="text" class="boblog-input" value="Focus 状态 (请点击)" style="width: 200px;">
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <input type="text" class="boblog-input" placeholder="禁用状态" disabled style="width: 200px;">
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <input type="text" class="boblog-input boblog-input-error" placeholder="错误状态" style="width: 200px;">
+                    </div>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 默认状态 --&gt;
+&lt;input type="text" class="boblog-input" placeholder="默认状态" style="width: 200px;"&gt;
+
+&lt;!-- Focus 状态 (请点击) --&gt;
+&lt;input type="text" class="boblog-input" value="Focus 状态 (请点击)" style="width: 200px;"&gt;
+
+&lt;!-- 禁用状态 --&gt;
+&lt;input type="text" class="boblog-input" placeholder="禁用状态" disabled style="width: 200px;"&gt;
+
+&lt;!-- 错误状态 --&gt;
+&lt;input type="text" class="boblog-input boblog-input-error" placeholder="错误状态" style="width: 200px;"&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;输入框示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 默认状态 --&gt;
+&lt;input type="text" class="boblog-input" placeholder="默认状态" style="width: 200px;"&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;!-- Focus 状态 (请点击) --&gt;
+&lt;input type="text" class="boblog-input" value="Focus 状态 (请点击)" style="width: 200px;"&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;!-- 禁用状态 --&gt;
+&lt;input type="text" class="boblog-input" placeholder="禁用状态" disabled style="width: 200px;"&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;!-- 错误状态 --&gt;
+&lt;input type="text" class="boblog-input boblog-input-error" placeholder="错误状态" style="width: 200px;"&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 输入框组 -->
+    <div class="boblog-doc-section">
+        <h2 id="输入框组">输入框组 (.boblog-input-group)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>容器: display flex</li>
+                <li><strong>前缀/后缀插件</strong> (.boblog-input-group-addon): 背景 #F5F8FB (--boblog-bg-subtle)，边框 1px solid #DDE8F0 (--boblog-border-light)，内边距 6px 10px</li>
+                <li>输入框与插件共享边框，中间无间隙</li>
+                <li>支持左侧前缀、右侧后缀或按钮组合</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-input-group" style="width: 300px;">
+                            <span class="boblog-input-group-addon">https://</span>
+                            <input type="text" class="boblog-input" placeholder="your-domain.com">
+                        </div>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-input-group" style="width: 300px;">
+                            <input type="text" class="boblog-input" placeholder="搜索关键词">
+                            <button class="boblog-btn boblog-btn-primary">搜索</button>
+                        </div>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-input-group" style="width: 300px;">
+                            <span class="boblog-input-group-addon">¥</span>
+                            <input type="text" class="boblog-input" placeholder="0.00">
+                            <span class="boblog-input-group-addon">.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 前缀插件 --&gt;
+&lt;div class="boblog-input-group" style="width: 300px;"&gt;
+    &lt;span class="boblog-input-group-addon"&gt;https://&lt;/span&gt;
+    &lt;input type="text" class="boblog-input" placeholder="your-domain.com"&gt;
+&lt;/div&gt;
+
+&lt;!-- 后缀按钮 --&gt;
+&lt;div class="boblog-input-group" style="width: 300px;"&gt;
+    &lt;input type="text" class="boblog-input" placeholder="搜索关键词"&gt;
+    &lt;button class="boblog-btn boblog-btn-primary"&gt;搜索&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- 前后缀插件 --&gt;
+&lt;div class="boblog-input-group" style="width: 300px;"&gt;
+    &lt;span class="boblog-input-group-addon"&gt;¥&lt;/span&gt;
+    &lt;input type="text" class="boblog-input" placeholder="0.00"&gt;
+    &lt;span class="boblog-input-group-addon"&gt;.00&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;输入框组示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 前缀插件 --&gt;
+&lt;div class="boblog-input-group" style="width: 300px;"&gt;
+    &lt;span class="boblog-input-group-addon"&gt;https://&lt;/span&gt;
+    &lt;input type="text" class="boblog-input" placeholder="your-domain.com"&gt;
+&lt;/div&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;!-- 后缀按钮 --&gt;
+&lt;div class="boblog-input-group" style="width: 300px;"&gt;
+    &lt;input type="text" class="boblog-input" placeholder="搜索关键词"&gt;
+    &lt;button class="boblog-btn boblog-btn-primary"&gt;搜索&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;!-- 前后缀插件 --&gt;
+&lt;div class="boblog-input-group" style="width: 300px;"&gt;
+    &lt;span class="boblog-input-group-addon"&gt;¥&lt;/span&gt;
+    &lt;input type="text" class="boblog-input" placeholder="0.00"&gt;
+    &lt;span class="boblog-input-group-addon"&gt;.00&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 密码输入框 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="密码输入框">密码输入框 (.boblog-input-password)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>容器: position relative，display inline-block，width 100%</li>
+                <li>输入框右侧留 36px 空间给切换按钮（padding-right: 36px）</li>
+                <li><strong>切换按钮</strong> (.boblog-input-password-toggle): 绝对定位右侧，宽 32px，背景透明，颜色 #888888 (--boblog-text-muted)，hover 时 #1A1A1A (--boblog-text)</li>
+                <li><strong>默认隐藏密码</strong>: 不加 data-visible 或 data-visible="false"</li>
+                <li><strong>默认显示密码</strong>: data-visible="true"（input type 自动设为 text）</li>
+                <li><strong>隐藏切换按钮</strong>: data-toggle-password="false"（纯密码输入框，无眼睛按钮）</li>
+                <li><strong>显示切换按钮</strong>: 不加 data-toggle-password 或 data-toggle-password="true"（默认）</li>
+                <li>禁用状态: 切换按钮 cursor not-allowed，颜色 #AAAAAA (--boblog-text-disabled)</li>
+                <li>依赖 boblog-ui.js（BoblogUI.input 模块）</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>默认隐藏密码</strong></p>
+                        <div class="boblog-input-password" style="width: 250px;">
+                            <input type="password" class="boblog-input" placeholder="请输入密码">
+                        </div>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>默认显示密码</strong> (data-visible="true")</p>
+                        <div class="boblog-input-password" data-visible="true" style="width: 250px;">
+                            <input type="text" class="boblog-input" placeholder="请输入密码">
+                        </div>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>无切换按钮</strong> (data-toggle-password="false")</p>
+                        <div class="boblog-input-password" data-toggle-password="false" style="width: 250px;">
+                            <input type="password" class="boblog-input" placeholder="纯密码输入框">
+                        </div>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>禁用状态</strong></p>
+                        <div class="boblog-input-password" style="width: 250px;">
+                            <input type="password" class="boblog-input" placeholder="禁用状态" disabled>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 默认隐藏密码 --&gt;
+&lt;div class="boblog-input-password"&gt;
+    &lt;input type="password" class="boblog-input" placeholder="请输入密码"&gt;
+&lt;/div&gt;
+
+&lt;!-- 默认显示密码 --&gt;
+&lt;div class="boblog-input-password" data-visible="true"&gt;
+    &lt;input type="text" class="boblog-input" placeholder="请输入密码"&gt;
+&lt;/div&gt;
+
+&lt;!-- 无切换按钮 --&gt;
+&lt;div class="boblog-input-password" data-toggle-password="false"&gt;
+    &lt;input type="password" class="boblog-input" placeholder="纯密码输入框"&gt;
+&lt;/div&gt;
+
+&lt;!-- 禁用状态 --&gt;
+&lt;div class="boblog-input-password"&gt;
+    &lt;input type="password" class="boblog-input" placeholder="禁用状态" disabled&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;密码输入框示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 默认隐藏密码 --&gt;
+&lt;div class="boblog-input-password" style="width: 250px;"&gt;
+    &lt;input type="password" class="boblog-input" placeholder="请输入密码"&gt;
+&lt;/div&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;!-- 默认显示密码 --&gt;
+&lt;div class="boblog-input-password" data-visible="true" style="width: 250px;"&gt;
+    &lt;input type="text" class="boblog-input" placeholder="请输入密码"&gt;
+&lt;/div&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;!-- 无切换按钮 --&gt;
+&lt;div class="boblog-input-password" data-toggle-password="false" style="width: 250px;"&gt;
+    &lt;input type="password" class="boblog-input" placeholder="纯密码输入框"&gt;
+&lt;/div&gt;
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;!-- 禁用状态 --&gt;
+&lt;div class="boblog-input-password" style="width: 250px;"&gt;
+    &lt;input type="password" class="boblog-input" placeholder="禁用状态" disabled&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== JavaScript API ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="密码输入框API">密码输入框 - JavaScript API</h2>
+
+        <h3>1. 自动初始化</h3>
+        <p>引入 <code>boblog-ui.js</code> 后，页面加载完成时会自动扫描所有 <code>.boblog-input-password</code> 容器并初始化切换按钮，无需手动调用。</p>
+
+        <h3>2. 手动调用</h3>
+        <div class="boblog-codeblock">
+            <pre><code class="language-js">// 初始化指定容器内的密码输入框
+BoblogUI.input.init(document.getElementById('myForm'));
+
+// 初始化整个页面（等同于自动初始化）
+BoblogUI.input.init();</code></pre>
+        </div>
+
+        <h3>3. 引入方式</h3>
+        <div class="boblog-codeblock">
+            <pre><code class="language-html">&lt;!-- CSS --&gt;
+&lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+
+&lt;!-- JS（密码切换功能需要） --&gt;
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

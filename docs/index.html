@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bo-Blog UI 设计规范</title>
+    <link rel="stylesheet" href="../dist/boblog-ui.css">
+    <link rel="stylesheet" href="docs.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Tahoma, Arial, sans-serif;
+            font-size: 12px;
+            line-height: 150%;
+            background-color: #FFFFFF;
+            overflow: hidden;
+        }
+
+        /* 左侧导航栏 */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 240px;
+            height: 100vh;
+            background-color: #FFFFFF;
+            border-right: 1px solid #D3E7FC;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .sidebar-header {
+            padding: 15px;
+            background-color: #E8F4FC;
+            border-bottom: 2px solid #A8CCE8;
+        }
+
+        .sidebar-header h1 {
+            font-size: 16px;
+            color: #0D80BD;
+            margin: 0 0 5px 0;
+            font-weight: bold;
+        }
+
+        .sidebar-header p {
+            font-size: 11px;
+            color: #444444;
+            margin: 0;
+            line-height: 140%;
+        }
+
+        .nav-menu {
+            padding: 10px 0;
+        }
+
+        /* 右侧内容区 */
+        .content-area {
+            position: fixed;
+            left: 240px;
+            top: 0;
+            right: 0;
+            height: 100vh;
+            background-color: #FFFFFF;
+        }
+
+        /* 欢迎页面 */
+        .welcome-content {
+            padding: 20px 30px;
+            overflow-y: auto;
+            height: 100%;
+        }
+
+        .welcome-content .section {
+            margin-bottom: 30px;
+        }
+
+        .welcome-content .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #0D80BD;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #A8CCE8;
+        }
+
+        .principle-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            line-height: 180%;
+        }
+
+        .principle-list li {
+            padding-left: 15px;
+            position: relative;
+            margin-bottom: 5px;
+        }
+
+        .principle-list li::before {
+            content: "●";
+            position: absolute;
+            left: 0;
+            color: #0D80BD;
+        }
+
+        .color-block {
+            display: inline-block;
+            width: 80px;
+            height: 40px;
+            border: 1px solid #CCCCCC;
+            margin-right: 10px;
+            margin-bottom: 10px;
+            vertical-align: top;
+        }
+
+        .color-item {
+            margin-bottom: 15px;
+        }
+
+        .color-label {
+            font-size: 12px;
+            margin-left: 5px;
+        }
+
+        code {
+            background-color: #E8F4FC;
+            padding: 2px 6px;
+            border: 1px solid #A8CCE8;
+            font-family: Consolas, Monaco, monospace;
+            font-size: 12px;
+        }
+
+        /* iframe */
+        .doc-frame {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: none;
+        }
+
+        .doc-frame.active {
+            display: block;
+        }
+
+        .welcome-content.active {
+            display: block;
+        }
+
+        .welcome-content {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <!-- 左侧导航 -->
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h1>Bo-Blog UI</h1>
+            <p>基于 Bo-Blog V2.1 Default Skin 的经典博客 UI 组件库</p>
+        </div>
+
+        <nav class="nav-menu">
+            <div class="boblog-tree boblog-tree-compact">
+                <!-- 设计规范总纲（叶子节点） -->
+                <div class="boblog-tree-node">
+                    <div class="boblog-tree-node-content selected" data-target="welcome">
+                        <span class="boblog-tree-toggle leaf"></span>
+                        <span class="boblog-tree-label">设计规范总纲</span>
+                    </div>
+                </div>
+
+                <!-- 命名规范（叶子节点） -->
+                <div class="boblog-tree-node">
+                    <div class="boblog-tree-node-content" data-target="naming.html">
+                        <span class="boblog-tree-toggle leaf"></span>
+                        <span class="boblog-tree-label">命名规范</span>
+                    </div>
+                </div>
+
+                <!-- 基础 -->
+                <div class="boblog-tree-node expanded">
+                    <div class="boblog-tree-node-content">
+                        <span class="boblog-tree-toggle"></span>
+                        <span class="boblog-tree-label" style="font-weight:bold">基础</span>
+                    </div>
+                    <div class="boblog-tree-children">
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="base/variables.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">1. CSS 变量</span>
+                            </div>
+                        </div>
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="base/colors.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">2. 颜色</span>
+                            </div>
+                        </div>
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="base/fonts.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">3. 字体定义</span>
+                            </div>
+                        </div>
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="base/typography.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">4. 排版</span>
+                            </div>
+                        </div>
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="base/spacing.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">5. 间距/尺寸</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 控件 -->
+                <div class="boblog-tree-node expanded">
+                    <div class="boblog-tree-node-content">
+                        <span class="boblog-tree-toggle"></span>
+                        <span class="boblog-tree-label" style="font-weight:bold">控件</span>
+                    </div>
+                    <div class="boblog-tree-children">
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="controls/buttons.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">6. button — 按钮</span>
+                            </div>
+                        </div>
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="controls/input.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">7. input — 输入框</span>
+                            </div>
+                        </div>
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="controls/checkbox.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">8. checkbox — 复选框</span>
+                            </div>
+                        </div>
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="controls/radio.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">9. radio — 单选框</span>
+                            </div>
+                        </div>
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="controls/textarea.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">10. textarea — 文本域</span>
+                            </div>
+                        </div>
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="controls/select.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">11. select — 下拉选择</span>
+                            </div>
+                        </div>
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="controls/progress-bar.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">12. progress-bar — 进度条</span>
+                            </div>
+                        </div>
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="controls/image.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">13. image — 图片/头像/缩略图/画廊</span>
+                            </div>
+                        </div>
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="controls/border.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">14. border — 边框工具类</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 组件 -->
+                <div class="boblog-tree-node expanded">
+                    <div class="boblog-tree-node-content">
+                        <span class="boblog-tree-toggle"></span>
+                        <span class="boblog-tree-label" style="font-weight:bold">组件</span>
+                    </div>
+                    <div class="boblog-tree-children">
+                        <!-- 数据录入 -->
+                        <div class="boblog-tree-node expanded">
+                            <div class="boblog-tree-node-content">
+                                <span class="boblog-tree-toggle"></span>
+                                <span class="boblog-tree-label">数据录入</span>
+                            </div>
+                            <div class="boblog-tree-children">
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content" data-target="components/editor.html">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">15. editor — 富文本编辑器</span>
+                                    </div>
+                                </div>
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content" data-target="components/date-picker.html">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">16. date-picker — 日期选择器</span>
+                                    </div>
+                                </div>
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content" data-target="components/rating.html">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">17. rating — 评分</span>
+                                    </div>
+                                </div>
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content" data-target="components/slider.html">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">18. slider — 滑块</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 数据展示 -->
+                        <div class="boblog-tree-node expanded">
+                            <div class="boblog-tree-node-content">
+                                <span class="boblog-tree-toggle"></span>
+                                <span class="boblog-tree-label">数据展示</span>
+                            </div>
+                            <div class="boblog-tree-children">
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content" data-target="components/tables.html">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">19. table — 表格</span>
+                                    </div>
+                                </div>
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content" data-target="components/tree.html">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">20. tree — 树形控件</span>
+                                    </div>
+                                </div>
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content" data-target="components/badge.html">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">21. badge — 徽章</span>
+                                    </div>
+                                </div>
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content" data-target="components/stat-card.html">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">22. stat-card — 统计卡片</span>
+                                    </div>
+                                </div>
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content" data-target="components/timeline.html">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">23. timeline — 时间线</span>
+                                    </div>
+                                </div>
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content" data-target="components/codeblock.html">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">24. codeblock — 代码块</span>
+                                    </div>
+                                </div>
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content" data-target="components/blockquote.html">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">25. blockquote — 引用块</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 导航 -->
+                        <div class="boblog-tree-node expanded">
+                            <div class="boblog-tree-node-content">
+                                <span class="boblog-tree-toggle"></span>
+                                <span class="boblog-tree-label">导航</span>
+                            </div>
+                            <div class="boblog-tree-children">
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content" data-target="components/tabs.html">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">26. tabs — 标签页</span>
+                                    </div>
+                                </div>
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content" data-target="components/toc-nav.html">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">27. toc — 目录导航</span>
+                                    </div>
+                                </div>
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content" data-target="components/pagination.html">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">28. pagination — 分页</span>
+                                    </div>
+                                </div>
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content" data-target="components/breadcrumb.html">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">29. breadcrumb — 面包屑</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 反馈 -->
+                        <div class="boblog-tree-node expanded">
+                            <div class="boblog-tree-node-content">
+                                <span class="boblog-tree-toggle"></span>
+                                <span class="boblog-tree-label">反馈</span>
+                            </div>
+                            <div class="boblog-tree-children">
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content" data-target="components/modal.html">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">30. modal — 模态框</span>
+                                    </div>
+                                </div>
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content" data-target="components/message.html">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">31. message — 消息提示</span>
+                                    </div>
+                                </div>
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content" data-target="components/empty-state.html">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">32. empty-state — 空状态</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 容器 -->
+                        <div class="boblog-tree-node expanded">
+                            <div class="boblog-tree-node-content">
+                                <span class="boblog-tree-toggle"></span>
+                                <span class="boblog-tree-label">容器</span>
+                            </div>
+                            <div class="boblog-tree-children">
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content" data-target="components/panel.html">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <span class="boblog-tree-label">33. panel — 面板</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 布局 -->
+                <div class="boblog-tree-node expanded">
+                    <div class="boblog-tree-node-content">
+                        <span class="boblog-tree-toggle"></span>
+                        <span class="boblog-tree-label" style="font-weight:bold">布局</span>
+                    </div>
+                    <div class="boblog-tree-children">
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="layout/grid.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">34. grid — 栅格系统</span>
+                            </div>
+                        </div>
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="layout/page-structure.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">35. page-structure — 页面结构</span>
+                            </div>
+                        </div>
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="layout/responsive.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">36. responsive — 响应式</span>
+                            </div>
+                        </div>
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="layout/form-layout.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">37. form-layout — 表单布局</span>
+                            </div>
+                        </div>
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="layout/doc-layout.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">38. doc-layout — 文档布局</span>
+                            </div>
+                        </div>
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="layout/nav-sidebar.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">39. nav-sidebar — 侧边栏导航</span>
+                            </div>
+                        </div>
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="layout/nav-frontend.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">40. nav-frontend — 前台导航</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 前台专属 -->
+                <div class="boblog-tree-node expanded">
+                    <div class="boblog-tree-node-content">
+                        <span class="boblog-tree-toggle"></span>
+                        <span class="boblog-tree-label" style="font-weight:bold">前台专属</span>
+                    </div>
+                    <div class="boblog-tree-children">
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="frontend/date-card.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">41. date-card — 日期卡片</span>
+                            </div>
+                        </div>
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="frontend/sidebar-panel.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">42. sidebar-panel — 侧边栏面板</span>
+                            </div>
+                        </div>
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="frontend/article-list.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">43. article-list — 文章列表</span>
+                            </div>
+                        </div>
+                        <div class="boblog-tree-node">
+                            <div class="boblog-tree-node-content" data-target="frontend/comment.html">
+                                <span class="boblog-tree-toggle leaf"></span>
+                                <span class="boblog-tree-label">44. comment — 评论</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <!-- 右侧内容区 -->
+    <div class="content-area">
+        <!-- 欢迎页 -->
+        <div class="welcome-content active" id="welcome">
+            <!-- 项目介绍 -->
+            <div class="section">
+                <div class="section-title">项目介绍</div>
+                <p style="margin: 0 0 15px 0; line-height: 180%;">
+                    <strong>boblog-ui</strong> 是基于 Bo-Blog V2.1 Default Skin 的经典博客 UI 组件库，完美还原 2000 年代独立博客的视觉风格。
+                </p>
+                <ul class="principle-list">
+                    <li>蓝白色调，清爽简洁，回归经典博客审美</li>
+                    <li>无圆角设计（方角），所有边框保持直角</li>
+                    <li>Tahoma, Arial 字体优先，12px 基础字号，150% 行高</li>
+                    <li>类名前缀统一使用 <code>boblog-</code></li>
+                    <li>纯 CSS 实现，部分组件提供 JS 增强</li>
+                </ul>
+            </div>
+
+            <!-- 快速开始 -->
+            <div class="section">
+                <div class="section-title">快速开始</div>
+                <div style="line-height: 180%;">
+                    <p style="margin: 0 0 10px 0;"><strong>1. 引入 CSS：</strong></p>
+                    <div style="background-color: #E8F4FC; padding: 12px; border: 1px solid #A8CCE8; margin-bottom: 15px;">
+                        <code style="border: none; background: none; padding: 0;">&lt;link rel="stylesheet" href="boblog-ui.css"&gt;</code>
+                    </div>
+
+                    <p style="margin: 0 0 10px 0;"><strong>2. 引入 JS（可选，用于交互组件）：</strong></p>
+                    <div style="background-color: #E8F4FC; padding: 12px; border: 1px solid #A8CCE8; margin-bottom: 15px;">
+                        <code style="border: none; background: none; padding: 0;">&lt;script src="boblog-ui.js"&gt;&lt;/script&gt;</code>
+                    </div>
+
+                    <p style="margin: 0 0 10px 0;"><strong>3. 使用组件：</strong></p>
+                    <div style="background-color: #E8F4FC; padding: 12px; border: 1px solid #A8CCE8; margin-bottom: 15px;">
+                        <code style="border: none; background: none; padding: 0;">&lt;button class="boblog-btn boblog-btn-primary"&gt;按钮&lt;/button&gt;</code>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 版本信息 -->
+            <div class="section">
+                <div class="section-title">版本信息</div>
+                <p style="margin: 0 0 10px 0;"><strong>当前版本：</strong> v1.0.0</p>
+                <ul class="principle-list">
+                    <li><strong>v1.0.0</strong> (2025-02) — 初始版本，包含 43 个组件/控件</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- iframe 用于加载文档页面 -->
+        <iframe class="doc-frame" id="docFrame" src=""></iframe>
+    </div>
+
+    <script src="../dist/boblog-ui.js"></script>
+    <script>
+        // 导航项点击（tree 组件叶子节点）
+        var iframe = document.getElementById('docFrame');
+        var welcomeContent = document.getElementById('welcome');
+
+        document.querySelectorAll('.boblog-tree-node-content[data-target]').forEach(function(node) {
+            node.addEventListener('click', function(e) {
+                // 移除所有选中状态
+                document.querySelectorAll('.boblog-tree-node-content.selected').forEach(function(item) {
+                    item.classList.remove('selected');
+                });
+
+                // 选中当前项
+                this.classList.add('selected');
+
+                var target = this.getAttribute('data-target');
+
+                if (target === 'welcome') {
+                    // 显示欢迎页
+                    welcomeContent.classList.add('active');
+                    iframe.classList.remove('active');
+                } else {
+                    // 加载文档页面
+                    welcomeContent.classList.remove('active');
+                    iframe.classList.add('active');
+                    iframe.src = target;
+                }
+            });
+        });
+    </script>
+</body>
+</html>

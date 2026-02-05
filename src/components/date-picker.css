@@ -1,0 +1,733 @@
+/**
+ * Bo-Blog UI - Date Picker 日期选择器控件
+ *
+ * 自定义日历选择器组件，完全替代浏览器原生 date picker
+ *
+ * 功能特性：
+ * - 日期选择（年月日）
+ * - 月份选择
+ * - 周选择（带周号）
+ * - 时间选择（时分）
+ * - 日期时间选择
+ * - 日期范围选择
+ *
+ * 设计风格：
+ * - 无圆角设计（border-radius: 0）
+ * - 蓝白配色（Bo-Blog 经典风格）
+ * - 字体：Tahoma, Arial, sans-serif
+ * - 基础字号：12px
+ *
+ * 使用方法：
+ * <div class="boblog-date-picker" data-type="date">
+ *   <div class="boblog-date-picker-display">2026-01-30</div>
+ *   <div class="boblog-date-picker-panel">...</div>
+ * </div>
+ */
+
+/* ========== 包装器 ========== */
+.boblog-date-picker {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+/* ========== 显示/输入区域（input[type="text"]） ========== */
+.boblog-date-picker-display {
+  display: block;
+  width: 100%;
+  padding: 6px 30px 6px 10px; /* 右侧留出图标按钮空间 */
+  font-size: var(--boblog-font-size-sm);
+  font-family: Tahoma, Arial, sans-serif;
+  color: var(--boblog-text);
+  background-color: var(--boblog-bg);
+  border: 1px solid var(--boblog-border-light);
+  border-radius: 0; /* 无圆角 */
+  cursor: text;
+  transition: border-color var(--boblog-transition-normal);
+  line-height: 1.5;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.boblog-date-picker-display:hover {
+  border-color: var(--boblog-border);
+}
+
+.boblog-date-picker.open .boblog-date-picker-display,
+.boblog-date-picker-display:focus {
+  border-color: var(--boblog-blue);
+  outline: none;
+}
+
+/* 占位文本样式（原生 placeholder） */
+.boblog-date-picker-display::placeholder {
+  color: var(--boblog-text-muted);
+}
+
+/* ========== 日历/时钟图标按钮 ========== */
+/* JS 创建的独立按钮，定位在输入框右侧 */
+.boblog-date-picker-icon {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+  transition: opacity var(--boblog-transition-normal);
+}
+
+.boblog-date-picker-icon:hover {
+  opacity: 0.8;
+}
+
+/* 默认日历图标（用于 date、month、week、datetime-local） */
+.boblog-date-picker-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23888' stroke-width='1.2'%3E%3Crect x='1' y='3' width='14' height='12' rx='0'/%3E%3Cline x1='1' y1='7' x2='15' y2='7'/%3E%3Cline x1='5' y1='1' x2='5' y2='5'/%3E%3Cline x1='11' y1='1' x2='11' y2='5'/%3E%3C/svg%3E");
+  background-size: 14px 14px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* 时间类型使用时钟图标 */
+.boblog-date-picker--time .boblog-date-picker-icon {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23888' stroke-width='1.2'%3E%3Ccircle cx='8' cy='8' r='7'/%3E%3Cline x1='8' y1='4' x2='8' y2='8'/%3E%3Cline x1='8' y1='8' x2='11' y2='10'/%3E%3C/svg%3E");
+  background-size: 14px 14px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* ========== 面板容器 ========== */
+.boblog-date-picker-panel {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  margin-top: 2px;
+  z-index: var(--boblog-z-index-dropdown);
+  display: none;
+  background-color: var(--boblog-bg);
+  border: 1px solid var(--boblog-border);
+  border-radius: 0; /* 无圆角 */
+  box-shadow: var(--boblog-shadow-light);
+  min-width: 260px;
+}
+
+.boblog-date-picker.open .boblog-date-picker-panel {
+  display: block;
+}
+
+/* ========== 面板头部 ========== */
+.boblog-date-picker-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 10px;
+  background-color: var(--boblog-bg-muted);
+  border-bottom: 1px solid var(--boblog-border-light);
+}
+
+/* 年月标题 */
+.boblog-date-picker-title {
+  font-size: var(--boblog-font-size-sm);
+  color: var(--boblog-text);
+  font-weight: bold;
+  flex: 1;
+  text-align: center;
+}
+
+/* 导航按钮（◀ ▶ ◀◀ ▶▶） */
+.boblog-date-picker-nav {
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--boblog-text-muted);
+  cursor: pointer;
+  transition: color var(--boblog-transition-normal);
+  font-size: 12px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* "今天"快捷按钮 */
+.boblog-date-picker-today-btn {
+  padding: 1px 6px;
+  border: 1px solid var(--boblog-border-light);
+  background: none;
+  color: var(--boblog-text-muted);
+  cursor: pointer;
+  font-size: 11px;
+  font-family: inherit;
+  line-height: 1.4;
+  border-radius: 0;
+  transition: color var(--boblog-transition-normal), border-color var(--boblog-transition-normal);
+  margin-left: 4px;
+}
+
+.boblog-date-picker-today-btn:hover {
+  color: var(--boblog-blue);
+  border-color: var(--boblog-blue);
+}
+
+.boblog-date-picker-nav:hover {
+  color: var(--boblog-blue);
+}
+
+.boblog-date-picker-nav:active {
+  color: var(--boblog-blue-light);
+}
+
+/* ========== 星期行 ========== */
+.boblog-date-picker-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 4px 10px;
+  border-bottom: 1px solid var(--boblog-border-light);
+}
+
+/* 星期行内每个标签 */
+.boblog-date-picker-weekdays span {
+  font-size: 11px;
+  color: var(--boblog-text-muted);
+  text-align: center;
+  line-height: 24px;
+  font-weight: normal;
+}
+
+/* 周选择模式 - 星期行增加周号列 */
+.boblog-date-picker-weekdays.boblog-date-picker-weekdays--with-week {
+  grid-template-columns: 36px repeat(7, 1fr);
+}
+
+/* ========== 日期网格 ========== */
+.boblog-date-picker-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 4px 10px 10px;
+  gap: 2px;
+}
+
+/* 日期格子（button 元素 reset + 样式） */
+.boblog-date-picker-day {
+  width: 30px;
+  height: 30px;
+  line-height: 28px;
+  text-align: center;
+  font-size: var(--boblog-font-size-sm);
+  font-family: inherit;
+  color: var(--boblog-text);
+  background: none;
+  border: 1px solid transparent;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  transition: background-color var(--boblog-transition-normal);
+  border-radius: 0;
+}
+
+/* ========== 农历/节气多行格子 ========== */
+/* 开启农历或节气后，格子从单行文本变为多行 span 结构 */
+
+/* 有农历信息的格子 — 增高以容纳两行 */
+.boblog-date-picker-day.boblog-date-picker-day--lunar,
+.boblog-date-picker-week-day.boblog-date-picker-day--lunar {
+  height: auto;
+  min-height: 36px;
+  line-height: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 有节气信息的格子 — 可能三行（阳历+农历+节气） */
+.boblog-date-picker-day.boblog-date-picker-day--jieqi,
+.boblog-date-picker-week-day.boblog-date-picker-day--jieqi {
+  min-height: 44px;
+}
+
+/* 同时有农历和节气时，三行需要更多空间 */
+.boblog-date-picker-day.boblog-date-picker-day--lunar.boblog-date-picker-day--jieqi,
+.boblog-date-picker-week-day.boblog-date-picker-day--lunar.boblog-date-picker-day--jieqi {
+  min-height: 46px;
+}
+
+/* 阳历日期行 */
+.boblog-date-picker-day-solar {
+  display: block;
+  font-size: var(--boblog-font-size-sm);
+  line-height: 1.2;
+}
+
+/* 农历日名行（如"初六"、"十五"） */
+.boblog-date-picker-day-lunar {
+  display: block;
+  font-size: 9px;
+  line-height: 1;
+  color: var(--boblog-text-muted);
+}
+
+/* 节气名行（如"立春"、"雨水"） */
+.boblog-date-picker-day-jieqi {
+  display: block;
+  font-size: 9px;
+  line-height: 1.2;
+  color: var(--boblog-green);
+  font-weight: bold;
+}
+
+/* 选中状态下农历/节气文字颜色跟随变白 */
+.boblog-date-picker-day.selected .boblog-date-picker-day-lunar,
+.boblog-date-picker-day.selected .boblog-date-picker-day-jieqi {
+  color: var(--boblog-white);
+}
+
+/* 非当月日期的农历/节气文字更淡 */
+.boblog-date-picker-day.other-month .boblog-date-picker-day-lunar,
+.boblog-date-picker-day.other-month .boblog-date-picker-day-jieqi {
+  opacity: 0.6;
+}
+
+/* 周选择选中行，农历/节气文字变白 */
+.boblog-date-picker-week-row.selected .boblog-date-picker-day-lunar,
+.boblog-date-picker-week-row.selected .boblog-date-picker-day-jieqi {
+  color: var(--boblog-white);
+}
+
+/* ========== 节气背景模式（data-jieqi="bg"） ========== */
+/* 节气名作为大字水印铺在格子背景，不增加格子高度 */
+
+/* 有水印的格子需要 relative 定位，用于水印层 absolute 定位 */
+.boblog-date-picker-day.boblog-date-picker-day--jieqi-bg,
+.boblog-date-picker-week-day.boblog-date-picker-day--jieqi-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+/* 水印文字层：absolute 居中，淡色大字铺在格子背景 */
+.boblog-date-picker-day-jieqi-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--boblog-red-chinese);
+  opacity: 0.45;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+  line-height: 1;
+  letter-spacing: 1px;
+}
+
+/* 水印上方的内容层需要高于水印 */
+.boblog-date-picker-day-solar--over {
+  position: relative;
+  z-index: 1;
+}
+
+/* 多行结构中，阳历/农历/节气行也需要在水印上方 */
+.boblog-date-picker-day--jieqi-bg .boblog-date-picker-day-solar,
+.boblog-date-picker-day--jieqi-bg .boblog-date-picker-day-lunar {
+  position: relative;
+  z-index: 1;
+}
+
+/* 选中状态下水印变白 */
+.boblog-date-picker-day.selected .boblog-date-picker-day-jieqi-bg {
+  color: var(--boblog-white);
+  opacity: 0.3;
+}
+
+/* 非当月日期水印更淡 */
+.boblog-date-picker-day.other-month .boblog-date-picker-day-jieqi-bg {
+  opacity: 0.08;
+}
+
+/* 周选择选中行水印变白 */
+.boblog-date-picker-week-row.selected .boblog-date-picker-day-jieqi-bg {
+  color: var(--boblog-white);
+  opacity: 0.3;
+}
+
+/* 仅开节气、无农历的格子也需要多行布局 */
+.boblog-date-picker-day.boblog-date-picker-day--jieqi:not(.boblog-date-picker-day--lunar),
+.boblog-date-picker-week-day.boblog-date-picker-day--jieqi:not(.boblog-date-picker-day--lunar) {
+  height: auto;
+  min-height: 36px;
+  line-height: normal;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 周号格子 */
+.boblog-date-picker-week-number {
+  width: 36px;
+  height: 30px;
+  line-height: 28px;
+  text-align: center;
+  font-size: 11px;
+  font-family: inherit;
+  color: var(--boblog-text-muted);
+  background: none;
+  border: 1px solid transparent;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  border-radius: 0;
+}
+
+/* 周选择容器 */
+.boblog-date-picker-weeks {
+  padding: 4px 10px 10px;
+}
+
+/* 周选择行 */
+.boblog-date-picker-week-row {
+  display: grid;
+  grid-template-columns: 36px repeat(7, 1fr);
+  gap: 2px;
+  cursor: pointer;
+}
+
+/* 周行内日期格子 */
+.boblog-date-picker-week-day {
+  width: 30px;
+  height: 30px;
+  line-height: 30px;
+  text-align: center;
+  font-size: var(--boblog-font-size-sm);
+  color: var(--boblog-text);
+}
+
+.boblog-date-picker-week-day.other-month {
+  color: var(--boblog-text-muted);
+}
+
+.boblog-date-picker-day:hover {
+  background-color: var(--boblog-blue-pale);
+}
+
+/* 选中状态 */
+.boblog-date-picker-day.selected {
+  background-color: var(--boblog-blue);
+  color: var(--boblog-white);
+}
+
+/* 今天 */
+.boblog-date-picker-day.today {
+  border: 1px solid var(--boblog-blue);
+}
+
+.boblog-date-picker-day.today.selected {
+  border-color: var(--boblog-blue);
+}
+
+/* 非当月日期 */
+.boblog-date-picker-day.other-month {
+  color: var(--boblog-text-muted);
+}
+
+/* 周选择 - 整行 hover 高亮 */
+.boblog-date-picker-week-row:hover {
+  background-color: var(--boblog-blue-pale);
+}
+
+/* 周选择 - 选中行高亮 */
+.boblog-date-picker-week-row.selected {
+  background-color: var(--boblog-blue);
+}
+
+.boblog-date-picker-week-row.selected .boblog-date-picker-week-number,
+.boblog-date-picker-week-row.selected .boblog-date-picker-week-day {
+  color: var(--boblog-white);
+}
+
+/* ========== 月份网格 ========== */
+.boblog-date-picker-months {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4列3行 */
+  padding: 10px;
+  gap: 5px;
+}
+
+/* 月份格子（button reset + 样式） */
+.boblog-date-picker-month {
+  height: 40px;
+  line-height: 38px;
+  text-align: center;
+  font-size: var(--boblog-font-size-sm);
+  font-family: inherit;
+  color: var(--boblog-text);
+  background: none;
+  border: 1px solid transparent;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  transition: background-color var(--boblog-transition-normal);
+  border-radius: 0;
+}
+
+.boblog-date-picker-month:hover {
+  background-color: var(--boblog-blue-pale);
+}
+
+.boblog-date-picker-month.selected {
+  background-color: var(--boblog-blue);
+  color: var(--boblog-white);
+}
+
+.boblog-date-picker-month.today {
+  border: 1px solid var(--boblog-blue);
+}
+
+/* ========== 时间选择区 ========== */
+.boblog-date-picker-time {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 15px 10px;
+  border-top: 1px solid var(--boblog-border-light);
+}
+
+.boblog-date-picker-time-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+/* 时间上下箭头按钮 */
+.boblog-date-picker-time-btn {
+  width: 24px;
+  height: 20px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--boblog-text-muted);
+  cursor: pointer;
+  transition: color var(--boblog-transition-normal);
+  font-size: 10px;
+  font-family: inherit;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.boblog-date-picker-time-btn:hover {
+  color: var(--boblog-blue);
+}
+
+/* 确定按钮 */
+.boblog-date-picker-confirm {
+  display: block;
+  margin: 0 auto 10px;
+  padding: 4px 20px;
+  font-size: var(--boblog-font-size-sm);
+  font-family: inherit;
+  color: var(--boblog-bg);
+  background-color: var(--boblog-blue);
+  border: 1px solid var(--boblog-blue);
+  border-radius: 0;
+  cursor: pointer;
+  transition: background-color var(--boblog-transition-normal);
+}
+
+.boblog-date-picker-confirm:hover {
+  background-color: var(--boblog-blue-light);
+  border-color: var(--boblog-blue-light);
+}
+
+.boblog-date-picker-time-value {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--boblog-text);
+  min-width: 36px;
+  text-align: center;
+  line-height: 1;
+}
+
+.boblog-date-picker-time-separator {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--boblog-text);
+  line-height: 1;
+}
+
+/* ========== datetime-local 左右两栏布局 ========== */
+/* 左侧日历 + 右侧时间选择并排显示，节省垂直空间 */
+.boblog-date-picker-dt-body {
+  display: flex;
+  align-items: stretch;
+}
+
+/* 左侧日历区域 */
+.boblog-date-picker-dt-calendar {
+  flex: 1;
+  min-width: 0;
+}
+
+/* 右侧时间选择区域 */
+.boblog-date-picker-dt-time {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-left: 1px solid var(--boblog-border-light);
+  padding: 8px 12px;
+  gap: 10px;
+}
+
+/* 右侧布局时，时间选择器改为纵向排列（时在上、分在下） */
+.boblog-date-picker-dt-time .boblog-date-picker-time {
+  flex-direction: column;
+  border-top: none;
+  padding: 0;
+  gap: 4px;
+}
+
+/* 右侧布局时，箭头按钮加大 */
+.boblog-date-picker-dt-time .boblog-date-picker-time-btn {
+  width: 32px;
+  height: 24px;
+  font-size: 13px;
+}
+
+/* 右侧布局时，时间数值加大 */
+.boblog-date-picker-dt-time .boblog-date-picker-time-value {
+  font-size: 24px;
+  min-width: 44px;
+}
+
+/* 右侧布局时，确定按钮不需要底部间距 */
+.boblog-date-picker-dt-time .boblog-date-picker-confirm {
+  margin: 0;
+}
+
+/* 时间组标签（"时"、"分"） */
+.boblog-date-picker-time-label {
+  font-size: var(--boblog-font-size-sm);
+  color: var(--boblog-blue);
+  line-height: 1;
+  text-align: center;
+  margin-bottom: 2px;
+  font-weight: bold;
+}
+
+/* ========== 状态样式 ========== */
+/* 禁用状态 */
+.boblog-date-picker.disabled .boblog-date-picker-display {
+  background-color: var(--boblog-bg-muted);
+  color: var(--boblog-text-disabled);
+  cursor: not-allowed;
+  border-color: var(--boblog-border-light);
+}
+
+.boblog-date-picker.disabled .boblog-date-picker-icon {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.boblog-date-picker.disabled .boblog-date-picker-display:hover {
+  border-color: var(--boblog-border-light);
+}
+
+/* 只读状态 */
+.boblog-date-picker.readonly .boblog-date-picker-display {
+  background-color: var(--boblog-bg-subtle);
+  cursor: default;
+}
+
+.boblog-date-picker.readonly .boblog-date-picker-display:hover {
+  border-color: var(--boblog-border-light);
+}
+
+/* 错误状态 */
+.boblog-date-picker.error .boblog-date-picker-display {
+  border-color: var(--boblog-danger);
+}
+
+.boblog-date-picker.error .boblog-date-picker-display:hover,
+.boblog-date-picker.error.open .boblog-date-picker-display {
+  border-color: var(--boblog-danger);
+}
+
+/* ========== 尺寸变体 ========== */
+/* 小尺寸 */
+.boblog-date-picker-sm .boblog-date-picker-display {
+  padding: 4px 28px 4px 8px;
+  font-size: var(--boblog-font-size-sm);
+}
+
+/* 大尺寸 */
+.boblog-date-picker-lg .boblog-date-picker-display {
+  padding: 8px 32px 8px 12px;
+  font-size: 14px;
+}
+
+/* ========== 日期范围 ========== */
+.boblog-date-range {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.boblog-date-range-separator {
+  color: var(--boblog-text-muted);
+  font-size: var(--boblog-font-size-sm);
+  white-space: nowrap;
+  user-select: none;
+}
+
+.boblog-date-range .boblog-date-picker {
+  flex: 1;
+  min-width: 0;
+}
+
+/* 范围选择 - 面板中的日期区间高亮 */
+.boblog-date-picker-day.in-range {
+  background-color: var(--boblog-blue-pale);
+}
+
+.boblog-date-picker-day.range-start,
+.boblog-date-picker-day.range-end {
+  background-color: var(--boblog-blue);
+  color: var(--boblog-white);
+}
+
+/* ========== 响应式调整 ========== */
+@media (max-width: 768px) {
+  .boblog-date-picker-panel {
+    min-width: 240px;
+  }
+
+  .boblog-date-picker-day,
+  .boblog-date-picker-week-number {
+    width: 28px;
+    height: 28px;
+    line-height: 28px;
+  }
+
+  .boblog-date-picker-month {
+    height: 36px;
+    line-height: 36px;
+  }
+}

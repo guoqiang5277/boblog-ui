@@ -1,0 +1,178 @@
+/**
+ * Bo-Blog Textarea Control
+ * 文本域控件 - 基于 Bo-Blog V2.1 经典风格
+ * 无圆角设计，蓝白配色
+ *
+ * 包含：
+ *   - .boblog-textarea              — 基础文本域
+ *   - .boblog-textarea-error        — 错误状态
+ *   - .boblog-textarea-sm/lg        — 尺寸变体
+ *   - .boblog-textarea-fixed        — 不可调整大小
+ *   - .boblog-textarea-horizontal   — 水平调整大小
+ *   - .boblog-textarea-both         — 自由调整大小
+ *   - .boblog-textarea-auto         — 自动高度（需 JS 配合）
+ *   - .boblog-textarea-wrapper      — 字符计数包装器
+ *   - .boblog-textarea-count        — 字符计数显示
+ */
+
+/* ========== 基础文本域 ========== */
+.boblog-textarea {
+  display: block;
+  width: 100%;
+  min-height: 80px;                              /* 默认最小高度 */
+  padding: 6px 10px;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: var(--boblog-font-size-sm);         /* 12px */
+  line-height: 1.5;
+  color: var(--boblog-text);                     /* 正文文字 #1A1A1A */
+  background-color: var(--boblog-bg);            /* 白色背景 #FFFFFF */
+  border: 1px solid var(--boblog-border-light);  /* 次边框 #DDE8F0 */
+  border-radius: 0;                              /* Bo-Blog 无圆角 */
+  outline: none;
+  resize: vertical;                              /* 默认仅垂直调整 */
+  transition: all var(--boblog-transition-normal);
+  box-sizing: border-box;
+}
+
+/* ========== 交互状态 ========== */
+
+/* 鼠标悬停：边框加深 */
+.boblog-textarea:hover {
+  border-color: var(--boblog-border);            /* 主边框 #C4D7E8 */
+}
+
+/* 聚焦状态：蓝色边框 + 浅蓝背景 */
+.boblog-textarea:focus {
+  border-color: var(--boblog-blue-accent);       /* 强调蓝 #0D80BD */
+  background-color: var(--boblog-blue-pale);     /* 浅蓝底 #E8F0F7 */
+  outline: 2px solid rgba(13, 128, 189, 0.1);
+  outline-offset: 0;
+}
+
+/* 占位符样式 */
+.boblog-textarea::placeholder {
+  color: var(--boblog-text-muted);               /* 弱化文字 #888888 */
+  opacity: 0.8;
+}
+
+/* ========== 禁用状态 ========== */
+.boblog-textarea:disabled,
+.boblog-textarea.disabled {
+  background-color: var(--boblog-disabled-bg);   /* 禁用背景 #F5F5F5 */
+  border-color: var(--boblog-disabled-border);   /* 禁用边框 #D9D9D9 */
+  color: var(--boblog-text-muted);               /* 弱化文字 #888888 */
+  cursor: not-allowed;
+  resize: none;                                  /* 禁用时不可调整大小 */
+}
+
+/* ========== 只读状态 ========== */
+.boblog-textarea:read-only,
+.boblog-textarea.readonly {
+  background-color: var(--boblog-bg-subtle);     /* 次背景 #F5F8FB */
+  cursor: default;
+  resize: none;                                  /* 只读时不可调整大小 */
+}
+
+/* ========== 错误状态 ========== */
+.boblog-textarea-error,
+.boblog-textarea.error {
+  border-color: var(--boblog-danger);            /* 危险红 #CC3333 */
+}
+
+.boblog-textarea-error:focus,
+.boblog-textarea.error:focus {
+  border-color: var(--boblog-danger);
+  outline: 2px solid rgba(224, 62, 45, 0.1);
+}
+
+/* ========== 调整大小变体 ========== */
+
+/* 不可调整大小 */
+.boblog-textarea-fixed {
+  resize: none;
+}
+
+/* 水平调整大小 */
+.boblog-textarea-horizontal {
+  resize: horizontal;
+}
+
+/* 自由调整大小（水平+垂直） */
+.boblog-textarea-both {
+  resize: both;
+}
+
+/* ========== 字符计数包装器 ========== */
+/* 用法：.boblog-textarea-wrapper > .boblog-textarea + .boblog-textarea-count */
+.boblog-textarea-wrapper {
+  position: relative;
+  display: block;
+  width: 100%;
+}
+
+/* 字符计数显示区域：右下角浮动 */
+.boblog-textarea-count {
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  font-size: var(--boblog-font-size-sm);         /* 12px */
+  color: var(--boblog-text-muted);               /* 弱化文字 #888888 */
+  background-color: rgba(255, 255, 255, 0.9);   /* 半透明白底防止遮挡文字 */
+  padding: 2px 5px;
+  pointer-events: none;                          /* 不阻挡点击 */
+}
+
+/* 包装器内的文本域：底部留空给计数区域 */
+.boblog-textarea-wrapper .boblog-textarea {
+  padding-bottom: 30px;
+}
+
+/* 字符计数达到上限：红色加粗 */
+.boblog-textarea-count.limit-reached {
+  color: var(--boblog-danger);                   /* 危险红 #CC3333 */
+  font-weight: bold;
+}
+
+/* ========== 超出字数上限状态 ========== */
+/* JS 在字数 >= 上限时给 wrapper 添加 .limit-reached 类 */
+
+/* 超限时 textarea 边框变红 */
+.boblog-textarea-wrapper.limit-reached .boblog-textarea {
+  border-color: var(--boblog-danger);            /* 危险红 #CC3333 */
+}
+
+/* 超限时聚焦：红色边框 + 浅红背景 */
+.boblog-textarea-wrapper.limit-reached .boblog-textarea:focus {
+  border-color: var(--boblog-danger);            /* 危险红 #CC3333 */
+  background-color: var(--boblog-danger-bg);     /* 错误背景 #FFF0F0 */
+  outline: 2px solid rgba(224, 62, 45, 0.1);    /* 红色外发光 */
+}
+
+/* ==========================================================
+ * 尺寸变体
+ *
+ * 小尺寸 (sm): min-height 60px, padding 4px 8px, font-size 12px
+ * 标准尺寸:    min-height 80px, padding 6px 10px, font-size 12px
+ * 大尺寸 (lg): min-height 120px, padding 8px 12px, font-size 14px
+ * ========================================================== */
+
+/* ---------- 小尺寸 ---------- */
+.boblog-textarea-sm {
+  min-height: 60px;
+  padding: 4px 8px;
+  font-size: var(--boblog-font-size-sm);         /* 12px */
+}
+
+/* ---------- 大尺寸 ---------- */
+.boblog-textarea-lg {
+  min-height: 120px;
+  padding: 8px 12px;
+  font-size: var(--boblog-font-size-md);         /* 14px */
+}
+
+/* ========== 自动高度文本域 ========== */
+/* 配合 JS 实现输入时自动增高，不显示滚动条 */
+.boblog-textarea-auto {
+  overflow: hidden;
+  resize: none;
+}

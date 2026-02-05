@@ -1,0 +1,158 @@
+/**
+ * Bo-Blog Panel Component
+ * 卡片/面板组件
+ *
+ * 特点：
+ * - 头部+内容+底部三段式布局
+ * - 浅蓝背景+蓝色边框
+ * - 标题和工具栏支持
+ * - 无圆角，经典 Bo-Blog 风格
+ */
+
+/* 基础面板 */
+.boblog-panel {
+  border: 1px solid var(--boblog-blue-border);
+  background-color: var(--boblog-bg-white);
+  margin-bottom: var(--boblog-spacing-md);
+}
+
+/* 面板头部 */
+.boblog-panel-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--boblog-spacing-sm) var(--boblog-spacing-md);
+  background-color: var(--boblog-bg-panel);
+  border-bottom: 1px solid var(--boblog-blue-border-list);
+}
+
+.boblog-panel-title {
+  margin: 0;
+  font-size: var(--boblog-font-size-md);
+  font-weight: bold;
+  color: var(--boblog-text-dark);
+}
+
+.boblog-panel-tools {
+  display: flex;
+  align-items: center;
+  gap: var(--boblog-spacing-xs);
+  font-size: var(--boblog-font-size-sm);
+}
+
+/* 面板内容 */
+.boblog-panel-body {
+  padding: var(--boblog-spacing-md);
+  font-size: var(--boblog-font-size-sm);
+  line-height: 1.6;
+  color: var(--boblog-text-dark);
+}
+
+/* 面板底部 */
+.boblog-panel-footer {
+  padding: var(--boblog-spacing-sm) var(--boblog-spacing-md);
+  background-color: var(--boblog-bg-panel);
+  border-top: 1px solid var(--boblog-blue-border-list);
+  font-size: var(--boblog-font-size-sm);
+}
+
+/* 浅蓝面板内容区 */
+.boblog-panel-content {
+  background-color: var(--boblog-bg-panel);
+  padding: var(--boblog-spacing-md);
+}
+
+/* 带完整边框的面板 */
+.boblog-panel-bordered .boblog-panel-body,
+.boblog-panel-bordered .boblog-panel-content {
+  border-left: 1px solid var(--boblog-blue-border-list);
+  border-right: 1px solid var(--boblog-blue-border-list);
+}
+
+/* 紧凑模式 */
+.boblog-panel-compact .boblog-panel-header {
+  padding: var(--boblog-spacing-xs) var(--boblog-spacing-sm);
+}
+
+.boblog-panel-compact .boblog-panel-body {
+  padding: var(--boblog-spacing-sm);
+}
+
+.boblog-panel-compact .boblog-panel-footer {
+  padding: var(--boblog-spacing-xs) var(--boblog-spacing-sm);
+}
+
+/* 无头部面板 */
+.boblog-panel-no-header .boblog-panel-body:first-child {
+  padding-top: var(--boblog-spacing-md);
+}
+
+/* 无底部面板 */
+.boblog-panel-no-footer .boblog-panel-body:last-child {
+  padding-bottom: var(--boblog-spacing-md);
+}
+
+/* 可折叠面板 */
+.boblog-panel-collapsible .boblog-panel-header {
+  cursor: pointer;
+  user-select: none;
+}
+
+.boblog-panel-collapsible .boblog-panel-header:hover {
+  background-color: var(--boblog-bg-content);
+}
+
+.boblog-panel-collapsed .boblog-panel-body,
+.boblog-panel-collapsed .boblog-panel-footer {
+  display: none;
+}
+
+/* 面板组 */
+.boblog-panel-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--boblog-spacing-md);
+}
+
+.boblog-panel-group .boblog-panel {
+  margin-bottom: 0;
+}
+
+/* 面板网格布局 */
+.boblog-panel-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--boblog-spacing-md);
+}
+
+.boblog-panel-grid .boblog-panel {
+  margin-bottom: 0;
+}
+
+/* 高亮面板 */
+.boblog-panel-highlight {
+  border-color: var(--boblog-blue-primary);
+}
+
+.boblog-panel-highlight .boblog-panel-header {
+  background-color: var(--boblog-bg-content);
+  color: var(--boblog-blue-primary);
+}
+
+/* 响应式处理 */
+@media (max-width: 768px) {
+  .boblog-panel-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .boblog-panel-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--boblog-spacing-xs);
+  }
+
+  .boblog-panel-tools {
+    width: 100%;
+    justify-content: flex-end;
+  }
+}

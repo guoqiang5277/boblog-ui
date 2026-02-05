@@ -1,0 +1,130 @@
+/**
+ * Bo-Blog 评论区组件
+ * 包含评论列表、评论表单、嵌套回复
+ * 风格：Bo-Blog V2.1 经典评论布局
+ */
+
+.boblog-comments {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.boblog-comments-header {
+    font-size: var(--boblog-font-size-md, 14px);
+    font-weight: bold;
+    color: var(--boblog-text-dark, #333);
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--boblog-blue-border, #9EC9FF);
+    margin-bottom: 15px;
+}
+
+.boblog-comment-item {
+    padding: 15px 0;
+    border-bottom: 1px dashed var(--boblog-blue-border-list, #D3E7FC);
+    display: flex;
+    gap: 10px;
+}
+
+.boblog-comment-item:last-child {
+    border-bottom: none;
+}
+
+.boblog-comment-avatar {
+    flex-shrink: 0;
+    width: 32px;
+    height: 32px;
+    background-color: #e0e0e0;
+    border: 1px solid var(--boblog-blue-border-light, #A9DBF6);
+}
+
+.boblog-comment-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.boblog-comment-author {
+    font-weight: bold;
+    color: var(--boblog-blue-primary, #0D80BD);
+    font-size: var(--boblog-font-size-sm, 12px);
+    margin-right: 8px;
+}
+
+.boblog-comment-admin {
+    display: inline-block;
+    background-color: var(--boblog-blue-header, #2E93C9);
+    color: var(--boblog-bg-white, #fff);
+    font-size: var(--boblog-font-size-xs, 11px);
+    padding: 1px 4px;
+    margin-left: 5px;
+    vertical-align: middle;
+}
+
+.boblog-comment-time {
+    font-size: var(--boblog-font-size-xs, 11px);
+    color: var(--boblog-text-gray, #999);
+}
+
+.boblog-comment-text {
+    font-size: var(--boblog-font-size-sm, 12px);
+    color: var(--boblog-text-dark, #333);
+    line-height: 1.6;
+    margin-top: 8px;
+    word-wrap: break-word;
+}
+
+.boblog-comment-actions {
+    margin-top: 8px;
+    font-size: var(--boblog-font-size-sm, 12px);
+}
+
+.boblog-comment-actions a {
+    color: var(--boblog-text-gray, #999);
+    text-decoration: none;
+    margin-right: 10px;
+}
+
+.boblog-comment-actions a:hover {
+    color: var(--boblog-blue-primary, #0D80BD);
+}
+
+.boblog-comment-reply {
+    margin-left: 40px;
+    margin-top: 10px;
+    padding-left: 10px;
+    border-left: 2px solid var(--boblog-blue-border, #9EC9FF);
+}
+
+.boblog-comment-form {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: var(--boblog-bg-panel, #F5FBFE);
+    border: 1px solid var(--boblog-blue-border, #9EC9FF);
+}
+
+.boblog-comment-form .form-group {
+    margin-bottom: 10px;
+}
+
+.boblog-comment-form label {
+    display: block;
+    font-size: var(--boblog-font-size-sm, 12px);
+    color: var(--boblog-text-dark, #333);
+    margin-bottom: 5px;
+}
+
+.boblog-comment-textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 8px;
+    font-size: var(--boblog-font-size-sm, 12px);
+    font-family: Tahoma, Arial, sans-serif;
+    border: 1px solid var(--boblog-blue-border, #9EC9FF);
+    background-color: var(--boblog-bg-white, #fff);
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.boblog-comment-textarea:focus {
+    outline: none;
+    border-color: var(--boblog-blue-primary, #0D80BD);
+}

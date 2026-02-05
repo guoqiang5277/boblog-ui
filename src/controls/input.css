@@ -1,0 +1,245 @@
+/**
+ * Bo-Blog Input Control
+ * 文本输入框控件 - 基于 Bo-Blog V2.1 经典风格
+ * 无圆角设计，蓝白配色
+ *
+ * 包含：
+ *   - .boblog-input          — 基础输入框
+ *   - .boblog-input-error    — 错误状态
+ *   - .boblog-input-icon     — 带图标输入框容器
+ *   - .boblog-input-group    — 输入框组（前缀/后缀插件）
+ *   - .boblog-input-sm/lg    — 尺寸变体
+ */
+
+/* ========== 基础输入框 ========== */
+.boblog-input {
+  display: inline-block;
+  width: 100%;
+  padding: 6px 10px;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: var(--boblog-font-size-sm);       /* 12px */
+  line-height: 1.5;
+  color: var(--boblog-text);                   /* 正文文字 #1A1A1A */
+  background-color: var(--boblog-bg);          /* 白色背景 #FFFFFF */
+  border: 1px solid var(--boblog-border-light);/* 次边框 #DDE8F0 */
+  border-radius: 0;                            /* Bo-Blog 无圆角 */
+  outline: none;
+  transition: all var(--boblog-transition-normal);
+  box-sizing: border-box;
+}
+
+/* 鼠标悬停：边框加深 */
+.boblog-input:hover {
+  border-color: var(--boblog-border);          /* 主边框 #C4D7E8 */
+}
+
+/* 聚焦状态：蓝色边框 + 浅蓝背景 */
+.boblog-input:focus {
+  border-color: var(--boblog-blue);            /* 品牌蓝 #0D6EAA */
+  background-color: var(--boblog-blue-pale);   /* 浅蓝底 #E8F0F7 */
+  outline: 2px solid rgba(13, 128, 189, 0.1);
+  outline-offset: 0;
+}
+
+/* 占位符文字 */
+.boblog-input::placeholder {
+  color: var(--boblog-text-muted);             /* 弱化文字 #888888 */
+  opacity: 0.8;
+}
+
+/* ========== 禁用状态 ========== */
+.boblog-input:disabled,
+.boblog-input.disabled {
+  background-color: #f5f5f5;
+  border-color: #d9d9d9;
+  color: var(--boblog-text-muted);
+  cursor: not-allowed;
+}
+
+/* ========== 只读状态 ========== */
+.boblog-input:read-only,
+.boblog-input.readonly {
+  background-color: var(--boblog-bg-subtle);   /* 次背景 #F5F8FB */
+  cursor: default;
+}
+
+/* ========== 错误状态 ========== */
+.boblog-input-error,
+.boblog-input.error {
+  border-color: var(--boblog-danger);          /* 危险红 #CC3333 */
+}
+
+.boblog-input-error:focus,
+.boblog-input.error:focus {
+  border-color: var(--boblog-danger);
+  outline: 2px solid rgba(224, 62, 45, 0.1);
+}
+
+/* ========== 带图标输入框 ========== */
+
+/* 图标容器 */
+.boblog-input-icon {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+/* 有前缀图标时，输入框左侧留出空间 */
+.boblog-input-icon .boblog-input {
+  padding-left: 32px;
+}
+
+/* 前缀图标：绝对定位在输入框左侧 */
+.boblog-input-icon-prefix {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--boblog-text-muted);
+  pointer-events: none;                        /* 不阻挡输入框点击 */
+}
+
+/* 后缀图标：绝对定位在输入框右侧 */
+.boblog-input-icon-suffix {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--boblog-text-muted);
+  pointer-events: none;
+}
+
+/* 仅有后缀图标时，右侧留空、左侧恢复正常 */
+.boblog-input-icon.has-suffix .boblog-input {
+  padding-right: 32px;
+  padding-left: 10px;
+}
+
+/* ========== 输入框组 ========== */
+
+/* 输入框组容器：flex 横向排列 */
+.boblog-input-group {
+  display: flex;
+  width: 100%;
+  border-collapse: separate;
+}
+
+/* 组内输入框自动填充剩余空间 */
+.boblog-input-group .boblog-input {
+  flex: 1;
+  min-width: 0;                                /* 防止 flex 子项溢出 */
+}
+
+/* 前缀/后缀插件 */
+.boblog-input-group-addon {
+  display: flex;
+  align-items: center;
+  padding: 6px 10px;
+  font-size: var(--boblog-font-size-sm);
+  font-weight: normal;
+  line-height: 1.5;
+  color: var(--boblog-text);
+  text-align: center;
+  background-color: var(--boblog-bg-subtle);   /* 次背景 #F5F8FB */
+  border: 1px solid var(--boblog-border-light);
+  border-radius: 0;
+  white-space: nowrap;
+}
+
+/* 左侧插件：去掉右边框（与输入框共享） */
+.boblog-input-group-addon:first-child {
+  border-right: 0;
+}
+
+/* 右侧插件：去掉左边框（与输入框共享） */
+.boblog-input-group-addon:last-child {
+  border-left: 0;
+}
+
+/* 组内输入框：去掉与相邻元素重叠的边框 */
+.boblog-input-group .boblog-input:not(:first-child) {
+  border-left: 0;
+}
+
+.boblog-input-group .boblog-input:not(:last-child) {
+  border-right: 0;
+}
+
+/* ========== 密码输入框 ========== */
+
+/**
+ * 密码输入框容器
+ *
+ * HTML 结构约定：
+ *   <div class="boblog-input-password">
+ *       <input type="password" class="boblog-input" placeholder="请输入密码">
+ *   </div>
+ *
+ * 可选属性：
+ *   data-visible="true"           — 默认显示密码（初始 type="text"）
+ *   data-visible="false"          — 默认隐藏密码（初始 type="password"，默认值）
+ *   data-toggle-password="false"  — 不显示切换按钮（纯密码输入框）
+ *   data-toggle-password="true"   — 显示切换按钮（默认值，可省略）
+ *
+ * JS 会自动生成切换按钮 .boblog-input-password-toggle
+ */
+.boblog-input-password {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+/* 密码输入框右侧留出切换按钮空间（仅有切换按钮时） */
+.boblog-input-password .boblog-input {
+  padding-right: 36px;
+}
+
+/* 无切换按钮时恢复正常 padding */
+.boblog-input-password[data-toggle-password="false"] .boblog-input {
+  padding-right: 10px;
+}
+
+/* 显示/隐藏切换按钮 */
+.boblog-input-password-toggle {
+  position: absolute;
+  right: 1px;
+  top: 1px;
+  bottom: 1px;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  color: var(--boblog-text-muted);              /* 弱化文字 #888888 */
+  font-size: var(--boblog-font-size-sm);        /* 12px */
+  padding: 0;
+  outline: none;
+  transition: color var(--boblog-transition-normal);
+}
+
+/* 切换按钮悬停 */
+.boblog-input-password-toggle:hover {
+  color: var(--boblog-text);                    /* 正文文字 #1A1A1A */
+}
+
+/* 禁用状态下切换按钮不可点击 */
+.boblog-input-password .boblog-input:disabled ~ .boblog-input-password-toggle {
+  cursor: not-allowed;
+  color: var(--boblog-text-disabled);           /* 禁用文字 #AAAAAA */
+}
+
+/* ========== 尺寸变体 ========== */
+
+/* 小尺寸输入框 */
+.boblog-input-sm {
+  padding: 4px 8px;
+  font-size: 12px;
+}
+
+/* 大尺寸输入框 */
+.boblog-input-lg {
+  padding: 8px 12px;
+  font-size: 14px;
+}

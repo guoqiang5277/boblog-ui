@@ -1,0 +1,451 @@
+/**
+ * Bo-Blog UI Components - Image
+ * 图片相关组件样式（图片展示、头像、缩略图、画廊）
+ * 经典蓝白配色，无圆角设计（头像圆形为可选变体）
+ */
+
+/* ========== 图片基础展示 ========== */
+
+/* 图片容器
+   包裹 <img> 标签的外层容器，提供边框和说明文字支持
+   默认 inline-block 行内块，宽度由图片决定 */
+.boblog-image {
+  display: inline-block;
+  border: 1px solid var(--boblog-border);
+  background-color: var(--boblog-bg);
+  vertical-align: top;
+  max-width: 100%;
+}
+
+/* 容器内图片
+   block 消除底部间隙，自适应容器宽度 */
+.boblog-image img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* 图片说明文字
+   显示在图片下方，居中对齐，灰色小字 */
+.boblog-image-caption {
+  padding: 6px 8px;
+  font-size: var(--boblog-font-size-sm, 12px);
+  color: var(--boblog-text-secondary, #555);
+  text-align: center;
+  border-top: 1px solid var(--boblog-border-light, #DDE8F0);
+}
+
+/* ========== 图片尺寸变体 ========== */
+
+/* 小图：最大宽度 150px */
+.boblog-image-sm {
+  max-width: 150px;
+}
+
+/* 中图：最大宽度 300px */
+.boblog-image-md {
+  max-width: 300px;
+}
+
+/* 大图：最大宽度 500px */
+.boblog-image-lg {
+  max-width: 500px;
+}
+
+/* 全宽：撑满父容器，改为 block 布局 */
+.boblog-image-full {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+}
+
+/* ========== 图片样式变体 ========== */
+
+/* 蓝色边框：使用品牌蓝色边框 */
+.boblog-image-bordered {
+  border-color: var(--boblog-border-blue, #9EC9FF);
+}
+
+/* 投影：经典 Bo-Blog 风格的右下角阴影 */
+.boblog-image-shadow {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* 左浮动：图片左浮，文字环绕在右侧 */
+.boblog-image-float-left {
+  float: left;
+  margin-right: 15px;
+  margin-bottom: 10px;
+}
+
+/* 右浮动：图片右浮，文字环绕在左侧 */
+.boblog-image-float-right {
+  float: right;
+  margin-left: 15px;
+  margin-bottom: 10px;
+}
+
+/* ========== 头像 ========== */
+
+/* 基础头像
+   默认 32x32px 方形，带蓝色细边框
+   overflow hidden 裁切图片 */
+.boblog-avatar {
+  display: inline-block;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--boblog-border-blue, #9EC9FF);
+  overflow: hidden;
+  vertical-align: middle;
+  flex-shrink: 0;
+}
+
+/* 头像内图片
+   撑满容器，object-fit cover 保持比例裁切 */
+.boblog-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ========== 头像尺寸变体 ========== */
+
+/* 超小：20x20px，用于行内紧凑列表 */
+.boblog-avatar-xs {
+  width: 20px;
+  height: 20px;
+}
+
+/* 小：24x24px，用于评论列表等 */
+.boblog-avatar-sm {
+  width: 24px;
+  height: 24px;
+}
+
+/* 中：40x40px，用于用户卡片 */
+.boblog-avatar-md {
+  width: 40px;
+  height: 40px;
+}
+
+/* 大：64x64px，用于个人资料页 */
+.boblog-avatar-lg {
+  width: 64px;
+  height: 64px;
+}
+
+/* 超大：96x96px，用于头像编辑、大型展示 */
+.boblog-avatar-xl {
+  width: 96px;
+  height: 96px;
+}
+
+/* ========== 头像形状变体 ========== */
+
+/* 圆形头像（唯一提供圆角的组件）
+   用于社交场景的圆形头像展示 */
+.boblog-avatar-round {
+  border-radius: 50%;
+}
+
+/* ========== 头像占位符 ========== */
+
+/* 无图时的占位头像
+   灰色背景，居中显示首字母或图标文字
+   字号根据容器大小自适应（默认 14px 对应 32px 头像） */
+.boblog-avatar-placeholder {
+  background-color: #e0e0e0;
+  color: var(--boblog-text-secondary, #555);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+/* 占位符尺寸自适应字号 */
+.boblog-avatar-xs.boblog-avatar-placeholder { font-size: 10px; }
+.boblog-avatar-sm.boblog-avatar-placeholder { font-size: 11px; }
+.boblog-avatar-md.boblog-avatar-placeholder { font-size: 16px; }
+.boblog-avatar-lg.boblog-avatar-placeholder { font-size: 24px; }
+.boblog-avatar-xl.boblog-avatar-placeholder { font-size: 36px; }
+
+/* ========== 缩略图列表 ========== */
+
+/* 缩略图容器
+   弹性布局，自动换行，间距 10px */
+.boblog-thumbs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* 单个缩略图
+   默认 80x80px 方形，带边框，鼠标手型
+   overflow hidden 裁切图片 */
+.boblog-thumb {
+  display: inline-block;
+  width: 80px;
+  height: 80px;
+  border: 1px solid var(--boblog-border, #C4D7E8);
+  overflow: hidden;
+  cursor: pointer;
+  transition: all var(--boblog-transition-normal, 0.2s);
+}
+
+/* 缩略图内图片
+   撑满容器，等比裁切 */
+.boblog-thumb img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 缩略图 hover：蓝色边框 + 轻微阴影 */
+.boblog-thumb:hover {
+  border-color: var(--boblog-blue, #0D6EAA);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* 缩略图选中态：2px 蓝色粗边框 */
+.boblog-thumb.boblog-thumb-active {
+  border: 2px solid var(--boblog-blue, #0D6EAA);
+}
+
+/* ========== 缩略图尺寸变体 ========== */
+
+/* 小缩略图：60x60px */
+.boblog-thumb-sm {
+  width: 60px;
+  height: 60px;
+}
+
+/* 大缩略图：120x120px */
+.boblog-thumb-lg {
+  width: 120px;
+  height: 120px;
+}
+
+/* ========== 画廊/相册 ========== */
+
+/* 画廊容器
+   CSS Grid 自适应列布局
+   每列最小 180px，自动填充可用宽度
+   间距 15px */
+.boblog-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 15px;
+}
+
+/* 画廊项
+   带边框，overflow hidden 裁切图片 */
+.boblog-gallery-item {
+  border: 1px solid var(--boblog-border, #C4D7E8);
+  overflow: hidden;
+  background-color: var(--boblog-bg, #fff);
+  transition: all var(--boblog-transition-normal, 0.2s);
+}
+
+/* 画廊项内图片
+   宽度撑满，固定高度 180px，等比裁切 */
+.boblog-gallery-item img {
+  display: block;
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* 画廊项说明文字
+   图片下方居中灰色小字，顶部分割线 */
+.boblog-gallery-item-caption {
+  padding: 6px 8px;
+  font-size: var(--boblog-font-size-sm, 12px);
+  color: var(--boblog-text-secondary, #555);
+  text-align: center;
+  border-top: 1px solid var(--boblog-border-light, #DDE8F0);
+}
+
+/* 画廊项 hover：蓝色边框 + 阴影提升 */
+.boblog-gallery-item:hover {
+  border-color: var(--boblog-blue, #0D6EAA);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+}
+
+/* ========== 画廊密度变体 ========== */
+
+/* 紧凑画廊：小列宽、小间距、低图片高度 */
+.boblog-gallery-compact {
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 8px;
+}
+
+.boblog-gallery-compact .boblog-gallery-item img {
+  height: 120px;
+}
+
+/* 宽松画廊：大列宽、大间距、高图片高度 */
+.boblog-gallery-loose {
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.boblog-gallery-loose .boblog-gallery-item img {
+  height: 240px;
+}
+
+/* ========== 幻灯片/轮播图 ========== */
+
+/* 幻灯片外层容器
+   相对定位，用于箭头和指示点的绝对定位参考
+   带边框，overflow hidden 隐藏超出内容 */
+.boblog-slideshow {
+  position: relative;
+  border: 1px solid var(--boblog-border, #C4D7E8);
+  overflow: hidden;
+  background-color: var(--boblog-bg, #fff);
+}
+
+/* 滑动轨道
+   flex 横向排列，scroll-snap 吸附到每张幻灯片
+   隐藏滚动条，平滑滚动 */
+.boblog-slideshow-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  scrollbar-width: none;           /* Firefox 隐藏滚动条 */
+  -ms-overflow-style: none;        /* IE/Edge 隐藏滚动条 */
+}
+
+/* WebKit 浏览器隐藏滚动条（Chrome/Safari） */
+.boblog-slideshow-track::-webkit-scrollbar {
+  display: none;
+}
+
+/* 单张幻灯片
+   不可收缩，宽度撑满容器，每次只显示一张
+   scroll-snap-align start 保证吸附到左边缘 */
+.boblog-slideshow-slide {
+  flex-shrink: 0;
+  width: 100%;
+  scroll-snap-align: start;
+  position: relative;
+}
+
+/* 幻灯片内图片
+   block 消除底部间隙，宽度撑满，高度自适应 */
+.boblog-slideshow-slide img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* 幻灯片说明文字
+   绝对定位在幻灯片底部，半透明黑色背景叠加
+   白色文字，居中对齐 */
+.boblog-slideshow-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  font-size: var(--boblog-font-size-sm, 12px);
+  text-align: center;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+/* 指示点容器
+   居中排列在幻灯片下方 */
+.boblog-slideshow-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 0;
+  background-color: var(--boblog-bg, #fff);
+}
+
+/* 单个指示点
+   小圆点，border-radius 50% 为功能需要（与头像圆形同理）
+   默认灰色，hover/active 变蓝 */
+.boblog-slideshow-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--boblog-border, #C4D7E8);
+  cursor: pointer;
+  transition: background-color var(--boblog-transition-normal, 0.2s);
+  text-decoration: none;
+  font-size: 0;
+  line-height: 0;
+}
+
+/* 指示点 hover：变蓝 */
+.boblog-slideshow-dot:hover {
+  background-color: var(--boblog-blue, #0D6EAA);
+}
+
+/* 指示点激活态：蓝色填充 */
+.boblog-slideshow-dot.active {
+  background-color: var(--boblog-blue, #0D6EAA);
+}
+
+/* 左右切换箭头
+   绝对定位在幻灯片两侧垂直居中
+   半透明黑色背景，白色箭头符号 */
+.boblog-slideshow-prev,
+.boblog-slideshow-next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 1;
+  z-index: 1;
+  transition: background var(--boblog-transition-normal, 0.2s);
+  cursor: pointer;
+}
+
+/* 左箭头：靠左 */
+.boblog-slideshow-prev {
+  left: 0;
+}
+
+/* 右箭头：靠右 */
+.boblog-slideshow-next {
+  right: 0;
+}
+
+/* 箭头 hover：加深背景 */
+.boblog-slideshow-prev:hover,
+.boblog-slideshow-next:hover {
+  background: rgba(0, 0, 0, 0.6);
+  text-decoration: none;
+  color: #fff;
+}
+
+/* ========== 幻灯片尺寸变体 ========== */
+
+/* 小幻灯片：最大宽度 400px */
+.boblog-slideshow-sm {
+  max-width: 400px;
+}
+
+/* 大幻灯片：最大宽度 800px */
+.boblog-slideshow-lg {
+  max-width: 800px;
+}
+
+/* 全宽幻灯片：撑满父容器 */
+.boblog-slideshow-full {
+  width: 100%;
+}

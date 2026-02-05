@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>评分 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+    <!-- 浮动目录 -->
+    <div class="boblog-toc">
+        <h4>目录</h4>
+        <ul id="tocList"></ul>
+    </div>
+
+    <div class="boblog-doc-container">
+        <!-- 顶部导航 -->
+        <div class="boblog-doc-nav">
+            <a href="../index.html">← 返回组件列表</a>
+        </div>
+
+        <h1>评分 (Rating)</h1>
+
+        <!-- 1. 基础用法 -->
+        <div class="boblog-doc-section">
+            <h2 id="基础用法">基础用法</h2>
+            <div class="boblog-doc-spec">
+                <h3>核心类名</h3>
+                <ul>
+                    <li><code>.boblog-rating</code> - 评分容器</li>
+                    <li><code>.boblog-rating-star</code> - 星星元素</li>
+                    <li><code>.boblog-rating-star.active</code> - 激活的星星</li>
+                    <li><code>.boblog-rating-text</code> - 评分文本</li>
+                </ul>
+            </div>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <!-- 预览面板 -->
+                <div class="boblog-tabs-panel active">
+                    <div class="boblog-doc-demo">
+                        <div class="boblog-rating" data-value="3">
+                            <span class="boblog-rating-star active">★</span>
+                            <span class="boblog-rating-star active">★</span>
+                            <span class="boblog-rating-star active">★</span>
+                            <span class="boblog-rating-star">★</span>
+                            <span class="boblog-rating-star">★</span>
+                            <span class="boblog-rating-text">3.0 分</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 关键源码面板 -->
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;div class="boblog-rating" data-value="3"&gt;
+    &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-text"&gt;3.0 分&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+                <!-- 完整源码面板 -->
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="boblog-rating" data-value="3"&gt;
+        &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-text"&gt;3.0 分&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. 半星效果 -->
+        <div class="boblog-doc-section">
+            <h2 id="半星效果">半星效果</h2>
+            <div class="boblog-doc-spec">
+                <h3>核心类名</h3>
+                <ul>
+                    <li><code>data-allow-half</code> - 启用半星点选（添加到容器）</li>
+                    <li><code>.boblog-rating-star.half</code> - 半星显示状态</li>
+                </ul>
+            </div>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <!-- 预览面板 -->
+                <div class="boblog-tabs-panel active">
+                    <div class="boblog-doc-demo">
+                        <div class="boblog-rating" data-value="3.5" data-allow-half>
+                            <span class="boblog-rating-star active">★</span>
+                            <span class="boblog-rating-star active">★</span>
+                            <span class="boblog-rating-star active">★</span>
+                            <span class="boblog-rating-star half">★</span>
+                            <span class="boblog-rating-star">★</span>
+                            <span class="boblog-rating-text">3.5 分</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 关键源码面板 -->
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;div class="boblog-rating" data-value="3.5" data-allow-half&gt;
+    &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star half"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-text"&gt;3.5 分&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+                <!-- 完整源码面板 -->
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="boblog-rating" data-value="3.5" data-allow-half&gt;
+        &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star half"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-text"&gt;3.5 分&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. 尺寸变体 -->
+        <div class="boblog-doc-section">
+            <h2 id="尺寸变体">尺寸变体</h2>
+            <div class="boblog-doc-spec">
+                <h3>核心类名</h3>
+                <ul>
+                    <li><code>.boblog-rating.small</code> - 小尺寸 (12px)</li>
+                    <li><code>.boblog-rating</code> - 默认尺寸 (16px)</li>
+                    <li><code>.boblog-rating.large</code> - 大尺寸 (24px)</li>
+                </ul>
+            </div>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <!-- 预览面板 -->
+                <div class="boblog-tabs-panel active">
+                    <div class="boblog-doc-demo">
+                        <div class="boblog-rating small" data-value="3">
+                            <span class="boblog-rating-star active">★</span>
+                            <span class="boblog-rating-star active">★</span>
+                            <span class="boblog-rating-star active">★</span>
+                            <span class="boblog-rating-star">★</span>
+                            <span class="boblog-rating-star">★</span>
+                            <span class="boblog-rating-text">小尺寸</span>
+                        </div>
+                        <br>
+                        <div class="boblog-rating" data-value="3">
+                            <span class="boblog-rating-star active">★</span>
+                            <span class="boblog-rating-star active">★</span>
+                            <span class="boblog-rating-star active">★</span>
+                            <span class="boblog-rating-star">★</span>
+                            <span class="boblog-rating-star">★</span>
+                            <span class="boblog-rating-text">默认尺寸</span>
+                        </div>
+                        <br>
+                        <div class="boblog-rating large" data-value="3">
+                            <span class="boblog-rating-star active">★</span>
+                            <span class="boblog-rating-star active">★</span>
+                            <span class="boblog-rating-star active">★</span>
+                            <span class="boblog-rating-star">★</span>
+                            <span class="boblog-rating-star">★</span>
+                            <span class="boblog-rating-text">大尺寸</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 关键源码面板 -->
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;div class="boblog-rating small" data-value="3"&gt;
+    &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-text"&gt;小尺寸&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class="boblog-rating" data-value="3"&gt;
+    &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-text"&gt;默认尺寸&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;div class="boblog-rating large" data-value="3"&gt;
+    &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-text"&gt;大尺寸&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+                <!-- 完整源码面板 -->
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="boblog-rating small" data-value="3"&gt;
+        &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-text"&gt;小尺寸&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class="boblog-rating" data-value="3"&gt;
+        &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-text"&gt;默认尺寸&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;div class="boblog-rating large" data-value="3"&gt;
+        &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-text"&gt;大尺寸&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. 只读模式 -->
+        <div class="boblog-doc-section">
+            <h2 id="只读模式">只读模式</h2>
+            <div class="boblog-doc-spec">
+                <h3>核心类名</h3>
+                <ul>
+                    <li><code>.boblog-rating.readonly</code> - 只读模式</li>
+                </ul>
+            </div>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <!-- 预览面板 -->
+                <div class="boblog-tabs-panel active">
+                    <div class="boblog-doc-demo">
+                        <div class="boblog-rating readonly">
+                            <span class="boblog-rating-star active">★</span>
+                            <span class="boblog-rating-star active">★</span>
+                            <span class="boblog-rating-star active">★</span>
+                            <span class="boblog-rating-star active">★</span>
+                            <span class="boblog-rating-star">★</span>
+                            <span class="boblog-rating-text">4.0 分</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 关键源码面板 -->
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;div class="boblog-rating readonly"&gt;
+    &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-text"&gt;4.0 分&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+                <!-- 完整源码面板 -->
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="boblog-rating readonly"&gt;
+        &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-text"&gt;4.0 分&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 5. 禁用状态 -->
+        <div class="boblog-doc-section">
+            <h2 id="禁用状态">禁用状态</h2>
+            <div class="boblog-doc-spec">
+                <h3>核心类名</h3>
+                <ul>
+                    <li><code>.boblog-rating.disabled</code> - 禁用状态</li>
+                </ul>
+            </div>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <!-- 预览面板 -->
+                <div class="boblog-tabs-panel active">
+                    <div class="boblog-doc-demo">
+                        <div class="boblog-rating disabled">
+                            <span class="boblog-rating-star active">★</span>
+                            <span class="boblog-rating-star active">★</span>
+                            <span class="boblog-rating-star active">★</span>
+                            <span class="boblog-rating-star">★</span>
+                            <span class="boblog-rating-star">★</span>
+                            <span class="boblog-rating-text">3.0 分</span>
+                        </div>
+                    </div>
+                </div>
+                <!-- 关键源码面板 -->
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;div class="boblog-rating disabled"&gt;
+    &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+    &lt;span class="boblog-rating-text"&gt;3.0 分&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+                <!-- 完整源码面板 -->
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="boblog-rating disabled"&gt;
+        &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star active"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-star"&gt;★&lt;/span&gt;
+        &lt;span class="boblog-rating-text"&gt;3.0 分&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- JavaScript API -->
+        <div class="doc-section">
+            <h2 id="JS-API">JavaScript API</h2>
+
+            <div class="section-part">
+                <h3>1. 自动初始化</h3>
+                <ul class="spec-list">
+                    <li>引入 <code>boblog-ui.js</code> 后，DOMContentLoaded 自动扫描 <code>.boblog-rating:not(.readonly):not(.disabled)</code></li>
+                    <li>无需手动调用任何函数</li>
+                </ul>
+            </div>
+
+            <div class="section-part">
+                <h3>2. 手动调用</h3>
+                <div class="boblog-codeblock">
+                    <pre><code class="language-javascript">// 初始化页面所有评分组件
+BoblogUI.rating.init();
+
+// 只初始化指定容器内的评分组件
+BoblogUI.rating.init(document.getElementById('myContainer'));</code></pre>
+                </div>
+            </div>
+
+            <div class="section-part">
+                <h3>3. 引入方式</h3>
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 引入 CSS（包含评分组件样式） --&gt;
+&lt;link rel="stylesheet" href="dist/boblog-ui.css"&gt;
+
+&lt;!-- 引入 JS（包含评分组件逻辑） --&gt;
+&lt;script src="dist/boblog-ui.js"&gt;&lt;/script&gt;
+
+&lt;!-- 或开发时单独引入 --&gt;
+&lt;script src="src/js/rating.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

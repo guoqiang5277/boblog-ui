@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>引用 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+    <!-- 浮动目录 -->
+    <div class="boblog-toc">
+        <h4>目录</h4>
+        <ul id="tocList"></ul>
+    </div>
+
+    <div class="boblog-doc-container">
+        <!-- 导航 -->
+        <div class="boblog-doc-nav">
+            <a href="../index.html">← 返回组件列表</a>
+        </div>
+
+        <h1>引用 (Blockquote)</h1>
+        <p class="boblog-doc-desc">本组件为纯 CSS 实现，无需引入 JavaScript</p>
+
+        <!-- 基础用法 -->
+        <div class="boblog-doc-section">
+            <h2 id="基础用法">基础用法</h2>
+            <div class="boblog-doc-spec">
+                <h3>规格说明</h3>
+                <ul>
+                    <li>使用 <code>.boblog-blockquote</code> 类创建基础引用块</li>
+                    <li>使用 <code>.boblog-blockquote-footer</code> 添加引用来源</li>
+                    <li>左侧蓝色竖线边框，浅蓝色背景</li>
+                    <li>适当的内边距和间距</li>
+                </ul>
+            </div>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <!-- 预览面板 -->
+                <div class="boblog-tabs-panel active">
+                    <div class="boblog-doc-demo">
+                        <blockquote class="boblog-blockquote">
+                            学而不思则罔，思而不学则殆。
+                            <div class="boblog-blockquote-footer">孔子《论语》</div>
+                        </blockquote>
+                    </div>
+                </div>
+                <!-- 关键源码面板 -->
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;blockquote class="boblog-blockquote"&gt;
+    学而不思则罔，思而不学则殆。
+    &lt;div class="boblog-blockquote-footer"&gt;孔子《论语》&lt;/div&gt;
+&lt;/blockquote&gt;</code></pre>
+                    </div>
+                </div>
+                <!-- 完整源码面板 -->
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;blockquote class="boblog-blockquote"&gt;
+        学而不思则罔，思而不学则殆。
+        &lt;div class="boblog-blockquote-footer"&gt;孔子《论语》&lt;/div&gt;
+    &lt;/blockquote&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 颜色变体 -->
+        <div class="boblog-doc-section">
+            <h2 id="颜色变体">颜色变体</h2>
+            <div class="boblog-doc-spec">
+                <h3>规格说明</h3>
+                <ul>
+                    <li>添加 <code>.success</code> / <code>.warning</code> / <code>.danger</code> / <code>.info</code> 类改变颜色</li>
+                    <li>不同颜色用于不同的语义场景</li>
+                    <li>保持与主题色调一致</li>
+                </ul>
+            </div>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <!-- 预览面板 -->
+                <div class="boblog-tabs-panel active">
+                    <div class="boblog-doc-demo">
+                        <blockquote class="boblog-blockquote success">
+                            操作成功完成！您的数据已保存。
+                            <div class="boblog-blockquote-footer">系统提示</div>
+                        </blockquote>
+                        <blockquote class="boblog-blockquote warning">
+                            请注意：此操作可能影响现有数据。
+                            <div class="boblog-blockquote-footer">警告信息</div>
+                        </blockquote>
+                        <blockquote class="boblog-blockquote danger">
+                            错误：无法连接到服务器，请稍后重试。
+                            <div class="boblog-blockquote-footer">错误信息</div>
+                        </blockquote>
+                        <blockquote class="boblog-blockquote info">
+                            提示：您可以使用快捷键 Ctrl+S 保存文档。
+                            <div class="boblog-blockquote-footer">使用提示</div>
+                        </blockquote>
+                    </div>
+                </div>
+                <!-- 关键源码面板 -->
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;blockquote class="boblog-blockquote success"&gt;
+    操作成功完成！您的数据已保存。
+    &lt;div class="boblog-blockquote-footer"&gt;系统提示&lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote class="boblog-blockquote warning"&gt;
+    请注意：此操作可能影响现有数据。
+    &lt;div class="boblog-blockquote-footer"&gt;警告信息&lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote class="boblog-blockquote danger"&gt;
+    错误：无法连接到服务器，请稍后重试。
+    &lt;div class="boblog-blockquote-footer"&gt;错误信息&lt;/div&gt;
+&lt;/blockquote&gt;
+
+&lt;blockquote class="boblog-blockquote info"&gt;
+    提示：您可以使用快捷键 Ctrl+S 保存文档。
+    &lt;div class="boblog-blockquote-footer"&gt;使用提示&lt;/div&gt;
+&lt;/blockquote&gt;</code></pre>
+                    </div>
+                </div>
+                <!-- 完整源码面板 -->
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;blockquote class="boblog-blockquote success"&gt;
+        操作成功完成！您的数据已保存。
+        &lt;div class="boblog-blockquote-footer"&gt;系统提示&lt;/div&gt;
+    &lt;/blockquote&gt;
+
+    &lt;blockquote class="boblog-blockquote warning"&gt;
+        请注意：此操作可能影响现有数据。
+        &lt;div class="boblog-blockquote-footer"&gt;警告信息&lt;/div&gt;
+    &lt;/blockquote&gt;
+
+    &lt;blockquote class="boblog-blockquote danger"&gt;
+        错误：无法连接到服务器，请稍后重试。
+        &lt;div class="boblog-blockquote-footer"&gt;错误信息&lt;/div&gt;
+    &lt;/blockquote&gt;
+
+    &lt;blockquote class="boblog-blockquote info"&gt;
+        提示：您可以使用快捷键 Ctrl+S 保存文档。
+        &lt;div class="boblog-blockquote-footer"&gt;使用提示&lt;/div&gt;
+    &lt;/blockquote&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 大号引用 -->
+        <div class="boblog-doc-section">
+            <h2 id="大号引用">大号引用</h2>
+            <div class="boblog-doc-spec">
+                <h3>规格说明</h3>
+                <ul>
+                    <li>添加 <code>.large</code> 类创建大号引用</li>
+                    <li>字号更大，内边距更宽松</li>
+                    <li>适合重要内容或长文引用</li>
+                </ul>
+            </div>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <!-- 预览面板 -->
+                <div class="boblog-tabs-panel active">
+                    <div class="boblog-doc-demo">
+                        <blockquote class="boblog-blockquote large">
+                            人生天地之间，若白驹过隙，忽然而已。故圣人不贵尺之璧，而重寸之阴，时难得而易失也。
+                            <div class="boblog-blockquote-footer">《淮南子·原道训》</div>
+                        </blockquote>
+                    </div>
+                </div>
+                <!-- 关键源码面板 -->
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;blockquote class="boblog-blockquote large"&gt;
+    人生天地之间，若白驹过隙，忽然而已。故圣人不贵尺之璧，而重寸之阴，时难得而易失也。
+    &lt;div class="boblog-blockquote-footer"&gt;《淮南子·原道训》&lt;/div&gt;
+&lt;/blockquote&gt;</code></pre>
+                    </div>
+                </div>
+                <!-- 完整源码面板 -->
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;blockquote class="boblog-blockquote large"&gt;
+        人生天地之间，若白驹过隙，忽然而已。故圣人不贵尺之璧，而重寸之阴，时难得而易失也。
+        &lt;div class="boblog-blockquote-footer"&gt;《淮南子·原道训》&lt;/div&gt;
+    &lt;/blockquote&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 居中引用 -->
+        <div class="boblog-doc-section">
+            <h2 id="居中引用">居中引用</h2>
+            <div class="boblog-doc-spec">
+                <h3>规格说明</h3>
+                <ul>
+                    <li>添加 <code>.center</code> 类创建居中引用</li>
+                    <li>文字居中对齐</li>
+                    <li>移除左侧边框，添加上下边框</li>
+                    <li>适合作为独立的引用段落</li>
+                </ul>
+            </div>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <!-- 预览面板 -->
+                <div class="boblog-tabs-panel active">
+                    <div class="boblog-doc-demo">
+                        <blockquote class="boblog-blockquote center">
+                            天行健，君子以自强不息；地势坤，君子以厚德载物。
+                            <div class="boblog-blockquote-footer">《周易》</div>
+                        </blockquote>
+                    </div>
+                </div>
+                <!-- 关键源码面板 -->
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;blockquote class="boblog-blockquote center"&gt;
+    天行健，君子以自强不息；地势坤，君子以厚德载物。
+    &lt;div class="boblog-blockquote-footer"&gt;《周易》&lt;/div&gt;
+&lt;/blockquote&gt;</code></pre>
+                    </div>
+                </div>
+                <!-- 完整源码面板 -->
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;blockquote class="boblog-blockquote center"&gt;
+        天行健，君子以自强不息；地势坤，君子以厚德载物。
+        &lt;div class="boblog-blockquote-footer"&gt;《周易》&lt;/div&gt;
+    &lt;/blockquote&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 带引号图标 -->
+        <div class="boblog-doc-section">
+            <h2 id="带引号图标">带引号图标</h2>
+            <div class="boblog-doc-spec">
+                <h3>规格说明</h3>
+                <ul>
+                    <li>添加 <code>.with-icon</code> 类显示引号图标</li>
+                    <li>在内容前显示大号引号符号</li>
+                    <li>增加视觉装饰效果</li>
+                    <li>可与其他修饰类组合使用</li>
+                </ul>
+            </div>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <!-- 预览面板 -->
+                <div class="boblog-tabs-panel active">
+                    <div class="boblog-doc-demo">
+                        <blockquote class="boblog-blockquote with-icon">
+                            知之为知之，不知为不知，是知也。
+                            <div class="boblog-blockquote-footer">孔子《论语》</div>
+                        </blockquote>
+                    </div>
+                </div>
+                <!-- 关键源码面板 -->
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;blockquote class="boblog-blockquote with-icon"&gt;
+    知之为知之，不知为不知，是知也。
+    &lt;div class="boblog-blockquote-footer"&gt;孔子《论语》&lt;/div&gt;
+&lt;/blockquote&gt;</code></pre>
+                    </div>
+                </div>
+                <!-- 完整源码面板 -->
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;blockquote class="boblog-blockquote with-icon"&gt;
+        知之为知之，不知为不知，是知也。
+        &lt;div class="boblog-blockquote-footer"&gt;孔子《论语》&lt;/div&gt;
+    &lt;/blockquote&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

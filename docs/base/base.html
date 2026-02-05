@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>基础规范 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="doc-gray-bg">
+    <div class="doc-container">
+        <div class="doc-nav">
+            <a href="../index.html">← 返回总纲</a>
+        </div>
+
+        <h1>基础设计规范</h1>
+
+        <!-- 色彩体系 -->
+        <div class="doc-section">
+            <h2>色彩体系</h2>
+
+            <div class="doc-spec">
+                <h3>规范说明</h3>
+                <p>Bo-Blog 经典的蓝白配色方案，清爽简洁的视觉风格。</p>
+            </div>
+
+            <div class="doc-demo">
+                <h3>主题色</h3>
+                <div class="color-grid">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #0D80BD;"></div>
+                        <div class="color-info">
+                            <div class="color-name">主题蓝</div>
+                            <div class="color-value">--boblog-primary: #0D80BD</div>
+                            <div class="color-value">用于标题、链接</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #2E93C9;"></div>
+                        <div class="color-info">
+                            <div class="color-name">强调蓝</div>
+                            <div class="color-value">--boblog-accent: #2E93C9</div>
+                            <div class="color-value">日期月份背景</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>边框色</h3>
+                <div class="color-grid">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #9EC9FF;"></div>
+                        <div class="color-info">
+                            <div class="color-name">浅蓝边框</div>
+                            <div class="color-value">--boblog-border-light: #9EC9FF</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #A9DBF6;"></div>
+                        <div class="color-info">
+                            <div class="color-name">中蓝边框</div>
+                            <div class="color-value">--boblog-border-medium: #A9DBF6</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #D3E7FC;"></div>
+                        <div class="color-info">
+                            <div class="color-name">淡蓝边框</div>
+                            <div class="color-value">--boblog-border-pale: #D3E7FC</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>背景色</h3>
+                <div class="color-grid">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #F4FBFF;"></div>
+                        <div class="color-info">
+                            <div class="color-name">浅蓝背景</div>
+                            <div class="color-value">--boblog-bg-blue-light: #F4FBFF</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #F5FBFE;"></div>
+                        <div class="color-info">
+                            <div class="color-name">侧边栏背景</div>
+                            <div class="color-value">--boblog-bg-sidebar: #F5FBFE</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #EFF6FE;"></div>
+                        <div class="color-info">
+                            <div class="color-name">日期背景</div>
+                            <div class="color-value">--boblog-bg-date: #EFF6FE</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>功能色</h3>
+                <div class="color-grid">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #52C41A;"></div>
+                        <div class="color-info">
+                            <div class="color-name">成功色</div>
+                            <div class="color-value">--boblog-success: #52C41A</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #FAAD14;"></div>
+                        <div class="color-info">
+                            <div class="color-name">警告色</div>
+                            <div class="color-value">--boblog-warning: #FAAD14</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #F5222D;"></div>
+                        <div class="color-info">
+                            <div class="color-name">错误色</div>
+                            <div class="color-value">--boblog-danger: #F5222D</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #1890FF;"></div>
+                        <div class="color-info">
+                            <div class="color-name">信息色</div>
+                            <div class="color-value">--boblog-info: #1890FF</div>
+                        </div>
+                    </div>
+                </div>
+
+                <h3>文字色</h3>
+                <div class="color-grid">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #333333;"></div>
+                        <div class="color-info">
+                            <div class="color-name">主文字</div>
+                            <div class="color-value">--boblog-text-primary: #333</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #666666;"></div>
+                        <div class="color-info">
+                            <div class="color-name">次要文字</div>
+                            <div class="color-value">--boblog-text-secondary: #666</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #999999;"></div>
+                        <div class="color-info">
+                            <div class="color-name">辅助文字</div>
+                            <div class="color-value">--boblog-text-tertiary: #999</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="doc-code">
+                <h3>CSS 变量</h3>
+                <pre><code>/* 主题色 */
+--boblog-primary: #0D80BD;
+--boblog-accent: #2E93C9;
+
+/* 边框色 */
+--boblog-border-light: #9EC9FF;
+--boblog-border-medium: #A9DBF6;
+--boblog-border-pale: #D3E7FC;
+
+/* 背景色 */
+--boblog-bg-blue-light: #F4FBFF;
+--boblog-bg-sidebar: #F5FBFE;
+--boblog-bg-date: #EFF6FE;
+
+/* 功能色 */
+--boblog-success: #52C41A;
+--boblog-warning: #FAAD14;
+--boblog-danger: #F5222D;
+--boblog-info: #1890FF;
+
+/* 文字色 */
+--boblog-text-primary: #333;
+--boblog-text-secondary: #666;
+--boblog-text-tertiary: #999;</code></pre>
+            </div>
+        </div>
+
+        <!-- 字体体系 -->
+        <div class="doc-section">
+            <h2>字体体系</h2>
+
+            <div class="doc-spec">
+                <h3>规范说明</h3>
+                <p>经典的 Tahoma、Arial 字体族，12px 基础字号，150% 行高。</p>
+                <ul>
+                    <li>字体族：Tahoma, Arial, "Microsoft YaHei", sans-serif</li>
+                    <li>基础字号：12px</li>
+                    <li>基础行高：1.5 (150%)</li>
+                </ul>
+            </div>
+
+            <div class="doc-demo">
+                <h3>字号展示</h3>
+                <div class="font-demo" style="font-size: 10px;">
+                    <strong>xs (10px)</strong> - 这是超小字号文本，用于辅助说明
+                </div>
+                <div class="font-demo" style="font-size: 11px;">
+                    <strong>sm (11px)</strong> - 这是小号字号文本，用于次要信息
+                </div>
+                <div class="font-demo" style="font-size: 12px;">
+                    <strong>base (12px)</strong> - 这是基础字号文本，用于正文内容
+                </div>
+                <div class="font-demo" style="font-size: 14px;">
+                    <strong>md (14px)</strong> - 这是中号字号文本，用于小标题
+                </div>
+                <div class="font-demo" style="font-size: 16px;">
+                    <strong>lg (16px)</strong> - 这是大号字号文本，用于标题
+                </div>
+                <div class="font-demo" style="font-size: 18px;">
+                    <strong>xl (18px)</strong> - 这是超大字号文本，用于主标题
+                </div>
+                <div class="font-demo" style="font-size: 20px;">
+                    <strong>2xl (20px)</strong> - 这是特大字号文本，用于页面标题
+                </div>
+                <div class="font-demo" style="font-size: 24px;">
+                    <strong>3xl (24px)</strong> - 这是巨大字号文本，用于特殊标题
+                </div>
+            </div>
+
+            <div class="doc-code">
+                <h3>CSS 变量</h3>
+                <pre><code>/* 字体族 */
+--boblog-font-family: Tahoma, Arial, "Microsoft YaHei", sans-serif;
+
+/* 字号 */
+--boblog-font-xs: 10px;
+--boblog-font-sm: 11px;
+--boblog-font-base: 12px;
+--boblog-font-md: 14px;
+--boblog-font-lg: 16px;
+--boblog-font-xl: 18px;
+--boblog-font-2xl: 20px;
+--boblog-font-3xl: 24px;
+
+/* 行高 */
+--boblog-line-height: 1.5;</code></pre>
+            </div>
+        </div>
+
+        <!-- 间距体系 -->
+        <div class="doc-section">
+            <h2>间距体系</h2>
+
+            <div class="doc-spec">
+                <h3>规范说明</h3>
+                <p>统一的间距规范，基于 4px 基础单位。</p>
+                <ul>
+                    <li>xs: 4px - 最小间距</li>
+                    <li>sm: 8px - 小间距</li>
+                    <li>md: 16px - 标准间距</li>
+                    <li>lg: 24px - 大间距</li>
+                    <li>xl: 32px - 超大间距</li>
+                    <li>2xl: 48px - 特大间距</li>
+                </ul>
+            </div>
+
+            <div class="doc-demo">
+                <h3>间距展示</h3>
+                <div style="margin-bottom: 10px;">
+                    <span class="spacing-demo" style="padding: 4px;">xs (4px)</span>
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <span class="spacing-demo" style="padding: 8px;">sm (8px)</span>
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <span class="spacing-demo" style="padding: 16px;">md (16px)</span>
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <span class="spacing-demo" style="padding: 24px;">lg (24px)</span>
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <span class="spacing-demo" style="padding: 32px;">xl (32px)</span>
+                </div>
+                <div style="margin-bottom: 10px;">
+                    <span class="spacing-demo" style="padding: 48px;">2xl (48px)</span>
+                </div>
+            </div>
+
+            <div class="doc-code">
+                <h3>CSS 变量</h3>
+                <pre><code>/* 间距 */
+--boblog-spacing-xs: 4px;
+--boblog-spacing-sm: 8px;
+--boblog-spacing-md: 16px;
+--boblog-spacing-lg: 24px;
+--boblog-spacing-xl: 32px;
+--boblog-spacing-2xl: 48px;</code></pre>
+            </div>
+        </div>
+
+        <!-- 排版示例 -->
+        <div class="doc-section">
+            <h2>排版示例</h2>
+
+            <div class="doc-spec">
+                <h3>规范说明</h3>
+                <p>标题、段落、链接、代码等基础排版元素的默认样式。</p>
+            </div>
+
+            <div class="doc-demo">
+                <div class="typography-demo">
+                    <h1>一级标题 H1 (24px)</h1>
+                    <h2>二级标题 H2 (20px)</h2>
+                    <h3>三级标题 H3 (18px)</h3>
+                    <h4>四级标题 H4 (16px)</h4>
+                    <h5>五级标题 H5 (14px)</h5>
+                    <h6>六级标题 H6 (12px)</h6>
+
+                    <p>这是一个段落。Bo-Blog UI 是基于 Bo-Blog V2.1 Default Skin 的经典设计风格，采用浅蓝白色调，清爽简洁的视觉效果。适用于 2000 年代风格的独立博客和内容管理系统。</p>
+
+                    <p>这是包含<a href="#">链接</a>的段落文本。链接使用主题蓝色 #0D80BD，鼠标悬停时显示下划线。</p>
+
+                    <p>这是包含<strong>粗体文字</strong>和<em>斜体文字</em>的段落。还可以使用<code>行内代码</code>样式。</p>
+
+                    <pre><code>// 这是代码块示例
+function hello() {
+    console.log("Hello, Bo-Blog UI!");
+}</code></pre>
+
+                    <blockquote>
+                        这是一个引用块。用于引用其他来源的内容或特别强调的文字。
+                    </blockquote>
+
+                    <ul>
+                        <li>无序列表项 1</li>
+                        <li>无序列表项 2</li>
+                        <li>无序列表项 3</li>
+                    </ul>
+
+                    <ol>
+                        <li>有序列表项 1</li>
+                        <li>有序列表项 2</li>
+                        <li>有序列表项 3</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="doc-code">
+                <h3>源码展示</h3>
+                <pre><code>&lt;h1&gt;一级标题 H1&lt;/h1&gt;
+&lt;h2&gt;二级标题 H2&lt;/h2&gt;
+&lt;h3&gt;三级标题 H3&lt;/h3&gt;
+
+&lt;p&gt;这是一个段落。&lt;/p&gt;
+&lt;p&gt;这是包含&lt;a href="#"&gt;链接&lt;/a&gt;的段落。&lt;/p&gt;
+&lt;p&gt;这是包含&lt;strong&gt;粗体&lt;/strong&gt;和&lt;em&gt;斜体&lt;/em&gt;的段落。&lt;/p&gt;
+
+&lt;code&gt;行内代码&lt;/code&gt;
+
+&lt;pre&gt;&lt;code&gt;代码块内容&lt;/code&gt;&lt;/pre&gt;
+
+&lt;blockquote&gt;引用块内容&lt;/blockquote&gt;
+
+&lt;ul&gt;
+    &lt;li&gt;列表项 1&lt;/li&gt;
+    &lt;li&gt;列表项 2&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

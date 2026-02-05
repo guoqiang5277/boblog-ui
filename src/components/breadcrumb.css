@@ -1,0 +1,92 @@
+/**
+ * Bo-Blog UI Components - Breadcrumb
+ * 面包屑导航组件样式
+ * 经典蓝白配色，无圆角设计
+ */
+
+/* 面包屑容器 */
+.boblog-breadcrumb {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  font-size: var(--boblog-font-size-sm);
+  font-family: Tahoma, Arial, sans-serif;
+  color: var(--boblog-text-dark);
+  padding: var(--boblog-spacing-sm) 0;
+  list-style: none;
+  margin: 0;
+}
+
+/* 面包屑项目 */
+.boblog-breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  color: var(--boblog-text-dark);
+}
+
+/* 面包屑链接 */
+.boblog-breadcrumb-item a {
+  color: var(--boblog-text-dark);
+  text-decoration: none;
+  transition: color var(--boblog-transition-normal);
+}
+
+.boblog-breadcrumb-item a:hover {
+  color: var(--boblog-blue-primary);
+  text-decoration: underline;
+}
+
+/* 分隔符（支持通过 CSS 变量自定义） */
+.boblog-breadcrumb-item::after {
+  content: var(--separator, ">");
+  display: inline-block;
+  margin: 0 8px;
+  color: var(--boblog-text-gray);
+  font-weight: normal;
+}
+
+/* 最后一项不显示分隔符 */
+.boblog-breadcrumb-item:last-child::after {
+  display: none;
+}
+
+/* 当前页（最后一项） */
+.boblog-breadcrumb-item:last-child {
+  color: var(--boblog-text-gray);
+  font-weight: normal;
+}
+
+.boblog-breadcrumb-item:last-child a {
+  color: var(--boblog-text-gray);
+  cursor: default;
+  pointer-events: none;
+}
+
+/* 面包屑图标 */
+.boblog-breadcrumb-icon {
+  display: inline-block;
+  margin-right: 4px;
+  font-size: 14px;
+}
+
+/* 面包屑在浅蓝背景中的样式 */
+.boblog-breadcrumb-panel {
+  background-color: var(--boblog-bg-panel);
+  border: 1px solid var(--boblog-blue-border-light);
+  padding: var(--boblog-spacing-sm) var(--boblog-spacing-md);
+}
+
+/* 紧凑模式 */
+.boblog-breadcrumb-compact {
+  font-size: 11px;
+  padding: 5px 0;
+}
+
+.boblog-breadcrumb-compact .boblog-breadcrumb-item::after {
+  margin: 0 5px;
+}
+
+/* 斜线分隔符变体 */
+.boblog-breadcrumb-slash {
+  --separator: "/";
+}

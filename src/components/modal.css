@@ -1,0 +1,306 @@
+/**
+ * Bo-Blog Modal Component
+ * 模态框组件 - 基于 Bo-Blog V2.1 经典风格
+ * 无圆角设计，蓝白边框，遮罩居中
+ *
+ * 默认行为：自适应（宽 640px，高度由内容撑开，不超过视口）
+ * 固定模式：加 .boblog-modal-fixed 后宽高均固定（需配合尺寸类使用）
+ *
+ * 固定尺寸规格（窗体 width × height，需加 .boblog-modal-fixed）：
+ *   sm     — 240 × 100    （头部 28px，字号 12px，关闭按钮 16×16/14px，内容区 12px/1.4，底部 28px，按钮 48×22/12px/1.4）
+ *   默认   — 640 × 360    （头部 42px，字号 14px，关闭按钮 20×20/18px，内容区 13px/1.6，底部 50px，按钮 72×30/13px/1.5）
+ *   lg     — 1080 × 720   （头部 56px，字号 18px，关闭按钮 28×28/24px，内容区 15px/1.7，底部 68px，按钮 100×40/15px/1.6）
+ *   xl     — 1440 × 960   （头部 72px，字号 22px，关闭按钮 36×36/30px，内容区 17px/1.8，底部 88px，按钮 130×52/17px/1.7）
+ *
+ * 包含：
+ *   - .boblog-modal-backdrop          — 全屏遮罩层（fixed，rgba(0,0,0,0.5)，z-index 900，默认隐藏，padding 20px）
+ *   - .boblog-modal-open              — 打开状态（加在 backdrop 上，display: flex 居中显示）
+ *   - .boblog-modal                   — 模态框容器（白底蓝边，默认自适应，宽 640px，高度 auto，flex纵向，阴影 0 4px 12px）
+ *   - .boblog-modal-fixed             — 固定模式（加在 .boblog-modal 上，启用固定宽高 640×360）
+ *   - .boblog-modal-header            — 头部（flex两端对齐，默认高 42px，底边框 #DDE8F0，背景 #F5F8FB）
+ *   - .boblog-modal-title             — 标题文字（默认 14px，bold，#1A1A1A）
+ *   - .boblog-modal-close             — 关闭按钮（默认 20×20px，18px字号，无边框透明背景，#888888）
+ *   - .boblog-modal-body              — 内容区域（flex:1，默认 13px字号，行高1.6，overflow-y auto）
+ *   - .boblog-modal-footer            — 底部（flex右对齐，默认高 50px，gap 8px，顶边框 #DDE8F0，背景 #F5F8FB）
+ *   - .boblog-modal-footer .boblog-btn — 底部按钮（默认 72×30px，13px字号，行高1.5）
+ *   - .boblog-modal-sm                — 小尺寸（宽 240px，固定时 240×100）
+ *   - .boblog-modal-lg                — 大尺寸（宽 1080px，固定时 1080×720）
+ *   - .boblog-modal-xl                — 超大尺寸（宽 1440px，固定时 1440×960）
+ *   - .boblog-modal-no-header         — 无头部模式（body padding-top 20px）
+ *   - .boblog-modal-no-footer         — 无底部模式（body padding-bottom 15px）
+ *   - .boblog-modal-body-center       — 内容居中对齐（flex纵向居中，text-align center）
+ */
+
+/* ========== 遮罩层 ========== */
+/* 全屏固定定位，半透明黑底，弹性居中子元素，默认隐藏 */
+.boblog-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: var(--boblog-z-index-modal-backdrop);         /* 遮罩层级 900 */
+  display: none;                                         /* 默认隐藏 */
+  align-items: center;
+  justify-content: center;
+  padding: var(--boblog-spacing-lg);                     /* 外边距 20px */
+  overflow: auto;                                        /* 滚动发生在遮罩层，而非页面背景 */
+}
+
+/* 打开状态：加在 .boblog-modal-backdrop 上，切换为 flex 显示 */
+.boblog-modal-backdrop.boblog-modal-open {
+  display: flex;
+}
+
+/* ========== 模态框容器 ========== */
+/* 白底蓝边，弹性纵向布局，默认自适应：宽 640px，高度由内容撑开，不超过视口 */
+.boblog-modal {
+  position: relative;
+  width: 640px;                                          /* 默认宽度 640px */
+  height: auto;                                          /* 默认自适应：高度由内容撑开 */
+  max-width: calc(100vw - 40px);                         /* 宽度不超过视口（减去 backdrop padding） */
+  max-height: calc(100vh - 40px);                        /* 高度不超过视口（减去 backdrop padding） */
+  background-color: var(--boblog-bg);                    /* 主背景 #FFFFFF */
+  border: 1px solid var(--boblog-border-blue);           /* 蓝色边框 #9EC9FF */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);           /* 轻微阴影增加层次 */
+  flex-shrink: 0;                                        /* 不被遮罩层压缩 */
+}
+
+/* ========== 固定模式 ========== */
+/* 加在 .boblog-modal 上，启用固定宽高（默认 640×360），配合尺寸类使用 */
+.boblog-modal-fixed {
+  height: 360px;                                         /* 固定默认高度 360px */
+  max-width: none;                                       /* 取消视口宽度限制 */
+  max-height: none;                                      /* 取消视口高度限制 */
+}
+
+/* ========== 模态框头部 ========== */
+/* 标题与关闭按钮水平排列，底部分隔线，默认高度 42px */
+.boblog-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 42px;                                          /* 默认头部高度 42px */
+  padding: 0 15px;                                       /* 左右内边距 15px，高度由 height 控制 */
+  border-bottom: 1px solid var(--boblog-border-light);   /* 次边框 #DDE8F0 */
+  background-color: var(--boblog-bg-subtle);             /* 次背景 #F5F8FB */
+  flex-shrink: 0;                                        /* 不被压缩 */
+}
+
+/* 标题文字 */
+.boblog-modal-title {
+  margin: 0;
+  font-size: var(--boblog-font-size-md);                 /* 14px */
+  font-weight: bold;
+  color: var(--boblog-text);                             /* 正文文字 #1A1A1A */
+}
+
+/* 关闭按钮：无边框透明背景，默认 20×20px，字号 18px */
+.boblog-modal-close {
+  padding: 0;
+  border: none;
+  background: transparent;
+  font-size: 18px;                                       /* 默认关闭按钮字号 18px */
+  color: var(--boblog-text-muted);                       /* 弱化文字 #888888 */
+  cursor: pointer;
+  line-height: 1;
+  width: 20px;                                           /* 默认关闭按钮宽 20px */
+  height: 20px;                                          /* 默认关闭按钮高 20px */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 关闭按钮悬停：文字加深 */
+.boblog-modal-close:hover {
+  color: var(--boblog-text);                             /* 正文文字 #1A1A1A */
+}
+
+/* ========== 模态框内容区域 ========== */
+/* 弹性填满剩余空间，超出可滚动，默认字号 13px，行高 1.6 */
+.boblog-modal-body {
+  flex: 1;
+  padding: 12px 15px;                                    /* 内容区内边距 */
+  overflow-y: auto;
+  font-size: 13px;                                       /* 默认内容区字号 13px */
+  line-height: 1.6;                                      /* 默认内容区行高 1.6 */
+  color: var(--boblog-text);                             /* 正文文字 #1A1A1A */
+}
+
+/* ========== 模态框底部 ========== */
+/* 操作按钮右对齐，顶部分隔线，默认高度 50px */
+.boblog-modal-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 50px;                                          /* 默认底部高度 50px */
+  gap: 8px;                                              /* 按钮间距 8px */
+  padding: 0 15px;                                       /* 左右内边距 15px，高度由 height 控制 */
+  border-top: 1px solid var(--boblog-border-light);      /* 次边框 #DDE8F0 */
+  background-color: var(--boblog-bg-subtle);             /* 次背景 #F5F8FB */
+  flex-shrink: 0;                                        /* 不被压缩 */
+}
+
+/* ========== 模态框内按钮 ========== */
+/* 模态框内的按钮，默认 72×30px，字号 13px，行高 1.5 */
+.boblog-modal-footer .boblog-btn {
+  width: 72px;                                           /* 默认按钮宽 72px */
+  height: 30px;                                          /* 默认按钮高 30px */
+  padding: 0;                                            /* 尺寸由 width/height 控制 */
+  font-size: 13px;                                       /* 默认按钮字号 13px */
+  line-height: 1.5;                                      /* 默认按钮行高 1.5 */
+}
+
+/* ========== 尺寸变体 ========== */
+
+/* ---------- 小尺寸 sm：宽 240px，固定时 240×100，适合简单提示或确认 ---------- */
+.boblog-modal-sm {
+  width: 240px;                                          /* sm 窗体宽 240px */
+}
+/* sm 固定模式：高 100px */
+.boblog-modal-sm.boblog-modal-fixed {
+  height: 100px;                                         /* sm 固定高度 100px */
+}
+/* sm 头部：高 28px，字号 12px */
+.boblog-modal-sm .boblog-modal-header {
+  height: 28px;                                          /* sm 头部高 28px */
+}
+.boblog-modal-sm .boblog-modal-title {
+  font-size: 12px;                                       /* sm 标题字号 12px */
+}
+/* sm 关闭按钮：16×16px，字号 14px */
+.boblog-modal-sm .boblog-modal-close {
+  width: 16px;                                           /* sm 关闭按钮宽 16px */
+  height: 16px;                                          /* sm 关闭按钮高 16px */
+  font-size: 14px;                                       /* sm 关闭按钮字号 14px */
+}
+/* sm 内容区：字号 12px，行高 1.4 */
+.boblog-modal-sm .boblog-modal-body {
+  font-size: 12px;                                       /* sm 内容区字号 12px */
+  line-height: 1.4;                                      /* sm 内容区行高 1.4 */
+  padding: 6px 10px;                                     /* sm 内容区内边距 */
+}
+/* sm 底部：高 28px */
+.boblog-modal-sm .boblog-modal-footer {
+  height: 28px;                                          /* sm 底部高 28px */
+  padding: 0 10px;                                       /* sm 底部左右内边距 */
+  gap: 6px;                                              /* sm 按钮间距 6px */
+}
+/* sm 按钮：48×22px，字号 12px，行高 1.4 */
+.boblog-modal-sm .boblog-modal-footer .boblog-btn {
+  width: 48px;                                           /* sm 按钮宽 48px */
+  height: 22px;                                          /* sm 按钮高 22px */
+  font-size: 12px;                                       /* sm 按钮字号 12px */
+  line-height: 1.4;                                      /* sm 按钮行高 1.4 */
+}
+
+/* ---------- 大尺寸 lg：宽 1080px，固定时 1080×720，适合复杂表单或表格 ---------- */
+.boblog-modal-lg {
+  width: 1080px;                                         /* lg 窗体宽 1080px */
+}
+/* lg 固定模式：高 720px */
+.boblog-modal-lg.boblog-modal-fixed {
+  height: 720px;                                         /* lg 固定高度 720px */
+}
+/* lg 头部：高 56px，字号 18px */
+.boblog-modal-lg .boblog-modal-header {
+  height: 56px;                                          /* lg 头部高 56px */
+  padding: 0 20px;                                       /* lg 头部左右内边距 */
+}
+.boblog-modal-lg .boblog-modal-title {
+  font-size: 18px;                                       /* lg 标题字号 18px */
+}
+/* lg 关闭按钮：28×28px，字号 24px */
+.boblog-modal-lg .boblog-modal-close {
+  width: 28px;                                           /* lg 关闭按钮宽 28px */
+  height: 28px;                                          /* lg 关闭按钮高 28px */
+  font-size: 24px;                                       /* lg 关闭按钮字号 24px */
+}
+/* lg 内容区：字号 15px，行高 1.7 */
+.boblog-modal-lg .boblog-modal-body {
+  font-size: 15px;                                       /* lg 内容区字号 15px */
+  line-height: 1.7;                                      /* lg 内容区行高 1.7 */
+  padding: 16px 20px;                                    /* lg 内容区内边距 */
+}
+/* lg 底部：高 68px */
+.boblog-modal-lg .boblog-modal-footer {
+  height: 68px;                                          /* lg 底部高 68px */
+  padding: 0 20px;                                       /* lg 底部左右内边距 */
+  gap: 12px;                                             /* lg 按钮间距 12px */
+}
+/* lg 按钮：100×40px，字号 15px，行高 1.6 */
+.boblog-modal-lg .boblog-modal-footer .boblog-btn {
+  width: 100px;                                          /* lg 按钮宽 100px */
+  height: 40px;                                          /* lg 按钮高 40px */
+  font-size: 15px;                                       /* lg 按钮字号 15px */
+  line-height: 1.6;                                      /* lg 按钮行高 1.6 */
+}
+
+/* ---------- 超大尺寸 xl：宽 1440px，固定时 1440×960，适合数据展示或编辑器 ---------- */
+.boblog-modal-xl {
+  width: 1440px;                                         /* xl 窗体宽 1440px */
+}
+/* xl 固定模式：高 960px */
+.boblog-modal-xl.boblog-modal-fixed {
+  height: 960px;                                         /* xl 固定高度 960px */
+}
+/* xl 头部：高 72px，字号 22px */
+.boblog-modal-xl .boblog-modal-header {
+  height: 72px;                                          /* xl 头部高 72px */
+  padding: 0 24px;                                       /* xl 头部左右内边距 */
+}
+.boblog-modal-xl .boblog-modal-title {
+  font-size: 22px;                                       /* xl 标题字号 22px */
+}
+/* xl 关闭按钮：36×36px，字号 30px */
+.boblog-modal-xl .boblog-modal-close {
+  width: 36px;                                           /* xl 关闭按钮宽 36px */
+  height: 36px;                                          /* xl 关闭按钮高 36px */
+  font-size: 30px;                                       /* xl 关闭按钮字号 30px */
+}
+/* xl 内容区：字号 17px，行高 1.8 */
+.boblog-modal-xl .boblog-modal-body {
+  font-size: 17px;                                       /* xl 内容区字号 17px */
+  line-height: 1.8;                                      /* xl 内容区行高 1.8 */
+  padding: 20px 24px;                                    /* xl 内容区内边距 */
+}
+/* xl 底部：高 88px */
+.boblog-modal-xl .boblog-modal-footer {
+  height: 88px;                                          /* xl 底部高 88px */
+  padding: 0 24px;                                       /* xl 底部左右内边距 */
+  gap: 16px;                                             /* xl 按钮间距 16px */
+}
+/* xl 按钮：130×52px，字号 17px，行高 1.7 */
+.boblog-modal-xl .boblog-modal-footer .boblog-btn {
+  width: 130px;                                          /* xl 按钮宽 130px */
+  height: 52px;                                          /* xl 按钮高 52px */
+  font-size: 17px;                                       /* xl 按钮字号 17px */
+  line-height: 1.7;                                      /* xl 按钮行高 1.7 */
+}
+
+
+/* ========== 无头部模式 ========== */
+/* 内容区顶部增大内边距，弥补缺少头部的空间 */
+.boblog-modal-no-header .boblog-modal-body {
+  padding-top: 20px;
+}
+
+/* ========== 无底部模式 ========== */
+/* 内容区底部保持正常内边距 */
+.boblog-modal-no-footer .boblog-modal-body {
+  padding-bottom: 15px;
+}
+
+/* ========== 内容居中对齐 ========== */
+/* 适合图标 + 文字的居中提示场景 */
+.boblog-modal-body-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+

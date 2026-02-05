@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>命名规范 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../dist/boblog-ui.css">
+    <link rel="stylesheet" href="docs.css">
+</head>
+<body class="boblog-doc-gray">
+<!-- 浮动目录 -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+<div class="boblog-doc-container">
+    <!-- 导航栏 -->
+    <div class="boblog-doc-nav">
+        <a href="index.html">&larr; 返回总纲</a>
+    </div>
+
+    <h1>命名规范</h1>
+
+    <!-- ====== 类名前缀 ====== -->
+    <div class="boblog-doc-section">
+        <h2>类名前缀</h2>
+
+        <div class="boblog-doc-spec">
+            <p>所有类名统一使用 <code>boblog-</code> 前缀：</p>
+            <ul>
+                <li><code>boblog-btn</code> — 按钮</li>
+                <li><code>boblog-input</code> — 输入框</li>
+                <li><code>boblog-table</code> — 表格</li>
+                <li><code>boblog-editor</code> — 编辑器</li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!-- ====== 组件 vs 控件 ====== -->
+    <div class="boblog-doc-section">
+        <h2>组件 vs 控件</h2>
+
+        <div class="boblog-doc-spec">
+            <table class="boblog-table">
+                <thead>
+                    <tr>
+                        <th>类型</th>
+                        <th>判断标准</th>
+                        <th>目录</th>
+                        <th>示例</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>组件 (components)</strong></td>
+                        <td>需要 JS 初始化或有交互行为</td>
+                        <td><code>src/components/</code></td>
+                        <td>editor, tabs, toc, datepicker, codeblock</td>
+                    </tr>
+                    <tr>
+                        <td><strong>控件 (controls)</strong></td>
+                        <td>纯 CSS 实现</td>
+                        <td><code>src/controls/</code></td>
+                        <td>button, input, select, table, card, badge</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="boblog-doc-spec">
+            <p><strong>判断依据：</strong>有对应的 <code>src/js/*.js</code> 文件 → 组件；仅有 CSS 文件 → 控件。</p>
+        </div>
+    </div>
+
+    <!-- ====== 类名结构 ====== -->
+    <div class="boblog-doc-section">
+        <h2>类名结构</h2>
+
+        <div class="boblog-doc-spec">
+            <table class="boblog-table">
+                <thead>
+                    <tr>
+                        <th>结构</th>
+                        <th>用途</th>
+                        <th>示例</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>boblog-{名称}</code></td>
+                        <td>组件/控件根类</td>
+                        <td><code>boblog-btn</code>、<code>boblog-table</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>boblog-{名称}-{变体}</code></td>
+                        <td>变体/修饰类</td>
+                        <td><code>boblog-btn-primary</code>、<code>boblog-table-bordered</code></td>
+                    </tr>
+                    <tr>
+                        <td><code>boblog-{名称}-{子元素}</code></td>
+                        <td>子元素类</td>
+                        <td><code>boblog-editor-content</code>、<code>boblog-modal-header</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- ====== 目录结构 ====== -->
+    <div class="boblog-doc-section">
+        <h2>目录结构</h2>
+
+        <div class="boblog-doc-spec">
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">源码</button>
+                </div>
+                <div class="boblog-tabs-panel active" style="max-height: 400px; overflow: auto;">
+                    <div id="dirStructurePreview"></div>
+                </div>
+                <div class="boblog-tabs-panel" style="max-height: 400px; overflow: auto;">
+                    <div class="boblog-codeblock">
+                        <pre><code id="dirStructureCode" class="language-markdown">
+# boblog-ui 目录结构规范
+
+## src 目录结构
+
+```
+src/
+├── base/           # 基础
+├── controls/       # 基础控件
+├── components/     # 复合组件
+├── layout/         # 布局
+├── frontend/       # 前台专用
+└── js/             # JavaScript
+```
+
+## 分类说明
+
+### base/ — 基础
+1. variables — CSS 变量
+2. colors — 颜色
+3. fonts — 字体定义
+4. typography — 排版
+5. spacing — 间距/尺寸
+
+### controls/ — 基础控件
+6. button — 按钮
+7. input — 输入框
+8. checkbox — 复选框
+9. radio — 单选框
+10. textarea — 文本域
+11. select — 下拉选择
+12. progress-bar — 进度条
+13. image — 图片/头像/缩略图/画廊
+14. border — 边框工具类
+
+### components/ — 复合组件
+
+**数据录入：**
+15. editor — 富文本编辑器
+16. date-picker — 日期选择器
+17. rating — 评分
+18. slider — 滑块
+
+**数据展示：**
+19. table — 表格
+20. tree — 树形控件
+21. badge — 徽章
+22. stat-card — 统计卡片
+23. timeline — 时间线
+24. codeblock — 代码块
+25. blockquote — 引用块
+
+**导航：**
+26. tabs — 标签页
+27. toc — 目录导航
+28. pagination — 分页
+29. breadcrumb — 面包屑
+
+**反馈：**
+30. modal — 模态框
+31. message — 消息提示
+32. empty-state — 空状态
+
+**容器：**
+33. panel — 面板
+
+### layout/ — 布局
+34. grid — 栅格系统
+35. page-structure — 页面结构
+36. responsive — 响应式
+37. form-layout — 表单布局
+38. doc-layout — 文档布局
+39. nav-sidebar — 侧边栏导航
+40. nav-frontend — 前台导航
+
+### frontend/ — 前台专用
+41. date-card — 日期卡片
+42. sidebar-panel — 侧边栏面板
+43. article-list — 文章列表
+44. comment — 评论
+
+## docs 目录结构
+
+```
+docs/
+├── index.html      # 主页（项目介绍、快速开始、版本信息）
+├── base/           # 基础文档
+├── controls/       # 基础控件文档
+├── components/     # 复合组件文档
+├── layout/         # 布局文档
+└── frontend/       # 前台文档
+```</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="../dist/boblog-ui.js"></script>
+<script src="../dist/marked.min.js"></script>
+<script>
+    // 将源码渲染为预览
+    var source = document.getElementById('dirStructureCode').textContent;
+    document.getElementById('dirStructurePreview').innerHTML = marked.parse(source);
+</script>
+</body>
+</html>

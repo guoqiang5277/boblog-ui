@@ -1,0 +1,246 @@
+/**
+ * 文档页面布局组件 (Doc Layout)
+ *
+ * 提供两种文档页面布局风格，通过 body class 切换：
+ *   - boblog-doc-gray  — 灰底白框，适合概览/规范页面（如色彩体系、排版规范）
+ *   - boblog-doc-white — 白底铺开，适合组件详情页（如按钮、表单）
+ *
+ * 页面结构：
+ *   <body class="boblog-doc-gray">        ← 或 boblog-doc-white
+ *     <div class="boblog-toc">...</div>   ← 可选：浮动目录
+ *     <div class="boblog-doc-container">  ← 内容容器
+ *       <div class="boblog-doc-nav">      ← 顶部导航
+ *         <a href="index.html">← 返回</a>
+ *       </div>
+ *       <h1>页面标题</h1>
+ *       <div class="boblog-doc-section">  ← 章节区块
+ *         <h2>章节标题</h2>
+ *         <div class="boblog-doc-spec">   ← 规范说明
+ *           <ul>...</ul>
+ *         </div>
+ *         <div class="boblog-doc-demo">   ← 演示区域
+ *           ...
+ *         </div>
+ *       </div>
+ *     </div>
+ *   </body>
+ */
+
+
+/* ==========================================================================
+   1. 灰底风格 (boblog-doc-gray)
+   灰色页面背景，内容在白色容器中
+   ========================================================================== */
+
+body.boblog-doc-gray {
+    background: #eaeaea;
+    padding: 20px;
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 12px;
+    line-height: 150%;
+}
+
+
+/* ==========================================================================
+   2. 白底风格 (boblog-doc-white)
+   白色页面背景，内容直接铺开
+   ========================================================================== */
+
+body.boblog-doc-white {
+    background-color: #FFFFFF;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 12px;
+    line-height: 150%;
+}
+
+
+/* ==========================================================================
+   3. 内容容器 (boblog-doc-container)
+   灰底风格下为白色框体；白底风格下透明无边框
+   ========================================================================== */
+
+.boblog-doc-container {
+    max-width: 1200px;
+}
+
+/* 灰底风格：白色框体 + 灰色边框 */
+body.boblog-doc-gray .boblog-doc-container {
+    margin: 0 auto 0 0;
+    background: white;
+    padding: 30px;
+    border: 1px solid #bbb;
+}
+
+/* 白底风格：无边框无背景，直接铺开 */
+body.boblog-doc-white .boblog-doc-container {
+    margin: 0;
+    background: none;
+    padding: 0;
+    border: none;
+}
+
+
+/* ==========================================================================
+   4. 顶部导航 (boblog-doc-nav)
+   返回链接区域，蓝色下边框
+   ========================================================================== */
+
+.boblog-doc-nav {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--boblog-blue, #0D80BD);
+}
+
+.boblog-doc-nav a {
+    color: var(--boblog-blue, #0D80BD);
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.boblog-doc-nav a:hover {
+    text-decoration: underline;
+}
+
+
+/* ==========================================================================
+   5. 页面标题
+   容器内的 h1 统一样式
+   ========================================================================== */
+
+.boblog-doc-container > h1 {
+    color: var(--boblog-blue, #0D80BD);
+    font-size: 24px;
+    margin: 0 0 20px 0;
+}
+
+
+/* ==========================================================================
+   6. 章节区块 (boblog-doc-section)
+   每个独立章节的容器
+   ========================================================================== */
+
+.boblog-doc-section {
+    margin-bottom: 50px;
+}
+
+.boblog-doc-section h2 {
+    color: var(--boblog-blue, #0D80BD);
+    font-size: 18px;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #A8CCE8;
+    scroll-margin-top: 20px;
+}
+
+.boblog-doc-section h3 {
+    color: #333;
+    font-size: 14px;
+    margin: 20px 0 10px;
+    font-weight: bold;
+}
+
+.boblog-doc-section-2 {
+    margin: 0 0 20px 0;
+}
+
+/* 小节 */
+.boblog-doc-section-3 {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: aliceblue;
+    /*设置阴影*/
+    box-shadow: -8px -10px 3px rgba(0, 0, 0, 0.2);
+}
+
+.boblog-doc-section-3:last-child {
+    margin-bottom: 0;
+}
+
+.boblog-doc-section-3 h3 {
+    color: #333;
+    font-size: 14px;
+    margin: 0 0 10px 0;
+    font-weight: bold;
+}
+
+/* 白底风格下的章节：浅蓝背景面板 */
+body.boblog-doc-white .boblog-doc-section {
+    background-color: #F5FBFE;
+    border: 1px solid #9EC9FF;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+body.boblog-doc-white .boblog-doc-section h2 {
+    font-size: 16px;
+    margin: 0 0 15px 0;
+}
+
+body.boblog-doc-white .boblog-doc-section h3 {
+    margin: 0 0 10px 0;
+}
+
+
+/* ==========================================================================
+   7. 规范说明 (boblog-doc-spec)
+   灰底风格：浅蓝背景 + 左侧蓝色竖线
+   白底风格：白色背景 + 蓝色边框
+   ========================================================================== */
+
+.boblog-doc-spec {
+    padding: 10px 15px;
+    margin: 0 0 15px 0;
+    font-size: 12px;
+    line-height: 180%;
+}
+
+.boblog-doc-spec li {
+    margin-bottom: 5px;
+}
+
+/* 灰底风格：浅蓝底 + 左侧蓝竖线 */
+body.boblog-doc-gray .boblog-doc-spec {
+    background: #E8F4FC;
+    border-left: 3px solid var(--boblog-blue, #0D80BD);
+}
+
+/* 白底风格：白底 + 蓝色边框 */
+body.boblog-doc-white .boblog-doc-spec {
+    background-color: #FFFFFF;
+    border: 1px solid #A8CCE8;
+}
+
+
+/* ==========================================================================
+   8. 演示区域 (boblog-doc-demo)
+   组件渲染预览的白色区域
+   ========================================================================== */
+
+.boblog-doc-demo {
+    background-color: #FFFFFF;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+/* 灰底风格：蓝色边框 */
+body.boblog-doc-gray .boblog-doc-demo {
+    border: 1px solid #A8CCE8;
+    margin-bottom: 15px;
+}
+
+/* 白底风格：蓝色边框 */
+body.boblog-doc-white .boblog-doc-demo {
+    border: 1px solid #A8CCE8;
+}
+
+/* 演示行（多行排列时使用） */
+.boblog-doc-demo-row {
+    margin-bottom: 15px;
+}
+
+.boblog-doc-demo-row:last-child {
+    margin-bottom: 0;
+}

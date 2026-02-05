@@ -1,0 +1,577 @@
+/**
+ * Bo-Blog UI - Slider 滑块组件
+ * 基于原生 <input type="range"> 的样式化方案
+ *
+ * 设计原则：
+ * - 方角设计，无圆角（border-radius: 0）
+ * - 使用设计系统变量（--boblog-*）
+ * - 经典蓝白配色方案
+ * - Tahoma 字体栈
+ * - 类名统一前缀 .boblog-
+ */
+
+/* ============================================
+   滑块容器
+   ============================================ */
+.boblog-slider {
+  /* Flexbox 布局，水平排列 input 和数值标签 */
+  display: flex;
+  align-items: center;
+
+  /* 字体继承 Bo-Blog 规范 */
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 12px;
+
+  /* 容器宽度 */
+  width: 100%;
+}
+
+/* ============================================
+   原生 range input 样式重置
+   ============================================ */
+.boblog-slider-input {
+  /* 移除浏览器默认样式 */
+  -webkit-appearance: none;
+  appearance: none;
+
+  /* 宽度占满，自适应容器 */
+  flex: 1;
+
+  /* 背景透明，由轨道伪元素控制 */
+  background: transparent;
+
+  /* 高度设为合适值，方便点击 */
+  height: 24px;
+
+  /* 移除默认边框 */
+  outline: none;
+
+  /* 光标样式 */
+  cursor: pointer;
+
+  /* 上下留白 */
+  margin: 0;
+  padding: 0;
+}
+
+/* ============================================
+   轨道样式 - WebKit 内核（Chrome、Safari、Edge）
+   ============================================ */
+.boblog-slider-input::-webkit-slider-runnable-track {
+  /* 轨道尺寸 */
+  width: 100%;
+  height: 4px;
+
+  /* 浅色背景，体现未填充区域 */
+  background: var(--boblog-bg-muted);
+
+  /* 浅色边框，增加层次感 */
+  border: 1px solid var(--boblog-border-light);
+
+  /* 方角设计，经典风格 */
+  border-radius: 0;
+
+  /* 光标样式 */
+  cursor: pointer;
+}
+
+/* ============================================
+   轨道样式 - Firefox
+   ============================================ */
+.boblog-slider-input::-moz-range-track {
+  /* 轨道尺寸 */
+  width: 100%;
+  height: 4px;
+
+  /* 浅色背景，体现未填充区域 */
+  background: var(--boblog-bg-muted);
+
+  /* 浅色边框，增加层次感 */
+  border: 1px solid var(--boblog-border-light);
+
+  /* 方角设计，经典风格 */
+  border-radius: 0;
+
+  /* 光标样式 */
+  cursor: pointer;
+}
+
+/* ============================================
+   滑块手柄样式 - WebKit 内核
+   ============================================ */
+.boblog-slider-input::-webkit-slider-thumb {
+  /* 移除默认样式 */
+  -webkit-appearance: none;
+
+  /* 手柄尺寸 - 14px x 14px 方块 */
+  width: 14px;
+  height: 14px;
+
+  /* 白色背景，蓝色边框，经典对比设计 */
+  background: var(--boblog-bg);
+  border: 2px solid var(--boblog-blue);
+
+  /* 方角设计，无圆角 */
+  border-radius: 0;
+
+  /* 拖拽光标 */
+  cursor: pointer;
+
+  /* 垂直居中轨道，需要向上偏移 (手柄高度 - 轨道高度) / 2 */
+  margin-top: -5px; /* (14px - 4px) / 2 = 5px */
+
+  /* 过渡效果 */
+  transition: border-color 0.2s ease;
+}
+
+/* ============================================
+   滑块手柄样式 - Firefox
+   ============================================ */
+.boblog-slider-input::-moz-range-thumb {
+  /* 手柄尺寸 - 14px x 14px 方块 */
+  width: 14px;
+  height: 14px;
+
+  /* 白色背景，蓝色边框，经典对比设计 */
+  background: var(--boblog-bg);
+  border: 2px solid var(--boblog-blue);
+
+  /* 方角设计，无圆角 */
+  border-radius: 0;
+
+  /* 拖拽光标 */
+  cursor: pointer;
+
+  /* 过渡效果 */
+  transition: border-color 0.2s ease;
+}
+
+/* ============================================
+   手柄悬停效果 - WebKit
+   ============================================ */
+.boblog-slider-input::-webkit-slider-thumb:hover {
+  /* 边框变浅蓝 */
+  border-color: var(--boblog-blue-light);
+}
+
+/* ============================================
+   手柄悬停效果 - Firefox
+   ============================================ */
+.boblog-slider-input::-moz-range-thumb:hover {
+  /* 边框变浅蓝 */
+  border-color: var(--boblog-blue-light);
+}
+
+/* ============================================
+   手柄激活效果 - WebKit
+   ============================================ */
+.boblog-slider-input::-webkit-slider-thumb:active {
+  /* 保持原蓝色 */
+  border-color: var(--boblog-blue);
+}
+
+/* ============================================
+   手柄激活效果 - Firefox
+   ============================================ */
+.boblog-slider-input::-moz-range-thumb:active {
+  /* 保持原蓝色 */
+  border-color: var(--boblog-blue);
+}
+
+/* ============================================
+   焦点样式 - WebKit
+   ============================================ */
+.boblog-slider-input:focus::-webkit-slider-thumb {
+  /* 焦点外边框 */
+  outline: 2px solid var(--boblog-blue);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   焦点样式 - Firefox
+   ============================================ */
+.boblog-slider-input:focus::-moz-range-thumb {
+  /* 焦点外边框 */
+  outline: 2px solid var(--boblog-blue);
+  outline-offset: 2px;
+}
+
+/* ============================================
+   数值标签
+   ============================================ */
+.boblog-slider-value {
+  /* 字体样式 */
+  font-size: 12px;
+  color: var(--boblog-text-secondary);
+  font-family: Tahoma, Arial, sans-serif;
+
+  /* 左侧留白，与滑块分离 */
+  margin-left: 10px;
+
+  /* 最小宽度，防止数字跳动 */
+  min-width: 30px;
+  text-align: right;
+
+  /* 防止文本选择 */
+  user-select: none;
+
+  /* Flex 不收缩，保持固定宽度 */
+  flex-shrink: 0;
+}
+
+/* ============================================
+   禁用状态
+   降低透明度 + 手柄/轨道变灰 + 禁止交互
+   ============================================ */
+.boblog-slider.disabled {
+  /* 降低透明度，表示不可用 */
+  opacity: 0.6;
+
+  /* 禁止所有鼠标事件 */
+  pointer-events: none;
+}
+
+.boblog-slider.disabled .boblog-slider-input {
+  /* 禁用光标 */
+  cursor: not-allowed;
+}
+
+/* 禁用态轨道变灰 - WebKit */
+.boblog-slider.disabled .boblog-slider-input::-webkit-slider-runnable-track {
+  background: #E0E0E0;
+  border-color: #CCC;
+}
+
+/* 禁用态轨道变灰 - Firefox */
+.boblog-slider.disabled .boblog-slider-input::-moz-range-track {
+  background: #E0E0E0;
+  border-color: #CCC;
+}
+
+/* 禁用态手柄变灰 - WebKit */
+.boblog-slider.disabled .boblog-slider-input::-webkit-slider-thumb {
+  background: #E0E0E0;
+  border-color: #AAA;
+}
+
+/* 禁用态手柄变灰 - Firefox */
+.boblog-slider.disabled .boblog-slider-input::-moz-range-thumb {
+  background: #E0E0E0;
+  border-color: #AAA;
+}
+
+/* 禁用态数值标签变灰 */
+.boblog-slider.disabled .boblog-slider-value {
+  color: #AAA;
+}
+
+/* ============================================
+   颜色变体 - 成功（绿色）
+   ============================================ */
+/* WebKit 手柄 */
+.boblog-slider.success .boblog-slider-input::-webkit-slider-thumb {
+  border-color: var(--boblog-success);
+}
+
+.boblog-slider.success .boblog-slider-input::-webkit-slider-thumb:hover {
+  border-color: var(--boblog-success);
+  opacity: 0.8;
+}
+
+/* Firefox 手柄 */
+.boblog-slider.success .boblog-slider-input::-moz-range-thumb {
+  border-color: var(--boblog-success);
+}
+
+.boblog-slider.success .boblog-slider-input::-moz-range-thumb:hover {
+  border-color: var(--boblog-success);
+  opacity: 0.8;
+}
+
+/* ============================================
+   颜色变体 - 警告（橙色）
+   ============================================ */
+/* WebKit 手柄 */
+.boblog-slider.warning .boblog-slider-input::-webkit-slider-thumb {
+  border-color: var(--boblog-warning);
+}
+
+.boblog-slider.warning .boblog-slider-input::-webkit-slider-thumb:hover {
+  border-color: var(--boblog-warning);
+  opacity: 0.8;
+}
+
+/* Firefox 手柄 */
+.boblog-slider.warning .boblog-slider-input::-moz-range-thumb {
+  border-color: var(--boblog-warning);
+}
+
+.boblog-slider.warning .boblog-slider-input::-moz-range-thumb:hover {
+  border-color: var(--boblog-warning);
+  opacity: 0.8;
+}
+
+/* ============================================
+   颜色变体 - 危险（红色）
+   ============================================ */
+/* WebKit 手柄 */
+.boblog-slider.danger .boblog-slider-input::-webkit-slider-thumb {
+  border-color: var(--boblog-danger);
+}
+
+.boblog-slider.danger .boblog-slider-input::-webkit-slider-thumb:hover {
+  border-color: var(--boblog-danger);
+  opacity: 0.8;
+}
+
+/* Firefox 手柄 */
+.boblog-slider.danger .boblog-slider-input::-moz-range-thumb {
+  border-color: var(--boblog-danger);
+}
+
+.boblog-slider.danger .boblog-slider-input::-moz-range-thumb:hover {
+  border-color: var(--boblog-danger);
+  opacity: 0.8;
+}
+
+/* ============================================
+   尺寸变体 - 小型滑块
+   ============================================ */
+/* 轨道 - WebKit */
+.boblog-slider.small .boblog-slider-input::-webkit-slider-runnable-track {
+  height: 3px;
+}
+
+/* 轨道 - Firefox */
+.boblog-slider.small .boblog-slider-input::-moz-range-track {
+  height: 3px;
+}
+
+/* 手柄 - WebKit */
+.boblog-slider.small .boblog-slider-input::-webkit-slider-thumb {
+  width: 10px;
+  height: 10px;
+  border-width: 1px;
+  margin-top: -3.5px; /* (10px - 3px) / 2 = 3.5px */
+}
+
+/* 手柄 - Firefox */
+.boblog-slider.small .boblog-slider-input::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-width: 1px;
+}
+
+/* 数值标签 */
+.boblog-slider.small .boblog-slider-value {
+  font-size: 11px;
+  margin-left: 8px;
+  min-width: 25px;
+}
+
+/* ============================================
+   尺寸变体 - 大型滑块
+   ============================================ */
+/* 轨道 - WebKit */
+.boblog-slider.large .boblog-slider-input::-webkit-slider-runnable-track {
+  height: 6px;
+}
+
+/* 轨道 - Firefox */
+.boblog-slider.large .boblog-slider-input::-moz-range-track {
+  height: 6px;
+}
+
+/* 手柄 - WebKit */
+.boblog-slider.large .boblog-slider-input::-webkit-slider-thumb {
+  width: 18px;
+  height: 18px;
+  border-width: 3px;
+  margin-top: -6px; /* (18px - 6px) / 2 = 6px */
+}
+
+/* 手柄 - Firefox */
+.boblog-slider.large .boblog-slider-input::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border-width: 3px;
+}
+
+/* 数值标签 */
+.boblog-slider.large .boblog-slider-value {
+  font-size: 14px;
+  margin-left: 12px;
+  min-width: 35px;
+}
+
+/* ============================================
+   竖向滑块（div 模拟方案）
+   使用 .boblog-slider-vertical 容器 + JS 交互
+   结构：轨道 div + 手柄 div，拖拽改变值
+   ============================================ */
+
+/* 竖向滑块外层容器 */
+.boblog-slider-vertical {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 12px;
+}
+
+/* 竖向轨道
+   相对定位，用于手柄绝对定位参考 */
+.boblog-slider-vertical-track {
+  position: relative;
+  width: 4px;
+  height: 200px;
+  background: var(--boblog-bg-muted);
+  border: 1px solid var(--boblog-border-light);
+  cursor: pointer;
+}
+
+/* 竖向手柄
+   绝对定位在轨道上，通过 bottom 百分比控制位置
+   14x14 方形，白色背景蓝色边框 */
+.boblog-slider-vertical-thumb {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 14px;
+  height: 14px;
+  background: var(--boblog-bg);
+  border: 2px solid var(--boblog-blue);
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+  z-index: 1;
+}
+
+/* 手柄 hover */
+.boblog-slider-vertical-thumb:hover {
+  border-color: var(--boblog-blue-light);
+}
+
+/* 手柄拖拽中 */
+.boblog-slider-vertical-thumb:active {
+  border-color: var(--boblog-blue);
+}
+
+/* 竖向数值标签 */
+.boblog-slider-vertical .boblog-slider-value {
+  margin-left: 0;
+  margin-top: 10px;
+  text-align: center;
+  min-width: 30px;
+  color: var(--boblog-text-secondary);
+  user-select: none;
+}
+
+/* ---- 竖向手柄形状变体 ---- */
+
+/* 实心方形手柄：蓝色填充，白色边框 */
+.boblog-slider-vertical.solid .boblog-slider-vertical-thumb {
+  background: var(--boblog-blue);
+  border-color: var(--boblog-blue);
+}
+.boblog-slider-vertical.solid .boblog-slider-vertical-thumb:hover {
+  background: var(--boblog-blue-light);
+  border-color: var(--boblog-blue-light);
+}
+
+/* 圆形空心手柄 */
+.boblog-slider-vertical.round .boblog-slider-vertical-thumb {
+  border-radius: 50%;
+}
+
+/* 圆形实心手柄 */
+.boblog-slider-vertical.round.solid .boblog-slider-vertical-thumb {
+  border-radius: 50%;
+  background: var(--boblog-blue);
+  border-color: var(--boblog-blue);
+}
+.boblog-slider-vertical.round.solid .boblog-slider-vertical-thumb:hover {
+  background: var(--boblog-blue-light);
+  border-color: var(--boblog-blue-light);
+}
+
+/* 实心 + 颜色变体组合 */
+.boblog-slider-vertical.solid.success .boblog-slider-vertical-thumb {
+  background: var(--boblog-success);
+  border-color: var(--boblog-success);
+}
+.boblog-slider-vertical.solid.warning .boblog-slider-vertical-thumb {
+  background: var(--boblog-warning);
+  border-color: var(--boblog-warning);
+}
+.boblog-slider-vertical.solid.danger .boblog-slider-vertical-thumb {
+  background: var(--boblog-danger);
+  border-color: var(--boblog-danger);
+}
+
+/* ---- 竖向颜色变体 ---- */
+.boblog-slider-vertical.success .boblog-slider-vertical-thumb {
+  border-color: var(--boblog-success);
+}
+.boblog-slider-vertical.warning .boblog-slider-vertical-thumb {
+  border-color: var(--boblog-warning);
+}
+.boblog-slider-vertical.danger .boblog-slider-vertical-thumb {
+  border-color: var(--boblog-danger);
+}
+
+/* ---- 竖向禁用态 ---- */
+.boblog-slider-vertical.disabled {
+  opacity: 0.6;
+  pointer-events: none;
+}
+.boblog-slider-vertical.disabled .boblog-slider-vertical-track {
+  background: #E0E0E0;
+  border-color: #CCC;
+}
+.boblog-slider-vertical.disabled .boblog-slider-vertical-thumb {
+  background: #E0E0E0;
+  border-color: #AAA;
+}
+.boblog-slider-vertical.disabled .boblog-slider-value {
+  color: #AAA;
+}
+
+/* ============================================
+   可访问性增强 - 高对比度模式
+   ============================================ */
+@media (prefers-contrast: high) {
+  /* 轨道边框加粗 - WebKit */
+  .boblog-slider-input::-webkit-slider-runnable-track {
+    border-width: 2px;
+  }
+
+  /* 轨道边框加粗 - Firefox */
+  .boblog-slider-input::-moz-range-track {
+    border-width: 2px;
+  }
+
+  /* 手柄边框加粗 - WebKit */
+  .boblog-slider-input::-webkit-slider-thumb {
+    border-width: 3px;
+  }
+
+  /* 手柄边框加粗 - Firefox */
+  .boblog-slider-input::-moz-range-thumb {
+    border-width: 3px;
+  }
+}
+
+/* ============================================
+   可访问性增强 - 减少动画模式
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  /* 移除所有过渡效果 - WebKit */
+  .boblog-slider-input::-webkit-slider-thumb {
+    transition: none;
+  }
+
+  /* 移除所有过渡效果 - Firefox */
+  .boblog-slider-input::-moz-range-thumb {
+    transition: none;
+  }
+}

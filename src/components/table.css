@@ -1,0 +1,202 @@
+/**
+ * Bo-Blog Table Component
+ * 表格组件 - 基于 Bo-Blog V2.1 经典风格
+ * 无圆角设计，蓝白配色
+ *
+ * 包含：
+ *   - .boblog-table                — 基础表格
+ *   - .boblog-table-bordered       — 全边框表格
+ *   - .boblog-table-striped        — 斑马纹表格
+ *   - .boblog-table-compact        — 紧凑表格
+ *   - .boblog-table-wrapper        — 响应式滚动容器
+ *   - .boblog-th-sortable          — 可排序表头
+ *   - .boblog-sort-asc/desc        — 排序方向标记
+ */
+
+/* ========== 基础表格 ========== */
+.boblog-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--boblog-font-size-sm);           /* 12px */
+  font-family: Tahoma, Arial, sans-serif;
+  color: var(--boblog-text);                       /* 正文文字 #1A1A1A */
+  background-color: var(--boblog-bg);              /* 白色背景 #FFFFFF */
+}
+
+/* 表头：强调背景 + 加粗 */
+.boblog-table thead {
+  background-color: var(--boblog-bg-muted);        /* 表头背景 #EBF0F5 */
+  font-weight: bold;
+}
+
+/* 单元格：统一内边距、左对齐 */
+.boblog-table th,
+.boblog-table td {
+  padding: 10px;
+  text-align: left;
+}
+
+/* 行分隔线 + 悬停高亮 */
+.boblog-table tbody tr {
+  border-bottom: 1px solid var(--boblog-border-light); /* 次边框 #DDE8F0 */
+  transition: background-color var(--boblog-transition-normal);
+}
+
+.boblog-table tbody tr:hover {
+  background-color: var(--boblog-blue-wash);       /* 极浅蓝底 #F4FBFF */
+}
+
+/* 最后一行不需要底边框 */
+.boblog-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+/* ========== 全边框表格 ========== */
+/* 所有单元格都有边框，适合数据密集型表格 */
+.boblog-table-bordered {
+  border: 1px solid var(--boblog-border-light);    /* 次边框 #DDE8F0 */
+}
+
+.boblog-table-bordered th,
+.boblog-table-bordered td {
+  border: 1px solid var(--boblog-border-light);    /* 次边框 #DDE8F0 */
+}
+
+/* ========== 斑马纹表格 ========== */
+/* 偶数行浅色底纹，提高长表格可读性 */
+.boblog-table-striped tbody tr:nth-child(even) {
+  background-color: var(--boblog-bg-subtle);       /* 次背景 #F5F8FB */
+}
+
+/* 斑马纹行悬停仍使用极浅蓝底 */
+.boblog-table-striped tbody tr:nth-child(even):hover {
+  background-color: var(--boblog-blue-wash);       /* 极浅蓝底 #F4FBFF */
+}
+
+/* ========== 手动斑马纹（适用于合并单元格） ========== */
+/* 针对第一列有 rowspan 的表格，通过 JS 自动计算视觉行号并添加 .boblog-row-even 类 */
+/* 需要配合 table.js 使用，JS 会自动扫描 .boblog-table-striped-manual 表格 */
+.boblog-table-striped-manual tbody tr {
+  background-color: var(--boblog-bg);              /* 默认白色 */
+}
+
+/* JS 自动添加的偶数行类 */
+.boblog-table-striped-manual tbody tr.boblog-row-even {
+  background-color: var(--boblog-bg-subtle);       /* 次背景 #F5F8FB */
+}
+
+.boblog-table-striped-manual tbody tr.boblog-row-even:hover {
+  background-color: var(--boblog-blue-wash);       /* 极浅蓝底 #F4FBFF */
+}
+
+/* 奇数行悬停 */
+.boblog-table-striped-manual tbody tr:hover {
+  background-color: var(--boblog-blue-wash);       /* 极浅蓝底 #F4FBFF */
+}
+
+/* ========== 紧凑表格 ========== */
+/* 单元格内边距缩小，适合空间受限场景 */
+.boblog-table-compact th,
+.boblog-table-compact td {
+  padding: 6px;
+}
+
+/* ========== 列不换行 ========== */
+/* 指定列内容不换行，适合 ID、日期、操作等短内容列 */
+.boblog-td-nowrap {
+  white-space: nowrap;
+}
+
+/* ========== 响应式表格容器（水平滚动） ========== */
+/* 横向滚动容器，用于移动端或窄屏场景 */
+.boblog-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--boblog-border-light);    /* 次边框 #DDE8F0 */
+}
+
+/* ========== 垂直滚动容器 ========== */
+/* 固定表头 + tbody 区域垂直滚动，适合长列表场景 */
+/* 用法：style="--table-max-height: 300px"，默认 300px */
+.boblog-table-scroll {
+  width: 100%;
+  max-height: var(--table-max-height, 300px);      /* 最大高度，超出垂直滚动 */
+  overflow-y: auto;                                /* 纵向滚动 */
+  border: 1px solid var(--boblog-border-light);    /* 次边框 #DDE8F0 */
+}
+
+/* 垂直滚动容器内的表格宽度撑满 */
+.boblog-table-scroll .boblog-table {
+  width: 100%;
+}
+
+/* 表头 sticky 固定在滚动容器顶部 */
+.boblog-table-scroll .boblog-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: var(--boblog-bg-muted);        /* 表头背景 #EBF0F5 */
+}
+
+/* ========== 水平 + 垂直同时滚动 ========== */
+/* 同时支持横向和纵向滚动 */
+.boblog-table-scroll-both {
+  width: 100%;
+  max-height: var(--table-max-height, 300px);
+  overflow: auto;
+  border: 1px solid var(--boblog-border-light);    /* 次边框 #DDE8F0 */
+}
+
+.boblog-table-scroll-both .boblog-table {
+  width: max-content;
+  min-width: 100%;
+}
+
+.boblog-table-scroll-both .boblog-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background-color: var(--boblog-bg-muted);        /* 表头背景 #EBF0F5 */
+}
+
+/* ========== 可排序表头 ========== */
+/* 点击表头列可触发排序，鼠标指针变为手型 */
+.boblog-th-sortable {
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  padding-right: 20px;                             /* 右侧留空给排序箭头 */
+}
+
+/* 悬停时表头背景加深 */
+.boblog-th-sortable:hover {
+  background-color: var(--boblog-bg-subtle);       /* 次背景 #F5F8FB */
+}
+
+/* 默认排序箭头：向下三角，半透明 */
+.boblog-th-sortable::after {
+  content: "";
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 5px solid var(--boblog-text-muted);  /* 弱化文字 #888888 */
+  opacity: 0.3;
+}
+
+/* 升序状态：向下三角，品牌蓝，不透明 */
+.boblog-th-sortable.boblog-sort-asc::after {
+  border-top: 5px solid var(--boblog-blue-accent); /* 强调蓝 #0D80BD */
+  opacity: 1;
+}
+
+/* 降序状态：向上三角，品牌蓝，不透明 */
+.boblog-th-sortable.boblog-sort-desc::after {
+  border-top: none;
+  border-bottom: 5px solid var(--boblog-blue-accent); /* 强调蓝 #0D80BD */
+  opacity: 1;
+}

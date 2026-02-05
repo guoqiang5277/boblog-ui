@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>评论区 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+<!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <div class="boblog-doc-nav">
+        <a href="../frontend.html">← 返回前台组件</a> |
+        <a href="../index.html">返回总纲</a>
+    </div>
+
+    <h1>评论区 (Comment)</h1>
+
+    <!-- ====== 评论列表 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="评论列表">评论列表 (.boblog-comments)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>评论容器: <code>.boblog-comments</code>，width 100%，margin-top 20px</li>
+                <li><strong>评论标题</strong> (.boblog-comments-header): font-size 14px (--boblog-font-size-md)，font-weight bold，底部 2px 蓝色边框 #9EC9FF</li>
+                <li><strong>评论项</strong> (.boblog-comment-item): display flex，gap 10px，padding 15px 0，底部虚线分隔 1px dashed #D3E7FC，最后一项无底边框</li>
+                <li><strong>头像</strong> (.boblog-comment-avatar): 32x32px，flex-shrink 0，背景 #e0e0e0，边框 1px solid #A9DBF6</li>
+                <li><strong>评论主体</strong> (.boblog-comment-body): flex 1，min-width 0</li>
+                <li><strong>作者</strong> (.boblog-comment-author): font-weight bold，颜色 #0D80BD，12px</li>
+                <li><strong>管理员标记</strong> (.boblog-comment-admin): 独立 inline-block 标签，背景 #2E93C9，白色文字，11px</li>
+                <li><strong>时间</strong> (.boblog-comment-time): 11px，颜色 #999</li>
+                <li><strong>评论正文</strong> (.boblog-comment-text): 12px，颜色 #333，行高 1.6</li>
+                <li><strong>操作</strong> (.boblog-comment-actions): 12px，链接灰色 #999，hover 蓝色 #0D80BD</li>
+                <li><strong>嵌套回复</strong> (.boblog-comment-reply): margin-left 40px，左侧 2px 蓝色竖线 #9EC9FF</li>
+                <li>本组件为纯 CSS 实现，无需引入 JavaScript</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-comments">
+                        <div class="boblog-comments-header">评论 (2)</div>
+                        <div class="boblog-comment-list">
+                            <div class="boblog-comment-item">
+                                <div class="boblog-comment-avatar">👤</div>
+                                <div class="boblog-comment-body">
+                                    <div>
+                                        <span class="boblog-comment-author">管理员</span>
+                                        <span class="boblog-comment-admin">站长</span>
+                                        <span class="boblog-comment-time">2026-01-27 14:30</span>
+                                    </div>
+                                    <div class="boblog-comment-text">
+                                        感谢大家的支持！新版本已经发布，欢迎试用。
+                                    </div>
+                                    <div class="boblog-comment-actions">
+                                        <a href="#">回复</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="boblog-comment-item">
+                                <div class="boblog-comment-avatar">👤</div>
+                                <div class="boblog-comment-body">
+                                    <div>
+                                        <span class="boblog-comment-author">访客</span>
+                                        <span class="boblog-comment-time">2026-01-27 15:00</span>
+                                    </div>
+                                    <div class="boblog-comment-text">
+                                        这个设计风格很怀旧，喜欢！
+                                    </div>
+                                    <div class="boblog-comment-actions">
+                                        <a href="#">回复</a>
+                                    </div>
+                                    <div class="boblog-comment-reply">
+                                        <div class="boblog-comment-item">
+                                            <div class="boblog-comment-avatar">👤</div>
+                                            <div class="boblog-comment-body">
+                                                <div>
+                                                    <span class="boblog-comment-author">网友</span>
+                                                    <span class="boblog-comment-time">2026-01-27 16:00</span>
+                                                </div>
+                                                <div class="boblog-comment-text">
+                                                    同意，Bo-Blog 的经典设计确实很有味道。
+                                                </div>
+                                                <div class="boblog-comment-actions">
+                                                    <a href="#">回复</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-comments"&gt;
+    &lt;div class="boblog-comments-header"&gt;评论 (2)&lt;/div&gt;
+    &lt;div class="boblog-comment-list"&gt;
+        &lt;!-- 管理员评论 --&gt;
+        &lt;div class="boblog-comment-item"&gt;
+            &lt;div class="boblog-comment-avatar"&gt;👤&lt;/div&gt;
+            &lt;div class="boblog-comment-body"&gt;
+                &lt;div&gt;
+                    &lt;span class="boblog-comment-author"&gt;管理员&lt;/span&gt;
+                    &lt;span class="boblog-comment-admin"&gt;站长&lt;/span&gt;
+                    &lt;span class="boblog-comment-time"&gt;2026-01-27 14:30&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class="boblog-comment-text"&gt;评论正文...&lt;/div&gt;
+                &lt;div class="boblog-comment-actions"&gt;
+                    &lt;a href="#"&gt;回复&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- 带嵌套回复 --&gt;
+        &lt;div class="boblog-comment-item"&gt;
+            &lt;div class="boblog-comment-avatar"&gt;👤&lt;/div&gt;
+            &lt;div class="boblog-comment-body"&gt;
+                &lt;div&gt;
+                    &lt;span class="boblog-comment-author"&gt;访客&lt;/span&gt;
+                    &lt;span class="boblog-comment-time"&gt;2026-01-27 15:00&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class="boblog-comment-text"&gt;评论正文...&lt;/div&gt;
+                &lt;div class="boblog-comment-actions"&gt;&lt;a href="#"&gt;回复&lt;/a&gt;&lt;/div&gt;
+                &lt;div class="boblog-comment-reply"&gt;
+                    &lt;div class="boblog-comment-item"&gt;
+                        &lt;div class="boblog-comment-avatar"&gt;👤&lt;/div&gt;
+                        &lt;div class="boblog-comment-body"&gt;
+                            &lt;div&gt;
+                                &lt;span class="boblog-comment-author"&gt;网友&lt;/span&gt;
+                                &lt;span class="boblog-comment-time"&gt;2026-01-27 16:00&lt;/span&gt;
+                            &lt;/div&gt;
+                            &lt;div class="boblog-comment-text"&gt;回复正文...&lt;/div&gt;
+                            &lt;div class="boblog-comment-actions"&gt;&lt;a href="#"&gt;回复&lt;/a&gt;&lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;评论列表示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-comments"&gt;
+    &lt;div class="boblog-comments-header"&gt;评论 (2)&lt;/div&gt;
+    &lt;div class="boblog-comment-list"&gt;
+        &lt;div class="boblog-comment-item"&gt;
+            &lt;div class="boblog-comment-avatar"&gt;👤&lt;/div&gt;
+            &lt;div class="boblog-comment-body"&gt;
+                &lt;div&gt;
+                    &lt;span class="boblog-comment-author"&gt;管理员&lt;/span&gt;
+                    &lt;span class="boblog-comment-admin"&gt;站长&lt;/span&gt;
+                    &lt;span class="boblog-comment-time"&gt;2026-01-27 14:30&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class="boblog-comment-text"&gt;
+                    感谢大家的支持！新版本已经发布，欢迎试用。
+                &lt;/div&gt;
+                &lt;div class="boblog-comment-actions"&gt;
+                    &lt;a href="#"&gt;回复&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-comment-item"&gt;
+            &lt;div class="boblog-comment-avatar"&gt;👤&lt;/div&gt;
+            &lt;div class="boblog-comment-body"&gt;
+                &lt;div&gt;
+                    &lt;span class="boblog-comment-author"&gt;访客&lt;/span&gt;
+                    &lt;span class="boblog-comment-time"&gt;2026-01-27 15:00&lt;/span&gt;
+                &lt;/div&gt;
+                &lt;div class="boblog-comment-text"&gt;
+                    这个设计风格很怀旧，喜欢！
+                &lt;/div&gt;
+                &lt;div class="boblog-comment-actions"&gt;
+                    &lt;a href="#"&gt;回复&lt;/a&gt;
+                &lt;/div&gt;
+                &lt;div class="boblog-comment-reply"&gt;
+                    &lt;div class="boblog-comment-item"&gt;
+                        &lt;div class="boblog-comment-avatar"&gt;👤&lt;/div&gt;
+                        &lt;div class="boblog-comment-body"&gt;
+                            &lt;div&gt;
+                                &lt;span class="boblog-comment-author"&gt;网友&lt;/span&gt;
+                                &lt;span class="boblog-comment-time"&gt;2026-01-27 16:00&lt;/span&gt;
+                            &lt;/div&gt;
+                            &lt;div class="boblog-comment-text"&gt;
+                                同意，Bo-Blog 的经典设计确实很有味道。
+                            &lt;/div&gt;
+                            &lt;div class="boblog-comment-actions"&gt;
+                                &lt;a href="#"&gt;回复&lt;/a&gt;
+                            &lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 评论表单 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="评论表单">评论表单 (.boblog-comment-form)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>表单容器: <code>.boblog-comment-form</code>，背景 #F5FBFE (--boblog-bg-panel)，边框 1px solid #9EC9FF，内边距 15px，margin-top 20px</li>
+                <li><strong>表单组</strong> (.form-group): margin-bottom 10px</li>
+                <li><strong>标签</strong> (label): display block，12px，颜色 #333，底间距 5px</li>
+                <li><strong>评论文本框</strong> (.boblog-comment-textarea): width 100%，min-height 100px，12px，边框 #9EC9FF，focus 时边框 #0D80BD</li>
+                <li>提交按钮使用 <code>.boblog-btn.primary</code></li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-comment-form">
+                        <h4>发表评论</h4>
+                        <form onsubmit="return false;">
+                            <div class="form-group">
+                                <label>昵称</label>
+                                <input type="text" class="boblog-input" placeholder="请输入昵称" style="width: 250px;">
+                            </div>
+                            <div class="form-group">
+                                <label>邮箱</label>
+                                <input type="email" class="boblog-input" placeholder="请输入邮箱" style="width: 250px;">
+                            </div>
+                            <div class="form-group">
+                                <textarea class="boblog-comment-textarea" rows="5" placeholder="评论内容"></textarea>
+                            </div>
+                            <button type="submit" class="boblog-btn primary">提交评论</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-comment-form"&gt;
+    &lt;h4&gt;发表评论&lt;/h4&gt;
+    &lt;form&gt;
+        &lt;div class="form-group"&gt;
+            &lt;label&gt;昵称&lt;/label&gt;
+            &lt;input type="text" class="boblog-input" placeholder="请输入昵称"&gt;
+        &lt;/div&gt;
+        &lt;div class="form-group"&gt;
+            &lt;label&gt;邮箱&lt;/label&gt;
+            &lt;input type="email" class="boblog-input" placeholder="请输入邮箱"&gt;
+        &lt;/div&gt;
+        &lt;div class="form-group"&gt;
+            &lt;textarea class="boblog-comment-textarea" placeholder="评论内容"&gt;&lt;/textarea&gt;
+        &lt;/div&gt;
+        &lt;button type="submit" class="boblog-btn primary"&gt;提交评论&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;评论表单示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-comment-form"&gt;
+    &lt;h4&gt;发表评论&lt;/h4&gt;
+    &lt;form&gt;
+        &lt;div class="form-group"&gt;
+            &lt;label&gt;昵称&lt;/label&gt;
+            &lt;input type="text" class="boblog-input" placeholder="请输入昵称" style="width: 250px;"&gt;
+        &lt;/div&gt;
+        &lt;div class="form-group"&gt;
+            &lt;label&gt;邮箱&lt;/label&gt;
+            &lt;input type="email" class="boblog-input" placeholder="请输入邮箱" style="width: 250px;"&gt;
+        &lt;/div&gt;
+        &lt;div class="form-group"&gt;
+            &lt;textarea class="boblog-comment-textarea" rows="5" placeholder="评论内容"&gt;&lt;/textarea&gt;
+        &lt;/div&gt;
+        &lt;button type="submit" class="boblog-btn primary"&gt;提交评论&lt;/button&gt;
+    &lt;/form&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 组件结构 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="组件结构">组件结构</h2>
+
+        <div class="boblog-doc-spec">
+            <h3>布局说明</h3>
+            <ul>
+                <li><strong>评论项</strong>: display flex + gap 10px，头像在左，评论主体在右</li>
+                <li><strong>左侧头像</strong>: 32x32px 固定不缩放，可替换为真实头像图片</li>
+                <li><strong>右侧主体</strong>: flex 1 自适应宽度，包含作者、时间、正文和操作</li>
+                <li><strong>嵌套回复</strong>: margin-left 40px + 左侧 2px 蓝色竖线，形成层级关系</li>
+            </ul>
+
+            <h3>管理员标记</h3>
+            <ul>
+                <li>使用独立的 <code>.boblog-comment-admin</code> 标签元素（不是修饰类）</li>
+                <li>背景色: <span class="color-swatch-inline" style="background-color: #2E93C9;"></span>#2E93C9 (--boblog-blue-header)</li>
+                <li>白色文字，11px，padding 1px 4px</li>
+                <li>放在 .boblog-comment-author 后面</li>
+            </ul>
+
+            <h3>评论表单</h3>
+            <ul>
+                <li>浅蓝色面板背景 <span class="color-swatch-inline" style="background-color: #F5FBFE;"></span>#F5FBFE，与评论列表白色背景形成对比</li>
+                <li>评论专用文本框 .boblog-comment-textarea，focus 时边框变为 #0D80BD</li>
+                <li>提交按钮使用 <code>.boblog-btn.primary</code></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ====== 使用说明 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="使用说明">使用说明</h2>
+
+        <div class="boblog-doc-spec">
+            <h3>适用场景</h3>
+            <ul>
+                <li>文章详情页评论区</li>
+                <li>留言板页面</li>
+                <li>讨论区</li>
+            </ul>
+
+            <h3>设计要点</h3>
+            <ul>
+                <li>评论项用虚线分隔，轻量不突兀</li>
+                <li>管理员评论使用蓝色标签标记，便于识别</li>
+                <li>嵌套回复通过左侧缩进 + 蓝色竖线展示层级关系</li>
+                <li>评论表单放在评论列表下方，符合用户习惯</li>
+                <li>本组件为纯 CSS 实现，无需引入 JavaScript</li>
+            </ul>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+/**
+ * Bo-Blog 前台侧边栏面板组件
+ * 包含标题、列表、标签云等内容模块
+ * 风格：Bo-Blog V2.1 经典侧边栏布局
+ */
+
+.boblog-sidebar {
+    width: 100%;
+}
+
+.boblog-sidebar-panel {
+    margin-bottom: 15px;
+    border: 1px solid var(--boblog-blue-border, #9EC9FF);
+    background-color: var(--boblog-bg-white, #fff);
+}
+
+.boblog-sidebar-title {
+    font-size: var(--boblog-font-size-md, 14px);
+    font-weight: bold;
+    color: var(--boblog-text-dark, #333);
+    padding: 8px 10px;
+    background-color: var(--boblog-bg-panel, #F5FBFE);
+    border-bottom: 1px solid var(--boblog-blue-border, #9EC9FF);
+    line-height: 1.4;
+}
+
+.boblog-sidebar-content {
+    padding: 10px;
+}
+
+.boblog-sidebar-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.boblog-sidebar-list-item {
+    padding: 5px 0;
+    border-bottom: 1px dashed var(--boblog-blue-border-list, #D3E7FC);
+    font-size: var(--boblog-font-size-sm, 12px);
+    line-height: 1.6;
+    position: relative;
+}
+
+.boblog-sidebar-list-item:last-child {
+    border-bottom: none;
+}
+
+.boblog-sidebar-list-item a {
+    color: var(--boblog-text-dark, #333);
+    text-decoration: none;
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding-right: 30px;
+}
+
+.boblog-sidebar-list-item a:hover {
+    color: var(--boblog-blue-primary, #0D80BD);
+}
+
+.boblog-sidebar-list-count {
+    color: var(--boblog-text-gray, #999);
+    float: right;
+    font-size: var(--boblog-font-size-xs, 11px);
+    position: absolute;
+    right: 0;
+    top: 5px;
+}
+
+.boblog-sidebar-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.boblog-sidebar-tag {
+    font-size: var(--boblog-font-size-xs, 11px);
+    background-color: var(--boblog-bg-content, #F4FBFF);
+    border: 1px solid var(--boblog-blue-border, #9EC9FF);
+    padding: 1px 6px;
+    color: var(--boblog-blue-primary, #0D80BD);
+    text-decoration: none;
+    display: inline-block;
+    line-height: 1.6;
+}
+
+.boblog-sidebar-tag:hover {
+    background-color: var(--boblog-bg-panel, #F5FBFE);
+}

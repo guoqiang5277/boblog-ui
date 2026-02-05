@@ -1,0 +1,402 @@
+/**
+ * Bo-Blog UI 文档专用样式
+ *
+ * 用于文档页面的布局和排版，不属于 UI 组件库本身。
+ * 所有文档页面通过 <link rel="stylesheet" href="docs.css"> 引入。
+ *
+ * 注意：页面布局已迁移至 src/components/doc-layout.css（bb-doc-* 类名），
+ * 新页面应使用 bb-doc-gray / bb-doc-white + bb-doc-container 等组件类。
+ * 以下旧类名（doc-gray-bg, doc-white-bg, doc-container 等）保留兼容。
+ *
+ * 目录:
+ *   1. 通用基础 - body、字体、背景
+ *   2. 页面容器 - doc-container（旧，兼容）→ 新用 bb-doc-container
+ *   3. 页面头部 - page-header（旧，兼容）→ 新用 bb-doc-nav
+ *   4. 导航链接 - doc-nav、back-link（旧，兼容）→ 新用 bb-doc-nav
+ *   5. 章节区块 - doc-section（旧，兼容）→ 新用 bb-doc-section
+ *   6. 组件区块 - component-section（旧，兼容）→ 新用 bb-doc-section
+ *   7. 规范说明 - doc-spec、spec-list（旧，兼容）→ 新用 bb-doc-spec
+ *   8. 演示区域 - doc-demo、demo-area（旧，兼容）→ 新用 bb-doc-demo
+ *   9. 代码块   → 已迁移至 src/components/codeblock.css
+ *  10. 右侧浮动目录 → 已迁移至 src/components/toc.css
+ *  11. 色彩文档专用 - color-grid、color-item 等
+ *  12. Tab 切换演示区 → 已迁移至 src/components/tabs.css
+ *  13. 页面布局 → 已迁移至 src/components/doc-layout.css
+ */
+
+
+/* ==========================================================================
+   1. 通用基础
+   ========================================================================== */
+
+/* 字体、字号、行高沿用 Bo-Blog 标准 */
+body {
+    font-family: Tahoma, Arial, sans-serif;
+    font-size: 12px;
+    line-height: 150%;
+}
+
+
+/* ==========================================================================
+   2. 页面容器 - 灰底白框模板
+   用于: colors, typography, spacing, base, feedback, data-display,
+         nav-menu, frontend, layout 等概览/规范页面
+   ========================================================================== */
+
+/* 灰底模板的 body 背景 */
+body.doc-gray-bg {
+    background: #eaeaea;
+    padding: 20px;
+}
+
+/* 白色内容容器 */
+.doc-container {
+    max-width: 1200px;
+    margin: 0 auto 0 0;
+    background: white;
+    padding: 30px;
+    border: 1px solid #bbb;
+}
+
+
+/* ==========================================================================
+   3. 页面头部 - 白底模板
+   用于: buttons, tables, pagination, input, select, checkbox, radio,
+         textarea, date-picker, form-layout 等组件详情页
+   ========================================================================== */
+
+/* 白底模板的 body 样式 */
+body.doc-white-bg {
+    background-color: #FFFFFF;
+    padding: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+    /*padding-right: 200px;*/
+}
+
+/* 页面标题头部 */
+.page-header {
+    border-bottom: 2px solid #0D80BD;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.page-header h1 {
+    color: #0D80BD;
+    font-size: 24px;
+    margin: 0 0 10px 0;
+}
+
+
+/* ==========================================================================
+   4. 导航链接
+   ========================================================================== */
+
+/* 灰底模板的顶部导航 */
+.doc-nav {
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #0D80BD;
+}
+
+.doc-nav a {
+    color: #0D80BD;
+    text-decoration: none;
+}
+
+.doc-nav a:hover {
+    text-decoration: underline;
+}
+
+/* 返回链接（白底模板使用） */
+.back-link {
+    color: #0D80BD;
+    text-decoration: none;
+    font-size: 12px;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+
+/* ==========================================================================
+   5. 章节区块 - 灰底模板
+   用于规范性文档，每个章节独立成块
+   ========================================================================== */
+
+.doc-section {
+    margin-bottom: 50px;
+}
+
+.doc-section h2 {
+    color: #0D80BD;
+    font-size: 18px;
+    margin-bottom: 15px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #A8CCE8;
+}
+
+.doc-section h3 {
+    color: #333;
+    font-size: 14px;
+    margin: 20px 0 10px;
+    font-weight: bold;
+}
+
+
+/* ==========================================================================
+   6. 组件区块 - 白底模板
+   用于组件详情页，浅蓝背景面板
+   ========================================================================== */
+
+.component-section {
+    background-color: #F5FBFE;
+    border: 1px solid #9EC9FF;
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.component-section h2 {
+    color: #0D80BD;
+    font-size: 16px;
+    margin: 0 0 15px 0;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #A8CCE8;
+    scroll-margin-top: 20px;
+}
+
+/* 小节 */
+.section-part {
+    margin-bottom: 20px;
+}
+
+.section-part:last-child {
+    margin-bottom: 0;
+}
+
+.section-part h3 {
+    color: #333;
+    font-size: 14px;
+    margin: 0 0 10px 0;
+    font-weight: bold;
+}
+
+
+/* 灰底模板下复用 component-section 结构时的样式适配 */
+body.doc-gray-bg .component-section {
+    background-color: #FFFFFF;
+    border: 1px solid #bbb;
+}
+
+body.doc-gray-bg .component-section .spec-list {
+    background-color: #E8F4FC;
+    border-left: 3px solid #0D80BD;
+    border-top: none;
+    border-right: none;
+    border-bottom: none;
+}
+
+body.doc-gray-bg .component-section .demo-area {
+    border-color: #bbb;
+}
+
+
+/* ==========================================================================
+   7. 规范说明
+   ========================================================================== */
+
+/* 灰底模板规范说明块（左侧蓝色竖线） */
+.doc-spec {
+    background: #E8F4FC;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 3px solid #0D80BD;
+}
+
+/* 白底模板规范列表 */
+.spec-list {
+    background-color: #FFFFFF;
+    border: 1px solid #A8CCE8;
+    padding: 10px 15px;
+    margin: 0;
+    font-size: 12px;
+    line-height: 180%;
+}
+
+.spec-list li {
+    margin-bottom: 5px;
+}
+
+
+/* ==========================================================================
+   8. 演示区域
+   ========================================================================== */
+
+/* 灰底模板演示区 */
+.doc-demo {
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid #A8CCE8;
+    background: white;
+}
+
+/* 白底模板演示区 */
+.demo-area {
+    background-color: #FFFFFF;
+    border: 1px solid #A8CCE8;
+    padding: 20px;
+    margin-bottom: 10px;
+}
+
+/* 演示行（用于多行排列的演示） */
+.demo-row {
+    margin-bottom: 15px;
+}
+
+.demo-row:last-child {
+    margin-bottom: 0;
+}
+
+
+/* ==========================================================================
+   9. 代码块 → 已迁移至 src/components/codeblock.css
+   使用 .bb-codeblock 类名，配合 src/js/codeblock.js
+   ========================================================================== */
+
+
+/* ==========================================================================
+   10. 右侧浮动目录 → 已迁移至 src/components/toc.css
+   使用 .bb-toc 类名，配合 src/js/toc.js
+   ========================================================================== */
+
+
+/* ==========================================================================
+   11. 色彩文档专用
+   用于 colors.html 的色块展示
+   ========================================================================== */
+
+.color-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 15px;
+    margin-top: 15px;
+}
+
+.color-item {
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.color-swatch {
+    height: 80px;
+    width: 100%;
+}
+
+.color-info {
+    padding: 10px;
+    background: white;
+}
+
+.color-name {
+    font-weight: bold;
+    margin-bottom: 4px;
+}
+
+.color-value {
+    font-size: 11px;
+    color: #444;
+    font-family: 'Courier New', monospace;
+}
+
+/* 色块小图标（buttons.html 等页面使用） */
+.color-swatch-inline {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 1px solid #CCC;
+    vertical-align: middle;
+    margin-right: 5px;
+}
+
+
+/* ==========================================================================
+   12. Tab 切换演示区 → 已迁移至 src/components/tabs.css
+   使用 .bb-tabs 类名，配合 src/js/tabs.js
+   ========================================================================== */
+
+
+/* ==========================================================================
+   13. 文档演示专用样式
+   用于 spacing.html, typography.html 等页面的可视化展示
+   ========================================================================== */
+
+/* 演示盒子 - 浅蓝背景带边框 */
+.doc-demo-box {
+    display: inline-block;
+    background: #E8F0F7;
+    border: 1px solid #C4D7E8;
+}
+
+/* 演示容器 - 浅灰背景 */
+.doc-demo-wrap {
+    background: #F5F8FB;
+    padding: 10px;
+}
+
+/* flex 行 */
+.doc-demo-flex {
+    display: flex;
+    gap: 20px;
+}
+
+/* 阴影演示盒子 - 白底 */
+.doc-demo-shadow-box {
+    padding: 15px;
+    background: white;
+    border: 1px solid #C4D7E8;
+}
+
+/* 卡片演示 */
+.doc-demo-card {
+    border: 1px solid #C4D7E8;
+    padding: 15px;
+    background: #F4FBFF;
+}
+
+.doc-demo-card h3 {
+    margin: 0 0 10px 0;
+    color: #0D6EAA;
+}
+
+.doc-demo-card p {
+    margin: 0 0 15px 0;
+}
+
+.doc-demo-card .doc-demo-btn-row {
+    display: flex;
+    gap: 10px;
+}
+
+/* 间距可视化条 */
+.doc-spacing-bar {
+    display: inline-block;
+    height: 16px;
+    background: #0D6EAA;
+}
+
+/* 辅助文字 */
+.doc-demo-label {
+    color: #555555;
+    margin-left: 10px;
+}
+
+/* 阴影演示 */
+.doc-demo-shadow-box.boblog-shadow-subtle {
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.doc-demo-shadow-box.boblog-shadow-light {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.12);
+}

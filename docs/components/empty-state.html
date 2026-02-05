@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>空状态 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+<!-- 浮动目录 -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <!-- 导航栏 -->
+    <div class="boblog-doc-nav">
+        <a href="../index.html">← 返回总纲</a>
+    </div>
+
+    <h1>空状态 (Empty State)</h1>
+
+    <!-- ====== 标准空状态 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="标准空状态">标准空状态</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>容器类名</strong>: .boblog-empty</li>
+                <li><strong>布局</strong>: flex 垂直居中，display: flex; flex-direction: column</li>
+                <li><strong>内边距</strong>: 40px (--boblog-spacing-lg)</li>
+                <li><strong>最小高度</strong>: 200px</li>
+                <li><strong>图标容器</strong>: .boblog-empty-icon，字体大小 48px，颜色 #888888 (--boblog-text-muted)，透明度 0.6</li>
+                <li><strong>文字说明</strong>: .boblog-empty-text，字体大小 14px (--boblog-font-size-md)，颜色 #888888 (--boblog-text-muted)</li>
+                <li><strong>详细描述</strong>: .boblog-empty-description，字体大小 12px (--boblog-font-size-sm)</li>
+                <li><strong>操作按钮</strong>: .boblog-empty-action，可配合 .boblog-btn 使用</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-empty">
+                        <div class="boblog-empty-icon">📭</div>
+                        <div class="boblog-empty-text">暂无数据</div>
+                        <div class="boblog-empty-description">还没有任何内容，点击下方按钮开始添加</div>
+                        <div class="boblog-empty-action">
+                            <button class="boblog-btn primary">添加数据</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-empty"&gt;
+    &lt;div class="boblog-empty-icon"&gt;📭&lt;/div&gt;
+    &lt;div class="boblog-empty-text"&gt;暂无数据&lt;/div&gt;
+    &lt;div class="boblog-empty-description"&gt;还没有任何内容，点击下方按钮开始添加&lt;/div&gt;
+    &lt;div class="boblog-empty-action"&gt;
+        &lt;button class="boblog-btn primary"&gt;添加数据&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;标准空状态示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-empty"&gt;
+    &lt;div class="boblog-empty-icon"&gt;📭&lt;/div&gt;
+    &lt;div class="boblog-empty-text"&gt;暂无数据&lt;/div&gt;
+    &lt;div class="boblog-empty-description"&gt;还没有任何内容，点击下方按钮开始添加&lt;/div&gt;
+    &lt;div class="boblog-empty-action"&gt;
+        &lt;button class="boblog-btn primary"&gt;添加数据&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 简洁空数据 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="简洁空数据">简洁空数据</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>基础类名</strong>: .boblog-no-data</li>
+                <li><strong>内边距</strong>: 15px 10px (--boblog-spacing-lg / --boblog-spacing-md)</li>
+                <li><strong>字体大小</strong>: 12px (--boblog-font-size-sm)</li>
+                <li><strong>文字颜色</strong>: #888888 (--boblog-text-muted)</li>
+                <li><strong>背景色</strong>: #FFFFFF (--boblog-bg)</li>
+                <li><strong>边框</strong>: 1px solid #DDE8F0 (--boblog-border-light)</li>
+                <li><strong>适用场景</strong>: 表格、列表等组件内的空数据提示，轻量简洁</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <table class="boblog-table">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>名称</th>
+                                <th>状态</th>
+                                <th>操作</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="4">
+                                    <div class="boblog-no-data">暂无数据</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;table class="boblog-table"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;ID&lt;/th&gt;
+            &lt;th&gt;名称&lt;/th&gt;
+            &lt;th&gt;状态&lt;/th&gt;
+            &lt;th&gt;操作&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td colspan="4"&gt;
+                &lt;div class="boblog-no-data"&gt;暂无数据&lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;简洁空数据示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;table class="boblog-table"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;ID&lt;/th&gt;
+            &lt;th&gt;名称&lt;/th&gt;
+            &lt;th&gt;状态&lt;/th&gt;
+            &lt;th&gt;操作&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td colspan="4"&gt;
+                &lt;div class="boblog-no-data"&gt;暂无数据&lt;/div&gt;
+            &lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 使用场景对比 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="使用场景对比">使用场景对比</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>.boblog-empty</strong>: 适用于页面级空状态，包含图标、说明和操作按钮，视觉层级高，引导性强</li>
+                <li><strong>.boblog-empty-compact</strong>: 紧凑版本，内边距 15px (--boblog-spacing-lg)，最小高度 120px，图标 32px，适合空间受限场景</li>
+                <li><strong>.boblog-no-data</strong>: 适用于组件级空状态（如表格、列表），纯文字，简洁轻量，不干扰主界面</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <h3 style="margin-bottom: 10px; font-size: 14px;">页面级：.boblog-empty</h3>
+                    <div class="boblog-empty">
+                        <div class="boblog-empty-icon">🔍</div>
+                        <div class="boblog-empty-text">未找到搜索结果</div>
+                        <div class="boblog-empty-description">尝试使用其他关键词</div>
+                        <div class="boblog-empty-action">
+                            <button class="boblog-btn">重新搜索</button>
+                        </div>
+                    </div>
+
+                    <h3 style="margin: 20px 0 10px; font-size: 14px;">紧凑版：.boblog-empty-compact</h3>
+                    <div class="boblog-empty boblog-empty-compact">
+                        <div class="boblog-empty-icon">📋</div>
+                        <div class="boblog-empty-text">暂无内容</div>
+                    </div>
+
+                    <h3 style="margin: 20px 0 10px; font-size: 14px;">组件级：.boblog-no-data</h3>
+                    <div class="boblog-no-data">暂无数据</div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 页面级 --&gt;
+&lt;div class="boblog-empty"&gt;
+    &lt;div class="boblog-empty-icon"&gt;🔍&lt;/div&gt;
+    &lt;div class="boblog-empty-text"&gt;未找到搜索结果&lt;/div&gt;
+    &lt;div class="boblog-empty-description"&gt;尝试使用其他关键词&lt;/div&gt;
+    &lt;div class="boblog-empty-action"&gt;
+        &lt;button class="boblog-btn"&gt;重新搜索&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 紧凑版 --&gt;
+&lt;div class="boblog-empty boblog-empty-compact"&gt;
+    &lt;div class="boblog-empty-icon"&gt;📋&lt;/div&gt;
+    &lt;div class="boblog-empty-text"&gt;暂无内容&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 组件级 --&gt;
+&lt;div class="boblog-no-data"&gt;暂无数据&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;场景对比示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 页面级空状态 --&gt;
+&lt;div class="boblog-empty"&gt;
+    &lt;div class="boblog-empty-icon"&gt;🔍&lt;/div&gt;
+    &lt;div class="boblog-empty-text"&gt;未找到搜索结果&lt;/div&gt;
+    &lt;div class="boblog-empty-description"&gt;尝试使用其他关键词&lt;/div&gt;
+    &lt;div class="boblog-empty-action"&gt;
+        &lt;button class="boblog-btn"&gt;重新搜索&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 紧凑版空状态 --&gt;
+&lt;div class="boblog-empty boblog-empty-compact"&gt;
+    &lt;div class="boblog-empty-icon"&gt;📋&lt;/div&gt;
+    &lt;div class="boblog-empty-text"&gt;暂无内容&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 组件级空数据 --&gt;
+&lt;div class="boblog-no-data"&gt;暂无数据&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

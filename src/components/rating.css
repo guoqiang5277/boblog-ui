@@ -1,0 +1,183 @@
+/**
+ * Bo-Blog UI - Rating 评分组件
+ * 经典2000年代博客风格的星级评分组件
+ *
+ * 设计原则：
+ * - 方角设计，无圆角效果
+ * - 使用 CSS 变量系统（--boblog-*）
+ * - 金黄色星星 (#D4A017)
+ * - Tahoma 字体优先
+ * - 所有类名以 .boblog- 开头
+ */
+
+/* ============================================
+   基础容器样式
+   ============================================ */
+
+/**
+ * 评分组件容器
+ * - inline-flex 布局，方便与其他元素内联显示
+ * - 垂直居中对齐星星和文本
+ * - 默认字号 16px
+ */
+.boblog-rating {
+  display: inline-flex;
+  align-items: center;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* ============================================
+   星星样式
+   ============================================ */
+
+/**
+ * 单个星星元素
+ * - inline-block 使星星水平排列
+ * - cursor pointer 表示可点击
+ * - 默认灰色（未激活状态），使用 --boblog-border 变量
+ * - 平滑的颜色过渡效果（150ms）
+ * - 使用 HTML 实体字符 ★ 显示星星
+ */
+.boblog-rating-star {
+  display: inline-block;
+  cursor: pointer;
+  color: var(--boblog-border);
+  transition: color 150ms ease;
+  user-select: none; /* 防止选中文本 */
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  vertical-align: top; /* 固定对齐方式，防止 .half 的 overflow:hidden 改变基线导致跳动 */
+}
+
+/**
+ * 激活/填充状态的星星
+ * - 使用 Bo-Blog 经典金黄色 (#D4A017)
+ * - 表示该星星已被选中或评分达到此星
+ */
+.boblog-rating-star.active {
+  color: var(--boblog-yellow);
+}
+
+/**
+ * 半星效果
+ * - 使用 CSS 技巧实现：相对定位 + ::after 伪元素
+ * - 通过裁剪宽度（50%）和溢出隐藏实现半星视觉效果
+ */
+.boblog-rating-star.half {
+  position: relative;
+  overflow: hidden;
+}
+
+/**
+ * 半星的填充部分
+ * - 使用 ::after 伪元素覆盖左半边
+ * - 绝对定位，宽度 50%，显示金黄色
+ * - 与父元素相同的字符，通过裁剪实现半星
+ */
+.boblog-rating-star.half::after {
+  content: '★';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  overflow: hidden;
+  color: var(--boblog-yellow);
+  pointer-events: none; /* 防止伪元素拦截鼠标事件 */
+}
+
+/* ============================================
+   交互状态
+   ============================================ */
+
+/**
+ * 鼠标悬停效果（仅非只读模式）
+ * - 悬停时星星变为金黄色
+ * - 提供视觉反馈，表示可以点击选择
+ * - :not(.readonly) 确保只读模式下无悬停效果
+ */
+.boblog-rating:not(.readonly) .boblog-rating-star:hover:not(.half) {
+  color: var(--boblog-yellow);
+}
+
+/**
+ * 只读模式
+ * - 仅用于展示评分，不可交互
+ * - 光标改为默认箭头
+ * - 星星不显示 pointer 光标
+ */
+.boblog-rating.readonly .boblog-rating-star {
+  cursor: default;
+}
+
+/**
+ * 禁用状态
+ * - 半透明显示（opacity 0.5）
+ * - 禁止所有鼠标事件（pointer-events: none）
+ * - 表示评分功能暂时不可用
+ */
+.boblog-rating.disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+/* ============================================
+   尺寸变体
+   ============================================ */
+
+/**
+ * 小尺寸评分组件
+ * - 适用于侧边栏、卡片等紧凑布局
+ * - 字号 12px
+ */
+.boblog-rating.small {
+  font-size: 12px;
+}
+
+/**
+ * 大尺寸评分组件
+ * - 适用于突出显示评分的场景
+ * - 字号 24px
+ */
+.boblog-rating.large {
+  font-size: 24px;
+}
+
+/* ============================================
+   评分文本
+   ============================================ */
+
+/**
+ * 评分数值文本
+ * - 显示在星星右侧，例如 "4.5 分"
+ * - 左侧留出 6px 间距
+ * - 字号 12px，使用次要文本颜色
+ * - 提供额外的评分信息
+ */
+.boblog-rating-text {
+  margin-left: 6px;
+  font-size: 12px;
+  color: var(--boblog-text-secondary);
+  white-space: nowrap; /* 防止文本换行 */
+}
+
+/* ============================================
+   响应式优化
+   ============================================ */
+
+/**
+ * 移动设备触摸优化
+ * - 增加星星之间的间距，便于触摸操作
+ * - 防止误触
+ */
+@media (max-width: 768px) {
+  .boblog-rating-star {
+    margin-right: 2px;
+  }
+
+  .boblog-rating-star:last-child {
+    margin-right: 0;
+  }
+}

@@ -1,0 +1,108 @@
+/**
+ * Bo-Blog UI 控件 - 边框 (Border)
+ *
+ * 提供统一的边框样式工具类
+ *
+ * 使用场景：
+ *   - 为元素添加边框
+ *   - 设置边框方向（上/下/左/右）
+ *   - 设置边框颜色（主题蓝/浅蓝/灰色）
+ *
+ * HTML 示例：
+ *   <div class="boblog-border">四边边框</div>
+ *   <div class="boblog-border-top">上边框</div>
+ *   <div class="boblog-border-blue">蓝色边框</div>
+ *
+ * 依赖：
+ *   - src/base/variables.css（边框颜色变量）
+ */
+
+
+/* ==========================================================================
+   基础边框
+   ========================================================================== */
+
+/* 四边边框（默认灰色） */
+.boblog-border {
+    border: 1px solid var(--boblog-border, #C4D7E8);
+}
+
+/* 无边框 */
+.boblog-border-none {
+    border: none !important;
+}
+
+
+/* ==========================================================================
+   方向边框
+   ========================================================================== */
+
+/* 上边框 */
+.boblog-border-top {
+    border-top: 1px solid var(--boblog-border, #C4D7E8);
+}
+
+/* 下边框 */
+.boblog-border-bottom {
+    border-bottom: 1px solid var(--boblog-border, #C4D7E8);
+}
+
+/* 左边框 */
+.boblog-border-left {
+    border-left: 1px solid var(--boblog-border, #C4D7E8);
+}
+
+/* 右边框 */
+.boblog-border-right {
+    border-right: 1px solid var(--boblog-border, #C4D7E8);
+}
+
+
+/* ==========================================================================
+   边框颜色变体
+   ========================================================================== */
+
+/* 主题蓝色边框 */
+.boblog-border-blue {
+    border-color: var(--boblog-blue, #0D6EAA);
+}
+
+/* 浅蓝色边框 */
+.boblog-border-light {
+    border-color: var(--boblog-border-light, #DDE8F0);
+}
+
+/* 深色边框 */
+.boblog-border-dark {
+    border-color: var(--boblog-border-dark, #A0B5C8);
+}
+
+
+/* ==========================================================================
+   边框宽度
+   ========================================================================== */
+
+/* 2px 边框 */
+.boblog-border-2 {
+    border-width: 2px;
+}
+
+/* 3px 边框 */
+.boblog-border-3 {
+    border-width: 3px;
+}
+
+
+/* ==========================================================================
+   虚线边框
+   ========================================================================== */
+
+/* 虚线边框 */
+.boblog-border-dashed {
+    border-style: dashed;
+}
+
+/* 点状边框 */
+.boblog-border-dotted {
+    border-style: dotted;
+}

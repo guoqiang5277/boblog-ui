@@ -1,0 +1,150 @@
+/**
+ * Bo-Blog UI 基础层 - CSS 变量定义
+ *
+ * 基于 Bo-Blog V2.1 Default Skin 经典蓝白配色
+ * 特征：清爽简洁、无圆角、浅蓝色调
+ */
+
+:root {
+    /* ========== 基础色 ========== */
+    --boblog-white: #FFFFFF;               /* 纯白：主背景、反色文字 */
+    --boblog-black: #000000;               /* 纯黑：hover 强调、最深文字 */
+
+    /* ========== 品牌蓝（3 级） ========== */
+    /* Bo-Blog 标志性蓝白配色的核心 */
+    --boblog-blue: #0D6EAA;               /* 品牌蓝：标题、链接、主按钮 */
+    --boblog-blue-light: #2E93C9;         /* 强调蓝：hover、日期月份背景 */
+    --boblog-blue-pale: #E8F0F7;          /* 浅蓝底：选中行、高亮区域 */
+    --boblog-blue-wash: #F4FBFF;          /* 极浅蓝底：Tab 按钮、Tag 内容区 james明确*/
+    --boblog-blue-accent: #0D80BD;        /* 强调蓝：Tab 激活文字、Tag 标题 james明确*/
+    --boblog-blue-bar: #BEE6FD;           /* 导航粗边框蓝：对应 Bo-Blog V2.1 --blue-bar */
+
+    /* ========== 边框色（3 级） ========== */
+    /* 偏灰的蓝调，安静但保持蓝白主题感 */
+    --boblog-border: #C4D7E8;             /* 主边框：面板、卡片、表格 */
+    --boblog-border-light: #DDE8F0;       /* 次边框：分隔线、列表线 */
+    --boblog-border-blue: #9EC9FF;        /* 蓝色边框：Tab 栏、Tag 面板 james明确*/
+
+    /* ========== 背景色（3 级） ========== */
+    --boblog-bg: #FFFFFF;                 /* 主背景 */
+    --boblog-bg-subtle: #F5F8FB;          /* 次背景：侧边栏、面板、斑马条 */
+    --boblog-bg-muted: #EBF0F5;           /* 强调背景：表头、代码块、日期卡 */
+
+    /* ========== 文字色（4 级） ========== */
+    --boblog-text: #1A1A1A;               /* 正文文字 */
+    --boblog-text-secondary: #555555;     /* 次要文字：描述、日期 */
+    --boblog-text-muted: #888888;         /* 弱化文字：占位符 */
+    --boblog-text-disabled: #AAAAAA;      /* 禁用文字 */
+
+    /* ========== 基础色板（6 色） ========== */
+    /* 2000 年代博客风格，沉稳不鲜艳 */
+    --boblog-red: #CC3333;                /* 红色：删除、必填星号、错误文字 */
+    --boblog-green: #3C8C30;              /* 绿色：成功、通过、在线 */
+    --boblog-yellow: #D4A017;             /* 黄色：警告、星标、置顶 */
+    --boblog-orange: #D07020;             /* 橙色：待审核、提醒、关注 */
+    --boblog-cyan: #1BA8A8;               /* 青色：标签、分类、辅助信息 */
+    --boblog-purple: #7B5EA7;             /* 紫色：管理员、特殊标记 */
+
+    /* ========== 世界经典名色（10 色） ========== */
+    /* 来源：世界公认最出名的 10 种颜色（新野设计） */
+    --boblog-blue-klein: #002FA7;         /* 克莱因蓝 Klein Blue — 希望、自由、理性、纯洁 */
+    --boblog-red-burgundy: #900021;       /* 勃艮第红 Burgundy — 性感、优雅、深沉、自由 */
+    --boblog-green-mars: #01847F;         /* 马尔斯绿 Mars Green — 稳定、健康、平静、时尚 */
+    --boblog-red-bordeaux: #470009;       /* 波尔多红 Bordeaux Red — 沉稳、优雅、华丽、高贵 */
+    --boblog-red-chinese: #E71F18;        /* 中国红 Chinese Red — 团结奋斗、希望、生生不息 */
+    --boblog-red-titan: #B05923;          /* 提香红 Titan Red — 热情、不凡、典雅、文艺 */
+    --boblog-blue-prussian: #003153;      /* 普鲁士蓝 Prussian Blue — 绅士、优雅、内敛 */
+    --boblog-yellow-sennelier: #FBD26A;   /* 申布伦黄 Sennelier Yellow — 温暖、阳光、丰收、喜悦 */
+    --boblog-brown-vandyke: #492D22;      /* 凡戴克棕 Vandyke Brown — 古典、沉稳、可靠、贵气 */
+    --boblog-blue-tiffany: #81D8D0;       /* 蒂芙尼蓝 Tiffany Blue — 清澈、自由、浪漫、幸福 */
+
+    /* ========== 功能色（4 组：正色 + 浅底） ========== */
+    /* 语义化状态色，正色用于文字/图标，浅底用于消息条背景 */
+    --boblog-success: #3C8C30;            /* 成功状态 */
+    --boblog-success-bg: #F0F8EE;         /* 成功消息背景 */
+    --boblog-warning: #D4A017;            /* 警告状态 */
+    --boblog-warning-bg: #FFF8E6;         /* 警告消息背景 */
+    --boblog-danger: #CC3333;             /* 危险/错误状态 */
+    --boblog-danger-bg: #FFF0F0;          /* 错误消息背景 */
+    --boblog-info: #1677B5;               /* 信息状态 */
+    --boblog-info-bg: #EDF5FB;            /* 信息消息背景 */
+
+    /* ========== 控件状态（2 个） ========== */
+    --boblog-disabled-bg: #F5F5F5;        /* 禁用控件背景 */
+    --boblog-disabled-border: #D9D9D9;    /* 禁用控件边框 */
+
+    /* ========== 语法高亮色（代码块专用） ========== */
+    /* CSS 高亮 */
+    --boblog-hl-comment: #6A8A6A;         /* 注释：灰绿色斜体 */
+    --boblog-hl-property: #9C3328;        /* 属性名：深红棕 */
+    --boblog-hl-value: #1A6B8A;           /* 属性值：深蓝 */
+    /* HTML + JS 高亮 */
+    --boblog-hl-tag: #1A6B8A;             /* HTML 标签名：深蓝 */
+    --boblog-hl-string: #2E7D32;          /* 字符串/属性值：棕绿 */
+    --boblog-hl-keyword: #0D6EAA;         /* JS 关键字：品牌蓝 */
+    --boblog-hl-number: #7B5EA7;          /* JS 数字：紫色 */
+
+    /* ========== 字体族 ========== */
+    --boblog-font-family: Tahoma, Arial, sans-serif;
+    --boblog-font-family-code: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Cascadia Code', Consolas, Monaco, monospace;
+
+    /* ========== 字号体系 ========== */
+    --boblog-font-size-xs: 11px;           /* 极小字 */
+    --boblog-font-size-sm: 12px;           /* 小字 */
+    --boblog-font-size-base: 12px;         /* 基础字号 - Bo-Blog 标准 */
+    --boblog-font-size-md: 14px;           /* 中等字号 */
+    --boblog-font-size-lg: 16px;           /* 大字 */
+    --boblog-font-size-xl: 18px;           /* 特大字 */
+    --boblog-font-size-2xl: 20px;          /* 超大字 */
+    --boblog-font-size-3xl: 24px;          /* 巨大字 */
+
+    /* ========== 行高 ========== */
+    --boblog-line-height-tight: 1.2;       /* 紧凑行高 */
+    --boblog-line-height-normal: 1.5;      /* 标准行高 - Bo-Blog 使用 150% */
+    --boblog-line-height-loose: 1.8;       /* 宽松行高 */
+
+    /* ========== 间距体系 ========== */
+    /* 基于 5px 递增 */
+    --boblog-spacing-xs: 5px;              /* 极小间距 */
+    --boblog-spacing-sm: 10px;             /* 小间距 */
+    --boblog-spacing-md: 15px;             /* 中等间距 */
+    --boblog-spacing-lg: 20px;             /* 大间距 */
+    --boblog-spacing-xl: 25px;             /* 特大间距 */
+    --boblog-spacing-2xl: 30px;            /* 超大间距 */
+
+    /* ========== 边框 ========== */
+    --boblog-border-width: 1px;            /* 标准边框宽度 */
+    --boblog-border-width-thick: 2px;      /* 粗边框 */
+    --boblog-border-radius: 0;             /* Bo-Blog 无圆角 - 方角设计 */
+
+    /* ========== 阴影 ========== */
+    /* Bo-Blog 经典风格基本不用阴影，保留极轻微选项 */
+    --boblog-shadow-none: none;
+    --boblog-shadow-subtle: 0 1px 2px rgba(0, 0, 0, 0.1);
+    --boblog-shadow-light: 0 2px 4px rgba(0, 0, 0, 0.12);
+
+    /* ========== 过渡动画 ========== */
+    --boblog-transition-fast: 100ms;       /* 快速过渡 */
+    --boblog-transition-normal: 150ms;     /* 标准过渡 */
+    --boblog-transition-slow: 300ms;       /* 慢速过渡 */
+    --boblog-transition-timing: ease-in-out;
+
+    /* ========== 层级 z-index ========== */
+    --boblog-z-index-dropdown: 1100;        /* 下拉菜单 */
+    --boblog-z-index-sticky: 1200;          /* 固定元素 */
+    --boblog-z-index-modal-backdrop: 1300;  /* 模态框背景 */
+    --boblog-z-index-modal: 1400;          /* 模态框 */
+    --boblog-z-index-tooltip: 1500;        /* 工具提示 */
+
+    /* ========== 响应式断点 ========== */
+    --boblog-breakpoint-sm: 576px;         /* 小屏幕 */
+    --boblog-breakpoint-md: 768px;         /* 中等屏幕 */
+    --boblog-breakpoint-lg: 992px;         /* 大屏幕 */
+    --boblog-breakpoint-xl: 1200px;        /* 超大屏幕 */
+
+    /* ========== Bo-Blog 特定尺寸 ========== */
+    --boblog-date-card-width: 49px;        /* 日期卡片宽度 */
+    --boblog-date-card-height: 46px;       /* 日期卡片高度 */
+    --boblog-sidebar-main-width: 201px;    /* 主侧边栏宽度 */
+    --boblog-sidebar-sub-width: 140px;     /* 次侧边栏宽度 */
+}

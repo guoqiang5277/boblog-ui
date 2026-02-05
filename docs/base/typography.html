@@ -1,0 +1,1143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>排版 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="doc-gray-bg">
+    <!-- 右侧浮动目录 -->
+    <div class="boblog-toc">
+        <h4>目录</h4>
+        <ul id="tocList"></ul>
+    </div>
+
+    <div class="doc-container">
+        <div class="doc-nav">
+            <a href="../index.html">← 返回总纲</a>
+        </div>
+
+        <h1>排版</h1>
+
+        <!-- 概述 -->
+        <div class="boblog-doc-section">
+            <h2 id="概述">概述</h2>
+            <ul class="boblog-doc-spec">
+                <li><strong>字体族</strong>: Tahoma, Arial, sans-serif</li>
+                <li><strong>基础字号</strong>: 12px</li>
+                <li><strong>基础行高</strong>: 1.5 (150%)</li>
+                <li><strong>代码字体</strong>: JetBrains Mono, Fira Code, Source Code Pro, Cascadia Code, Consolas, Monaco, monospace</li>
+                <li><strong>设计风格</strong>: 基于 Bo-Blog V2.1 排版特征，经典的 Tahoma、Arial 字体族</li>
+            </ul>
+        </div>
+
+        <!-- 字号体系 -->
+        <div class="boblog-doc-section">
+            <h2 id="字号体系">字号体系</h2>
+
+            <div class="section-part">
+                <h3>1. 规范说明</h3>
+                <ul class="boblog-doc-spec">
+                    <li><strong>8 级字号体系</strong>: 覆盖从极小字到巨大字的全部场景</li>
+                    <li><strong>--boblog-font-size-xs</strong>: 11px - 极小字</li>
+                    <li><strong>--boblog-font-size-sm</strong>: 12px - 小字</li>
+                    <li><strong>--boblog-font-size-base</strong>: 12px - 基础字号（Bo-Blog 标准）</li>
+                    <li><strong>--boblog-font-size-md</strong>: 14px - 中等字号</li>
+                    <li><strong>--boblog-font-size-lg</strong>: 16px - 大字</li>
+                    <li><strong>--boblog-font-size-xl</strong>: 18px - 特大字</li>
+                    <li><strong>--boblog-font-size-2xl</strong>: 20px - 超大字</li>
+                    <li><strong>--boblog-font-size-3xl</strong>: 24px - 巨大字</li>
+                </ul>
+            </div>
+
+            <div class="section-part">
+                <h3>2. 演示</h3>
+                <div class="boblog-tabs">
+                    <div class="boblog-tabs-bar">
+                        <button class="boblog-tabs-btn active">预览</button>
+                        <button class="boblog-tabs-btn">关键源码</button>
+                        <button class="boblog-tabs-btn">完整源码</button>
+                    </div>
+                    <div class="boblog-tabs-panel active">
+                        <!-- 预览 -->
+                        <div class="boblog-doc-demo">
+                            <table class="boblog-table">
+                                <thead>
+                                    <tr>
+                                        <th>类名</th>
+                                        <th>尺寸</th>
+                                        <th>效果</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>.boblog-text-xs</code></td>
+                                        <td>11px</td>
+                                        <td><span class="boblog-text-xs">极小字号示例文本</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>.boblog-text-sm</code></td>
+                                        <td>12px</td>
+                                        <td><span class="boblog-text-sm">小字号示例文本</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>.boblog-text-md</code></td>
+                                        <td>14px</td>
+                                        <td><span class="boblog-text-md">中等字号示例文本</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>.boblog-text-lg</code></td>
+                                        <td>16px</td>
+                                        <td><span class="boblog-text-lg">大字号示例文本</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>.boblog-text-xl</code></td>
+                                        <td>18px</td>
+                                        <td><span class="boblog-text-xl">特大字号示例文本</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>.boblog-text-2xl</code></td>
+                                        <td>20px</td>
+                                        <td><span class="boblog-text-2xl">超大字号示例文本</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>.boblog-text-3xl</code></td>
+                                        <td>24px</td>
+                                        <td><span class="boblog-text-3xl">巨大字号示例文本</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <!-- 关键源码 -->
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;table class="boblog-table"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;类名&lt;/th&gt;
+            &lt;th&gt;尺寸&lt;/th&gt;
+            &lt;th&gt;效果&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;code&gt;.boblog-text-xs&lt;/code&gt;&lt;/td&gt;
+            &lt;td&gt;11px&lt;/td&gt;
+            &lt;td&gt;&lt;span class="boblog-text-xs"&gt;极小字号示例文本&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;code&gt;.boblog-text-sm&lt;/code&gt;&lt;/td&gt;
+            &lt;td&gt;12px&lt;/td&gt;
+            &lt;td&gt;&lt;span class="boblog-text-sm"&gt;小字号示例文本&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;code&gt;.boblog-text-md&lt;/code&gt;&lt;/td&gt;
+            &lt;td&gt;14px&lt;/td&gt;
+            &lt;td&gt;&lt;span class="boblog-text-md"&gt;中等字号示例文本&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;code&gt;.boblog-text-lg&lt;/code&gt;&lt;/td&gt;
+            &lt;td&gt;16px&lt;/td&gt;
+            &lt;td&gt;&lt;span class="boblog-text-lg"&gt;大字号示例文本&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;code&gt;.boblog-text-xl&lt;/code&gt;&lt;/td&gt;
+            &lt;td&gt;18px&lt;/td&gt;
+            &lt;td&gt;&lt;span class="boblog-text-xl"&gt;特大字号示例文本&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;code&gt;.boblog-text-2xl&lt;/code&gt;&lt;/td&gt;
+            &lt;td&gt;20px&lt;/td&gt;
+            &lt;td&gt;&lt;span class="boblog-text-2xl"&gt;超大字号示例文本&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;code&gt;.boblog-text-3xl&lt;/code&gt;&lt;/td&gt;
+            &lt;td&gt;24px&lt;/td&gt;
+            &lt;td&gt;&lt;span class="boblog-text-3xl"&gt;巨大字号示例文本&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <!-- 完整源码 -->
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;字号体系示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;table class="boblog-table"&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th&gt;类名&lt;/th&gt;
+                &lt;th&gt;尺寸&lt;/th&gt;
+                &lt;th&gt;效果&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;code&gt;.boblog-text-xs&lt;/code&gt;&lt;/td&gt;
+                &lt;td&gt;11px&lt;/td&gt;
+                &lt;td&gt;&lt;span class="boblog-text-xs"&gt;极小字号示例文本&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;code&gt;.boblog-text-sm&lt;/code&gt;&lt;/td&gt;
+                &lt;td&gt;12px&lt;/td&gt;
+                &lt;td&gt;&lt;span class="boblog-text-sm"&gt;小字号示例文本&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;code&gt;.boblog-text-md&lt;/code&gt;&lt;/td&gt;
+                &lt;td&gt;14px&lt;/td&gt;
+                &lt;td&gt;&lt;span class="boblog-text-md"&gt;中等字号示例文本&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;code&gt;.boblog-text-lg&lt;/code&gt;&lt;/td&gt;
+                &lt;td&gt;16px&lt;/td&gt;
+                &lt;td&gt;&lt;span class="boblog-text-lg"&gt;大字号示例文本&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;code&gt;.boblog-text-xl&lt;/code&gt;&lt;/td&gt;
+                &lt;td&gt;18px&lt;/td&gt;
+                &lt;td&gt;&lt;span class="boblog-text-xl"&gt;特大字号示例文本&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;code&gt;.boblog-text-2xl&lt;/code&gt;&lt;/td&gt;
+                &lt;td&gt;20px&lt;/td&gt;
+                &lt;td&gt;&lt;span class="boblog-text-2xl"&gt;超大字号示例文本&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;code&gt;.boblog-text-3xl&lt;/code&gt;&lt;/td&gt;
+                &lt;td&gt;24px&lt;/td&gt;
+                &lt;td&gt;&lt;span class="boblog-text-3xl"&gt;巨大字号示例文本&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 行高 -->
+        <div class="boblog-doc-section">
+            <h2 id="行高">行高</h2>
+            <ul class="boblog-doc-spec">
+                <li><strong>--boblog-line-height-tight</strong>: 1.2 - 紧凑行高（标题）</li>
+                <li><strong>--boblog-line-height-normal</strong>: 1.5 - 标准行高（Bo-Blog 使用 150%）</li>
+                <li><strong>--boblog-line-height-loose</strong>: 1.8 - 宽松行高</li>
+            </ul>
+        </div>
+
+        <!-- 字体族 -->
+        <div class="boblog-doc-section">
+            <h2 id="字体族">字体族</h2>
+            <ul class="boblog-doc-spec">
+                <li><strong>--boblog-font-family</strong>: Tahoma, Arial, sans-serif - 正文字体</li>
+                <li><strong>--boblog-font-family-code</strong>: 'JetBrains Mono', 'Fira Code', 'Source Code Pro', 'Cascadia Code', Consolas, Monaco, monospace - 代码字体</li>
+            </ul>
+        </div>
+
+        <!-- 标题排版 -->
+        <div class="boblog-doc-section">
+            <h2 id="标题排版">标题排版</h2>
+
+            <div class="section-part">
+                <h3>1. 规范说明</h3>
+                <ul class="boblog-doc-spec">
+                    <li><strong>H1-H3</strong>: 使用品牌蓝色 <code>--boblog-blue</code></li>
+                    <li><strong>H4-H6</strong>: 使用正文颜色 <code>--boblog-text</code></li>
+                    <li><strong>行高</strong>: 紧凑行高 1.2</li>
+                    <li><strong>H1</strong>: 24px</li>
+                    <li><strong>H2</strong>: 20px</li>
+                    <li><strong>H3</strong>: 18px</li>
+                    <li><strong>H4</strong>: 16px</li>
+                    <li><strong>H5</strong>: 14px</li>
+                    <li><strong>H6</strong>: 12px</li>
+                </ul>
+            </div>
+
+            <div class="section-part">
+                <h3>2. 演示</h3>
+                <div class="boblog-tabs">
+                    <div class="boblog-tabs-bar">
+                        <button class="boblog-tabs-btn active">预览</button>
+                        <button class="boblog-tabs-btn">关键源码</button>
+                        <button class="boblog-tabs-btn">完整源码</button>
+                    </div>
+                    <div class="boblog-tabs-panel active">
+                        <!-- 预览 -->
+                        <div class="boblog-doc-demo">
+                            <h1 class="boblog-mb-2">一级标题 H1 (24px)</h1>
+                            <h2 class="boblog-mb-2">二级标题 H2 (20px)</h2>
+                            <h3 class="boblog-mb-2">三级标题 H3 (18px)</h3>
+                            <h4 class="boblog-mb-2">四级标题 H4 (16px)</h4>
+                            <h5 class="boblog-mb-2">五级标题 H5 (14px)</h5>
+                            <h6 class="boblog-mb-2">六级标题 H6 (12px)</h6>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <!-- 关键源码 -->
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;h1 class="boblog-mb-2"&gt;一级标题 H1 (24px)&lt;/h1&gt;
+&lt;h2 class="boblog-mb-2"&gt;二级标题 H2 (20px)&lt;/h2&gt;
+&lt;h3 class="boblog-mb-2"&gt;三级标题 H3 (18px)&lt;/h3&gt;
+&lt;h4 class="boblog-mb-2"&gt;四级标题 H4 (16px)&lt;/h4&gt;
+&lt;h5 class="boblog-mb-2"&gt;五级标题 H5 (14px)&lt;/h5&gt;
+&lt;h6 class="boblog-mb-2"&gt;六级标题 H6 (12px)&lt;/h6&gt;</code></pre>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <!-- 完整源码 -->
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;标题排版示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1 class="boblog-mb-2"&gt;一级标题 H1 (24px)&lt;/h1&gt;
+    &lt;h2 class="boblog-mb-2"&gt;二级标题 H2 (20px)&lt;/h2&gt;
+    &lt;h3 class="boblog-mb-2"&gt;三级标题 H3 (18px)&lt;/h3&gt;
+    &lt;h4 class="boblog-mb-2"&gt;四级标题 H4 (16px)&lt;/h4&gt;
+    &lt;h5 class="boblog-mb-2"&gt;五级标题 H5 (14px)&lt;/h5&gt;
+    &lt;h6 class="boblog-mb-2"&gt;六级标题 H6 (12px)&lt;/h6&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 段落排版 -->
+        <div class="boblog-doc-section">
+            <h2 id="段落排版">段落排版</h2>
+
+            <div class="section-part">
+                <h3>1. 规范说明</h3>
+                <ul class="boblog-doc-spec">
+                    <li><strong>字号</strong>: 12px (基础字号)</li>
+                    <li><strong>行高</strong>: 1.5 (150%)</li>
+                    <li><strong>段落间距</strong>: 默认底部 margin</li>
+                    <li><strong>链接颜色</strong>: 品牌蓝色，hover 显示下划线</li>
+                </ul>
+            </div>
+
+            <div class="section-part">
+                <h3>2. 演示</h3>
+                <div class="boblog-tabs">
+                    <div class="boblog-tabs-bar">
+                        <button class="boblog-tabs-btn active">预览</button>
+                        <button class="boblog-tabs-btn">关键源码</button>
+                        <button class="boblog-tabs-btn">完整源码</button>
+                    </div>
+                    <div class="boblog-tabs-panel active">
+                        <!-- 预览 -->
+                        <div class="boblog-doc-demo">
+                            <p>这是一个段落。Bo-Blog UI 是基于 Bo-Blog V2.1 Default Skin 的经典设计风格，采用浅蓝白色调，清爽简洁的视觉效果。适用于 2000 年代风格的独立博客和内容管理系统。</p>
+                            <p>这是包含<a href="#">链接</a>的段落文本。链接使用品牌蓝色，鼠标悬停时显示下划线。</p>
+                            <p>这是包含<strong>粗体文字</strong>和<em>斜体文字</em>的段落。还可以使用<code>行内代码</code>样式。</p>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <!-- 关键源码 -->
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;p&gt;这是一个段落。Bo-Blog UI 是基于 Bo-Blog V2.1 Default Skin 的经典设计风格，采用浅蓝白色调，清爽简洁的视觉效果。适用于 2000 年代风格的独立博客和内容管理系统。&lt;/p&gt;
+&lt;p&gt;这是包含&lt;a href="#"&gt;链接&lt;/a&gt;的段落文本。链接使用品牌蓝色，鼠标悬停时显示下划线。&lt;/p&gt;
+&lt;p&gt;这是包含&lt;strong&gt;粗体文字&lt;/strong&gt;和&lt;em&gt;斜体文字&lt;/em&gt;的段落。还可以使用&lt;code&gt;行内代码&lt;/code&gt;样式。&lt;/p&gt;</code></pre>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <!-- 完整源码 -->
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;段落排版示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;这是一个段落。Bo-Blog UI 是基于 Bo-Blog V2.1 Default Skin 的经典设计风格，采用浅蓝白色调，清爽简洁的视觉效果。适用于 2000 年代风格的独立博客和内容管理系统。&lt;/p&gt;
+    &lt;p&gt;这是包含&lt;a href="#"&gt;链接&lt;/a&gt;的段落文本。链接使用品牌蓝色，鼠标悬停时显示下划线。&lt;/p&gt;
+    &lt;p&gt;这是包含&lt;strong&gt;粗体文字&lt;/strong&gt;和&lt;em&gt;斜体文字&lt;/em&gt;的段落。还可以使用&lt;code&gt;行内代码&lt;/code&gt;样式。&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 链接样式 -->
+        <div class="boblog-doc-section">
+            <h2 id="链接样式">链接样式</h2>
+
+            <div class="section-part">
+                <h3>1. 规范说明</h3>
+                <ul class="boblog-doc-spec">
+                    <li><strong>默认状态</strong>: #333333，无下划线</li>
+                    <li><strong>悬停状态</strong>: #000000，有下划线</li>
+                    <li><strong>蓝色链接</strong>: 使用 <code>.boblog-link-blue</code> 类</li>
+                </ul>
+            </div>
+
+            <div class="section-part">
+                <h3>2. 演示</h3>
+                <div class="boblog-tabs">
+                    <div class="boblog-tabs-bar">
+                        <button class="boblog-tabs-btn active">预览</button>
+                        <button class="boblog-tabs-btn">关键源码</button>
+                        <button class="boblog-tabs-btn">完整源码</button>
+                    </div>
+                    <div class="boblog-tabs-panel active">
+                        <!-- 预览 -->
+                        <div class="boblog-doc-demo">
+                            <p>普通链接：<a href="#">这是一个链接</a></p>
+                            <p>蓝色链接：<a href="#" class="boblog-link-blue">这是蓝色链接</a></p>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <!-- 关键源码 -->
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;p&gt;普通链接：&lt;a href="#"&gt;这是一个链接&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;蓝色链接：&lt;a href="#" class="boblog-link-blue"&gt;这是蓝色链接&lt;/a&gt;&lt;/p&gt;</code></pre>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <!-- 完整源码 -->
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;链接样式示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;普通链接：&lt;a href="#"&gt;这是一个链接&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;蓝色链接：&lt;a href="#" class="boblog-link-blue"&gt;这是蓝色链接&lt;/a&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 代码排版 -->
+        <div class="boblog-doc-section">
+            <h2 id="代码排版">代码排版</h2>
+
+            <div class="section-part">
+                <h3>1. 规范说明</h3>
+                <ul class="boblog-doc-spec">
+                    <li><strong>行内代码</strong>: 使用 <code>&lt;code&gt;</code> 标签</li>
+                    <li><strong>代码块</strong>: 使用 <code>&lt;pre&gt;&lt;code&gt;</code> 组合</li>
+                    <li><strong>字体</strong>: 等宽字体栈</li>
+                    <li><strong>背景色</strong>: 浅灰色</li>
+                </ul>
+            </div>
+
+            <div class="section-part">
+                <h3>2. 演示</h3>
+                <div class="boblog-tabs">
+                    <div class="boblog-tabs-bar">
+                        <button class="boblog-tabs-btn active">预览</button>
+                        <button class="boblog-tabs-btn">关键源码</button>
+                        <button class="boblog-tabs-btn">完整源码</button>
+                    </div>
+                    <div class="boblog-tabs-panel active">
+                        <!-- 预览 -->
+                        <div class="boblog-doc-demo">
+                            <p>行内代码示例：<code>console.log('Hello World')</code></p>
+                            <pre><code>// 这是代码块示例
+function hello() {
+    console.log("Hello, Bo-Blog UI!");
+}</code></pre>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <!-- 关键源码 -->
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;p&gt;行内代码示例：&lt;code&gt;console.log('Hello World')&lt;/code&gt;&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;// 这是代码块示例
+function hello() {
+    console.log("Hello, Bo-Blog UI!");
+}&lt;/code&gt;&lt;/pre&gt;</code></pre>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <!-- 完整源码 -->
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;代码排版示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p&gt;行内代码示例：&lt;code&gt;console.log('Hello World')&lt;/code&gt;&lt;/p&gt;
+    &lt;pre&gt;&lt;code&gt;// 这是代码块示例
+function hello() {
+    console.log("Hello, Bo-Blog UI!");
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 引用块 -->
+        <div class="boblog-doc-section">
+            <h2 id="引用块">引用块</h2>
+
+            <div class="section-part">
+                <h3>1. 规范说明</h3>
+                <ul class="boblog-doc-spec">
+                    <li><strong>左侧边框</strong>: 蓝色边框</li>
+                    <li><strong>背景</strong>: 浅蓝背景</li>
+                    <li><strong>用途</strong>: 引用其他来源的内容或特别强调的文字</li>
+                </ul>
+            </div>
+
+            <div class="section-part">
+                <h3>2. 演示</h3>
+                <div class="boblog-tabs">
+                    <div class="boblog-tabs-bar">
+                        <button class="boblog-tabs-btn active">预览</button>
+                        <button class="boblog-tabs-btn">关键源码</button>
+                        <button class="boblog-tabs-btn">完整源码</button>
+                    </div>
+                    <div class="boblog-tabs-panel active">
+                        <!-- 预览 -->
+                        <div class="boblog-doc-demo">
+                            <blockquote>
+                                这是一个引用块。用于引用其他来源的内容或特别强调的文字。引用块使用左侧蓝色边框和浅蓝背景。
+                            </blockquote>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <!-- 关键源码 -->
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;blockquote&gt;
+    这是一个引用块。用于引用其他来源的内容或特别强调的文字。引用块使用左侧蓝色边框和浅蓝背景。
+&lt;/blockquote&gt;</code></pre>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <!-- 完整源码 -->
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;引用块示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;blockquote&gt;
+        这是一个引用块。用于引用其他来源的内容或特别强调的文字。引用块使用左侧蓝色边框和浅蓝背景。
+    &lt;/blockquote&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 列表排版 -->
+        <div class="boblog-doc-section">
+            <h2 id="列表排版">列表排版</h2>
+
+            <div class="section-part">
+                <h3>1. 规范说明</h3>
+                <ul class="boblog-doc-spec">
+                    <li><strong>无序列表</strong>: 使用 <code>&lt;ul&gt;</code> 标签</li>
+                    <li><strong>有序列表</strong>: 使用 <code>&lt;ol&gt;</code> 标签</li>
+                    <li><strong>列表项</strong>: 使用 <code>&lt;li&gt;</code> 标签</li>
+                </ul>
+            </div>
+
+            <div class="section-part">
+                <h3>2. 演示</h3>
+                <div class="boblog-tabs">
+                    <div class="boblog-tabs-bar">
+                        <button class="boblog-tabs-btn active">预览</button>
+                        <button class="boblog-tabs-btn">关键源码</button>
+                        <button class="boblog-tabs-btn">完整源码</button>
+                    </div>
+                    <div class="boblog-tabs-panel active">
+                        <!-- 预览 -->
+                        <div class="boblog-doc-demo">
+                            <h4>无序列表</h4>
+                            <ul>
+                                <li>无序列表项 1</li>
+                                <li>无序列表项 2</li>
+                                <li>无序列表项 3</li>
+                            </ul>
+
+                            <h4>有序列表</h4>
+                            <ol>
+                                <li>有序列表项 1</li>
+                                <li>有序列表项 2</li>
+                                <li>有序列表项 3</li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <!-- 关键源码 -->
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;h4&gt;无序列表&lt;/h4&gt;
+&lt;ul&gt;
+    &lt;li&gt;无序列表项 1&lt;/li&gt;
+    &lt;li&gt;无序列表项 2&lt;/li&gt;
+    &lt;li&gt;无序列表项 3&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;有序列表&lt;/h4&gt;
+&lt;ol&gt;
+    &lt;li&gt;有序列表项 1&lt;/li&gt;
+    &lt;li&gt;有序列表项 2&lt;/li&gt;
+    &lt;li&gt;有序列表项 3&lt;/li&gt;
+&lt;/ol&gt;</code></pre>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <!-- 完整源码 -->
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;列表排版示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h4&gt;无序列表&lt;/h4&gt;
+    &lt;ul&gt;
+        &lt;li&gt;无序列表项 1&lt;/li&gt;
+        &lt;li&gt;无序列表项 2&lt;/li&gt;
+        &lt;li&gt;无序列表项 3&lt;/li&gt;
+    &lt;/ul&gt;
+
+    &lt;h4&gt;有序列表&lt;/h4&gt;
+    &lt;ol&gt;
+        &lt;li&gt;有序列表项 1&lt;/li&gt;
+        &lt;li&gt;有序列表项 2&lt;/li&gt;
+        &lt;li&gt;有序列表项 3&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 文字工具类 - 字号 -->
+        <div class="boblog-doc-section">
+            <h2 id="文字工具类-字号">文字工具类 - 字号</h2>
+
+            <div class="section-part">
+                <h3>1. 规范说明</h3>
+                <ul class="boblog-doc-spec">
+                    <li><strong>.boblog-text-xs</strong>: 极小字号 (11px)</li>
+                    <li><strong>.boblog-text-sm</strong>: 小字号 (12px)</li>
+                    <li><strong>.boblog-text-md</strong>: 中等字号 (14px)</li>
+                    <li><strong>.boblog-text-lg</strong>: 大字号 (16px)</li>
+                    <li><strong>.boblog-text-xl</strong>: 特大字号 (18px)</li>
+                    <li><strong>.boblog-text-2xl</strong>: 超大字号 (20px)</li>
+                    <li><strong>.boblog-text-3xl</strong>: 巨大字号 (24px)</li>
+                </ul>
+            </div>
+
+            <div class="section-part">
+                <h3>2. 演示</h3>
+                <div class="boblog-tabs">
+                    <div class="boblog-tabs-bar">
+                        <button class="boblog-tabs-btn active">预览</button>
+                        <button class="boblog-tabs-btn">关键源码</button>
+                        <button class="boblog-tabs-btn">完整源码</button>
+                    </div>
+                    <div class="boblog-tabs-panel active">
+                        <!-- 预览 -->
+                        <div class="boblog-doc-demo">
+                            <table class="boblog-table">
+                                <thead>
+                                    <tr>
+                                        <th>类名</th>
+                                        <th>效果</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>.boblog-text-xs</code></td>
+                                        <td><span class="boblog-text-xs">极小字号 (11px)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>.boblog-text-sm</code></td>
+                                        <td><span class="boblog-text-sm">小字号 (12px)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>.boblog-text-md</code></td>
+                                        <td><span class="boblog-text-md">中等字号 (14px)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>.boblog-text-lg</code></td>
+                                        <td><span class="boblog-text-lg">大字号 (16px)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>.boblog-text-xl</code></td>
+                                        <td><span class="boblog-text-xl">特大字号 (18px)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>.boblog-text-2xl</code></td>
+                                        <td><span class="boblog-text-2xl">超大字号 (20px)</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>.boblog-text-3xl</code></td>
+                                        <td><span class="boblog-text-3xl">巨大字号 (24px)</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <!-- 关键源码 -->
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;table class="boblog-table"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;类名&lt;/th&gt;
+            &lt;th&gt;效果&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;code&gt;.boblog-text-xs&lt;/code&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;span class="boblog-text-xs"&gt;极小字号 (11px)&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;code&gt;.boblog-text-sm&lt;/code&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;span class="boblog-text-sm"&gt;小字号 (12px)&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;code&gt;.boblog-text-md&lt;/code&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;span class="boblog-text-md"&gt;中等字号 (14px)&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;code&gt;.boblog-text-lg&lt;/code&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;span class="boblog-text-lg"&gt;大字号 (16px)&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;code&gt;.boblog-text-xl&lt;/code&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;span class="boblog-text-xl"&gt;特大字号 (18px)&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;code&gt;.boblog-text-2xl&lt;/code&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;span class="boblog-text-2xl"&gt;超大字号 (20px)&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;code&gt;.boblog-text-3xl&lt;/code&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;span class="boblog-text-3xl"&gt;巨大字号 (24px)&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <!-- 完整源码 -->
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;文字工具类-字号示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;table class="boblog-table"&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th&gt;类名&lt;/th&gt;
+                &lt;th&gt;效果&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;code&gt;.boblog-text-xs&lt;/code&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;span class="boblog-text-xs"&gt;极小字号 (11px)&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;code&gt;.boblog-text-sm&lt;/code&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;span class="boblog-text-sm"&gt;小字号 (12px)&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;code&gt;.boblog-text-md&lt;/code&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;span class="boblog-text-md"&gt;中等字号 (14px)&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;code&gt;.boblog-text-lg&lt;/code&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;span class="boblog-text-lg"&gt;大字号 (16px)&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;code&gt;.boblog-text-xl&lt;/code&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;span class="boblog-text-xl"&gt;特大字号 (18px)&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;code&gt;.boblog-text-2xl&lt;/code&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;span class="boblog-text-2xl"&gt;超大字号 (20px)&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;code&gt;.boblog-text-3xl&lt;/code&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;span class="boblog-text-3xl"&gt;巨大字号 (24px)&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 文字工具类 - 颜色 -->
+        <div class="boblog-doc-section">
+            <h2 id="文字工具类-颜色">文字工具类 - 颜色</h2>
+
+            <div class="section-part">
+                <h3>1. 规范说明</h3>
+                <ul class="boblog-doc-spec">
+                    <li><strong>.boblog-text-primary</strong>: 品牌蓝色文字</li>
+                    <li><strong>.boblog-text-dark</strong>: 深色文字</li>
+                    <li><strong>.boblog-text-light</strong>: 浅色文字</li>
+                    <li><strong>.boblog-text-gray</strong>: 灰色文字</li>
+                    <li><strong>.boblog-text-danger</strong>: 危险/错误文字</li>
+                    <li><strong>.boblog-text-success</strong>: 成功文字</li>
+                    <li><strong>.boblog-text-warning</strong>: 警告文字</li>
+                </ul>
+            </div>
+
+            <div class="section-part">
+                <h3>2. 演示</h3>
+                <div class="boblog-tabs">
+                    <div class="boblog-tabs-bar">
+                        <button class="boblog-tabs-btn active">预览</button>
+                        <button class="boblog-tabs-btn">关键源码</button>
+                        <button class="boblog-tabs-btn">完整源码</button>
+                    </div>
+                    <div class="boblog-tabs-panel active">
+                        <!-- 预览 -->
+                        <div class="boblog-doc-demo">
+                            <table class="boblog-table">
+                                <thead>
+                                    <tr>
+                                        <th>类名</th>
+                                        <th>效果</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><code>.boblog-text-primary</code></td>
+                                        <td><span class="boblog-text-primary">品牌蓝色文字</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>.boblog-text-dark</code></td>
+                                        <td><span class="boblog-text-dark">深色文字</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>.boblog-text-light</code></td>
+                                        <td><span class="boblog-text-light">浅色文字</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>.boblog-text-gray</code></td>
+                                        <td><span class="boblog-text-gray">灰色文字</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>.boblog-text-danger</code></td>
+                                        <td><span class="boblog-text-danger">危险/错误文字</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>.boblog-text-success</code></td>
+                                        <td><span class="boblog-text-success">成功文字</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td><code>.boblog-text-warning</code></td>
+                                        <td><span class="boblog-text-warning">警告文字</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <!-- 关键源码 -->
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;table class="boblog-table"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;类名&lt;/th&gt;
+            &lt;th&gt;效果&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;code&gt;.boblog-text-primary&lt;/code&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;span class="boblog-text-primary"&gt;品牌蓝色文字&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;code&gt;.boblog-text-dark&lt;/code&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;span class="boblog-text-dark"&gt;深色文字&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;code&gt;.boblog-text-light&lt;/code&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;span class="boblog-text-light"&gt;浅色文字&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;code&gt;.boblog-text-gray&lt;/code&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;span class="boblog-text-gray"&gt;灰色文字&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;code&gt;.boblog-text-danger&lt;/code&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;span class="boblog-text-danger"&gt;危险/错误文字&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;code&gt;.boblog-text-success&lt;/code&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;span class="boblog-text-success"&gt;成功文字&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;&lt;code&gt;.boblog-text-warning&lt;/code&gt;&lt;/td&gt;
+            &lt;td&gt;&lt;span class="boblog-text-warning"&gt;警告文字&lt;/span&gt;&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <!-- 完整源码 -->
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;文字工具类-颜色示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;table class="boblog-table"&gt;
+        &lt;thead&gt;
+            &lt;tr&gt;
+                &lt;th&gt;类名&lt;/th&gt;
+                &lt;th&gt;效果&lt;/th&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;code&gt;.boblog-text-primary&lt;/code&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;span class="boblog-text-primary"&gt;品牌蓝色文字&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;code&gt;.boblog-text-dark&lt;/code&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;span class="boblog-text-dark"&gt;深色文字&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;code&gt;.boblog-text-light&lt;/code&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;span class="boblog-text-light"&gt;浅色文字&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;code&gt;.boblog-text-gray&lt;/code&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;span class="boblog-text-gray"&gt;灰色文字&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;code&gt;.boblog-text-danger&lt;/code&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;span class="boblog-text-danger"&gt;危险/错误文字&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;code&gt;.boblog-text-success&lt;/code&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;span class="boblog-text-success"&gt;成功文字&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+                &lt;td&gt;&lt;code&gt;.boblog-text-warning&lt;/code&gt;&lt;/td&gt;
+                &lt;td&gt;&lt;span class="boblog-text-warning"&gt;警告文字&lt;/span&gt;&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 文字工具类 - 对齐 -->
+        <div class="boblog-doc-section">
+            <h2 id="文字工具类-对齐">文字工具类 - 对齐</h2>
+
+            <div class="section-part">
+                <h3>1. 规范说明</h3>
+                <table class="boblog-table">
+                    <thead>
+                        <tr>
+                            <th>类名</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.boblog-text-left</code></td>
+                            <td>左对齐</td>
+                        </tr>
+                        <tr>
+                            <td><code>.boblog-text-center</code></td>
+                            <td>居中对齐</td>
+                        </tr>
+                        <tr>
+                            <td><code>.boblog-text-right</code></td>
+                            <td>右对齐</td>
+                        </tr>
+                        <tr>
+                            <td><code>.boblog-text-truncate</code></td>
+                            <td>文字截断（超出显示省略号）</td>
+                        </tr>
+                        <tr>
+                            <td><code>.boblog-flex</code> + <code>.boblog-align-center</code></td>
+                            <td>垂直居中（需组合使用）</td>
+                        </tr>
+                        <tr>
+                            <td><code>.boblog-flex</code> + <code>.boblog-align-end</code></td>
+                            <td>垂直底部对齐（需组合使用）</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><strong>说明</strong>: 控件对齐请使用 Flex 工具类，详见<a href="../layout/responsive.html#Flex工具">响应式工具类 - Flex 工具</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="section-part">
+                <h3>2. 水平对齐</h3>
+                <div class="boblog-tabs">
+                    <div class="boblog-tabs-bar">
+                        <button class="boblog-tabs-btn active">预览</button>
+                        <button class="boblog-tabs-btn">关键源码</button>
+                        <button class="boblog-tabs-btn">完整源码</button>
+                    </div>
+                    <div class="boblog-tabs-panel active">
+                        <div class="boblog-doc-demo">
+                            <div class="boblog-text-left" style="background: #f5f5f5; padding: 10px; border: 1px solid #ddd; margin-bottom: 10px;">左对齐文本</div>
+                            <div class="boblog-text-center" style="background: #f5f5f5; padding: 10px; border: 1px solid #ddd; margin-bottom: 10px;">居中对齐文本</div>
+                            <div class="boblog-text-right" style="background: #f5f5f5; padding: 10px; border: 1px solid #ddd; margin-bottom: 10px;">右对齐文本</div>
+                            <div class="boblog-text-truncate" style="width: 300px; background: #f5f5f5; padding: 10px; border: 1px solid #ddd;">超长文本截断示例，这是一段很长的文字，超出容器宽度会显示省略号</div>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;div class="boblog-text-left" style="background: #f5f5f5; padding: 10px; border: 1px solid #ddd; margin-bottom: 10px;"&gt;左对齐文本&lt;/div&gt;
+&lt;div class="boblog-text-center" style="background: #f5f5f5; padding: 10px; border: 1px solid #ddd; margin-bottom: 10px;"&gt;居中对齐文本&lt;/div&gt;
+&lt;div class="boblog-text-right" style="background: #f5f5f5; padding: 10px; border: 1px solid #ddd; margin-bottom: 10px;"&gt;右对齐文本&lt;/div&gt;
+&lt;div class="boblog-text-truncate" style="width: 300px; background: #f5f5f5; padding: 10px; border: 1px solid #ddd;"&gt;超长文本截断示例，这是一段很长的文字，超出容器宽度会显示省略号&lt;/div&gt;</code></pre>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;水平对齐示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="boblog-text-left" style="background: #f5f5f5; padding: 10px; border: 1px solid #ddd; margin-bottom: 10px;"&gt;左对齐文本&lt;/div&gt;
+    &lt;div class="boblog-text-center" style="background: #f5f5f5; padding: 10px; border: 1px solid #ddd; margin-bottom: 10px;"&gt;居中对齐文本&lt;/div&gt;
+    &lt;div class="boblog-text-right" style="background: #f5f5f5; padding: 10px; border: 1px solid #ddd; margin-bottom: 10px;"&gt;右对齐文本&lt;/div&gt;
+    &lt;div class="boblog-text-truncate" style="width: 300px; background: #f5f5f5; padding: 10px; border: 1px solid #ddd;"&gt;超长文本截断示例，这是一段很长的文字，超出容器宽度会显示省略号&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-part">
+                <h3>3. 垂直对齐</h3>
+                <div class="boblog-tabs">
+                    <div class="boblog-tabs-bar">
+                        <button class="boblog-tabs-btn active">预览</button>
+                        <button class="boblog-tabs-btn">关键源码</button>
+                        <button class="boblog-tabs-btn">完整源码</button>
+                    </div>
+                    <div class="boblog-tabs-panel active">
+                        <div class="boblog-doc-demo">
+                            <div style="display: flex; gap: 10px;">
+                                <div style="height: 100px; background: #f5f5f5; padding: 10px; border: 1px solid #ddd; flex: 1;">默认位置（顶部）</div>
+                                <div class="boblog-flex boblog-align-center" style="height: 100px; background: #f5f5f5; padding: 10px; border: 1px solid #ddd; flex: 1;">垂直居中</div>
+                                <div class="boblog-flex boblog-align-end" style="height: 100px; background: #f5f5f5; padding: 10px; border: 1px solid #ddd; flex: 1;">底部对齐</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;div style="display: flex; gap: 10px;"&gt;
+    &lt;div style="height: 100px; background: #f5f5f5; padding: 10px; border: 1px solid #ddd; flex: 1;"&gt;默认位置（顶部）&lt;/div&gt;
+    &lt;div class="boblog-flex boblog-align-center" style="height: 100px; background: #f5f5f5; padding: 10px; border: 1px solid #ddd; flex: 1;"&gt;垂直居中&lt;/div&gt;
+    &lt;div class="boblog-flex boblog-align-end" style="height: 100px; background: #f5f5f5; padding: 10px; border: 1px solid #ddd; flex: 1;"&gt;底部对齐&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;垂直对齐示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div style="display: flex; gap: 10px;"&gt;
+        &lt;div style="height: 100px; background: #f5f5f5; padding: 10px; border: 1px solid #ddd; flex: 1;"&gt;默认位置（顶部）&lt;/div&gt;
+        &lt;div class="boblog-flex boblog-align-center" style="height: 100px; background: #f5f5f5; padding: 10px; border: 1px solid #ddd; flex: 1;"&gt;垂直居中&lt;/div&gt;
+        &lt;div class="boblog-flex boblog-align-end" style="height: 100px; background: #f5f5f5; padding: 10px; border: 1px solid #ddd; flex: 1;"&gt;底部对齐&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

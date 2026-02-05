@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>按钮组件 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+<!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <div class="boblog-doc-nav">
+        <a href="../index.html">← 返回总纲</a>
+    </div>
+
+    <h1>按钮组件 (Buttons)</h1>
+
+    <!-- 基础按钮 -->
+    <div class="boblog-doc-section">
+        <h2 id="基础按钮">基础按钮 (.boblog-btn)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>背景色: <span class="color-swatch-inline" style="background-color: #FFFFFF;"></span>#FFFFFF
+                    (--boblog-bg)
+                </li>
+                <li>边框: 1px solid <span class="color-swatch-inline" style="background-color: #C4D7E8;"></span>#C4D7E8
+                    (--boblog-border)
+                </li>
+                <li>文字颜色: #1A1A1A (--boblog-text)</li>
+                <li>内边距: 6px 15px</li>
+                <li>字体大小: 12px (--boblog-font-size-sm)</li>
+                <li>鼠标悬停: 边框/文字 #0D6EAA (--boblog-blue)，背景 #E8F0F7 (--boblog-blue-pale)</li>
+                <li>鼠标按下: 背景色 #e6f4fb</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <button class="boblog-btn">基础按钮</button>
+                    <button class="boblog-btn" disabled>禁用状态</button>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;button class="boblog-btn"&gt;基础按钮&lt;/button&gt;
+&lt;button class="boblog-btn" disabled&gt;禁用状态&lt;/button&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;基础按钮示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;button class="boblog-btn"&gt;基础按钮&lt;/button&gt;
+    &lt;button class="boblog-btn" disabled&gt;禁用状态&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主按钮 -->
+    <div class="boblog-doc-section">
+        <h2 id="主按钮">主按钮 (.boblog-btn-primary)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>背景色: <span class="color-swatch-inline" style="background-color: #0D6EAA;"></span>#0D6EAA
+                    (--boblog-blue)
+                </li>
+                <li>边框: 1px solid #0D6EAA (--boblog-blue)</li>
+                <li>文字颜色: #FFFFFF (--boblog-bg)</li>
+                <li>内边距: 6px 15px</li>
+                <li>鼠标悬停: 背景色/边框 #2E93C9 (--boblog-blue-light)</li>
+                <li>鼠标按下: 背景色 #0a6699</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <button class="boblog-btn boblog-btn-primary">主按钮</button>
+                    <button class="boblog-btn boblog-btn-primary" disabled>禁用状态</button>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;button class="boblog-btn boblog-btn-primary"&gt;主按钮&lt;/button&gt;
+&lt;button class="boblog-btn boblog-btn-primary" disabled&gt;禁用状态&lt;/button&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;主按钮示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;button class="boblog-btn boblog-btn-primary"&gt;主按钮&lt;/button&gt;
+    &lt;button class="boblog-btn boblog-btn-primary" disabled&gt;禁用状态&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 次要按钮 -->
+    <div class="boblog-doc-section">
+        <h2 id="次要按钮">次要按钮 (.boblog-btn-secondary)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>背景色: <span class="color-swatch-inline" style="background-color: #666666;"></span>#666666</li>
+                <li>边框: 1px solid #666666</li>
+                <li>文字颜色: #FFFFFF (--boblog-bg)</li>
+                <li>内边距: 6px 15px</li>
+                <li>鼠标悬停: 背景色/边框 #555555</li>
+                <li>鼠标按下: 背景色 #444444</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <button class="boblog-btn boblog-btn-secondary">次要按钮</button>
+                    <button class="boblog-btn boblog-btn-secondary" disabled>禁用状态</button>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;button class="boblog-btn boblog-btn-secondary"&gt;次要按钮&lt;/button&gt;
+&lt;button class="boblog-btn boblog-btn-secondary" disabled&gt;禁用状态&lt;/button&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;次要按钮示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;button class="boblog-btn boblog-btn-secondary"&gt;次要按钮&lt;/button&gt;
+    &lt;button class="boblog-btn boblog-btn-secondary" disabled&gt;禁用状态&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 危险按钮 -->
+    <div class="boblog-doc-section">
+        <h2 id="危险按钮">危险按钮 (.boblog-btn-danger)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>背景色: <span class="color-swatch-inline" style="background-color: #CC3333;"></span>#CC3333
+                    (--boblog-danger)
+                </li>
+                <li>边框: 1px solid #CC3333 (--boblog-danger)</li>
+                <li>文字颜色: #FFFFFF (--boblog-bg)</li>
+                <li>内边距: 6px 15px</li>
+                <li>鼠标悬停: 背景色/边框 #a82a22</li>
+                <li>鼠标按下: 背景色 #8c231c</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <button class="boblog-btn boblog-btn-danger">危险按钮</button>
+                    <button class="boblog-btn boblog-btn-danger" disabled>禁用状态</button>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;button class="boblog-btn boblog-btn-danger"&gt;危险按钮&lt;/button&gt;
+&lt;button class="boblog-btn boblog-btn-danger" disabled&gt;禁用状态&lt;/button&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;危险按钮示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;button class="boblog-btn boblog-btn-danger"&gt;危险按钮&lt;/button&gt;
+    &lt;button class="boblog-btn boblog-btn-danger" disabled&gt;禁用状态&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 轮廓按钮 -->
+    <div class="boblog-doc-section">
+        <h2 id="轮廓按钮">轮廓按钮 (.boblog-btn-outline)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>背景色: transparent</li>
+                <li>边框: 1px solid #0D6EAA (--boblog-blue)</li>
+                <li>文字颜色: #0D6EAA (--boblog-blue)</li>
+                <li>内边距: 6px 15px</li>
+                <li>鼠标悬停: 背景色 #E8F0F7 (--boblog-blue-pale)，边框/文字不变</li>
+                <li>鼠标按下: 背景色 #e6f4fb</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <button class="boblog-btn boblog-btn-outline">轮廓按钮</button>
+                    <button class="boblog-btn boblog-btn-outline" disabled>禁用状态</button>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;button class="boblog-btn boblog-btn-outline"&gt;轮廓按钮&lt;/button&gt;
+&lt;button class="boblog-btn boblog-btn-outline" disabled&gt;禁用状态&lt;/button&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;轮廓按钮示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;button class="boblog-btn boblog-btn-outline"&gt;轮廓按钮&lt;/button&gt;
+    &lt;button class="boblog-btn boblog-btn-outline" disabled&gt;禁用状态&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 尺寸变体 -->
+    <div class="boblog-doc-section">
+        <h2 id="尺寸变体">尺寸变体</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>小按钮 (.boblog-btn-sm)</strong>: 内边距 4px 10px, 字体 12px</li>
+                <li><strong>标准按钮</strong>: 内边距 6px 15px, 字体 12px</li>
+                <li><strong>大按钮 (.boblog-btn-lg)</strong>: 内边距 8px 20px, 字体 14px</li>
+                <li><strong>全宽按钮 (.boblog-btn-block)</strong>: 宽度 100%, 文字居中</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <button class="boblog-btn boblog-btn-primary boblog-btn-sm">小按钮</button>
+                        <button class="boblog-btn boblog-btn-primary">标准按钮</button>
+                        <button class="boblog-btn boblog-btn-primary boblog-btn-lg">大按钮</button>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <button class="boblog-btn boblog-btn-primary boblog-btn-block">全宽按钮</button>
+                    </div>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;button class="boblog-btn boblog-btn-primary boblog-btn-sm"&gt;小按钮&lt;/button&gt;
+&lt;button class="boblog-btn boblog-btn-primary"&gt;标准按钮&lt;/button&gt;
+&lt;button class="boblog-btn boblog-btn-primary boblog-btn-lg"&gt;大按钮&lt;/button&gt;
+
+&lt;button class="boblog-btn boblog-btn-primary boblog-btn-block"&gt;全宽按钮&lt;/button&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;按钮尺寸示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;button class="boblog-btn boblog-btn-primary boblog-btn-sm"&gt;小按钮&lt;/button&gt;
+    &lt;button class="boblog-btn boblog-btn-primary"&gt;标准按钮&lt;/button&gt;
+    &lt;button class="boblog-btn boblog-btn-primary boblog-btn-lg"&gt;大按钮&lt;/button&gt;
+
+    &lt;button class="boblog-btn boblog-btn-primary boblog-btn-block"&gt;全宽按钮&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 按钮组 -->
+    <div class="boblog-doc-section">
+        <h2 id="按钮组">按钮组 (.boblog-btn-group)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>容器: display inline-flex</li>
+                <li>按钮间无间距, 共享边框</li>
+                <li>第一个按钮: 左侧圆角</li>
+                <li>最后一个按钮: 右侧圆角</li>
+                <li>中间按钮: 无圆角</li>
+                <li>相邻按钮边框合并避免双线</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-btn-group">
+                            <button class="boblog-btn boblog-btn-primary">左</button>
+                            <button class="boblog-btn boblog-btn-primary">中</button>
+                            <button class="boblog-btn boblog-btn-primary">右</button>
+                        </div>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-btn-group">
+                            <button class="boblog-btn">列表</button>
+                            <button class="boblog-btn">网格</button>
+                            <button class="boblog-btn">卡片</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-btn-group"&gt;
+    &lt;button class="boblog-btn boblog-btn-primary"&gt;左&lt;/button&gt;
+    &lt;button class="boblog-btn boblog-btn-primary"&gt;中&lt;/button&gt;
+    &lt;button class="boblog-btn boblog-btn-primary"&gt;右&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;div class="boblog-btn-group"&gt;
+    &lt;button class="boblog-btn"&gt;列表&lt;/button&gt;
+    &lt;button class="boblog-btn"&gt;网格&lt;/button&gt;
+    &lt;button class="boblog-btn"&gt;卡片&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;按钮组示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="boblog-btn-group"&gt;
+        &lt;button class="boblog-btn boblog-btn-primary"&gt;左&lt;/button&gt;
+        &lt;button class="boblog-btn boblog-btn-primary"&gt;中&lt;/button&gt;
+        &lt;button class="boblog-btn boblog-btn-primary"&gt;右&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;div class="boblog-btn-group"&gt;
+        &lt;button class="boblog-btn"&gt;列表&lt;/button&gt;
+        &lt;button class="boblog-btn"&gt;网格&lt;/button&gt;
+        &lt;button class="boblog-btn"&gt;卡片&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 组合示例 -->
+    <div class="boblog-doc-section">
+        <h2 id="组合示例">组合示例</h2>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <button class="boblog-btn boblog-btn-primary">确定</button>
+                        <button class="boblog-btn">取消</button>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <button class="boblog-btn boblog-btn-primary boblog-btn-sm">保存</button>
+                        <button class="boblog-btn boblog-btn-secondary boblog-btn-sm">重置</button>
+                        <button class="boblog-btn boblog-btn-danger boblog-btn-sm">删除</button>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <button class="boblog-btn boblog-btn-outline">详情</button>
+                        <button class="boblog-btn boblog-btn-outline">编辑</button>
+                    </div>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 确认操作 --&gt;
+&lt;button class="boblog-btn boblog-btn-primary"&gt;确定&lt;/button&gt;
+&lt;button class="boblog-btn"&gt;取消&lt;/button&gt;
+
+&lt;!-- 数据操作 --&gt;
+&lt;button class="boblog-btn boblog-btn-primary boblog-btn-sm"&gt;保存&lt;/button&gt;
+&lt;button class="boblog-btn boblog-btn-secondary boblog-btn-sm"&gt;重置&lt;/button&gt;
+&lt;button class="boblog-btn boblog-btn-danger boblog-btn-sm"&gt;删除&lt;/button&gt;
+
+&lt;!-- 次要操作 --&gt;
+&lt;button class="boblog-btn boblog-btn-outline"&gt;详情&lt;/button&gt;
+&lt;button class="boblog-btn boblog-btn-outline"&gt;编辑&lt;/button&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;按钮组合示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- 确认操作 --&gt;
+    &lt;button class="boblog-btn boblog-btn-primary"&gt;确定&lt;/button&gt;
+    &lt;button class="boblog-btn"&gt;取消&lt;/button&gt;
+
+    &lt;!-- 数据操作 --&gt;
+    &lt;button class="boblog-btn boblog-btn-primary boblog-btn-sm"&gt;保存&lt;/button&gt;
+    &lt;button class="boblog-btn boblog-btn-secondary boblog-btn-sm"&gt;重置&lt;/button&gt;
+    &lt;button class="boblog-btn boblog-btn-danger boblog-btn-sm"&gt;删除&lt;/button&gt;
+
+    &lt;!-- 次要操作 --&gt;
+    &lt;button class="boblog-btn boblog-btn-outline"&gt;详情&lt;/button&gt;
+    &lt;button class="boblog-btn boblog-btn-outline"&gt;编辑&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

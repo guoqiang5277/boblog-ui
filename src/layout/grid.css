@@ -1,0 +1,168 @@
+/**
+ * Bo-Blog UI - Grid System
+ * 简单的网格系统，提供 Bo-Blog 风格的布局辅助
+ * 不替代 Bootstrap 栅格，而是提供经典博客风格的容器和列布局
+ */
+
+/* 容器 */
+.boblog-container {
+  max-width: 980px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 15px;
+  padding-right: 15px;
+  box-sizing: border-box;
+}
+
+.boblog-container-fluid {
+  width: 100%;
+  padding-left: 15px;
+  padding-right: 15px;
+  box-sizing: border-box;
+}
+
+/* 行 */
+.boblog-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: -7.5px;
+  margin-right: -7.5px;
+}
+
+/* 列 - 基础 */
+.boblog-col {
+  flex: 1 0 0%;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+  box-sizing: border-box;
+}
+
+.boblog-col-auto {
+  flex: 0 0 auto;
+  width: auto;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+  box-sizing: border-box;
+}
+
+/* 列 - 固定宽度 (12列网格) */
+.boblog-col-1 {
+  flex: 0 0 8.333333%;
+  max-width: 8.333333%;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+  box-sizing: border-box;
+}
+
+.boblog-col-2 {
+  flex: 0 0 16.666667%;
+  max-width: 16.666667%;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+  box-sizing: border-box;
+}
+
+.boblog-col-3 {
+  flex: 0 0 25%;
+  max-width: 25%;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+  box-sizing: border-box;
+}
+
+.boblog-col-4 {
+  flex: 0 0 33.333333%;
+  max-width: 33.333333%;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+  box-sizing: border-box;
+}
+
+.boblog-col-5 {
+  flex: 0 0 41.666667%;
+  max-width: 41.666667%;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+  box-sizing: border-box;
+}
+
+.boblog-col-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+  box-sizing: border-box;
+}
+
+.boblog-col-7 {
+  flex: 0 0 58.333333%;
+  max-width: 58.333333%;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+  box-sizing: border-box;
+}
+
+.boblog-col-8 {
+  flex: 0 0 66.666667%;
+  max-width: 66.666667%;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+  box-sizing: border-box;
+}
+
+.boblog-col-9 {
+  flex: 0 0 75%;
+  max-width: 75%;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+  box-sizing: border-box;
+}
+
+.boblog-col-10 {
+  flex: 0 0 83.333333%;
+  max-width: 83.333333%;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+  box-sizing: border-box;
+}
+
+.boblog-col-11 {
+  flex: 0 0 91.666667%;
+  max-width: 91.666667%;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+  box-sizing: border-box;
+}
+
+.boblog-col-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+  padding-left: 7.5px;
+  padding-right: 7.5px;
+  box-sizing: border-box;
+}
+
+/* 间距工具 */
+.boblog-gap-sm {
+  gap: var(--boblog-spacing-sm, 10px);
+}
+
+.boblog-gap-md {
+  gap: var(--boblog-spacing-md, 15px);
+}
+
+.boblog-gap-lg {
+  gap: var(--boblog-spacing-lg, 20px);
+}
+
+/* 无间距行 */
+.boblog-row.boblog-no-gutters {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.boblog-row.boblog-no-gutters > .boblog-col,
+.boblog-row.boblog-no-gutters > [class*="boblog-col-"] {
+  padding-left: 0;
+  padding-right: 0;
+}

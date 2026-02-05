@@ -1,0 +1,360 @@
+/**
+ * Bo-Blog UI Components - Navigation Menu
+ * 导航菜单组件样式（前台顶部 + 后台侧边栏）
+ * 经典蓝白配色，无圆角设计
+ */
+
+/* ========== 前台顶部导航 ========== */
+
+/* 顶部导航容器
+   默认尺寸：字号 13px，高度由内容撑开（不固定 height）
+   底部粗边框 10px solid #BEE6FD 参考 Bo-Blog V2.1 经典风格
+   width: 100% 确保粗边框横贯整行 */
+.boblog-nav {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  font-size: 13px;
+  font-family: Tahoma, Arial, sans-serif;
+  background-color: var(--boblog-bg);
+  border-bottom: 10px solid var(--boblog-blue-bar);
+}
+
+/* 导航链接
+   默认内边距 5px 15px，粗体，灰色文字
+   三边框（top/left/right）用 box-shadow inset 模拟，不占空间
+   box-shadow 只覆盖内容区，不延伸到 border-bottom 区域
+   border-bottom: 10px 单独用于 Tab 融合效果
+   margin-bottom: -10px 使 link 向下延伸到容器粗边框区域 */
+.boblog-nav-link {
+  display: flex;
+  align-items: center;
+  min-width: 72px;
+  padding: 5px 15px;
+  font-weight: bold;
+  color: var(--boblog-text-muted);
+  text-decoration: none;
+  border: none;
+  border-bottom: 10px solid transparent;
+  margin-bottom: -10px;
+  transition: all var(--boblog-transition-normal);
+  cursor: pointer;
+}
+
+/* 链接 hover 状态：文字变深，浅蓝背景，蓝色边框
+   底部 border 变为与容器粗边框同色，视觉上 Tab 连接内容区 */
+.boblog-nav-link:hover {
+  color: var(--boblog-text);
+  background-color: var(--boblog-blue-wash);
+  box-shadow: inset 0 1px 0 var(--boblog-border-blue),
+              inset 1px 0 0 var(--boblog-border-blue),
+              inset -1px 0 0 var(--boblog-border-blue);
+  border-bottom-color: var(--boblog-blue-bar);
+  text-decoration: none;
+}
+
+/* 当前激活链接：与 hover 状态一致 */
+.boblog-nav-link.boblog-nav-active {
+  color: var(--boblog-text);
+  background-color: var(--boblog-blue-wash);
+  box-shadow: inset 0 1px 0 var(--boblog-border-blue),
+              inset 1px 0 0 var(--boblog-border-blue),
+              inset -1px 0 0 var(--boblog-border-blue);
+  border-bottom-color: var(--boblog-blue-bar);
+}
+
+/* 下拉菜单容器 */
+.boblog-nav-dropdown {
+  position: relative;
+}
+
+/* 下拉菜单触发链接：右侧追加三角箭头 */
+.boblog-nav-dropdown > .boblog-nav-link::after {
+  content: "▼";
+  font-size: 8px;
+  margin-left: 4px;
+  color: var(--boblog-text-muted);
+  transition: color var(--boblog-transition-normal);
+}
+
+/* hover 时下拉三角变深 */
+.boblog-nav-dropdown:hover > .boblog-nav-link::after {
+  color: var(--boblog-text);
+}
+
+/* hover 整个 dropdown 容器时，标题链接保持焦点状态（不消失） */
+.boblog-nav-dropdown:hover > .boblog-nav-link {
+  color: var(--boblog-text);
+  background-color: var(--boblog-blue-wash);
+  box-shadow: inset 0 1px 0 var(--boblog-border-blue),
+              inset 1px 0 0 var(--boblog-border-blue),
+              inset -1px 0 0 var(--boblog-border-blue);
+  border-bottom-color: var(--boblog-blue-bar);
+}
+
+/* 下拉菜单面板（一级子菜单）
+   min-width: 100% 使子菜单至少与父级 Tab 等宽
+   如内容更长则自动撑开
+   top: calc(100% + 10px) — 跳过容器 10px border-bottom，避免压住标题 */
+.boblog-nav-submenu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 10px);
+  left: -1px;
+  min-width: 100%;
+  background-color: var(--boblog-bg);
+  border: 1px solid var(--boblog-border-blue);
+  border-top: none;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: var(--boblog-z-index-dropdown);
+  white-space: nowrap;
+}
+
+/* hover 时显示下拉菜单 */
+.boblog-nav-dropdown:hover > .boblog-nav-submenu {
+  display: block;
+}
+
+/* 下拉菜单子项 */
+.boblog-nav-submenu-item {
+  display: block;
+  padding: 8px 15px;
+  color: var(--boblog-text);
+  text-decoration: none;
+  font-weight: normal;
+  border-bottom: 1px dashed var(--boblog-border-light);
+  transition: all var(--boblog-transition-normal);
+  position: relative;
+}
+
+.boblog-nav-submenu-item:last-child {
+  border-bottom: none;
+}
+
+.boblog-nav-submenu-item:hover {
+  background-color: var(--boblog-blue-wash);
+  color: var(--boblog-blue-accent);
+  text-decoration: none;
+}
+
+/* 含子菜单的子项：右侧追加三角箭头 */
+.boblog-nav-submenu-item.boblog-nav-has-children::after {
+  content: "▶";
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 8px;
+  color: var(--boblog-text-muted);
+}
+
+.boblog-nav-submenu-item.boblog-nav-has-children:hover::after {
+  color: var(--boblog-blue-accent);
+}
+
+/* 二级子菜单（嵌套在 .boblog-nav-submenu-item 内）
+   从右侧弹出（left: 100%），顶部对齐父项（top: 0）
+   注意：含子菜单的项必须使用 <div> 而非 <a>，
+   以避免 <a> 内嵌套 <a> 导致浏览器解析异常 */
+.boblog-nav-submenu-item > .boblog-nav-submenu {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 100%;
+  min-width: 120px;
+  border-top: 1px solid var(--boblog-border-blue);
+}
+
+/* 二级子菜单内的链接项 */
+.boblog-nav-submenu-item > .boblog-nav-submenu > .boblog-nav-submenu-item {
+  white-space: nowrap;
+}
+
+/* hover 时显示二级子菜单 */
+.boblog-nav-submenu-item.boblog-nav-has-children:hover > .boblog-nav-submenu {
+  display: block;
+}
+
+/* ========== 前台导航尺寸变体 ========== */
+
+/* 小尺寸：字号 12px，底部边框 5px */
+.boblog-nav-sm {
+  font-size: var(--boblog-font-size-sm);
+  border-bottom-width: 5px;
+}
+
+.boblog-nav-sm .boblog-nav-link {
+  padding: 4px 10px;
+  min-width: 60px;
+  border-bottom-width: 5px;
+  margin-bottom: -5px;
+}
+
+/* 小尺寸子菜单偏移：跳过 5px 底部粗边框 */
+.boblog-nav-sm .boblog-nav-submenu {
+  top: calc(100% + 5px);
+}
+
+/* 大尺寸：字号 14px，底部边框 12px */
+.boblog-nav-lg {
+  font-size: var(--boblog-font-size-md);
+  border-bottom-width: 12px;
+}
+
+.boblog-nav-lg .boblog-nav-link {
+  padding: 8px 20px;
+  min-width: 80px;
+  border-bottom-width: 12px;
+  margin-bottom: -12px;
+}
+
+/* 大尺寸子菜单偏移：跳过 12px 底部粗边框 */
+.boblog-nav-lg .boblog-nav-submenu {
+  top: calc(100% + 12px);
+}
+
+/* ========== 后台侧边栏导航 ========== */
+
+/* 侧边栏容器 */
+.boblog-sidebar-nav {
+  font-size: var(--boblog-font-size-sm);
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+/* 侧边栏链接 */
+.boblog-sidebar-link {
+  display: inline-block;
+  height: 40px;
+  padding: 10px 15px;
+  color: var(--boblog-text);
+  text-decoration: none;
+  transition: all var(--boblog-transition-normal);
+  border-left: 2px solid transparent;
+  position: relative;
+}
+
+.boblog-sidebar-link:hover {
+  background-color: var(--boblog-blue-wash);
+  color: var(--boblog-blue-accent);
+  text-decoration: none;
+}
+
+.boblog-sidebar-link.boblog-sidebar-active {
+  background-color: var(--boblog-blue-wash);
+  color: var(--boblog-blue-accent);
+  border-left-color: var(--boblog-blue-accent);
+  font-weight: bold;
+}
+
+/* 侧边栏分组 */
+.boblog-sidebar-group {
+  margin-bottom: var(--boblog-spacing-md);
+  padding-bottom: var(--boblog-spacing-sm);
+  border-bottom: 1px solid var(--boblog-border-light);
+}
+
+.boblog-sidebar-group:last-child {
+  border-bottom: none;
+}
+
+.boblog-sidebar-group-title {
+  padding: 10px 15px;
+  font-size: var(--boblog-font-size-md);
+  font-weight: bold;
+  color: var(--boblog-blue-accent);
+}
+
+/* 可展开父级 */
+.boblog-sidebar-parent {
+  cursor: pointer;
+}
+
+.boblog-sidebar-parent > .boblog-sidebar-link {
+  display: inline-flex;
+  align-items: center;
+}
+
+.boblog-sidebar-parent > .boblog-sidebar-link::after {
+  content: "▶";
+  font-size: 10px;
+  color: var(--boblog-text-muted);
+  transition: transform var(--boblog-transition-normal);
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+
+.boblog-sidebar-parent.boblog-sidebar-expanded > .boblog-sidebar-link::after {
+  transform: rotate(90deg);
+}
+
+/* 子菜单 */
+.boblog-sidebar-submenu {
+  display: none;
+  background-color: var(--boblog-bg-subtle);
+}
+
+.boblog-sidebar-parent.boblog-sidebar-expanded > .boblog-sidebar-submenu {
+  display: inline-block;
+}
+
+.boblog-sidebar-submenu .boblog-sidebar-link {
+  padding-left: 45px;
+  height: 36px;
+  font-size: 11px;
+}
+
+.boblog-sidebar-submenu .boblog-sidebar-link::before {
+  content: "└";
+  position: absolute;
+  left: 30px;
+  color: var(--boblog-border-blue);
+}
+
+/* 禁用状态 */
+.boblog-sidebar-link.boblog-sidebar-disabled {
+  color: var(--boblog-text-muted);
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.boblog-sidebar-link.boblog-sidebar-disabled:hover {
+  background-color: transparent;
+  color: var(--boblog-text-muted);
+}
+
+/* ========== 后台顶栏导航 ========== */
+
+/* 顶栏导航链接
+   用于 .boblog-admin-topbar 内的模块切换导航
+   白色文字，无装饰，透明背景 */
+.boblog-topbar-link {
+  display: inline-flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 12px;
+  color: rgba(255, 255, 255, 0.7);
+  text-decoration: none;
+  font-size: 12px;
+  background: transparent;
+  border-bottom: 3px solid transparent;
+  box-shadow: none;
+  transition: all var(--boblog-transition-normal);
+  cursor: pointer;
+}
+
+/* hover：略微提亮 */
+.boblog-topbar-link:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+}
+
+/* 激活态：白色半透明背景 + 白色底边框 + 立体阴影 */
+.boblog-topbar-link.boblog-topbar-active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.25);
+  border-bottom-color: #fff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3),
+              inset 0 -1px 3px rgba(0, 0, 0, 0.2),
+              0 2px 4px rgba(0, 0, 0, 0.3);
+}

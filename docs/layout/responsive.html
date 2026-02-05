@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>响应式工具类 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+    <style>
+        /* 演示用辅助样式 */
+        .demo-box {
+            background: var(--boblog-bg-panel, #F5FBFE);
+            border: 1px solid var(--boblog-border-light, #DDE8F0);
+            padding: 8px 12px;
+            text-align: center;
+            font-size: 12px;
+            color: var(--boblog-text-secondary, #666);
+        }
+
+        .demo-row {
+            margin-bottom: 8px;
+        }
+
+        .demo-row:last-child {
+            margin-bottom: 0;
+        }
+
+        #need-highline1 strong {
+            /*background-color: #ffff00;*/
+            padding: 0 4px;
+            font-weight: bold;
+            font-size: 14px;
+            color: black;
+        }
+
+    </style>
+</head>
+<body class="boblog-doc-gray">
+<!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
+<div class="boblog-toc" data-toc-depth="3">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <!-- 导航栏 -->
+    <div class="boblog-doc-nav">
+        <a href="../index.html">← 返回总纲</a>
+    </div>
+
+    <h1>响应式工具类</h1>
+
+    <!-- ====== 显示/隐藏 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="显示隐藏">显示/隐藏</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>.boblog-hide-sm</strong>: 窗口 &lt; 576px 时隐藏</li>
+                <li><strong>.boblog-hide-md</strong>: 窗口 &lt; 768px 时隐藏</li>
+                <li><strong>.boblog-hide-lg</strong>: 窗口 &lt; 992px 时隐藏</li>
+                <li><strong>.boblog-hide-xl</strong>: 窗口 &lt; 1200px 时隐藏</li>
+                <li><strong>.boblog-show-sm</strong>: 窗口 &lt; 576px 时显示（默认隐藏）</li>
+                <li><strong>.boblog-show-md</strong>: 窗口 &lt; 768px 时显示（默认隐藏）</li>
+                <li><strong>.boblog-show-lg</strong>: 窗口 &lt; 992px 时显示（默认隐藏）</li>
+                <li><strong>.boblog-show-xl</strong>: 窗口 &lt; 1200px 时显示（默认隐藏）</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <p style="font-size:12px; color:#999; margin-bottom:8px;">
+                        缩放浏览器窗口查看效果（窗口缩小时逐行消失）：</p>
+                    <div class="demo-row">
+                        <div class="demo-box boblog-hide-xl">boblog-hide-xl — 窗口 &lt; 1200px 时隐藏</div>
+                    </div>
+                    <div class="demo-row">
+                        <div class="demo-box boblog-hide-lg">boblog-hide-lg — 窗口 &lt; 992px 时隐藏</div>
+                    </div>
+                    <div class="demo-row">
+                        <div class="demo-box boblog-hide-md">boblog-hide-md — 窗口 &lt; 768px 时隐藏</div>
+                    </div>
+                    <div class="demo-row">
+                        <div class="demo-box boblog-hide-sm">boblog-hide-sm — 窗口 &lt; 576px 时隐藏</div>
+                    </div>
+                    <p style="font-size:12px; color:#999; margin:12px 0 8px;">
+                        默认隐藏，窗口小于断点时显示（缩小窗口逐行出现）：</p>
+                    <div class="demo-row">
+                        <div class="demo-box boblog-show-xl">boblog-show-xl — 窗口 &lt; 1200px 时显示</div>
+                    </div>
+                    <div class="demo-row">
+                        <div class="demo-box boblog-show-lg">boblog-show-lg — 窗口 &lt; 992px 时显示</div>
+                    </div>
+                    <div class="demo-row">
+                        <div class="demo-box boblog-show-md">boblog-show-md — 窗口 &lt; 768px 时显示</div>
+                    </div>
+                    <div class="demo-row">
+                        <div class="demo-box boblog-show-sm">boblog-show-sm — 窗口 &lt; 576px 时显示</div>
+                    </div>
+                    <p style="font-size:11px; color:#aaa; margin-top:10px;">断点参考：sm=576px / md=768px / lg=992px /
+                        xl=1200px</p>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 窗口缩小到断点以下时隐藏 --&gt;
+&lt;div class="boblog-hide-xl"&gt;窗口 &lt; 1200px 时隐藏&lt;/div&gt;
+&lt;div class="boblog-hide-lg"&gt;窗口 &lt; 992px 时隐藏&lt;/div&gt;
+&lt;div class="boblog-hide-md"&gt;窗口 &lt; 768px 时隐藏&lt;/div&gt;
+&lt;div class="boblog-hide-sm"&gt;窗口 &lt; 576px 时隐藏&lt;/div&gt;
+
+&lt;!-- 默认隐藏，窗口小于断点时显示 --&gt;
+&lt;div class="boblog-show-sm"&gt;窗口 &lt; 576px 时显示&lt;/div&gt;
+&lt;div class="boblog-show-md"&gt;窗口 &lt; 768px 时显示&lt;/div&gt;
+&lt;div class="boblog-show-lg"&gt;窗口 &lt; 992px 时显示&lt;/div&gt;
+&lt;div class="boblog-show-xl"&gt;窗口 &lt; 1200px 时显示&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 窗口缩小到断点以下时隐藏 --&gt;
+&lt;div class="boblog-hide-xl"&gt;窗口 &lt; 1200px 时隐藏&lt;/div&gt;
+&lt;div class="boblog-hide-lg"&gt;窗口 &lt; 992px 时隐藏&lt;/div&gt;
+&lt;div class="boblog-hide-md"&gt;窗口 &lt; 768px 时隐藏&lt;/div&gt;
+&lt;div class="boblog-hide-sm"&gt;窗口 &lt; 576px 时隐藏&lt;/div&gt;
+
+&lt;!-- 默认隐藏，窗口小于断点时显示 --&gt;
+&lt;div class="boblog-show-sm"&gt;窗口 &lt; 576px 时显示&lt;/div&gt;
+&lt;div class="boblog-show-md"&gt;窗口 &lt; 768px 时显示&lt;/div&gt;
+&lt;div class="boblog-show-lg"&gt;窗口 &lt; 992px 时显示&lt;/div&gt;
+&lt;div class="boblog-show-xl"&gt;窗口 &lt; 1200px 时显示&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 间距工具 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="间距工具">间距工具</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>命名规则</strong>: <code>.boblog-{属性}-{大小}</code></li>
+                <li><strong>属性</strong>: m(margin) / mt / mb / ml / mr / p(padding) / pt / pb / pl / pr</li>
+                <li><strong>大小</strong>: 0 / xs(5px) / sm(10px) / md(15px) / lg(20px) / xl(25px) / 2xl(30px)</li>
+                <li>所有间距值使用 CSS 变量 <code>--boblog-spacing-*</code></li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="demo-row">
+                        <div class="boblog-mb-xs" style="background: #e8f4fd; padding: 4px 8px; font-size: 12px;">
+                            boblog-mb-xs（底部 5px）
+                        </div>
+                        <div style="background: #d0e8f5; padding: 4px 8px; font-size: 12px;">下方元素</div>
+                    </div>
+                    <div class="demo-row boblog-mt-md">
+                        <div class="boblog-mb-md" style="background: #e8f4fd; padding: 4px 8px; font-size: 12px;">
+                            boblog-mb-md（底部 15px）
+                        </div>
+                        <div style="background: #d0e8f5; padding: 4px 8px; font-size: 12px;">下方元素</div>
+                    </div>
+                    <div class="demo-row boblog-mt-md">
+                        <div class="boblog-mb-xl" style="background: #e8f4fd; padding: 4px 8px; font-size: 12px;">
+                            boblog-mb-xl（底部 25px）
+                        </div>
+                        <div style="background: #d0e8f5; padding: 4px 8px; font-size: 12px;">下方元素</div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-mb-xs" style="background: #e8f4fd;"&gt;boblog-mb-xs（底部 5px）&lt;/div&gt;
+&lt;div style="background: #d0e8f5;"&gt;下方元素&lt;/div&gt;
+
+&lt;div class="boblog-mb-md" style="background: #e8f4fd;"&gt;boblog-mb-md（底部 15px）&lt;/div&gt;
+&lt;div style="background: #d0e8f5;"&gt;下方元素&lt;/div&gt;
+
+&lt;div class="boblog-mb-xl" style="background: #e8f4fd;"&gt;boblog-mb-xl（底部 25px）&lt;/div&gt;
+&lt;div style="background: #d0e8f5;"&gt;下方元素&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;title&gt;示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-mb-xs" style="background: #e8f4fd; padding: 4px 8px; font-size: 12px;"&gt;boblog-mb-xs（底部 5px）&lt;/div&gt;
+&lt;div style="background: #d0e8f5; padding: 4px 8px; font-size: 12px;"&gt;下方元素&lt;/div&gt;
+
+&lt;div class="boblog-mb-md" style="background: #e8f4fd; padding: 4px 8px; font-size: 12px;"&gt;boblog-mb-md（底部 15px）&lt;/div&gt;
+&lt;div style="background: #d0e8f5; padding: 4px 8px; font-size: 12px;"&gt;下方元素&lt;/div&gt;
+
+&lt;div class="boblog-mb-xl" style="background: #e8f4fd; padding: 4px 8px; font-size: 12px;"&gt;boblog-mb-xl（底部 25px）&lt;/div&gt;
+&lt;div style="background: #d0e8f5; padding: 4px 8px; font-size: 12px;"&gt;下方元素&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== Flex 工具 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="Flex工具">Flex 工具</h2>
+
+        <div class="boblog-doc-section-2">
+            <h3>参数说明</h3>
+            <table class="boblog-table boblog-table-striped-manual boblog-table-bordered">
+                <thead>
+                <tr>
+                    <th>分类</th>
+                    <th>类名</th>
+                    <th>说明</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td rowspan="2">容器</td>
+                    <td><code>.boblog-flex</code></td>
+                    <td>display: flex</td>
+                </tr>
+                <tr>
+                    <td><code>.boblog-inline-flex</code></td>
+                    <td>display: inline-flex</td>
+                </tr>
+                <tr>
+                    <td rowspan="4">方向</td>
+                    <td><code>.boblog-flex-row</code></td>
+                    <td>flex-direction: row（默认横向）</td>
+                </tr>
+                <tr>
+                    <td><code>.boblog-flex-row-reverse</code></td>
+                    <td>flex-direction: row-reverse（横向反转）</td>
+                </tr>
+                <tr>
+                    <td><code>.boblog-flex-column</code></td>
+                    <td>flex-direction: column（纵向）</td>
+                </tr>
+                <tr>
+                    <td><code>.boblog-flex-column-reverse</code></td>
+                    <td>flex-direction: column-reverse（纵向反转）</td>
+                </tr>
+                <tr>
+                    <td rowspan="2">换行</td>
+                    <td><code>.boblog-flex-wrap</code></td>
+                    <td>flex-wrap: wrap（允许换行）</td>
+                </tr>
+                <tr>
+                    <td><code>.boblog-flex-nowrap</code></td>
+                    <td>flex-wrap: nowrap（禁止换行）</td>
+                </tr>
+                <tr>
+                    <td rowspan="6">主轴对齐</td>
+                    <td><code>.boblog-justify-start</code></td>
+                    <td>justify-content: flex-start（起点对齐，默认，左对齐）</td>
+                </tr>
+                <tr>
+                    <td><code>.boblog-justify-center</code></td>
+                    <td>justify-content: center（居中对齐）</td>
+                </tr>
+                <tr>
+                    <td><code>.boblog-justify-end</code></td>
+                    <td>justify-content: flex-end（终点对齐）</td>
+                </tr>
+                <tr>
+                    <td><code>.boblog-justify-between</code></td>
+                    <td>justify-content: space-between（两端对齐，项目之间的间隔都相等,左右无边距）</td>
+                </tr>
+                <tr>
+                    <td><code>.boblog-justify-around</code></td>
+                    <td>justify-content: space-around（环绕对齐，每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍,左右边距
+                        = 元素间距的一半）
+                    </td>
+                </tr>
+                <tr>
+                    <td><code>.boblog-justify-evenly</code></td>
+                    <td>justify-content: space-evenly（平均分布,元素与容器边缘的间距也相等,左右边距 = 元素间距）</td>
+                </tr>
+                <tr>
+                    <td rowspan="5">交叉轴对齐</td>
+                    <td><code>.boblog-align-start</code></td>
+                    <td>align-items: flex-start（起点对齐，交叉轴的起点对齐）</td>
+                </tr>
+                <tr>
+                    <td><code>.boblog-align-center</code></td>
+                    <td>align-items: center（居中对齐，交叉轴的中点对齐）</td>
+                </tr>
+                <tr>
+                    <td><code>.boblog-align-end</code></td>
+                    <td>align-items: flex-end（终点对齐，交叉轴的终点对齐）</td>
+                </tr>
+                <tr>
+                    <td><code>.boblog-align-stretch</code></td>
+                    <td>align-items: stretch（拉伸填充，默认值，如果项目未设置高度或设为auto，将占满整个容器的高度）</td>
+                </tr>
+                <tr>
+                    <td><code>.boblog-align-baseline</code></td>
+                    <td>align-items: baseline（基线对齐，项目的第一行文字的基线对齐）</td>
+                </tr>
+                <tr>
+                    <td rowspan="7">子项</td>
+                    <td><code>.boblog-flex-1</code></td>
+                    <td>flex: 1（等分剩余空间）</td>
+                </tr>
+                <tr>
+                    <td><code>.boblog-flex-auto</code></td>
+                    <td>flex: auto（根据内容自动调整）</td>
+                </tr>
+                <tr>
+                    <td><code>.boblog-flex-none</code></td>
+                    <td>flex: none（不伸缩）</td>
+                </tr>
+                <tr>
+                    <td><code>.boblog-flex-grow</code></td>
+                    <td>flex-grow: 1（允许放大）</td>
+                </tr>
+                <tr>
+                    <td><code>.boblog-flex-shrink</code></td>
+                    <td>flex-shrink: 1（允许缩小）</td>
+                </tr>
+                <tr>
+                    <td><code>.boblog-flex-no-grow</code></td>
+                    <td>flex-grow: 0（禁止放大）</td>
+                </tr>
+                <tr>
+                    <td><code>.boblog-flex-no-shrink</code></td>
+                    <td>flex-shrink: 0（禁止缩小）</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="boblog-doc-section-2" id="need-highline1">
+            <!-- 演示 - 主轴对齐 -->
+            <div class="boblog-doc-section-3">
+                <h3>演示 - 主轴对齐</h3>
+                <p style="color:#666; margin-bottom:12px;"><strong>主轴</strong>是 Flex
+                    容器中项目排列的方向。默认情况下（<code>flex-row</code>），主轴是<strong>水平方向</strong>，项目从左到右排列。主轴对齐控制项目在这个方向上的分布方式。
+                </p>
+                <div class="boblog-tabs">
+                    <div class="boblog-tabs-bar">
+                        <button class="boblog-tabs-btn active">预览</button>
+                        <button class="boblog-tabs-btn">关键源码</button>
+                        <button class="boblog-tabs-btn">完整源码</button>
+                    </div>
+                    <div class="boblog-tabs-panel active">
+                        <div class="boblog-doc-demo">
+                            <p class="boblog-text-danger boblog-mb-1">boblog-flex boblog-justify-start: <strong>（起点对齐，默认值，左对齐）</strong>
+                            </p>
+                            <div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-justify-start"
+                                 style="height:60px;">
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                            </div>
+                            <p class="boblog-text-danger boblog-mb-1">boblog-flex
+                                boblog-justify-center:<strong>居中</strong></p>
+                            <div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-justify-center"
+                                 style="height:60px;">
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                            </div>
+                            <p class="boblog-text-danger boblog-mb-1">boblog-flex
+                                boblog-justify-end:<strong>右对齐</strong>
+                            </p>
+                            <div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-justify-end"
+                                 style="height:60px;">
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                            </div>
+                            <p class="boblog-text-danger boblog-mb-1">boblog-flex boblog-justify-between:<strong>两端对齐，项目之间的间隔都相等,左右无边距</strong>
+                            </p>
+                            <div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-justify-between"
+                                 style="height:60px;">
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                            </div>
+                            <p class="boblog-text-danger boblog-mb-1">boblog-flex boblog-justify-around:<strong>每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍,左右边距
+                                = 元素间距的一半</strong></p>
+                            <div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-justify-around"
+                                 style="height:60px;">
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                            </div>
+                            <p class="boblog-text-danger boblog-mb-1">boblog-flex boblog-justify-evenly:<strong>元素与容器边缘的间距也相等,左右边距
+                                = 元素间距</strong></p>
+                            <div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-justify-evenly"
+                                 style="height:60px;">
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                                <div class="demo-box" style="width:80px; height: 35px;">flex块</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 关键源码面板 -->
+                    <div class="boblog-tabs-panel">
+                        <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;p class="boblog-text-danger boblog-mb-1"&gt;boblog-flex boblog-justify-start: &lt;strong&gt;（起点对齐，默认值，左对齐）&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-justify-start" style="height:60px;"&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+&lt;/div&gt;
+&lt;p class="boblog-text-danger boblog-mb-1"&gt;boblog-flex boblog-justify-center:&lt;strong&gt;居中&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-justify-center" style="height:60px;"&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+&lt;/div&gt;
+&lt;p class="boblog-text-danger boblog-mb-1"&gt;boblog-flex boblog-justify-end:&lt;strong&gt;右对齐&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-justify-end" style="height:60px;"&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+&lt;/div&gt;
+&lt;p class="boblog-text-danger boblog-mb-1"&gt;boblog-flex boblog-justify-between:&lt;strong&gt;两端对齐，项目之间的间隔都相等,左右无边距&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-justify-between" style="height:60px;"&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+&lt;/div&gt;
+&lt;p class="boblog-text-danger boblog-mb-1"&gt;boblog-flex boblog-justify-around:&lt;strong&gt;每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍,左右边距 = 元素间距的一半&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-justify-around" style="height:60px;"&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+&lt;/div&gt;
+&lt;p class="boblog-text-danger boblog-mb-1"&gt;boblog-flex boblog-justify-evenly:&lt;strong&gt;元素与容器边缘的间距也相等,左右边距 = 元素间距&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-justify-evenly" style="height:60px;"&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                    </div>
+                    <!-- 完整源码面板 -->
+                    <div class="boblog-tabs-panel">
+                        <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Flex 主轴对齐演示 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p class="boblog-text-danger boblog-mb-1"&gt;boblog-flex boblog-justify-start: &lt;strong&gt;（起点对齐，默认值，左对齐）&lt;/strong&gt;&lt;/p&gt;
+    &lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-justify-start" style="height:60px;"&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;p class="boblog-text-danger boblog-mb-1"&gt;boblog-flex boblog-justify-center:&lt;strong&gt;居中&lt;/strong&gt;&lt;/p&gt;
+    &lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-justify-center" style="height:60px;"&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;p class="boblog-text-danger boblog-mb-1"&gt;boblog-flex boblog-justify-end:&lt;strong&gt;右对齐&lt;/strong&gt;&lt;/p&gt;
+    &lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-justify-end" style="height:60px;"&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;p class="boblog-text-danger boblog-mb-1"&gt;boblog-flex boblog-justify-between:&lt;strong&gt;两端对齐，项目之间的间隔都相等,左右无边距&lt;/strong&gt;&lt;/p&gt;
+    &lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-justify-between" style="height:60px;"&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;p class="boblog-text-danger boblog-mb-1"&gt;boblog-flex boblog-justify-around:&lt;strong&gt;每个项目两侧的间隔相等。所以，项目之间的间隔比项目与边框的间隔大一倍,左右边距 = 元素间距的一半&lt;/strong&gt;&lt;/p&gt;
+    &lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-justify-around" style="height:60px;"&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;p class="boblog-text-danger boblog-mb-1"&gt;boblog-flex boblog-justify-evenly:&lt;strong&gt;元素与容器边缘的间距也相等,左右边距 = 元素间距&lt;/strong&gt;&lt;/p&gt;
+    &lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-justify-evenly" style="height:60px;"&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+        &lt;div class="demo-box" style="width:80px; height: 35px;"&gt;flex块&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 演示 - 方向 -->
+            <div class="boblog-doc-section-3">
+                <h3>演示 - 方向</h3>
+                <p style="color:#666; margin-bottom:12px;">Flex
+                    方向决定了<strong>主轴的朝向</strong>。<code>flex-row</code> 表示主轴为水平方向（项目横向排列），<code>flex-column</code>
+                    表示主轴为垂直方向（项目纵向排列）。带 <code>-reverse</code> 后缀的类会反转排列顺序。</p>
+                <div class="boblog-tabs">
+                    <div class="boblog-tabs-bar">
+                        <button class="boblog-tabs-btn active">预览</button>
+                        <button class="boblog-tabs-btn">关键源码</button>
+                        <button class="boblog-tabs-btn">完整源码</button>
+                    </div>
+                    <div class="boblog-tabs-panel active">
+                        <div class="boblog-doc-demo">
+                            <p style="font-size:12px; color:#999; margin-bottom:4px;">boblog-flex
+                                boblog-flex-row（默认横向）:</p>
+                            <div class="demo-row boblog-flex boblog-flex-row boblog-border boblog-border-dashed">
+                                <div class="demo-box" style="width:60px;">1</div>
+                                <div class="demo-box" style="width:60px;">2</div>
+                                <div class="demo-box" style="width:60px;">3</div>
+                            </div>
+                            <p style="font-size:12px; color:#999; margin-bottom:4px;">boblog-flex
+                                boblog-flex-row-reverse（横向,逆向）:</p>
+                            <div class="demo-row boblog-flex boblog-flex-row-reverse boblog-border boblog-border-dashed">
+                                <div class="demo-box" style="width:60px;">1</div>
+                                <div class="demo-box" style="width:60px;">2</div>
+                                <div class="demo-box" style="width:60px;">3</div>
+                            </div>
+                            <div class="boblog-flex">
+                                <div style="width: 40%;">
+                                    <p style="font-size:12px; color:#999; margin-bottom:4px; margin-top:12px;">
+                                        boblog-flex
+                                        boblog-flex-column（纵向）:</p>
+                                    <div class="demo-row boblog-flex boblog-flex-column boblog-border boblog-border-dashed"
+                                         style="gap:4px; width:120px;height:160px;">
+                                        <div class="demo-box">项目 1</div>
+                                        <div class="demo-box">项目 2</div>
+                                        <div class="demo-box">项目 3</div>
+                                    </div>
+                                </div>
+                                <div style="width: 40%;">
+                                    <p style="font-size:12px; color:#999; margin-bottom:4px; margin-top:12px;">
+                                        boblog-flex
+                                        boblog-flex-column-reverse（纵向,逆向）:</p>
+                                    <div class="demo-row boblog-flex boblog-flex-column-reverse boblog-border boblog-border-dashed"
+                                         style="gap:4px; width:120px;height:160px;">
+                                        <div class="demo-box">项目 1</div>
+                                        <div class="demo-box">项目 2</div>
+                                        <div class="demo-box">项目 3</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;p style="font-size:12px; color:#999; margin-bottom:4px;"&gt;boblog-flex boblog-flex-row（默认横向）:&lt;/p&gt;
+&lt;div class="demo-row boblog-flex boblog-flex-row boblog-border boblog-border-dashed"&gt;
+    &lt;div class="demo-box" style="width:60px;"&gt;1&lt;/div&gt;
+    &lt;div class="demo-box" style="width:60px;"&gt;2&lt;/div&gt;
+    &lt;div class="demo-box" style="width:60px;"&gt;3&lt;/div&gt;
+&lt;/div&gt;
+&lt;p style="font-size:12px; color:#999; margin-bottom:4px;"&gt;boblog-flex boblog-flex-row-reverse（横向,逆向）:&lt;/p&gt;
+&lt;div class="demo-row boblog-flex boblog-flex-row-reverse boblog-border boblog-border-dashed"&gt;
+    &lt;div class="demo-box" style="width:60px;"&gt;1&lt;/div&gt;
+    &lt;div class="demo-box" style="width:60px;"&gt;2&lt;/div&gt;
+    &lt;div class="demo-box" style="width:60px;"&gt;3&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="boblog-flex"&gt;
+    &lt;div style="width: 40%;"&gt;
+        &lt;p style="font-size:12px; color:#999; margin-bottom:4px; margin-top:12px;"&gt;boblog-flex boblog-flex-column（纵向）:&lt;/p&gt;
+        &lt;div class="demo-row boblog-flex boblog-flex-column boblog-border boblog-border-dashed" style="gap:4px; width:120px;height:160px;"&gt;
+            &lt;div class="demo-box"&gt;项目 1&lt;/div&gt;
+            &lt;div class="demo-box"&gt;项目 2&lt;/div&gt;
+            &lt;div class="demo-box"&gt;项目 3&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div style="width: 40%;"&gt;
+        &lt;p style="font-size:12px; color:#999; margin-bottom:4px; margin-top:12px;"&gt;boblog-flex boblog-flex-column-reverse（纵向,逆向）:&lt;/p&gt;
+        &lt;div class="demo-row boblog-flex boblog-flex-column-reverse boblog-border boblog-border-dashed" style="gap:4px; width:120px;height:160px;"&gt;
+            &lt;div class="demo-box"&gt;项目 1&lt;/div&gt;
+            &lt;div class="demo-box"&gt;项目 2&lt;/div&gt;
+            &lt;div class="demo-box"&gt;项目 3&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Flex 方向演示 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p style="font-size:12px; color:#999; margin-bottom:4px;"&gt;boblog-flex boblog-flex-row（默认横向）:&lt;/p&gt;
+    &lt;div class="demo-row boblog-flex boblog-flex-row boblog-border boblog-border-dashed"&gt;
+        &lt;div class="demo-box" style="width:60px;"&gt;1&lt;/div&gt;
+        &lt;div class="demo-box" style="width:60px;"&gt;2&lt;/div&gt;
+        &lt;div class="demo-box" style="width:60px;"&gt;3&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;p style="font-size:12px; color:#999; margin-bottom:4px;"&gt;boblog-flex boblog-flex-row-reverse（横向,逆向）:&lt;/p&gt;
+    &lt;div class="demo-row boblog-flex boblog-flex-row-reverse boblog-border boblog-border-dashed"&gt;
+        &lt;div class="demo-box" style="width:60px;"&gt;1&lt;/div&gt;
+        &lt;div class="demo-box" style="width:60px;"&gt;2&lt;/div&gt;
+        &lt;div class="demo-box" style="width:60px;"&gt;3&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-flex"&gt;
+        &lt;div style="width: 40%;"&gt;
+            &lt;p style="font-size:12px; color:#999; margin-bottom:4px; margin-top:12px;"&gt;boblog-flex boblog-flex-column（纵向）:&lt;/p&gt;
+            &lt;div class="demo-row boblog-flex boblog-flex-column boblog-border boblog-border-dashed" style="gap:4px; width:120px;height:160px;"&gt;
+                &lt;div class="demo-box"&gt;项目 1&lt;/div&gt;
+                &lt;div class="demo-box"&gt;项目 2&lt;/div&gt;
+                &lt;div class="demo-box"&gt;项目 3&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div style="width: 40%;"&gt;
+            &lt;p style="font-size:12px; color:#999; margin-bottom:4px; margin-top:12px;"&gt;boblog-flex boblog-flex-column-reverse（纵向,逆向）:&lt;/p&gt;
+            &lt;div class="demo-row boblog-flex boblog-flex-column-reverse boblog-border boblog-border-dashed" style="gap:4px; width:120px;height:160px;"&gt;
+                &lt;div class="demo-box"&gt;项目 1&lt;/div&gt;
+                &lt;div class="demo-box"&gt;项目 2&lt;/div&gt;
+                &lt;div class="demo-box"&gt;项目 3&lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 演示 - 交叉轴对齐 -->
+            <div class="boblog-doc-section-3">
+                <h3>演示 - 交叉轴对齐</h3>
+                <p style="color:#666; margin-bottom:12px;"><strong>交叉轴</strong>是<strong>垂直于主轴</strong>的方向。当主轴是水平时（<code>flex-row</code>），交叉轴就是垂直方向。交叉轴对齐控制项目在这个垂直方向上的位置（顶部、居中、底部、拉伸等）。
+                </p>
+                <div class="boblog-tabs">
+                    <div class="boblog-tabs-bar">
+                        <button class="boblog-tabs-btn active">预览</button>
+                        <button class="boblog-tabs-btn">关键源码</button>
+                        <button class="boblog-tabs-btn">完整源码</button>
+                    </div>
+                    <div class="boblog-tabs-panel active">
+                        <div class="boblog-doc-demo">
+                            <p class="boblog-text-danger" style="margin-bottom:4px; margin-top:12px;">boblog-flex
+                                boblog-align-start（顶部对齐,交叉轴的起点对齐）:</p>
+                            <div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-align-start"
+                                 style="gap:4px; height:120px;">
+                                <div class="demo-box" style="height:30px;">高30px</div>
+                                <div class="demo-box" style="height:50px;">高50px</div>
+                                <div class="demo-box" style="height:10px;">高10px</div>
+                                <div class="demo-box" style="height:90px;">高90px</div>
+                                <div class="demo-box" style="height:65px;">高65px</div>
+                            </div>
+                            
+                            <p class="boblog-text-danger" style="margin-bottom:4px; margin-top:12px;">boblog-flex
+                                boblog-align-start（顶部对齐,交叉轴的起点对齐）:</p>
+                            <div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-align-start"
+                                 style="gap:4px; height:120px;">
+                                <div class="demo-box" style="height:auto;">高auto</div>
+                                <div class="demo-box" style="height:auto;">高auto</div>
+                                <div class="demo-box" style="height:auto;">高auto</div>
+                                <div class="demo-box" style="height:auto;">高auto</div>
+                                <div class="demo-box" style="height:auto;">高auto</div>
+                            </div>
+                            <p class="boblog-text-danger" style="margin-bottom:4px; margin-top:12px;">boblog-flex
+                                boblog-align-center（垂直居中，交叉轴的中点对齐，子容器内容和boblog-align-baseline完全一样）:</p>
+                            <div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-align-center"
+                                 style="gap:4px; height:120px;">
+                                <div class="demo-box" style="height:80px;">我爱中国</div>
+                                <div class="demo-box" style="height:40px;">我爱中国</div>
+                                <div class="demo-box" style="height:80px;">我爱中国</div>
+                            </div>
+
+                            <p class="boblog-text-danger" style="margin-bottom:4px; margin-top:12px;">boblog-flex
+                                boblog-align-end（交叉轴的终点对齐）:</p>
+                            <div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-align-end"
+                                 style="gap:4px; height:120px;">
+                                <div class="demo-box" style="height:auto;">高auto</div>
+                                <div class="demo-box" style="height:auto;">高auto</div>
+                                <div class="demo-box" style="height:auto;">高auto</div>
+                                <div class="demo-box" style="height:auto;">高auto</div>
+                                <div class="demo-box" style="height:auto;">高auto</div>
+                            </div>
+
+                            <p class="boblog-text-danger" style="margin-bottom:4px; margin-top:12px;">boblog-flex
+                                boblog-align-baseline（项目的第一行文字的基线对齐，，子容器内容和boblog-align-center完全一样）:</p>
+                            <div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-align-baseline"
+                                 style="gap:4px; height:120px;">
+                                <div class="demo-box" style="height:80px;">我爱中国</div>
+                                <div class="demo-box" style="height:40px;">我爱中国</div>
+                                <div class="demo-box" style="height:80px;">我爱中国</div>
+                            </div>
+                
+                            <p class="boblog-text-danger" style="font-size:12px; color:#999; margin-bottom:4px; margin-top:12px;">boblog-flex
+                                boblog-align-stretch（拉伸填充，默认值，如果项目未设置高度或设为auto，将占满整个容器的高度）:</p>
+                            <div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-align-stretch"
+                                 style="gap:4px; height:120px;">
+                                <div class="demo-box" style="height:auto;">高auto</div>
+                                <div class="demo-box" style="height:auto;">高auto</div>
+                                <div class="demo-box" style="height:auto;">高auto</div>
+                                <div class="demo-box" style="height:auto;">高auto</div>
+                                <div class="demo-box" style="height:auto;">高auto</div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;p class="boblog-text-danger" style="margin-bottom:4px; margin-top:12px;"&gt;boblog-flex boblog-align-start（顶部对齐,交叉轴的起点对齐）:&lt;/p&gt;
+&lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-align-start" style="gap:4px; height:120px;"&gt;
+    &lt;div class="demo-box" style="height:30px;"&gt;高30px&lt;/div&gt;
+    &lt;div class="demo-box" style="height:50px;"&gt;高50px&lt;/div&gt;
+    &lt;div class="demo-box" style="height:10px;"&gt;高10px&lt;/div&gt;
+    &lt;div class="demo-box" style="height:90px;"&gt;高90px&lt;/div&gt;
+    &lt;div class="demo-box" style="height:65px;"&gt;高65px&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p class="boblog-text-danger" style="margin-bottom:4px; margin-top:12px;"&gt;boblog-flex boblog-align-start（顶部对齐,交叉轴的起点对齐）:&lt;/p&gt;
+&lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-align-start" style="gap:4px; height:120px;"&gt;
+    &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+    &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+    &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+    &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+    &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p class="boblog-text-danger" style="margin-bottom:4px; margin-top:12px;"&gt;boblog-flex boblog-align-center（垂直居中，交叉轴的中点对齐，子容器内容和boblog-align-baseline完全一样）:&lt;/p&gt;
+&lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-align-center" style="gap:4px; height:120px;"&gt;
+    &lt;div class="demo-box" style="height:80px;"&gt;我爱中国&lt;/div&gt;
+    &lt;div class="demo-box" style="height:40px;"&gt;我爱中国&lt;/div&gt;
+    &lt;div class="demo-box" style="height:80px;"&gt;我爱中国&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p class="boblog-text-danger" style="margin-bottom:4px; margin-top:12px;"&gt;boblog-flex boblog-align-end（交叉轴的终点对齐）:&lt;/p&gt;
+&lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-align-end" style="gap:4px; height:120px;"&gt;
+    &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+    &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+    &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+    &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+    &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p class="boblog-text-danger" style="margin-bottom:4px; margin-top:12px;"&gt;boblog-flex boblog-align-baseline（项目的第一行文字的基线对齐，，子容器内容和boblog-align-center完全一样）:&lt;/p&gt;
+&lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-align-baseline" style="gap:4px; height:120px;"&gt;
+    &lt;div class="demo-box" style="height:80px;"&gt;我爱中国&lt;/div&gt;
+    &lt;div class="demo-box" style="height:40px;"&gt;我爱中国&lt;/div&gt;
+    &lt;div class="demo-box" style="height:80px;"&gt;我爱中国&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p class="boblog-text-danger" style="font-size:12px; color:#999; margin-bottom:4px; margin-top:12px;"&gt;boblog-flex boblog-align-stretch（拉伸填充，默认值，如果项目未设置高度或设为auto，将占满整个容器的高度）:&lt;/p&gt;
+&lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-align-stretch" style="gap:4px; height:120px;"&gt;
+    &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+    &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+    &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+    &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+    &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Flex 交叉轴对齐演示 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p class="boblog-text-danger" style="margin-bottom:4px; margin-top:12px;"&gt;boblog-flex boblog-align-start（顶部对齐,交叉轴的起点对齐）:&lt;/p&gt;
+    &lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-align-start" style="gap:4px; height:120px;"&gt;
+        &lt;div class="demo-box" style="height:30px;"&gt;高30px&lt;/div&gt;
+        &lt;div class="demo-box" style="height:50px;"&gt;高50px&lt;/div&gt;
+        &lt;div class="demo-box" style="height:10px;"&gt;高10px&lt;/div&gt;
+        &lt;div class="demo-box" style="height:90px;"&gt;高90px&lt;/div&gt;
+        &lt;div class="demo-box" style="height:65px;"&gt;高65px&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;p class="boblog-text-danger" style="margin-bottom:4px; margin-top:12px;"&gt;boblog-flex boblog-align-start（顶部对齐,交叉轴的起点对齐）:&lt;/p&gt;
+    &lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-align-start" style="gap:4px; height:120px;"&gt;
+        &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+        &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+        &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+        &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+        &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;p class="boblog-text-danger" style="margin-bottom:4px; margin-top:12px;"&gt;boblog-flex boblog-align-center（垂直居中，交叉轴的中点对齐，子容器内容和boblog-align-baseline完全一样）:&lt;/p&gt;
+    &lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-align-center" style="gap:4px; height:120px;"&gt;
+        &lt;div class="demo-box" style="height:80px;"&gt;我爱中国&lt;/div&gt;
+        &lt;div class="demo-box" style="height:40px;"&gt;我爱中国&lt;/div&gt;
+        &lt;div class="demo-box" style="height:80px;"&gt;我爱中国&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;p class="boblog-text-danger" style="margin-bottom:4px; margin-top:12px;"&gt;boblog-flex boblog-align-end（交叉轴的终点对齐）:&lt;/p&gt;
+    &lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-align-end" style="gap:4px; height:120px;"&gt;
+        &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+        &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+        &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+        &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+        &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;p class="boblog-text-danger" style="margin-bottom:4px; margin-top:12px;"&gt;boblog-flex boblog-align-baseline（项目的第一行文字的基线对齐，，子容器内容和boblog-align-center完全一样）:&lt;/p&gt;
+    &lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-align-baseline" style="gap:4px; height:120px;"&gt;
+        &lt;div class="demo-box" style="height:80px;"&gt;我爱中国&lt;/div&gt;
+        &lt;div class="demo-box" style="height:40px;"&gt;我爱中国&lt;/div&gt;
+        &lt;div class="demo-box" style="height:80px;"&gt;我爱中国&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;p class="boblog-text-danger" style="font-size:12px; color:#999; margin-bottom:4px; margin-top:12px;"&gt;boblog-flex boblog-align-stretch（拉伸填充，默认值，如果项目未设置高度或设为auto，将占满整个容器的高度）:&lt;/p&gt;
+    &lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-align-stretch" style="gap:4px; height:120px;"&gt;
+        &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+        &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+        &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+        &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+        &lt;div class="demo-box" style="height:auto;"&gt;高auto&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 演示 - 子项 -->
+            <div class="section-part">
+                <h3>演示 - 子项</h3>
+                <p style="color:#666; margin-bottom:12px;">子项工具类用于控制 Flex 容器内<strong>单个子元素</strong>的伸缩行为。<code>flex-1</code>
+                    会让子项自动占据剩余空间并平均分配，<code>flex-grow</code>
+                    允许子项放大填充空间，<code>flex-none</code> 则让子项保持固定大小不伸缩。</p>
+                <div class="boblog-tabs">
+                    <div class="boblog-tabs-bar">
+                        <button class="boblog-tabs-btn active">预览</button>
+                        <button class="boblog-tabs-btn">关键源码</button>
+                        <button class="boblog-tabs-btn">完整源码</button>
+                    </div>
+                    <div class="boblog-tabs-panel active">
+                        <div class="boblog-doc-demo">
+                            <p style="font-size:12px; color:#999; margin-bottom:4px;">boblog-flex-1（等分剩余空间）:</p>
+                            <div class="demo-row boblog-flex"
+                                 style="background:#f5f5f5; border:1px solid #ddd; padding:8px; gap:4px;">
+                                <div class="demo-box boblog-flex-1">flex-1</div>
+                                <div class="demo-box boblog-flex-1">flex-1</div>
+                                <div class="demo-box" style="width:80px;">固定80px</div>
+                            </div>
+                            <p style="font-size:12px; color:#999; margin-bottom:4px; margin-top:12px;">
+                                boblog-flex-grow（允许放大）:</p>
+                            <div class="demo-row boblog-flex"
+                                 style="background:#f5f5f5; border:1px solid #ddd; padding:8px; gap:4px;">
+                                <div class="demo-box boblog-flex-grow">flex-grow（占据剩余空间）</div>
+                                <div class="demo-box">普通项目</div>
+                            </div>
+                            <p style="font-size:12px; color:#999; margin-bottom:4px; margin-top:12px;">
+                                boblog-flex-none（不伸缩）:</p>
+                            <div class="demo-row boblog-flex"
+                                 style="background:#f5f5f5; border:1px solid #ddd; padding:8px; gap:4px;">
+                                <div class="demo-box boblog-flex-none">flex-none（保持原始大小）</div>
+                                <div class="demo-box boblog-flex-1">flex-1</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;p style="font-size:12px; color:#999; margin-bottom:4px;"&gt;boblog-flex-1（等分剩余空间）:&lt;/p&gt;
+&lt;div class="demo-row boblog-flex" style="background:#f5f5f5; border:1px solid #ddd; padding:8px; gap:4px;"&gt;
+    &lt;div class="demo-box boblog-flex-1"&gt;flex-1&lt;/div&gt;
+    &lt;div class="demo-box boblog-flex-1"&gt;flex-1&lt;/div&gt;
+    &lt;div class="demo-box" style="width:80px;"&gt;固定80px&lt;/div&gt;
+&lt;/div&gt;
+&lt;p style="font-size:12px; color:#999; margin-bottom:4px; margin-top:12px;"&gt;boblog-flex-grow（允许放大）:&lt;/p&gt;
+&lt;div class="demo-row boblog-flex" style="background:#f5f5f5; border:1px solid #ddd; padding:8px; gap:4px;"&gt;
+    &lt;div class="demo-box boblog-flex-grow"&gt;flex-grow（占据剩余空间）&lt;/div&gt;
+    &lt;div class="demo-box"&gt;普通项目&lt;/div&gt;
+&lt;/div&gt;
+&lt;p style="font-size:12px; color:#999; margin-bottom:4px; margin-top:12px;"&gt;boblog-flex-none（不伸缩）:&lt;/p&gt;
+&lt;div class="demo-row boblog-flex" style="background:#f5f5f5; border:1px solid #ddd; padding:8px; gap:4px;"&gt;
+    &lt;div class="demo-box boblog-flex-none"&gt;flex-none（保持原始大小）&lt;/div&gt;
+    &lt;div class="demo-box boblog-flex-1"&gt;flex-1&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Flex 子项演示 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p style="font-size:12px; color:#999; margin-bottom:4px;"&gt;boblog-flex-1（等分剩余空间）:&lt;/p&gt;
+    &lt;div class="demo-row boblog-flex" style="background:#f5f5f5; border:1px solid #ddd; padding:8px; gap:4px;"&gt;
+        &lt;div class="demo-box boblog-flex-1"&gt;flex-1&lt;/div&gt;
+        &lt;div class="demo-box boblog-flex-1"&gt;flex-1&lt;/div&gt;
+        &lt;div class="demo-box" style="width:80px;"&gt;固定80px&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;p style="font-size:12px; color:#999; margin-bottom:4px; margin-top:12px;"&gt;boblog-flex-grow（允许放大）:&lt;/p&gt;
+    &lt;div class="demo-row boblog-flex" style="background:#f5f5f5; border:1px solid #ddd; padding:8px; gap:4px;"&gt;
+        &lt;div class="demo-box boblog-flex-grow"&gt;flex-grow（占据剩余空间）&lt;/div&gt;
+        &lt;div class="demo-box"&gt;普通项目&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;p style="font-size:12px; color:#999; margin-bottom:4px; margin-top:12px;"&gt;boblog-flex-none（不伸缩）:&lt;/p&gt;
+    &lt;div class="demo-row boblog-flex" style="background:#f5f5f5; border:1px solid #ddd; padding:8px; gap:4px;"&gt;
+        &lt;div class="demo-box boblog-flex-none"&gt;flex-none（保持原始大小）&lt;/div&gt;
+        &lt;div class="demo-box boblog-flex-1"&gt;flex-1&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 演示 - 换行 -->
+            <div class="boblog-doc-section-3">
+                <h3>演示 - 换行</h3>
+                <p style="color:#666; margin-bottom:12px;">换行工具类控制 Flex 容器内子项<strong>是否换行显示</strong>。<code>flex-wrap</code>
+                    允许子项在空间不足时自动换行到下一行，<code>flex-nowrap</code> 则强制所有子项在一行内显示（可能会被压缩或溢出容器）。</p>
+                <div class="boblog-tabs">
+                    <div class="boblog-tabs-bar">
+                        <button class="boblog-tabs-btn active">预览</button>
+                        <button class="boblog-tabs-btn">关键源码</button>
+                        <button class="boblog-tabs-btn">完整源码</button>
+                    </div>
+                    <div class="boblog-tabs-panel active">
+                        <div class="boblog-doc-demo">
+                            <p class="boblog-text-danger" style="margin-bottom:4px;">boblog-flex boblog-flex-wrap（允许换行）:</p>
+                            <div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-flex-wrap" style="gap:8px;">
+                                <div class="demo-box" style="width:150px;">宽150px</div>
+                                <div class="demo-box" style="width:150px;">宽150px</div>
+                                <div class="demo-box" style="width:150px;">宽150px</div>
+                                <div class="demo-box" style="width:150px;">宽150px</div>
+                                <div class="demo-box" style="width:150px;">宽150px</div>
+                                <div class="demo-box" style="width:150px;">宽150px</div>
+                                <div class="demo-box" style="width:150px;">宽150px</div>
+                            </div>
+                            <p class="boblog-text-danger" style="margin-bottom:4px; margin-top:12px;">boblog-flex boblog-flex-nowrap（不换行,默认行为）:</p>
+                            <div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-flex-nowrap" style="gap:8px;">
+                                <div class="demo-box" style="width:150px;">宽150px</div>
+                                <div class="demo-box" style="width:150px;">宽150px</div>
+                                <div class="demo-box" style="width:150px;">宽150px</div>
+                                <div class="demo-box" style="width:150px;">宽150px</div>
+                                <div class="demo-box" style="width:150px;">宽150px</div>
+                                <div class="demo-box" style="width:150px;">宽150px</div>
+                                <div class="demo-box" style="width:150px;">宽150px</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;p class="boblog-text-danger" style="margin-bottom:4px;"&gt;boblog-flex boblog-flex-wrap（允许换行）:&lt;/p&gt;
+&lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-flex-wrap" style="gap:8px;"&gt;
+    &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+    &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+    &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+    &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+    &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+    &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+&lt;/div&gt;
+&lt;p class="boblog-text-danger" style="margin-bottom:4px; margin-top:12px;"&gt;boblog-flex boblog-flex-nowrap（不换行,默认行为）:&lt;/p&gt;
+&lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-flex-nowrap" style="gap:8px;"&gt;
+    &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+    &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+    &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+    &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+    &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+    &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Flex 换行演示 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p class="boblog-text-danger" style="margin-bottom:4px;"&gt;boblog-flex boblog-flex-wrap（允许换行）:&lt;/p&gt;
+    &lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-flex-wrap" style="gap:8px;"&gt;
+        &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+        &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+        &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+        &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+        &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+        &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;p class="boblog-text-danger" style="margin-bottom:4px; margin-top:12px;"&gt;boblog-flex boblog-flex-nowrap（不换行,默认行为）:&lt;/p&gt;
+    &lt;div class="demo-row boblog-border boblog-border-dashed boblog-flex boblog-flex-nowrap" style="gap:8px;"&gt;
+        &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+        &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+        &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+        &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+        &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+        &lt;div class="demo-box" style="width:150px;"&gt;宽150px&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ====== 文本对齐 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="文本对齐">文本对齐</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>.boblog-text-left</strong> / <strong>.boblog-text-center</strong> / <strong>.boblog-text-right</strong>:
+                    基础对齐
+                </li>
+                <li><strong>.boblog-text-md-left</strong> / <strong>center</strong> / <strong>right</strong>: 中屏（≥
+                    768px）响应式对齐
+                </li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="demo-row">
+                        <div class="demo-box boblog-text-left">boblog-text-left</div>
+                    </div>
+                    <div class="demo-row">
+                        <div class="demo-box boblog-text-center">boblog-text-center</div>
+                    </div>
+                    <div class="demo-row">
+                        <div class="demo-box boblog-text-right">boblog-text-right</div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-text-left"&gt;左对齐&lt;/div&gt;
+&lt;div class="boblog-text-center"&gt;居中对齐&lt;/div&gt;
+&lt;div class="boblog-text-right"&gt;右对齐&lt;/div&gt;
+
+&lt;!-- 响应式：小屏居中，中屏左对齐 --&gt;
+&lt;div class="boblog-text-center boblog-text-md-left"&gt;
+    响应式对齐
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-css">.boblog-text-left { text-align: left !important; }
+.boblog-text-center { text-align: center !important; }
+.boblog-text-right { text-align: right !important; }
+
+@media (min-width: 768px) {
+  .boblog-text-md-left { text-align: left !important; }
+  .boblog-text-md-center { text-align: center !important; }
+  .boblog-text-md-right { text-align: right !important; }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 前台响应式布局 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="前台响应式布局">前台响应式布局</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>&lt; 768px</strong>: 容器全宽，侧边栏移到底部，菜单折叠</li>
+                <li><strong>768px - 992px</strong>: 容器全宽，侧边栏移到底部</li>
+                <li><strong>&gt; 992px</strong>: 正常双栏布局</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <p style="font-size:12px; color:#999; margin-bottom:8px;">
+                        缩放浏览器窗口查看布局变化（模拟前台双栏布局）：</p>
+                    <!-- 模拟前台布局容器 -->
+                    <div style="border:1px solid var(--boblog-border-light, #DDE8F0); background:#fff;">
+                        <!-- 模拟顶栏 -->
+                        <div style="background:var(--boblog-primary, #3A7CA5); color:#fff; padding:6px 12px; font-size:12px;">
+                            顶部导航栏
+                        </div>
+                        <!-- 模拟 boblog-page-body -->
+                        <div class="boblog-page-body" style="display:flex; min-height:120px;">
+                            <div class="boblog-page-main"
+                                 style="flex:1; padding:10px; font-size:12px; background:#fff;">
+                                <div style="color:#333; font-weight:bold; margin-bottom:4px;">主内容区</div>
+                                <div style="color:#999;">文章列表、详情页等</div>
+                            </div>
+                            <div class="boblog-page-sidebar"
+                                 style="width:160px; padding:10px; font-size:12px; background:var(--boblog-bg-panel, #F5FBFE); border-left:1px solid var(--boblog-border-light, #DDE8F0);">
+                                <div style="color:#333; font-weight:bold; margin-bottom:4px;">侧边栏</div>
+                                <div style="color:#999;">分类、标签、归档等</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="font-size:11px; color:#999; margin-top:6px;">&lt; 768px 时侧边栏移到底部，&gt; 992px
+                        时恢复双栏</p>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-css">/* < 768px: 单栏，侧边栏移底部 */
+@media (max-width: 767px) {
+  .boblog-page-body { flex-direction: column; }
+  .boblog-page-sidebar { width: 100%; order: 2; }
+  .boblog-page-main { order: 1; }
+}
+
+/* > 992px: 正常双栏 */
+@media (min-width: 992px) {
+  .boblog-page-body { flex-direction: row; }
+}</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-css">/* &lt; 768px: 容器全宽，侧边栏移到底部，菜单折叠 */
+@media (max-width: 767px) {
+  .boblog-container { max-width: 100%; }
+  .boblog-page-body { flex-direction: column; }
+  .boblog-page-sidebar { width: 100%; order: 2; }
+  .boblog-page-main { order: 1; }
+}
+
+/* 768px - 992px: 容器全宽，侧边栏移到底部 */
+@media (min-width: 768px) and (max-width: 991px) {
+  .boblog-container { max-width: 100%; }
+  .boblog-page-body { flex-direction: column; }
+  .boblog-page-sidebar { width: 100%; }
+}
+
+/* > 992px: 正常双栏布局 */
+@media (min-width: 992px) {
+  .boblog-page-body { flex-direction: row; }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 后台响应式布局 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="后台响应式布局">后台响应式布局</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>&lt; 992px</strong>: 侧边栏隐藏（滑出叠加层），主区域全宽</li>
+                <li><strong>&gt; 992px</strong>: 侧边栏固定显示</li>
+                <li>侧边栏加 <code>.active</code> 类可在小屏滑出显示，同时显示半透明遮罩</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <p style="font-size:12px; color:#999; margin-bottom:8px;">
+                        模拟后台管理布局（点击"显示侧边栏"切换侧边栏）：</p>
+                    <!-- 模拟后台布局容器 -->
+                    <div style="border:1px solid var(--boblog-border-light, #DDE8F0); background:#fff; position:relative; overflow:hidden;">
+                        <!-- 模拟顶栏 -->
+                        <div style="background:var(--boblog-primary, #3A7CA5); color:#fff; padding:6px 12px; font-size:12px; display:flex; justify-content:space-between; align-items:center;">
+                            <span>后台管理</span>
+                            <button onclick="this.closest('.boblog-doc-demo').querySelector('.demo-admin-sidebar').classList.toggle('active')"
+                                    style="background:#fff; color:var(--boblog-primary, #3A7CA5); border:none; padding:2px 8px; font-size:11px; cursor:pointer;">
+                                显示/隐藏侧边栏
+                            </button>
+                        </div>
+                        <div style="display:flex; min-height:120px; position:relative;">
+                            <!-- 模拟侧边栏 -->
+                            <div class="demo-admin-sidebar"
+                                 style="width:140px; background:#2C3E50; color:#fff; padding:10px; font-size:12px; transition:transform 0.3s;">
+                                <div style="font-weight:bold; margin-bottom:6px; color:#ecf0f1;">菜单</div>
+                                <div style="color:#bdc3c7; margin-bottom:3px;">仪表盘</div>
+                                <div style="color:#bdc3c7; margin-bottom:3px;">文章管理</div>
+                                <div style="color:#bdc3c7;">用户管理</div>
+                            </div>
+                            <!-- 模拟主区域 -->
+                            <div style="flex:1; padding:10px; font-size:12px;">
+                                <div style="color:#333; font-weight:bold; margin-bottom:4px;">主内容区</div>
+                                <div style="color:#999;">管理面板、数据表格等</div>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="font-size:11px; color:#999; margin-top:6px;">&lt; 992px 时侧边栏隐藏，通过 .active
+                        类滑出叠加显示</p>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-css">/* &lt; 992px: 侧边栏滑出叠加层 */
+@media (max-width: 991px) {
+  .boblog-admin-sidebar {
+    transform: translateX(-100%);
+    z-index: 1001;
+  }
+  .boblog-admin-sidebar.active {
+    transform: translateX(0);
+  }
+  .boblog-admin-main { margin-left: 0; }
+}</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-css">/* < 992px: 侧边栏滑出叠加层 */
+@media (max-width: 991px) {
+  .boblog-admin-sidebar {
+    transform: translateX(-100%);
+    z-index: 1001;
+  }
+  .boblog-admin-sidebar.active {
+    transform: translateX(0);
+  }
+  .boblog-admin-main { margin-left: 0; }
+
+  /* 遮罩层 */
+  .boblog-admin-sidebar.active::before {
+    content: '';
+    position: fixed;
+    top: 50px;
+    left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+}
+
+/* > 992px: 侧边栏固定显示 */
+@media (min-width: 992px) {
+  .boblog-admin-sidebar {
+    transform: translateX(0);
+  }
+}</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div> <!-- /.boblog-doc-container -->
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

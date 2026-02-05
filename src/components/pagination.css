@@ -1,0 +1,143 @@
+/**
+ * Bo-Blog UI Components - Pagination
+ * 分页组件样式
+ * 经典蓝白配色，无圆角设计
+ */
+
+/* 分页容器 */
+.boblog-pagination {
+  display: flex;
+  align-items: center;
+  gap: var(--boblog-spacing-xs);
+  font-size: var(--boblog-font-size-sm);
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+/* 页码链接 */
+.boblog-page-link {
+  display: inline-block;
+  padding: 4px 10px;
+  border: 1px solid var(--boblog-border-blue);
+  background-color: var(--boblog-bg);
+  color: var(--boblog-text);
+  text-decoration: none;
+  transition: all var(--boblog-transition-normal);
+  cursor: pointer;
+  min-width: 32px;
+  text-align: center;
+}
+
+.boblog-page-link:hover {
+  background-color: var(--boblog-blue-wash);
+  color: var(--boblog-blue-accent);
+  border-color: var(--boblog-blue-accent);
+}
+
+/* 当前页 */
+.boblog-page-current {
+  display: inline-block;
+  padding: 4px 10px;
+  border: 1px solid var(--boblog-blue-accent);
+  background-color: var(--boblog-blue-wash);
+  color: var(--boblog-blue-accent);
+  font-weight: bold;
+  min-width: 32px;
+  text-align: center;
+}
+
+/* 禁用状态 */
+.boblog-page-disabled {
+  display: inline-block;
+  padding: 4px 10px;
+  border: 1px solid var(--boblog-border-light);
+  background-color: var(--boblog-bg-subtle);
+  color: var(--boblog-text-muted);
+  cursor: not-allowed;
+  min-width: 32px;
+  text-align: center;
+}
+
+.boblog-page-disabled:hover {
+  background-color: var(--boblog-bg-subtle);
+  color: var(--boblog-text-muted);
+  border-color: var(--boblog-border-light);
+}
+
+/* 上一页/下一页 */
+.boblog-page-prev,
+.boblog-page-next {
+  padding: 4px 12px;
+}
+
+/* 首页/尾页 */
+.boblog-page-first,
+.boblog-page-last {
+  padding: 4px 12px;
+}
+
+/* 省略号 */
+.boblog-page-ellipsis {
+  display: inline-block;
+  padding: 4px 10px;
+  color: var(--boblog-text-muted);
+  user-select: none;
+}
+
+/* 页码信息文字 */
+.boblog-page-info {
+  color: var(--boblog-text-muted);
+  font-size: var(--boblog-font-size-sm);
+  margin-left: var(--boblog-spacing-sm);
+  white-space: nowrap;
+}
+
+/* 跳转输入框 */
+.boblog-page-jump {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--boblog-spacing-xs);
+  margin-left: var(--boblog-spacing-md);
+}
+
+.boblog-page-jump-label {
+  color: var(--boblog-text-muted);
+  font-size: var(--boblog-font-size-sm);
+}
+
+.boblog-page-jump-input {
+  width: 50px;
+  padding: 3px 6px;
+  border: 1px solid var(--boblog-border-blue);
+  font-size: var(--boblog-font-size-sm);
+  text-align: center;
+}
+
+.boblog-page-jump-input:focus {
+  outline: none;
+  border-color: var(--boblog-blue-accent);
+}
+
+.boblog-page-jump-btn {
+  padding: 3px 10px;
+  border: 1px solid var(--boblog-border-blue);
+  background-color: var(--boblog-bg);
+  color: var(--boblog-text);
+  font-size: var(--boblog-font-size-sm);
+  cursor: pointer;
+  transition: all var(--boblog-transition-normal);
+}
+
+.boblog-page-jump-btn:hover {
+  background-color: var(--boblog-blue-wash);
+  color: var(--boblog-blue-accent);
+  border-color: var(--boblog-blue-accent);
+}
+
+/* 紧凑模式 */
+.boblog-pagination-compact .boblog-page-link,
+.boblog-pagination-compact .boblog-page-current,
+.boblog-pagination-compact .boblog-page-disabled {
+  padding: 2px 8px;
+  min-width: 28px;
+  font-size: 11px;
+}

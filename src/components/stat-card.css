@@ -1,0 +1,190 @@
+/**
+ * Bo-Blog Stat Card Component
+ * 统计卡片组件
+ *
+ * 特点：
+ * - 数值大字显示+标签说明
+ * - 支持图标和变化指示
+ * - 响应式网格布局
+ * - 无圆角，蓝白边框经典风格
+ */
+
+/* 统计卡片容器 */
+.boblog-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--boblog-spacing-md);
+  margin-bottom: var(--boblog-spacing-lg);
+}
+
+/* 单个统计卡片 */
+.boblog-stat-card {
+  position: relative;
+  border: 1px solid var(--boblog-border);
+  background-color: var(--boblog-bg);
+  padding: var(--boblog-spacing-lg);
+  text-align: center;
+  transition: border-color var(--boblog-transition-normal);
+}
+
+.boblog-stat-card:hover {
+  border-color: var(--boblog-blue);
+}
+
+/* 统计数值 */
+.boblog-stat-value {
+  display: block;
+  font-size: 24px;
+  font-weight: bold;
+  color: var(--boblog-blue);
+  line-height: 1.2;
+  margin-bottom: var(--boblog-spacing-xs);
+}
+
+/* 统计标签 */
+.boblog-stat-label {
+  display: block;
+  font-size: var(--boblog-font-size-sm);
+  color: var(--boblog-text-muted);
+  line-height: 1.4;
+}
+
+/* 图标区域 */
+.boblog-stat-icon {
+  display: block;
+  font-size: var(--boblog-font-size-xl);
+  color: var(--boblog-blue);
+  margin-bottom: var(--boblog-spacing-sm);
+  line-height: 1;
+}
+
+/* 变化指示 */
+.boblog-stat-change {
+  display: inline-block;
+  font-size: var(--boblog-font-size-xs);
+  margin-top: var(--boblog-spacing-xs);
+  padding: 2px var(--boblog-spacing-xs);
+  border: 1px solid;
+}
+
+.boblog-stat-change-positive {
+  color: var(--boblog-success);
+  border-color: var(--boblog-success);
+  background-color: #f6ffed;
+}
+
+.boblog-stat-change-negative {
+  color: var(--boblog-danger);
+  border-color: var(--boblog-danger);
+  background-color: #fff2f0;
+}
+
+.boblog-stat-change-neutral {
+  color: var(--boblog-text-muted);
+  border-color: var(--boblog-border);
+  background-color: var(--boblog-bg-subtle);
+}
+
+/* 带图标的左对齐布局 */
+.boblog-stat-card-horizontal {
+  display: flex;
+  align-items: center;
+  text-align: left;
+  gap: var(--boblog-spacing-md);
+}
+
+.boblog-stat-card-horizontal .boblog-stat-icon {
+  flex-shrink: 0;
+  margin-bottom: 0;
+  font-size: 32px;
+}
+
+.boblog-stat-card-horizontal .boblog-stat-content {
+  flex: 1;
+}
+
+/* 紧凑模式 */
+.boblog-stat-card-compact {
+  padding: var(--boblog-spacing-md);
+}
+
+.boblog-stat-card-compact .boblog-stat-value {
+  font-size: var(--boblog-font-size-xl);
+}
+
+.boblog-stat-card-compact .boblog-stat-icon {
+  font-size: var(--boblog-font-size-lg);
+  margin-bottom: var(--boblog-spacing-xs);
+}
+
+/* 无边框样式 */
+.boblog-stat-card-borderless {
+  border: none;
+  background-color: transparent;
+}
+
+.boblog-stat-card-borderless:hover {
+  border: none;
+}
+
+/* 强调样式 */
+.boblog-stat-card-primary {
+  background-color: var(--boblog-bg-subtle);
+  border-color: var(--boblog-blue);
+}
+
+.boblog-stat-card-primary:hover {
+  background-color: var(--boblog-bg-subtle);
+}
+
+/* ========== 默认网格的响应式降级 ========== */
+@media (min-width: 769px) {
+  .boblog-stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1200px) {
+  .boblog-stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .boblog-stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .boblog-stat-card-horizontal {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .boblog-stat-card-horizontal .boblog-stat-icon {
+    margin-bottom: var(--boblog-spacing-sm);
+  }
+}
+
+/* ========== 指定列数（双类选择器，优先级高于媒体查询中的单类规则） ========== */
+.boblog-stats-grid.boblog-stats-grid-4  { grid-template-columns: repeat(4, 1fr); }
+.boblog-stats-grid.boblog-stats-grid-5  { grid-template-columns: repeat(5, 1fr); }
+.boblog-stats-grid.boblog-stats-grid-6  { grid-template-columns: repeat(6, 1fr); }
+.boblog-stats-grid.boblog-stats-grid-7  { grid-template-columns: repeat(7, 1fr); }
+.boblog-stats-grid.boblog-stats-grid-8  { grid-template-columns: repeat(8, 1fr); }
+.boblog-stats-grid.boblog-stats-grid-9  { grid-template-columns: repeat(9, 1fr); }
+.boblog-stats-grid.boblog-stats-grid-10 { grid-template-columns: repeat(10, 1fr); }
+
+/* 可点击卡片 */
+.boblog-stat-card-clickable {
+  cursor: pointer;
+  transition: all var(--boblog-transition-normal);
+}
+
+.boblog-stat-card-clickable:hover {
+  border-color: var(--boblog-blue);
+  box-shadow: 0 2px 8px rgba(13, 128, 189, 0.15);
+}
+
+.boblog-stat-card-clickable:active {
+  transform: translateY(1px);
+}

@@ -1,0 +1,162 @@
+/**
+ * Bo-Blog UI Components - Form Layout
+ * 表单布局组件样式
+ * 经典蓝白配色，无圆角设计
+ */
+
+/* 基础表单 */
+.boblog-form {
+  font-size: var(--boblog-font-size-sm);
+  font-family: Tahoma, Arial, sans-serif;
+  color: var(--boblog-text-dark);
+}
+
+/* 表单组 */
+.boblog-form-group {
+  margin-bottom: var(--boblog-spacing-md);
+}
+
+.boblog-form-group:last-child {
+  margin-bottom: 0;
+}
+
+/* 表单标签 */
+.boblog-form-label {
+  display: block;
+  font-size: var(--boblog-font-size-sm);
+  font-weight: bold;
+  margin-bottom: var(--boblog-spacing-xs);
+  color: var(--boblog-text-dark);
+}
+
+/* 帮助文字 */
+.boblog-form-help {
+  display: block;
+  font-size: 11px;
+  color: var(--boblog-text-gray);
+  margin-top: var(--boblog-spacing-xs);
+  line-height: 1.4;
+}
+
+/* 错误信息 */
+.boblog-form-error {
+  display: block;
+  font-size: 11px;
+  color: var(--boblog-red-error);
+  margin-top: var(--boblog-spacing-xs);
+  line-height: 1.4;
+}
+
+/* 必填标记 */
+.boblog-form-required::after {
+  content: "*";
+  color: var(--boblog-red-error);
+  margin-left: 3px;
+}
+
+/* 行内表单 */
+.boblog-form-inline {
+  display: flex;
+  align-items: center;
+  gap: var(--boblog-spacing-sm);
+  flex-wrap: wrap;
+}
+
+.boblog-form-inline .boblog-form-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0;
+  gap: var(--boblog-spacing-xs);
+}
+
+.boblog-form-inline .boblog-form-label {
+  margin-bottom: 0;
+}
+
+/* 水平表单 */
+.boblog-form-horizontal .boblog-form-group {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--boblog-spacing-sm);
+}
+
+.boblog-form-horizontal .boblog-form-label {
+  flex: 0 0 120px;
+  text-align: right;
+  padding-top: 8px;
+  margin-bottom: 0;
+}
+
+.boblog-form-horizontal .boblog-form-control-wrap {
+  flex: 1;
+}
+
+/* 表单操作栏 */
+.boblog-form-actions {
+  padding-top: var(--boblog-spacing-md);
+  margin-top: var(--boblog-spacing-lg);
+  border-top: 1px solid var(--boblog-blue-border-list);
+  display: flex;
+  gap: var(--boblog-spacing-sm);
+}
+
+.boblog-form-actions-right {
+  justify-content: flex-end;
+}
+
+.boblog-form-actions-center {
+  justify-content: center;
+}
+
+.boblog-form-actions-between {
+  justify-content: space-between;
+}
+
+/* 表单行（多列布局） */
+.boblog-form-row {
+  display: flex;
+  gap: var(--boblog-spacing-md);
+  margin-bottom: var(--boblog-spacing-md);
+}
+
+.boblog-form-row:last-child {
+  margin-bottom: 0;
+}
+
+.boblog-form-row .boblog-form-group {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+/**
+ * 表单分区
+ *
+ * 每个分区自带四面边框和内边距，视觉上形成独立区域
+ * 边框色 #C4D7E8 (--boblog-border)，内边距 15px (--boblog-spacing-md)
+ * 分区间距 20px (--boblog-spacing-lg)
+ */
+.boblog-form-section {
+  border: 1px solid var(--boblog-border);         /* 四面边框 #C4D7E8 */
+  padding: var(--boblog-spacing-md);              /* 内边距 15px */
+  margin-bottom: var(--boblog-spacing-lg);        /* 分区间距 20px */
+}
+
+/* 最后一个分区取消底部间距 */
+.boblog-form-section:last-child {
+  margin-bottom: 0;
+}
+
+/* 分区标题 */
+.boblog-form-section-title {
+  font-size: var(--boblog-font-size-md);
+  font-weight: bold;
+  color: var(--boblog-blue-primary);
+  margin-bottom: var(--boblog-spacing-md);
+  padding-bottom: var(--boblog-spacing-xs);
+  border-bottom: 2px solid var(--boblog-blue-primary);
+}
+
+/* 表单错误状态 */
+.boblog-form-group.boblog-has-error .boblog-form-label {
+  color: var(--boblog-red-error);
+}

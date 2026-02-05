@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>间距/尺寸 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="doc-gray-bg">
+    <!-- 右侧浮动目录 -->
+    <div class="boblog-toc">
+        <h4>目录</h4>
+        <ul id="tocList"></ul>
+    </div>
+
+    <div class="doc-container">
+        <div class="doc-nav">
+            <a href="../index.html">← 返回总纲</a>
+        </div>
+
+        <h1>间距/尺寸</h1>
+
+        <!-- 概述 -->
+        <div class="doc-section">
+            <h2 id="section-overview">概述</h2>
+            <div class="doc-spec">
+                <p>Bo-Blog UI 使用基于 5px 递增的间距体系，简洁统一。</p>
+                <ul class="spec-list">
+                    <li>基础单位：5px</li>
+                    <li>间距级别：6 级（xs, sm, md, lg, xl, 2xl）</li>
+                    <li>边框：1px 标准宽度，无圆角（方角设计）</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 间距体系 -->
+        <div class="doc-section">
+            <h2 id="section-spacing">间距体系</h2>
+            <div class="doc-spec">
+                <p>基于 5px 递增的间距系统：</p>
+                <table class="boblog-table">
+                    <thead>
+                        <tr>
+                            <th>变量名</th>
+                            <th>尺寸</th>
+                            <th>用途</th>
+                            <th>可视化</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>--boblog-spacing-xs</code></td>
+                            <td>5px</td>
+                            <td>极小间距</td>
+                            <td><span class="doc-spacing-bar" style="width: 5px;"></span></td>
+                        </tr>
+                        <tr>
+                            <td><code>--boblog-spacing-sm</code></td>
+                            <td>10px</td>
+                            <td>小间距</td>
+                            <td><span class="doc-spacing-bar" style="width: 10px;"></span></td>
+                        </tr>
+                        <tr>
+                            <td><code>--boblog-spacing-md</code></td>
+                            <td>15px</td>
+                            <td>中等间距</td>
+                            <td><span class="doc-spacing-bar" style="width: 15px;"></span></td>
+                        </tr>
+                        <tr>
+                            <td><code>--boblog-spacing-lg</code></td>
+                            <td>20px</td>
+                            <td>大间距</td>
+                            <td><span class="doc-spacing-bar" style="width: 20px;"></span></td>
+                        </tr>
+                        <tr>
+                            <td><code>--boblog-spacing-xl</code></td>
+                            <td>25px</td>
+                            <td>特大间距</td>
+                            <td><span class="doc-spacing-bar" style="width: 25px;"></span></td>
+                        </tr>
+                        <tr>
+                            <td><code>--boblog-spacing-2xl</code></td>
+                            <td>30px</td>
+                            <td>超大间距</td>
+                            <td><span class="doc-spacing-bar" style="width: 30px;"></span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 内边距展示 -->
+        <div class="doc-section">
+            <h2 id="section-padding">内边距 (Padding) 展示</h2>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <div class="boblog-tabs-panel active">
+                    <div class="doc-demo-box boblog-p-1 boblog-mb-2">xs: padding 5px</div>
+                    <div class="doc-demo-box boblog-p-2 boblog-mb-2">sm: padding 10px</div>
+                    <div class="doc-demo-box boblog-p-3 boblog-mb-2">md: padding 15px</div>
+                    <div class="doc-demo-box boblog-p-4 boblog-mb-2">lg: padding 20px</div>
+                    <div class="doc-demo-box boblog-p-5 boblog-mb-2">xl: padding 25px</div>
+                    <div class="doc-demo-box boblog-p-6">2xl: padding 30px</div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;div class="doc-demo-box boblog-p-1 boblog-mb-2"&gt;xs: padding 5px&lt;/div&gt;
+&lt;div class="doc-demo-box boblog-p-2 boblog-mb-2"&gt;sm: padding 10px&lt;/div&gt;
+&lt;div class="doc-demo-box boblog-p-3 boblog-mb-2"&gt;md: padding 15px&lt;/div&gt;
+&lt;div class="doc-demo-box boblog-p-4 boblog-mb-2"&gt;lg: padding 20px&lt;/div&gt;
+&lt;div class="doc-demo-box boblog-p-5 boblog-mb-2"&gt;xl: padding 25px&lt;/div&gt;
+&lt;div class="doc-demo-box boblog-p-6"&gt;2xl: padding 30px&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;内边距展示 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+    &lt;link rel="stylesheet" href="../docs.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="doc-demo-box boblog-p-1 boblog-mb-2"&gt;xs: padding 5px&lt;/div&gt;
+    &lt;div class="doc-demo-box boblog-p-2 boblog-mb-2"&gt;sm: padding 10px&lt;/div&gt;
+    &lt;div class="doc-demo-box boblog-p-3 boblog-mb-2"&gt;md: padding 15px&lt;/div&gt;
+    &lt;div class="doc-demo-box boblog-p-4 boblog-mb-2"&gt;lg: padding 20px&lt;/div&gt;
+    &lt;div class="doc-demo-box boblog-p-5 boblog-mb-2"&gt;xl: padding 25px&lt;/div&gt;
+    &lt;div class="doc-demo-box boblog-p-6"&gt;2xl: padding 30px&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 外边距展示 -->
+        <div class="doc-section">
+            <h2 id="section-margin">外边距 (Margin) 展示</h2>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <div class="boblog-tabs-panel active">
+                    <div class="doc-demo-wrap boblog-mb-3">
+                        <span class="doc-demo-box boblog-m-1 boblog-p-1">xs</span>
+                        <span class="doc-demo-box boblog-m-1 boblog-p-1">xs</span>
+                        <span class="doc-demo-box boblog-m-1 boblog-p-1">xs</span>
+                        <span class="doc-demo-label">margin: 5px</span>
+                    </div>
+                    <div class="doc-demo-wrap boblog-mb-3">
+                        <span class="doc-demo-box boblog-m-2 boblog-p-1">sm</span>
+                        <span class="doc-demo-box boblog-m-2 boblog-p-1">sm</span>
+                        <span class="doc-demo-box boblog-m-2 boblog-p-1">sm</span>
+                        <span class="doc-demo-label">margin: 10px</span>
+                    </div>
+                    <div class="doc-demo-wrap">
+                        <span class="doc-demo-box boblog-m-3 boblog-p-1">md</span>
+                        <span class="doc-demo-box boblog-m-3 boblog-p-1">md</span>
+                        <span class="doc-demo-label">margin: 15px</span>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;div class="doc-demo-wrap boblog-mb-3"&gt;
+    &lt;span class="doc-demo-box boblog-m-1 boblog-p-1"&gt;xs&lt;/span&gt;
+    &lt;span class="doc-demo-box boblog-m-1 boblog-p-1"&gt;xs&lt;/span&gt;
+    &lt;span class="doc-demo-box boblog-m-1 boblog-p-1"&gt;xs&lt;/span&gt;
+    &lt;span class="doc-demo-label"&gt;margin: 5px&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="doc-demo-wrap boblog-mb-3"&gt;
+    &lt;span class="doc-demo-box boblog-m-2 boblog-p-1"&gt;sm&lt;/span&gt;
+    &lt;span class="doc-demo-box boblog-m-2 boblog-p-1"&gt;sm&lt;/span&gt;
+    &lt;span class="doc-demo-box boblog-m-2 boblog-p-1"&gt;sm&lt;/span&gt;
+    &lt;span class="doc-demo-label"&gt;margin: 10px&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="doc-demo-wrap"&gt;
+    &lt;span class="doc-demo-box boblog-m-3 boblog-p-1"&gt;md&lt;/span&gt;
+    &lt;span class="doc-demo-box boblog-m-3 boblog-p-1"&gt;md&lt;/span&gt;
+    &lt;span class="doc-demo-label"&gt;margin: 15px&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;外边距展示 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+    &lt;link rel="stylesheet" href="../docs.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="doc-demo-wrap boblog-mb-3"&gt;
+        &lt;span class="doc-demo-box boblog-m-1 boblog-p-1"&gt;xs&lt;/span&gt;
+        &lt;span class="doc-demo-box boblog-m-1 boblog-p-1"&gt;xs&lt;/span&gt;
+        &lt;span class="doc-demo-box boblog-m-1 boblog-p-1"&gt;xs&lt;/span&gt;
+        &lt;span class="doc-demo-label"&gt;margin: 5px&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="doc-demo-wrap boblog-mb-3"&gt;
+        &lt;span class="doc-demo-box boblog-m-2 boblog-p-1"&gt;sm&lt;/span&gt;
+        &lt;span class="doc-demo-box boblog-m-2 boblog-p-1"&gt;sm&lt;/span&gt;
+        &lt;span class="doc-demo-box boblog-m-2 boblog-p-1"&gt;sm&lt;/span&gt;
+        &lt;span class="doc-demo-label"&gt;margin: 10px&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="doc-demo-wrap"&gt;
+        &lt;span class="doc-demo-box boblog-m-3 boblog-p-1"&gt;md&lt;/span&gt;
+        &lt;span class="doc-demo-box boblog-m-3 boblog-p-1"&gt;md&lt;/span&gt;
+        &lt;span class="doc-demo-label"&gt;margin: 15px&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 边框 -->
+        <div class="doc-section">
+            <h2 id="section-border">边框</h2>
+            <div class="doc-spec">
+                <p>Bo-Blog 经典风格采用方角设计（无圆角）：</p>
+                <table class="boblog-table">
+                    <thead>
+                        <tr>
+                            <th>变量名</th>
+                            <th>值</th>
+                            <th>用途</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>--boblog-border-width</code></td>
+                            <td>1px</td>
+                            <td>标准边框宽度</td>
+                        </tr>
+                        <tr>
+                            <td><code>--boblog-border-width-thick</code></td>
+                            <td>2px</td>
+                            <td>粗边框</td>
+                        </tr>
+                        <tr>
+                            <td><code>--boblog-border-radius</code></td>
+                            <td>0</td>
+                            <td>无圆角 — 方角设计</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 阴影 -->
+        <div class="doc-section">
+            <h2 id="section-shadow">阴影</h2>
+            <div class="doc-spec">
+                <p>Bo-Blog 经典风格基本不用阴影，保留极轻微选项：</p>
+                <table class="boblog-table">
+                    <thead>
+                        <tr>
+                            <th>变量名</th>
+                            <th>值</th>
+                            <th>用途</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>--boblog-shadow-none</code></td>
+                            <td>none</td>
+                            <td>无阴影</td>
+                        </tr>
+                        <tr>
+                            <td><code>--boblog-shadow-subtle</code></td>
+                            <td>0 1px 2px rgba(0, 0, 0, 0.1)</td>
+                            <td>极轻微阴影</td>
+                        </tr>
+                        <tr>
+                            <td><code>--boblog-shadow-light</code></td>
+                            <td>0 2px 4px rgba(0, 0, 0, 0.12)</td>
+                            <td>轻微阴影</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="boblog-tabs boblog-mt-3">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <div class="boblog-tabs-panel active">
+                    <div class="doc-demo-flex">
+                        <div class="doc-demo-shadow-box">无阴影</div>
+                        <div class="doc-demo-shadow-box boblog-shadow-subtle">subtle 阴影</div>
+                        <div class="doc-demo-shadow-box boblog-shadow-light">light 阴影</div>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;div class="doc-demo-flex"&gt;
+    &lt;div class="doc-demo-shadow-box"&gt;无阴影&lt;/div&gt;
+    &lt;div class="doc-demo-shadow-box boblog-shadow-subtle"&gt;subtle 阴影&lt;/div&gt;
+    &lt;div class="doc-demo-shadow-box boblog-shadow-light"&gt;light 阴影&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;阴影展示 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+    &lt;link rel="stylesheet" href="../docs.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="doc-demo-flex"&gt;
+        &lt;div class="doc-demo-shadow-box"&gt;无阴影&lt;/div&gt;
+        &lt;div class="doc-demo-shadow-box boblog-shadow-subtle"&gt;subtle 阴影&lt;/div&gt;
+        &lt;div class="doc-demo-shadow-box boblog-shadow-light"&gt;light 阴影&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bo-Blog 特定尺寸 -->
+        <div class="doc-section">
+            <h2 id="section-specific">Bo-Blog 特定尺寸</h2>
+            <div class="doc-spec">
+                <p>Bo-Blog 专用组件的固定尺寸：</p>
+                <table class="boblog-table">
+                    <thead>
+                        <tr>
+                            <th>变量名</th>
+                            <th>值</th>
+                            <th>用途</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>--boblog-date-card-width</code></td>
+                            <td>49px</td>
+                            <td>日期卡片宽度</td>
+                        </tr>
+                        <tr>
+                            <td><code>--boblog-date-card-height</code></td>
+                            <td>46px</td>
+                            <td>日期卡片高度</td>
+                        </tr>
+                        <tr>
+                            <td><code>--boblog-sidebar-main-width</code></td>
+                            <td>201px</td>
+                            <td>主侧边栏宽度</td>
+                        </tr>
+                        <tr>
+                            <td><code>--boblog-sidebar-sub-width</code></td>
+                            <td>140px</td>
+                            <td>次侧边栏宽度</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- 使用建议 -->
+        <div class="doc-section">
+            <h2 id="section-usage">使用建议</h2>
+            <div class="doc-spec">
+                <ul class="spec-list">
+                    <li><strong>组件内部小间距</strong>：使用 xs (5px) 或 sm (10px)</li>
+                    <li><strong>组件内部标准间距</strong>：使用 md (15px)</li>
+                    <li><strong>组件之间间距</strong>：使用 lg (20px)</li>
+                    <li><strong>区块之间间距</strong>：使用 xl (25px) 或 2xl (30px)</li>
+                    <li><strong>保持视觉层次</strong>：不同级别的内容使用不同的间距大小</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 间距工具类 -->
+        <div class="doc-section">
+            <h2 id="section-utilities">间距工具类</h2>
+            <div class="doc-spec">
+                <p>提供快捷的 CSS 类名，无需写内联样式。数字后缀 × 5px。</p>
+
+                <h4>命名规则</h4>
+                <table class="boblog-table">
+                    <thead>
+                        <tr>
+                            <th>前缀</th>
+                            <th>含义</th>
+                            <th>示例</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.boblog-p-*</code></td>
+                            <td>padding 四边</td>
+                            <td><code>.boblog-p-3</code> → padding: 15px</td>
+                        </tr>
+                        <tr>
+                            <td><code>.boblog-pt/pb/pl/pr-*</code></td>
+                            <td>padding 单边（top/bottom/left/right）</td>
+                            <td><code>.boblog-pt-2</code> → padding-top: 10px</td>
+                        </tr>
+                        <tr>
+                            <td><code>.boblog-px-*</code></td>
+                            <td>padding 左右</td>
+                            <td><code>.boblog-px-4</code> → padding-left/right: 20px</td>
+                        </tr>
+                        <tr>
+                            <td><code>.boblog-py-*</code></td>
+                            <td>padding 上下</td>
+                            <td><code>.boblog-py-2</code> → padding-top/bottom: 10px</td>
+                        </tr>
+                        <tr>
+                            <td><code>.boblog-m-*</code></td>
+                            <td>margin 四边</td>
+                            <td><code>.boblog-m-3</code> → margin: 15px</td>
+                        </tr>
+                        <tr>
+                            <td><code>.boblog-mt/mb/ml/mr-*</code></td>
+                            <td>margin 单边（top/bottom/left/right）</td>
+                            <td><code>.boblog-mb-4</code> → margin-bottom: 20px</td>
+                        </tr>
+                        <tr>
+                            <td><code>.boblog-mx-*</code></td>
+                            <td>margin 左右</td>
+                            <td><code>.boblog-mx-auto</code> → margin-left/right: auto</td>
+                        </tr>
+                        <tr>
+                            <td><code>.boblog-my-*</code></td>
+                            <td>margin 上下</td>
+                            <td><code>.boblog-my-5</code> → margin-top/bottom: 25px</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 class="boblog-mt-4">数字后缀对照表</h4>
+                <table class="boblog-table">
+                    <thead>
+                        <tr>
+                            <th>后缀</th>
+                            <th>值</th>
+                            <th>后缀</th>
+                            <th>值</th>
+                            <th>后缀</th>
+                            <th>值</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>0</code></td>
+                            <td>0</td>
+                            <td><code>5</code></td>
+                            <td>25px</td>
+                            <td><code>10</code></td>
+                            <td>50px</td>
+                        </tr>
+                        <tr>
+                            <td><code>1</code></td>
+                            <td>5px</td>
+                            <td><code>6</code></td>
+                            <td>30px</td>
+                            <td><code>11</code></td>
+                            <td>55px</td>
+                        </tr>
+                        <tr>
+                            <td><code>2</code></td>
+                            <td>10px</td>
+                            <td><code>7</code></td>
+                            <td>35px</td>
+                            <td><code>12</code></td>
+                            <td>60px</td>
+                        </tr>
+                        <tr>
+                            <td><code>3</code></td>
+                            <td>15px</td>
+                            <td><code>8</code></td>
+                            <td>40px</td>
+                            <td><code>auto</code></td>
+                            <td>auto</td>
+                        </tr>
+                        <tr>
+                            <td><code>4</code></td>
+                            <td>20px</td>
+                            <td><code>9</code></td>
+                            <td>45px</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h4 class="boblog-mt-4">Auto 工具类</h4>
+                <table class="boblog-table">
+                    <thead>
+                        <tr>
+                            <th>类名</th>
+                            <th>效果</th>
+                            <th>典型用途</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><code>.boblog-mx-auto</code></td>
+                            <td>margin-left/right: auto</td>
+                            <td>块元素水平居中</td>
+                        </tr>
+                        <tr>
+                            <td><code>.boblog-my-auto</code></td>
+                            <td>margin-top/bottom: auto</td>
+                            <td>Flex 容器内垂直居中</td>
+                        </tr>
+                        <tr>
+                            <td><code>.boblog-m-auto</code></td>
+                            <td>margin: auto</td>
+                            <td>Flex 容器内完全居中</td>
+                        </tr>
+                        <tr>
+                            <td><code>.boblog-ml-auto</code></td>
+                            <td>margin-left: auto</td>
+                            <td>Flex 子元素推到右侧</td>
+                        </tr>
+                        <tr>
+                            <td><code>.boblog-mr-auto</code></td>
+                            <td>margin-right: auto</td>
+                            <td>Flex 子元素推到左侧</td>
+                        </tr>
+                        <tr>
+                            <td><code>.boblog-mt-auto</code></td>
+                            <td>margin-top: auto</td>
+                            <td>Flex 子元素推到底部</td>
+                        </tr>
+                        <tr>
+                            <td><code>.boblog-mb-auto</code></td>
+                            <td>margin-bottom: auto</td>
+                            <td>Flex 子元素推到顶部</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="boblog-tabs boblog-mt-3">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <div class="boblog-tabs-panel active">
+                    <h4>使用示例</h4>
+                    <div class="doc-demo-wrap boblog-mb-3">
+                        <div class="doc-demo-box boblog-p-3 boblog-mb-2">
+                            .boblog-p-3 .boblog-mb-2
+                        </div>
+                        <div class="doc-demo-box boblog-px-4 boblog-py-1">
+                            .boblog-px-4 .boblog-py-1
+                        </div>
+                    </div>
+                    <div class="doc-demo-wrap">
+                        <div class="doc-demo-box boblog-mx-auto boblog-p-2 boblog-text-center" style="width: 200px;">
+                            .boblog-mx-auto（水平居中）
+                        </div>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;h4&gt;使用示例&lt;/h4&gt;
+&lt;div class="doc-demo-wrap boblog-mb-3"&gt;
+    &lt;div class="doc-demo-box boblog-p-3 boblog-mb-2"&gt;
+        .boblog-p-3 .boblog-mb-2
+    &lt;/div&gt;
+    &lt;div class="doc-demo-box boblog-px-4 boblog-py-1"&gt;
+        .boblog-px-4 .boblog-py-1
+    &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="doc-demo-wrap"&gt;
+    &lt;div class="doc-demo-box boblog-mx-auto boblog-p-2 boblog-text-center" style="width: 200px;"&gt;
+        .boblog-mx-auto（水平居中）
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;间距工具类使用示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+    &lt;link rel="stylesheet" href="../docs.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h4&gt;使用示例&lt;/h4&gt;
+    &lt;div class="doc-demo-wrap boblog-mb-3"&gt;
+        &lt;div class="doc-demo-box boblog-p-3 boblog-mb-2"&gt;
+            .boblog-p-3 .boblog-mb-2
+        &lt;/div&gt;
+        &lt;div class="doc-demo-box boblog-px-4 boblog-py-1"&gt;
+            .boblog-px-4 .boblog-py-1
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="doc-demo-wrap"&gt;
+        &lt;div class="doc-demo-box boblog-mx-auto boblog-p-2 boblog-text-center" style="width: 200px;"&gt;
+            .boblog-mx-auto（水平居中）
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 实际应用示例 -->
+        <div class="doc-section">
+            <h2 id="section-example">实际应用示例</h2>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <div class="boblog-tabs-panel active">
+                    <div class="doc-demo-card boblog-mb-4">
+                        <h3>卡片标题</h3>
+                        <p>这是卡片的正文内容。标题下方使用 sm (10px) 间距，段落下方使用 md (15px) 间距。</p>
+                        <div class="doc-demo-btn-row">
+                            <button class="boblog-btn boblog-btn-secondary">按钮 1</button>
+                            <button class="boblog-btn boblog-btn-secondary">按钮 2</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;div class="doc-demo-card boblog-mb-4"&gt;
+    &lt;h3&gt;卡片标题&lt;/h3&gt;
+    &lt;p&gt;这是卡片的正文内容。标题下方使用 sm (10px) 间距，段落下方使用 md (15px) 间距。&lt;/p&gt;
+    &lt;div class="doc-demo-btn-row"&gt;
+        &lt;button class="boblog-btn boblog-btn-secondary"&gt;按钮 1&lt;/button&gt;
+        &lt;button class="boblog-btn boblog-btn-secondary"&gt;按钮 2&lt;/button&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;实际应用示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+    &lt;link rel="stylesheet" href="../docs.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="doc-demo-card boblog-mb-4"&gt;
+        &lt;h3&gt;卡片标题&lt;/h3&gt;
+        &lt;p&gt;这是卡片的正文内容。标题下方使用 sm (10px) 间距，段落下方使用 md (15px) 间距。&lt;/p&gt;
+        &lt;div class="doc-demo-btn-row"&gt;
+            &lt;button class="boblog-btn boblog-btn-secondary"&gt;按钮 1&lt;/button&gt;
+            &lt;button class="boblog-btn boblog-btn-secondary"&gt;按钮 2&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>富文本编辑器 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+<!-- 浮动目录 -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <!-- 导航栏 -->
+    <div class="boblog-doc-nav">
+        <a href="../index.html">&larr; 返回总纲</a>
+    </div>
+
+    <h1>富文本编辑器 (Editor)</h1>
+
+    <!-- ====== 快速开始 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="快速开始">快速开始</h2>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">1. 引入资源</button>
+                <button class="boblog-tabs-btn">2. HTML 结构</button>
+                <button class="boblog-tabs-btn">3. 获取内容</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- CSS --&gt;
+&lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+
+&lt;!-- JS: 先引入 TinyMCE，再引入 boblog-ui --&gt;
+&lt;script src="/lib/tinymce/tinymce.min.js"&gt;&lt;/script&gt;
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-editor" data-toolbar="simple"&gt;
+    &lt;textarea class="boblog-editor-content"&gt;&lt;p&gt;初始内容&lt;/p&gt;&lt;/textarea&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+                <p>页面加载后自动初始化，无需手动调用。</p>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-javascript">var editorEl = document.querySelector('.boblog-editor');
+var html = BoblogUI.editor.getContent(editorEl);</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 配置项 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="配置项">配置项</h2>
+
+        <div class="boblog-doc-spec">
+            <p>通过 data 属性配置编辑器：</p>
+            <table class="boblog-table">
+                <thead>
+                    <tr>
+                        <th>属性</th>
+                        <th>说明</th>
+                        <th>默认值</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>data-toolbar</code></td>
+                        <td>工具栏预设（basic / simple / standard / full）</td>
+                        <td>full</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-height</code></td>
+                        <td>编辑器高度（像素）</td>
+                        <td>500</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-menubar</code></td>
+                        <td>是否显示菜单栏（"false" 隐藏）</td>
+                        <td>true</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-upload-url</code></td>
+                        <td>图片上传接口 URL</td>
+                        <td>无（禁用上传）</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-base-url</code></td>
+                        <td>TinyMCE 资源路径</td>
+                        <td>自动推断</td>
+                    </tr>
+                    <tr>
+                        <td><code>data-language</code></td>
+                        <td>语言代码（zh_CN / zh_TW / en）</td>
+                        <td>zh_CN</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="boblog-doc-spec">
+            <h3>配置示例</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-html">&lt;div class="boblog-editor"
+     data-toolbar="simple"
+     data-height="300"
+     data-menubar="false"
+     data-upload-url="/api/upload/image"&gt;
+    &lt;textarea class="boblog-editor-content"&gt;&lt;/textarea&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 工具栏预设 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="工具栏预设">工具栏预设</h2>
+
+        <div class="boblog-doc-spec">
+            <table class="boblog-table">
+                <thead>
+                    <tr>
+                        <th>预设值</th>
+                        <th>说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>basic</code></td>
+                        <td>基础格式：撤销重做、加粗斜体、列表、链接</td>
+                    </tr>
+                    <tr>
+                        <td><code>simple</code></td>
+                        <td><strong>推荐</strong> - 简洁款：格式、标题、列表、引用、链接、代码、颜色、字体、字号、行距、清除格式</td>
+                    </tr>
+                    <tr>
+                        <td><code>standard</code></td>
+                        <td>标准格式：含对齐、图片、清除格式</td>
+                    </tr>
+                    <tr>
+                        <td><code>full</code></td>
+                        <td>完整功能：4行工具栏，含所有功能（上传、表格、表情等）</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- simple 工具栏 -->
+        <h3>simple 工具栏（推荐）</h3>
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-editor" data-toolbar="simple" data-menubar="false" data-height="250">
+                        <textarea class="boblog-editor-content"><p>simple 工具栏示例</p></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-editor" data-toolbar="simple" data-menubar="false" data-height="250"&gt;
+    &lt;textarea class="boblog-editor-content"&gt;&lt;p&gt;simple 工具栏示例&lt;/p&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+
+&lt;script src="/lib/tinymce/tinymce.min.js"&gt;&lt;/script&gt;
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;simple 工具栏示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-editor" data-toolbar="simple" data-menubar="false" data-height="250"&gt;
+    &lt;textarea class="boblog-editor-content"&gt;&lt;p&gt;simple 工具栏示例&lt;/p&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+
+&lt;script src="/lib/tinymce/tinymce.min.js"&gt;&lt;/script&gt;
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- basic 工具栏 -->
+        <h3>basic 工具栏</h3>
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-editor" data-toolbar="basic" data-height="200">
+                        <textarea class="boblog-editor-content"><p>basic 工具栏示例</p></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-editor" data-toolbar="basic" data-height="200"&gt;
+    &lt;textarea class="boblog-editor-content"&gt;&lt;p&gt;basic 工具栏示例&lt;/p&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+
+&lt;script src="/lib/tinymce/tinymce.min.js"&gt;&lt;/script&gt;
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;basic 工具栏示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-editor" data-toolbar="basic" data-height="200"&gt;
+    &lt;textarea class="boblog-editor-content"&gt;&lt;p&gt;basic 工具栏示例&lt;/p&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+
+&lt;script src="/lib/tinymce/tinymce.min.js"&gt;&lt;/script&gt;
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <!-- standard 工具栏 -->
+        <h3>standard 工具栏</h3>
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-editor" data-toolbar="standard" data-height="200">
+                        <textarea class="boblog-editor-content"><p>standard 工具栏示例</p></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-editor" data-toolbar="standard" data-height="200"&gt;
+    &lt;textarea class="boblog-editor-content"&gt;&lt;p&gt;standard 工具栏示例&lt;/p&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+
+&lt;script src="/lib/tinymce/tinymce.min.js"&gt;&lt;/script&gt;
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;standard 工具栏示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-editor" data-toolbar="standard" data-height="200"&gt;
+    &lt;textarea class="boblog-editor-content"&gt;&lt;p&gt;standard 工具栏示例&lt;/p&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+
+&lt;script src="/lib/tinymce/tinymce.min.js"&gt;&lt;/script&gt;
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 禁用状态 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="禁用状态">禁用状态</h2>
+
+        <div class="boblog-doc-spec">
+            <p>添加 <code>.disabled</code> 类使编辑器变为只读模式：</p>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-editor disabled" data-toolbar="basic" data-height="150">
+                        <textarea class="boblog-editor-content"><p>这是一个禁用状态的编辑器，内容不可编辑。</p></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-editor disabled" data-toolbar="basic" data-height="150"&gt;
+    &lt;textarea class="boblog-editor-content"&gt;&lt;p&gt;这是一个禁用状态的编辑器，内容不可编辑。&lt;/p&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+
+&lt;script src="/lib/tinymce/tinymce.min.js"&gt;&lt;/script&gt;
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;禁用状态示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-editor disabled" data-toolbar="basic" data-height="150"&gt;
+    &lt;textarea class="boblog-editor-content"&gt;&lt;p&gt;这是一个禁用状态的编辑器，内容不可编辑。&lt;/p&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+
+&lt;script src="/lib/tinymce/tinymce.min.js"&gt;&lt;/script&gt;
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 图片上传 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="图片上传">图片上传</h2>
+
+        <div class="boblog-doc-spec">
+            <p>通过 <code>data-upload-url</code> 属性启用图片上传，通过 <code>data-toolbar</code> 自定义工具栏按钮：</p>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-editor" data-toolbar="image" data-menubar="false" data-height="200" data-upload-url="/api/upload/image">
+                        <textarea class="boblog-editor-content"><p>图片上传示例</p></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-editor" data-toolbar="image" data-menubar="false" data-height="200" data-upload-url="/api/upload/image"&gt;
+    &lt;textarea class="boblog-editor-content"&gt;&lt;p&gt;图片上传示例&lt;/p&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+
+&lt;script src="/lib/tinymce/tinymce.min.js"&gt;&lt;/script&gt;
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;图片上传示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-editor" data-toolbar="bold italic underline | uploader" data-menubar="false" data-height="200" data-upload-url="/api/upload/image"&gt;
+    &lt;textarea class="boblog-editor-content"&gt;&lt;p&gt;图片上传示例&lt;/p&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+
+&lt;script src="/lib/tinymce/tinymce.min.js"&gt;&lt;/script&gt;
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="boblog-doc-spec">
+            <h3>上传方式</h3>
+            <ul>
+                <li><strong>工具栏按钮</strong>: 在 data-toolbar 中添加 <code>uploader</code>（full 预设已包含）</li>
+                <li><strong>粘贴上传</strong>: 直接粘贴剪贴板中的图片</li>
+                <li><strong>拖拽上传</strong>: 将图片拖入编辑区域</li>
+            </ul>
+        </div>
+
+        <div class="boblog-doc-spec">
+            <h3>服务端接口要求</h3>
+            <table class="boblog-table">
+                <tbody>
+                    <tr>
+                        <td><strong>请求方式</strong></td>
+                        <td>POST</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Content-Type</strong></td>
+                        <td>multipart/form-data</td>
+                    </tr>
+                    <tr>
+                        <td><strong>表单字段</strong></td>
+                        <td><code>file</code>（文件）、<code>fileType</code>（固定值 "Images"）</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>返回 JSON 格式：</p>
+            <div class="boblog-codeblock">
+                <pre><code class="language-javascript">// 成功
+{ "location": "/uploads/2024/01/image.jpg" }
+
+// 失败
+{ "error": "文件大小超出限制" }</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 附件上传 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="附件上传">附件上传</h2>
+
+        <div class="boblog-doc-spec">
+            <p>通过 <code>uploader</code> 按钮打开附件管理器，支持上传图片和附件文件：</p>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-editor" data-toolbar="uploader" data-menubar="false" data-height="200">
+                        <textarea class="boblog-editor-content"><p>附件上传示例</p></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-editor" data-toolbar="uploader" data-menubar="false" data-height="200"&gt;
+    &lt;textarea class="boblog-editor-content"&gt;&lt;p&gt;附件上传示例&lt;/p&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+
+&lt;script src="/lib/tinymce/tinymce.min.js"&gt;&lt;/script&gt;
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;附件上传示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-editor" data-toolbar="uploader" data-menubar="false" data-height="200"&gt;
+    &lt;textarea class="boblog-editor-content"&gt;&lt;p&gt;附件上传示例&lt;/p&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+
+&lt;script src="/lib/tinymce/tinymce.min.js"&gt;&lt;/script&gt;
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+
+        <div class="boblog-doc-spec">
+            <p><code>uploader</code> 按钮会打开附件管理器弹窗（<code>/Admin/Upload/Manager</code>），支持上传和选择已有文件。</p>
+        </div>
+    </div>
+
+    <!-- ====== 完整演示 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="完整演示">完整演示</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>容器类名</strong>: .boblog-editor</li>
+                <li><strong>编辑区域</strong>: .boblog-editor-content（textarea 元素）</li>
+                <li><strong>底层引擎</strong>: TinyMCE 7 + bobo 自定义皮肤</li>
+                <li><strong>默认样式</strong>: 经典蓝白配色，无圆角设计</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-editor" data-toolbar="full" data-height="400">
+                        <textarea class="boblog-editor-content"><p>这是一个富文本编辑器示例。</p><p>您可以尝试<strong>加粗</strong>、<em>斜体</em>、<u>下划线</u>等格式化操作。</p></textarea>
+                    </div>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-editor" data-toolbar="full" data-height="400"&gt;
+    &lt;textarea class="boblog-editor-content"&gt;&lt;p&gt;这是一个富文本编辑器示例。&lt;/p&gt;&lt;p&gt;您可以尝试&lt;strong&gt;加粗&lt;/strong&gt;、&lt;em&gt;斜体&lt;/em&gt;、&lt;u&gt;下划线&lt;/u&gt;等格式化操作。&lt;/p&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+
+&lt;script src="/lib/tinymce/tinymce.min.js"&gt;&lt;/script&gt;
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;富文本编辑器示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-editor" data-toolbar="full" data-height="400"&gt;
+    &lt;textarea class="boblog-editor-content"&gt;&lt;p&gt;这是一个富文本编辑器示例。&lt;/p&gt;&lt;p&gt;您可以尝试&lt;strong&gt;加粗&lt;/strong&gt;、&lt;em&gt;斜体&lt;/em&gt;、&lt;u&gt;下划线&lt;/u&gt;等格式化操作。&lt;/p&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+
+&lt;script src="/lib/tinymce/tinymce.min.js"&gt;&lt;/script&gt;
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== JavaScript API ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="JavaScript-API">JavaScript API</h2>
+
+        <div class="boblog-doc-spec">
+            <table class="boblog-table">
+                <thead>
+                    <tr>
+                        <th>方法</th>
+                        <th>说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>BoblogUI.editor.init(container)</code></td>
+                        <td>初始化容器内的编辑器（用于动态插入的内容）</td>
+                    </tr>
+                    <tr>
+                        <td><code>BoblogUI.editor.destroy(editorEl)</code></td>
+                        <td>销毁编辑器实例</td>
+                    </tr>
+                    <tr>
+                        <td><code>BoblogUI.editor.getContent(editorEl)</code></td>
+                        <td>获取编辑器内容（返回 HTML 字符串）</td>
+                    </tr>
+                    <tr>
+                        <td><code>BoblogUI.editor.setContent(editorEl, html)</code></td>
+                        <td>设置编辑器内容</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="boblog-doc-spec">
+            <h3>获取内容并提交</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-javascript">// 获取编辑器容器
+var editorEl = document.querySelector('.boblog-editor');
+
+// 获取 HTML 内容
+var content = BoblogUI.editor.getContent(editorEl);
+
+// 提交到服务器
+fetch('/api/article/save', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ content: content })
+});</code></pre>
+            </div>
+        </div>
+
+        <div class="boblog-doc-spec">
+            <h3>表单提交</h3>
+            <p>编辑器在 form 表单内时，TinyMCE 会自动同步内容到 textarea：</p>
+            <div class="boblog-codeblock">
+                <pre><code class="language-html">&lt;form action="/api/article/save" method="post"&gt;
+    &lt;div class="boblog-editor"&gt;
+        &lt;textarea name="content" class="boblog-editor-content"&gt;&lt;/textarea&gt;
+    &lt;/div&gt;
+    &lt;button type="submit"&gt;保存&lt;/button&gt;
+&lt;/form&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<!-- 先引入 TinyMCE -->
+<script src="../../lib/tinymce/tinymce.min.js"></script>
+<!-- 再引入 boblog-ui -->
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

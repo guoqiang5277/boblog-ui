@@ -1,0 +1,120 @@
+/* ============================================
+   Bo-Blog Timeline Component (时间轴组件)
+   经典2000年代博客风格
+   ============================================ */
+
+/* 时间轴容器
+   - 使用无序列表样式，清除默认边距
+   - 作为相对定位容器供子元素定位参考 */
+.boblog-timeline {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  position: relative;
+}
+
+/* 时间轴项目
+   - 左侧留出空间放置圆点和垂直线（24px）
+   - 底部间距控制项目之间的垂直距离
+   - 相对定位用于圆点的绝对定位参考 */
+.boblog-timeline-item {
+  position: relative;
+  padding-left: 24px;
+  padding-bottom: 20px;
+}
+
+/* 垂直连接线
+   - 使用伪元素创建，从顶部延伸到底部
+   - 位置在圆点中心（left: 5px，圆点宽度11px的中心位置）
+   - 使用浅色边框色保持视觉层次
+   - z-index 低于圆点，形成连线被圆点遮挡的效果 */
+.boblog-timeline-item::before {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: var(--boblog-border-light);
+  z-index: 0;
+}
+
+/* 最后一个时间轴项目
+   - 移除垂直线的底部延伸，避免多余的线条
+   - 通过设置 bottom: auto 和计算高度实现 */
+.boblog-timeline-item:last-child::before {
+  bottom: auto;
+  height: 12px; /* 只延伸到圆点下方一点点 */
+}
+
+/* 时间节点圆点
+   - 经典方角设计（border-radius: 0）
+   - 尺寸 11px × 11px，带 2px 边框
+   - 绝对定位在项目左侧，垂直对齐内容顶部
+   - 白色背景配合蓝色边框，形成经典轮廓效果
+   - z-index 高于连接线，确保圆点在视觉上位于线条之上 */
+.boblog-timeline-dot {
+  width: 11px;
+  height: 11px;
+  border: 2px solid var(--boblog-blue);
+  background-color: var(--boblog-bg);
+  position: absolute;
+  left: 0;
+  top: 2px; /* 微调与文本基线对齐 */
+  z-index: 1;
+  border-radius: 0; /* 强制方角，符合 Bo-Blog 经典设计 */
+}
+
+/* 时间轴项目状态变体 - 成功状态
+   - 圆点使用成功色（绿色）边框 */
+.boblog-timeline-item.success .boblog-timeline-dot {
+  border-color: var(--boblog-success);
+}
+
+/* 时间轴项目状态变体 - 警告状态
+   - 圆点使用警告色（橙色）边框 */
+.boblog-timeline-item.warning .boblog-timeline-dot {
+  border-color: var(--boblog-warning);
+}
+
+/* 时间轴项目状态变体 - 危险状态
+   - 圆点使用危险色（红色）边框 */
+.boblog-timeline-item.danger .boblog-timeline-dot {
+  border-color: var(--boblog-danger);
+}
+
+/* 时间轴项目状态变体 - 信息状态
+   - 圆点使用信息色（浅蓝）边框 */
+.boblog-timeline-item.info .boblog-timeline-dot {
+  border-color: var(--boblog-info);
+}
+
+/* 时间轴内容区域
+   - 使用 Bo-Blog 标准字号 12px
+   - Tahoma/Arial 字体栈，符合经典博客字体规范
+   - 主文本色，确保良好可读性 */
+.boblog-timeline-content {
+  font-size: 12px;
+  font-family: Tahoma, Arial, sans-serif;
+  color: var(--boblog-text);
+  line-height: 1.5;
+}
+
+/* 时间标签
+   - 更小的字号（11px）用于次要信息
+   - 次要文本色，降低视觉权重
+   - 通常用于显示时间戳或日期 */
+.boblog-timeline-time {
+  font-size: 11px;
+  font-family: Tahoma, Arial, sans-serif;
+  color: var(--boblog-text-secondary);
+  display: block;
+  margin-top: 4px;
+}
+
+/* 紧凑模式
+   - 减少项目之间的垂直间距，适合密集信息展示
+   - 从默认的 20px 减少到 10px */
+.boblog-timeline.boblog-timeline-compact .boblog-timeline-item {
+  padding-bottom: 10px;
+}

@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分页组件 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+<!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <!-- 导航栏 -->
+    <div class="boblog-doc-nav">
+        <a href="../index.html">← 返回文档总纲</a>
+    </div>
+
+    <h1>分页组件 (Pagination)</h1>
+
+    <!-- ====== 基础分页 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="基础分页">基础分页 (.boblog-pagination)</h2>
+
+        <!-- 规范说明：与 pagination.css 实际变量值对应 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>容器类名</strong>: <code>.boblog-pagination</code>，flex 布局</li>
+                <li><strong>链接类名</strong>: <code>.boblog-page-link</code></li>
+                <li><strong>文字颜色</strong>: #1A1A1A (--boblog-text)</li>
+                <li><strong>背景</strong>: #FFFFFF (--boblog-bg)</li>
+                <li><strong>边框</strong>: 1px solid #9EC9FF (--boblog-border-blue)</li>
+                <li><strong>内边距</strong>: 4px 10px</li>
+                <li><strong>最小宽度</strong>: 32px，文本居中</li>
+                <li><strong>悬停</strong>: 背景 #F4FBFF (--boblog-blue-wash)，文字 #0D80BD (--boblog-blue-accent)，边框 #0D80BD</li>
+                <li><strong>间距</strong>: 页码间隔 5px (--boblog-spacing-xs)</li>
+                <li><strong>字号</strong>: 12px (--boblog-font-size-sm)</li>
+                <li>本组件为纯 CSS 实现，无需引入 JavaScript</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <ul class="boblog-pagination">
+                            <li><a href="#" class="boblog-page-link">首页</a></li>
+                            <li><a href="#" class="boblog-page-link">上一页</a></li>
+                            <li><a href="#" class="boblog-page-link">1</a></li>
+                            <li><a href="#" class="boblog-page-link">2</a></li>
+                            <li><a href="#" class="boblog-page-link">3</a></li>
+                            <li><a href="#" class="boblog-page-link">4</a></li>
+                            <li><a href="#" class="boblog-page-link">5</a></li>
+                            <li><a href="#" class="boblog-page-link">下一页</a></li>
+                            <li><a href="#" class="boblog-page-link">末页</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;ul class="boblog-pagination"&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;首页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;上一页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;3&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;4&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;5&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;下一页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;末页&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;基础分页示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;ul class="boblog-pagination"&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;首页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;上一页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;3&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;4&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;5&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;下一页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;末页&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 当前页状态 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="当前页状态">当前页状态 (.boblog-page-current)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>类名</strong>: <code>.boblog-page-current</code></li>
+                <li><strong>背景</strong>: #F4FBFF (--boblog-blue-wash)</li>
+                <li><strong>文字颜色</strong>: #0D80BD (--boblog-blue-accent)</li>
+                <li><strong>边框</strong>: 1px solid #0D80BD (--boblog-blue-accent)</li>
+                <li><strong>字体加粗</strong>: bold</li>
+                <li><strong>不可点击</strong>: 使用 span 标签</li>
+                <li><strong>无悬停效果</strong>: 保持原样式</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <ul class="boblog-pagination">
+                            <li><a href="#" class="boblog-page-link">首页</a></li>
+                            <li><a href="#" class="boblog-page-link">上一页</a></li>
+                            <li><a href="#" class="boblog-page-link">1</a></li>
+                            <li><a href="#" class="boblog-page-link">2</a></li>
+                            <li><span class="boblog-page-current">3</span></li>
+                            <li><a href="#" class="boblog-page-link">4</a></li>
+                            <li><a href="#" class="boblog-page-link">5</a></li>
+                            <li><a href="#" class="boblog-page-link">下一页</a></li>
+                            <li><a href="#" class="boblog-page-link">末页</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;ul class="boblog-pagination"&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;首页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;上一页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;2&lt;/a&gt;&lt;/li&gt;
+    &lt;!-- 当前页使用 span，不可点击 --&gt;
+    &lt;li&gt;&lt;span class="boblog-page-current"&gt;3&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;4&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;5&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;下一页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;末页&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;当前页状态示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;ul class="boblog-pagination"&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;首页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;上一页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;2&lt;/a&gt;&lt;/li&gt;
+    &lt;!-- 当前页使用 span，不可点击 --&gt;
+    &lt;li&gt;&lt;span class="boblog-page-current"&gt;3&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;4&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;5&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;下一页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;末页&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 禁用状态 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="禁用状态">禁用状态 (.boblog-page-disabled)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>类名</strong>: <code>.boblog-page-disabled</code></li>
+                <li><strong>文字颜色</strong>: #888888 (--boblog-text-muted)</li>
+                <li><strong>背景</strong>: #F5F8FB (--boblog-bg-subtle)</li>
+                <li><strong>边框</strong>: 1px solid #DDE8F0 (--boblog-border-light)</li>
+                <li><strong>光标</strong>: not-allowed</li>
+                <li><strong>不可点击</strong>: 使用 span 标签</li>
+                <li><strong>应用场景</strong>: 首页/上一页（在第1页时），末页/下一页（在最后一页时）</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>第一页场景：</strong></p>
+                        <ul class="boblog-pagination">
+                            <li><span class="boblog-page-disabled">首页</span></li>
+                            <li><span class="boblog-page-disabled">上一页</span></li>
+                            <li><span class="boblog-page-current">1</span></li>
+                            <li><a href="#" class="boblog-page-link">2</a></li>
+                            <li><a href="#" class="boblog-page-link">3</a></li>
+                            <li><a href="#" class="boblog-page-link">4</a></li>
+                            <li><a href="#" class="boblog-page-link">5</a></li>
+                            <li><a href="#" class="boblog-page-link">下一页</a></li>
+                            <li><a href="#" class="boblog-page-link">末页</a></li>
+                        </ul>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>最后一页场景：</strong></p>
+                        <ul class="boblog-pagination">
+                            <li><a href="#" class="boblog-page-link">首页</a></li>
+                            <li><a href="#" class="boblog-page-link">上一页</a></li>
+                            <li><a href="#" class="boblog-page-link">6</a></li>
+                            <li><a href="#" class="boblog-page-link">7</a></li>
+                            <li><a href="#" class="boblog-page-link">8</a></li>
+                            <li><a href="#" class="boblog-page-link">9</a></li>
+                            <li><span class="boblog-page-current">10</span></li>
+                            <li><span class="boblog-page-disabled">下一页</span></li>
+                            <li><span class="boblog-page-disabled">末页</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 第一页场景：首页/上一页禁用 --&gt;
+&lt;ul class="boblog-pagination"&gt;
+    &lt;li&gt;&lt;span class="boblog-page-disabled"&gt;首页&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span class="boblog-page-disabled"&gt;上一页&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span class="boblog-page-current"&gt;1&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;3&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;4&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;5&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;下一页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;末页&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- 最后一页场景：下一页/末页禁用 --&gt;
+&lt;ul class="boblog-pagination"&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;首页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;上一页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;6&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;7&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;8&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;9&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span class="boblog-page-current"&gt;10&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span class="boblog-page-disabled"&gt;下一页&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span class="boblog-page-disabled"&gt;末页&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;禁用状态示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 第一页场景：首页/上一页禁用 --&gt;
+&lt;ul class="boblog-pagination"&gt;
+    &lt;li&gt;&lt;span class="boblog-page-disabled"&gt;首页&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span class="boblog-page-disabled"&gt;上一页&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span class="boblog-page-current"&gt;1&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;3&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;4&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;5&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;下一页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;末页&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;!-- 最后一页场景：下一页/末页禁用 --&gt;
+&lt;ul class="boblog-pagination"&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;首页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;上一页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;6&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;7&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;8&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;9&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span class="boblog-page-current"&gt;10&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span class="boblog-page-disabled"&gt;下一页&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span class="boblog-page-disabled"&gt;末页&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 省略号 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="省略号">省略号 (.boblog-page-ellipsis)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>类名</strong>: <code>.boblog-page-ellipsis</code></li>
+                <li><strong>显示内容</strong>: "..."</li>
+                <li><strong>文字颜色</strong>: #888888 (--boblog-text-muted)</li>
+                <li><strong>背景</strong>: transparent（无背景）</li>
+                <li><strong>无边框</strong></li>
+                <li><strong>不可点击</strong>: 使用 span 标签</li>
+                <li><strong>不可选中</strong>: user-select: none</li>
+                <li><strong>应用场景</strong>: 页码过多时省略中间部分</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <ul class="boblog-pagination">
+                            <li><a href="#" class="boblog-page-link">首页</a></li>
+                            <li><a href="#" class="boblog-page-link">上一页</a></li>
+                            <li><a href="#" class="boblog-page-link">1</a></li>
+                            <li><a href="#" class="boblog-page-link">2</a></li>
+                            <li><a href="#" class="boblog-page-link">3</a></li>
+                            <li><span class="boblog-page-ellipsis">...</span></li>
+                            <li><a href="#" class="boblog-page-link">15</a></li>
+                            <li><a href="#" class="boblog-page-link">16</a></li>
+                            <li><span class="boblog-page-current">17</span></li>
+                            <li><a href="#" class="boblog-page-link">18</a></li>
+                            <li><a href="#" class="boblog-page-link">19</a></li>
+                            <li><span class="boblog-page-ellipsis">...</span></li>
+                            <li><a href="#" class="boblog-page-link">48</a></li>
+                            <li><a href="#" class="boblog-page-link">49</a></li>
+                            <li><a href="#" class="boblog-page-link">50</a></li>
+                            <li><a href="#" class="boblog-page-link">下一页</a></li>
+                            <li><a href="#" class="boblog-page-link">末页</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;ul class="boblog-pagination"&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;首页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;上一页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;3&lt;/a&gt;&lt;/li&gt;
+    &lt;!-- 省略号 --&gt;
+    &lt;li&gt;&lt;span class="boblog-page-ellipsis"&gt;...&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;15&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;16&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span class="boblog-page-current"&gt;17&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;18&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;19&lt;/a&gt;&lt;/li&gt;
+    &lt;!-- 省略号 --&gt;
+    &lt;li&gt;&lt;span class="boblog-page-ellipsis"&gt;...&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;48&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;49&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;50&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;下一页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;末页&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;省略号示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;ul class="boblog-pagination"&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;首页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;上一页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;3&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span class="boblog-page-ellipsis"&gt;...&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;15&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;16&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span class="boblog-page-current"&gt;17&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;18&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;19&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span class="boblog-page-ellipsis"&gt;...&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;48&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;49&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;50&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;下一页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;末页&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 页码信息和跳转 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="页码信息和跳转">页码信息和跳转</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>信息类名</strong>: <code>.boblog-page-info</code>，颜色 #888888 (--boblog-text-muted)</li>
+                <li><strong>跳转容器</strong>: <code>.boblog-page-jump</code></li>
+                <li><strong>跳转标签</strong>: <code>.boblog-page-jump-label</code></li>
+                <li><strong>输入框</strong>: <code>.boblog-page-jump-input</code>，宽度 50px，文本居中</li>
+                <li><strong>跳转按钮</strong>: <code>.boblog-page-jump-btn</code></li>
+                <li><strong>布局</strong>: 分页器与信息左右布局</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 15px;">
+                        <ul class="boblog-pagination">
+                            <li><a href="#" class="boblog-page-link">首页</a></li>
+                            <li><a href="#" class="boblog-page-link">上一页</a></li>
+                            <li><a href="#" class="boblog-page-link">1</a></li>
+                            <li><a href="#" class="boblog-page-link">2</a></li>
+                            <li><span class="boblog-page-current">3</span></li>
+                            <li><a href="#" class="boblog-page-link">4</a></li>
+                            <li><a href="#" class="boblog-page-link">5</a></li>
+                            <li><a href="#" class="boblog-page-link">下一页</a></li>
+                            <li><a href="#" class="boblog-page-link">末页</a></li>
+                        </ul>
+                        <span class="boblog-page-info">共 150 条记录，第 3/15 页</span>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-page-jump">
+                            <span class="boblog-page-jump-label">跳转到</span>
+                            <input type="text" class="boblog-page-jump-input" value="3">
+                            <span class="boblog-page-jump-label">页</span>
+                            <button class="boblog-page-jump-btn">跳转</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 分页器 + 页码信息 --&gt;
+&lt;div style="display: flex; align-items: center; justify-content: space-between;"&gt;
+    &lt;ul class="boblog-pagination"&gt;
+        &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;首页&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;上一页&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;2&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;span class="boblog-page-current"&gt;3&lt;/span&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;4&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;5&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;下一页&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;末页&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;span class="boblog-page-info"&gt;共 150 条记录，第 3/15 页&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- 页码跳转 --&gt;
+&lt;div class="boblog-page-jump"&gt;
+    &lt;span class="boblog-page-jump-label"&gt;跳转到&lt;/span&gt;
+    &lt;input type="text" class="boblog-page-jump-input" value="3"&gt;
+    &lt;span class="boblog-page-jump-label"&gt;页&lt;/span&gt;
+    &lt;button class="boblog-page-jump-btn"&gt;跳转&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;页码信息和跳转示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 分页器 + 页码信息 --&gt;
+&lt;div style="display: flex; align-items: center; justify-content: space-between;"&gt;
+    &lt;ul class="boblog-pagination"&gt;
+        &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;首页&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;上一页&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;2&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;span class="boblog-page-current"&gt;3&lt;/span&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;4&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;5&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;下一页&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;末页&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;span class="boblog-page-info"&gt;共 150 条记录，第 3/15 页&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- 页码跳转 --&gt;
+&lt;div class="boblog-page-jump"&gt;
+    &lt;span class="boblog-page-jump-label"&gt;跳转到&lt;/span&gt;
+    &lt;input type="text" class="boblog-page-jump-input" value="3"&gt;
+    &lt;span class="boblog-page-jump-label"&gt;页&lt;/span&gt;
+    &lt;button class="boblog-page-jump-btn"&gt;跳转&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 简洁分页 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="简洁分页">简洁分页</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>仅显示</strong>: 上一页、当前页/总页数、下一页</li>
+                <li><strong>适用场景</strong>: 移动端、侧边栏、空间受限场景</li>
+                <li><strong>样式</strong>: 同基础分页</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <ul class="boblog-pagination">
+                            <li><a href="#" class="boblog-page-link">上一页</a></li>
+                            <li><span class="boblog-page-current">5 / 20</span></li>
+                            <li><a href="#" class="boblog-page-link">下一页</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;ul class="boblog-pagination"&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;上一页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span class="boblog-page-current"&gt;5 / 20&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;下一页&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;简洁分页示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;ul class="boblog-pagination"&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;上一页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span class="boblog-page-current"&gt;5 / 20&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;下一页&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 紧凑模式 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="紧凑模式">紧凑模式 (.boblog-pagination-compact)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>容器类名</strong>: <code>.boblog-pagination-compact</code>（附加在 .boblog-pagination 上）</li>
+                <li><strong>内边距</strong>: 2px 8px（比标准模式更紧凑）</li>
+                <li><strong>最小宽度</strong>: 28px</li>
+                <li><strong>字号</strong>: 11px</li>
+                <li><strong>适用场景</strong>: 空间紧凑的区域，如侧边栏、弹窗内</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <ul class="boblog-pagination boblog-pagination-compact">
+                            <li><a href="#" class="boblog-page-link">首页</a></li>
+                            <li><a href="#" class="boblog-page-link">上一页</a></li>
+                            <li><a href="#" class="boblog-page-link">1</a></li>
+                            <li><a href="#" class="boblog-page-link">2</a></li>
+                            <li><span class="boblog-page-current">3</span></li>
+                            <li><a href="#" class="boblog-page-link">4</a></li>
+                            <li><a href="#" class="boblog-page-link">5</a></li>
+                            <li><a href="#" class="boblog-page-link">下一页</a></li>
+                            <li><a href="#" class="boblog-page-link">末页</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 在容器上添加 boblog-pagination-compact 类 --&gt;
+&lt;ul class="boblog-pagination boblog-pagination-compact"&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;首页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;上一页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span class="boblog-page-current"&gt;3&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;4&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;5&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;下一页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;末页&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;紧凑模式示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;ul class="boblog-pagination boblog-pagination-compact"&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;首页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;上一页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;1&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;2&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;span class="boblog-page-current"&gt;3&lt;/span&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;4&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;5&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;下一页&lt;/a&gt;&lt;/li&gt;
+    &lt;li&gt;&lt;a href="#" class="boblog-page-link"&gt;末页&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

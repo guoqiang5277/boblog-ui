@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>单选框 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+<!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <!-- 导航栏 -->
+    <div class="boblog-doc-nav">
+        <a href="../forms.html">← 返回表单组件</a> |
+        <a href="../index.html">返回总纲</a>
+    </div>
+
+    <h1>单选框 (Radio)</h1>
+
+    <!-- ====== 单选框基础 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="单选框基础">单选框 (.boblog-radio)</h2>
+
+        <!-- 规范说明：与 radio.css 实际变量值对应 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>容器</strong>: display inline-flex，align-items center，cursor pointer</li>
+                <li><strong>原生 radio</strong>: 通过 .boblog-radio-input 隐藏（opacity: 0），使用伪元素绘制圆形单选框</li>
+                <li><strong>未选中</strong>: 边框 1px solid #C4D7E8 (--boblog-border)，背景 #FFFFFF (--boblog-bg)，圆形（border-radius: 50%）</li>
+                <li><strong>已选中</strong>: 边框 #0D6EAA (--boblog-blue)，背景 #0D6EAA (--boblog-blue)，内圆点 #FFFFFF 8px</li>
+                <li><strong>Hover</strong>: 边框变为 #0D6EAA (--boblog-blue)</li>
+                <li><strong>Focus</strong>: outline 2px solid rgba(13, 128, 189, 0.3)，offset 2px</li>
+                <li><strong>Disabled 未选中</strong>: 背景 #F5F5F5，边框 #D9D9D9，文字 #888888 (--boblog-text-muted)</li>
+                <li><strong>Disabled 已选中</strong>: 背景 #7FBFDD，边框 #7FBFDD，内圆点 #FFFFFF</li>
+                <li><strong>标签间距</strong>: padding-left 24px（含 16px 单选框 + 间距）</li>
+                <li>本组件为纯 CSS 实现，无需引入 JavaScript</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <!-- 正常状态：三个选项互斥 -->
+                    <div class="boblog-doc-demo-row">
+                        <label class="boblog-radio">
+                            <input type="radio" class="boblog-radio-input" name="demo1">
+                            <span class="boblog-radio-label">选项 1</span>
+                        </label>
+                        <label class="boblog-radio" style="margin-left: 15px;">
+                            <input type="radio" class="boblog-radio-input" name="demo1" checked>
+                            <span class="boblog-radio-label">选项 2</span>
+                        </label>
+                        <label class="boblog-radio" style="margin-left: 15px;">
+                            <input type="radio" class="boblog-radio-input" name="demo1">
+                            <span class="boblog-radio-label">选项 3</span>
+                        </label>
+                    </div>
+                    <!-- 禁用状态 -->
+                    <div class="boblog-doc-demo-row">
+                        <label class="boblog-radio">
+                            <input type="radio" class="boblog-radio-input" name="demo2" disabled>
+                            <span class="boblog-radio-label">禁用未选中</span>
+                        </label>
+                        <label class="boblog-radio" style="margin-left: 15px;">
+                            <input type="radio" class="boblog-radio-input" name="demo2" checked disabled>
+                            <span class="boblog-radio-label">禁用已选中</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 正常状态 --&gt;
+&lt;label class="boblog-radio"&gt;
+    &lt;input type="radio" class="boblog-radio-input" name="group1"&gt;
+    &lt;span class="boblog-radio-label"&gt;选项 1&lt;/span&gt;
+&lt;/label&gt;
+&lt;label class="boblog-radio"&gt;
+    &lt;input type="radio" class="boblog-radio-input" name="group1" checked&gt;
+    &lt;span class="boblog-radio-label"&gt;选项 2&lt;/span&gt;
+&lt;/label&gt;
+&lt;label class="boblog-radio"&gt;
+    &lt;input type="radio" class="boblog-radio-input" name="group1"&gt;
+    &lt;span class="boblog-radio-label"&gt;选项 3&lt;/span&gt;
+&lt;/label&gt;
+
+&lt;!-- 禁用状态 --&gt;
+&lt;label class="boblog-radio"&gt;
+    &lt;input type="radio" class="boblog-radio-input" name="group2" disabled&gt;
+    &lt;span class="boblog-radio-label"&gt;禁用未选中&lt;/span&gt;
+&lt;/label&gt;
+&lt;label class="boblog-radio"&gt;
+    &lt;input type="radio" class="boblog-radio-input" name="group2" checked disabled&gt;
+    &lt;span class="boblog-radio-label"&gt;禁用已选中&lt;/span&gt;
+&lt;/label&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;单选框示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 正常状态 --&gt;
+&lt;label class="boblog-radio"&gt;
+    &lt;input type="radio" class="boblog-radio-input" name="group1"&gt;
+    &lt;span class="boblog-radio-label"&gt;选项 1&lt;/span&gt;
+&lt;/label&gt;
+&lt;label class="boblog-radio"&gt;
+    &lt;input type="radio" class="boblog-radio-input" name="group1" checked&gt;
+    &lt;span class="boblog-radio-label"&gt;选项 2&lt;/span&gt;
+&lt;/label&gt;
+&lt;label class="boblog-radio"&gt;
+    &lt;input type="radio" class="boblog-radio-input" name="group1"&gt;
+    &lt;span class="boblog-radio-label"&gt;选项 3&lt;/span&gt;
+&lt;/label&gt;
+
+&lt;!-- 禁用状态 --&gt;
+&lt;label class="boblog-radio"&gt;
+    &lt;input type="radio" class="boblog-radio-input" name="group2" disabled&gt;
+    &lt;span class="boblog-radio-label"&gt;禁用未选中&lt;/span&gt;
+&lt;/label&gt;
+&lt;label class="boblog-radio"&gt;
+    &lt;input type="radio" class="boblog-radio-input" name="group2" checked disabled&gt;
+    &lt;span class="boblog-radio-label"&gt;禁用已选中&lt;/span&gt;
+&lt;/label&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 单选框组 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="单选框组">单选框组 (.boblog-radio-group)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>垂直排列</strong>（默认）: flex-direction column，间距 10px (--boblog-spacing-sm)</li>
+                <li><strong>水平排列</strong> (.inline): flex-direction row，flex-wrap wrap，间距 15px (--boblog-spacing-md)</li>
+                <li><strong>无标签文本</strong>: .boblog-radio-label:empty 时 padding-left 缩至 16px</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <!-- 垂直排列 -->
+                    <p><strong>垂直排列（默认）</strong></p>
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-radio-group">
+                            <label class="boblog-radio">
+                                <input type="radio" class="boblog-radio-input" name="vgroup" checked>
+                                <span class="boblog-radio-label">技术文章</span>
+                            </label>
+                            <label class="boblog-radio">
+                                <input type="radio" class="boblog-radio-input" name="vgroup">
+                                <span class="boblog-radio-label">心情随笔</span>
+                            </label>
+                            <label class="boblog-radio">
+                                <input type="radio" class="boblog-radio-input" name="vgroup">
+                                <span class="boblog-radio-label">生活记录</span>
+                            </label>
+                        </div>
+                    </div>
+                    <!-- 水平排列 -->
+                    <p><strong>水平排列 (.inline)</strong></p>
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-radio-group inline">
+                            <label class="boblog-radio">
+                                <input type="radio" class="boblog-radio-input" name="hgroup" checked>
+                                <span class="boblog-radio-label">公开</span>
+                            </label>
+                            <label class="boblog-radio">
+                                <input type="radio" class="boblog-radio-input" name="hgroup">
+                                <span class="boblog-radio-label">仅好友</span>
+                            </label>
+                            <label class="boblog-radio">
+                                <input type="radio" class="boblog-radio-input" name="hgroup">
+                                <span class="boblog-radio-label">私密</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 垂直排列（默认） --&gt;
+&lt;div class="boblog-radio-group"&gt;
+    &lt;label class="boblog-radio"&gt;
+        &lt;input type="radio" class="boblog-radio-input" name="category" checked&gt;
+        &lt;span class="boblog-radio-label"&gt;技术文章&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;label class="boblog-radio"&gt;
+        &lt;input type="radio" class="boblog-radio-input" name="category"&gt;
+        &lt;span class="boblog-radio-label"&gt;心情随笔&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;label class="boblog-radio"&gt;
+        &lt;input type="radio" class="boblog-radio-input" name="category"&gt;
+        &lt;span class="boblog-radio-label"&gt;生活记录&lt;/span&gt;
+    &lt;/label&gt;
+&lt;/div&gt;
+
+&lt;!-- 水平排列 --&gt;
+&lt;div class="boblog-radio-group inline"&gt;
+    &lt;label class="boblog-radio"&gt;
+        &lt;input type="radio" class="boblog-radio-input" name="visibility" checked&gt;
+        &lt;span class="boblog-radio-label"&gt;公开&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;label class="boblog-radio"&gt;
+        &lt;input type="radio" class="boblog-radio-input" name="visibility"&gt;
+        &lt;span class="boblog-radio-label"&gt;仅好友&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;label class="boblog-radio"&gt;
+        &lt;input type="radio" class="boblog-radio-input" name="visibility"&gt;
+        &lt;span class="boblog-radio-label"&gt;私密&lt;/span&gt;
+    &lt;/label&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;单选框组示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 垂直排列（默认） --&gt;
+&lt;div class="boblog-radio-group"&gt;
+    &lt;label class="boblog-radio"&gt;
+        &lt;input type="radio" class="boblog-radio-input" name="category" checked&gt;
+        &lt;span class="boblog-radio-label"&gt;技术文章&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;label class="boblog-radio"&gt;
+        &lt;input type="radio" class="boblog-radio-input" name="category"&gt;
+        &lt;span class="boblog-radio-label"&gt;心情随笔&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;label class="boblog-radio"&gt;
+        &lt;input type="radio" class="boblog-radio-input" name="category"&gt;
+        &lt;span class="boblog-radio-label"&gt;生活记录&lt;/span&gt;
+    &lt;/label&gt;
+&lt;/div&gt;
+
+&lt;!-- 水平排列 --&gt;
+&lt;div class="boblog-radio-group inline"&gt;
+    &lt;label class="boblog-radio"&gt;
+        &lt;input type="radio" class="boblog-radio-input" name="visibility" checked&gt;
+        &lt;span class="boblog-radio-label"&gt;公开&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;label class="boblog-radio"&gt;
+        &lt;input type="radio" class="boblog-radio-input" name="visibility"&gt;
+        &lt;span class="boblog-radio-label"&gt;仅好友&lt;/span&gt;
+    &lt;/label&gt;
+    &lt;label class="boblog-radio"&gt;
+        &lt;input type="radio" class="boblog-radio-input" name="visibility"&gt;
+        &lt;span class="boblog-radio-label"&gt;私密&lt;/span&gt;
+    &lt;/label&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

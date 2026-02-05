@@ -1,0 +1,146 @@
+/* ============================================
+ * Bo-Blog UI - 引用块组件 (Blockquote Component)
+ * ============================================
+ * 经典 2000 年代博客风格的引用块样式
+ * 特点：方角设计、左侧色条、浅色背景
+ * ============================================ */
+
+/* --------------------------------------------
+ * 基础引用块 (Basic Blockquote)
+ * 核心样式：左侧 3px 蓝色边框 + 浅蓝背景
+ * -------------------------------------------- */
+.boblog-blockquote {
+  margin: 0;
+  padding: 10px 15px;
+  border-left: 3px solid var(--boblog-blue); /* 左侧强调色条 */
+  background: var(--boblog-bg-subtle); /* 浅色背景突出引用内容 */
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: 12px;
+  color: var(--boblog-text);
+  line-height: 1.6; /* 舒适的行高，提升可读性 */
+  border-radius: 0; /* 方角设计 - Bo-Blog 经典特征 */
+}
+
+/* --------------------------------------------
+ * 引用来源/作者 (Quote Footer)
+ * 显示引用的出处或作者信息
+ * -------------------------------------------- */
+.boblog-blockquote-footer {
+  margin-top: 8px;
+  font-size: 11px;
+  color: var(--boblog-text-secondary); /* 次要文本颜色 */
+}
+
+/* 引用来源前缀破折号 (mdash prefix) */
+.boblog-blockquote-footer::before {
+  content: "\2014\00A0"; /* em dash + 不换行空格 */
+}
+
+/* --------------------------------------------
+ * 颜色变体 (Color Variants)
+ * 不同语义的引用块：成功、警告、危险、信息
+ * -------------------------------------------- */
+
+/* 成功样式 - 绿色调 */
+.boblog-blockquote.success {
+  border-left-color: var(--boblog-success);
+  background: var(--boblog-success-bg);
+}
+
+/* 警告样式 - 黄色调 */
+.boblog-blockquote.warning {
+  border-left-color: var(--boblog-warning);
+  background: var(--boblog-warning-bg);
+}
+
+/* 危险样式 - 红色调 */
+.boblog-blockquote.danger {
+  border-left-color: var(--boblog-danger);
+  background: var(--boblog-danger-bg);
+}
+
+/* 信息样式 - 蓝色调 */
+.boblog-blockquote.info {
+  border-left-color: var(--boblog-info);
+  background: var(--boblog-info-bg);
+}
+
+/* --------------------------------------------
+ * 大号引用块 (Large Quote)
+ * 更大字号和内边距，用于突出重要引用
+ * -------------------------------------------- */
+.boblog-blockquote.large {
+  font-size: 14px;
+  padding: 15px 20px;
+}
+
+/* --------------------------------------------
+ * 居中引用块 (Centered Quote)
+ * 去除左侧边框，改用上下边框，文本居中
+ * 适用于格言、诗句等特殊引用
+ * -------------------------------------------- */
+.boblog-blockquote.center {
+  text-align: center;
+  border-left: none; /* 移除左侧边框 */
+  border-top: 1px solid var(--boblog-border-light);
+  border-bottom: 1px solid var(--boblog-border-light);
+}
+
+/* --------------------------------------------
+ * 带引号图标的引用块 (Quote with Icon)
+ * 左上角显示大号左双引号装饰
+ * 经典的印刷风格引用块
+ * -------------------------------------------- */
+.boblog-blockquote.with-icon {
+  position: relative;
+  padding-left: 50px; /* 为引号图标留出空间 */
+}
+
+/* 左双引号图标 (Left Double Quotation Mark) */
+.boblog-blockquote.with-icon::before {
+  content: "\201C"; /* 左双引号 Unicode 字符 */
+  font-size: 36px;
+  color: var(--boblog-border); /* 使用边框颜色，低调不抢眼 */
+  float: left;
+  margin-right: 8px;
+  margin-left: -35px; /* 向左偏移，与文本对齐 */
+  line-height: 1;
+  font-family: Georgia, serif; /* 衬线字体让引号更优雅 */
+}
+
+/* --------------------------------------------
+ * 嵌套引用块处理 (Nested Blockquotes)
+ * 当引用块内部再嵌套引用时的样式调整
+ * -------------------------------------------- */
+.boblog-blockquote .boblog-blockquote {
+  margin-top: 10px;
+  margin-bottom: 0;
+  border-left-width: 2px; /* 嵌套引用边框更细 */
+  background: transparent; /* 嵌套引用不再使用背景色 */
+  opacity: 0.85; /* 略微降低不透明度以区分层级 */
+}
+
+/* --------------------------------------------
+ * 响应式优化 (Responsive Adjustments)
+ * 在小屏幕设备上调整内边距和字号
+ * -------------------------------------------- */
+@media (max-width: 480px) {
+  .boblog-blockquote {
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+
+  .boblog-blockquote.large {
+    font-size: 13px;
+    padding: 12px 15px;
+  }
+
+  .boblog-blockquote.with-icon {
+    padding-left: 40px;
+  }
+
+  .boblog-blockquote.with-icon::before {
+    font-size: 30px;
+    margin-left: -30px;
+  }
+}

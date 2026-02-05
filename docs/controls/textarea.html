@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文本域 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+<!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <!-- 导航栏 -->
+    <div class="boblog-doc-nav">
+        <a href="../forms.html">← 返回表单组件</a> |
+        <a href="../index.html">返回总纲</a>
+    </div>
+
+    <h1>文本域 (Textarea)</h1>
+
+    <!-- ====== 基础文本域 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="基础文本域">文本域 (.boblog-textarea)</h2>
+
+        <!-- 规范说明：与 textarea.css 实际变量值对应 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>边框</strong>: 1px solid #DDE8F0 (--boblog-border-light)</li>
+                <li><strong>内边距</strong>: 6px 10px</li>
+                <li><strong>字体大小</strong>: 12px (--boblog-font-size-sm)</li>
+                <li><strong>行高</strong>: 1.5</li>
+                <li><strong>背景色</strong>: #FFFFFF (--boblog-bg)</li>
+                <li><strong>文字颜色</strong>: #1A1A1A (--boblog-text)</li>
+                <li><strong>最小高度</strong>: 80px</li>
+                <li><strong>默认 resize</strong>: vertical（仅垂直调整）</li>
+                <li><strong>Hover</strong>: 边框 #C4D7E8 (--boblog-border)</li>
+                <li><strong>Focus</strong>: 边框 #0D80BD (--boblog-blue-accent)，背景 #E8F0F7 (--boblog-blue-pale)，outline 2px solid rgba(13, 128, 189, 0.1)</li>
+                <li><strong>Placeholder</strong>: 颜色 #888888 (--boblog-text-muted)，opacity 0.8</li>
+                <li>基础样式为纯 CSS 实现；字符计数功能需引入 boblog-ui.js（详见 <a href="#字符计数">字符计数</a> 及 <a href="#JS-API">JavaScript API</a> 章节）</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <textarea class="boblog-textarea" rows="4" placeholder="请输入内容..." style="width: 100%;"></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;textarea class="boblog-textarea" rows="4" placeholder="请输入内容..."&gt;&lt;/textarea&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;文本域示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;textarea class="boblog-textarea" rows="4" placeholder="请输入内容..."&gt;&lt;/textarea&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 错误/只读/禁用状态 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="状态变体">状态变体</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>禁用 (disabled)</strong>: 背景 #F5F5F5 (--boblog-disabled-bg)，边框 #D9D9D9 (--boblog-disabled-border)，文字 #888888，cursor not-allowed，resize none</li>
+                <li><strong>只读 (read-only)</strong>: 背景 #F5F8FB (--boblog-bg-subtle)，cursor default，resize none</li>
+                <li><strong>错误 (.boblog-textarea-error 或 .error)</strong>: 边框 #CC3333 (--boblog-danger)，focus 时 outline rgba(224, 62, 45, 0.1)</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <textarea class="boblog-textarea" rows="3" placeholder="禁用状态" disabled style="width: 100%;"></textarea>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <textarea class="boblog-textarea" rows="3" readonly style="width: 100%;">只读状态，内容不可编辑但可复制</textarea>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <textarea class="boblog-textarea boblog-textarea-error" rows="3" placeholder="错误状态" style="width: 100%;"></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 禁用状态 --&gt;
+&lt;textarea class="boblog-textarea" rows="3" disabled&gt;&lt;/textarea&gt;
+
+&lt;!-- 只读状态 --&gt;
+&lt;textarea class="boblog-textarea" rows="3" readonly&gt;只读内容&lt;/textarea&gt;
+
+&lt;!-- 错误状态 --&gt;
+&lt;textarea class="boblog-textarea boblog-textarea-error" rows="3"&gt;&lt;/textarea&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;文本域状态示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 禁用状态 --&gt;
+&lt;textarea class="boblog-textarea" rows="3" disabled&gt;&lt;/textarea&gt;
+
+&lt;!-- 只读状态 --&gt;
+&lt;textarea class="boblog-textarea" rows="3" readonly&gt;只读内容&lt;/textarea&gt;
+
+&lt;!-- 错误状态 --&gt;
+&lt;textarea class="boblog-textarea boblog-textarea-error" rows="3"&gt;&lt;/textarea&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 尺寸变体 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="尺寸变体">尺寸变体</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>小尺寸 (.boblog-textarea-sm)</strong>: min-height 60px，内边距 4px 8px，字体 12px</li>
+                <li><strong>标准尺寸</strong>: min-height 80px，内边距 6px 10px，字体 12px</li>
+                <li><strong>大尺寸 (.boblog-textarea-lg)</strong>: min-height 120px，内边距 8px 12px，字体 14px</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <textarea class="boblog-textarea boblog-textarea-sm" rows="3" placeholder="小尺寸 (sm)" style="width: 100%;"></textarea>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <textarea class="boblog-textarea" rows="3" placeholder="标准尺寸" style="width: 100%;"></textarea>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <textarea class="boblog-textarea boblog-textarea-lg" rows="3" placeholder="大尺寸 (lg)" style="width: 100%;"></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 小尺寸 --&gt;
+&lt;textarea class="boblog-textarea boblog-textarea-sm" rows="3"&gt;&lt;/textarea&gt;
+
+&lt;!-- 标准尺寸 --&gt;
+&lt;textarea class="boblog-textarea" rows="3"&gt;&lt;/textarea&gt;
+
+&lt;!-- 大尺寸 --&gt;
+&lt;textarea class="boblog-textarea boblog-textarea-lg" rows="3"&gt;&lt;/textarea&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;文本域尺寸变体示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 小尺寸 --&gt;
+&lt;textarea class="boblog-textarea boblog-textarea-sm" rows="3"&gt;&lt;/textarea&gt;
+
+&lt;!-- 标准尺寸 --&gt;
+&lt;textarea class="boblog-textarea" rows="3"&gt;&lt;/textarea&gt;
+
+&lt;!-- 大尺寸 --&gt;
+&lt;textarea class="boblog-textarea boblog-textarea-lg" rows="3"&gt;&lt;/textarea&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 调整大小 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="调整大小">调整大小 (Resize)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>默认</strong>: resize vertical（仅垂直拖拽）</li>
+                <li><strong>.boblog-textarea-fixed</strong>: resize none（不可调整）</li>
+                <li><strong>.boblog-textarea-horizontal</strong>: resize horizontal（仅水平拖拽）</li>
+                <li><strong>.boblog-textarea-both</strong>: resize both（自由拖拽）</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <textarea class="boblog-textarea boblog-textarea-fixed" rows="3" placeholder="不可调整大小 (fixed)" style="width: 100%;"></textarea>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <textarea class="boblog-textarea" rows="3" placeholder="仅垂直调整（默认）" style="width: 100%;"></textarea>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <textarea class="boblog-textarea boblog-textarea-horizontal" rows="3" placeholder="仅水平调整 (horizontal)" style="width: 100%;"></textarea>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <textarea class="boblog-textarea boblog-textarea-both" rows="3" placeholder="自由调整 (both)" style="width: 100%;"></textarea>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 不可调整大小 --&gt;
+&lt;textarea class="boblog-textarea boblog-textarea-fixed" rows="3"&gt;&lt;/textarea&gt;
+
+&lt;!-- 仅垂直调整（默认） --&gt;
+&lt;textarea class="boblog-textarea" rows="3"&gt;&lt;/textarea&gt;
+
+&lt;!-- 仅水平调整 --&gt;
+&lt;textarea class="boblog-textarea boblog-textarea-horizontal" rows="3"&gt;&lt;/textarea&gt;
+
+&lt;!-- 自由调整 --&gt;
+&lt;textarea class="boblog-textarea boblog-textarea-both" rows="3"&gt;&lt;/textarea&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;文本域调整大小示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 不可调整大小 --&gt;
+&lt;textarea class="boblog-textarea boblog-textarea-fixed" rows="3"&gt;&lt;/textarea&gt;
+
+&lt;!-- 仅垂直调整（默认） --&gt;
+&lt;textarea class="boblog-textarea" rows="3"&gt;&lt;/textarea&gt;
+
+&lt;!-- 仅水平调整 --&gt;
+&lt;textarea class="boblog-textarea boblog-textarea-horizontal" rows="3"&gt;&lt;/textarea&gt;
+
+&lt;!-- 自由调整 --&gt;
+&lt;textarea class="boblog-textarea boblog-textarea-both" rows="3"&gt;&lt;/textarea&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 字符计数 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="字符计数">字符计数</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>结构</strong>: .boblog-textarea-wrapper > .boblog-textarea[data-maxlength] + .boblog-textarea-count</li>
+                <li><strong>上限属性</strong>: data-maxlength="N"，未设置则不启用计数</li>
+                <li><strong>计数位置</strong>: 右下角绝对定位，12px，半透明白底</li>
+                <li><strong>超限样式</strong>: 计数红色加粗，边框变红，聚焦背景 #FFF0F0</li>
+                <li>需引入 boblog-ui.js（详见 <a href="#JS-API">JavaScript API</a>）</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-textarea-wrapper" style="width: 100%;">
+                            <textarea class="boblog-textarea" rows="4" data-maxlength="200" placeholder="请输入内容（最多200字）..."></textarea>
+                        </div>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-textarea-wrapper" style="width: 100%;">
+                            <textarea class="boblog-textarea" rows="4" data-maxlength="20">这是一段已经接近字数上限的示例文本内容，请试试继续输入</textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 字符计数（200字上限） --&gt;
+&lt;div class="boblog-textarea-wrapper"&gt;
+    &lt;textarea class="boblog-textarea" rows="4"
+              data-maxlength="200"
+              placeholder="请输入内容（最多200字）..."&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+
+&lt;!-- 字符计数（20字上限，预填充内容已接近上限） --&gt;
+&lt;div class="boblog-textarea-wrapper"&gt;
+    &lt;textarea class="boblog-textarea" rows="4"
+              data-maxlength="20"&gt;这是一段已经接近字数上限的示例文本内容，请试试继续输入&lt;/textarea&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;字符计数示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 字符计数（200字上限） --&gt;
+&lt;div class="boblog-textarea-wrapper"&gt;
+    &lt;textarea class="boblog-textarea" rows="4"
+              data-maxlength="200"
+              placeholder="请输入内容（最多200字）..."&gt;&lt;/textarea&gt;
+&lt;/div&gt;
+
+&lt;!-- 字符计数（20字上限，预填充内容已接近上限） --&gt;
+&lt;div class="boblog-textarea-wrapper"&gt;
+    &lt;textarea class="boblog-textarea" rows="4"
+              data-maxlength="20"&gt;这是一段已经接近字数上限的示例文本内容，请试试继续输入&lt;/textarea&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== JavaScript API ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="JS-API">JavaScript API</h2>
+
+        <div class="section-part">
+            <h3>1. 自动初始化</h3>
+            <ul class="spec-list">
+                <li>引入 <code>boblog-ui.js</code> 后，DOMContentLoaded 自动扫描所有 <code>.boblog-textarea-wrapper</code></li>
+                <li>自动为含 <code>data-maxlength</code> 属性的 textarea 启用字符计数</li>
+                <li>无需手动调用任何函数</li>
+            </ul>
+        </div>
+
+        <div class="section-part">
+            <h3>2. 手动调用</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-javascript">// 初始化页面所有文本域计数
+BoblogUI.textarea.init();
+
+// 只初始化指定容器内的文本域计数
+BoblogUI.textarea.init(document.getElementById('myContainer'));</code></pre>
+            </div>
+        </div>
+
+        <div class="section-part">
+            <h3>3. 引入方式</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-html">&lt;!-- 引入 CSS（包含文本域样式） --&gt;
+&lt;link rel="stylesheet" href="dist/boblog-ui.css"&gt;
+
+&lt;!-- 引入 JS（包含字符计数逻辑） --&gt;
+&lt;script src="dist/boblog-ui.js"&gt;&lt;/script&gt;
+
+&lt;!-- 或开发时单独引入 --&gt;
+&lt;script src="src/js/textarea.js"&gt;&lt;/script&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

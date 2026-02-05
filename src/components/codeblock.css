@@ -1,0 +1,241 @@
+/**
+ * Bo-Blog UI 组件 - 代码块 (codeblock)
+ *
+ * 用于展示代码片段，支持：
+ *   - 行号显示（.boblog-codeblock-lines，由 JS 动态生成）
+ *   - 一键复制按钮（.boblog-copy-btn，由 JS 动态注入）
+ *   - 语法高亮（Prism.js .token.* 类名，由 Prism 解析着色）
+ *
+ * HTML 结构约定：
+ *   <div class="boblog-codeblock">
+ *       <pre><code class="language-css">代码内容</code></pre>
+ *   </div>
+ *
+ * 可选 class：
+ *   .boblog-codeblock--no-line-numbers  禁用行号
+ *   .boblog-codeblock--no-copy          禁用复制按钮
+ *
+ * 依赖：
+ *   - src/base/variables.css（颜色、字体变量）
+ *   - src/vendor/prism/prism.min.js（语法高亮引擎）
+ *   - src/js/codeblock.js（行号、复制、高亮调度逻辑）
+ */
+
+
+/* ==========================================================================
+   代码块容器
+   ========================================================================== */
+
+/* 代码块外层容器 */
+.boblog-codeblock {
+    background: var(--boblog-white, #FFFFFF);
+    border: var(--boblog-border-width, 1px) solid var(--boblog-border, #C4D7E8);
+    border-left: 3px solid var(--boblog-blue, #0D6EAA);
+    padding: 16px 20px;
+    overflow-x: auto;
+    position: relative;
+    margin-bottom: var(--boblog-spacing-md, 15px);
+}
+
+
+/* ==========================================================================
+   行号 + 代码 Flex 布局
+   ========================================================================== */
+
+/* 行号与代码的 flex 包裹容器（由 JS 动态创建） */
+.boblog-codeblock-wrapper {
+    display: flex;
+    margin: 0;
+}
+
+/* 行号列（由 JS 动态创建） */
+.boblog-codeblock-lines {
+    flex-shrink: 0;
+    padding-right: 12px;
+    margin-right: 12px;
+    border-right: var(--boblog-border-width, 1px) solid var(--boblog-border-light, #DDE8F0);
+    font-family: var(--boblog-font-family-code, 'Courier New', Consolas, Monaco, monospace);
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--boblog-text-disabled, #AAAAAA);
+    text-align: right;
+    white-space: pre;
+    /* 行号不可选中，复制时不会带入 */
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* <pre> 元素重置 */
+.boblog-codeblock pre {
+    margin: 0;
+    padding: 0 0 10px 0;/* 预留底部空间，防止最后一行被遮挡 */
+    background: none;
+    border: none;
+    flex: 1;
+    min-width: 0;
+    font-family: var(--boblog-font-family-code, 'Courier New', Consolas, Monaco, monospace);
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--boblog-text, #1A1A1A);
+    tab-size: 4;
+}
+
+/* <code> 元素重置 */
+.boblog-codeblock code {
+    font-family: inherit;
+    font-size: inherit;
+    color: inherit;
+    background: none;
+    border: none;
+    padding: 0;
+}
+
+/* 代码块内标题（可选，用于标注代码语言或文件名） */
+.boblog-codeblock h3 {
+    color: var(--boblog-text, #1A1A1A);
+    font-size: 13px;
+    margin: 0 0 12px 0;
+    font-weight: bold;
+    font-family: var(--boblog-font-family-code, 'Courier New', Consolas, Monaco, monospace);
+    padding-bottom: 8px;
+    border-bottom: var(--boblog-border-width, 1px) solid var(--boblog-border-light, #DDE8F0);
+}
+
+
+/* ==========================================================================
+   Prism.js 语法高亮色
+   将 Prism 的 .token.* 类名映射到 Bo-Blog 配色变量
+   支持所有 Prism 内置语言（HTML、CSS、JS、PHP、Python 等）
+   ========================================================================== */
+
+/* ---------- 注释类 Token ---------- */
+
+/* 注释: 灰绿色斜体（所有语言通用） */
+.boblog-codeblock .token.comment,
+.boblog-codeblock .token.prolog,
+.boblog-codeblock .token.doctype,
+.boblog-codeblock .token.cdata {
+    color: var(--boblog-hl-comment, #6A8A6A);
+    font-style: italic;
+}
+
+/* ---------- 标点符号 ---------- */
+
+/* 标点: { } ( ) : ; < > / 等 — 灰色 */
+.boblog-codeblock .token.punctuation {
+    color: var(--boblog-text-muted, #888888);
+}
+
+/* ---------- 标签 / 属性类 Token ---------- */
+
+/* 标签名、属性、常量、符号: 深蓝 */
+.boblog-codeblock .token.property,
+.boblog-codeblock .token.tag,
+.boblog-codeblock .token.constant,
+.boblog-codeblock .token.symbol,
+.boblog-codeblock .token.deleted {
+    color: var(--boblog-hl-tag, #1A6B8A);
+}
+
+/* 选择器、属性名、字符、内建函数: 深红棕 */
+.boblog-codeblock .token.selector,
+.boblog-codeblock .token.attr-name,
+.boblog-codeblock .token.char,
+.boblog-codeblock .token.builtin {
+    color: var(--boblog-hl-property, #9C3328);
+}
+
+/* ---------- 字符串类 Token ---------- */
+
+/* 字符串、属性值: 棕绿 */
+.boblog-codeblock .token.string,
+.boblog-codeblock .token.attr-value,
+.boblog-codeblock .token.inserted {
+    color: var(--boblog-hl-string, #2E7D32);
+}
+
+/* ---------- 关键字类 Token ---------- */
+
+/* 关键字、@规则: 品牌蓝加粗 */
+.boblog-codeblock .token.keyword,
+.boblog-codeblock .token.atrule {
+    color: var(--boblog-hl-keyword, #0D6EAA);
+    font-weight: bold;
+}
+
+/* ---------- 数值类 Token ---------- */
+
+/* 数字、布尔值: 紫色 */
+.boblog-codeblock .token.number,
+.boblog-codeblock .token.boolean {
+    color: var(--boblog-hl-number, #7B5EA7);
+}
+
+/* ---------- 函数名 Token ---------- */
+
+/* 函数名: 深蓝（与属性值同色） */
+.boblog-codeblock .token.function {
+    color: var(--boblog-hl-value, #1A6B8A);
+}
+
+/* ---------- 特殊 Token ---------- */
+
+/* 正则表达式、important、变量: 橙色 */
+.boblog-codeblock .token.regex,
+.boblog-codeblock .token.important,
+.boblog-codeblock .token.variable {
+    color: var(--boblog-orange, #D4760A);
+}
+
+/* important 额外加粗 */
+.boblog-codeblock .token.important,
+.boblog-codeblock .token.bold {
+    font-weight: bold;
+}
+
+/* 斜体标记 */
+.boblog-codeblock .token.italic {
+    font-style: italic;
+}
+
+/* ---------- 命名空间 Token ---------- */
+
+/* 命名空间（如 XML 前缀）: 降低透明度 */
+.boblog-codeblock .token.namespace {
+    opacity: 0.7;
+}
+
+
+/* ==========================================================================
+   复制按钮
+   由 codeblock.js 动态注入到 .boblog-codeblock 右上角
+   ========================================================================== */
+
+/* 复制按钮默认状态 */
+.boblog-copy-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: var(--boblog-blue-pale, #E8F0F7);
+    border: var(--boblog-border-width, 1px) solid var(--boblog-blue, #0D6EAA);
+    color: var(--boblog-blue, #0D6EAA);
+    font-family: var(--boblog-font-family, Tahoma, Arial, sans-serif);
+    font-size: var(--boblog-font-size-xs, 11px);
+    padding: 3px 8px;
+    cursor: pointer;
+    line-height: 1.4;
+}
+
+/* 复制按钮悬停状态 */
+.boblog-copy-btn:hover {
+    background: var(--boblog-blue, #0D6EAA);
+    color: var(--boblog-white, #FFFFFF);
+    border-color: var(--boblog-blue, #0D6EAA);
+}
+
+/* 复制成功反馈状态 */
+.boblog-copy-btn.copied {
+    background: var(--boblog-success-bg, #F0F8EE);
+    border-color: var(--boblog-success, #3C8C30);
+    color: var(--boblog-success, #3C8C30);
+}

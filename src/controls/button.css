@@ -1,0 +1,186 @@
+/**
+ * Bo-Blog Button Control
+ * 按钮控件 - 基于 Bo-Blog V2.1 经典风格
+ * 无圆角设计，蓝白配色
+ */
+
+/* 基础按钮 */
+.boblog-btn {
+  display: inline-block;
+  padding: 6px 15px;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: var(--boblog-font-size-sm);
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid var(--boblog-border);
+  border-radius: 0;
+  background-color: var(--boblog-bg);
+  color: var(--boblog-text);
+  transition: all var(--boblog-transition-normal);
+  outline: none;
+}
+
+.boblog-btn:hover {
+  border-color: var(--boblog-blue);
+  color: var(--boblog-blue);
+  background-color: var(--boblog-blue-pale);
+}
+
+.boblog-btn:active {
+  background-color: #e6f4fb;
+}
+
+.boblog-btn:focus {
+  outline: 2px solid var(--boblog-blue);
+  outline-offset: 2px;
+}
+
+.boblog-btn:disabled,
+.boblog-btn.disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+  background-color: #f5f5f5;
+  border-color: #d9d9d9;
+  color: var(--boblog-text-muted);
+}
+
+/* 主按钮 */
+.boblog-btn-primary {
+  background-color: var(--boblog-blue);
+  border-color: var(--boblog-blue);
+  color: var(--boblog-bg);
+}
+
+.boblog-btn-primary:hover {
+  background-color: var(--boblog-blue-light);
+  border-color: var(--boblog-blue-light);
+  color: var(--boblog-bg);
+}
+
+.boblog-btn-primary:active {
+  background-color: #0a6699;
+}
+
+.boblog-btn-primary:disabled,
+.boblog-btn-primary.disabled {
+  background-color: #7fbfdd;
+  border-color: #7fbfdd;
+  color: var(--boblog-bg);
+}
+
+/* 次要按钮 */
+.boblog-btn-secondary {
+  background-color: #666666;
+  border-color: #666666;
+  color: var(--boblog-bg);
+}
+
+.boblog-btn-secondary:hover {
+  background-color: #555555;
+  border-color: #555555;
+  color: var(--boblog-bg);
+}
+
+.boblog-btn-secondary:active {
+  background-color: #444444;
+}
+
+.boblog-btn-secondary:disabled,
+.boblog-btn-secondary.disabled {
+  background-color: #999999;
+  border-color: #999999;
+  color: var(--boblog-bg);
+}
+
+/* 危险按钮 */
+.boblog-btn-danger {
+  background-color: var(--boblog-danger);
+  border-color: var(--boblog-danger);
+  color: var(--boblog-bg);
+}
+
+.boblog-btn-danger:hover {
+  background-color: #a82a22;
+  border-color: #a82a22;
+  color: var(--boblog-bg);
+}
+
+.boblog-btn-danger:active {
+  background-color: #8c231c;
+}
+
+.boblog-btn-danger:disabled,
+.boblog-btn-danger.disabled {
+  background-color: #f08c82;
+  border-color: #f08c82;
+  color: var(--boblog-bg);
+}
+
+/* 轮廓按钮 */
+.boblog-btn-outline {
+  background-color: transparent;
+  border-color: var(--boblog-blue);
+  color: var(--boblog-blue);
+}
+
+.boblog-btn-outline:hover {
+  background-color: var(--boblog-blue-pale);
+  border-color: var(--boblog-blue);
+  color: var(--boblog-blue);
+}
+
+.boblog-btn-outline:active {
+  background-color: #e6f4fb;
+}
+
+.boblog-btn-outline:disabled,
+.boblog-btn-outline.disabled {
+  background-color: transparent;
+  border-color: #d9d9d9;
+  color: var(--boblog-text-muted);
+}
+
+/* 小按钮 */
+.boblog-btn-sm {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+/* 大按钮 */
+.boblog-btn-lg {
+  padding: 8px 20px;
+  font-size: 14px;
+}
+
+/* 全宽按钮 */
+.boblog-btn-block {
+  display: block;
+  width: 100%;
+}
+
+/* 按钮组 */
+.boblog-btn-group {
+  display: inline-flex;
+  vertical-align: middle;
+}
+
+.boblog-btn-group .boblog-btn {
+  position: relative;
+  flex: 0 1 auto;
+  margin-left: -1px;
+}
+
+.boblog-btn-group .boblog-btn:first-child {
+  margin-left: 0;
+}
+
+.boblog-btn-group .boblog-btn:hover,
+.boblog-btn-group .boblog-btn:focus,
+.boblog-btn-group .boblog-btn:active {
+  z-index: 1;
+}

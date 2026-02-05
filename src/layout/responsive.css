@@ -1,0 +1,505 @@
+/**
+ * Bo-Blog UI - Responsive Utilities
+ * 响应式断点和适配工具类
+ */
+
+/* ========== 显示/隐藏工具 ========== */
+
+/* 响应式显示（默认隐藏，窗口小于断点时显示） */
+.boblog-show-sm,
+.boblog-show-md,
+.boblog-show-lg,
+.boblog-show-xl {
+  display: none !important;
+}
+
+/* 小屏隐藏 (< 576px) */
+@media (max-width: 575px) {
+  .boblog-hide-sm {
+    display: none !important;
+  }
+}
+
+/* 中屏隐藏 (< 768px) */
+@media (max-width: 767px) {
+  .boblog-hide-md {
+    display: none !important;
+  }
+}
+
+/* 大屏隐藏 (< 992px) */
+@media (max-width: 991px) {
+  .boblog-hide-lg {
+    display: none !important;
+  }
+}
+
+/* 超大屏隐藏 (< 1200px) */
+@media (max-width: 1199px) {
+  .boblog-hide-xl {
+    display: none !important;
+  }
+}
+
+/* 窗口 < 576px 时显示 */
+@media (max-width: 575px) {
+  .boblog-show-sm {
+    display: block !important;
+  }
+}
+
+/* 窗口 < 768px 时显示 */
+@media (max-width: 767px) {
+  .boblog-show-md {
+    display: block !important;
+  }
+}
+
+/* 窗口 < 992px 时显示 */
+@media (max-width: 991px) {
+  .boblog-show-lg {
+    display: block !important;
+  }
+}
+
+/* 窗口 < 1200px 时显示 */
+@media (max-width: 1199px) {
+  .boblog-show-xl {
+    display: block !important;
+  }
+}
+
+/* ========== 文本对齐 ========== */
+
+.boblog-text-left {
+  text-align: left !important;
+}
+
+.boblog-text-center {
+  text-align: center !important;
+}
+
+.boblog-text-right {
+  text-align: right !important;
+}
+
+@media (min-width: 768px) {
+  .boblog-text-md-left {
+    text-align: left !important;
+  }
+  .boblog-text-md-center {
+    text-align: center !important;
+  }
+  .boblog-text-md-right {
+    text-align: right !important;
+  }
+}
+
+/* ========== Flex 工具 ========== */
+
+.boblog-flex {
+  display: flex !important;
+}
+
+.boblog-inline-flex {
+  display: inline-flex !important;
+}
+
+.boblog-flex-wrap {
+  flex-wrap: wrap !important;
+}
+
+.boblog-flex-nowrap {
+  flex-wrap: nowrap !important;
+}
+
+.boblog-flex-row {
+  flex-direction: row !important;
+}
+
+.boblog-flex-row-reverse {
+  flex-direction: row-reverse !important;
+}
+
+.boblog-flex-column {
+  flex-direction: column !important;
+}
+
+.boblog-flex-column-reverse {
+  flex-direction: column-reverse !important;
+}
+
+.boblog-justify-start {
+  justify-content: flex-start !important;
+}
+
+.boblog-justify-center {
+  justify-content: center !important;
+}
+
+.boblog-justify-end {
+  justify-content: flex-end !important;
+}
+
+.boblog-justify-between {
+  justify-content: space-between !important;
+}
+
+.boblog-justify-around {
+  justify-content: space-around !important;
+}
+
+.boblog-justify-evenly {
+  justify-content: space-evenly !important;
+}
+
+.boblog-align-start {
+  align-items: flex-start !important;
+}
+
+.boblog-align-center {
+  align-items: center !important;
+}
+
+.boblog-align-end {
+  align-items: flex-end !important;
+}
+
+.boblog-align-stretch {
+  align-items: stretch !important;
+}
+
+.boblog-align-baseline {
+  align-items: baseline !important;
+}
+
+.boblog-flex-1 {
+  flex: 1 !important;
+}
+
+.boblog-flex-auto {
+  flex: auto !important;
+}
+
+.boblog-flex-none {
+  flex: none !important;
+}
+
+.boblog-flex-grow {
+  flex-grow: 1 !important;
+}
+
+.boblog-flex-shrink {
+  flex-shrink: 1 !important;
+}
+
+.boblog-flex-no-grow {
+  flex-grow: 0 !important;
+}
+
+.boblog-flex-no-shrink {
+  flex-shrink: 0 !important;
+}
+
+/* ========== 间距工具 ========== */
+/* 数字后缀 × 5px：0=0, 1=5px, 2=10px, 3=15px ... 12=60px */
+
+/* Margin */
+.boblog-m-0 { margin: 0 !important; }
+.boblog-m-1 { margin: 5px !important; }
+.boblog-m-2 { margin: 10px !important; }
+.boblog-m-3 { margin: 15px !important; }
+.boblog-m-4 { margin: 20px !important; }
+.boblog-m-5 { margin: 25px !important; }
+.boblog-m-6 { margin: 30px !important; }
+.boblog-m-7 { margin: 35px !important; }
+.boblog-m-8 { margin: 40px !important; }
+.boblog-m-9 { margin: 45px !important; }
+.boblog-m-10 { margin: 50px !important; }
+.boblog-m-11 { margin: 55px !important; }
+.boblog-m-12 { margin: 60px !important; }
+
+/* Margin Top */
+.boblog-mt-0 { margin-top: 0 !important; }
+.boblog-mt-1 { margin-top: 5px !important; }
+.boblog-mt-2 { margin-top: 10px !important; }
+.boblog-mt-3 { margin-top: 15px !important; }
+.boblog-mt-4 { margin-top: 20px !important; }
+.boblog-mt-5 { margin-top: 25px !important; }
+.boblog-mt-6 { margin-top: 30px !important; }
+.boblog-mt-7 { margin-top: 35px !important; }
+.boblog-mt-8 { margin-top: 40px !important; }
+.boblog-mt-9 { margin-top: 45px !important; }
+.boblog-mt-10 { margin-top: 50px !important; }
+.boblog-mt-11 { margin-top: 55px !important; }
+.boblog-mt-12 { margin-top: 60px !important; }
+
+/* Margin Bottom */
+.boblog-mb-0 { margin-bottom: 0 !important; }
+.boblog-mb-1 { margin-bottom: 5px !important; }
+.boblog-mb-2 { margin-bottom: 10px !important; }
+.boblog-mb-3 { margin-bottom: 15px !important; }
+.boblog-mb-4 { margin-bottom: 20px !important; }
+.boblog-mb-5 { margin-bottom: 25px !important; }
+.boblog-mb-6 { margin-bottom: 30px !important; }
+.boblog-mb-7 { margin-bottom: 35px !important; }
+.boblog-mb-8 { margin-bottom: 40px !important; }
+.boblog-mb-9 { margin-bottom: 45px !important; }
+.boblog-mb-10 { margin-bottom: 50px !important; }
+.boblog-mb-11 { margin-bottom: 55px !important; }
+.boblog-mb-12 { margin-bottom: 60px !important; }
+
+/* Margin Left */
+.boblog-ml-0 { margin-left: 0 !important; }
+.boblog-ml-1 { margin-left: 5px !important; }
+.boblog-ml-2 { margin-left: 10px !important; }
+.boblog-ml-3 { margin-left: 15px !important; }
+.boblog-ml-4 { margin-left: 20px !important; }
+.boblog-ml-5 { margin-left: 25px !important; }
+.boblog-ml-6 { margin-left: 30px !important; }
+.boblog-ml-7 { margin-left: 35px !important; }
+.boblog-ml-8 { margin-left: 40px !important; }
+.boblog-ml-9 { margin-left: 45px !important; }
+.boblog-ml-10 { margin-left: 50px !important; }
+.boblog-ml-11 { margin-left: 55px !important; }
+.boblog-ml-12 { margin-left: 60px !important; }
+
+/* Margin Right */
+.boblog-mr-0 { margin-right: 0 !important; }
+.boblog-mr-1 { margin-right: 5px !important; }
+.boblog-mr-2 { margin-right: 10px !important; }
+.boblog-mr-3 { margin-right: 15px !important; }
+.boblog-mr-4 { margin-right: 20px !important; }
+.boblog-mr-5 { margin-right: 25px !important; }
+.boblog-mr-6 { margin-right: 30px !important; }
+.boblog-mr-7 { margin-right: 35px !important; }
+.boblog-mr-8 { margin-right: 40px !important; }
+.boblog-mr-9 { margin-right: 45px !important; }
+.boblog-mr-10 { margin-right: 50px !important; }
+.boblog-mr-11 { margin-right: 55px !important; }
+.boblog-mr-12 { margin-right: 60px !important; }
+
+/* Padding */
+.boblog-p-0 { padding: 0 !important; }
+.boblog-p-1 { padding: 5px !important; }
+.boblog-p-2 { padding: 10px !important; }
+.boblog-p-3 { padding: 15px !important; }
+.boblog-p-4 { padding: 20px !important; }
+.boblog-p-5 { padding: 25px !important; }
+.boblog-p-6 { padding: 30px !important; }
+.boblog-p-7 { padding: 35px !important; }
+.boblog-p-8 { padding: 40px !important; }
+.boblog-p-9 { padding: 45px !important; }
+.boblog-p-10 { padding: 50px !important; }
+.boblog-p-11 { padding: 55px !important; }
+.boblog-p-12 { padding: 60px !important; }
+
+/* Padding Top */
+.boblog-pt-0 { padding-top: 0 !important; }
+.boblog-pt-1 { padding-top: 5px !important; }
+.boblog-pt-2 { padding-top: 10px !important; }
+.boblog-pt-3 { padding-top: 15px !important; }
+.boblog-pt-4 { padding-top: 20px !important; }
+.boblog-pt-5 { padding-top: 25px !important; }
+.boblog-pt-6 { padding-top: 30px !important; }
+.boblog-pt-7 { padding-top: 35px !important; }
+.boblog-pt-8 { padding-top: 40px !important; }
+.boblog-pt-9 { padding-top: 45px !important; }
+.boblog-pt-10 { padding-top: 50px !important; }
+.boblog-pt-11 { padding-top: 55px !important; }
+.boblog-pt-12 { padding-top: 60px !important; }
+
+/* Padding Bottom */
+.boblog-pb-0 { padding-bottom: 0 !important; }
+.boblog-pb-1 { padding-bottom: 5px !important; }
+.boblog-pb-2 { padding-bottom: 10px !important; }
+.boblog-pb-3 { padding-bottom: 15px !important; }
+.boblog-pb-4 { padding-bottom: 20px !important; }
+.boblog-pb-5 { padding-bottom: 25px !important; }
+.boblog-pb-6 { padding-bottom: 30px !important; }
+.boblog-pb-7 { padding-bottom: 35px !important; }
+.boblog-pb-8 { padding-bottom: 40px !important; }
+.boblog-pb-9 { padding-bottom: 45px !important; }
+.boblog-pb-10 { padding-bottom: 50px !important; }
+.boblog-pb-11 { padding-bottom: 55px !important; }
+.boblog-pb-12 { padding-bottom: 60px !important; }
+
+/* Padding Left */
+.boblog-pl-0 { padding-left: 0 !important; }
+.boblog-pl-1 { padding-left: 5px !important; }
+.boblog-pl-2 { padding-left: 10px !important; }
+.boblog-pl-3 { padding-left: 15px !important; }
+.boblog-pl-4 { padding-left: 20px !important; }
+.boblog-pl-5 { padding-left: 25px !important; }
+.boblog-pl-6 { padding-left: 30px !important; }
+.boblog-pl-7 { padding-left: 35px !important; }
+.boblog-pl-8 { padding-left: 40px !important; }
+.boblog-pl-9 { padding-left: 45px !important; }
+.boblog-pl-10 { padding-left: 50px !important; }
+.boblog-pl-11 { padding-left: 55px !important; }
+.boblog-pl-12 { padding-left: 60px !important; }
+
+/* Padding Right */
+.boblog-pr-0 { padding-right: 0 !important; }
+.boblog-pr-1 { padding-right: 5px !important; }
+.boblog-pr-2 { padding-right: 10px !important; }
+.boblog-pr-3 { padding-right: 15px !important; }
+.boblog-pr-4 { padding-right: 20px !important; }
+.boblog-pr-5 { padding-right: 25px !important; }
+.boblog-pr-6 { padding-right: 30px !important; }
+.boblog-pr-7 { padding-right: 35px !important; }
+.boblog-pr-8 { padding-right: 40px !important; }
+.boblog-pr-9 { padding-right: 45px !important; }
+.boblog-pr-10 { padding-right: 50px !important; }
+.boblog-pr-11 { padding-right: 55px !important; }
+.boblog-pr-12 { padding-right: 60px !important; }
+
+/* Margin X (左右) */
+.boblog-mx-0 { margin-left: 0 !important; margin-right: 0 !important; }
+.boblog-mx-1 { margin-left: 5px !important; margin-right: 5px !important; }
+.boblog-mx-2 { margin-left: 10px !important; margin-right: 10px !important; }
+.boblog-mx-3 { margin-left: 15px !important; margin-right: 15px !important; }
+.boblog-mx-4 { margin-left: 20px !important; margin-right: 20px !important; }
+.boblog-mx-5 { margin-left: 25px !important; margin-right: 25px !important; }
+.boblog-mx-6 { margin-left: 30px !important; margin-right: 30px !important; }
+.boblog-mx-7 { margin-left: 35px !important; margin-right: 35px !important; }
+.boblog-mx-8 { margin-left: 40px !important; margin-right: 40px !important; }
+.boblog-mx-9 { margin-left: 45px !important; margin-right: 45px !important; }
+.boblog-mx-10 { margin-left: 50px !important; margin-right: 50px !important; }
+.boblog-mx-11 { margin-left: 55px !important; margin-right: 55px !important; }
+.boblog-mx-12 { margin-left: 60px !important; margin-right: 60px !important; }
+.boblog-mx-auto { margin-left: auto !important; margin-right: auto !important; }
+
+/* Margin Y (上下) */
+.boblog-my-0 { margin-top: 0 !important; margin-bottom: 0 !important; }
+.boblog-my-1 { margin-top: 5px !important; margin-bottom: 5px !important; }
+.boblog-my-2 { margin-top: 10px !important; margin-bottom: 10px !important; }
+.boblog-my-3 { margin-top: 15px !important; margin-bottom: 15px !important; }
+.boblog-my-4 { margin-top: 20px !important; margin-bottom: 20px !important; }
+.boblog-my-5 { margin-top: 25px !important; margin-bottom: 25px !important; }
+.boblog-my-6 { margin-top: 30px !important; margin-bottom: 30px !important; }
+.boblog-my-7 { margin-top: 35px !important; margin-bottom: 35px !important; }
+.boblog-my-8 { margin-top: 40px !important; margin-bottom: 40px !important; }
+.boblog-my-9 { margin-top: 45px !important; margin-bottom: 45px !important; }
+.boblog-my-10 { margin-top: 50px !important; margin-bottom: 50px !important; }
+.boblog-my-11 { margin-top: 55px !important; margin-bottom: 55px !important; }
+.boblog-my-12 { margin-top: 60px !important; margin-bottom: 60px !important; }
+.boblog-my-auto { margin-top: auto !important; margin-bottom: auto !important; }
+
+/* Padding X (左右) */
+.boblog-px-0 { padding-left: 0 !important; padding-right: 0 !important; }
+.boblog-px-1 { padding-left: 5px !important; padding-right: 5px !important; }
+.boblog-px-2 { padding-left: 10px !important; padding-right: 10px !important; }
+.boblog-px-3 { padding-left: 15px !important; padding-right: 15px !important; }
+.boblog-px-4 { padding-left: 20px !important; padding-right: 20px !important; }
+.boblog-px-5 { padding-left: 25px !important; padding-right: 25px !important; }
+.boblog-px-6 { padding-left: 30px !important; padding-right: 30px !important; }
+.boblog-px-7 { padding-left: 35px !important; padding-right: 35px !important; }
+.boblog-px-8 { padding-left: 40px !important; padding-right: 40px !important; }
+.boblog-px-9 { padding-left: 45px !important; padding-right: 45px !important; }
+.boblog-px-10 { padding-left: 50px !important; padding-right: 50px !important; }
+.boblog-px-11 { padding-left: 55px !important; padding-right: 55px !important; }
+.boblog-px-12 { padding-left: 60px !important; padding-right: 60px !important; }
+
+/* Padding Y (上下) */
+.boblog-py-0 { padding-top: 0 !important; padding-bottom: 0 !important; }
+.boblog-py-1 { padding-top: 5px !important; padding-bottom: 5px !important; }
+.boblog-py-2 { padding-top: 10px !important; padding-bottom: 10px !important; }
+.boblog-py-3 { padding-top: 15px !important; padding-bottom: 15px !important; }
+.boblog-py-4 { padding-top: 20px !important; padding-bottom: 20px !important; }
+.boblog-py-5 { padding-top: 25px !important; padding-bottom: 25px !important; }
+.boblog-py-6 { padding-top: 30px !important; padding-bottom: 30px !important; }
+.boblog-py-7 { padding-top: 35px !important; padding-bottom: 35px !important; }
+.boblog-py-8 { padding-top: 40px !important; padding-bottom: 40px !important; }
+.boblog-py-9 { padding-top: 45px !important; padding-bottom: 45px !important; }
+.boblog-py-10 { padding-top: 50px !important; padding-bottom: 50px !important; }
+.boblog-py-11 { padding-top: 55px !important; padding-bottom: 55px !important; }
+.boblog-py-12 { padding-top: 60px !important; padding-bottom: 60px !important; }
+
+/* Margin Auto (单方向) */
+.boblog-mt-auto { margin-top: auto !important; }
+.boblog-mb-auto { margin-bottom: auto !important; }
+.boblog-ml-auto { margin-left: auto !important; }
+.boblog-mr-auto { margin-right: auto !important; }
+.boblog-m-auto { margin: auto !important; }
+
+/* ========== 前台响应式布局 ========== */
+
+/* < 768px: 容器全宽，侧边栏移到底部，菜单折叠 */
+@media (max-width: 767px) {
+  .boblog-container {
+    max-width: 100%;
+  }
+
+  .boblog-page-body {
+    flex-direction: column;
+  }
+
+  .boblog-page-sidebar {
+    width: 100%;
+    order: 2;
+  }
+
+  .boblog-page-main {
+    order: 1;
+  }
+}
+
+/* 768px - 992px: 容器全宽，侧边栏移到底部 */
+@media (min-width: 768px) and (max-width: 991px) {
+  .boblog-container {
+    max-width: 100%;
+  }
+
+  .boblog-page-body {
+    flex-direction: column;
+  }
+
+  .boblog-page-sidebar {
+    width: 100%;
+  }
+}
+
+/* > 992px: 正常双栏布局 */
+@media (min-width: 992px) {
+  .boblog-page-body {
+    flex-direction: row;
+  }
+}
+
+/* ========== 后台响应式布局 ========== */
+
+/* < 992px: 侧边栏滑出叠加层 */
+@media (max-width: 991px) {
+  .boblog-admin-sidebar {
+    transform: translateX(-100%);
+    z-index: 1001;
+  }
+
+  .boblog-admin-sidebar.active {
+    transform: translateX(0);
+  }
+
+  .boblog-admin-main {
+    margin-left: 0;
+  }
+
+  /* 遮罩层 */
+  .boblog-admin-sidebar.active::before {
+    content: '';
+    position: fixed;
+    top: 50px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+  }
+}
+
+/* > 992px: 侧边栏固定显示 */
+@media (min-width: 992px) {
+  .boblog-admin-sidebar {
+    transform: translateX(0);
+  }
+}

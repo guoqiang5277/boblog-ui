@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>前台顶部导航 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+<!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <!-- 导航栏 -->
+    <div class="boblog-doc-nav">
+        <a href="../index.html">← 返回文档总纲</a>
+    </div>
+
+    <h1>前台顶部导航</h1>
+
+    <!-- ====== 基础导航 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="基础导航">基础导航 (.boblog-nav)</h2>
+
+        <!-- 规范说明：与 nav-menu.css 实际值对应 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>容器类名</strong>: <code>.boblog-nav</code></li>
+                <li><strong>布局</strong>: display: flex，align-items: stretch</li>
+                <li><strong>高度</strong>: 由内容撑开（不固定 height），link padding 决定</li>
+                <li><strong>字体</strong>: 13px，Tahoma, Arial, sans-serif</li>
+                <li><strong>背景色</strong>: #FFFFFF (--boblog-bg)</li>
+                <li><strong>底部粗边框</strong>: 10px solid #BEE6FD (--boblog-blue-bar)，与 Bo-Blog V2.1 经典蓝条一致</li>
+                <li><strong>链接类名</strong>: <code>.boblog-nav-link</code></li>
+                <li><strong>链接内边距</strong>: 5px 15px</li>
+                <li><strong>链接最小宽度</strong>: 72px</li>
+                <li><strong>链接颜色</strong>: #888888 (--boblog-text-muted)，font-weight: bold</li>
+                <li><strong>链接边框</strong>: 1px solid transparent，底部无边框（hover/active 时 margin-bottom: -10px + border-bottom: 10px 融合粗边框）</li>
+                <li><strong>Hover</strong>: 文字 #1A1A1A (--boblog-text)，背景 #F4FBFF (--boblog-blue-wash)，边框 #9EC9FF (--boblog-border-blue)，底部 10px solid #E8F0F7</li>
+                <li>本组件为纯 CSS 实现，无需引入 JavaScript</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo" style="padding: 0;">
+                    <nav class="boblog-nav" style="padding-left: 20px;" data-nav-demo>
+                        <a class="boblog-nav-link boblog-nav-active" href="javascript:void(0)">首页</a>
+                        <a class="boblog-nav-link" href="javascript:void(0)">文章列表</a>
+                        <a class="boblog-nav-link" href="javascript:void(0)">分类目录</a>
+                        <a class="boblog-nav-link" href="javascript:void(0)">标签云</a>
+                        <a class="boblog-nav-link" href="javascript:void(0)">留言板</a>
+                        <a class="boblog-nav-link" href="javascript:void(0)">关于我</a>
+                    </nav>
+                    <p style="margin: 10px 20px 20px; color: #888; font-size: 11px;">提示：点击标题可切换激活状态</p>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;nav class="boblog-nav"&gt;
+    &lt;a class="boblog-nav-link boblog-nav-active" href="#"&gt;首页&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;文章列表&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;分类目录&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;标签云&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;留言板&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;关于我&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;前台顶部导航示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;nav class="boblog-nav"&gt;
+    &lt;a class="boblog-nav-link boblog-nav-active" href="#"&gt;首页&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;文章列表&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;分类目录&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;标签云&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;留言板&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;关于我&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 当前页状态 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="当前页状态">当前页状态 (.boblog-nav-active)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>类名</strong>: <code>.boblog-nav-link.boblog-nav-active</code>（在 .boblog-nav-link 基础上追加）</li>
+                <li><strong>文字颜色</strong>: #1A1A1A (--boblog-text)</li>
+                <li><strong>背景色</strong>: #F4FBFF (--boblog-blue-wash)</li>
+                <li><strong>边框</strong>: #9EC9FF (--boblog-border-blue)，底部 10px solid #E8F0F7（与粗边框融合）</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo" style="padding: 0;">
+                    <nav class="boblog-nav" style="padding-left: 20px;" data-nav-demo>
+                        <a class="boblog-nav-link boblog-nav-active" href="javascript:void(0)">首页</a>
+                        <a class="boblog-nav-link" href="javascript:void(0)">文章列表</a>
+                        <a class="boblog-nav-link" href="javascript:void(0)">分类目录</a>
+                        <a class="boblog-nav-link" href="javascript:void(0)">标签云</a>
+                        <a class="boblog-nav-link" href="javascript:void(0)">留言板</a>
+                        <a class="boblog-nav-link" href="javascript:void(0)">关于我</a>
+                    </nav>
+                    <p style="margin: 10px 20px 20px; color: #888; font-size: 11px;">提示：点击标题可切换激活状态</p>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;nav class="boblog-nav"&gt;
+    &lt;!-- 当前页：追加 boblog-nav-active 类 --&gt;
+    &lt;a class="boblog-nav-link boblog-nav-active" href="#"&gt;首页&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;文章列表&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;分类目录&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;标签云&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;留言板&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;关于我&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;当前页状态示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;nav class="boblog-nav"&gt;
+    &lt;!-- 当前页：追加 boblog-nav-active 类 --&gt;
+    &lt;a class="boblog-nav-link boblog-nav-active" href="#"&gt;首页&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;文章列表&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;分类目录&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;标签云&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;留言板&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;关于我&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 下拉子菜单 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="下拉子菜单">下拉子菜单 (.boblog-nav-dropdown)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>容器类名</strong>: <code>.boblog-nav-dropdown</code>（包裹链接 + 子菜单）</li>
+                <li><strong>触发方式</strong>: 鼠标悬停 (.boblog-nav-dropdown:hover)</li>
+                <li><strong>下拉三角</strong>: 自动在链接右侧追加 ▼ 箭头（::after 伪元素，8px）</li>
+                <li><strong>焦点保持</strong>: hover 子菜单时，标题链接保持激活状态不消失</li>
+                <li><strong>子菜单类名</strong>: <code>.boblog-nav-submenu</code></li>
+                <li><strong>子菜单定位</strong>: position: absolute，top: calc(100% + 10px)（跳过容器底部粗边框），left: -1px</li>
+                <li><strong>子菜单最小宽度</strong>: 100%（至少与父级 Tab 等宽）</li>
+                <li><strong>子菜单背景</strong>: #FFFFFF (--boblog-bg)</li>
+                <li><strong>子菜单边框</strong>: 1px solid #9EC9FF (--boblog-border-blue)，无顶部边框</li>
+                <li><strong>子菜单阴影</strong>: 2px 2px 5px rgba(0, 0, 0, 0.1)</li>
+                <li><strong>子菜单层级</strong>: z-index: 100 (--boblog-z-index-dropdown)</li>
+                <li><strong>子项类名</strong>: <code>.boblog-nav-submenu-item</code></li>
+                <li><strong>子项内边距</strong>: 8px 15px</li>
+                <li><strong>子项文字</strong>: #1A1A1A (--boblog-text)，font-weight: normal</li>
+                <li><strong>子项分隔线</strong>: 1px dashed #DDE8F0 (--boblog-border-light)，末项无</li>
+                <li><strong>子项 Hover</strong>: 背景 #F4FBFF (--boblog-blue-wash)，文字 #0D80BD (--boblog-blue-accent)</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo" style="padding: 0; min-height: 160px;">
+                    <nav class="boblog-nav" style="padding-left: 20px;" data-nav-demo>
+                        <a class="boblog-nav-link boblog-nav-active" href="javascript:void(0)">首页</a>
+                        <div class="boblog-nav-dropdown">
+                            <a class="boblog-nav-link" href="javascript:void(0)">文章列表</a>
+                            <div class="boblog-nav-submenu">
+                                <a class="boblog-nav-submenu-item" href="javascript:void(0)">技术分享</a>
+                                <a class="boblog-nav-submenu-item" href="javascript:void(0)">生活随笔</a>
+                                <a class="boblog-nav-submenu-item" href="javascript:void(0)">设计心得</a>
+                                <a class="boblog-nav-submenu-item" href="javascript:void(0)">博客建设</a>
+                            </div>
+                        </div>
+                        <a class="boblog-nav-link" href="javascript:void(0)">分类目录</a>
+                        <div class="boblog-nav-dropdown">
+                            <a class="boblog-nav-link" href="javascript:void(0)">更多</a>
+                            <div class="boblog-nav-submenu">
+                                <a class="boblog-nav-submenu-item" href="javascript:void(0)">友情链接</a>
+                                <a class="boblog-nav-submenu-item" href="javascript:void(0)">网站统计</a>
+                                <a class="boblog-nav-submenu-item" href="javascript:void(0)">RSS订阅</a>
+                            </div>
+                        </div>
+                    </nav>
+                    <p style="margin: 20px 20px 20px; color: #888; font-size: 11px;">提示：鼠标悬停在"文章列表"或"更多"上可看到下拉菜单（带 ▼ 三角），点击标题可切换激活状态</p>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;nav class="boblog-nav"&gt;
+    &lt;a class="boblog-nav-link boblog-nav-active" href="#"&gt;首页&lt;/a&gt;
+    &lt;!-- 下拉菜单：用 .boblog-nav-dropdown 包裹链接和子菜单 --&gt;
+    &lt;!-- 链接右侧自动追加 ▼ 三角，hover 子菜单时标题保持焦点 --&gt;
+    &lt;div class="boblog-nav-dropdown"&gt;
+        &lt;a class="boblog-nav-link" href="#"&gt;文章列表&lt;/a&gt;
+        &lt;div class="boblog-nav-submenu"&gt;
+            &lt;a class="boblog-nav-submenu-item" href="#"&gt;技术分享&lt;/a&gt;
+            &lt;a class="boblog-nav-submenu-item" href="#"&gt;生活随笔&lt;/a&gt;
+            &lt;a class="boblog-nav-submenu-item" href="#"&gt;设计心得&lt;/a&gt;
+            &lt;a class="boblog-nav-submenu-item" href="#"&gt;博客建设&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;分类目录&lt;/a&gt;
+    &lt;div class="boblog-nav-dropdown"&gt;
+        &lt;a class="boblog-nav-link" href="#"&gt;更多&lt;/a&gt;
+        &lt;div class="boblog-nav-submenu"&gt;
+            &lt;a class="boblog-nav-submenu-item" href="#"&gt;友情链接&lt;/a&gt;
+            &lt;a class="boblog-nav-submenu-item" href="#"&gt;网站统计&lt;/a&gt;
+            &lt;a class="boblog-nav-submenu-item" href="#"&gt;RSS订阅&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;下拉子菜单示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;nav class="boblog-nav"&gt;
+    &lt;a class="boblog-nav-link boblog-nav-active" href="#"&gt;首页&lt;/a&gt;
+    &lt;!-- 下拉菜单：用 .boblog-nav-dropdown 包裹链接和子菜单 --&gt;
+    &lt;div class="boblog-nav-dropdown"&gt;
+        &lt;a class="boblog-nav-link" href="#"&gt;文章列表&lt;/a&gt;
+        &lt;div class="boblog-nav-submenu"&gt;
+            &lt;a class="boblog-nav-submenu-item" href="#"&gt;技术分享&lt;/a&gt;
+            &lt;a class="boblog-nav-submenu-item" href="#"&gt;生活随笔&lt;/a&gt;
+            &lt;a class="boblog-nav-submenu-item" href="#"&gt;设计心得&lt;/a&gt;
+            &lt;a class="boblog-nav-submenu-item" href="#"&gt;博客建设&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;分类目录&lt;/a&gt;
+    &lt;div class="boblog-nav-dropdown"&gt;
+        &lt;a class="boblog-nav-link" href="#"&gt;更多&lt;/a&gt;
+        &lt;div class="boblog-nav-submenu"&gt;
+            &lt;a class="boblog-nav-submenu-item" href="#"&gt;友情链接&lt;/a&gt;
+            &lt;a class="boblog-nav-submenu-item" href="#"&gt;网站统计&lt;/a&gt;
+            &lt;a class="boblog-nav-submenu-item" href="#"&gt;RSS订阅&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 嵌套子菜单 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="嵌套子菜单">嵌套子菜单（二级）</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>触发元素</strong>: <code>.boblog-nav-submenu-item.boblog-nav-has-children</code>（追加类名标记含子菜单）</li>
+                <li><strong>重要</strong>: 含子菜单的项必须使用 <code>&lt;div&gt;</code> 而非 <code>&lt;a&gt;</code>，以避免嵌套 <code>&lt;a&gt;</code> 导致解析异常</li>
+                <li><strong>右侧箭头</strong>: 自动追加 ▶ 箭头（::after 伪元素，8px）</li>
+                <li><strong>二级菜单定位</strong>: position: absolute，top: 0，left: 100%（从右侧弹出）</li>
+                <li><strong>二级菜单最小宽度</strong>: 120px</li>
+                <li><strong>触发方式</strong>: hover .boblog-nav-has-children 时显示</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo" style="padding: 0; min-height: 200px;">
+                    <nav class="boblog-nav" style="padding-left: 20px;" data-nav-demo>
+                        <a class="boblog-nav-link boblog-nav-active" href="javascript:void(0)">首页</a>
+                        <div class="boblog-nav-dropdown">
+                            <a class="boblog-nav-link" href="javascript:void(0)">文章列表</a>
+                            <div class="boblog-nav-submenu">
+                                <div class="boblog-nav-submenu-item boblog-nav-has-children">
+                                    技术分享
+                                    <div class="boblog-nav-submenu">
+                                        <a class="boblog-nav-submenu-item" href="javascript:void(0)">前端开发</a>
+                                        <a class="boblog-nav-submenu-item" href="javascript:void(0)">后端开发</a>
+                                        <a class="boblog-nav-submenu-item" href="javascript:void(0)">数据库</a>
+                                    </div>
+                                </div>
+                                <a class="boblog-nav-submenu-item" href="javascript:void(0)">生活随笔</a>
+                                <a class="boblog-nav-submenu-item" href="javascript:void(0)">设计心得</a>
+                            </div>
+                        </div>
+                        <a class="boblog-nav-link" href="javascript:void(0)">分类目录</a>
+                    </nav>
+                    <p style="margin: 20px 20px 20px; color: #888; font-size: 11px;">提示：悬停"文章列表"→"技术分享"可看到二级子菜单（右侧弹出，带 ▶ 箭头）</p>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-nav-dropdown"&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;文章列表&lt;/a&gt;
+    &lt;div class="boblog-nav-submenu"&gt;
+        &lt;!-- 含子菜单的项：用 div 而非 a，追加 boblog-nav-has-children 类 --&gt;
+        &lt;div class="boblog-nav-submenu-item boblog-nav-has-children"&gt;
+            技术分享
+            &lt;!-- 二级子菜单嵌套在子项内 --&gt;
+            &lt;div class="boblog-nav-submenu"&gt;
+                &lt;a class="boblog-nav-submenu-item" href="#"&gt;前端开发&lt;/a&gt;
+                &lt;a class="boblog-nav-submenu-item" href="#"&gt;后端开发&lt;/a&gt;
+                &lt;a class="boblog-nav-submenu-item" href="#"&gt;数据库&lt;/a&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;a class="boblog-nav-submenu-item" href="#"&gt;生活随笔&lt;/a&gt;
+        &lt;a class="boblog-nav-submenu-item" href="#"&gt;设计心得&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;嵌套子菜单示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;nav class="boblog-nav"&gt;
+    &lt;a class="boblog-nav-link boblog-nav-active" href="#"&gt;首页&lt;/a&gt;
+    &lt;div class="boblog-nav-dropdown"&gt;
+        &lt;a class="boblog-nav-link" href="#"&gt;文章列表&lt;/a&gt;
+        &lt;div class="boblog-nav-submenu"&gt;
+            &lt;!-- 含子菜单的项：用 div 而非 a，追加 boblog-nav-has-children 类 --&gt;
+            &lt;div class="boblog-nav-submenu-item boblog-nav-has-children"&gt;
+                技术分享
+                &lt;!-- 二级子菜单嵌套在子项内 --&gt;
+                &lt;div class="boblog-nav-submenu"&gt;
+                    &lt;a class="boblog-nav-submenu-item" href="#"&gt;前端开发&lt;/a&gt;
+                    &lt;a class="boblog-nav-submenu-item" href="#"&gt;后端开发&lt;/a&gt;
+                    &lt;a class="boblog-nav-submenu-item" href="#"&gt;数据库&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;a class="boblog-nav-submenu-item" href="#"&gt;生活随笔&lt;/a&gt;
+            &lt;a class="boblog-nav-submenu-item" href="#"&gt;设计心得&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;分类目录&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 尺寸变体 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="尺寸变体">尺寸变体</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>小尺寸</strong>: <code>.boblog-nav-sm</code> — 字号 12px，底部边框 5px，链接内边距 4px 10px，最小宽度 60px</li>
+                <li><strong>默认尺寸</strong>: <code>.boblog-nav</code>（无额外类名）— 字号 13px，底部边框 10px，链接内边距 5px 15px，最小宽度 72px</li>
+                <li><strong>大尺寸</strong>: <code>.boblog-nav-lg</code> — 字号 14px，底部边框 12px，链接内边距 8px 20px，最小宽度 80px</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo" style="padding: 0;">
+                    <p style="margin: 0; padding: 20px 20px 8px; color: #888; font-size: 11px;">小尺寸 (.boblog-nav-sm):</p>
+                    <nav class="boblog-nav boblog-nav-sm" style="padding-left: 20px;" data-nav-demo>
+                        <a class="boblog-nav-link boblog-nav-active" href="javascript:void(0)">首页</a>
+                        <a class="boblog-nav-link" href="javascript:void(0)">文章列表</a>
+                        <a class="boblog-nav-link" href="javascript:void(0)">分类目录</a>
+                    </nav>
+
+                    <p style="margin: 0; padding: 15px 20px 8px; color: #888; font-size: 11px;">默认尺寸 (.boblog-nav):</p>
+                    <nav class="boblog-nav" style="padding-left: 20px;" data-nav-demo>
+                        <a class="boblog-nav-link boblog-nav-active" href="javascript:void(0)">首页</a>
+                        <a class="boblog-nav-link" href="javascript:void(0)">文章列表</a>
+                        <a class="boblog-nav-link" href="javascript:void(0)">分类目录</a>
+                    </nav>
+
+                    <p style="margin: 0; padding: 15px 20px 8px; color: #888; font-size: 11px;">大尺寸 (.boblog-nav-lg):</p>
+                    <nav class="boblog-nav boblog-nav-lg" style="padding-left: 20px;" data-nav-demo>
+                        <a class="boblog-nav-link boblog-nav-active" href="javascript:void(0)">首页</a>
+                        <a class="boblog-nav-link" href="javascript:void(0)">文章列表</a>
+                        <a class="boblog-nav-link" href="javascript:void(0)">分类目录</a>
+                    </nav>
+                    <p style="margin: 0; padding: 10px 20px 20px; color: #888; font-size: 11px;">提示：点击标题可切换激活状态</p>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 小尺寸 --&gt;
+&lt;nav class="boblog-nav boblog-nav-sm"&gt;
+    &lt;a class="boblog-nav-link boblog-nav-active" href="#"&gt;首页&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;文章列表&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;分类目录&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;!-- 默认尺寸 --&gt;
+&lt;nav class="boblog-nav"&gt;
+    &lt;a class="boblog-nav-link boblog-nav-active" href="#"&gt;首页&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;文章列表&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;分类目录&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;!-- 大尺寸 --&gt;
+&lt;nav class="boblog-nav boblog-nav-lg"&gt;
+    &lt;a class="boblog-nav-link boblog-nav-active" href="#"&gt;首页&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;文章列表&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;分类目录&lt;/a&gt;
+&lt;/nav&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;尺寸变体示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 小尺寸 --&gt;
+&lt;nav class="boblog-nav boblog-nav-sm"&gt;
+    &lt;a class="boblog-nav-link boblog-nav-active" href="#"&gt;首页&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;文章列表&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;分类目录&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;!-- 默认尺寸 --&gt;
+&lt;nav class="boblog-nav"&gt;
+    &lt;a class="boblog-nav-link boblog-nav-active" href="#"&gt;首页&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;文章列表&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;分类目录&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;!-- 大尺寸 --&gt;
+&lt;nav class="boblog-nav boblog-nav-lg"&gt;
+    &lt;a class="boblog-nav-link boblog-nav-active" href="#"&gt;首页&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;文章列表&lt;/a&gt;
+    &lt;a class="boblog-nav-link" href="#"&gt;分类目录&lt;/a&gt;
+&lt;/nav&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="../../dist/boblog-ui.js"></script>
+<!-- 文档预览专用：点击导航标题切换 active 状态 -->
+<script>
+document.querySelectorAll('[data-nav-demo]').forEach(function(nav) {
+    nav.addEventListener('click', function(e) {
+        var link = e.target.closest('.boblog-nav-link');
+        if (!link || !nav.contains(link)) return;
+        nav.querySelectorAll('.boblog-nav-link').forEach(function(el) {
+            el.classList.remove('boblog-nav-active');
+        });
+        link.classList.add('boblog-nav-active');
+    });
+});
+</script>
+</body>
+</html>

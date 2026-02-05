@@ -1,0 +1,192 @@
+/**
+ * Bo-Blog UI Components - Badge
+ * 徽章/标签组件样式
+ *
+ * 特点：
+ * - 基础类名 .boblog-badge，修饰类直接追加（.primary / .success 等）
+ * - 支持实底、轮廓、小号、圆点四种形态
+ * - 经典蓝白配色，无圆角设计
+ */
+
+/* 基础徽章
+   默认蓝色边框 + 白底 + 蓝色文字
+   内边距 2px 8px，字号 11px，Tahoma 字体 */
+.boblog-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-family: Tahoma, Arial, sans-serif;
+  line-height: 1.4;
+  font-weight: normal;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border: 1px solid var(--boblog-border-blue);
+  background-color: var(--boblog-bg);
+  color: var(--boblog-blue);
+}
+
+/* ========== 颜色变体（实底） ========== */
+
+/* 主要颜色（品牌蓝实底 + 白色文字） */
+.boblog-badge.primary {
+  border-color: var(--boblog-blue);
+  background-color: var(--boblog-blue);
+  color: var(--boblog-bg);
+}
+
+/* 成功状态（绿色实底） */
+.boblog-badge.success {
+  border-color: var(--boblog-success);
+  background-color: var(--boblog-success);
+  color: var(--boblog-bg);
+}
+
+/* 警告状态（橙色实底） */
+.boblog-badge.warning {
+  border-color: var(--boblog-warning);
+  background-color: var(--boblog-warning);
+  color: var(--boblog-bg);
+}
+
+/* 危险状态（红色实底） */
+.boblog-badge.danger {
+  border-color: var(--boblog-danger);
+  background-color: var(--boblog-danger);
+  color: var(--boblog-bg);
+}
+
+/* 信息状态（信息蓝实底） */
+.boblog-badge.info {
+  border-color: var(--boblog-info);
+  background-color: var(--boblog-info);
+  color: var(--boblog-bg);
+}
+
+/* 灰色（弱化状态） */
+.boblog-badge.gray {
+  border-color: var(--boblog-text-muted);
+  background-color: var(--boblog-text-muted);
+  color: var(--boblog-bg);
+}
+
+/* ========== 轮廓版本（空心：白底 + 彩色边框 + 彩色文字） ========== */
+
+/* 轮廓基础：覆盖背景为白色 */
+.boblog-badge.outline {
+  background-color: var(--boblog-bg);
+}
+
+.boblog-badge.primary.outline {
+  background-color: var(--boblog-bg);
+  border-color: var(--boblog-blue);
+  color: var(--boblog-blue);
+}
+
+.boblog-badge.success.outline {
+  background-color: var(--boblog-bg);
+  border-color: var(--boblog-success);
+  color: var(--boblog-success);
+}
+
+.boblog-badge.warning.outline {
+  background-color: var(--boblog-bg);
+  border-color: var(--boblog-warning);
+  color: var(--boblog-warning);
+}
+
+.boblog-badge.danger.outline {
+  background-color: var(--boblog-bg);
+  border-color: var(--boblog-danger);
+  color: var(--boblog-danger);
+}
+
+.boblog-badge.info.outline {
+  background-color: var(--boblog-bg);
+  border-color: var(--boblog-info);
+  color: var(--boblog-info);
+}
+
+.boblog-badge.gray.outline {
+  background-color: var(--boblog-bg);
+  border-color: var(--boblog-text-muted);
+  color: var(--boblog-text-muted);
+}
+
+/* ========== 小号徽章 ========== */
+
+/* 小号：内边距 1px 6px，字号 10px */
+.boblog-badge.small {
+  padding: 1px 6px;
+  font-size: 10px;
+}
+
+/* ========== 圆点徽章 ========== */
+
+/* 圆点：文字前的 8px 彩色圆点指示器
+   通过 ::before 伪元素实现，保留文字
+   默认方形，加 .round 后变圆形 */
+.boblog-badge.dot {
+  display: inline-flex;
+  align-items: center;
+}
+
+.boblog-badge.dot::before {
+  content: "";
+  flex-shrink: 0;
+  width: 8px;
+  height: 8px;
+  margin-right: 4px;
+  background-color: currentColor;
+}
+
+/* ========== 圆形徽章 ========== */
+
+/* 圆形：通过 .round 修饰类将徽章变为圆角药丸形状
+   同时将圆点指示器变为圆形 */
+.boblog-badge.round {
+  border-radius: 10px;
+}
+
+/* 圆点 + 圆形组合：圆点变为圆形 */
+.boblog-badge.dot.round::before {
+  border-radius: 50%;
+}
+
+/* ========== 链接内徽章 ========== */
+
+/* 链接 hover 时徽章透明度降低 */
+a .boblog-badge {
+  transition: all var(--boblog-transition-normal);
+}
+
+a:hover .boblog-badge {
+  opacity: 0.8;
+}
+
+/* ========== 计数器徽章（通知角标） ========== */
+
+/* 容器：相对定位，供内部 .boblog-badge 绝对定位 */
+.boblog-badge-counter {
+  position: relative;
+  display: inline-block;
+}
+
+/* 角标：右上角悬浮，定位在文字右上方
+   left: 100% 从文字末尾开始，不向左回缩
+   尺寸紧凑：高 14px，字号 9px，粗体
+   flex 布局确保数字垂直居中 */
+.boblog-badge-counter .boblog-badge {
+  position: absolute;
+  top: 0;
+  left: 100%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 14px;
+  height: 14px;
+  padding: 0 4px;
+  font-size: 9px;
+  font-weight: bold;
+}

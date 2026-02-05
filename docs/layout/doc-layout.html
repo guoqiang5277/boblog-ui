@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文档布局组件 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-gray">
+<!-- 浮动目录 -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <div class="boblog-doc-nav">
+        <a href="../index.html">← 返回总纲</a>
+    </div>
+
+    <h1>文档布局组件 (Doc Layout)</h1>
+
+    <!-- 概述 -->
+    <div class="boblog-doc-section">
+        <h2 id="概述">概述</h2>
+
+        <div class="boblog-doc-spec">
+            <p>提供两种文档页面布局风格，通过 body class 切换：</p>
+            <ul>
+                <li><code>boblog-doc-gray</code> — 灰底白框，适合概览/规范页面</li>
+                <li><code>boblog-doc-white</code> — 白底铺开，适合组件详情页</li>
+            </ul>
+            <p style="margin-top: 10px;">页面结构固定为三层：</p>
+            <ul>
+                <li><code>&lt;body class="boblog-doc-gray"&gt;</code> — 风格切换</li>
+                <li><code>&lt;div class="boblog-toc"&gt;</code> — 可选，浮动目录</li>
+                <li><code>&lt;div class="boblog-doc-container"&gt;</code> — 内容容器</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 类名参考 -->
+    <div class="boblog-doc-section">
+        <h2 id="类名参考">类名参考</h2>
+
+        <table style="border-collapse: collapse; width: 100%; font-size: 12px;">
+            <thead>
+                <tr style="background: var(--boblog-bg-muted, #EBF0F5);">
+                    <th style="border: 1px solid var(--boblog-border); padding: 5px 8px; text-align: left;">类名</th>
+                    <th style="border: 1px solid var(--boblog-border); padding: 5px 8px; text-align: left;">用途</th>
+                    <th style="border: 1px solid var(--boblog-border); padding: 5px 8px; text-align: left;">位置</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>boblog-doc-gray</code></td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">灰底风格</td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">body</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>boblog-doc-white</code></td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">白底风格</td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">body</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>boblog-doc-container</code></td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">内容容器（灰底下为白框，白底下透明）</td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">body 直接子级</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>boblog-doc-nav</code></td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">顶部导航链接区域</td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">boblog-doc-container 内</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>boblog-doc-section</code></td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">章节区块</td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">boblog-doc-container 内</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>boblog-doc-spec</code></td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">规范说明块</td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">boblog-doc-section 内</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>boblog-doc-demo</code></td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">演示预览区域</td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">boblog-doc-section 内</td>
+                </tr>
+                <tr>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;"><code>boblog-doc-demo-row</code></td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">演示行（多行排列时使用）</td>
+                    <td style="border: 1px solid var(--boblog-border); padding: 5px 8px;">boblog-doc-demo 内</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- 灰底风格 -->
+    <div class="boblog-doc-section">
+        <h2 id="灰底风格">灰底风格 (boblog-doc-gray)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>body 背景: #eaeaea（灰色）</li>
+                <li>boblog-doc-container: 白底 + 灰色边框 + 30px 内边距</li>
+                <li>boblog-doc-section: 无背景，50px 底部间距</li>
+                <li>boblog-doc-spec: 浅蓝背景 + 左侧蓝色竖线</li>
+                <li>适用于: 概览页、规范页（色彩体系、排版规范等）</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <!-- 用静态 HTML 模拟灰底风格的实际渲染效果 -->
+                <div style="background: #eaeaea; padding: 15px; border: 1px solid #ccc;">
+                    <div style="background: white; border: 1px solid #bbb; padding: 20px; max-width: 600px;">
+                        <div style="margin-bottom: 15px; padding-bottom: 8px; border-bottom: 2px solid #0D80BD;">
+                            <a href="javascript:void(0)" style="color: #0D80BD; text-decoration: none; font-size: 12px;">← 返回总纲</a>
+                        </div>
+                        <h1 style="color: #0D80BD; font-size: 20px; margin: 0 0 15px 0; font-family: Tahoma, Arial, sans-serif;">页面标题</h1>
+                        <div style="margin-bottom: 30px;">
+                            <h2 style="color: #0D80BD; font-size: 16px; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 1px solid #A8CCE8; font-family: Tahoma, Arial, sans-serif;">章节标题</h2>
+                            <div style="background: #E8F4FC; border-left: 3px solid #0D80BD; padding: 10px 15px; font-size: 12px; line-height: 180%; margin-bottom: 10px; font-family: Tahoma, Arial, sans-serif;">
+                                <ul style="margin: 0; padding-left: 20px;">
+                                    <li>规范说明项 1</li>
+                                    <li>规范说明项 2</li>
+                                </ul>
+                            </div>
+                            <div style="background: white; border: 1px solid #A8CCE8; padding: 15px; font-size: 12px; font-family: Tahoma, Arial, sans-serif;">
+                                演示区域（boblog-doc-demo）
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p style="margin-top: 8px; font-size: 12px; color: #666;">本页面自身即为灰底风格的实际效果。</p>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;body class="boblog-doc-gray"&gt;
+    &lt;div class="boblog-toc"&gt;
+        &lt;h4&gt;目录&lt;/h4&gt;
+        &lt;ul id="tocList"&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;div class="boblog-doc-container"&gt;
+        &lt;div class="boblog-doc-nav"&gt;
+            &lt;a href="../index.html"&gt;← 返回总纲&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;h1&gt;页面标题&lt;/h1&gt;
+
+        &lt;div class="boblog-doc-section"&gt;
+            &lt;h2&gt;章节标题&lt;/h2&gt;
+            &lt;div class="boblog-doc-spec"&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;规范说明项 1&lt;/li&gt;
+                    &lt;li&gt;规范说明项 2&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-doc-demo"&gt;
+                &lt;!-- 组件预览 --&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;灰底风格示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body class="boblog-doc-gray"&gt;
+    &lt;div class="boblog-toc"&gt;
+        &lt;h4&gt;目录&lt;/h4&gt;
+        &lt;ul id="tocList"&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;div class="boblog-doc-container"&gt;
+        &lt;div class="boblog-doc-nav"&gt;
+            &lt;a href="../index.html"&gt;← 返回总纲&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;h1&gt;页面标题&lt;/h1&gt;
+
+        &lt;div class="boblog-doc-section"&gt;
+            &lt;h2&gt;章节标题&lt;/h2&gt;
+            &lt;div class="boblog-doc-spec"&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;规范说明项 1&lt;/li&gt;
+                    &lt;li&gt;规范说明项 2&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-doc-demo"&gt;
+                &lt;!-- 组件预览 --&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 白底风格 -->
+    <div class="boblog-doc-section">
+        <h2 id="白底风格">白底风格 (boblog-doc-white)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>body 背景: #FFFFFF（白色），max-width: 1200px，居中</li>
+                <li>boblog-doc-container: 无背景无边框，直接铺开</li>
+                <li>boblog-doc-section: 浅蓝背景面板 + 蓝色边框 + 15px 内边距</li>
+                <li>boblog-doc-spec: 白色背景 + 蓝色边框</li>
+                <li>适用于: 组件详情页（按钮、表单、表格等）</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <!-- 用静态 HTML 模拟白底风格的实际渲染效果 -->
+                <div style="background: #FFFFFF; padding: 15px; border: 1px solid #ccc;">
+                    <div style="max-width: 600px;">
+                        <div style="margin-bottom: 15px; padding-bottom: 8px; border-bottom: 2px solid #0D80BD;">
+                            <a href="javascript:void(0)" style="color: #0D80BD; text-decoration: none; font-size: 12px;">← 返回总纲</a>
+                        </div>
+                        <h1 style="color: #0D80BD; font-size: 20px; margin: 0 0 15px 0; font-family: Tahoma, Arial, sans-serif;">组件名称</h1>
+                        <div style="background-color: #F5FBFE; border: 1px solid #9EC9FF; padding: 15px; margin-bottom: 15px;">
+                            <h2 style="color: #0D80BD; font-size: 14px; margin: 0 0 10px 0; padding-bottom: 6px; border-bottom: 1px solid #A8CCE8; font-family: Tahoma, Arial, sans-serif;">基础用法</h2>
+                            <div style="background: white; border: 1px solid #A8CCE8; padding: 10px 15px; font-size: 12px; line-height: 180%; margin-bottom: 10px; font-family: Tahoma, Arial, sans-serif;">
+                                <ul style="margin: 0; padding-left: 20px;">
+                                    <li>规范说明项 1</li>
+                                    <li>规范说明项 2</li>
+                                </ul>
+                            </div>
+                            <div style="background: white; border: 1px solid #A8CCE8; padding: 15px; font-size: 12px; font-family: Tahoma, Arial, sans-serif;">
+                                演示区域（boblog-doc-demo）
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p style="margin-top: 8px; font-size: 12px; color: #666;">白底风格：章节区块自带浅蓝背景面板，规范说明为白底蓝框。</p>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;body class="boblog-doc-white"&gt;
+    &lt;div class="boblog-toc"&gt;
+        &lt;h4&gt;目录&lt;/h4&gt;
+        &lt;ul id="tocList"&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;div class="boblog-doc-container"&gt;
+        &lt;div class="boblog-doc-nav"&gt;
+            &lt;a href="../index.html"&gt;← 返回总纲&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;h1&gt;组件名称&lt;/h1&gt;
+
+        &lt;div class="boblog-doc-section"&gt;
+            &lt;h2&gt;基础用法&lt;/h2&gt;
+            &lt;div class="boblog-doc-spec"&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;规范说明项 1&lt;/li&gt;
+                    &lt;li&gt;规范说明项 2&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-doc-demo"&gt;
+                &lt;!-- 组件预览 --&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;白底风格示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body class="boblog-doc-white"&gt;
+    &lt;div class="boblog-toc"&gt;
+        &lt;h4&gt;目录&lt;/h4&gt;
+        &lt;ul id="tocList"&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;div class="boblog-doc-container"&gt;
+        &lt;div class="boblog-doc-nav"&gt;
+            &lt;a href="../index.html"&gt;← 返回总纲&lt;/a&gt;
+        &lt;/div&gt;
+        &lt;h1&gt;组件名称&lt;/h1&gt;
+
+        &lt;div class="boblog-doc-section"&gt;
+            &lt;h2&gt;基础用法&lt;/h2&gt;
+            &lt;div class="boblog-doc-spec"&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;规范说明项 1&lt;/li&gt;
+                    &lt;li&gt;规范说明项 2&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-doc-demo"&gt;
+                &lt;!-- 组件预览 --&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 风格切换 -->
+    <div class="boblog-doc-section">
+        <h2 id="风格切换">风格切换</h2>
+
+        <div class="boblog-doc-spec">
+            <p>两种风格使用完全相同的 HTML 结构，只需切换 body 的 class：</p>
+            <ul>
+                <li><code>&lt;body class="boblog-doc-gray"&gt;</code> → 灰底白框</li>
+                <li><code>&lt;body class="boblog-doc-white"&gt;</code> → 白底铺开</li>
+            </ul>
+            <p style="margin-top: 8px;">内部所有子组件（boblog-doc-container、boblog-doc-section、boblog-doc-spec、boblog-doc-demo）自动适配对应风格，无需修改任何内部结构。</p>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <!-- 并排展示两种风格对比 -->
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <!-- 灰底风格 -->
+                    <div style="flex: 1; min-width: 250px;">
+                        <p style="font-size: 11px; color: #888; margin-bottom: 4px;">boblog-doc-gray</p>
+                        <div style="background: #eaeaea; padding: 10px; border: 1px solid #ccc;">
+                            <div style="background: white; border: 1px solid #bbb; padding: 12px;">
+                                <h2 style="color: #0D80BD; font-size: 14px; margin: 0 0 8px 0; padding-bottom: 5px; border-bottom: 1px solid #A8CCE8; font-family: Tahoma, Arial, sans-serif;">章节标题</h2>
+                                <div style="background: #E8F4FC; border-left: 3px solid #0D80BD; padding: 8px 10px; font-size: 11px; margin-bottom: 8px; font-family: Tahoma, Arial, sans-serif;">规范说明（浅蓝底 + 左蓝线）</div>
+                                <div style="background: white; border: 1px solid #A8CCE8; padding: 8px; font-size: 11px; font-family: Tahoma, Arial, sans-serif;">演示区域</div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 白底风格 -->
+                    <div style="flex: 1; min-width: 250px;">
+                        <p style="font-size: 11px; color: #888; margin-bottom: 4px;">boblog-doc-white</p>
+                        <div style="background: #FFFFFF; padding: 10px; border: 1px solid #ccc;">
+                            <div style="background-color: #F5FBFE; border: 1px solid #9EC9FF; padding: 12px;">
+                                <h2 style="color: #0D80BD; font-size: 14px; margin: 0 0 8px 0; padding-bottom: 5px; border-bottom: 1px solid #A8CCE8; font-family: Tahoma, Arial, sans-serif;">章节标题</h2>
+                                <div style="background: white; border: 1px solid #A8CCE8; padding: 8px 10px; font-size: 11px; margin-bottom: 8px; font-family: Tahoma, Arial, sans-serif;">规范说明（白底 + 蓝框）</div>
+                                <div style="background: white; border: 1px solid #A8CCE8; padding: 8px; font-size: 11px; font-family: Tahoma, Arial, sans-serif;">演示区域</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p style="margin-top: 8px; font-size: 12px; color: #666;">相同 HTML 结构，仅 body class 不同，子组件自动适配风格。</p>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 灰底风格 --&gt;
+&lt;body class="boblog-doc-gray"&gt;
+    &lt;div class="boblog-doc-container"&gt;
+        &lt;div class="boblog-doc-section"&gt;
+            &lt;h2&gt;章节标题&lt;/h2&gt;
+            &lt;div class="boblog-doc-spec"&gt;规范说明（浅蓝底 + 左蓝线）&lt;/div&gt;
+            &lt;div class="boblog-doc-demo"&gt;演示区域&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+
+&lt;!-- 白底风格 --&gt;
+&lt;body class="boblog-doc-white"&gt;
+    &lt;div class="boblog-doc-container"&gt;
+        &lt;div class="boblog-doc-section"&gt;
+            &lt;h2&gt;章节标题&lt;/h2&gt;
+            &lt;div class="boblog-doc-spec"&gt;规范说明（白底 + 蓝框）&lt;/div&gt;
+            &lt;div class="boblog-doc-demo"&gt;演示区域&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;风格切换示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+
+&lt;!-- 灰底风格示例 --&gt;
+&lt;body class="boblog-doc-gray"&gt;
+    &lt;div class="boblog-doc-container"&gt;
+        &lt;div class="boblog-doc-section"&gt;
+            &lt;h2&gt;章节标题&lt;/h2&gt;
+            &lt;div class="boblog-doc-spec"&gt;规范说明（浅蓝底 + 左蓝线）&lt;/div&gt;
+            &lt;div class="boblog-doc-demo"&gt;演示区域&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+
+&lt;!-- 或使用白底风格（只需改 body class） --&gt;
+&lt;!--
+&lt;body class="boblog-doc-white"&gt;
+    &lt;div class="boblog-doc-container"&gt;
+        &lt;div class="boblog-doc-section"&gt;
+            &lt;h2&gt;章节标题&lt;/h2&gt;
+            &lt;div class="boblog-doc-spec"&gt;规范说明（白底 + 蓝框）&lt;/div&gt;
+            &lt;div class="boblog-doc-demo"&gt;演示区域&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+--&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 与 boblog-toc 配合 -->
+    <div class="boblog-doc-section">
+        <h2 id="与目录配合">与 boblog-toc 配合</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><code>boblog-toc</code> 放在 <code>boblog-doc-container</code> 外面（body 直接子级）</li>
+                <li>默认 <code>data-toc-float="true"</code>：浮动覆盖在右上角</li>
+                <li>设置 <code>data-toc-float="push"</code>：浮动并推开内容</li>
+                <li>boblog-toc 会自动扫描 <code>.boblog-doc-section</code> 内的 h2 标题</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <!-- 用静态 HTML 模拟目录与内容配合的效果 -->
+                <div style="background: #eaeaea; padding: 10px; border: 1px solid #ccc; position: relative; min-height: 150px;">
+                    <!-- 模拟目录面板 -->
+                    <div style="position: absolute; right: 10px; top: 10px; background: #E8F0F7; border: 1px solid #C4D7E8; padding: 8px; font-size: 11px; font-family: Tahoma, Arial, sans-serif; width: 120px;">
+                        <h4 style="color: #0D6EAA; font-size: 12px; margin: 0 0 6px 0; padding-bottom: 4px; border-bottom: 1px solid #C4D7E8;">目录</h4>
+                        <ul style="list-style: none; margin: 0; padding: 0;">
+                            <li style="margin-bottom: 3px;"><a href="javascript:void(0)" style="color: #fff; text-decoration: none; display: block; padding: 2px 4px; background: #0D6EAA; font-weight: bold; font-size: 11px;">概述</a></li>
+                            <li style="margin-bottom: 3px;"><a href="javascript:void(0)" style="color: #0D6EAA; text-decoration: none; display: block; padding: 2px 4px; font-size: 11px;">类名参考</a></li>
+                            <li><a href="javascript:void(0)" style="color: #0D6EAA; text-decoration: none; display: block; padding: 2px 4px; font-size: 11px;">灰底风格</a></li>
+                        </ul>
+                    </div>
+                    <!-- 模拟内容容器 -->
+                    <div style="background: white; border: 1px solid #bbb; padding: 12px; max-width: calc(100% - 150px);">
+                        <h1 style="color: #0D80BD; font-size: 16px; margin: 0 0 10px 0; font-family: Tahoma, Arial, sans-serif;">页面标题</h1>
+                        <h2 style="color: #0D80BD; font-size: 13px; margin: 0 0 6px 0; padding-bottom: 4px; border-bottom: 1px solid #A8CCE8; font-family: Tahoma, Arial, sans-serif;">概述</h2>
+                        <div style="background: #E8F4FC; border-left: 3px solid #0D80BD; padding: 6px 10px; font-size: 11px; font-family: Tahoma, Arial, sans-serif;">规范说明内容...</div>
+                    </div>
+                </div>
+                <p style="margin-top: 8px; font-size: 12px; color: #666;">boblog-toc 放在 boblog-doc-container 外面，自动扫描 .boblog-doc-section 内的 h2 标题生成目录。</p>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;body class="boblog-doc-gray"&gt;
+    &lt;div class="boblog-toc"&gt;
+        &lt;h4&gt;目录&lt;/h4&gt;
+        &lt;ul id="tocList"&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;div class="boblog-doc-container"&gt;
+        &lt;h1&gt;页面标题&lt;/h1&gt;
+
+        &lt;div class="boblog-doc-section"&gt;
+            &lt;h2&gt;概述&lt;/h2&gt;
+            &lt;div class="boblog-doc-spec"&gt;规范说明内容...&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="boblog-doc-section"&gt;
+            &lt;h2&gt;类名参考&lt;/h2&gt;
+            &lt;div class="boblog-doc-spec"&gt;...&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="boblog-doc-section"&gt;
+            &lt;h2&gt;灰底风格&lt;/h2&gt;
+            &lt;div class="boblog-doc-spec"&gt;...&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;与目录配合示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body class="boblog-doc-gray"&gt;
+    &lt;div class="boblog-toc"&gt;
+        &lt;h4&gt;目录&lt;/h4&gt;
+        &lt;ul id="tocList"&gt;&lt;/ul&gt;
+    &lt;/div&gt;
+
+    &lt;div class="boblog-doc-container"&gt;
+        &lt;h1&gt;页面标题&lt;/h1&gt;
+
+        &lt;div class="boblog-doc-section"&gt;
+            &lt;h2&gt;概述&lt;/h2&gt;
+            &lt;div class="boblog-doc-spec"&gt;规范说明内容...&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="boblog-doc-section"&gt;
+            &lt;h2&gt;类名参考&lt;/h2&gt;
+            &lt;div class="boblog-doc-spec"&gt;...&lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;div class="boblog-doc-section"&gt;
+            &lt;h2&gt;灰底风格&lt;/h2&gt;
+            &lt;div class="boblog-doc-spec"&gt;...&lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

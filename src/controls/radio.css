@@ -1,0 +1,124 @@
+/**
+ * Bo-Blog Radio Control
+ * 单选框控件 - 基于 Bo-Blog V2.1 经典风格
+ * 圆形单选框，蓝白配色
+ */
+
+/* 单选框容器 */
+.boblog-radio {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+  font-family: Tahoma, Arial, sans-serif;
+  font-size: var(--boblog-font-size-sm);
+  line-height: 1.5;
+}
+
+/* 隐藏原生单选框 */
+.boblog-radio-input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  width: 0;
+  height: 0;
+}
+
+/* 自定义单选框外观 */
+.boblog-radio-label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  padding-left: 24px;
+  color: var(--boblog-text);
+  cursor: pointer;
+}
+
+.boblog-radio-label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  border: 1px solid var(--boblog-border);
+  border-radius: 50%;
+  background-color: var(--boblog-bg);
+  transition: all var(--boblog-transition-normal);
+  box-sizing: border-box;
+}
+
+/* 内圆点 */
+.boblog-radio-label::after {
+  content: '';
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%) scale(0);
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--boblog-bg);
+  transition: transform var(--boblog-transition-normal);
+}
+
+/* hover 状态 */
+.boblog-radio:hover .boblog-radio-label::before {
+  border-color: var(--boblog-blue);
+}
+
+/* 选中状态 */
+.boblog-radio-input:checked + .boblog-radio-label::before {
+  background-color: var(--boblog-blue);
+  border-color: var(--boblog-blue);
+}
+
+.boblog-radio-input:checked + .boblog-radio-label::after {
+  transform: translateY(-50%) scale(1);
+}
+
+/* focus 状态 */
+.boblog-radio-input:focus + .boblog-radio-label::before {
+  outline: 2px solid rgba(13, 128, 189, 0.3);
+  outline-offset: 2px;
+}
+
+/* 禁用状态 */
+.boblog-radio-input:disabled + .boblog-radio-label {
+  cursor: not-allowed;
+  color: var(--boblog-text-muted);
+}
+
+.boblog-radio-input:disabled + .boblog-radio-label::before {
+  background-color: #f5f5f5;
+  border-color: #d9d9d9;
+}
+
+.boblog-radio-input:disabled:checked + .boblog-radio-label::before {
+  background-color: #7fbfdd;
+  border-color: #7fbfdd;
+}
+
+.boblog-radio-input:disabled:checked + .boblog-radio-label::after {
+  background-color: var(--boblog-bg);
+}
+
+/* 单选框组 */
+.boblog-radio-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--boblog-spacing-sm);
+}
+
+.boblog-radio-group.inline {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--boblog-spacing-md);
+}
+
+/* 无标签文本的单选框 */
+.boblog-radio-label:empty {
+  padding-left: 16px;
+}

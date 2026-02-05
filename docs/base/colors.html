@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>色彩体系 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="doc-gray-bg">
+    <!-- 右侧浮动目录 -->
+    <div class="boblog-toc">
+        <h4>目录</h4>
+        <ul id="tocList"></ul>
+    </div>
+
+    <div class="doc-container">
+        <div class="doc-nav">
+            <a href="../index.html">← 返回总纲</a>
+        </div>
+
+        <h1>色彩体系</h1>
+
+        <!-- 设计原则 -->
+        <div class="doc-section">
+            <h2 id="section-principle">设计原则</h2>
+            <div class="doc-spec">
+                <p>Bo-Blog 经典蓝白配色，2000 年代博客风格——清爽、直接、不花哨。</p>
+                <ul class="spec-list">
+                    <li>色彩少而精，不做过度分级</li>
+                    <li>品牌蓝沉稳可读，不追求高饱和</li>
+                    <li>功能色偏暗一档，白底上对比度充足</li>
+                    <li>基础色板 6 色全覆盖，按需取用</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 基础色 -->
+        <div class="doc-section">
+            <h2 id="section-base">基础色</h2>
+            <div class="doc-demo">
+                <div class="color-grid">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #FFFFFF; border: 1px solid #C4D7E8;"></div>
+                        <div class="color-info">
+                            <div class="color-name">白色</div>
+                            <div class="color-value">--boblog-white: #FFFFFF</div>
+                            <div class="color-value">主背景、反色文字</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #000000;"></div>
+                        <div class="color-info">
+                            <div class="color-name">黑色</div>
+                            <div class="color-value">--boblog-black: #000000</div>
+                            <div class="color-value">hover 强调、最深文字</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 品牌蓝 -->
+        <div class="doc-section">
+            <h2 id="section-blue">品牌蓝（3 级）</h2>
+            <div class="doc-spec">
+                <p>Bo-Blog 标志性配色的核心。深→中→浅三级阶梯，覆盖品牌色所有场景。</p>
+            </div>
+            <div class="doc-demo">
+                <div class="color-grid">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #0D6EAA;"></div>
+                        <div class="color-info">
+                            <div class="color-name">品牌蓝</div>
+                            <div class="color-value">--boblog-blue: #0D6EAA</div>
+                            <div class="color-value">标题、链接、主按钮</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #2E93C9;"></div>
+                        <div class="color-info">
+                            <div class="color-name">强调蓝</div>
+                            <div class="color-value">--boblog-blue-light: #2E93C9</div>
+                            <div class="color-value">hover 状态、日期月份背景</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #E8F0F7;"></div>
+                        <div class="color-info">
+                            <div class="color-name">浅蓝底</div>
+                            <div class="color-value">--boblog-blue-pale: #E8F0F7</div>
+                            <div class="color-value">选中行、高亮区域</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 边框色 -->
+        <div class="doc-section">
+            <h2 id="section-border">边框色（2 级）</h2>
+            <div class="doc-spec">
+                <p>偏灰的蓝调，安静但保持蓝白主题感。边框不抢内容视觉。</p>
+            </div>
+            <div class="doc-demo">
+                <div class="color-grid">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #C4D7E8;"></div>
+                        <div class="color-info">
+                            <div class="color-name">主边框</div>
+                            <div class="color-value">--boblog-border: #C4D7E8</div>
+                            <div class="color-value">面板、卡片、表格</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #DDE8F0;"></div>
+                        <div class="color-info">
+                            <div class="color-name">次边框</div>
+                            <div class="color-value">--boblog-border-light: #DDE8F0</div>
+                            <div class="color-value">分隔线、列表线</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 背景色 -->
+        <div class="doc-section">
+            <h2 id="section-bg">背景色（3 级）</h2>
+            <div class="doc-spec">
+                <p>明确的三级阶梯，白→微灰→浅蓝灰，每级视觉可区分。</p>
+            </div>
+            <div class="doc-demo">
+                <div class="color-grid">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #FFFFFF; border: 1px solid #C4D7E8;"></div>
+                        <div class="color-info">
+                            <div class="color-name">主背景</div>
+                            <div class="color-value">--boblog-bg: #FFFFFF</div>
+                            <div class="color-value">页面主背景</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #F5F8FB;"></div>
+                        <div class="color-info">
+                            <div class="color-name">次背景</div>
+                            <div class="color-value">--boblog-bg-subtle: #F5F8FB</div>
+                            <div class="color-value">侧边栏、面板、斑马条</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #EBF0F5;"></div>
+                        <div class="color-info">
+                            <div class="color-name">强调背景</div>
+                            <div class="color-value">--boblog-bg-muted: #EBF0F5</div>
+                            <div class="color-value">表头、代码块、日期卡</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 文字色 -->
+        <div class="doc-section">
+            <h2 id="section-text">文字色（4 级）</h2>
+            <div class="doc-spec">
+                <p>四级阶梯，间距拉开，每级用途明确。</p>
+            </div>
+            <div class="doc-demo">
+                <div class="color-grid">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #1A1A1A;"></div>
+                        <div class="color-info">
+                            <div class="color-name">正文</div>
+                            <div class="color-value">--boblog-text: #1A1A1A</div>
+                            <div class="color-value">正文、标题</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #555555;"></div>
+                        <div class="color-info">
+                            <div class="color-name">次要</div>
+                            <div class="color-value">--boblog-text-secondary: #555555</div>
+                            <div class="color-value">描述、日期</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #888888;"></div>
+                        <div class="color-info">
+                            <div class="color-name">弱化</div>
+                            <div class="color-value">--boblog-text-muted: #888888</div>
+                            <div class="color-value">占位符</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #AAAAAA;"></div>
+                        <div class="color-info">
+                            <div class="color-name">禁用</div>
+                            <div class="color-value">--boblog-text-disabled: #AAAAAA</div>
+                            <div class="color-value">禁用文字</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 基础色板 -->
+        <div class="doc-section">
+            <h2 id="section-palette">基础色板（6 色）</h2>
+            <div class="doc-spec">
+                <p>沉稳不鲜艳，符合 2000 年代博客气质。按需取用，覆盖常见场景。</p>
+            </div>
+            <div class="doc-demo">
+                <div class="color-grid">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #CC3333;"></div>
+                        <div class="color-info">
+                            <div class="color-name">红色</div>
+                            <div class="color-value">--boblog-red: #CC3333</div>
+                            <div class="color-value">删除、必填星号、错误</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #3C8C30;"></div>
+                        <div class="color-info">
+                            <div class="color-name">绿色</div>
+                            <div class="color-value">--boblog-green: #3C8C30</div>
+                            <div class="color-value">成功、通过、在线</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #D4A017;"></div>
+                        <div class="color-info">
+                            <div class="color-name">黄色</div>
+                            <div class="color-value">--boblog-yellow: #D4A017</div>
+                            <div class="color-value">警告、星标、置顶</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #D07020;"></div>
+                        <div class="color-info">
+                            <div class="color-name">橙色</div>
+                            <div class="color-value">--boblog-orange: #D07020</div>
+                            <div class="color-value">待审核、提醒、关注</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #1BA8A8;"></div>
+                        <div class="color-info">
+                            <div class="color-name">青色</div>
+                            <div class="color-value">--boblog-cyan: #1BA8A8</div>
+                            <div class="color-value">标签、分类、辅助信息</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #7B5EA7;"></div>
+                        <div class="color-info">
+                            <div class="color-name">紫色</div>
+                            <div class="color-value">--boblog-purple: #7B5EA7</div>
+                            <div class="color-value">管理员、特殊标记</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 功能色 -->
+        <div class="doc-section">
+            <h2 id="section-functional">功能色（4 组）</h2>
+            <div class="doc-spec">
+                <p>语义化状态色。每组包含正色（文字/图标）和浅底色（消息条背景）。正色复用基础色板。</p>
+            </div>
+            <div class="doc-demo">
+                <div class="color-grid">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #3C8C30;"></div>
+                        <div class="color-info">
+                            <div class="color-name">成功</div>
+                            <div class="color-value">--boblog-success: #3C8C30</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #F0F8EE;"></div>
+                        <div class="color-info">
+                            <div class="color-name">成功背景</div>
+                            <div class="color-value">--boblog-success-bg: #F0F8EE</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #D4A017;"></div>
+                        <div class="color-info">
+                            <div class="color-name">警告</div>
+                            <div class="color-value">--boblog-warning: #D4A017</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #FFF8E6;"></div>
+                        <div class="color-info">
+                            <div class="color-name">警告背景</div>
+                            <div class="color-value">--boblog-warning-bg: #FFF8E6</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #CC3333;"></div>
+                        <div class="color-info">
+                            <div class="color-name">危险</div>
+                            <div class="color-value">--boblog-danger: #CC3333</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #FFF0F0;"></div>
+                        <div class="color-info">
+                            <div class="color-name">危险背景</div>
+                            <div class="color-value">--boblog-danger-bg: #FFF0F0</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #1677B5;"></div>
+                        <div class="color-info">
+                            <div class="color-name">信息</div>
+                            <div class="color-value">--boblog-info: #1677B5</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #EDF5FB;"></div>
+                        <div class="color-info">
+                            <div class="color-name">信息背景</div>
+                            <div class="color-value">--boblog-info-bg: #EDF5FB</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 控件状态 -->
+        <div class="doc-section">
+            <h2 id="section-disabled">控件状态</h2>
+            <div class="doc-demo">
+                <div class="color-grid">
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #F5F5F5;"></div>
+                        <div class="color-info">
+                            <div class="color-name">禁用背景</div>
+                            <div class="color-value">--boblog-disabled-bg: #F5F5F5</div>
+                        </div>
+                    </div>
+                    <div class="color-item">
+                        <div class="color-swatch" style="background: #D9D9D9;"></div>
+                        <div class="color-info">
+                            <div class="color-name">禁用边框</div>
+                            <div class="color-value">--boblog-disabled-border: #D9D9D9</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 完整变量汇总 -->
+        <div class="doc-section">
+            <h2 id="section-all">完整 CSS 变量</h2>
+            <div class="boblog-codeblock">
+                <pre><code class="language-css">:root {
+    /* 基础色 */
+    --boblog-white: #FFFFFF;
+    --boblog-black: #000000;
+
+    /* 品牌蓝（3 级） */
+    --boblog-blue: #0D6EAA;
+    --boblog-blue-light: #2E93C9;
+    --boblog-blue-pale: #E8F0F7;
+
+    /* 边框色（2 级） */
+    --boblog-border: #C4D7E8;
+    --boblog-border-light: #DDE8F0;
+
+    /* 背景色（3 级） */
+    --boblog-bg: #FFFFFF;
+    --boblog-bg-subtle: #F5F8FB;
+    --boblog-bg-muted: #EBF0F5;
+
+    /* 文字色（4 级） */
+    --boblog-text: #1A1A1A;
+    --boblog-text-secondary: #555555;
+    --boblog-text-muted: #888888;
+    --boblog-text-disabled: #AAAAAA;
+
+    /* 基础色板（6 色） */
+    --boblog-red: #CC3333;
+    --boblog-green: #3C8C30;
+    --boblog-yellow: #D4A017;
+    --boblog-orange: #D07020;
+    --boblog-cyan: #1BA8A8;
+    --boblog-purple: #7B5EA7;
+
+    /* 功能色（4 组） */
+    --boblog-success: #3C8C30;
+    --boblog-success-bg: #F0F8EE;
+    --boblog-warning: #D4A017;
+    --boblog-warning-bg: #FFF8E6;
+    --boblog-danger: #CC3333;
+    --boblog-danger-bg: #FFF0F0;
+    --boblog-info: #1677B5;
+    --boblog-info-bg: #EDF5FB;
+
+    /* 控件状态 */
+    --boblog-disabled-bg: #F5F5F5;
+    --boblog-disabled-border: #D9D9D9;
+}</code></pre>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

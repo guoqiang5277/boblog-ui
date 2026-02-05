@@ -1,0 +1,300 @@
+/**
+ * Bo-Blog Tree Component
+ * 树形组件 — 用于展示层级结构数据
+ *
+ * 核心类名：
+ * - .boblog-tree                — 树容器
+ * - .boblog-tree-node           — 树节点
+ * - .boblog-tree-node-content   — 节点内容区（flex 布局，包含 toggle、icon、label）
+ * - .boblog-tree-toggle         — 展开/折叠按钮（▶ 图标，展开时旋转 90deg）
+ * - .boblog-tree-toggle.leaf    — 叶子节点占位（隐藏图标）
+ * - .boblog-tree-icon           — 节点图标（可选）
+ * - .boblog-tree-label          — 节点文字标签
+ * - .boblog-tree-children       — 子节点容器（默认隐藏，展开时显示）
+ * - .expanded                   — 展开状态（加在 .boblog-tree-node 上）
+ * - .selected                   — 选中状态（加在 .boblog-tree-node-content 上）
+ * - .disabled                   — 禁用状态（加在 .boblog-tree-node 上）
+ * - .boblog-tree-lined          — 连接线模式（加在 .boblog-tree 容器上）
+ * - .boblog-tree-compact        — 紧凑模式（加在 .boblog-tree 容器上）
+ * - .boblog-tree-badge          — 节点徽章/计数
+ * - .boblog-tree-actions        — 节点操作按钮组（hover 显示）
+ * - .boblog-tree-action-btn     — 单个操作按钮
+ * - .dragging                   — 拖拽状态（可选）
+ * - .drop-target                — 拖拽目标（可选）
+ * - .loading                    — 加载中状态（可选）
+ *
+ * 设计特点：
+ * - 无圆角，直角设计，经典 Bo-Blog 风格
+ * - 展开/折叠图标使用旋转动画
+ * - 支持 hover 和选中状态
+ * - 可选虚线连接线装饰
+ */
+
+/* ========== 基础结构 ========== */
+
+/* 树容器 */
+.boblog-tree {
+  font-size: var(--boblog-font-size-sm); /* 基础字号 12px */
+  line-height: 1.5; /* 行高 1.5 */
+  color: var(--boblog-text-dark); /* 深色文字 */
+}
+
+/* 树节点 */
+.boblog-tree-node {
+  position: relative; /* 为伪元素定位（连接线）提供基准 */
+}
+
+/* 节点内容区（flex 布局：toggle + icon + label） */
+.boblog-tree-node-content {
+  display: flex; /* flex 布局 */
+  align-items: center; /* 垂直居中 */
+  padding: 6px var(--boblog-spacing-xs); /* 内边距 6px 6px */
+  cursor: pointer; /* 节点内容区显示手型光标 */
+  transition: background-color var(--boblog-transition-normal); /* 背景色过渡动画 */
+  user-select: none; /* 禁止选中文本 */
+}
+
+/* 节点内容 hover 状态 */
+.boblog-tree-node-content:hover {
+  background-color: var(--boblog-border-light, #DDE8F0); /* hover 背景色，与 TOC 一致 */
+}
+
+
+/* ========== 展开/折叠图标 ========== */
+
+/* 展开/折叠按钮 */
+.boblog-tree-toggle {
+  flex-shrink: 0; /* 不收缩 */
+  width: 16px; /* 固定宽 16px */
+  height: 16px; /* 固定高 16px */
+  display: flex; /* flex 布局 */
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
+  margin-right: var(--boblog-spacing-xs); /* 右边距 6px */
+  transition: transform var(--boblog-transition-normal); /* 旋转动画 */
+}
+
+/* ▶ 三角图标（CSS border 绘制，像素级居中） */
+/* 折叠态：右指三角 ▶（6px宽 × 8px高） */
+.boblog-tree-toggle::before {
+  content: ""; /* 空内容，用 border 画三角 */
+  display: block; /* 块级元素 */
+  width: 0; /* 宽度为0 */
+  height: 0; /* 高度为0 */
+  border-top: 4px solid transparent; /* 上边透明 */
+  border-bottom: 4px solid transparent; /* 下边透明 */
+  border-left: 6px solid var(--boblog-text-gray, #888); /* 左边实色，形成右指三角 */
+}
+
+/* 展开状态：旋转 90deg 变成 ▼ */
+.boblog-tree-node.expanded > .boblog-tree-node-content .boblog-tree-toggle {
+  transform: rotate(90deg); /* 旋转 90 度 */
+}
+
+/* 叶子节点：隐藏展开图标但保留占位 */
+.boblog-tree-toggle.leaf {
+  visibility: hidden; /* 隐藏但占位 */
+}
+
+/* ========== 节点图标与文字 ========== */
+
+/* 节点图标（可选，如文件夹/文件图标） */
+.boblog-tree-icon {
+  flex-shrink: 0; /* 不收缩 */
+  margin-right: var(--boblog-spacing-xs); /* 右边距 6px */
+  color: var(--boblog-blue-primary); /* 蓝色 #0D80BD */
+  font-size: var(--boblog-font-size-md); /* 字号 13px */
+  line-height: 1; /* 行高 1 */
+}
+
+/* 节点文字标签 */
+.boblog-tree-label {
+  flex: 1; /* 占满剩余空间 */
+  color: var(--boblog-text-dark); /* 深色文字 */
+}
+
+/* ========== 子节点容器 ========== */
+
+/* 子节点容器（默认隐藏） */
+.boblog-tree-children {
+  padding-left: 20px; /* 左缩进 20px */
+  display: none; /* 默认隐藏 */
+}
+
+/* 展开状态：显示子节点 */
+.boblog-tree-node.expanded > .boblog-tree-children {
+  display: block; /* 显示子节点 */
+}
+
+/* ========== 选中状态 ========== */
+
+/* 选中状态：浅蓝背景 + 蓝色文字 */
+.boblog-tree-node-content.selected {
+  background-color: var(--boblog-bg-content); /* 浅蓝背景 #F4FBFF */
+  color: var(--boblog-blue-primary); /* 蓝色文字 #0D80BD */
+}
+
+/* 选中状态：标签文字加粗 */
+.boblog-tree-node-content.selected .boblog-tree-label {
+  color: var(--boblog-blue-primary); /* 蓝色 */
+  font-weight: bold; /* 加粗 */
+}
+
+/* ========== 禁用状态 ========== */
+
+/* 禁用状态：不可点击 + 半透明 */
+.boblog-tree-node.disabled .boblog-tree-node-content {
+  cursor: not-allowed; /* 禁止点击光标 */
+  opacity: 0.5; /* 半透明 */
+}
+
+/* 禁用状态：禁止 hover 效果 */
+.boblog-tree-node.disabled .boblog-tree-node-content:hover {
+  background-color: transparent; /* 禁止 hover 背景变化 */
+}
+
+/* ========== 连接线模式 ========== */
+
+/* 连接线模式：容器上加 .boblog-tree-lined */
+.boblog-tree-lined .boblog-tree-node {
+  position: relative; /* 为伪元素定位提供基准 */
+}
+
+/* 子节点容器：相对定位 + 竖直连接线 */
+/* 竖线用 background-image 画在 children 自身上，避免 ::before 伪元素定位偏差 */
+/* 竖线位置 = 10px（相对于 padding-box，对齐子节点 toggle 几何中心） */
+.boblog-tree-lined .boblog-tree-children {
+  position: relative; /* 为伪元素定位提供基准 */
+  background-image: repeating-linear-gradient(
+    to bottom,
+    #b0c4d8 0,
+    #b0c4d8 4px,
+    transparent 4px,
+    transparent 8px
+  ); /* 虚线效果：4px 实色 + 4px 透明 */
+  background-size: 1px 100%; /* 宽 1px，高 100% */
+  background-repeat: no-repeat; /* 不重复 */
+  background-position: 10px 0; /* 水平偏移（对齐 toggle 几何中心），默认 padding-box 参考 */
+}
+
+/* 水平连接线：从竖线延伸到 toggle box 几何中心 */
+/* 竖线相对于 node = 10(children中竖线位置) - 20(padding) = -10px */
+/* toggle 中心相对于 node = content-padding(6) + toggle半宽(8) = 14px */
+/* width = 14 - (-10) = 24px */
+.boblog-tree-lined .boblog-tree-children > .boblog-tree-node::before {
+  content: ""; /* 伪元素 */
+  position: absolute; /* 绝对定位 */
+  top: 15px; /* 节点内容垂直中心（高30px / 2） */
+  left: -10px; /* 竖线位置（10 - 20 = -10，相对于 node） */
+  width: 24px; /* 延伸到 toggle 中心（-10 + 24 = 14） */
+  border-top: 1px dashed #b0c4d8; /* 灰蓝虚线 */
+}
+
+/* 最后一个子节点：用白色遮盖竖直线在最后节点中心以下的多余部分 */
+/* 竖线相对于 node = 10 - 20(padding) = -10px */
+.boblog-tree-lined .boblog-tree-children > .boblog-tree-node:last-child::after {
+  content: ""; /* 伪元素 */
+  position: absolute; /* 绝对定位 */
+  top: 15px; /* 从节点垂直中心开始 */
+  left: -10px; /* 与竖线对齐（10 - 20 = -10，相对于 node） */
+  bottom: 0; /* 到底部 */
+  width: 1px; /* 宽度 1px，精确覆盖竖直线 */
+  background-color: var(--boblog-bg, #fff); /* 白色背景遮盖竖直线 */
+}
+
+/* ========== 紧凑模式 ========== */
+
+/* 紧凑模式：节点内容缩小内边距 */
+.boblog-tree-compact .boblog-tree-node-content {
+  padding: 4px var(--boblog-spacing-xs); /* 内边距 4px 6px */
+}
+
+/* 紧凑模式：子节点缩小缩进 */
+.boblog-tree-compact .boblog-tree-children {
+  padding-left: 15px; /* 左缩进 15px */
+}
+
+/* ========== 拖拽状态（可选扩展功能） ========== */
+
+/* 拖拽中：半透明 */
+.boblog-tree-node.dragging {
+  opacity: 0.5; /* 半透明 */
+}
+
+/* 拖拽目标：浅蓝背景 */
+.boblog-tree-node.drop-target {
+  background-color: var(--boblog-bg-content); /* 浅蓝背景 #F4FBFF */
+}
+
+/* ========== 加载中状态（可选扩展功能） ========== */
+
+/* 加载中：显示沙漏图标并旋转 */
+.boblog-tree-node.loading .boblog-tree-toggle::before {
+  content: "⏳"; /* 沙漏图标 */
+  animation: boblog-tree-loading 1s linear infinite; /* 旋转动画 */
+}
+
+/* 旋转动画关键帧 */
+@keyframes boblog-tree-loading {
+  0% {
+    transform: rotate(0deg); /* 起始角度 */
+  }
+  100% {
+    transform: rotate(360deg); /* 结束角度 */
+  }
+}
+
+/* ========== 节点徽章/计数（可选扩展功能） ========== */
+
+/* 节点徽章：显示计数或标签 */
+.boblog-tree-badge {
+  margin-left: auto; /* 靠右对齐 */
+  padding: 2px var(--boblog-spacing-xs); /* 内边距 2px 6px */
+  font-size: var(--boblog-font-size-xs); /* 字号 11px */
+  color: var(--boblog-text-gray); /* 灰色文字 */
+  background-color: var(--boblog-bg-panel); /* 浅蓝背景 #F5FBFE */
+  border: 1px solid var(--boblog-blue-border-list, #D3E7FC); /* 边框 #D3E7FC */
+}
+
+/* ========== 节点操作按钮（可选扩展功能） ========== */
+
+/* 操作按钮组：默认隐藏，hover 显示 */
+.boblog-tree-actions {
+  margin-left: auto; /* 靠右对齐 */
+  display: none; /* 默认隐藏 */
+  gap: var(--boblog-spacing-xs); /* 按钮间距 6px */
+}
+
+/* hover 时显示操作按钮 */
+.boblog-tree-node-content:hover .boblog-tree-actions {
+  display: flex; /* 显示为 flex 布局 */
+}
+
+/* 单个操作按钮 */
+.boblog-tree-action-btn {
+  padding: 2px var(--boblog-spacing-xs); /* 内边距 2px 6px */
+  border: 1px solid var(--boblog-blue-border); /* 边框 #9EC9FF */
+  background-color: var(--boblog-bg-white); /* 白色背景 */
+  color: var(--boblog-blue-primary); /* 蓝色文字 #0D80BD */
+  cursor: pointer; /* 鼠标手型 */
+  font-size: var(--boblog-font-size-xs); /* 字号 11px */
+}
+
+/* 操作按钮 hover 状态 */
+.boblog-tree-action-btn:hover {
+  background-color: var(--boblog-bg-panel); /* 浅蓝背景 #F5FBFE */
+  border-color: var(--boblog-blue-primary); /* 蓝色边框 #0D80BD */
+}
+
+/* ========== 响应式处理 ========== */
+
+/* 移动端：缩小缩进，默认显示操作按钮 */
+@media (max-width: 768px) {
+  .boblog-tree-children {
+    padding-left: 15px; /* 左缩进 15px */
+  }
+
+  .boblog-tree-actions {
+    display: flex; /* 默认显示操作按钮 */
+  }
+}

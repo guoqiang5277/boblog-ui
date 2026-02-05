@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下拉选择 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+<!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <div class="boblog-doc-nav">
+        <a href="../forms.html">← 返回表单组件</a> |
+        <a href="../index.html">返回总纲</a>
+    </div>
+
+    <h1>下拉选择 (Select)</h1>
+
+    <!-- 基础下拉选择 -->
+    <div class="boblog-doc-section">
+        <h2 id="基础下拉">下拉选择 (.boblog-select)</h2>
+
+        <!-- 规范说明：与 select.css 实际变量值对应 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>结构: .boblog-select（容器）> select（原生下拉元素）</li>
+                <li><strong>依赖</strong>: boblog-ui.css + boblog-ui.js（JS 自动将原生 select 转换为自定义下拉面板）</li>
+                <li>边框: 1px solid <span class="color-swatch-inline" style="background-color: #DDE8F0;"></span>#DDE8F0 (--boblog-border-light)</li>
+                <li>内边距: 6px 30px 6px 10px（右侧留空放自定义箭头）</li>
+                <li>字体大小: 12px (--boblog-font-size-sm)</li>
+                <li>背景色: #FFFFFF (--boblog-bg)</li>
+                <li>文字颜色: #1A1A1A (--boblog-text)</li>
+                <li>自定义箭头: CSS 三角形，颜色 #888888 (--boblog-text-muted)，展开时旋转 180°</li>
+                <li><strong>Hover 状态</strong>: 边框 #C4D7E8 (--boblog-border)</li>
+                <li><strong>Focus/展开 状态</strong>: 边框 #0D6EAA (--boblog-blue)，背景 #E8F0F7 (--boblog-blue-pale)</li>
+                <li><strong>选项悬停</strong>: 背景 #E8F0F7 (--boblog-blue-pale)，文字 #0D6EAA (--boblog-blue)</li>
+                <li><strong>选中项</strong>: 背景 #0D6EAA (--boblog-blue)，文字 #FFFFFF</li>
+                <li><strong>Disabled 状态</strong>: 背景 #F5F5F5，边框 #D9D9D9，文字 #888888，箭头 #D9D9D9</li>
+                <li><strong>Error 状态</strong> (.boblog-select-error): 边框 #CC3333 (--boblog-danger)</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-select" style="width: 200px;">
+                            <select>
+                                <option>请选择...</option>
+                                <option>选项 1</option>
+                                <option>选项 2</option>
+                                <option>选项 3</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-select disabled" style="width: 200px;">
+                            <select disabled>
+                                <option>禁用状态</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-select boblog-select-error" style="width: 200px;">
+                            <select>
+                                <option>错误状态</option>
+                                <option>选项 A</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 默认状态 --&gt;
+&lt;div class="boblog-select"&gt;
+    &lt;select&gt;
+        &lt;option&gt;请选择...&lt;/option&gt;
+        &lt;option&gt;选项 1&lt;/option&gt;
+        &lt;option&gt;选项 2&lt;/option&gt;
+        &lt;option&gt;选项 3&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/div&gt;
+
+&lt;!-- 禁用状态 --&gt;
+&lt;div class="boblog-select disabled"&gt;
+    &lt;select disabled&gt;
+        &lt;option&gt;禁用状态&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/div&gt;
+
+&lt;!-- 错误状态 --&gt;
+&lt;div class="boblog-select boblog-select-error"&gt;
+    &lt;select&gt;
+        &lt;option&gt;错误状态&lt;/option&gt;
+        &lt;option&gt;选项 A&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;下拉选择示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 默认状态 --&gt;
+&lt;div class="boblog-select"&gt;
+    &lt;select&gt;
+        &lt;option&gt;请选择...&lt;/option&gt;
+        &lt;option&gt;选项 1&lt;/option&gt;
+        &lt;option&gt;选项 2&lt;/option&gt;
+        &lt;option&gt;选项 3&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/div&gt;
+
+&lt;!-- 禁用状态 --&gt;
+&lt;div class="boblog-select disabled"&gt;
+    &lt;select disabled&gt;
+        &lt;option&gt;禁用状态&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/div&gt;
+
+&lt;!-- 错误状态 --&gt;
+&lt;div class="boblog-select boblog-select-error"&gt;
+    &lt;select&gt;
+        &lt;option&gt;错误状态&lt;/option&gt;
+        &lt;option&gt;选项 A&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 禁用选项 -->
+    <div class="boblog-doc-section">
+        <h2 id="禁用选项">禁用选项</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>给 &lt;option&gt; 添加 disabled 属性即可禁用单个选项</li>
+                <li>禁用选项: 文字 #888888 (--boblog-text-muted)，光标 not-allowed</li>
+                <li>禁用选项不响应点击和悬停</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-select" style="width: 200px;">
+                            <select>
+                                <option>请选择分类...</option>
+                                <option>技术文章</option>
+                                <option disabled>心情随笔（暂不可用）</option>
+                                <option>生活记录</option>
+                                <option disabled>旅行日记（暂不可用）</option>
+                                <option>读书笔记</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-select"&gt;
+    &lt;select&gt;
+        &lt;option&gt;请选择分类...&lt;/option&gt;
+        &lt;option&gt;技术文章&lt;/option&gt;
+        &lt;option disabled&gt;心情随笔（暂不可用）&lt;/option&gt;
+        &lt;option&gt;生活记录&lt;/option&gt;
+        &lt;option disabled&gt;旅行日记（暂不可用）&lt;/option&gt;
+        &lt;option&gt;读书笔记&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;禁用选项示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-select"&gt;
+    &lt;select&gt;
+        &lt;option&gt;请选择分类...&lt;/option&gt;
+        &lt;option&gt;技术文章&lt;/option&gt;
+        &lt;option disabled&gt;心情随笔（暂不可用）&lt;/option&gt;
+        &lt;option&gt;生活记录&lt;/option&gt;
+        &lt;option disabled&gt;旅行日记（暂不可用）&lt;/option&gt;
+        &lt;option&gt;读书笔记&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 尺寸变体 -->
+    <div class="boblog-doc-section">
+        <h2 id="尺寸变体">尺寸变体</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>小尺寸 (.boblog-select-sm)</strong>: 内边距 1px 22px 1px 6px，字体 10px，箭头 right 8px</li>
+                <li><strong>标准尺寸</strong>: 内边距 6px 30px 6px 10px，字体 12px，箭头 right 12px</li>
+                <li><strong>大尺寸 (.boblog-select-lg)</strong>: 内边距 12px 36px 12px 14px，字体 16px，箭头 right 14px</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-select boblog-select-sm" style="width: 200px;">
+                            <select>
+                                <option>小尺寸 (sm)</option>
+                                <option>选项 A</option>
+                                <option>选项 B</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-select" style="width: 200px;">
+                            <select>
+                                <option>标准尺寸</option>
+                                <option>选项 A</option>
+                                <option>选项 B</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-select boblog-select-lg" style="width: 200px;">
+                            <select>
+                                <option>大尺寸 (lg)</option>
+                                <option>选项 A</option>
+                                <option>选项 B</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 小尺寸 --&gt;
+&lt;div class="boblog-select boblog-select-sm"&gt;
+    &lt;select&gt;
+        &lt;option&gt;小尺寸 (sm)&lt;/option&gt;
+        &lt;option&gt;选项 A&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/div&gt;
+
+&lt;!-- 标准尺寸 --&gt;
+&lt;div class="boblog-select"&gt;
+    &lt;select&gt;
+        &lt;option&gt;标准尺寸&lt;/option&gt;
+        &lt;option&gt;选项 A&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/div&gt;
+
+&lt;!-- 大尺寸 --&gt;
+&lt;div class="boblog-select boblog-select-lg"&gt;
+    &lt;select&gt;
+        &lt;option&gt;大尺寸 (lg)&lt;/option&gt;
+        &lt;option&gt;选项 A&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;尺寸变体示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 小尺寸 --&gt;
+&lt;div class="boblog-select boblog-select-sm"&gt;
+    &lt;select&gt;
+        &lt;option&gt;小尺寸 (sm)&lt;/option&gt;
+        &lt;option&gt;选项 A&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/div&gt;
+
+&lt;!-- 标准尺寸 --&gt;
+&lt;div class="boblog-select"&gt;
+    &lt;select&gt;
+        &lt;option&gt;标准尺寸&lt;/option&gt;
+        &lt;option&gt;选项 A&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/div&gt;
+
+&lt;!-- 大尺寸 --&gt;
+&lt;div class="boblog-select boblog-select-lg"&gt;
+    &lt;select&gt;
+        &lt;option&gt;大尺寸 (lg)&lt;/option&gt;
+        &lt;option&gt;选项 A&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 多选下拉框 -->
+    <div class="boblog-doc-section">
+        <h2 id="多选下拉">多选下拉框</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>给 &lt;select&gt; 添加 <code>multiple</code> 属性启用多选模式</li>
+                <li>多选模式下不显示下拉箭头</li>
+                <li>内边距: 5px 10px，高度自适应</li>
+                <li>注意：多选模式使用原生渲染，不会被 JS 转换为自定义下拉</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-select" style="width: 200px;">
+                            <select multiple>
+                                <option>选项 1</option>
+                                <option>选项 2</option>
+                                <option>选项 3</option>
+                                <option>选项 4</option>
+                                <option>选项 5</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-select"&gt;
+    &lt;select multiple&gt;
+        &lt;option&gt;选项 1&lt;/option&gt;
+        &lt;option&gt;选项 2&lt;/option&gt;
+        &lt;option&gt;选项 3&lt;/option&gt;
+        &lt;option&gt;选项 4&lt;/option&gt;
+        &lt;option&gt;选项 5&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;多选下拉框示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-select"&gt;
+    &lt;select multiple&gt;
+        &lt;option&gt;选项 1&lt;/option&gt;
+        &lt;option&gt;选项 2&lt;/option&gt;
+        &lt;option&gt;选项 3&lt;/option&gt;
+        &lt;option&gt;选项 4&lt;/option&gt;
+        &lt;option&gt;选项 5&lt;/option&gt;
+    &lt;/select&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript API -->
+    <div class="boblog-doc-section">
+        <h2 id="JS-API">JavaScript API</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>引入 <code>boblog-ui.js</code> 后，DOMContentLoaded 自动扫描 <code>.boblog-select</code> 并转换为自定义下拉</li>
+                <li>多选下拉框（<code>select[multiple]</code>）不会被转换，保留原生渲染</li>
+                <li>转换后原生 <code>&lt;select&gt;</code> 隐藏但保留在 DOM 中，表单提交不受影响</li>
+                <li>支持键盘操作：↑↓ 切换选项、Enter/空格 确认、Escape 关闭</li>
+                <li>点击页面其他区域自动关闭下拉面板</li>
+            </ul>
+        </div>
+
+        <!-- 1. 自动初始化 -->
+        <h3>1. 自动初始化</h3>
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>引入 <code>boblog-ui.js</code> 后，DOMContentLoaded 自动扫描所有 <code>.boblog-select</code></li>
+                <li>无需手动调用任何函数</li>
+            </ul>
+        </div>
+
+        <!-- 2. 手动调用 -->
+        <h3>2. 手动调用</h3>
+        <div class="boblog-codeblock">
+            <pre><code class="language-javascript">// 初始化页面所有下拉选择
+BoblogUI.select.init();
+
+// 只初始化指定容器内的下拉选择
+BoblogUI.select.init(document.getElementById('myForm'));</code></pre>
+        </div>
+
+        <!-- 3. 引入方式 -->
+        <h3>3. 引入方式</h3>
+        <div class="boblog-codeblock">
+            <pre><code class="language-html">&lt;!-- 引入 CSS（包含下拉选择样式） --&gt;
+&lt;link rel="stylesheet" href="dist/boblog-ui.css"&gt;
+
+&lt;!-- 引入 JS（包含下拉选择逻辑） --&gt;
+&lt;script src="dist/boblog-ui.js"&gt;&lt;/script&gt;
+
+&lt;!-- 或开发时单独引入 --&gt;
+&lt;script src="src/js/select.js"&gt;&lt;/script&gt;</code></pre>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

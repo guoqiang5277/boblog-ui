@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>日期选择器 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+<!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <!-- 导航栏 -->
+    <div class="boblog-doc-nav">
+        <a href="../forms.html">← 返回表单组件</a> |
+        <a href="../index.html">返回总纲</a>
+    </div>
+
+    <h1>日期选择器 (Date Picker)</h1>
+
+    <!-- ====== 日期选择器基础 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="日期选择器基础">日期选择器 (.boblog-date-picker)</h2>
+
+        <!-- 规范说明：与 date-picker.css 实际变量值对应 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>容器</strong>: position relative，display inline-block，width 100%</li>
+                <li><strong>支持类型</strong>: input[type="date"]、datetime-local、month、week、time</li>
+                <li><strong>默认状态</strong>: 边框 1px solid #DDE8F0 (--boblog-border-light)，背景 #FFFFFF (--boblog-bg)，内边距 6px 10px</li>
+                <li><strong>Hover</strong>: 边框变为 #C4D7E8 (--boblog-border)</li>
+                <li><strong>Focus</strong>: 边框 #0D6EAA (--boblog-blue)，背景 #E8F0F7 (--boblog-blue-pale)，outline 2px solid rgba(13, 128, 189, 0.1)</li>
+                <li><strong>自定义选择器</strong>: 引入 <code>boblog-ui.js</code> 后自动转换为自定义日历面板，默认格式 <code>yyyy-MM-dd</code>，可通过 <code>data-format</code> 属性自定义</li>
+                <li><strong>Disabled</strong>: 背景 #F5F5F5，边框 #D9D9D9，文字 #888888 (--boblog-text-muted)，cursor not-allowed</li>
+                <li><strong>Readonly</strong>: 背景 #F5F8FB (--boblog-bg-subtle)，cursor default</li>
+                <li><strong>Error</strong> (.boblog-date-picker-error): 边框 #CC3333 (--boblog-danger)</li>
+                <li>引入 JS 后原生 input 被隐藏，自动创建显示区域和日历面板</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <!-- 默认状态 -->
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>默认状态</strong></p>
+                        <div class="boblog-date-picker" style="width: 220px;">
+                            <input type="date" value="2006-08-15">
+                        </div>
+                    </div>
+                    <!-- 禁用状态 -->
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>禁用状态</strong></p>
+                        <div class="boblog-date-picker disabled" style="width: 220px;">
+                            <input type="date" value="2006-08-15" disabled>
+                        </div>
+                    </div>
+                    <!-- 只读状态 -->
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>只读状态</strong></p>
+                        <div class="boblog-date-picker readonly" style="width: 220px;">
+                            <input type="date" value="2006-08-15" readonly>
+                        </div>
+                    </div>
+                    <!-- 错误状态 -->
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>错误状态</strong></p>
+                        <div class="boblog-date-picker boblog-date-picker-error" style="width: 220px;">
+                            <input type="date">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 默认状态 --&gt;
+&lt;div class="boblog-date-picker"&gt;
+    &lt;input type="date" value="2006-08-15"&gt;
+&lt;/div&gt;
+
+&lt;!-- 禁用状态 --&gt;
+&lt;div class="boblog-date-picker disabled"&gt;
+    &lt;input type="date" value="2006-08-15" disabled&gt;
+&lt;/div&gt;
+
+&lt;!-- 只读状态 --&gt;
+&lt;div class="boblog-date-picker readonly"&gt;
+    &lt;input type="date" value="2006-08-15" readonly&gt;
+&lt;/div&gt;
+
+&lt;!-- 错误状态 --&gt;
+&lt;div class="boblog-date-picker boblog-date-picker-error"&gt;
+    &lt;input type="date"&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;日期选择器示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 默认状态 --&gt;
+&lt;div class="boblog-date-picker" style="width: 220px;"&gt;
+    &lt;input type="date" value="2006-08-15"&gt;
+&lt;/div&gt;
+
+&lt;!-- 禁用状态 --&gt;
+&lt;div class="boblog-date-picker disabled" style="width: 220px;"&gt;
+    &lt;input type="date" value="2006-08-15" disabled&gt;
+&lt;/div&gt;
+
+&lt;!-- 只读状态 --&gt;
+&lt;div class="boblog-date-picker readonly" style="width: 220px;"&gt;
+    &lt;input type="date" value="2006-08-15" readonly&gt;
+&lt;/div&gt;
+
+&lt;!-- 错误状态 --&gt;
+&lt;div class="boblog-date-picker boblog-date-picker-error" style="width: 220px;"&gt;
+    &lt;input type="date"&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 其他日期类型 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="其他日期类型">其他日期类型</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>datetime-local</strong>: 日期 + 时间选择，默认格式 <code>yyyy-MM-dd HH:mm</code></li>
+                <li><strong>month</strong>: 年月选择，默认格式 <code>yyyy-MM</code></li>
+                <li><strong>week</strong>: 年周选择，默认格式 <code>YYYY-Www</code></li>
+                <li><strong>time</strong>: 时间选择，默认格式 <code>HH:mm</code></li>
+                <li>所有类型共享 .boblog-date-picker 容器样式，JS 自动识别 input 类型并渲染对应面板</li>
+                <li>点击显示区域弹出自定义选择面板（非浏览器原生 picker），跨浏览器一致</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>datetime-local</strong></p>
+                        <div class="boblog-date-picker" style="width: 260px;">
+                            <input type="datetime-local" value="2006-08-15T14:30">
+                        </div>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>month</strong></p>
+                        <div class="boblog-date-picker" style="width: 220px;">
+                            <input type="month" value="2006-08">
+                        </div>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>week</strong></p>
+                        <div class="boblog-date-picker" style="width: 220px;">
+                            <input type="week" value="2006-W33">
+                        </div>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>time</strong></p>
+                        <div class="boblog-date-picker" style="width: 180px;">
+                            <input type="time" value="14:30">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- datetime-local --&gt;
+&lt;div class="boblog-date-picker"&gt;
+    &lt;input type="datetime-local" value="2006-08-15T14:30"&gt;
+&lt;/div&gt;
+
+&lt;!-- month --&gt;
+&lt;div class="boblog-date-picker"&gt;
+    &lt;input type="month" value="2006-08"&gt;
+&lt;/div&gt;
+
+&lt;!-- week --&gt;
+&lt;div class="boblog-date-picker"&gt;
+    &lt;input type="week" value="2006-W33"&gt;
+&lt;/div&gt;
+
+&lt;!-- time --&gt;
+&lt;div class="boblog-date-picker"&gt;
+    &lt;input type="time" value="14:30"&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;其他日期类型示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- datetime-local --&gt;
+&lt;div class="boblog-date-picker" style="width: 260px;"&gt;
+    &lt;input type="datetime-local" value="2006-08-15T14:30"&gt;
+&lt;/div&gt;
+
+&lt;!-- month --&gt;
+&lt;div class="boblog-date-picker" style="width: 220px;"&gt;
+    &lt;input type="month" value="2006-08"&gt;
+&lt;/div&gt;
+
+&lt;!-- week --&gt;
+&lt;div class="boblog-date-picker" style="width: 220px;"&gt;
+    &lt;input type="week" value="2006-W33"&gt;
+&lt;/div&gt;
+
+&lt;!-- time --&gt;
+&lt;div class="boblog-date-picker" style="width: 180px;"&gt;
+    &lt;input type="time" value="14:30"&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 日期范围选择器 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="日期范围选择器">日期范围选择器 (.boblog-date-range)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>容器</strong>: display flex，align-items center，gap 10px (--boblog-spacing-sm)</li>
+                <li><strong>子选择器</strong>: flex 1，min-width 0</li>
+                <li><strong>分隔符</strong> (.boblog-date-range-separator): 字体 12px，颜色 #888888 (--boblog-text-muted)，white-space nowrap</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <div class="boblog-date-range" style="max-width: 500px;">
+                            <div class="boblog-date-picker">
+                                <input type="date" value="2006-08-01">
+                            </div>
+                            <span class="boblog-date-range-separator">至</span>
+                            <div class="boblog-date-picker">
+                                <input type="date" value="2006-08-31">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-date-range"&gt;
+    &lt;div class="boblog-date-picker"&gt;
+        &lt;input type="date" value="2006-08-01"&gt;
+    &lt;/div&gt;
+    &lt;span class="boblog-date-range-separator"&gt;至&lt;/span&gt;
+    &lt;div class="boblog-date-picker"&gt;
+        &lt;input type="date" value="2006-08-31"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;日期范围选择器示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-date-range" style="max-width: 500px;"&gt;
+    &lt;div class="boblog-date-picker"&gt;
+        &lt;input type="date" value="2006-08-01"&gt;
+    &lt;/div&gt;
+    &lt;span class="boblog-date-range-separator"&gt;至&lt;/span&gt;
+    &lt;div class="boblog-date-picker"&gt;
+        &lt;input type="date" value="2006-08-31"&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 尺寸变体 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="尺寸变体">尺寸变体</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>小尺寸</strong> (.boblog-date-picker-sm): 内边距 4px 8px，字体 12px</li>
+                <li><strong>标准尺寸</strong>（默认）: 内边距 6px 10px，字体 12px (--boblog-font-size-sm)</li>
+                <li><strong>大尺寸</strong> (.boblog-date-picker-lg): 内边距 8px 12px，字体 14px</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>小尺寸 (.boblog-date-picker-sm)</strong></p>
+                        <div class="boblog-date-picker boblog-date-picker-sm" style="width: 200px;">
+                            <input type="date" value="2006-08-15">
+                        </div>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>标准尺寸（默认）</strong></p>
+                        <div class="boblog-date-picker" style="width: 220px;">
+                            <input type="date" value="2006-08-15">
+                        </div>
+                    </div>
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>大尺寸 (.boblog-date-picker-lg)</strong></p>
+                        <div class="boblog-date-picker boblog-date-picker-lg" style="width: 240px;">
+                            <input type="date" value="2006-08-15">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 小尺寸 --&gt;
+&lt;div class="boblog-date-picker boblog-date-picker-sm"&gt;
+    &lt;input type="date" value="2006-08-15"&gt;
+&lt;/div&gt;
+
+&lt;!-- 标准尺寸（默认） --&gt;
+&lt;div class="boblog-date-picker"&gt;
+    &lt;input type="date" value="2006-08-15"&gt;
+&lt;/div&gt;
+
+&lt;!-- 大尺寸 --&gt;
+&lt;div class="boblog-date-picker boblog-date-picker-lg"&gt;
+    &lt;input type="date" value="2006-08-15"&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;日期选择器尺寸变体示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 小尺寸 --&gt;
+&lt;div class="boblog-date-picker boblog-date-picker-sm" style="width: 200px;"&gt;
+    &lt;input type="date" value="2006-08-15"&gt;
+&lt;/div&gt;
+
+&lt;!-- 标准尺寸（默认） --&gt;
+&lt;div class="boblog-date-picker" style="width: 220px;"&gt;
+    &lt;input type="date" value="2006-08-15"&gt;
+&lt;/div&gt;
+
+&lt;!-- 大尺寸 --&gt;
+&lt;div class="boblog-date-picker boblog-date-picker-lg" style="width: 240px;"&gt;
+    &lt;input type="date" value="2006-08-15"&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 农历和节气 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="农历和节气">农历和节气 (data-nongli / data-jieqi)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>data-nongli="true"</strong>: 日历格子显示农历日名（初一~三十），第二行灰色 9px 文字</li>
+                <li><strong>data-jieqi="true"</strong>: 日历格子显示24节气文字行（立春、雨水等），绿色 9px 粗体，格子增高</li>
+                <li><strong>data-jieqi="bg"</strong>: 节气日以淡绿色背景标记，鼠标悬停显示节气名（title），格子不增高</li>
+                <li>两个属性独立控制，可单独使用或同时开启</li>
+                <li>同时开启时（jieqi="true"）：第一行阳历、第二行农历、第三行节气（仅节气日显示第三行）</li>
+                <li>同时开启时（jieqi="bg"）：第一行阳历、第二行农历，节气日加背景色</li>
+                <li>影响类型：date、datetime-local、week（含日历网格的面板）</li>
+                <li>依赖 <code>BoblogUI.lunar</code> 模块（lunar.js），构建时自动包含</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <!-- 只显示农历 -->
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>只显示农历 (data-nongli="true")</strong></p>
+                        <div class="boblog-date-picker" data-nongli="true" style="width: 280px;">
+                            <input type="date" value="2026-01-30">
+                        </div>
+                    </div>
+                    <!-- 只显示节气 -->
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>只显示节气 (data-jieqi="true")</strong></p>
+                        <div class="boblog-date-picker" data-jieqi="true" style="width: 280px;">
+                            <input type="date" value="2026-02-04">
+                        </div>
+                    </div>
+                    <!-- 农历+节气同时显示 -->
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>农历+节气同时显示</strong></p>
+                        <div class="boblog-date-picker" data-nongli="true" data-jieqi="true" style="width: 280px;">
+                            <input type="date" value="2026-02-04">
+                        </div>
+                    </div>
+                    <!-- datetime-local + 农历 -->
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>datetime-local + 农历+节气</strong></p>
+                        <div class="boblog-date-picker" data-nongli="true" data-jieqi="true" style="width: 300px;">
+                            <input type="datetime-local" value="2026-02-04T10:00">
+                        </div>
+                    </div>
+                    <!-- 节气背景模式 -->
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>节气背景模式 (data-jieqi="bg")</strong></p>
+                        <div class="boblog-date-picker" data-jieqi="bg" style="width: 280px;">
+                            <input type="date" value="2026-02-04">
+                        </div>
+                    </div>
+                    <!-- 农历 + 节气背景模式 -->
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>农历 + 节气背景 (nongli + jieqi="bg")</strong></p>
+                        <div class="boblog-date-picker" data-nongli="true" data-jieqi="bg" style="width: 280px;">
+                            <input type="date" value="2026-02-04">
+                        </div>
+                    </div>
+                    <!-- week + 农历 -->
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>week + 农历</strong></p>
+                        <div class="boblog-date-picker" data-nongli="true" style="width: 280px;">
+                            <input type="week" value="2026-W05">
+                        </div>
+                    </div>
+                    <!-- week + 农历 + 节气 -->
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>week + 农历 + 节气</strong></p>
+                        <div class="boblog-date-picker" data-nongli="true" data-jieqi="true" style="width: 300px;">
+                            <input type="week" value="2026-W05">
+                        </div>
+                    </div>
+                    <!-- week + 农历 + 节气背景 -->
+                    <div class="boblog-doc-demo-row">
+                        <p><strong>week + 农历 + 节气背景</strong></p>
+                        <div class="boblog-date-picker" data-nongli="true" data-jieqi="bg" style="width: 300px;">
+                            <input type="week" value="2026-W05">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 只显示农历 --&gt;
+&lt;div class="boblog-date-picker" data-nongli="true"&gt;
+    &lt;input type="date" value="2026-01-30"&gt;
+&lt;/div&gt;
+
+&lt;!-- 只显示节气 --&gt;
+&lt;div class="boblog-date-picker" data-jieqi="true"&gt;
+    &lt;input type="date" value="2026-02-04"&gt;
+&lt;/div&gt;
+
+&lt;!-- 农历+节气同时显示 --&gt;
+&lt;div class="boblog-date-picker" data-nongli="true" data-jieqi="true"&gt;
+    &lt;input type="date" value="2026-02-04"&gt;
+&lt;/div&gt;
+
+&lt;!-- datetime-local + 农历+节气 --&gt;
+&lt;div class="boblog-date-picker" data-nongli="true" data-jieqi="true"&gt;
+    &lt;input type="datetime-local" value="2026-02-04T10:00"&gt;
+&lt;/div&gt;
+
+&lt;!-- 节气背景模式 --&gt;
+&lt;div class="boblog-date-picker" data-jieqi="bg"&gt;
+    &lt;input type="date" value="2026-02-04"&gt;
+&lt;/div&gt;
+
+&lt;!-- 农历 + 节气背景模式 --&gt;
+&lt;div class="boblog-date-picker" data-nongli="true" data-jieqi="bg"&gt;
+    &lt;input type="date" value="2026-02-04"&gt;
+&lt;/div&gt;
+
+&lt;!-- week + 农历 --&gt;
+&lt;div class="boblog-date-picker" data-nongli="true"&gt;
+    &lt;input type="week" value="2026-W05"&gt;
+&lt;/div&gt;
+
+&lt;!-- week + 农历 + 节气 --&gt;
+&lt;div class="boblog-date-picker" data-nongli="true" data-jieqi="true"&gt;
+    &lt;input type="week" value="2026-W05"&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;农历和节气示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 只显示农历 --&gt;
+&lt;div class="boblog-date-picker" data-nongli="true" style="width: 280px;"&gt;
+    &lt;input type="date" value="2026-01-30"&gt;
+&lt;/div&gt;
+
+&lt;!-- 只显示节气 --&gt;
+&lt;div class="boblog-date-picker" data-jieqi="true" style="width: 280px;"&gt;
+    &lt;input type="date" value="2026-02-04"&gt;
+&lt;/div&gt;
+
+&lt;!-- 农历+节气同时显示 --&gt;
+&lt;div class="boblog-date-picker" data-nongli="true" data-jieqi="true" style="width: 280px;"&gt;
+    &lt;input type="date" value="2026-02-04"&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== JavaScript API ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="JS-API">JavaScript API</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>引入 <code>boblog-ui.js</code> 后，DOMContentLoaded 自动扫描 <code>.boblog-date-picker</code> 中的五种日期/时间 input，转换为自定义选择器</li>
+                <li>支持的类型：<code>date</code>（日历网格）、<code>datetime-local</code>（日历+时间）、<code>month</code>（月份网格）、<code>week</code>（周选择）、<code>time</code>（时间选择）</li>
+                <li>各类型默认格式：date → <code>yyyy-MM-dd</code>，datetime-local → <code>yyyy-MM-dd HH:mm</code>，month → <code>yyyy-MM</code>，week → <code>YYYY-Www</code>，time → <code>HH:mm</code></li>
+                <li>通过 <code>data-format</code> 属性自定义显示格式，<code>data-placeholder</code> 属性自定义占位文本</li>
+                <li>原生 input 被隐藏，值由自定义面板同步回 input（保持表单提交功能）</li>
+                <li>自定义面板完全替代浏览器原生 picker，跨浏览器（Chrome/Firefox/Safari/Edge）一致</li>
+                <li>支持 disabled、readonly、error 三种状态</li>
+            </ul>
+        </div>
+
+        <!-- 1. 自动初始化 -->
+        <h3>1. 自动初始化</h3>
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>引入 <code>boblog-ui.js</code> 后，DOMContentLoaded 自动扫描所有 <code>.boblog-date-picker</code></li>
+                <li>无需手动调用任何函数</li>
+            </ul>
+        </div>
+
+        <!-- 2. 手动调用 -->
+        <h3>2. 手动调用</h3>
+        <div class="boblog-codeblock">
+            <pre><code class="language-javascript">// 初始化页面所有日期选择器
+BoblogUI.datePicker.init();
+
+// 只初始化指定容器内的日期选择器
+BoblogUI.datePicker.init(document.getElementById('myForm'));</code></pre>
+        </div>
+
+        <!-- 3. 引入方式 -->
+        <h3>3. 引入方式</h3>
+        <div class="boblog-codeblock">
+            <pre><code class="language-html">&lt;!-- 引入 CSS（包含日期选择器样式） --&gt;
+&lt;link rel="stylesheet" href="dist/boblog-ui.css"&gt;
+
+&lt;!-- 引入 JS（包含自定义日历选择器逻辑） --&gt;
+&lt;script src="dist/boblog-ui.js"&gt;&lt;/script&gt;
+
+&lt;!-- 使用 data-format 自定义显示格式 --&gt;
+&lt;div class="boblog-date-picker" data-format="yyyy/MM/dd"&gt;
+    &lt;input type="date" value="2006-08-15"&gt;
+&lt;/div&gt;
+
+&lt;!-- 使用 data-placeholder 自定义占位文本 --&gt;
+&lt;div class="boblog-date-picker" data-placeholder="请选择发布日期"&gt;
+    &lt;input type="date"&gt;
+&lt;/div&gt;
+
+&lt;!-- 默认格式 yyyy-MM-dd --&gt;
+&lt;div class="boblog-date-picker"&gt;
+    &lt;input type="date" value="2006-08-15"&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>
