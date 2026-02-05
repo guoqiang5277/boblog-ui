@@ -26,6 +26,10 @@
   border-bottom: 1px solid var(--boblog-border-blue-lighter);
 }
 
+.boblog-panel-header H3{
+    margin: var(--boblog-spacing-xs) auto !important;
+}
+
 .boblog-panel-title {
   margin: 0;
   font-size: var(--boblog-font-size-md);
@@ -54,6 +58,13 @@
   background-color: var(--boblog-bg-panel);
   border-top: 1px solid var(--boblog-border-blue-lighter);
   font-size: var(--boblog-font-size-sm);
+}
+
+/* 面板居中 */
+.boblog-panel-center {
+  display: flex;
+  justify-content: center;
+  gap: var(--boblog-spacing-sm);
 }
 
 /* 浅蓝面板内容区 */

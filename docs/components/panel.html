@@ -209,24 +209,30 @@
             <!-- 预览面板 -->
             <div class="boblog-tabs-panel active">
                 <div class="boblog-doc-demo">
-                    <div class="boblog-panel">
+                    <div class="boblog-panel" style="max-width: 500px;">
                         <div class="boblog-panel-header">
                             <h3 class="boblog-panel-title">用户信息</h3>
                         </div>
-                        <div class="boblog-panel-body">
-                            <div class="boblog-form-group">
-                                <label class="boblog-label">用户名</label>
-                                <input type="text" class="boblog-input" placeholder="请输入用户名">
+                        <form class="boblog-form boblog-form-horizontal">
+                            <div class="boblog-panel-body">
+                                <div class="boblog-form-group">
+                                    <label class="boblog-form-label">用户名</label>
+                                    <div class="boblog-form-control-wrap">
+                                        <input type="text" class="boblog-input" placeholder="请输入用户名">
+                                    </div>
+                                </div>
+                                <div class="boblog-form-group">
+                                    <label class="boblog-form-label">邮箱</label>
+                                    <div class="boblog-form-control-wrap">
+                                        <input type="email" class="boblog-input" placeholder="请输入邮箱">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="boblog-form-group">
-                                <label class="boblog-label">邮箱</label>
-                                <input type="email" class="boblog-input" placeholder="请输入邮箱">
+                            <div class="boblog-panel-footer boblog-panel-center">
+                                <button type="reset" class="boblog-btn">重置</button>
+                                <button type="submit" class="boblog-btn boblog-btn-primary">保存</button>
                             </div>
-                        </div>
-                        <div class="boblog-panel-footer">
-                            <button class="boblog-btn">重置</button>
-                            <button class="boblog-btn boblog-btn-primary">保存</button>
-                        </div>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -237,20 +243,26 @@
     &lt;div class="boblog-panel-header"&gt;
         &lt;h3 class="boblog-panel-title"&gt;用户信息&lt;/h3&gt;
     &lt;/div&gt;
-    &lt;div class="boblog-panel-body"&gt;
-        &lt;div class="boblog-form-group"&gt;
-            &lt;label class="boblog-label"&gt;用户名&lt;/label&gt;
-            &lt;input type="text" class="boblog-input" placeholder="请输入用户名"&gt;
+    &lt;form class="boblog-form boblog-form-horizontal"&gt;
+        &lt;div class="boblog-panel-body"&gt;
+            &lt;div class="boblog-form-group"&gt;
+                &lt;label class="boblog-form-label"&gt;用户名&lt;/label&gt;
+                &lt;div class="boblog-form-control-wrap"&gt;
+                    &lt;input type="text" class="boblog-input" placeholder="请输入用户名"&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-form-group"&gt;
+                &lt;label class="boblog-form-label"&gt;邮箱&lt;/label&gt;
+                &lt;div class="boblog-form-control-wrap"&gt;
+                    &lt;input type="email" class="boblog-input" placeholder="请输入邮箱"&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
         &lt;/div&gt;
-        &lt;div class="boblog-form-group"&gt;
-            &lt;label class="boblog-label"&gt;邮箱&lt;/label&gt;
-            &lt;input type="email" class="boblog-input" placeholder="请输入邮箱"&gt;
+        &lt;div class="boblog-panel-footer boblog-panel-center"&gt;
+            &lt;button type="reset" class="boblog-btn"&gt;重置&lt;/button&gt;
+            &lt;button type="submit" class="boblog-btn boblog-btn-primary"&gt;保存&lt;/button&gt;
         &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class="boblog-panel-footer"&gt;
-        &lt;button class="boblog-btn"&gt;重置&lt;/button&gt;
-        &lt;button class="boblog-btn boblog-btn-primary"&gt;保存&lt;/button&gt;
-    &lt;/div&gt;
+    &lt;/form&gt;
 &lt;/div&gt;</code></pre>
                 </div>
             </div>
@@ -271,20 +283,26 @@
     &lt;div class="boblog-panel-header"&gt;
         &lt;h3 class="boblog-panel-title"&gt;用户信息&lt;/h3&gt;
     &lt;/div&gt;
-    &lt;div class="boblog-panel-body"&gt;
-        &lt;div class="boblog-form-group"&gt;
-            &lt;label class="boblog-label"&gt;用户名&lt;/label&gt;
-            &lt;input type="text" class="boblog-input" placeholder="请输入用户名"&gt;
+    &lt;form class="boblog-form boblog-form-horizontal"&gt;
+        &lt;div class="boblog-panel-body"&gt;
+            &lt;div class="boblog-form-group"&gt;
+                &lt;label class="boblog-form-label"&gt;用户名&lt;/label&gt;
+                &lt;div class="boblog-form-control-wrap"&gt;
+                    &lt;input type="text" class="boblog-input" placeholder="请输入用户名"&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-form-group"&gt;
+                &lt;label class="boblog-form-label"&gt;邮箱&lt;/label&gt;
+                &lt;div class="boblog-form-control-wrap"&gt;
+                    &lt;input type="email" class="boblog-input" placeholder="请输入邮箱"&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
         &lt;/div&gt;
-        &lt;div class="boblog-form-group"&gt;
-            &lt;label class="boblog-label"&gt;邮箱&lt;/label&gt;
-            &lt;input type="email" class="boblog-input" placeholder="请输入邮箱"&gt;
+        &lt;div class="boblog-panel-footer boblog-panel-center"&gt;
+            &lt;button type="reset" class="boblog-btn"&gt;重置&lt;/button&gt;
+            &lt;button type="submit" class="boblog-btn boblog-btn-primary"&gt;保存&lt;/button&gt;
         &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class="boblog-panel-footer"&gt;
-        &lt;button class="boblog-btn"&gt;重置&lt;/button&gt;
-        &lt;button class="boblog-btn boblog-btn-primary"&gt;保存&lt;/button&gt;
-    &lt;/div&gt;
+    &lt;/form&gt;
 &lt;/div&gt;
 
 &lt;/body&gt;
@@ -292,10 +310,9 @@
                 </div>
             </div>
         </div>
-    </div>
 
-</div><!-- /.boblog-doc-container -->
+    </div><!-- /.boblog-doc-container -->
 
-<script src="../../dist/boblog-ui.js"></script>
+    <script src="../../dist/boblog-ui.js"></script>
 </body>
 </html>
