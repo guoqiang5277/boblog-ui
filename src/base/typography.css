@@ -83,12 +83,11 @@ a {
 }
 
 a:hover {
-    color: var(--boblog-text-link-hover, #000000);
     text-decoration: underline;
 }
 
 a:active {
-    color: var(--boblog-text-link-hover, #000000);
+    color: var(--boblog-text-link-active, #000000);
 }
 
 /* 蓝色链接变体 */
@@ -277,4 +276,18 @@ hr {
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+}
+
+/* ========== 间距清除工具类 ========== */
+.boblog-clear-m {
+    margin: 0;
+}
+
+.boblog-clear-p {
+    padding: 0;
+}
+
+.boblog-clear-mp {
+    margin: 0;
+    padding: 0;
 }

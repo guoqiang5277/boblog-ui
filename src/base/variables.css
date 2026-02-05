@@ -44,7 +44,9 @@
     --boblog-text-disabled: #AAAAAA;      /* 禁用文字 */
     --boblog-text-dark: #333333;          /* 深色文字 */
     --boblog-text-gray: #999999;          /* 灰色文字 */
-    --boblog-text-link-hover: #000000;    /* 链接 hover 文字 */
+    --boblog-text-link: #333333;          /* 链接默认颜色 */
+    --boblog-text-link-hover: #000000;    /* 链接悬停颜色 */
+    --boblog-text-link-active: #7B5EA7;   /* 链接点击时颜色 */
 
     /* ========== 基础色板（7 色） ========== */
     /* 2000 年代博客风格，沉稳不鲜艳 */

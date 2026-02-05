@@ -40,18 +40,11 @@ img {
 
 /* ========== 链接 ========== */
 a {
-    color: var(--boblog-text-link, #333333);
-    text-decoration: none;
-    background-color: transparent;
-}
-
-a:hover {
-    color: var(--boblog-text-link-hover, #000000);
-    text-decoration: underline;
+    background-color: transparent; /* 清除 IE10 的灰色背景 */
 }
 
 a:focus {
-    outline: thin dotted;
+    outline: thin dotted; /* 统一不同浏览器的焦点轮廓样式 */
 }
 
 /* ========== 表格 ========== */
