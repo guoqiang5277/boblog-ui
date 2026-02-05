@@ -77,11 +77,11 @@
 .boblog-form-horizontal .boblog-form-group {
   display: flex;
   align-items: flex-start;
-  gap: var(--boblog-spacing-sm);
+  gap: 5%;
 }
 
 .boblog-form-horizontal .boblog-form-label {
-  flex: 0 0 120px;
+  flex: 0 0 20%;
   text-align: right;
   padding-top: 8px;
   margin-bottom: 0;
@@ -89,6 +89,9 @@
 
 .boblog-form-horizontal .boblog-form-control-wrap {
   flex: 1;
+}
+.boblog-form-horizontal .boblog-input{
+    width: 70%;
 }
 
 /* 表单操作栏 */

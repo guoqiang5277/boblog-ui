@@ -15,6 +15,10 @@
   background-color: var(--boblog-bg-white);
   margin-bottom: var(--boblog-spacing-md);
 }
+.boblog-panel .boblog-btn{
+  width: 24%;
+}
+
 
 /* 面板头部 */
 .boblog-panel-header {
