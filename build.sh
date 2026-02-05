@@ -12,6 +12,18 @@ DIST_DIR="$SCRIPT_DIR/dist"
 VERSION=$(cat "$SCRIPT_DIR/VERSION" | tr -d '[:space:]')
 BUILD_NUM=$(cat "$SCRIPT_DIR/BUILD" | tr -d '[:space:]')
 
+# 如果存在 BUILD_LOCAL，比较并使用较大的值
+if [ -f "$SCRIPT_DIR/BUILD_LOCAL" ]; then
+    BUILD_LOCAL=$(cat "$SCRIPT_DIR/BUILD_LOCAL" | tr -d '[:space:]')
+    if [ "$BUILD_LOCAL" -gt "$BUILD_NUM" ]; then
+        BUILD_NUM="$BUILD_LOCAL"
+        echo "📌 Using BUILD_LOCAL: $BUILD_NUM"
+    fi
+    # 每次构建自动递增 BUILD_LOCAL
+    BUILD_LOCAL=$((BUILD_LOCAL + 1))
+    echo "$BUILD_LOCAL" > "$SCRIPT_DIR/BUILD_LOCAL"
+fi
+
 # 检查是否为发布构建
 if [ "$1" = "--release" ]; then
     # 递增构建号
