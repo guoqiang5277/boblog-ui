@@ -1,5 +1,7 @@
 # Bo-Blog UI
 
+**版本：v1.0.0**
+
 基于 Bo-Blog V2.1 Default Skin 的 UI 组件库。蓝白配色，无圆角，Tahoma 字体，12px 基础字号。
 
 ## 目录结构
@@ -46,19 +48,26 @@ go install github.com/evanw/esbuild/cmd/esbuild@latest
 ./build.sh
 ```
 
-产出 `dist/boblog-ui.css`（完整版）和 `dist/boblog-ui.min.css`（压缩版）。
+构建产物：
+- `dist/boblog-ui.css` - CSS 完整版
+- `dist/boblog-ui.min.css` - CSS 压缩版
+- `dist/boblog-ui.js` - JS 完整版
+- `dist/boblog-ui.min.js` - JS 压缩版
+- `dist/fonts/` - 内嵌字体文件
+- `dist/marked.min.js` - Markdown 解析器
 
 压缩需要 esbuild，未安装则跳过压缩步骤。
 
 ## 使用
 
-项目中引入 `dist/boblog-ui.css` 即可：
+项目中引入 CSS 和 JS 文件：
 
 ```html
 <link rel="stylesheet" href="/path/to/boblog-ui.css">
+<script src="/path/to/boblog-ui.js"></script>
 ```
 
-所有 CSS 类名使用 `boblog-` 前缀，不会与其他框架冲突。
+所有 CSS 类名使用 `boblog-` 前缀，不会与其他框架冲突。JS 组件挂载在 `window.BoblogUI` 命名空间下。
 
 ## 文档
 
