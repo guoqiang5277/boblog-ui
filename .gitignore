@@ -1,6 +1,7 @@
 # 构建产物
 dist/
 node_modules/
+.scss-tmp/
 
 # 本地构建版本号
 BUILD_LOCAL

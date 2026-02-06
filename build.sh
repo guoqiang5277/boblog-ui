@@ -1,12 +1,15 @@
 #!/bin/bash
 # Bo-Blog UI 构建脚本
 # 按顺序合并所有 CSS 和 JS 源文件到 dist/ 目录
+# 支持 CSS/SCSS 混合编译：src/ 下的 .scss 文件会自动编译为 .css 后参与合并
 
 set -e
 
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 SRC_DIR="$SCRIPT_DIR/src"
 DIST_DIR="$SCRIPT_DIR/dist"
+SASS_BIN="$SCRIPT_DIR/bin/dart-sass/sass"   # Dart Sass 二进制路径
+SCSS_TMP="$SCRIPT_DIR/.scss-tmp"             # SCSS 编译临时目录
 
 # 读取版本号和构建号
 VERSION=$(cat "$SCRIPT_DIR/VERSION" | tr -d '[:space:]')
@@ -107,6 +110,31 @@ CSS_OUTPUT_MIN="$DIST_DIR/boblog-ui.min.css"
 
 echo "Building boblog-ui.css..."
 
+# ==================================================
+# SCSS 编译阶段
+# 扫描 src/ 下所有 .scss 文件，编译为 .css 到临时目录
+# 合并时优先使用编译后的版本，没有 .scss 的文件直接用原 .css
+# ==================================================
+rm -rf "$SCSS_TMP"
+SCSS_COUNT=$(find "$SRC_DIR" -name "*.scss" 2>/dev/null | wc -l | tr -d ' ')
+if [ "$SCSS_COUNT" -gt 0 ]; then
+    if [ ! -x "$SASS_BIN" ]; then
+        echo "ERROR: Dart Sass 未找到: $SASS_BIN"
+        echo "  请确认 bin/dart-sass/ 目录存在且包含 sass 可执行文件"
+        exit 1
+    fi
+    echo "  编译 SCSS 文件 ($SCSS_COUNT 个)..."
+    mkdir -p "$SCSS_TMP"
+    find "$SRC_DIR" -name "*.scss" | while read -r scss_file; do
+        # 计算相对路径，生成对应的 .css 到临时目录
+        rel_path="${scss_file#$SRC_DIR/}"
+        css_path="$SCSS_TMP/${rel_path%.scss}.css"
+        mkdir -p "$(dirname "$css_path")"
+        "$SASS_BIN" --no-source-map "$scss_file" "$css_path"
+        echo "    ✓ $rel_path → css"
+    done
+fi
+
 # 写入 CSS 文件头
 cat > "$CSS_OUTPUT" << EOF
 /**
@@ -118,8 +146,17 @@ cat > "$CSS_OUTPUT" << EOF
 EOF
 
 # 按顺序合并 CSS 文件
+# 如果存在 SCSS 编译版本（.scss-tmp/ 下），优先使用；否则使用原 .css
 for file in "${CSS_FILES[@]}"; do
-    if [ -f "$file" ]; then
+    rel_path="${file#"$SRC_DIR"/}"
+    scss_tmp_file="$SCSS_TMP/$rel_path"
+    if [ -d "$SCSS_TMP" ] && [ -f "$scss_tmp_file" ]; then
+        # 使用 SCSS 编译后的版本
+        echo "" >> "$CSS_OUTPUT"
+        cat "$scss_tmp_file" >> "$CSS_OUTPUT"
+        echo "" >> "$CSS_OUTPUT"
+    elif [ -f "$file" ]; then
+        # 使用原 CSS 文件
         echo "" >> "$CSS_OUTPUT"
         cat "$file" >> "$CSS_OUTPUT"
         echo "" >> "$CSS_OUTPUT"
@@ -221,6 +258,9 @@ fi
 # ==================================================
 echo ""
 "$SCRIPT_DIR/build-docs.sh"
+
+# 清理 SCSS 临时目录
+rm -rf "$SCSS_TMP"
 
 echo ""
 echo "Build complete."
