@@ -42,3 +42,9 @@
    - `boblog-{名称}-{子元素}` — 子元素类（如 `boblog-editor-content`、`boblog-modal-header`）
 
 3. **目录结构** — 详见 [docs/目录结构.md](docs/目录结构.md)
+
+## SCSS 编码规范
+
+1. **颜色、尺寸用 CSS 变量** — 颜色和尺寸值必须使用 CSS 自定义属性（`var(--boblog-xxx)`），不得硬编码
+2. **禁止 SCSS 变量和颜色函数** — 禁止使用 `$variable`、`darken()`、`lighten()` 等 SCSS 变量和颜色函数
+3. **其他 SCSS 特性随意用** — 嵌套、`&` 选择器、`@mixin`、`@include`、`@extend`、循环等均可自由使用
