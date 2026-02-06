@@ -19,7 +19,6 @@
     font-size: var(--boblog-font-size-sm, 12px);
     padding: 3px 0;
     font-weight: normal;
-    line-height: 1.2;
 }
 
 .boblog-date-day {
@@ -77,4 +76,47 @@
     overflow: hidden;
     display: inline-block;
     vertical-align: top;
+}
+
+/**
+ * 文章列表日期卡片
+ * 用于文章列表页面的日期展示，与 articles-list.css 样式一致
+ * 用法：
+ *   <div class="boblog-date-card-article">
+ *       <span class="boblog-date-month">2025-12</span>
+ *       <span class="boblog-date-day">28</span>
+ *   </div>
+ */
+.boblog-date-card-article {
+    width: 49px;
+    height: 52px;
+    text-align: center;
+    display: inline-block;
+    vertical-align: top;
+}
+
+.boblog-date-card-article .boblog-date-month {
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: bold;
+    background: #2E93C9;
+    padding: 3px 2px;
+    border: 1px solid #A4BEDF;
+    border-bottom: none;
+}
+
+.boblog-date-card-article .boblog-date-day {
+    display: block;
+    font-family: Arial, sans-serif;
+    color: #333;
+    font-size: 28px;
+    font-weight: bold;
+    line-height: 42px;
+    background: #EFF6FE;
+    border: 1px solid #A4BEDF;
+    border-top: none;
+    padding: 0;
 }

@@ -301,6 +301,78 @@
         </div>
     </div>
 
+    <!-- ====== 文章列表日期卡片 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="文章列表日期卡片">文章列表日期卡片 (.boblog-date-card-article)</h2>
+
+        <!-- 规范说明 -->
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>容器: <code>.boblog-date-card-article</code>，宽 49px，高 52px</li>
+                <li>上方显示年月（如 2025-12），下方显示日期（如 28）</li>
+                <li>月份字号 10px，日期字号 28px，行高 42px</li>
+                <li>与 articles-list.css 样式一致，适用于文章列表页面</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-doc-demo-row">
+                        <div style="display: flex; gap: 15px; align-items: flex-start;">
+                            <div class="boblog-date-card-article">
+                                <div class="boblog-date-month">2025-12</div>
+                                <div class="boblog-date-day">28</div>
+                            </div>
+                            <div class="boblog-date-card-article">
+                                <div class="boblog-date-month">2026-01</div>
+                                <div class="boblog-date-day">5</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-date-card-article"&gt;
+    &lt;div class="boblog-date-month"&gt;2025-12&lt;/div&gt;
+    &lt;div class="boblog-date-day"&gt;28&lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;文章列表日期卡片示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-date-card-article"&gt;
+    &lt;div class="boblog-date-month"&gt;2025-12&lt;/div&gt;
+    &lt;div class="boblog-date-day"&gt;28&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ====== 使用说明 ====== -->
     <div class="boblog-doc-section">
         <h2 id="使用说明">使用说明</h2>
