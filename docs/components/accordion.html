@@ -169,9 +169,9 @@
         </div>
     </div>
 
-    <!-- 基础用法（竖向） -->
+    <!-- 基础用法 -->
     <div class="boblog-doc-section">
-        <h2 id="基础用法">基础用法（竖向）</h2>
+        <h2 id="基础用法">基础用法</h2>
 
         <div class="boblog-doc-section-3">
             <h3>1. 规范说明</h3>
@@ -279,6 +279,120 @@
             &lt;div class="boblog-accordion-header"&gt;第三节 - 注意事项&lt;/div&gt;
             &lt;div class="boblog-accordion-body"&gt;
                 &lt;p&gt;首项默认展开（加 &lt;code&gt;active&lt;/code&gt; 类），也可以不设默认展开项。&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 竖向模式 -->
+    <div class="boblog-doc-section">
+        <h2 id="竖向模式">竖向模式</h2>
+
+        <div class="boblog-doc-section-3">
+            <h3>1. 规范说明</h3>
+            <ul class="boblog-doc-spec">
+                <li>竖向是手风琴的默认方向，容器只需 <code>.boblog-accordion</code>，无需额外修饰类</li>
+                <li>标题栏全宽水平排列，内容区在标题栏下方展开/折叠</li>
+                <li>各项之间用顶部蓝色分隔线隔开（首项无顶线）</li>
+                <li>箭头指示符: 默认朝右 ▶，展开时旋转朝下 ▼</li>
+            </ul>
+        </div>
+
+        <div class="boblog-doc-section-3">
+            <h3>2. 演示</h3>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <div class="boblog-tabs-panel active">
+                    <!-- 预览：竖向手风琴 -->
+                    <div class="boblog-accordion">
+                        <div class="boblog-accordion-item active">
+                            <div class="boblog-accordion-header">博客设置</div>
+                            <div class="boblog-accordion-body">
+                                <p>在这里配置博客的基本信息，包括标题、描述、关键词等。</p>
+                            </div>
+                        </div>
+                        <div class="boblog-accordion-item">
+                            <div class="boblog-accordion-header">评论管理</div>
+                            <div class="boblog-accordion-body">
+                                <p>管理博客评论，包括审核、删除、黑名单等功能。</p>
+                            </div>
+                        </div>
+                        <div class="boblog-accordion-item">
+                            <div class="boblog-accordion-header">用户权限</div>
+                            <div class="boblog-accordion-body">
+                                <p>设置不同用户角色的访问权限和操作权限。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <!-- 关键源码 -->
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;div class="boblog-accordion"&gt;
+    &lt;div class="boblog-accordion-item active"&gt;
+        &lt;div class="boblog-accordion-header"&gt;博客设置&lt;/div&gt;
+        &lt;div class="boblog-accordion-body"&gt;
+            &lt;p&gt;在这里配置博客的基本信息，包括标题、描述、关键词等。&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-accordion-item"&gt;
+        &lt;div class="boblog-accordion-header"&gt;评论管理&lt;/div&gt;
+        &lt;div class="boblog-accordion-body"&gt;
+            &lt;p&gt;管理博客评论，包括审核、删除、黑名单等功能。&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-accordion-item"&gt;
+        &lt;div class="boblog-accordion-header"&gt;用户权限&lt;/div&gt;
+        &lt;div class="boblog-accordion-body"&gt;
+            &lt;p&gt;设置不同用户角色的访问权限和操作权限。&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <!-- 完整源码 -->
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;竖向手风琴示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="boblog-accordion"&gt;
+        &lt;div class="boblog-accordion-item active"&gt;
+            &lt;div class="boblog-accordion-header"&gt;博客设置&lt;/div&gt;
+            &lt;div class="boblog-accordion-body"&gt;
+                &lt;p&gt;在这里配置博客的基本信息，包括标题、描述、关键词等。&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-accordion-item"&gt;
+            &lt;div class="boblog-accordion-header"&gt;评论管理&lt;/div&gt;
+            &lt;div class="boblog-accordion-body"&gt;
+                &lt;p&gt;管理博客评论，包括审核、删除、黑名单等功能。&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-accordion-item"&gt;
+            &lt;div class="boblog-accordion-header"&gt;用户权限&lt;/div&gt;
+            &lt;div class="boblog-accordion-body"&gt;
+                &lt;p&gt;设置不同用户角色的访问权限和操作权限。&lt;/p&gt;
             &lt;/div&gt;
         &lt;/div&gt;
     &lt;/div&gt;
@@ -413,9 +527,9 @@
         </div>
     </div>
 
-    <!-- 多项内容 -->
+    <!-- 多项内容用法 -->
     <div class="boblog-doc-section">
-        <h2 id="多项内容">多项内容示例</h2>
+        <h2 id="多项内容用法">多项内容用法</h2>
 
         <div class="boblog-doc-section-3">
             <h3>1. 规范说明</h3>
