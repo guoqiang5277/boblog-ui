@@ -7,11 +7,21 @@
     <link rel="stylesheet" href="../../dist/boblog-ui.css">
     <link rel="stylesheet" href="../docs.css">
 </head>
-<body class="doc-white-bg">
-    <div class="page-header">
-        <h1>代码块组件 (Codeblock)</h1>
-        <a href="../index.html" class="back-link">← 返回总纲</a>
+<body class="boblog-doc-white">
+    <!--
+        文档布局：白底铺开模式 (boblog-doc-white)
+        - boblog-doc-white     : 白色页面背景，内容直接铺开
+        - boblog-doc-nav       : 顶部导航（返回链接）
+        - boblog-doc-section   : 章节区块（浅蓝背景面板 + 蓝色边框）
+        - boblog-doc-section-3 : 小节（浅蓝背景面板）
+        - boblog-doc-spec      : 规范说明（白色背景 + 蓝色边框）
+        - boblog-codeblock     : 代码块
+        样式定义：src/layout/doc-layout.css
+    -->
+    <div class="boblog-doc-nav">
+        <a href="../index.html">← 返回总纲</a>
     </div>
+    <h1>代码块组件 (Codeblock)</h1>
 
     <!-- 右侧浮动目录 -->
     <div class="boblog-toc" data-toc-depth="3">
@@ -20,12 +30,12 @@
     </div>
 
     <!-- 基础用法 -->
-    <div class="component-section">
+    <div class="boblog-doc-section">
         <h2 id="基础用法">基础用法</h2>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>1. 规范说明</h3>
-            <ul class="spec-list">
+            <ul class="boblog-doc-spec">
                 <li>容器类名: <code>.boblog-codeblock</code></li>
                 <li>背景色: var(--boblog-white) / #FFFFFF</li>
                 <li>左侧蓝色指示条: 3px solid var(--boblog-blue)</li>
@@ -39,7 +49,7 @@
             </ul>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>2. 演示</h3>
             <div class="boblog-tabs">
                 <div class="boblog-tabs-bar">
@@ -122,19 +132,19 @@
     </div>
 
     <!-- 可选属性 -->
-    <div class="component-section">
+    <div class="boblog-doc-section">
         <h2 id="可选属性">可选属性 (data-*)</h2>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>1. 规范说明</h3>
-            <ul class="spec-list">
+            <ul class="boblog-doc-spec">
                 <li><code>data-no-line-numbers</code> — 禁用行号显示</li>
                 <li><code>data-no-copy</code> — 禁用复制按钮</li>
                 <li><code>data-no-highlight</code> — 禁用语法高亮</li>
             </ul>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>2. 禁用行号</h3>
             <div class="boblog-tabs">
                 <div class="boblog-tabs-bar">
@@ -188,7 +198,7 @@
             </div>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>3. 禁用复制按钮</h3>
             <div class="boblog-tabs">
                 <div class="boblog-tabs-bar">
@@ -242,7 +252,7 @@
             </div>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>4. 禁用语法高亮</h3>
             <div class="boblog-tabs">
                 <div class="boblog-tabs-bar">
@@ -298,12 +308,12 @@
     </div>
 
     <!-- 语法高亮规则 -->
-    <div class="component-section">
+    <div class="boblog-doc-section">
         <h2 id="语法高亮">语法高亮（Prism.js）</h2>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>1. 规范说明</h3>
-            <ul class="spec-list">
+            <ul class="boblog-doc-spec">
                 <li>语法高亮引擎: Prism.js v1.29.0</li>
                 <li>语言指定: 在 <code>&lt;code&gt;</code> 上添加 <code>class="language-xxx"</code></li>
                 <li>支持语言: HTML、CSS、JavaScript、PHP、Python、C#、Java、Go、SQL、Bash、JSON、TypeScript、Ruby、Rust、YAML、Markdown、Docker</li>
@@ -317,7 +327,7 @@
             </ul>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>2. CSS 高亮演示</h3>
             <div class="boblog-codeblock">
                 <pre><code class="language-css">/* Bo-Blog 品牌蓝按钮样式 */
@@ -344,7 +354,7 @@
             </div>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>3. HTML 高亮演示</h3>
             <div class="boblog-codeblock">
                 <pre><code class="language-html">&lt;!DOCTYPE html&gt;
@@ -364,7 +374,7 @@
             </div>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>4. JavaScript 高亮演示</h3>
             <div class="boblog-codeblock">
                 <pre><code class="language-javascript">/**
@@ -390,7 +400,7 @@ function initCodeblock(container) {
             </div>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>5. 支持的语言列表</h3>
             <p>在 <code>&lt;code&gt;</code> 元素上添加对应的 class 即可启用语法高亮，不指定时保持纯文本。</p>
             <table style="border-collapse: collapse; width: 100%; font-size: 12px; margin-top: 10px;">
@@ -508,12 +518,12 @@ function initCodeblock(container) {
     </div>
 
     <!-- 复制按钮 -->
-    <div class="component-section">
+    <div class="boblog-doc-section">
         <h2 id="复制按钮">复制按钮</h2>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>1. 规范说明</h3>
-            <ul class="spec-list">
+            <ul class="boblog-doc-spec">
                 <li>按钮类名: <code>.boblog-copy-btn</code>（由 JS 自动注入）</li>
                 <li>位置: 代码块右上角 (absolute top:8px right:8px)</li>
                 <li>默认状态: 浅蓝背景 + 蓝色边框文字</li>
@@ -525,18 +535,18 @@ function initCodeblock(container) {
     </div>
 
     <!-- JS API -->
-    <div class="component-section">
+    <div class="boblog-doc-section">
         <h2 id="JS-API">JavaScript API</h2>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>1. 自动初始化</h3>
-            <ul class="spec-list">
+            <ul class="boblog-doc-spec">
                 <li>引入 <code>boblog-ui.js</code> 后，DOMContentLoaded 自动扫描 <code>.boblog-codeblock</code></li>
                 <li>无需手动调用任何函数</li>
             </ul>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>2. 手动调用</h3>
             <div class="boblog-codeblock">
                 <pre><code class="language-javascript">// 初始化页面所有代码块
@@ -552,7 +562,7 @@ BoblogUI.codeblock.addCopyButtons();   // 复制按钮</code></pre>
             </div>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>3. 引入方式</h3>
             <div class="boblog-codeblock">
                 <pre><code class="language-html">&lt;!-- 引入 CSS（包含代码块样式 + Prism token 配色） --&gt;
@@ -565,7 +575,7 @@ BoblogUI.codeblock.addCopyButtons();   // 复制按钮</code></pre>
 &lt;script src="src/vendor/prism/prism.min.js"&gt;&lt;/script&gt;
 &lt;script src="src/js/codeblock.js"&gt;&lt;/script&gt;</code></pre>
             </div>
-            <ul class="spec-list">
+            <ul class="boblog-doc-spec">
                 <li><code>boblog-ui.js</code> 已内置 Prism.js v1.29.0（含 17 种语言），无需额外引入</li>
                 <li><code>boblog-ui.css</code> 已包含 Prism token 的 Bo-Blog 配色映射</li>
             </ul>

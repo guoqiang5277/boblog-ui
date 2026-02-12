@@ -7,15 +7,27 @@
     <link rel="stylesheet" href="../../dist/boblog-ui.css">
     <link rel="stylesheet" href="../docs.css">
 </head>
-<body class="doc-gray-bg">
+<body class="boblog-doc-gray">
+    <!--
+        文档布局：灰底白框模式 (boblog-doc-gray)
+        - boblog-doc-gray      : 灰色页面背景
+        - boblog-doc-container : 白色内容框体
+        - boblog-doc-nav       : 顶部导航
+        - boblog-doc-section   : 章节区块
+        - boblog-doc-section-3 : 小节（浅蓝背景面板）
+        - boblog-doc-spec      : 规范说明（浅蓝背景 + 左侧蓝竖线）
+        - boblog-doc-demo      : 演示区域
+        - boblog-codeblock     : 代码块
+        样式定义：src/layout/doc-layout.css
+    -->
     <!-- 右侧浮动目录 -->
     <div class="boblog-toc">
         <h4>目录</h4>
         <ul id="tocList"></ul>
     </div>
 
-    <div class="doc-container">
-        <div class="doc-nav">
+    <div class="boblog-doc-container">
+        <div class="boblog-doc-nav">
             <a href="../index.html">← 返回总纲</a>
         </div>
 
@@ -37,7 +49,7 @@
         <div class="boblog-doc-section">
             <h2 id="字号体系">字号体系</h2>
 
-            <div class="section-part">
+            <div class="boblog-doc-section-3">
                 <h3>1. 规范说明</h3>
                 <ul class="boblog-doc-spec">
                     <li><strong>8 级字号体系</strong>: 覆盖从极小字到巨大字的全部场景</li>
@@ -52,7 +64,7 @@
                 </ul>
             </div>
 
-            <div class="section-part">
+            <div class="boblog-doc-section-3">
                 <h3>2. 演示</h3>
                 <div class="boblog-tabs">
                     <div class="boblog-tabs-bar">
@@ -251,7 +263,7 @@
         <div class="boblog-doc-section">
             <h2 id="标题排版">标题排版</h2>
 
-            <div class="section-part">
+            <div class="boblog-doc-section-3">
                 <h3>1. 规范说明</h3>
                 <ul class="boblog-doc-spec">
                     <li><strong>H1-H3</strong>: 使用品牌蓝色 <code>--boblog-blue</code></li>
@@ -266,7 +278,7 @@
                 </ul>
             </div>
 
-            <div class="section-part">
+            <div class="boblog-doc-section-3">
                 <h3>2. 演示</h3>
                 <div class="boblog-tabs">
                     <div class="boblog-tabs-bar">
@@ -326,7 +338,7 @@
         <div class="boblog-doc-section">
             <h2 id="段落排版">段落排版</h2>
 
-            <div class="section-part">
+            <div class="boblog-doc-section-3">
                 <h3>1. 规范说明</h3>
                 <ul class="boblog-doc-spec">
                     <li><strong>字号</strong>: 12px (基础字号)</li>
@@ -336,7 +348,7 @@
                 </ul>
             </div>
 
-            <div class="section-part">
+            <div class="boblog-doc-section-3">
                 <h3>2. 演示</h3>
                 <div class="boblog-tabs">
                     <div class="boblog-tabs-bar">
@@ -387,7 +399,7 @@
         <div class="boblog-doc-section">
             <h2 id="链接样式">链接样式</h2>
 
-            <div class="section-part">
+            <div class="boblog-doc-section-3">
                 <h3>1. 规范说明</h3>
                 <ul class="boblog-doc-spec">
                     <li><strong>默认状态</strong>: #333333，无下划线</li>
@@ -396,7 +408,7 @@
                 </ul>
             </div>
 
-            <div class="section-part">
+            <div class="boblog-doc-section-3">
                 <h3>2. 演示</h3>
                 <div class="boblog-tabs">
                     <div class="boblog-tabs-bar">
@@ -444,7 +456,7 @@
         <div class="boblog-doc-section">
             <h2 id="代码排版">代码排版</h2>
 
-            <div class="section-part">
+            <div class="boblog-doc-section-3">
                 <h3>1. 规范说明</h3>
                 <ul class="boblog-doc-spec">
                     <li><strong>行内代码</strong>: 使用 <code>&lt;code&gt;</code> 标签</li>
@@ -454,7 +466,7 @@
                 </ul>
             </div>
 
-            <div class="section-part">
+            <div class="boblog-doc-section-3">
                 <h3>2. 演示</h3>
                 <div class="boblog-tabs">
                     <div class="boblog-tabs-bar">
@@ -511,7 +523,7 @@ function hello() {
         <div class="boblog-doc-section">
             <h2 id="引用块">引用块</h2>
 
-            <div class="section-part">
+            <div class="boblog-doc-section-3">
                 <h3>1. 规范说明</h3>
                 <ul class="boblog-doc-spec">
                     <li><strong>左侧边框</strong>: 蓝色边框</li>
@@ -520,7 +532,7 @@ function hello() {
                 </ul>
             </div>
 
-            <div class="section-part">
+            <div class="boblog-doc-section-3">
                 <h3>2. 演示</h3>
                 <div class="boblog-tabs">
                     <div class="boblog-tabs-bar">
@@ -571,7 +583,7 @@ function hello() {
         <div class="boblog-doc-section">
             <h2 id="列表排版">列表排版</h2>
 
-            <div class="section-part">
+            <div class="boblog-doc-section-3">
                 <h3>1. 规范说明</h3>
                 <ul class="boblog-doc-spec">
                     <li><strong>无序列表</strong>: 使用 <code>&lt;ul&gt;</code> 标签</li>
@@ -580,7 +592,7 @@ function hello() {
                 </ul>
             </div>
 
-            <div class="section-part">
+            <div class="boblog-doc-section-3">
                 <h3>2. 演示</h3>
                 <div class="boblog-tabs">
                     <div class="boblog-tabs-bar">
@@ -661,7 +673,7 @@ function hello() {
         <div class="boblog-doc-section">
             <h2 id="文字工具类-字号">文字工具类 - 字号</h2>
 
-            <div class="section-part">
+            <div class="boblog-doc-section-3">
                 <h3>1. 规范说明</h3>
                 <ul class="boblog-doc-spec">
                     <li><strong>.boblog-text-xs</strong>: 极小字号 (11px)</li>
@@ -674,7 +686,7 @@ function hello() {
                 </ul>
             </div>
 
-            <div class="section-part">
+            <div class="boblog-doc-section-3">
                 <h3>2. 演示</h3>
                 <div class="boblog-tabs">
                     <div class="boblog-tabs-bar">
@@ -830,7 +842,7 @@ function hello() {
         <div class="boblog-doc-section">
             <h2 id="文字工具类-颜色">文字工具类 - 颜色</h2>
 
-            <div class="section-part">
+            <div class="boblog-doc-section-3">
                 <h3>1. 规范说明</h3>
                 <ul class="boblog-doc-spec">
                     <li><strong>.boblog-text-primary</strong>: 品牌蓝色文字</li>
@@ -843,7 +855,7 @@ function hello() {
                 </ul>
             </div>
 
-            <div class="section-part">
+            <div class="boblog-doc-section-3">
                 <h3>2. 演示</h3>
                 <div class="boblog-tabs">
                     <div class="boblog-tabs-bar">
@@ -999,7 +1011,7 @@ function hello() {
         <div class="boblog-doc-section">
             <h2 id="文字工具类-对齐">文字工具类 - 对齐</h2>
 
-            <div class="section-part">
+            <div class="boblog-doc-section-3">
                 <h3>1. 规范说明</h3>
                 <table class="boblog-table">
                     <thead>
@@ -1040,7 +1052,7 @@ function hello() {
                 </table>
             </div>
 
-            <div class="section-part">
+            <div class="boblog-doc-section-3">
                 <h3>2. 水平对齐</h3>
                 <div class="boblog-tabs">
                     <div class="boblog-tabs-bar">
@@ -1086,7 +1098,7 @@ function hello() {
                 </div>
             </div>
 
-            <div class="section-part">
+            <div class="boblog-doc-section-3">
                 <h3>3. 垂直对齐</h3>
                 <div class="boblog-tabs">
                     <div class="boblog-tabs-bar">

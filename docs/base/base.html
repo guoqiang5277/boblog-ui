@@ -7,24 +7,35 @@
     <link rel="stylesheet" href="../../dist/boblog-ui.css">
     <link rel="stylesheet" href="../docs.css">
 </head>
-<body class="doc-gray-bg">
-    <div class="doc-container">
-        <div class="doc-nav">
+<body class="boblog-doc-gray">
+    <!--
+        文档布局：灰底白框模式 (boblog-doc-gray)
+        - boblog-doc-gray      : 灰色页面背景
+        - boblog-doc-container : 白色内容框体（灰底下自带边框和内边距）
+        - boblog-doc-nav       : 顶部导航（返回链接）
+        - boblog-doc-section   : 章节区块
+        - boblog-doc-spec      : 规范说明（浅蓝背景 + 左侧蓝竖线）
+        - boblog-doc-demo      : 演示区域（白色背景 + 蓝色边框）
+        - boblog-codeblock     : 代码块（白底 + 左侧蓝色指示条）
+        样式定义：src/layout/doc-layout.css
+    -->
+    <div class="boblog-doc-container">
+        <div class="boblog-doc-nav">
             <a href="../index.html">← 返回总纲</a>
         </div>
 
         <h1>基础设计规范</h1>
 
         <!-- 色彩体系 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2>色彩体系</h2>
 
-            <div class="doc-spec">
+            <div class="boblog-doc-spec">
                 <h3>规范说明</h3>
                 <p>Bo-Blog 经典的蓝白配色方案，清爽简洁的视觉风格。</p>
             </div>
 
-            <div class="doc-demo">
+            <div class="boblog-doc-demo">
                 <h3>主题色</h3>
                 <div class="color-grid">
                     <div class="color-item">
@@ -153,7 +164,7 @@
                 </div>
             </div>
 
-            <div class="doc-code">
+            <div class="boblog-codeblock">
                 <h3>CSS 变量</h3>
                 <pre><code>/* 主题色 */
 --boblog-primary: #0D80BD;
@@ -183,10 +194,10 @@
         </div>
 
         <!-- 字体体系 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2>字体体系</h2>
 
-            <div class="doc-spec">
+            <div class="boblog-doc-spec">
                 <h3>规范说明</h3>
                 <p>经典的 Tahoma、Arial 字体族，12px 基础字号，150% 行高。</p>
                 <ul>
@@ -196,7 +207,7 @@
                 </ul>
             </div>
 
-            <div class="doc-demo">
+            <div class="boblog-doc-demo">
                 <h3>字号展示</h3>
                 <div class="font-demo" style="font-size: 10px;">
                     <strong>xs (10px)</strong> - 这是超小字号文本，用于辅助说明
@@ -224,7 +235,7 @@
                 </div>
             </div>
 
-            <div class="doc-code">
+            <div class="boblog-codeblock">
                 <h3>CSS 变量</h3>
                 <pre><code>/* 字体族 */
 --boblog-font-family: Tahoma, Arial, "Microsoft YaHei", sans-serif;
@@ -245,10 +256,10 @@
         </div>
 
         <!-- 间距体系 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2>间距体系</h2>
 
-            <div class="doc-spec">
+            <div class="boblog-doc-spec">
                 <h3>规范说明</h3>
                 <p>统一的间距规范，基于 4px 基础单位。</p>
                 <ul>
@@ -261,7 +272,7 @@
                 </ul>
             </div>
 
-            <div class="doc-demo">
+            <div class="boblog-doc-demo">
                 <h3>间距展示</h3>
                 <div style="margin-bottom: 10px;">
                     <span class="spacing-demo" style="padding: 4px;">xs (4px)</span>
@@ -283,7 +294,7 @@
                 </div>
             </div>
 
-            <div class="doc-code">
+            <div class="boblog-codeblock">
                 <h3>CSS 变量</h3>
                 <pre><code>/* 间距 */
 --boblog-spacing-xs: 4px;
@@ -296,15 +307,15 @@
         </div>
 
         <!-- 排版示例 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2>排版示例</h2>
 
-            <div class="doc-spec">
+            <div class="boblog-doc-spec">
                 <h3>规范说明</h3>
                 <p>标题、段落、链接、代码等基础排版元素的默认样式。</p>
             </div>
 
-            <div class="doc-demo">
+            <div class="boblog-doc-demo">
                 <div class="typography-demo">
                     <h1>一级标题 H1 (24px)</h1>
                     <h2>二级标题 H2 (20px)</h2>
@@ -342,7 +353,7 @@ function hello() {
                 </div>
             </div>
 
-            <div class="doc-code">
+            <div class="boblog-codeblock">
                 <h3>源码展示</h3>
                 <pre><code>&lt;h1&gt;一级标题 H1&lt;/h1&gt;
 &lt;h2&gt;二级标题 H2&lt;/h2&gt;

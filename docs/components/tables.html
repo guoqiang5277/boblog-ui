@@ -8,6 +8,17 @@
     <link rel="stylesheet" href="../docs.css">
 </head>
 <body class="boblog-doc-white">
+<!--
+    文档布局：白底铺开模式 (boblog-doc-white)
+    - boblog-doc-white     : 白色页面背景，内容直接铺开
+    - boblog-doc-container : 内容容器
+    - boblog-doc-nav       : 顶部导航
+    - boblog-doc-section   : 章节区块（浅蓝背景面板 + 蓝色边框）
+    - boblog-doc-section-3 : 小节（浅蓝背景面板）
+    - boblog-doc-spec      : 规范说明（白色背景 + 蓝色边框）
+    - boblog-doc-demo      : 演示区域
+    样式定义：src/layout/doc-layout.css
+-->
 <!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
 <div class="boblog-toc">
     <h4>目录</h4>
@@ -1465,9 +1476,9 @@
     <div class="boblog-doc-section">
         <h2 id="JS-API">JavaScript API</h2>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>1. 自动初始化</h3>
-            <ul class="spec-list">
+            <ul class="boblog-doc-spec">
                 <li>引入 <code>boblog-ui.js</code> 后，DOMContentLoaded 自动扫描：</li>
                 <li><strong>排序</strong>：所有 <code>.boblog-th-sortable</code> 表头，绑定点击排序事件</li>
                 <li><strong>分页</strong>：所有带 <code>data-page-size</code> 的表格，自动生成分页导航</li>
@@ -1475,7 +1486,7 @@
             </ul>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>2. 手动调用</h3>
             <div class="boblog-codeblock">
                 <pre><code class="language-javascript">// 初始化页面所有可排序/分页表格
@@ -1486,7 +1497,7 @@ BoblogUI.table.init(document.getElementById('myContainer'));</code></pre>
             </div>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>3. 引入方式</h3>
             <div class="boblog-codeblock">
                 <pre><code class="language-html">&lt;!-- 引入 CSS（包含表格 + 分页样式） --&gt;

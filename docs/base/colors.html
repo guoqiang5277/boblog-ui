@@ -7,26 +7,37 @@
     <link rel="stylesheet" href="../../dist/boblog-ui.css">
     <link rel="stylesheet" href="../docs.css">
 </head>
-<body class="doc-gray-bg">
+<body class="boblog-doc-gray">
+    <!--
+        文档布局：灰底白框模式 (boblog-doc-gray)
+        - boblog-doc-gray      : 灰色页面背景
+        - boblog-doc-container : 白色内容框体
+        - boblog-doc-nav       : 顶部导航
+        - boblog-doc-section   : 章节区块
+        - boblog-doc-spec      : 规范说明（浅蓝背景 + 左侧蓝竖线）
+        - boblog-doc-demo      : 演示区域
+        - boblog-codeblock     : 代码块
+        样式定义：src/layout/doc-layout.css
+    -->
     <!-- 右侧浮动目录 -->
     <div class="boblog-toc">
         <h4>目录</h4>
         <ul id="tocList"></ul>
     </div>
 
-    <div class="doc-container">
-        <div class="doc-nav">
+    <div class="boblog-doc-container">
+        <div class="boblog-doc-nav">
             <a href="../index.html">← 返回总纲</a>
         </div>
 
         <h1>色彩体系</h1>
 
         <!-- 设计原则 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2 id="section-principle">设计原则</h2>
-            <div class="doc-spec">
+            <div class="boblog-doc-spec">
                 <p>Bo-Blog 经典蓝白配色，2000 年代博客风格——清爽、直接、不花哨。</p>
-                <ul class="spec-list">
+                <ul class="boblog-doc-spec">
                     <li>色彩少而精，不做过度分级</li>
                     <li>品牌蓝沉稳可读，不追求高饱和</li>
                     <li>功能色偏暗一档，白底上对比度充足</li>
@@ -36,9 +47,9 @@
         </div>
 
         <!-- 基础色 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2 id="section-base">基础色</h2>
-            <div class="doc-demo">
+            <div class="boblog-doc-demo">
                 <div class="color-grid">
                     <div class="color-item">
                         <div class="color-swatch" style="background: #FFFFFF; border: 1px solid #C4D7E8;"></div>
@@ -61,12 +72,12 @@
         </div>
 
         <!-- 品牌蓝 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2 id="section-blue">品牌蓝（3 级）</h2>
-            <div class="doc-spec">
+            <div class="boblog-doc-spec">
                 <p>Bo-Blog 标志性配色的核心。深→中→浅三级阶梯，覆盖品牌色所有场景。</p>
             </div>
-            <div class="doc-demo">
+            <div class="boblog-doc-demo">
                 <div class="color-grid">
                     <div class="color-item">
                         <div class="color-swatch" style="background: #0D6EAA;"></div>
@@ -97,12 +108,12 @@
         </div>
 
         <!-- 边框色 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2 id="section-border">边框色（2 级）</h2>
-            <div class="doc-spec">
+            <div class="boblog-doc-spec">
                 <p>偏灰的蓝调，安静但保持蓝白主题感。边框不抢内容视觉。</p>
             </div>
-            <div class="doc-demo">
+            <div class="boblog-doc-demo">
                 <div class="color-grid">
                     <div class="color-item">
                         <div class="color-swatch" style="background: #C4D7E8;"></div>
@@ -125,12 +136,12 @@
         </div>
 
         <!-- 背景色 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2 id="section-bg">背景色（3 级）</h2>
-            <div class="doc-spec">
+            <div class="boblog-doc-spec">
                 <p>明确的三级阶梯，白→微灰→浅蓝灰，每级视觉可区分。</p>
             </div>
-            <div class="doc-demo">
+            <div class="boblog-doc-demo">
                 <div class="color-grid">
                     <div class="color-item">
                         <div class="color-swatch" style="background: #FFFFFF; border: 1px solid #C4D7E8;"></div>
@@ -161,12 +172,12 @@
         </div>
 
         <!-- 文字色 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2 id="section-text">文字色（4 级）</h2>
-            <div class="doc-spec">
+            <div class="boblog-doc-spec">
                 <p>四级阶梯，间距拉开，每级用途明确。</p>
             </div>
-            <div class="doc-demo">
+            <div class="boblog-doc-demo">
                 <div class="color-grid">
                     <div class="color-item">
                         <div class="color-swatch" style="background: #1A1A1A;"></div>
@@ -205,12 +216,12 @@
         </div>
 
         <!-- 基础色板 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2 id="section-palette">基础色板（6 色）</h2>
-            <div class="doc-spec">
+            <div class="boblog-doc-spec">
                 <p>沉稳不鲜艳，符合 2000 年代博客气质。按需取用，覆盖常见场景。</p>
             </div>
-            <div class="doc-demo">
+            <div class="boblog-doc-demo">
                 <div class="color-grid">
                     <div class="color-item">
                         <div class="color-swatch" style="background: #CC3333;"></div>
@@ -265,12 +276,12 @@
         </div>
 
         <!-- 功能色 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2 id="section-functional">功能色（4 组）</h2>
-            <div class="doc-spec">
+            <div class="boblog-doc-spec">
                 <p>语义化状态色。每组包含正色（文字/图标）和浅底色（消息条背景）。正色复用基础色板。</p>
             </div>
-            <div class="doc-demo">
+            <div class="boblog-doc-demo">
                 <div class="color-grid">
                     <div class="color-item">
                         <div class="color-swatch" style="background: #3C8C30;"></div>
@@ -333,9 +344,9 @@
         </div>
 
         <!-- 控件状态 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2 id="section-disabled">控件状态</h2>
-            <div class="doc-demo">
+            <div class="boblog-doc-demo">
                 <div class="color-grid">
                     <div class="color-item">
                         <div class="color-swatch" style="background: #F5F5F5;"></div>
@@ -356,7 +367,7 @@
         </div>
 
         <!-- 完整变量汇总 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2 id="section-all">完整 CSS 变量</h2>
             <div class="boblog-codeblock">
                 <pre><code class="language-css">:root {

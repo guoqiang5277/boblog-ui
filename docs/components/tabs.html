@@ -7,11 +7,21 @@
     <link rel="stylesheet" href="../../dist/boblog-ui.css">
     <link rel="stylesheet" href="../docs.css">
 </head>
-<body class="doc-white-bg">
-    <div class="page-header">
-        <h1>Tab 切换面板 (Tabs)</h1>
-        <a href="../index.html" class="back-link">← 返回总纲</a>
+<body class="boblog-doc-white">
+    <!--
+        文档布局：白底铺开模式 (boblog-doc-white)
+        - boblog-doc-white     : 白色页面背景，内容直接铺开
+        - boblog-doc-nav       : 顶部导航（返回链接）
+        - boblog-doc-section   : 章节区块（浅蓝背景面板 + 蓝色边框）
+        - boblog-doc-section-3 : 小节（浅蓝背景面板）
+        - boblog-doc-spec      : 规范说明（白色背景 + 蓝色边框）
+        - boblog-codeblock     : 代码块
+        样式定义：src/layout/doc-layout.css
+    -->
+    <div class="boblog-doc-nav">
+        <a href="../index.html">← 返回总纲</a>
     </div>
+    <h1>Tab 切换面板 (Tabs)</h1>
 
     <!-- 右侧浮动目录 -->
     <div class="boblog-toc">
@@ -20,12 +30,12 @@
     </div>
 
     <!-- 基础用法 -->
-    <div class="component-section">
+    <div class="boblog-doc-section">
         <h2 id="基础用法">基础用法</h2>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>1. 规范说明</h3>
-            <ul class="spec-list">
+            <ul class="boblog-doc-spec">
                 <li>容器类名: <code>.boblog-tabs</code></li>
                 <li>按钮栏: <code>.boblog-tabs-bar</code>（水平排列）</li>
                 <li>按钮: <code>.boblog-tabs-btn</code>（加 <code>.active</code> 为激活状态）</li>
@@ -39,7 +49,7 @@
             </ul>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>2. 演示</h3>
             <div class="boblog-tabs">
                 <div class="boblog-tabs-bar">
@@ -137,19 +147,19 @@
     </div>
 
     <!-- 两个 Tab 示例 -->
-    <div class="component-section">
+    <div class="boblog-doc-section">
         <h2 id="两个Tab">两个 Tab 示例</h2>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>1. 规范说明</h3>
-            <ul class="spec-list">
+            <ul class="boblog-doc-spec">
                 <li>最常见的用法：预览 + 源码 切换</li>
                 <li>左侧 Tab 默认激活，显示预览效果</li>
                 <li>右侧 Tab 显示完整 HTML 源码</li>
             </ul>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>2. 演示</h3>
             <div class="boblog-tabs">
                 <div class="boblog-tabs-bar">
@@ -189,18 +199,18 @@
     </div>
 
     <!-- 样式状态 -->
-    <div class="component-section">
+    <div class="boblog-doc-section">
         <h2 id="样式状态">样式状态</h2>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>1. 按钮状态</h3>
-            <ul class="spec-list">
+            <ul class="boblog-doc-spec">
                 <li>默认: 浅蓝背景 var(--boblog-blue-wash) + 蓝框 var(--boblog-border-blue) + 黑色文字</li>
                 <li>悬停/激活: 白底 + 白色底边遮盖底线 + 蓝色文字 var(--boblog-blue-accent)</li>
             </ul>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>2. CSS 样式</h3>
             <div class="boblog-tabs">
                 <div class="boblog-tabs-bar">
@@ -299,19 +309,19 @@
     </div>
 
     <!-- 自定义宽度 -->
-    <div class="component-section">
+    <div class="boblog-doc-section">
         <h2 id="自定义宽度">自定义宽度</h2>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>1. 规范说明</h3>
-            <ul class="spec-list">
+            <ul class="boblog-doc-spec">
                 <li><code>.boblog-tabs</code> 默认宽度 100%（撑满父容器）</li>
                 <li>通过 <code>style="width: ..."</code> 或自定义 class 可指定任意宽度</li>
                 <li>面板和按钮栏会自动跟随容器宽度</li>
             </ul>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>2. 演示</h3>
             <div class="boblog-tabs">
                 <div class="boblog-tabs-bar">
@@ -473,19 +483,19 @@
     </div>
 
     <!-- JS API -->
-    <div class="component-section">
+    <div class="boblog-doc-section">
         <h2 id="JS-API">JavaScript API</h2>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>1. 自动初始化</h3>
-            <ul class="spec-list">
+            <ul class="boblog-doc-spec">
                 <li>引入 <code>boblog-ui.js</code> 后，DOMContentLoaded 自动扫描 <code>.boblog-tabs</code></li>
                 <li>无需手动调用任何函数</li>
                 <li>已初始化的容器不会重复绑定（通过 data-boblog-tabs-init 标记）</li>
             </ul>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>2. 手动调用</h3>
             <div class="boblog-codeblock">
                 <pre><code class="language-javascript">// 初始化页面所有 Tab
@@ -496,7 +506,7 @@ BoblogUI.tabs.init(document.getElementById('myContainer'));</code></pre>
             </div>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>3. 引入方式</h3>
             <div class="boblog-codeblock">
                 <pre><code class="language-html">&lt;!-- 引入 CSS（包含 Tab 样式） --&gt;

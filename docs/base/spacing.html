@@ -7,26 +7,37 @@
     <link rel="stylesheet" href="../../dist/boblog-ui.css">
     <link rel="stylesheet" href="../docs.css">
 </head>
-<body class="doc-gray-bg">
+<body class="boblog-doc-gray">
+    <!--
+        文档布局：灰底白框模式 (boblog-doc-gray)
+        - boblog-doc-gray      : 灰色页面背景
+        - boblog-doc-container : 白色内容框体
+        - boblog-doc-nav       : 顶部导航
+        - boblog-doc-section   : 章节区块
+        - boblog-doc-spec      : 规范说明（浅蓝背景 + 左侧蓝竖线）
+        - boblog-codeblock     : 代码块
+        样式定义：src/layout/doc-layout.css
+        注：doc-demo-* 系列辅助类（doc-demo-box, doc-demo-wrap 等）为文档专用，定义在 docs/docs.css
+    -->
     <!-- 右侧浮动目录 -->
     <div class="boblog-toc">
         <h4>目录</h4>
         <ul id="tocList"></ul>
     </div>
 
-    <div class="doc-container">
-        <div class="doc-nav">
+    <div class="boblog-doc-container">
+        <div class="boblog-doc-nav">
             <a href="../index.html">← 返回总纲</a>
         </div>
 
         <h1>间距/尺寸</h1>
 
         <!-- 概述 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2 id="section-overview">概述</h2>
-            <div class="doc-spec">
+            <div class="boblog-doc-spec">
                 <p>Bo-Blog UI 使用基于 5px 递增的间距体系，简洁统一。</p>
-                <ul class="spec-list">
+                <ul class="boblog-doc-spec">
                     <li>基础单位：5px</li>
                     <li>间距级别：6 级（xs, sm, md, lg, xl, 2xl）</li>
                     <li>边框：1px 标准宽度，无圆角（方角设计）</li>
@@ -35,9 +46,9 @@
         </div>
 
         <!-- 间距体系 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2 id="section-spacing">间距体系</h2>
-            <div class="doc-spec">
+            <div class="boblog-doc-spec">
                 <p>基于 5px 递增的间距系统：</p>
                 <table class="boblog-table">
                     <thead>
@@ -91,7 +102,7 @@
         </div>
 
         <!-- 内边距展示 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2 id="section-padding">内边距 (Padding) 展示</h2>
             <div class="boblog-tabs">
                 <div class="boblog-tabs-bar">
@@ -143,7 +154,7 @@
         </div>
 
         <!-- 外边距展示 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2 id="section-margin">外边距 (Margin) 展示</h2>
             <div class="boblog-tabs">
                 <div class="boblog-tabs-bar">
@@ -228,9 +239,9 @@
         </div>
 
         <!-- 边框 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2 id="section-border">边框</h2>
-            <div class="doc-spec">
+            <div class="boblog-doc-spec">
                 <p>Bo-Blog 经典风格采用方角设计（无圆角）：</p>
                 <table class="boblog-table">
                     <thead>
@@ -262,9 +273,9 @@
         </div>
 
         <!-- 阴影 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2 id="section-shadow">阴影</h2>
-            <div class="doc-spec">
+            <div class="boblog-doc-spec">
                 <p>Bo-Blog 经典风格基本不用阴影，保留极轻微选项：</p>
                 <table class="boblog-table">
                     <thead>
@@ -340,9 +351,9 @@
         </div>
 
         <!-- Bo-Blog 特定尺寸 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2 id="section-specific">Bo-Blog 特定尺寸</h2>
-            <div class="doc-spec">
+            <div class="boblog-doc-spec">
                 <p>Bo-Blog 专用组件的固定尺寸：</p>
                 <table class="boblog-table">
                     <thead>
@@ -379,10 +390,10 @@
         </div>
 
         <!-- 使用建议 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2 id="section-usage">使用建议</h2>
-            <div class="doc-spec">
-                <ul class="spec-list">
+            <div class="boblog-doc-spec">
+                <ul class="boblog-doc-spec">
                     <li><strong>组件内部小间距</strong>：使用 xs (5px) 或 sm (10px)</li>
                     <li><strong>组件内部标准间距</strong>：使用 md (15px)</li>
                     <li><strong>组件之间间距</strong>：使用 lg (20px)</li>
@@ -393,9 +404,9 @@
         </div>
 
         <!-- 间距工具类 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2 id="section-utilities">间距工具类</h2>
-            <div class="doc-spec">
+            <div class="boblog-doc-spec">
                 <p>提供快捷的 CSS 类名，无需写内联样式。数字后缀 × 5px。</p>
 
                 <h4>命名规则</h4>
@@ -630,7 +641,7 @@
         </div>
 
         <!-- 实际应用示例 -->
-        <div class="doc-section">
+        <div class="boblog-doc-section">
             <h2 id="section-example">实际应用示例</h2>
             <div class="boblog-tabs">
                 <div class="boblog-tabs-bar">

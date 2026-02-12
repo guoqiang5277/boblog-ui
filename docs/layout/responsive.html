@@ -36,6 +36,18 @@
     </style>
 </head>
 <body class="boblog-doc-gray">
+<!--
+    文档布局：灰底白框模式 (boblog-doc-gray)
+    - boblog-doc-gray      : 灰色页面背景
+    - boblog-doc-container : 白色内容框体
+    - boblog-doc-nav       : 顶部导航
+    - boblog-doc-section   : 章节区块
+    - boblog-doc-section-3 : 小节（浅蓝背景面板）
+    - boblog-doc-spec      : 规范说明（浅蓝背景 + 左侧蓝竖线）
+    - boblog-doc-demo      : 演示区域
+    - boblog-doc-demo-row  : 演示行（多行排列）
+    样式定义：src/layout/doc-layout.css
+-->
 <!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
 <div class="boblog-toc" data-toc-depth="3">
     <h4>目录</h4>
@@ -78,30 +90,30 @@
                 <div class="boblog-doc-demo">
                     <p style="font-size:12px; color:#999; margin-bottom:8px;">
                         缩放浏览器窗口查看效果（窗口缩小时逐行消失）：</p>
-                    <div class="demo-row">
+                    <div class="boblog-doc-demo-row">
                         <div class="demo-box boblog-hide-xl">boblog-hide-xl — 窗口 &lt; 1200px 时隐藏</div>
                     </div>
-                    <div class="demo-row">
+                    <div class="boblog-doc-demo-row">
                         <div class="demo-box boblog-hide-lg">boblog-hide-lg — 窗口 &lt; 992px 时隐藏</div>
                     </div>
-                    <div class="demo-row">
+                    <div class="boblog-doc-demo-row">
                         <div class="demo-box boblog-hide-md">boblog-hide-md — 窗口 &lt; 768px 时隐藏</div>
                     </div>
-                    <div class="demo-row">
+                    <div class="boblog-doc-demo-row">
                         <div class="demo-box boblog-hide-sm">boblog-hide-sm — 窗口 &lt; 576px 时隐藏</div>
                     </div>
                     <p style="font-size:12px; color:#999; margin:12px 0 8px;">
                         默认隐藏，窗口小于断点时显示（缩小窗口逐行出现）：</p>
-                    <div class="demo-row">
+                    <div class="boblog-doc-demo-row">
                         <div class="demo-box boblog-show-xl">boblog-show-xl — 窗口 &lt; 1200px 时显示</div>
                     </div>
-                    <div class="demo-row">
+                    <div class="boblog-doc-demo-row">
                         <div class="demo-box boblog-show-lg">boblog-show-lg — 窗口 &lt; 992px 时显示</div>
                     </div>
-                    <div class="demo-row">
+                    <div class="boblog-doc-demo-row">
                         <div class="demo-box boblog-show-md">boblog-show-md — 窗口 &lt; 768px 时显示</div>
                     </div>
-                    <div class="demo-row">
+                    <div class="boblog-doc-demo-row">
                         <div class="demo-box boblog-show-sm">boblog-show-sm — 窗口 &lt; 576px 时显示</div>
                     </div>
                     <p style="font-size:11px; color:#aaa; margin-top:10px;">断点参考：sm=576px / md=768px / lg=992px /
@@ -177,7 +189,7 @@
             <!-- 预览面板 -->
             <div class="boblog-tabs-panel active">
                 <div class="boblog-doc-demo">
-                    <div class="demo-row">
+                    <div class="boblog-doc-demo-row">
                         <div class="boblog-mb-xs" style="background: #e8f4fd; padding: 4px 8px; font-size: 12px;">
                             boblog-mb-xs（底部 5px）
                         </div>
@@ -879,7 +891,7 @@
                 </div>
             </div>
             <!-- 演示 - 子项 -->
-            <div class="section-part">
+            <div class="boblog-doc-section-3">
                 <h3>演示 - 子项</h3>
                 <p style="color:#666; margin-bottom:12px;">子项工具类用于控制 Flex 容器内<strong>单个子元素</strong>的伸缩行为。<code>flex-1</code>
                     会让子项自动占据剩余空间并平均分配，<code>flex-grow</code>
@@ -1088,13 +1100,13 @@
             <!-- 预览面板 -->
             <div class="boblog-tabs-panel active">
                 <div class="boblog-doc-demo">
-                    <div class="demo-row">
+                    <div class="boblog-doc-demo-row">
                         <div class="demo-box boblog-text-left">boblog-text-left</div>
                     </div>
-                    <div class="demo-row">
+                    <div class="boblog-doc-demo-row">
                         <div class="demo-box boblog-text-center">boblog-text-center</div>
                     </div>
-                    <div class="demo-row">
+                    <div class="boblog-doc-demo-row">
                         <div class="demo-box boblog-text-right">boblog-text-right</div>
                     </div>
                 </div>

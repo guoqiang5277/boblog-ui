@@ -7,27 +7,38 @@
     <link rel="stylesheet" href="../../dist/boblog-ui.css">
     <link rel="stylesheet" href="../docs.css">
 </head>
-<body class="doc-white-bg">
+<body class="boblog-doc-white">
+<!--
+    文档布局：白底铺开模式 (boblog-doc-white)
+    - boblog-doc-white     : 白色页面背景，内容直接铺开
+    - boblog-doc-container : 内容容器（白底下透明无边框）
+    - boblog-doc-nav       : 顶部导航（返回链接）
+    - boblog-doc-section   : 章节区块（浅蓝背景面板 + 蓝色边框）
+    - boblog-doc-section-3 : 小节（浅蓝背景面板）
+    - boblog-doc-spec      : 规范说明（白色背景 + 蓝色边框）
+    - boblog-codeblock     : 代码块
+    样式定义：src/layout/doc-layout.css
+-->
 <!-- 本页的浮动目录（即组件自身的演示） -->
 <div class="boblog-toc" data-toc-float="push">
     <h4>目录</h4>
     <ul id="tocList"></ul>
 </div>
 
-<div class="doc-container">
-    <div class="doc-nav">
+<div class="boblog-doc-container">
+    <div class="boblog-doc-nav">
         <a href="../index.html">← 返回总纲</a>
     </div>
 
     <h1>浮动目录组件 (TOC Nav)</h1>
 
     <!-- 基础用法 -->
-    <div class="doc-section">
+    <div class="boblog-doc-section">
         <h2 id="基础用法">基础用法</h2>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>1. 规范说明</h3>
-            <ul class="spec-list">
+            <ul class="boblog-doc-spec">
                 <li>容器类名: <code>.boblog-toc</code></li>
                 <li>固定定位: right:20px, top:20px</li>
                 <li>宽度: 自适应（120px~50vw），文本不换行，由最长条目撑开后自动锁定</li>
@@ -41,17 +52,17 @@
             </ul>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>2. 渲染效果</h3>
             <p>本页面右上角的目录面板即为该组件的实际效果。</p>
-            <ul class="spec-list">
+            <ul class="boblog-doc-spec">
                 <li>自动扫描页面中的 h2 标题生成目录列表</li>
                 <li>点击「收起目录」可折叠面板</li>
                 <li>滚动页面时，当前可见章节的目录项会高亮</li>
             </ul>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>3. 演示</h3>
             <div class="boblog-tabs">
                 <div class="boblog-tabs-bar">
@@ -62,7 +73,7 @@
                 <div class="boblog-tabs-panel active">
                     <p>本页面右上角的浮动目录即为实际预览效果。</p>
                     <p>JS 会自动完成以下工作：</p>
-                    <ul class="spec-list">
+                    <ul class="boblog-doc-spec">
                         <li>扫描页面 h2 标题，为 &lt;ul&gt; 填充链接列表</li>
                         <li>注入「收起目录/显示目录」切换按钮</li>
                         <li>监听滚动，高亮当前章节</li>
@@ -114,12 +125,12 @@
     </div>
 
     <!-- 目录标题扫描范围 -->
-    <div class="doc-section">
+    <div class="boblog-doc-section">
         <h2 id="标题扫描">标题扫描范围</h2>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>1. 规范说明</h3>
-            <ul class="spec-list">
+            <ul class="boblog-doc-spec">
                 <li>默认扫描以下容器内的标题（无 data-toc-source 时）：</li>
                 <li><code>.doc-section</code> — 灰底模板章节</li>
                 <li><code>.component-section</code> — 白底模板组件区块</li>
@@ -136,7 +147,7 @@
             </ul>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>2. 自定义扫描范围</h3>
             <div class="boblog-tabs">
                 <div class="boblog-tabs-bar">
@@ -149,7 +160,7 @@
                     <p>本页面右上角的浮动目录即使用了默认扫描范围（<code>.component-section</code>），自动收集了所有章节的
                         h2 标题。</p>
                     <p>默认扫描容器：</p>
-                    <ul class="spec-list">
+                    <ul class="boblog-doc-spec">
                         <li><code>.doc-section</code> — 灰底模板章节</li>
                         <li><code>.component-section</code> — 白底模板组件区块</li>
                         <li><code>.boblog-doc-section</code> — 文档布局组件章节</li>
@@ -206,10 +217,10 @@
     </div>
 
     <!-- 自定义扫描配置 -->
-    <div class="doc-section">
+    <div class="boblog-doc-section">
         <h2 id="自定义配置">自定义扫描配置 (data-*)</h2>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>1. 属性参考</h3>
             <p>通过 <code>.boblog-toc</code> 容器上的 data-* 属性配置扫描行为，无属性时与老版本完全一致（向后兼容）。</p>
             <table style="border-collapse: collapse; width: 100%; font-size: 12px; margin-top: 8px;">
@@ -282,7 +293,7 @@
             </table>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>2. 配置示例</h3>
             <div class="boblog-codeblock">
                 <pre><code class="language-html">&lt;!-- 自定义扫描：只扫描 .article-body 内的 h2 和 h3 --&gt;
@@ -322,7 +333,7 @@
             </div>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>3. 宽度与浮动配置示例</h3>
             <div class="boblog-tabs">
                 <div class="boblog-tabs-bar">
@@ -499,12 +510,12 @@
     </div>
 
     <!-- 多级目录与折叠 -->
-    <div class="doc-section">
+    <div class="boblog-doc-section">
         <h2 id="多级目录">多级目录与折叠</h2>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>1. 规范说明</h3>
-            <ul class="spec-list">
+            <ul class="boblog-doc-spec">
                 <li><code>data-toc-depth</code> 大于 2 时自动启用树形模式</li>
                 <li>目录生成嵌套 <code>&lt;ul&gt;</code> 结构，子级与父级文字左对齐</li>
                 <li>通过字号、颜色区分层级（h2 加粗，h3 小字浅色，h4 更浅）</li>
@@ -516,7 +527,7 @@
             </ul>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>2. 演示</h3>
             <div class="boblog-tabs">
                 <div class="boblog-tabs-bar">
@@ -634,7 +645,7 @@
             </div>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>3. CSS 类说明</h3>
             <div class="boblog-codeblock">
                 <pre><code class="language-css">/* 节点行：箭头 + 链接水平排列，预留 16px 给箭头 */
@@ -677,12 +688,12 @@
     </div>
 
     <!-- 折叠/展开 -->
-    <div class="doc-section">
+    <div class="boblog-doc-section">
         <h2 id="折叠展开">折叠/展开切换</h2>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>1. 规范说明</h3>
-            <ul class="spec-list">
+            <ul class="boblog-doc-spec">
                 <li>切换按钮类名: <code>.boblog-toc-toggle</code>（由 JS 自动注入）</li>
                 <li>展开状态: 显示完整目录，按钮文字「收起目录」</li>
                 <li>收起状态: 隐藏目录内容，只显示按钮「显示目录」</li>
@@ -691,7 +702,7 @@
             </ul>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>2. CSS 状态类</h3>
             <div class="boblog-codeblock">
                 <pre><code class="language-css">/* 展开状态（默认） */
@@ -714,12 +725,12 @@
     </div>
 
     <!-- 滚动高亮 -->
-    <div class="doc-section">
+    <div class="boblog-doc-section">
         <h2 id="滚动高亮">滚动高亮</h2>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>1. 规范说明</h3>
-            <ul class="spec-list">
+            <ul class="boblog-doc-spec">
                 <li>基于滚动位置（scroll + offsetTop）判断当前章节</li>
                 <li>从后往前遍历标题，找到第一个 offsetTop ≤ scrollY + 60px 的标题</li>
                 <li>使用 requestAnimationFrame 节流，约 60fps</li>
@@ -731,7 +742,7 @@
             </ul>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>2. 高亮样式</h3>
             <div class="boblog-codeblock">
                 <pre><code class="language-css">/* 目录链接默认状态 — 单行不换行 */
@@ -758,18 +769,18 @@
     </div>
 
     <!-- JS API -->
-    <div class="doc-section">
+    <div class="boblog-doc-section">
         <h2 id="JS-API">JavaScript API</h2>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>1. 自动初始化</h3>
-            <ul class="spec-list">
+            <ul class="boblog-doc-spec">
                 <li>引入 <code>boblog-ui.js</code> 后，DOMContentLoaded 自动扫描 <code>.boblog-toc</code></li>
                 <li>无需手动调用任何函数</li>
             </ul>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>2. 手动调用</h3>
             <div class="boblog-codeblock">
                 <pre><code class="language-javascript">// 初始化页面所有目录
@@ -785,7 +796,7 @@ BoblogUI.toc.initScrollHighlight();  // 滚动高亮</code></pre>
             </div>
         </div>
 
-        <div class="section-part">
+        <div class="boblog-doc-section-3">
             <h3>3. 引入方式</h3>
             <div class="boblog-codeblock">
                 <pre><code class="language-html">&lt;!-- 引入 CSS（包含目录样式） --&gt;
@@ -800,7 +811,7 @@ BoblogUI.toc.initScrollHighlight();  // 滚动高亮</code></pre>
         </div>
     </div>
 
-</div><!-- /.doc-container -->
+</div><!-- /.boblog-doc-container -->
 
 <script src="../../dist/boblog-ui.js"></script>
 </body>
