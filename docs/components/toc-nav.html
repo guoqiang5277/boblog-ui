@@ -768,6 +768,101 @@
         </div>
     </div>
 
+    <!-- 迷你模式 -->
+    <div class="boblog-doc-section">
+        <h2 id="迷你模式">迷你模式</h2>
+
+        <div class="boblog-doc-section-3">
+            <h3>1. 规范说明</h3>
+            <ul class="boblog-doc-spec">
+                <li>修饰类: <code>.boblog-toc--mini</code>（需与 <code>.boblog-toc--static</code> 组合使用）</li>
+                <li>用途: 手写的小型锚点导航（如版本列表、章节快捷跳转）</li>
+                <li>不依赖 JS 自动生成，列表由用户手写</li>
+                <li>定位: sticky 吸顶 + float right 右浮动（需要父容器有 overflow-y: auto）</li>
+                <li>尺寸: 紧凑内边距(8px 12px)、小字号(11px)</li>
+                <li>标题: 用 h5（而非默认的 h4）</li>
+                <li>链接: 无左侧指示条，紧凑内边距(2px 4px)</li>
+                <li>背景/边框: 继承 .boblog-toc 的浅蓝背景和蓝色边框</li>
+            </ul>
+        </div>
+
+        <div class="boblog-doc-section-3">
+            <h3>2. 演示</h3>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <div class="boblog-tabs-panel active">
+                    <!-- 预览：迷你模式导航 -->
+                    <div style="position: relative; background: #fff; border: 1px solid #ddd; padding: 20px; min-height: 150px; overflow-y: auto;">
+                        <div class="boblog-toc boblog-toc--static boblog-toc--mini">
+                            <h5>版本目录</h5>
+                            <ul>
+                                <li><a href="javascript:void(0)">v1.0.3</a></li>
+                                <li><a href="javascript:void(0)">v1.0.2</a></li>
+                                <li><a href="javascript:void(0)">v1.0.1</a></li>
+                                <li><a href="javascript:void(0)">v1.0.0</a></li>
+                            </ul>
+                        </div>
+                        <p style="margin: 0; color: #666; font-size: 12px;">迷你导航浮动在右侧，列表由用户手写，适合版本列表、章节跳转等场景。</p>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;div class="boblog-toc boblog-toc--static boblog-toc--mini"&gt;
+    &lt;h5&gt;版本目录&lt;/h5&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="#ver-1.0.3"&gt;v1.0.3&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#ver-1.0.2"&gt;v1.0.2&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#ver-1.0.1"&gt;v1.0.1&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href="#ver-1.0.0"&gt;v1.0.0&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;</code></pre>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;迷你导航示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div style="max-height: 400px; overflow-y: auto; padding: 20px;"&gt;
+        &lt;!-- 迷你导航 — sticky 吸顶 + float right --&gt;
+        &lt;div class="boblog-toc boblog-toc--static boblog-toc--mini"&gt;
+            &lt;h5&gt;版本目录&lt;/h5&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="#ver-1.0.3"&gt;v1.0.3&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#ver-1.0.2"&gt;v1.0.2&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#ver-1.0.1"&gt;v1.0.1&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="#ver-1.0.0"&gt;v1.0.0&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+
+        &lt;!-- 版本内容（迷你导航浮在右侧） --&gt;
+        &lt;div id="ver-1.0.3"&gt;
+            &lt;h3&gt;v1.0.3&lt;/h3&gt;
+            &lt;p&gt;版本内容...&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div id="ver-1.0.2"&gt;
+            &lt;h3&gt;v1.0.2&lt;/h3&gt;
+            &lt;p&gt;版本内容...&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- JS API -->
     <div class="boblog-doc-section">
         <h2 id="JS-API">JavaScript API</h2>

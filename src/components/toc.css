@@ -339,6 +339,71 @@
 
 
 /* ==========================================================================
+   迷你模式（手写锚点导航）
+   用于嵌入区块内的小型浮动导航（如版本列表、章节快捷跳转）。
+   与 --static 组合使用：嵌入文档流 + sticky 吸顶 + float 右浮动。
+
+   用法：
+     <div class="boblog-toc boblog-toc--static boblog-toc--mini">
+         <h5>导航标题</h5>
+         <ul>
+             <li><a href="#anchor1">条目1</a></li>
+             <li><a href="#anchor2">条目2</a></li>
+         </ul>
+     </div>
+
+   与默认 toc 的区别：
+     - 手写列表，不依赖 JS 自动生成
+     - 更紧凑的内边距和字号
+     - sticky + float right 定位（需要父容器有 overflow-y: auto）
+     - 标题用 h5 而非 h4
+   ========================================================================== */
+
+/* 迷你模式容器 — sticky 吸顶 + 右浮动，紧凑尺寸 */
+.boblog-toc--mini {
+    position: sticky;
+    top: 0;
+    float: right;
+    padding: 8px 12px;
+    font-size: var(--boblog-font-size-xs, 11px);
+    min-width: auto;
+    max-width: none;
+    max-height: none;
+    overflow-y: visible;
+    z-index: 10;
+    margin-left: 15px;
+}
+
+/* 迷你模式标题 — 用 h5，更小的字号和间距 */
+.boblog-toc--mini h5 {
+    color: var(--boblog-blue, #0D6EAA);
+    font-size: var(--boblog-font-size-sm, 12px);
+    font-weight: bold;
+    margin: 0 0 6px 0;
+    padding-bottom: 0;
+    border-bottom: none;
+}
+
+/* 迷你模式列表项 — 更紧凑的间距 */
+.boblog-toc--mini li {
+    margin-bottom: 3px;
+}
+
+/* 迷你模式链接 — 去掉左侧指示条，紧凑内边距 */
+.boblog-toc--mini a {
+    border-left: none;
+    padding: 2px 4px;
+    font-size: var(--boblog-font-size-xs, 11px);
+    white-space: nowrap;
+}
+
+/* 迷你模式链接悬停 */
+.boblog-toc--mini a:hover {
+    background: var(--boblog-border-light, #DDE8F0);
+}
+
+
+/* ==========================================================================
    滚动高亮状态（放在文件末尾，确保优先级高于层级字号/颜色样式）
    ========================================================================== */
 
