@@ -147,6 +147,7 @@ body.boblog-doc-white .boblog-doc-container {
     background-color: aliceblue;
     /*设置阴影*/
     box-shadow: -8px -10px 3px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--boblog-blue, #0D80BD);
 }
 
 .boblog-doc-section-3:last-child {
