@@ -77,7 +77,7 @@ p:last-child {
 /* ========== 链接 ========== */
 /* Bo-Blog 特色：默认深灰无下划线，hover 变黑加下划线 */
 a {
-    color: var(--boblog-text-link, #333333);
+    /* color: var(--boblog-text-link, #333333); */
     text-decoration: none;
     transition: color var(--boblog-transition-fast, 100ms) var(--boblog-transition-timing, ease-in-out);
 }
