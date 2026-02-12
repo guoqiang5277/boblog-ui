@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>手风琴折叠面板 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+    <!--
+        文档布局：白底铺开模式 (boblog-doc-white)
+        - boblog-doc-white     : 白色页面背景，内容直接铺开
+        - boblog-doc-nav       : 顶部导航（返回链接）
+        - boblog-doc-section   : 章节区块（浅蓝背景面板 + 蓝色边框）
+        - boblog-doc-section-3 : 小节（浅蓝背景面板）
+        - boblog-doc-spec      : 规范说明（白色背景 + 蓝色边框）
+        - boblog-codeblock     : 代码块
+        样式定义：src/layout/doc-layout.css
+    -->
+    <div class="boblog-doc-nav">
+        <a href="../index.html">← 返回总纲</a>
+    </div>
+    <h1>手风琴折叠面板 (Accordion)</h1>
+
+    <!-- 右侧浮动目录 -->
+    <div class="boblog-toc">
+        <h4>目录</h4>
+        <ul id="tocList"></ul>
+    </div>
+
+    <!-- 参数说明 -->
+    <div class="boblog-doc-section">
+        <h2 id="参数说明">参数说明</h2>
+
+        <div class="boblog-doc-section-3">
+            <h3>1. CSS 类名</h3>
+            <table class="boblog-table boblog-table-bordered boblog-table-striped">
+                <thead>
+                    <tr>
+                        <th>类名</th>
+                        <th>用在</th>
+                        <th>说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>.boblog-accordion</code></td>
+                        <td>容器</td>
+                        <td>手风琴最外层容器，蓝色边框</td>
+                    </tr>
+                    <tr>
+                        <td><code>.boblog-accordion-item</code></td>
+                        <td>折叠项</td>
+                        <td>单个折叠项，项间蓝色分隔线</td>
+                    </tr>
+                    <tr>
+                        <td><code>.boblog-accordion-header</code></td>
+                        <td>标题栏</td>
+                        <td>可点击的标题栏，浅蓝背景，右侧箭头指示符</td>
+                    </tr>
+                    <tr>
+                        <td><code>.boblog-accordion-body</code></td>
+                        <td>内容区</td>
+                        <td>折叠项内容，默认隐藏，展开时显示</td>
+                    </tr>
+                    <tr>
+                        <td><code>.active</code></td>
+                        <td>.boblog-accordion-item</td>
+                        <td>展开状态，标题栏变白底蓝字，箭头旋转，内容区显示</td>
+                    </tr>
+                    <tr>
+                        <td><code>.boblog-accordion-horizontal</code></td>
+                        <td>容器</td>
+                        <td>横向模式修饰类，各项水平排列，标题竖排</td>
+                    </tr>
+                    <tr>
+                        <td><code>.boblog-accordion-combined</code></td>
+                        <td>容器</td>
+                        <td>横竖汇合模式修饰类，顶层横排，子项内容区含嵌套竖向手风琴</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="boblog-doc-section-3">
+            <h3>2. JavaScript API</h3>
+            <table class="boblog-table boblog-table-bordered boblog-table-striped">
+                <thead>
+                    <tr>
+                        <th>方法</th>
+                        <th>参数</th>
+                        <th>说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>BoblogUI.accordion.init()</code></td>
+                        <td>无</td>
+                        <td>初始化页面内所有手风琴</td>
+                    </tr>
+                    <tr>
+                        <td><code>BoblogUI.accordion.init(container)</code></td>
+                        <td>HTMLElement</td>
+                        <td>只初始化指定容器内的手风琴</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="boblog-doc-section-3">
+            <h3>3. CSS 变量</h3>
+            <table class="boblog-table boblog-table-bordered boblog-table-striped">
+                <thead>
+                    <tr>
+                        <th>变量</th>
+                        <th>默认值</th>
+                        <th>说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>--boblog-blue-wash</code></td>
+                        <td>#F4FBFF</td>
+                        <td>标题栏默认背景色</td>
+                    </tr>
+                    <tr>
+                        <td><code>--boblog-border-blue</code></td>
+                        <td>#9EC9FF</td>
+                        <td>容器边框、项间分隔线颜色</td>
+                    </tr>
+                    <tr>
+                        <td><code>--boblog-blue-accent</code></td>
+                        <td>#0D80BD</td>
+                        <td>激活/悬停文字色</td>
+                    </tr>
+                    <tr>
+                        <td><code>--boblog-text</code></td>
+                        <td>#333</td>
+                        <td>标题栏默认文字色</td>
+                    </tr>
+                    <tr>
+                        <td><code>--boblog-text-secondary</code></td>
+                        <td>#555</td>
+                        <td>箭头指示符颜色</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="boblog-doc-section-3">
+            <h3>4. data 属性</h3>
+            <table class="boblog-table boblog-table-bordered boblog-table-striped">
+                <thead>
+                    <tr>
+                        <th>属性</th>
+                        <th>用在</th>
+                        <th>说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>data-bb-accordion-init</code></td>
+                        <td>.boblog-accordion</td>
+                        <td>JS 自动添加，标记已初始化，防止重复绑定</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- 基础用法（竖向） -->
+    <div class="boblog-doc-section">
+        <h2 id="基础用法">基础用法（竖向）</h2>
+
+        <div class="boblog-doc-section-3">
+            <h3>1. 规范说明</h3>
+            <ul class="boblog-doc-spec">
+                <li>容器类名: <code>.boblog-accordion</code></li>
+                <li>折叠项: <code>.boblog-accordion-item</code>（加 <code>.active</code> 为展开状态）</li>
+                <li>标题栏: <code>.boblog-accordion-header</code>（可点击，带箭头指示符）</li>
+                <li>内容区: <code>.boblog-accordion-body</code>（展开时显示）</li>
+                <li>同一容器内同时只展开一个项（手风琴互斥模式）</li>
+                <li>标题栏默认: 浅蓝背景 var(--boblog-blue-wash) + 蓝色边框</li>
+                <li>标题栏激活/悬停: 白色背景 + 蓝色文字 var(--boblog-blue-accent)</li>
+                <li>内容区: 白色背景 + 蓝色边框</li>
+                <li>箭头: 默认朝右 ▶，展开时旋转朝下 ▼</li>
+                <li>自动功能: DOMContentLoaded 自动绑定点击切换</li>
+            </ul>
+        </div>
+
+        <div class="boblog-doc-section-3">
+            <h3>2. 演示</h3>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <div class="boblog-tabs-panel active">
+                    <!-- 预览：竖向手风琴 -->
+                    <div class="boblog-accordion">
+                        <div class="boblog-accordion-item active">
+                            <div class="boblog-accordion-header">第一节 - 什么是手风琴</div>
+                            <div class="boblog-accordion-body">
+                                <p>手风琴（Accordion）是一种常见的 UI 组件，用于在有限空间内展示多段内容。</p>
+                                <p>同一时间只展开一个面板，点击其他标题会自动收起当前面板。</p>
+                            </div>
+                        </div>
+                        <div class="boblog-accordion-item">
+                            <div class="boblog-accordion-header">第二节 - 使用场景</div>
+                            <div class="boblog-accordion-body">
+                                <p>适用于 FAQ 页面、设置面板、分类导航等需要分组展示内容的场景。</p>
+                            </div>
+                        </div>
+                        <div class="boblog-accordion-item">
+                            <div class="boblog-accordion-header">第三节 - 注意事项</div>
+                            <div class="boblog-accordion-body">
+                                <p>首项默认展开（加 <code>active</code> 类），也可以不设默认展开项。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <!-- 关键源码 -->
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;div class="boblog-accordion"&gt;
+    &lt;div class="boblog-accordion-item active"&gt;
+        &lt;div class="boblog-accordion-header"&gt;第一节 - 什么是手风琴&lt;/div&gt;
+        &lt;div class="boblog-accordion-body"&gt;
+            &lt;p&gt;手风琴（Accordion）是一种常见的 UI 组件，用于在有限空间内展示多段内容。&lt;/p&gt;
+            &lt;p&gt;同一时间只展开一个面板，点击其他标题会自动收起当前面板。&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-accordion-item"&gt;
+        &lt;div class="boblog-accordion-header"&gt;第二节 - 使用场景&lt;/div&gt;
+        &lt;div class="boblog-accordion-body"&gt;
+            &lt;p&gt;适用于 FAQ 页面、设置面板、分类导航等需要分组展示内容的场景。&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-accordion-item"&gt;
+        &lt;div class="boblog-accordion-header"&gt;第三节 - 注意事项&lt;/div&gt;
+        &lt;div class="boblog-accordion-body"&gt;
+            &lt;p&gt;首项默认展开（加 &lt;code&gt;active&lt;/code&gt; 类），也可以不设默认展开项。&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <!-- 完整源码 -->
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;竖向手风琴示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="boblog-accordion"&gt;
+        &lt;div class="boblog-accordion-item active"&gt;
+            &lt;div class="boblog-accordion-header"&gt;第一节 - 什么是手风琴&lt;/div&gt;
+            &lt;div class="boblog-accordion-body"&gt;
+                &lt;p&gt;手风琴（Accordion）是一种常见的 UI 组件，用于在有限空间内展示多段内容。&lt;/p&gt;
+                &lt;p&gt;同一时间只展开一个面板，点击其他标题会自动收起当前面板。&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-accordion-item"&gt;
+            &lt;div class="boblog-accordion-header"&gt;第二节 - 使用场景&lt;/div&gt;
+            &lt;div class="boblog-accordion-body"&gt;
+                &lt;p&gt;适用于 FAQ 页面、设置面板、分类导航等需要分组展示内容的场景。&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-accordion-item"&gt;
+            &lt;div class="boblog-accordion-header"&gt;第三节 - 注意事项&lt;/div&gt;
+            &lt;div class="boblog-accordion-body"&gt;
+                &lt;p&gt;首项默认展开（加 &lt;code&gt;active&lt;/code&gt; 类），也可以不设默认展开项。&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 横向模式 -->
+    <div class="boblog-doc-section">
+        <h2 id="横向模式">横向模式</h2>
+
+        <div class="boblog-doc-section-3">
+            <h3>1. 规范说明</h3>
+            <ul class="boblog-doc-spec">
+                <li>容器加 <code>.boblog-accordion-horizontal</code> 修饰类</li>
+                <li>各折叠项水平排列（flex 布局）</li>
+                <li>标题栏在左侧竖排显示（writing-mode: vertical-lr）</li>
+                <li>内容区在标题栏右侧展开</li>
+                <li>切换逻辑与竖向相同（互斥模式）</li>
+            </ul>
+        </div>
+
+        <div class="boblog-doc-section-3">
+            <h3>2. 演示</h3>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <div class="boblog-tabs-panel active">
+                    <!-- 预览：横向手风琴 -->
+                    <div class="boblog-accordion boblog-accordion-horizontal">
+                        <div class="boblog-accordion-item active">
+                            <div class="boblog-accordion-header">面板 A</div>
+                            <div class="boblog-accordion-body">
+                                <p>这是面板 A 的内容。</p>
+                                <p>横向手风琴适用于侧边导航、多栏切换等场景。</p>
+                            </div>
+                        </div>
+                        <div class="boblog-accordion-item">
+                            <div class="boblog-accordion-header">面板 B</div>
+                            <div class="boblog-accordion-body">
+                                <p>这是面板 B 的内容。</p>
+                                <p>点击左侧标题栏切换显示。</p>
+                            </div>
+                        </div>
+                        <div class="boblog-accordion-item">
+                            <div class="boblog-accordion-header">面板 C</div>
+                            <div class="boblog-accordion-body">
+                                <p>这是面板 C 的内容。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <!-- 关键源码 -->
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;div class="boblog-accordion boblog-accordion-horizontal"&gt;
+    &lt;div class="boblog-accordion-item active"&gt;
+        &lt;div class="boblog-accordion-header"&gt;面板 A&lt;/div&gt;
+        &lt;div class="boblog-accordion-body"&gt;
+            &lt;p&gt;这是面板 A 的内容。&lt;/p&gt;
+            &lt;p&gt;横向手风琴适用于侧边导航、多栏切换等场景。&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-accordion-item"&gt;
+        &lt;div class="boblog-accordion-header"&gt;面板 B&lt;/div&gt;
+        &lt;div class="boblog-accordion-body"&gt;
+            &lt;p&gt;这是面板 B 的内容。&lt;/p&gt;
+            &lt;p&gt;点击左侧标题栏切换显示。&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-accordion-item"&gt;
+        &lt;div class="boblog-accordion-header"&gt;面板 C&lt;/div&gt;
+        &lt;div class="boblog-accordion-body"&gt;
+            &lt;p&gt;这是面板 C 的内容。&lt;/p&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <!-- 完整源码 -->
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;横向手风琴示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="boblog-accordion boblog-accordion-horizontal"&gt;
+        &lt;div class="boblog-accordion-item active"&gt;
+            &lt;div class="boblog-accordion-header"&gt;面板 A&lt;/div&gt;
+            &lt;div class="boblog-accordion-body"&gt;
+                &lt;p&gt;这是面板 A 的内容。&lt;/p&gt;
+                &lt;p&gt;横向手风琴适用于侧边导航、多栏切换等场景。&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-accordion-item"&gt;
+            &lt;div class="boblog-accordion-header"&gt;面板 B&lt;/div&gt;
+            &lt;div class="boblog-accordion-body"&gt;
+                &lt;p&gt;这是面板 B 的内容。&lt;/p&gt;
+                &lt;p&gt;点击左侧标题栏切换显示。&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-accordion-item"&gt;
+            &lt;div class="boblog-accordion-header"&gt;面板 C&lt;/div&gt;
+            &lt;div class="boblog-accordion-body"&gt;
+                &lt;p&gt;这是面板 C 的内容。&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 多项内容 -->
+    <div class="boblog-doc-section">
+        <h2 id="多项内容">多项内容示例</h2>
+
+        <div class="boblog-doc-section-3">
+            <h3>1. 规范说明</h3>
+            <ul class="boblog-doc-spec">
+                <li>支持任意数量的折叠项</li>
+                <li>内容区可放任意 HTML（文本、列表、表格、代码块等）</li>
+                <li>可以不设默认展开项（所有项均不加 <code>active</code>）</li>
+            </ul>
+        </div>
+
+        <div class="boblog-doc-section-3">
+            <h3>2. 演示</h3>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <div class="boblog-tabs-panel active">
+                    <!-- 预览：五项手风琴 -->
+                    <div class="boblog-accordion">
+                        <div class="boblog-accordion-item active">
+                            <div class="boblog-accordion-header">HTML 基础</div>
+                            <div class="boblog-accordion-body">
+                                <p>HTML（HyperText Markup Language）是构建网页的标准标记语言。</p>
+                                <ul>
+                                    <li>定义页面结构和内容</li>
+                                    <li>使用标签（tags）描述元素</li>
+                                    <li>语义化标签提升可访问性</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="boblog-accordion-item">
+                            <div class="boblog-accordion-header">CSS 样式</div>
+                            <div class="boblog-accordion-body">
+                                <p>CSS（Cascading Style Sheets）负责网页的视觉呈现。</p>
+                                <ul>
+                                    <li>控制颜色、字体、间距、布局</li>
+                                    <li>响应式设计适配多种屏幕</li>
+                                    <li>CSS 变量实现主题定制</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="boblog-accordion-item">
+                            <div class="boblog-accordion-header">JavaScript 交互</div>
+                            <div class="boblog-accordion-body">
+                                <p>JavaScript 为网页添加交互行为和动态功能。</p>
+                            </div>
+                        </div>
+                        <div class="boblog-accordion-item">
+                            <div class="boblog-accordion-header">浏览器兼容</div>
+                            <div class="boblog-accordion-body">
+                                <p>现代浏览器对 HTML5、CSS3、ES6+ 支持良好。</p>
+                            </div>
+                        </div>
+                        <div class="boblog-accordion-item">
+                            <div class="boblog-accordion-header">开发工具</div>
+                            <div class="boblog-accordion-body">
+                                <p>推荐使用 VS Code、Chrome DevTools 等工具进行开发调试。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <!-- 关键源码 -->
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;div class="boblog-accordion"&gt;
+    &lt;div class="boblog-accordion-item active"&gt;
+        &lt;div class="boblog-accordion-header"&gt;HTML 基础&lt;/div&gt;
+        &lt;div class="boblog-accordion-body"&gt;
+            &lt;p&gt;HTML（HyperText Markup Language）是构建网页的标准标记语言。&lt;/p&gt;
+            &lt;ul&gt;
+                &lt;li&gt;定义页面结构和内容&lt;/li&gt;
+                &lt;li&gt;使用标签（tags）描述元素&lt;/li&gt;
+                &lt;li&gt;语义化标签提升可访问性&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-accordion-item"&gt;
+        &lt;div class="boblog-accordion-header"&gt;CSS 样式&lt;/div&gt;
+        &lt;div class="boblog-accordion-body"&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-accordion-item"&gt;
+        &lt;div class="boblog-accordion-header"&gt;JavaScript 交互&lt;/div&gt;
+        &lt;div class="boblog-accordion-body"&gt;...&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- 更多折叠项... --&gt;
+&lt;/div&gt;
+
+&lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <!-- 完整源码 -->
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;多项手风琴示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="boblog-accordion"&gt;
+        &lt;div class="boblog-accordion-item active"&gt;
+            &lt;div class="boblog-accordion-header"&gt;HTML 基础&lt;/div&gt;
+            &lt;div class="boblog-accordion-body"&gt;
+                &lt;p&gt;HTML（HyperText Markup Language）是构建网页的标准标记语言。&lt;/p&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;定义页面结构和内容&lt;/li&gt;
+                    &lt;li&gt;使用标签（tags）描述元素&lt;/li&gt;
+                    &lt;li&gt;语义化标签提升可访问性&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-accordion-item"&gt;
+            &lt;div class="boblog-accordion-header"&gt;CSS 样式&lt;/div&gt;
+            &lt;div class="boblog-accordion-body"&gt;
+                &lt;p&gt;CSS（Cascading Style Sheets）负责网页的视觉呈现。&lt;/p&gt;
+                &lt;ul&gt;
+                    &lt;li&gt;控制颜色、字体、间距、布局&lt;/li&gt;
+                    &lt;li&gt;响应式设计适配多种屏幕&lt;/li&gt;
+                    &lt;li&gt;CSS 变量实现主题定制&lt;/li&gt;
+                &lt;/ul&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-accordion-item"&gt;
+            &lt;div class="boblog-accordion-header"&gt;JavaScript 交互&lt;/div&gt;
+            &lt;div class="boblog-accordion-body"&gt;
+                &lt;p&gt;JavaScript 为网页添加交互行为和动态功能。&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-accordion-item"&gt;
+            &lt;div class="boblog-accordion-header"&gt;浏览器兼容&lt;/div&gt;
+            &lt;div class="boblog-accordion-body"&gt;
+                &lt;p&gt;现代浏览器对 HTML5、CSS3、ES6+ 支持良好。&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-accordion-item"&gt;
+            &lt;div class="boblog-accordion-header"&gt;开发工具&lt;/div&gt;
+            &lt;div class="boblog-accordion-body"&gt;
+                &lt;p&gt;推荐使用 VS Code、Chrome DevTools 等工具进行开发调试。&lt;/p&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 横竖汇合模式 -->
+    <div class="boblog-doc-section">
+        <h2 id="汇合模式">横竖汇合模式</h2>
+
+        <div class="boblog-doc-section-3">
+            <h3>1. 规范说明</h3>
+            <ul class="boblog-doc-spec">
+                <li>容器加 <code>.boblog-accordion-combined</code> 修饰类</li>
+                <li>顶层横向排列（标题栏竖排），内容区嵌套竖向手风琴</li>
+                <li>顶层各项互斥切换（点击分类标题切换）</li>
+                <li>嵌套竖向手风琴各项也互斥切换（独立的手风琴实例）</li>
+                <li>适用于分类导航、多级设置面板等场景</li>
+            </ul>
+        </div>
+
+        <div class="boblog-doc-section-3">
+            <h3>2. 演示</h3>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                    <button class="boblog-tabs-btn">完整源码</button>
+                </div>
+                <div class="boblog-tabs-panel active">
+                    <!-- 预览：横竖汇合手风琴 -->
+                    <div class="boblog-accordion boblog-accordion-combined">
+                        <div class="boblog-accordion-item active">
+                            <div class="boblog-accordion-header">前端</div>
+                            <div class="boblog-accordion-body">
+                                <div class="boblog-accordion">
+                                    <div class="boblog-accordion-item active">
+                                        <div class="boblog-accordion-header">HTML</div>
+                                        <div class="boblog-accordion-body">
+                                            <p>超文本标记语言，定义网页结构。</p>
+                                        </div>
+                                    </div>
+                                    <div class="boblog-accordion-item">
+                                        <div class="boblog-accordion-header">CSS</div>
+                                        <div class="boblog-accordion-body">
+                                            <p>层叠样式表，控制网页视觉呈现。</p>
+                                        </div>
+                                    </div>
+                                    <div class="boblog-accordion-item">
+                                        <div class="boblog-accordion-header">JavaScript</div>
+                                        <div class="boblog-accordion-body">
+                                            <p>脚本语言，实现网页交互行为。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="boblog-accordion-item">
+                            <div class="boblog-accordion-header">后端</div>
+                            <div class="boblog-accordion-body">
+                                <div class="boblog-accordion">
+                                    <div class="boblog-accordion-item active">
+                                        <div class="boblog-accordion-header">C#</div>
+                                        <div class="boblog-accordion-body">
+                                            <p>微软的面向对象编程语言，ASP.NET 核心。</p>
+                                        </div>
+                                    </div>
+                                    <div class="boblog-accordion-item">
+                                        <div class="boblog-accordion-header">PHP</div>
+                                        <div class="boblog-accordion-body">
+                                            <p>服务端脚本语言，Bo-Blog 原版使用。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="boblog-accordion-item">
+                            <div class="boblog-accordion-header">数据库</div>
+                            <div class="boblog-accordion-body">
+                                <div class="boblog-accordion">
+                                    <div class="boblog-accordion-item active">
+                                        <div class="boblog-accordion-header">SQL Server</div>
+                                        <div class="boblog-accordion-body">
+                                            <p>微软关系型数据库管理系统。</p>
+                                        </div>
+                                    </div>
+                                    <div class="boblog-accordion-item">
+                                        <div class="boblog-accordion-header">MySQL</div>
+                                        <div class="boblog-accordion-body">
+                                            <p>开源关系型数据库，Bo-Blog 原版使用。</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <!-- 关键源码 -->
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;div class="boblog-accordion boblog-accordion-combined"&gt;
+    &lt;div class="boblog-accordion-item active"&gt;
+        &lt;div class="boblog-accordion-header"&gt;前端&lt;/div&gt;
+        &lt;div class="boblog-accordion-body"&gt;
+            &lt;!-- 嵌套竖向手风琴 --&gt;
+            &lt;div class="boblog-accordion"&gt;
+                &lt;div class="boblog-accordion-item active"&gt;
+                    &lt;div class="boblog-accordion-header"&gt;HTML&lt;/div&gt;
+                    &lt;div class="boblog-accordion-body"&gt;
+                        &lt;p&gt;超文本标记语言，定义网页结构。&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div class="boblog-accordion-item"&gt;
+                    &lt;div class="boblog-accordion-header"&gt;CSS&lt;/div&gt;
+                    &lt;div class="boblog-accordion-body"&gt;
+                        &lt;p&gt;层叠样式表，控制网页视觉呈现。&lt;/p&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-accordion-item"&gt;
+        &lt;div class="boblog-accordion-header"&gt;后端&lt;/div&gt;
+        &lt;div class="boblog-accordion-body"&gt;
+            &lt;div class="boblog-accordion"&gt;
+                &lt;div class="boblog-accordion-item active"&gt;
+                    &lt;div class="boblog-accordion-header"&gt;C#&lt;/div&gt;
+                    &lt;div class="boblog-accordion-body"&gt;...&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <!-- 完整源码 -->
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;横竖汇合手风琴示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="boblog-accordion boblog-accordion-combined"&gt;
+        &lt;div class="boblog-accordion-item active"&gt;
+            &lt;div class="boblog-accordion-header"&gt;前端&lt;/div&gt;
+            &lt;div class="boblog-accordion-body"&gt;
+                &lt;div class="boblog-accordion"&gt;
+                    &lt;div class="boblog-accordion-item active"&gt;
+                        &lt;div class="boblog-accordion-header"&gt;HTML&lt;/div&gt;
+                        &lt;div class="boblog-accordion-body"&gt;
+                            &lt;p&gt;超文本标记语言，定义网页结构。&lt;/p&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="boblog-accordion-item"&gt;
+                        &lt;div class="boblog-accordion-header"&gt;CSS&lt;/div&gt;
+                        &lt;div class="boblog-accordion-body"&gt;
+                            &lt;p&gt;层叠样式表，控制网页视觉呈现。&lt;/p&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="boblog-accordion-item"&gt;
+                        &lt;div class="boblog-accordion-header"&gt;JavaScript&lt;/div&gt;
+                        &lt;div class="boblog-accordion-body"&gt;
+                            &lt;p&gt;脚本语言，实现网页交互行为。&lt;/p&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-accordion-item"&gt;
+            &lt;div class="boblog-accordion-header"&gt;后端&lt;/div&gt;
+            &lt;div class="boblog-accordion-body"&gt;
+                &lt;div class="boblog-accordion"&gt;
+                    &lt;div class="boblog-accordion-item active"&gt;
+                        &lt;div class="boblog-accordion-header"&gt;C#&lt;/div&gt;
+                        &lt;div class="boblog-accordion-body"&gt;
+                            &lt;p&gt;微软的面向对象编程语言，ASP.NET 核心。&lt;/p&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="boblog-accordion-item"&gt;
+                        &lt;div class="boblog-accordion-header"&gt;PHP&lt;/div&gt;
+                        &lt;div class="boblog-accordion-body"&gt;
+                            &lt;p&gt;服务端脚本语言，Bo-Blog 原版使用。&lt;/p&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-accordion-item"&gt;
+            &lt;div class="boblog-accordion-header"&gt;数据库&lt;/div&gt;
+            &lt;div class="boblog-accordion-body"&gt;
+                &lt;div class="boblog-accordion"&gt;
+                    &lt;div class="boblog-accordion-item active"&gt;
+                        &lt;div class="boblog-accordion-header"&gt;SQL Server&lt;/div&gt;
+                        &lt;div class="boblog-accordion-body"&gt;
+                            &lt;p&gt;微软关系型数据库管理系统。&lt;/p&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;div class="boblog-accordion-item"&gt;
+                        &lt;div class="boblog-accordion-header"&gt;MySQL&lt;/div&gt;
+                        &lt;div class="boblog-accordion-body"&gt;
+                            &lt;p&gt;开源关系型数据库，Bo-Blog 原版使用。&lt;/p&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;script src="../../dist/boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JS API -->
+    <div class="boblog-doc-section">
+        <h2 id="JS-API">JavaScript API</h2>
+
+        <div class="boblog-doc-section-3">
+            <h3>1. 自动初始化</h3>
+            <ul class="boblog-doc-spec">
+                <li>引入 <code>boblog-ui.js</code> 后，DOMContentLoaded 自动扫描 <code>.boblog-accordion</code></li>
+                <li>无需手动调用任何函数</li>
+                <li>已初始化的容器不会重复绑定（通过 data-bb-accordion-init 标记）</li>
+            </ul>
+        </div>
+
+        <div class="boblog-doc-section-3">
+            <h3>2. 手动调用</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-javascript">// 初始化页面所有手风琴
+BoblogUI.accordion.init();
+
+// 只初始化指定容器内的手风琴
+BoblogUI.accordion.init(document.getElementById('myContainer'));</code></pre>
+            </div>
+        </div>
+
+        <div class="boblog-doc-section-3">
+            <h3>3. 引入方式</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-html">&lt;!-- 引入 CSS（包含手风琴样式） --&gt;
+&lt;link rel="stylesheet" href="dist/boblog-ui.css"&gt;
+
+&lt;!-- 引入 JS（包含手风琴逻辑） --&gt;
+&lt;script src="dist/boblog-ui.js"&gt;&lt;/script&gt;
+
+&lt;!-- 或开发时单独引入 --&gt;
+&lt;script src="src/js/accordion.js"&gt;&lt;/script&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+
+    <script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

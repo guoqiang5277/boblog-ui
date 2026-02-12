@@ -1,0 +1,287 @@
+/**
+ * Bo-Blog UI 组件 - 手风琴折叠面板 (accordion)
+ *
+ * 支持三种方向模式：
+ *   - 竖向（默认）：标题栏全宽，内容区在下方展开/折叠
+ *   - 横向：各项并排排列，标题栏在左侧竖排，内容区在右侧展开
+ *   - 横竖汇合：顶层横排，内容区嵌套竖向手风琴，实现两级折叠
+ *
+ * 沿用 Bo-Blog 经典蓝白配色：
+ *   - 标题栏默认: 浅蓝背景 var(--boblog-blue-wash) + 蓝色边框
+ *   - 标题栏激活: 白色背景 + 蓝色文字 var(--boblog-blue-accent)
+ *   - 内容区: 白色背景 + 蓝色边框
+ *   - 箭头指示符: 纯 CSS 三角形，展开时旋转
+ *
+ * 颜色变量（定义在 src/base/variables.css）：
+ *   - --boblog-blue-wash:   #F4FBFF  浅蓝背景
+ *   - --boblog-border-blue: #9EC9FF  蓝色边框
+ *   - --boblog-blue-accent: #0D80BD  强调蓝（激活文字色）
+ *
+ * HTML 结构约定（竖向）：
+ *   <div class="boblog-accordion">
+ *       <div class="boblog-accordion-item active">
+ *           <div class="boblog-accordion-header">标题 1</div>
+ *           <div class="boblog-accordion-body">内容 1</div>
+ *       </div>
+ *       <div class="boblog-accordion-item">
+ *           <div class="boblog-accordion-header">标题 2</div>
+ *           <div class="boblog-accordion-body">内容 2</div>
+ *       </div>
+ *   </div>
+ *
+ * HTML 结构约定（横向）：
+ *   <div class="boblog-accordion boblog-accordion-horizontal">
+ *       ...（同上）
+ *   </div>
+ *
+ * HTML 结构约定（横竖汇合）：
+ *   <div class="boblog-accordion boblog-accordion-combined">
+ *       <div class="boblog-accordion-item active">
+ *           <div class="boblog-accordion-header">分类 A</div>
+ *           <div class="boblog-accordion-body">
+ *               <div class="boblog-accordion">          ← 嵌套竖向手风琴
+ *                   <div class="boblog-accordion-item active">
+ *                       <div class="boblog-accordion-header">子项 1</div>
+ *                       <div class="boblog-accordion-body">内容</div>
+ *                   </div>
+ *               </div>
+ *           </div>
+ *       </div>
+ *   </div>
+ *
+ * 依赖：
+ *   - src/base/variables.css（颜色、字体变量）
+ *   - src/js/accordion.js（切换逻辑）
+ */
+
+
+/* ==========================================================================
+   竖向手风琴（默认）
+   ========================================================================== */
+
+/* 手风琴容器 — 蓝色外边框，各项紧密排列 */
+.boblog-accordion {
+    border: 1px solid var(--boblog-border-blue, #9EC9FF);
+    margin-bottom: var(--boblog-spacing-md, 15px);
+}
+
+/* 单个折叠项 — 项与项之间用顶部边框分隔（首项无顶线） */
+.boblog-accordion-item {
+    border-top: 1px solid var(--boblog-border-blue, #9EC9FF);
+}
+
+/* 首项不需要顶部分隔线（容器已有顶边框） */
+.boblog-accordion-item:first-child {
+    border-top: none;
+}
+
+/* 标题栏 — 浅蓝背景，可点击，带右侧箭头指示符 */
+.boblog-accordion-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 15px;
+    font-family: var(--boblog-font-family, Tahoma, Arial, sans-serif);
+    font-size: var(--boblog-font-size, 12px);
+    font-weight: bold;
+    color: var(--boblog-text, #333);
+    background: var(--boblog-blue-wash, #F4FBFF);
+    cursor: pointer;
+    user-select: none;
+}
+
+/* 标题栏悬停 — 白色背景 + 蓝色文字 */
+.boblog-accordion-header:hover {
+    background: var(--boblog-white, #FFFFFF);
+    color: var(--boblog-blue-accent, #0D80BD);
+}
+
+/* 标题栏激活状态 — 白色背景 + 蓝色文字 */
+.boblog-accordion-item.active > .boblog-accordion-header {
+    background: var(--boblog-white, #FFFFFF);
+    color: var(--boblog-blue-accent, #0D80BD);
+}
+
+/* 箭头指示符 — 纯 CSS 三角形，默认朝右（▶），展开时旋转朝下（▼） */
+.boblog-accordion-header::after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 10px;
+    flex-shrink: 0;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    border-left: 5px solid var(--boblog-text-secondary, #555);
+    transition: transform var(--boblog-transition-normal, 150ms) var(--boblog-transition-timing, ease-in-out);
+}
+
+/* 激活时箭头旋转 90° — 朝右变朝下 */
+.boblog-accordion-item.active > .boblog-accordion-header::after {
+    transform: rotate(90deg);
+    border-left-color: var(--boblog-blue-accent, #0D80BD);
+}
+
+/* 内容区 — 默认隐藏，白色背景 + 顶部蓝色分隔线 */
+.boblog-accordion-body {
+    display: none;
+    padding: 15px;
+    background: var(--boblog-white, #FFFFFF);
+    border-top: 1px solid var(--boblog-border-blue, #9EC9FF);
+}
+
+/* 内容区激活 — 显示 */
+.boblog-accordion-item.active > .boblog-accordion-body {
+    display: block;
+}
+
+
+/* ==========================================================================
+   横向手风琴
+   容器加 .boblog-accordion-horizontal 修饰类
+   各项水平排列，标题栏在左侧竖排，内容区在右侧展开
+   ========================================================================== */
+
+/* 横向容器 — flex 水平排列，align-items: stretch 使各项等高 */
+.boblog-accordion-horizontal {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--boblog-border-blue, #9EC9FF);
+}
+
+/* 横向折叠项 — 项与项之间用左边框分隔（首项无左线） */
+.boblog-accordion-horizontal .boblog-accordion-item {
+    border-top: none;
+    border-left: 1px solid var(--boblog-border-blue, #9EC9FF);
+    display: flex;
+}
+
+/* 横向首项不需要左侧分隔线 */
+.boblog-accordion-horizontal .boblog-accordion-item:first-child {
+    border-left: none;
+}
+
+/* 横向标题栏 — 竖排文字，拉伸填满折叠项全高 */
+.boblog-accordion-horizontal .boblog-accordion-header {
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    padding: 15px 8px;
+    flex-shrink: 0;
+    align-self: stretch;
+    justify-content: flex-start;
+    min-height: 120px;
+}
+
+/* 横向箭头 — 默认朝下（▼），展开时朝左（◀） */
+.boblog-accordion-horizontal .boblog-accordion-header::after {
+    border-top: none;
+    border-bottom: none;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid var(--boblog-text-secondary, #555);
+    margin-left: 0;
+    margin-top: 10px;
+}
+
+/* 横向激活箭头旋转 — 重置竖向规则的 border-left-color，保持左右透明 */
+.boblog-accordion-horizontal .boblog-accordion-item.active > .boblog-accordion-header::after {
+    transform: rotate(-90deg);
+    border-left-color: transparent;
+    border-top-color: var(--boblog-blue-accent, #0D80BD);
+}
+
+/* 横向内容区 — 左侧蓝色分隔线，水平展开 */
+.boblog-accordion-horizontal .boblog-accordion-body {
+    border-top: none;
+    border-left: 1px solid var(--boblog-border-blue, #9EC9FF);
+    min-width: 200px;
+}
+
+
+/* ==========================================================================
+   横竖汇合手风琴
+   容器加 .boblog-accordion-combined 修饰类
+   顶层横向排列（标题栏竖排），内容区内嵌套竖向手风琴
+   实现横向分类 + 竖向细项的两级折叠
+
+   HTML 结构约定：
+     <div class="boblog-accordion boblog-accordion-combined">
+         <div class="boblog-accordion-item active">
+             <div class="boblog-accordion-header">分类 A</div>
+             <div class="boblog-accordion-body">
+                 <div class="boblog-accordion">
+                     <div class="boblog-accordion-item active">
+                         <div class="boblog-accordion-header">子项 1</div>
+                         <div class="boblog-accordion-body">内容</div>
+                     </div>
+                     <div class="boblog-accordion-item">
+                         <div class="boblog-accordion-header">子项 2</div>
+                         <div class="boblog-accordion-body">内容</div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+   ========================================================================== */
+
+/* 汇合容器 — flex 水平排列，各项等高 */
+.boblog-accordion-combined {
+    display: flex;
+    align-items: stretch;
+    border: 1px solid var(--boblog-border-blue, #9EC9FF);
+}
+
+/* 汇合折叠项 — 水平排列，左边框分隔 */
+.boblog-accordion-combined > .boblog-accordion-item {
+    border-top: none;
+    border-left: 1px solid var(--boblog-border-blue, #9EC9FF);
+    display: flex;
+}
+
+/* 汇合首项 — 无左侧分隔线 */
+.boblog-accordion-combined > .boblog-accordion-item:first-child {
+    border-left: none;
+}
+
+/* 汇合顶层标题栏 — 竖排文字，拉伸填满折叠项全高 */
+.boblog-accordion-combined > .boblog-accordion-item > .boblog-accordion-header {
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    padding: 15px 8px;
+    flex-shrink: 0;
+    align-self: stretch;
+    justify-content: flex-start;
+    min-height: 120px;
+}
+
+/* 汇合顶层箭头 — 默认朝下，展开时旋转 */
+.boblog-accordion-combined > .boblog-accordion-item > .boblog-accordion-header::after {
+    border-top: none;
+    border-bottom: none;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 5px solid var(--boblog-text-secondary, #555);
+    margin-left: 0;
+    margin-top: 10px;
+}
+
+/* 汇合顶层激活箭头旋转 — 重置竖向规则的 border-left-color，保持左右透明 */
+.boblog-accordion-combined > .boblog-accordion-item.active > .boblog-accordion-header::after {
+    transform: rotate(-90deg);
+    border-left-color: transparent;
+    border-top-color: var(--boblog-blue-accent, #0D80BD);
+}
+
+/* 汇合顶层内容区 — 左侧分隔线，内部无内边距（由嵌套手风琴自身控制） */
+.boblog-accordion-combined > .boblog-accordion-item > .boblog-accordion-body {
+    border-top: none;
+    border-left: 1px solid var(--boblog-border-blue, #9EC9FF);
+    padding: 0;
+    min-width: 250px;
+}
+
+/* 汇合嵌套竖向手风琴 — 去除外边框和底部 margin，无缝嵌入 */
+.boblog-accordion-combined > .boblog-accordion-item > .boblog-accordion-body > .boblog-accordion {
+    border: none;
+    margin-bottom: 0;
+}

@@ -89,6 +89,7 @@ CSS_FILES=(
     "$SRC_DIR/components/message.css"
     "$SRC_DIR/components/empty-state.css"
     "$SRC_DIR/components/panel.css"
+    "$SRC_DIR/components/accordion.css"
 
     # 布局层
     "$SRC_DIR/layout/grid.css"
@@ -201,6 +202,7 @@ JS_FILES=(
     "$SRC_DIR/js/slider.js"
     "$SRC_DIR/js/rating.js"
     "$SRC_DIR/js/editor.js"
+    "$SRC_DIR/js/accordion.js"
 )
 
 JS_OUTPUT="$DIST_DIR/boblog-ui.js"
