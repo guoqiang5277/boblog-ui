@@ -7,10 +7,17 @@
  * 页面布局类已迁移至 src/layout/doc-layout.css（boblog-doc-* 类名），
  * 所有页面已使用新类名，旧类名（doc-gray-bg, doc-container 等）已删除。
  *
+ * 本文件仅保留文档页面专用的演示辅助样式，这些样式不属于 UI 组件库，
+ * 也没有对应的 boblog-* 前缀新类名。
+ *
+ * 使用页面:
+ *   - color-* 系列: base/colors.html, base/base.html
+ *   - doc-demo-* 系列: base/spacing.html
+ *
  * 目录:
  *   1. 通用基础 - body、字体、背景
- *   2. 色彩文档专用 - color-grid、color-item 等
- *   3. 文档演示专用 - doc-demo-box、doc-demo-wrap 等
+ *   2. 色彩文档专用 - color-grid、color-item 等（色块网格展示）
+ *   3. 文档演示专用 - doc-demo-box、doc-demo-wrap 等（间距/阴影可视化）
  */
 
 
@@ -19,7 +26,7 @@
    ========================================================================== */
 
 /* 字体、字号、行高沿用 Bo-Blog 标准 */
-/* 暂时屏蔽，使用boblog.css 中的全局字体设置 */
+/* 暂时屏蔽，使用 boblog-ui.css 中的全局字体设置 */
 /* body {
     font-family: Tahoma, Arial, sans-serif;
     font-size: 12px;
@@ -29,9 +36,23 @@
 
 /* ==========================================================================
    2. 色彩文档专用
-   用于 colors.html 的色块展示
+   用于 base/colors.html、base/base.html 的色块展示。
+   每个色块由 .color-item 包裹，内含色块区 .color-swatch + 信息区 .color-info。
+   多个色块通过 .color-grid 网格布局排列。
+
+   结构示例:
+   <div class="color-grid">
+       <div class="color-item">
+           <div class="color-swatch" style="background: #0D80BD;"></div>
+           <div class="color-info">
+               <div class="color-name">主题蓝</div>
+               <div class="color-value">#0D80BD</div>
+           </div>
+       </div>
+   </div>
    ========================================================================== */
 
+/* 色块网格容器 - 自适应列宽，每列最小 200px */
 .color-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -39,34 +60,39 @@
     margin-top: 15px;
 }
 
+/* 单个色块卡片 - 圆角边框，隐藏溢出（让色块区的背景色填满顶部） */
 .color-item {
     border: 1px solid #bbb;
     border-radius: 4px;
     overflow: hidden;
 }
 
+/* 色块区 - 纯色背景展示区域，高度固定 80px，背景色通过 style 内联设置 */
 .color-swatch {
     height: 80px;
     width: 100%;
 }
 
+/* 色块信息区 - 白底，显示颜色名称和色值 */
 .color-info {
     padding: 10px;
     background: white;
 }
 
+/* 颜色名称 - 加粗显示 */
 .color-name {
     font-weight: bold;
     margin-bottom: 4px;
 }
 
+/* 颜色值 - 小字等宽字体，显示十六进制色值或 CSS 变量名 */
 .color-value {
     font-size: 11px;
     color: #444;
     font-family: 'Courier New', monospace;
 }
 
-/* 色块小图标（buttons.html 等页面使用） */
+/* 行内色块小图标 - 16x16 的色块方块，用于表格或文字中内联展示颜色 */
 .color-swatch-inline {
     display: inline-block;
     width: 16px;
@@ -79,70 +105,83 @@
 
 /* ==========================================================================
    3. 文档演示专用样式
-   用于 spacing.html, typography.html 等页面的可视化展示
+   仅用于 base/spacing.html 的间距、阴影等可视化演示。
+   这些类名为文档专用，不在 UI 组件库中使用。
+
+   主要用途:
+   - doc-demo-box   : 演示 padding/margin 效果的浅蓝盒子
+   - doc-demo-wrap  : 包裹多个演示盒子的浅灰容器
+   - doc-demo-flex  : 水平排列演示盒子（flex 布局）
+   - doc-demo-shadow-box : 演示阴影效果的白底盒子
+   - doc-demo-card  : 演示卡片间距的模拟卡片
+   - doc-spacing-bar : 间距可视化的蓝色横条
+   - doc-demo-label : 演示区域中的辅助说明文字
    ========================================================================== */
 
-/* 演示盒子 - 浅蓝背景带边框 */
+/* 演示盒子 - 浅蓝背景 + 蓝灰边框，用于展示 padding/margin 工具类效果 */
 .doc-demo-box {
     display: inline-block;
     background: #E8F0F7;
     border: 1px solid #C4D7E8;
 }
 
-/* 演示容器 - 浅灰背景 */
+/* 演示容器 - 浅灰背景，包裹多个演示盒子，展示盒子之间的 margin 效果 */
 .doc-demo-wrap {
     background: #F5F8FB;
     padding: 10px;
 }
 
-/* flex 行 */
+/* flex 行 - 水平排列演示盒子，间距 20px，用于阴影对比展示 */
 .doc-demo-flex {
     display: flex;
     gap: 20px;
 }
 
-/* 阴影演示盒子 - 白底 */
+/* 阴影演示盒子 - 白底 + 蓝灰边框，配合 boblog-shadow-* 类展示阴影效果 */
 .doc-demo-shadow-box {
     padding: 15px;
     background: white;
     border: 1px solid #C4D7E8;
 }
 
-/* 卡片演示 */
+/* 卡片演示 - 模拟真实卡片布局，浅蓝背景 + 蓝灰边框 */
 .doc-demo-card {
     border: 1px solid #C4D7E8;
     padding: 15px;
     background: #F4FBFF;
 }
 
+/* 卡片标题 */
 .doc-demo-card h3 {
     margin: 0 0 10px 0;
     color: #0D6EAA;
 }
 
+/* 卡片正文 */
 .doc-demo-card p {
     margin: 0 0 15px 0;
 }
 
+/* 卡片底部按钮行 - flex 布局，按钮间距 10px */
 .doc-demo-card .doc-demo-btn-row {
     display: flex;
     gap: 10px;
 }
 
-/* 间距可视化条 */
+/* 间距可视化条 - 蓝色实心横条，宽度通过 style 内联设置，直观展示间距数值 */
 .doc-spacing-bar {
     display: inline-block;
     height: 16px;
     background: #0D6EAA;
 }
 
-/* 辅助文字 */
+/* 辅助说明文字 - 灰色小字，标注演示盒子对应的间距值 */
 .doc-demo-label {
     color: #555555;
     margin-left: 10px;
 }
 
-/* 阴影演示 */
+/* 阴影演示 - 为阴影演示盒子添加具体阴影值，配合 boblog-shadow-* 工具类 */
 .doc-demo-shadow-box.boblog-shadow-subtle {
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
 }
