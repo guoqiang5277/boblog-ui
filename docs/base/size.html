@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>间距/尺寸 - Bo-Blog UI</title>
+    <title>尺寸 - Bo-Blog UI</title>
     <link rel="stylesheet" href="../../dist/boblog-ui.css">
     <link rel="stylesheet" href="../docs.css">
 </head>
@@ -20,7 +20,7 @@
         注：doc-demo-* 系列辅助类（doc-demo-box, doc-demo-wrap 等）为文档专用，定义在 docs/docs.css
     -->
     <!-- 右侧浮动目录 -->
-    <div class="boblog-toc">
+    <div class="boblog-toc" data-toc-depth="4">
         <h4>目录</h4>
         <ul id="tocList"></ul>
     </div>
@@ -30,7 +30,7 @@
             <a href="../index.html">← 返回总纲</a>
         </div>
 
-        <h1>间距/尺寸</h1>
+        <h1>尺寸</h1>
 
         <!-- 概述 -->
         <div class="boblog-doc-section">
@@ -403,241 +403,353 @@
             </div>
         </div>
 
-        <!-- 间距工具类 -->
+        <!-- Margin（外边距） -->
         <div class="boblog-doc-section">
-            <h2 id="section-utilities">间距工具类</h2>
-            <div class="boblog-doc-spec">
-                <p>提供快捷的 CSS 类名，无需写内联样式。数字后缀 × 5px。</p>
+            <h2 id="section-margin-classes">Margin（外边距）</h2>
 
-                <h4>命名规则</h4>
-                <table class="boblog-table">
-                    <thead>
-                        <tr>
-                            <th>前缀</th>
-                            <th>含义</th>
-                            <th>示例</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>.boblog-p-*</code></td>
-                            <td>padding 四边</td>
-                            <td><code>.boblog-p-3</code> → padding: 15px</td>
-                        </tr>
-                        <tr>
-                            <td><code>.boblog-pt/pb/pl/pr-*</code></td>
-                            <td>padding 单边（top/bottom/left/right）</td>
-                            <td><code>.boblog-pt-2</code> → padding-top: 10px</td>
-                        </tr>
-                        <tr>
-                            <td><code>.boblog-px-*</code></td>
-                            <td>padding 左右</td>
-                            <td><code>.boblog-px-4</code> → padding-left/right: 20px</td>
-                        </tr>
-                        <tr>
-                            <td><code>.boblog-py-*</code></td>
-                            <td>padding 上下</td>
-                            <td><code>.boblog-py-2</code> → padding-top/bottom: 10px</td>
-                        </tr>
-                        <tr>
-                            <td><code>.boblog-m-*</code></td>
-                            <td>margin 四边</td>
-                            <td><code>.boblog-m-3</code> → margin: 15px</td>
-                        </tr>
-                        <tr>
-                            <td><code>.boblog-mt/mb/ml/mr-*</code></td>
-                            <td>margin 单边（top/bottom/left/right）</td>
-                            <td><code>.boblog-mb-4</code> → margin-bottom: 20px</td>
-                        </tr>
-                        <tr>
-                            <td><code>.boblog-mx-*</code></td>
-                            <td>margin 左右</td>
-                            <td><code>.boblog-mx-auto</code> → margin-left/right: auto</td>
-                        </tr>
-                        <tr>
-                            <td><code>.boblog-my-*</code></td>
-                            <td>margin 上下</td>
-                            <td><code>.boblog-my-5</code> → margin-top/bottom: 25px</td>
-                        </tr>
-                    </tbody>
-                </table>
+            <!-- Margin 四边 -->
+            <h4 id="section-margin-all">Margin 四边</h4>
+            <table class="boblog-table">
+                <thead>
+                    <tr><th>类名</th><th>CSS 属性</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>.boblog-m-0</code></td><td>margin: 0</td></tr>
+                    <tr><td><code>.boblog-m-1</code></td><td>margin: 5px</td></tr>
+                    <tr><td><code>.boblog-m-2</code></td><td>margin: 10px</td></tr>
+                    <tr><td><code>.boblog-m-3</code></td><td>margin: 15px</td></tr>
+                    <tr><td><code>.boblog-m-4</code></td><td>margin: 20px</td></tr>
+                    <tr><td><code>.boblog-m-5</code></td><td>margin: 25px</td></tr>
+                    <tr><td><code>.boblog-m-6</code></td><td>margin: 30px</td></tr>
+                    <tr><td><code>.boblog-m-7</code></td><td>margin: 35px</td></tr>
+                    <tr><td><code>.boblog-m-8</code></td><td>margin: 40px</td></tr>
+                    <tr><td><code>.boblog-m-9</code></td><td>margin: 45px</td></tr>
+                    <tr><td><code>.boblog-m-10</code></td><td>margin: 50px</td></tr>
+                    <tr><td><code>.boblog-m-11</code></td><td>margin: 55px</td></tr>
+                    <tr><td><code>.boblog-m-12</code></td><td>margin: 60px</td></tr>
+                </tbody>
+            </table>
 
-                <h4 class="boblog-mt-4">数字后缀对照表</h4>
-                <table class="boblog-table">
-                    <thead>
-                        <tr>
-                            <th>后缀</th>
-                            <th>值</th>
-                            <th>后缀</th>
-                            <th>值</th>
-                            <th>后缀</th>
-                            <th>值</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>0</code></td>
-                            <td>0</td>
-                            <td><code>5</code></td>
-                            <td>25px</td>
-                            <td><code>10</code></td>
-                            <td>50px</td>
-                        </tr>
-                        <tr>
-                            <td><code>1</code></td>
-                            <td>5px</td>
-                            <td><code>6</code></td>
-                            <td>30px</td>
-                            <td><code>11</code></td>
-                            <td>55px</td>
-                        </tr>
-                        <tr>
-                            <td><code>2</code></td>
-                            <td>10px</td>
-                            <td><code>7</code></td>
-                            <td>35px</td>
-                            <td><code>12</code></td>
-                            <td>60px</td>
-                        </tr>
-                        <tr>
-                            <td><code>3</code></td>
-                            <td>15px</td>
-                            <td><code>8</code></td>
-                            <td>40px</td>
-                            <td><code>auto</code></td>
-                            <td>auto</td>
-                        </tr>
-                        <tr>
-                            <td><code>4</code></td>
-                            <td>20px</td>
-                            <td><code>9</code></td>
-                            <td>45px</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                    </tbody>
-                </table>
+            <!-- Margin Top -->
+            <h4 id="section-margin-top" class="boblog-mt-4">Margin Top</h4>
+            <table class="boblog-table">
+                <thead>
+                    <tr><th>类名</th><th>CSS 属性</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>.boblog-mt-0</code></td><td>margin-top: 0</td></tr>
+                    <tr><td><code>.boblog-mt-1</code></td><td>margin-top: 5px</td></tr>
+                    <tr><td><code>.boblog-mt-2</code></td><td>margin-top: 10px</td></tr>
+                    <tr><td><code>.boblog-mt-3</code></td><td>margin-top: 15px</td></tr>
+                    <tr><td><code>.boblog-mt-4</code></td><td>margin-top: 20px</td></tr>
+                    <tr><td><code>.boblog-mt-5</code></td><td>margin-top: 25px</td></tr>
+                    <tr><td><code>.boblog-mt-6</code></td><td>margin-top: 30px</td></tr>
+                    <tr><td><code>.boblog-mt-7</code></td><td>margin-top: 35px</td></tr>
+                    <tr><td><code>.boblog-mt-8</code></td><td>margin-top: 40px</td></tr>
+                    <tr><td><code>.boblog-mt-9</code></td><td>margin-top: 45px</td></tr>
+                    <tr><td><code>.boblog-mt-10</code></td><td>margin-top: 50px</td></tr>
+                    <tr><td><code>.boblog-mt-11</code></td><td>margin-top: 55px</td></tr>
+                    <tr><td><code>.boblog-mt-12</code></td><td>margin-top: 60px</td></tr>
+                </tbody>
+            </table>
 
-                <h4 class="boblog-mt-4">Auto 工具类</h4>
-                <table class="boblog-table">
-                    <thead>
-                        <tr>
-                            <th>类名</th>
-                            <th>效果</th>
-                            <th>典型用途</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><code>.boblog-mx-auto</code></td>
-                            <td>margin-left/right: auto</td>
-                            <td>块元素水平居中</td>
-                        </tr>
-                        <tr>
-                            <td><code>.boblog-my-auto</code></td>
-                            <td>margin-top/bottom: auto</td>
-                            <td>Flex 容器内垂直居中</td>
-                        </tr>
-                        <tr>
-                            <td><code>.boblog-m-auto</code></td>
-                            <td>margin: auto</td>
-                            <td>Flex 容器内完全居中</td>
-                        </tr>
-                        <tr>
-                            <td><code>.boblog-ml-auto</code></td>
-                            <td>margin-left: auto</td>
-                            <td>Flex 子元素推到右侧</td>
-                        </tr>
-                        <tr>
-                            <td><code>.boblog-mr-auto</code></td>
-                            <td>margin-right: auto</td>
-                            <td>Flex 子元素推到左侧</td>
-                        </tr>
-                        <tr>
-                            <td><code>.boblog-mt-auto</code></td>
-                            <td>margin-top: auto</td>
-                            <td>Flex 子元素推到底部</td>
-                        </tr>
-                        <tr>
-                            <td><code>.boblog-mb-auto</code></td>
-                            <td>margin-bottom: auto</td>
-                            <td>Flex 子元素推到顶部</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <!-- Margin Bottom -->
+            <h4 id="section-margin-bottom" class="boblog-mt-4">Margin Bottom</h4>
+            <table class="boblog-table">
+                <thead>
+                    <tr><th>类名</th><th>CSS 属性</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>.boblog-mb-0</code></td><td>margin-bottom: 0</td></tr>
+                    <tr><td><code>.boblog-mb-1</code></td><td>margin-bottom: 5px</td></tr>
+                    <tr><td><code>.boblog-mb-2</code></td><td>margin-bottom: 10px</td></tr>
+                    <tr><td><code>.boblog-mb-3</code></td><td>margin-bottom: 15px</td></tr>
+                    <tr><td><code>.boblog-mb-4</code></td><td>margin-bottom: 20px</td></tr>
+                    <tr><td><code>.boblog-mb-5</code></td><td>margin-bottom: 25px</td></tr>
+                    <tr><td><code>.boblog-mb-6</code></td><td>margin-bottom: 30px</td></tr>
+                    <tr><td><code>.boblog-mb-7</code></td><td>margin-bottom: 35px</td></tr>
+                    <tr><td><code>.boblog-mb-8</code></td><td>margin-bottom: 40px</td></tr>
+                    <tr><td><code>.boblog-mb-9</code></td><td>margin-bottom: 45px</td></tr>
+                    <tr><td><code>.boblog-mb-10</code></td><td>margin-bottom: 50px</td></tr>
+                    <tr><td><code>.boblog-mb-11</code></td><td>margin-bottom: 55px</td></tr>
+                    <tr><td><code>.boblog-mb-12</code></td><td>margin-bottom: 60px</td></tr>
+                </tbody>
+            </table>
 
-            <div class="boblog-tabs boblog-mt-3">
-                <div class="boblog-tabs-bar">
-                    <button class="boblog-tabs-btn active">预览</button>
-                    <button class="boblog-tabs-btn">关键源码</button>
-                    <button class="boblog-tabs-btn">完整源码</button>
-                </div>
-                <div class="boblog-tabs-panel active">
-                    <h4>使用示例</h4>
-                    <div class="doc-demo-wrap boblog-mb-3">
-                        <div class="doc-demo-box boblog-p-3 boblog-mb-2">
-                            .boblog-p-3 .boblog-mb-2
-                        </div>
-                        <div class="doc-demo-box boblog-px-4 boblog-py-1">
-                            .boblog-px-4 .boblog-py-1
-                        </div>
-                    </div>
-                    <div class="doc-demo-wrap">
-                        <div class="doc-demo-box boblog-mx-auto boblog-p-2 boblog-text-center" style="width: 200px;">
-                            .boblog-mx-auto（水平居中）
-                        </div>
-                    </div>
-                </div>
-                <div class="boblog-tabs-panel">
-                    <div class="boblog-codeblock">
-                        <pre><code class="language-html">&lt;h4&gt;使用示例&lt;/h4&gt;
-&lt;div class="doc-demo-wrap boblog-mb-3"&gt;
-    &lt;div class="doc-demo-box boblog-p-3 boblog-mb-2"&gt;
-        .boblog-p-3 .boblog-mb-2
-    &lt;/div&gt;
-    &lt;div class="doc-demo-box boblog-px-4 boblog-py-1"&gt;
-        .boblog-px-4 .boblog-py-1
-    &lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="doc-demo-wrap"&gt;
-    &lt;div class="doc-demo-box boblog-mx-auto boblog-p-2 boblog-text-center" style="width: 200px;"&gt;
-        .boblog-mx-auto（水平居中）
-    &lt;/div&gt;
-&lt;/div&gt;</code></pre>
-                    </div>
-                </div>
-                <div class="boblog-tabs-panel">
-                    <div class="boblog-codeblock">
-                        <pre><code class="language-html">&lt;!DOCTYPE html&gt;
-&lt;html lang="zh-CN"&gt;
-&lt;head&gt;
-    &lt;meta charset="UTF-8"&gt;
-    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
-    &lt;title&gt;间距工具类使用示例 - Bo-Blog UI&lt;/title&gt;
-    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
-    &lt;link rel="stylesheet" href="../docs.css"&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h4&gt;使用示例&lt;/h4&gt;
-    &lt;div class="doc-demo-wrap boblog-mb-3"&gt;
-        &lt;div class="doc-demo-box boblog-p-3 boblog-mb-2"&gt;
-            .boblog-p-3 .boblog-mb-2
-        &lt;/div&gt;
-        &lt;div class="doc-demo-box boblog-px-4 boblog-py-1"&gt;
-            .boblog-px-4 .boblog-py-1
-        &lt;/div&gt;
-    &lt;/div&gt;
-    &lt;div class="doc-demo-wrap"&gt;
-        &lt;div class="doc-demo-box boblog-mx-auto boblog-p-2 boblog-text-center" style="width: 200px;"&gt;
-            .boblog-mx-auto（水平居中）
-        &lt;/div&gt;
-    &lt;/div&gt;
-&lt;/body&gt;
-&lt;/html&gt;</code></pre>
-                    </div>
-                </div>
-            </div>
+            <!-- Margin Left -->
+            <h4 id="section-margin-left" class="boblog-mt-4">Margin Left</h4>
+            <table class="boblog-table">
+                <thead>
+                    <tr><th>类名</th><th>CSS 属性</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>.boblog-ml-0</code></td><td>margin-left: 0</td></tr>
+                    <tr><td><code>.boblog-ml-1</code></td><td>margin-left: 5px</td></tr>
+                    <tr><td><code>.boblog-ml-2</code></td><td>margin-left: 10px</td></tr>
+                    <tr><td><code>.boblog-ml-3</code></td><td>margin-left: 15px</td></tr>
+                    <tr><td><code>.boblog-ml-4</code></td><td>margin-left: 20px</td></tr>
+                    <tr><td><code>.boblog-ml-5</code></td><td>margin-left: 25px</td></tr>
+                    <tr><td><code>.boblog-ml-6</code></td><td>margin-left: 30px</td></tr>
+                    <tr><td><code>.boblog-ml-7</code></td><td>margin-left: 35px</td></tr>
+                    <tr><td><code>.boblog-ml-8</code></td><td>margin-left: 40px</td></tr>
+                    <tr><td><code>.boblog-ml-9</code></td><td>margin-left: 45px</td></tr>
+                    <tr><td><code>.boblog-ml-10</code></td><td>margin-left: 50px</td></tr>
+                    <tr><td><code>.boblog-ml-11</code></td><td>margin-left: 55px</td></tr>
+                    <tr><td><code>.boblog-ml-12</code></td><td>margin-left: 60px</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Margin Right -->
+            <h4 id="section-margin-right" class="boblog-mt-4">Margin Right</h4>
+            <table class="boblog-table">
+                <thead>
+                    <tr><th>类名</th><th>CSS 属性</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>.boblog-mr-0</code></td><td>margin-right: 0</td></tr>
+                    <tr><td><code>.boblog-mr-1</code></td><td>margin-right: 5px</td></tr>
+                    <tr><td><code>.boblog-mr-2</code></td><td>margin-right: 10px</td></tr>
+                    <tr><td><code>.boblog-mr-3</code></td><td>margin-right: 15px</td></tr>
+                    <tr><td><code>.boblog-mr-4</code></td><td>margin-right: 20px</td></tr>
+                    <tr><td><code>.boblog-mr-5</code></td><td>margin-right: 25px</td></tr>
+                    <tr><td><code>.boblog-mr-6</code></td><td>margin-right: 30px</td></tr>
+                    <tr><td><code>.boblog-mr-7</code></td><td>margin-right: 35px</td></tr>
+                    <tr><td><code>.boblog-mr-8</code></td><td>margin-right: 40px</td></tr>
+                    <tr><td><code>.boblog-mr-9</code></td><td>margin-right: 45px</td></tr>
+                    <tr><td><code>.boblog-mr-10</code></td><td>margin-right: 50px</td></tr>
+                    <tr><td><code>.boblog-mr-11</code></td><td>margin-right: 55px</td></tr>
+                    <tr><td><code>.boblog-mr-12</code></td><td>margin-right: 60px</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Margin X (左右) -->
+            <h4 id="section-margin-x" class="boblog-mt-4">Margin X（左右）</h4>
+            <table class="boblog-table">
+                <thead>
+                    <tr><th>类名</th><th>CSS 属性</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>.boblog-mx-0</code></td><td>margin-left: 0; margin-right: 0</td></tr>
+                    <tr><td><code>.boblog-mx-1</code></td><td>margin-left: 5px; margin-right: 5px</td></tr>
+                    <tr><td><code>.boblog-mx-2</code></td><td>margin-left: 10px; margin-right: 10px</td></tr>
+                    <tr><td><code>.boblog-mx-3</code></td><td>margin-left: 15px; margin-right: 15px</td></tr>
+                    <tr><td><code>.boblog-mx-4</code></td><td>margin-left: 20px; margin-right: 20px</td></tr>
+                    <tr><td><code>.boblog-mx-5</code></td><td>margin-left: 25px; margin-right: 25px</td></tr>
+                    <tr><td><code>.boblog-mx-6</code></td><td>margin-left: 30px; margin-right: 30px</td></tr>
+                    <tr><td><code>.boblog-mx-7</code></td><td>margin-left: 35px; margin-right: 35px</td></tr>
+                    <tr><td><code>.boblog-mx-8</code></td><td>margin-left: 40px; margin-right: 40px</td></tr>
+                    <tr><td><code>.boblog-mx-9</code></td><td>margin-left: 45px; margin-right: 45px</td></tr>
+                    <tr><td><code>.boblog-mx-10</code></td><td>margin-left: 50px; margin-right: 50px</td></tr>
+                    <tr><td><code>.boblog-mx-11</code></td><td>margin-left: 55px; margin-right: 55px</td></tr>
+                    <tr><td><code>.boblog-mx-12</code></td><td>margin-left: 60px; margin-right: 60px</td></tr>
+                    <tr><td><code>.boblog-mx-auto</code></td><td>margin-left: auto; margin-right: auto</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Margin Y (上下) -->
+            <h4 id="section-margin-y" class="boblog-mt-4">Margin Y（上下）</h4>
+            <table class="boblog-table">
+                <thead>
+                    <tr><th>类名</th><th>CSS 属性</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>.boblog-my-0</code></td><td>margin-top: 0; margin-bottom: 0</td></tr>
+                    <tr><td><code>.boblog-my-1</code></td><td>margin-top: 5px; margin-bottom: 5px</td></tr>
+                    <tr><td><code>.boblog-my-2</code></td><td>margin-top: 10px; margin-bottom: 10px</td></tr>
+                    <tr><td><code>.boblog-my-3</code></td><td>margin-top: 15px; margin-bottom: 15px</td></tr>
+                    <tr><td><code>.boblog-my-4</code></td><td>margin-top: 20px; margin-bottom: 20px</td></tr>
+                    <tr><td><code>.boblog-my-5</code></td><td>margin-top: 25px; margin-bottom: 25px</td></tr>
+                    <tr><td><code>.boblog-my-6</code></td><td>margin-top: 30px; margin-bottom: 30px</td></tr>
+                    <tr><td><code>.boblog-my-7</code></td><td>margin-top: 35px; margin-bottom: 35px</td></tr>
+                    <tr><td><code>.boblog-my-8</code></td><td>margin-top: 40px; margin-bottom: 40px</td></tr>
+                    <tr><td><code>.boblog-my-9</code></td><td>margin-top: 45px; margin-bottom: 45px</td></tr>
+                    <tr><td><code>.boblog-my-10</code></td><td>margin-top: 50px; margin-bottom: 50px</td></tr>
+                    <tr><td><code>.boblog-my-11</code></td><td>margin-top: 55px; margin-bottom: 55px</td></tr>
+                    <tr><td><code>.boblog-my-12</code></td><td>margin-top: 60px; margin-bottom: 60px</td></tr>
+                    <tr><td><code>.boblog-my-auto</code></td><td>margin-top: auto; margin-bottom: auto</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Margin Auto (单方向) -->
+            <h4 id="section-margin-auto" class="boblog-mt-4">Margin Auto（单方向自动）</h4>
+            <table class="boblog-table">
+                <thead>
+                    <tr><th>类名</th><th>CSS 属性</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>.boblog-m-auto</code></td><td>margin: auto</td></tr>
+                    <tr><td><code>.boblog-mt-auto</code></td><td>margin-top: auto</td></tr>
+                    <tr><td><code>.boblog-mb-auto</code></td><td>margin-bottom: auto</td></tr>
+                    <tr><td><code>.boblog-ml-auto</code></td><td>margin-left: auto</td></tr>
+                    <tr><td><code>.boblog-mr-auto</code></td><td>margin-right: auto</td></tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Padding（内边距） -->
+        <div class="boblog-doc-section">
+            <h2 id="section-padding-classes">Padding（内边距）</h2>
+
+            <!-- Padding 四边 -->
+            <h4 id="section-padding-all">Padding 四边</h4>
+            <table class="boblog-table">
+                <thead>
+                    <tr><th>类名</th><th>CSS 属性</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>.boblog-p-0</code></td><td>padding: 0</td></tr>
+                    <tr><td><code>.boblog-p-1</code></td><td>padding: 5px</td></tr>
+                    <tr><td><code>.boblog-p-2</code></td><td>padding: 10px</td></tr>
+                    <tr><td><code>.boblog-p-3</code></td><td>padding: 15px</td></tr>
+                    <tr><td><code>.boblog-p-4</code></td><td>padding: 20px</td></tr>
+                    <tr><td><code>.boblog-p-5</code></td><td>padding: 25px</td></tr>
+                    <tr><td><code>.boblog-p-6</code></td><td>padding: 30px</td></tr>
+                    <tr><td><code>.boblog-p-7</code></td><td>padding: 35px</td></tr>
+                    <tr><td><code>.boblog-p-8</code></td><td>padding: 40px</td></tr>
+                    <tr><td><code>.boblog-p-9</code></td><td>padding: 45px</td></tr>
+                    <tr><td><code>.boblog-p-10</code></td><td>padding: 50px</td></tr>
+                    <tr><td><code>.boblog-p-11</code></td><td>padding: 55px</td></tr>
+                    <tr><td><code>.boblog-p-12</code></td><td>padding: 60px</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Padding Top -->
+            <h4 id="section-padding-top" class="boblog-mt-4">Padding Top</h4>
+            <table class="boblog-table">
+                <thead>
+                    <tr><th>类名</th><th>CSS 属性</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>.boblog-pt-0</code></td><td>padding-top: 0</td></tr>
+                    <tr><td><code>.boblog-pt-1</code></td><td>padding-top: 5px</td></tr>
+                    <tr><td><code>.boblog-pt-2</code></td><td>padding-top: 10px</td></tr>
+                    <tr><td><code>.boblog-pt-3</code></td><td>padding-top: 15px</td></tr>
+                    <tr><td><code>.boblog-pt-4</code></td><td>padding-top: 20px</td></tr>
+                    <tr><td><code>.boblog-pt-5</code></td><td>padding-top: 25px</td></tr>
+                    <tr><td><code>.boblog-pt-6</code></td><td>padding-top: 30px</td></tr>
+                    <tr><td><code>.boblog-pt-7</code></td><td>padding-top: 35px</td></tr>
+                    <tr><td><code>.boblog-pt-8</code></td><td>padding-top: 40px</td></tr>
+                    <tr><td><code>.boblog-pt-9</code></td><td>padding-top: 45px</td></tr>
+                    <tr><td><code>.boblog-pt-10</code></td><td>padding-top: 50px</td></tr>
+                    <tr><td><code>.boblog-pt-11</code></td><td>padding-top: 55px</td></tr>
+                    <tr><td><code>.boblog-pt-12</code></td><td>padding-top: 60px</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Padding Bottom -->
+            <h4 id="section-padding-bottom" class="boblog-mt-4">Padding Bottom</h4>
+            <table class="boblog-table">
+                <thead>
+                    <tr><th>类名</th><th>CSS 属性</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>.boblog-pb-0</code></td><td>padding-bottom: 0</td></tr>
+                    <tr><td><code>.boblog-pb-1</code></td><td>padding-bottom: 5px</td></tr>
+                    <tr><td><code>.boblog-pb-2</code></td><td>padding-bottom: 10px</td></tr>
+                    <tr><td><code>.boblog-pb-3</code></td><td>padding-bottom: 15px</td></tr>
+                    <tr><td><code>.boblog-pb-4</code></td><td>padding-bottom: 20px</td></tr>
+                    <tr><td><code>.boblog-pb-5</code></td><td>padding-bottom: 25px</td></tr>
+                    <tr><td><code>.boblog-pb-6</code></td><td>padding-bottom: 30px</td></tr>
+                    <tr><td><code>.boblog-pb-7</code></td><td>padding-bottom: 35px</td></tr>
+                    <tr><td><code>.boblog-pb-8</code></td><td>padding-bottom: 40px</td></tr>
+                    <tr><td><code>.boblog-pb-9</code></td><td>padding-bottom: 45px</td></tr>
+                    <tr><td><code>.boblog-pb-10</code></td><td>padding-bottom: 50px</td></tr>
+                    <tr><td><code>.boblog-pb-11</code></td><td>padding-bottom: 55px</td></tr>
+                    <tr><td><code>.boblog-pb-12</code></td><td>padding-bottom: 60px</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Padding Left -->
+            <h4 id="section-padding-left" class="boblog-mt-4">Padding Left</h4>
+            <table class="boblog-table">
+                <thead>
+                    <tr><th>类名</th><th>CSS 属性</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>.boblog-pl-0</code></td><td>padding-left: 0</td></tr>
+                    <tr><td><code>.boblog-pl-1</code></td><td>padding-left: 5px</td></tr>
+                    <tr><td><code>.boblog-pl-2</code></td><td>padding-left: 10px</td></tr>
+                    <tr><td><code>.boblog-pl-3</code></td><td>padding-left: 15px</td></tr>
+                    <tr><td><code>.boblog-pl-4</code></td><td>padding-left: 20px</td></tr>
+                    <tr><td><code>.boblog-pl-5</code></td><td>padding-left: 25px</td></tr>
+                    <tr><td><code>.boblog-pl-6</code></td><td>padding-left: 30px</td></tr>
+                    <tr><td><code>.boblog-pl-7</code></td><td>padding-left: 35px</td></tr>
+                    <tr><td><code>.boblog-pl-8</code></td><td>padding-left: 40px</td></tr>
+                    <tr><td><code>.boblog-pl-9</code></td><td>padding-left: 45px</td></tr>
+                    <tr><td><code>.boblog-pl-10</code></td><td>padding-left: 50px</td></tr>
+                    <tr><td><code>.boblog-pl-11</code></td><td>padding-left: 55px</td></tr>
+                    <tr><td><code>.boblog-pl-12</code></td><td>padding-left: 60px</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Padding Right -->
+            <h4 id="section-padding-right" class="boblog-mt-4">Padding Right</h4>
+            <table class="boblog-table">
+                <thead>
+                    <tr><th>类名</th><th>CSS 属性</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>.boblog-pr-0</code></td><td>padding-right: 0</td></tr>
+                    <tr><td><code>.boblog-pr-1</code></td><td>padding-right: 5px</td></tr>
+                    <tr><td><code>.boblog-pr-2</code></td><td>padding-right: 10px</td></tr>
+                    <tr><td><code>.boblog-pr-3</code></td><td>padding-right: 15px</td></tr>
+                    <tr><td><code>.boblog-pr-4</code></td><td>padding-right: 20px</td></tr>
+                    <tr><td><code>.boblog-pr-5</code></td><td>padding-right: 25px</td></tr>
+                    <tr><td><code>.boblog-pr-6</code></td><td>padding-right: 30px</td></tr>
+                    <tr><td><code>.boblog-pr-7</code></td><td>padding-right: 35px</td></tr>
+                    <tr><td><code>.boblog-pr-8</code></td><td>padding-right: 40px</td></tr>
+                    <tr><td><code>.boblog-pr-9</code></td><td>padding-right: 45px</td></tr>
+                    <tr><td><code>.boblog-pr-10</code></td><td>padding-right: 50px</td></tr>
+                    <tr><td><code>.boblog-pr-11</code></td><td>padding-right: 55px</td></tr>
+                    <tr><td><code>.boblog-pr-12</code></td><td>padding-right: 60px</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Padding X (左右) -->
+            <h4 id="section-padding-x" class="boblog-mt-4">Padding X（左右）</h4>
+            <table class="boblog-table">
+                <thead>
+                    <tr><th>类名</th><th>CSS 属性</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>.boblog-px-0</code></td><td>padding-left: 0; padding-right: 0</td></tr>
+                    <tr><td><code>.boblog-px-1</code></td><td>padding-left: 5px; padding-right: 5px</td></tr>
+                    <tr><td><code>.boblog-px-2</code></td><td>padding-left: 10px; padding-right: 10px</td></tr>
+                    <tr><td><code>.boblog-px-3</code></td><td>padding-left: 15px; padding-right: 15px</td></tr>
+                    <tr><td><code>.boblog-px-4</code></td><td>padding-left: 20px; padding-right: 20px</td></tr>
+                    <tr><td><code>.boblog-px-5</code></td><td>padding-left: 25px; padding-right: 25px</td></tr>
+                    <tr><td><code>.boblog-px-6</code></td><td>padding-left: 30px; padding-right: 30px</td></tr>
+                    <tr><td><code>.boblog-px-7</code></td><td>padding-left: 35px; padding-right: 35px</td></tr>
+                    <tr><td><code>.boblog-px-8</code></td><td>padding-left: 40px; padding-right: 40px</td></tr>
+                    <tr><td><code>.boblog-px-9</code></td><td>padding-left: 45px; padding-right: 45px</td></tr>
+                    <tr><td><code>.boblog-px-10</code></td><td>padding-left: 50px; padding-right: 50px</td></tr>
+                    <tr><td><code>.boblog-px-11</code></td><td>padding-left: 55px; padding-right: 55px</td></tr>
+                    <tr><td><code>.boblog-px-12</code></td><td>padding-left: 60px; padding-right: 60px</td></tr>
+                </tbody>
+            </table>
+
+            <!-- Padding Y (上下) -->
+            <h4 id="section-padding-y" class="boblog-mt-4">Padding Y（上下）</h4>
+            <table class="boblog-table">
+                <thead>
+                    <tr><th>类名</th><th>CSS 属性</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>.boblog-py-0</code></td><td>padding-top: 0; padding-bottom: 0</td></tr>
+                    <tr><td><code>.boblog-py-1</code></td><td>padding-top: 5px; padding-bottom: 5px</td></tr>
+                    <tr><td><code>.boblog-py-2</code></td><td>padding-top: 10px; padding-bottom: 10px</td></tr>
+                    <tr><td><code>.boblog-py-3</code></td><td>padding-top: 15px; padding-bottom: 15px</td></tr>
+                    <tr><td><code>.boblog-py-4</code></td><td>padding-top: 20px; padding-bottom: 20px</td></tr>
+                    <tr><td><code>.boblog-py-5</code></td><td>padding-top: 25px; padding-bottom: 25px</td></tr>
+                    <tr><td><code>.boblog-py-6</code></td><td>padding-top: 30px; padding-bottom: 30px</td></tr>
+                    <tr><td><code>.boblog-py-7</code></td><td>padding-top: 35px; padding-bottom: 35px</td></tr>
+                    <tr><td><code>.boblog-py-8</code></td><td>padding-top: 40px; padding-bottom: 40px</td></tr>
+                    <tr><td><code>.boblog-py-9</code></td><td>padding-top: 45px; padding-bottom: 45px</td></tr>
+                    <tr><td><code>.boblog-py-10</code></td><td>padding-top: 50px; padding-bottom: 50px</td></tr>
+                    <tr><td><code>.boblog-py-11</code></td><td>padding-top: 55px; padding-bottom: 55px</td></tr>
+                    <tr><td><code>.boblog-py-12</code></td><td>padding-top: 60px; padding-bottom: 60px</td></tr>
+                </tbody>
+            </table>
         </div>
 
         <!-- 实际应用示例 -->
