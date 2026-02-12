@@ -57,6 +57,7 @@ CSS_FILES=(
     "$SRC_DIR/base/variables.css"
     "$SRC_DIR/base/reset.css"
     "$SRC_DIR/base/typography.css"
+    "$SRC_DIR/base/size.css"
 
     # 控件层
     "$SRC_DIR/controls/button.css"
@@ -131,7 +132,7 @@ if [ "$SCSS_COUNT" -gt 0 ]; then
         rel_path="${scss_file#$SRC_DIR/}"
         css_path="$SCSS_TMP/${rel_path%.scss}.css"
         mkdir -p "$(dirname "$css_path")"
-        "$SASS_BIN" --no-source-map "$scss_file" "$css_path"
+        "$SASS_BIN" --no-source-map --no-charset "$scss_file" "$css_path"
         echo "    ✓ $rel_path → css"
     done
 fi
