@@ -1007,6 +1007,126 @@ function hello() {
             </div>
         </div>
 
+        <!-- 文字工具类 - 经典名色 -->
+        <div class="boblog-doc-section">
+            <h2 id="文字工具类-经典名色">文字工具类 - 经典名色</h2>
+
+            <div class="boblog-doc-section-3">
+                <h3>1. 规范说明</h3>
+                <ul class="boblog-doc-spec">
+                    <li>10 种世界经典名色对应的文字颜色工具类，引用 <code>variables.css</code> 中定义的 CSS 变量。</li>
+                    <li><strong>.boblog-text-klein</strong>: 克莱因蓝 (--boblog-blue-klein)</li>
+                    <li><strong>.boblog-text-burgundy</strong>: 勃艮第红 (--boblog-red-burgundy)</li>
+                    <li><strong>.boblog-text-mars</strong>: 马尔斯绿 (--boblog-green-mars)</li>
+                    <li><strong>.boblog-text-bordeaux</strong>: 波尔多红 (--boblog-red-bordeaux)</li>
+                    <li><strong>.boblog-text-chinese</strong>: 中国红 (--boblog-red-chinese)</li>
+                    <li><strong>.boblog-text-titan</strong>: 提香红 (--boblog-red-titan)</li>
+                    <li><strong>.boblog-text-prussian</strong>: 普鲁士蓝 (--boblog-blue-prussian)</li>
+                    <li><strong>.boblog-text-sennelier</strong>: 申布伦黄 (--boblog-yellow-sennelier)</li>
+                    <li><strong>.boblog-text-vandyke</strong>: 凡戴克棕 (--boblog-brown-vandyke)</li>
+                    <li><strong>.boblog-text-tiffany</strong>: 蒂芙尼蓝 (--boblog-blue-tiffany)</li>
+                </ul>
+            </div>
+
+            <div class="boblog-doc-section-3">
+                <h3>2. 演示</h3>
+                <div class="boblog-tabs">
+                    <div class="boblog-tabs-bar">
+                        <button class="boblog-tabs-btn active">预览</button>
+                        <button class="boblog-tabs-btn">关键源码</button>
+                        <button class="boblog-tabs-btn">完整源码</button>
+                    </div>
+                    <div class="boblog-tabs-panel active">
+                        <!-- 预览 -->
+                        <div class="boblog-doc-demo">
+                            <div style="font-size:14px; font-weight:bold; line-height:2;">
+                                <div class="boblog-text-klein">克莱因蓝 Klein Blue — .boblog-text-klein</div>
+                                <div class="boblog-text-burgundy">勃艮第红 Burgundy — .boblog-text-burgundy</div>
+                                <div class="boblog-text-mars">马尔斯绿 Mars Green — .boblog-text-mars</div>
+                                <div class="boblog-text-bordeaux">波尔多红 Bordeaux Red — .boblog-text-bordeaux</div>
+                                <div class="boblog-text-chinese">中国红 Chinese Red — .boblog-text-chinese</div>
+                                <div class="boblog-text-titan">提香红 Titan Red — .boblog-text-titan</div>
+                                <div class="boblog-text-prussian">普鲁士蓝 Prussian Blue — .boblog-text-prussian</div>
+                                <div class="boblog-text-sennelier">申布伦黄 Sennelier Yellow — .boblog-text-sennelier</div>
+                                <div class="boblog-text-vandyke">凡戴克棕 Vandyke Brown — .boblog-text-vandyke</div>
+                                <div class="boblog-text-tiffany">蒂芙尼蓝 Tiffany Blue — .boblog-text-tiffany</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <!-- 关键源码 -->
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;span class="boblog-text-klein"&gt;克莱因蓝文字&lt;/span&gt;
+&lt;span class="boblog-text-burgundy"&gt;勃艮第红文字&lt;/span&gt;
+&lt;span class="boblog-text-chinese"&gt;中国红文字&lt;/span&gt;</code></pre>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <!-- 完整源码 -->
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-css">/* 世界经典名色（10 色）— 引用 variables.css 中定义的 CSS 变量 */
+.boblog-text-klein { color: var(--boblog-blue-klein) !important; }         /* 克莱因蓝 */
+.boblog-text-burgundy { color: var(--boblog-red-burgundy) !important; }   /* 勃艮第红 */
+.boblog-text-mars { color: var(--boblog-green-mars) !important; }         /* 马尔斯绿 */
+.boblog-text-bordeaux { color: var(--boblog-red-bordeaux) !important; }   /* 波尔多红 */
+.boblog-text-chinese { color: var(--boblog-red-chinese) !important; }     /* 中国红 */
+.boblog-text-titan { color: var(--boblog-red-titan) !important; }         /* 提香红 */
+.boblog-text-prussian { color: var(--boblog-blue-prussian) !important; }  /* 普鲁士蓝 */
+.boblog-text-sennelier { color: var(--boblog-yellow-sennelier) !important; } /* 申布伦黄 */
+.boblog-text-vandyke { color: var(--boblog-brown-vandyke) !important; }   /* 凡戴克棕 */
+.boblog-text-tiffany { color: var(--boblog-blue-tiffany) !important; }    /* 蒂芙尼蓝 */</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 文字工具类 - 文本工具 -->
+        <div class="boblog-doc-section">
+            <h2 id="文字工具类-文本工具">文字工具类 - 文本工具</h2>
+
+            <div class="boblog-doc-section-3">
+                <h3>1. 规范说明</h3>
+                <ul class="boblog-doc-spec">
+                    <li><strong>.boblog-pre-wrap</strong>: 保留换行（white-space: pre-wrap），用于 FAQ 内容等需要保留原始换行的场景</li>
+                </ul>
+            </div>
+
+            <div class="boblog-doc-section-3">
+                <h3>2. 演示</h3>
+                <div class="boblog-tabs">
+                    <div class="boblog-tabs-bar">
+                        <button class="boblog-tabs-btn active">预览</button>
+                        <button class="boblog-tabs-btn">关键源码</button>
+                        <button class="boblog-tabs-btn">完整源码</button>
+                    </div>
+                    <div class="boblog-tabs-panel active">
+                        <!-- 预览 -->
+                        <div class="boblog-doc-demo">
+                            <div class="boblog-pre-wrap" style="background:var(--boblog-bg-panel, #F5FBFE); border:1px solid var(--boblog-border-light, #DDE8F0); padding:10px; font-size:12px;">第一行内容
+第二行内容（换行被保留）
+第三行内容</div>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <!-- 关键源码 -->
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-html">&lt;div class="boblog-pre-wrap"&gt;第一行内容
+第二行内容（换行被保留）
+第三行内容&lt;/div&gt;</code></pre>
+                        </div>
+                    </div>
+                    <div class="boblog-tabs-panel">
+                        <!-- 完整源码 -->
+                        <div class="boblog-codeblock">
+                            <pre><code class="language-css">/* 保留换行 — FAQ 内容等需要保留原始换行的场景 */
+.boblog-pre-wrap { white-space: pre-wrap !important; }</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- 文字工具类 - 对齐 -->
         <div class="boblog-doc-section">
             <h2 id="文字工具类-对齐">文字工具类 - 对齐</h2>

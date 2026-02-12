@@ -158,6 +158,18 @@ small,
     color: var(--boblog-orange-warning, #faad14);
 }
 
+/* 世界经典名色（10 色）— 引用 variables.css 中定义的 CSS 变量 */
+.boblog-text-klein { color: var(--boblog-blue-klein) !important; }         /* 克莱因蓝 */
+.boblog-text-burgundy { color: var(--boblog-red-burgundy) !important; }   /* 勃艮第红 */
+.boblog-text-mars { color: var(--boblog-green-mars) !important; }         /* 马尔斯绿 */
+.boblog-text-bordeaux { color: var(--boblog-red-bordeaux) !important; }   /* 波尔多红 */
+.boblog-text-chinese { color: var(--boblog-red-chinese) !important; }     /* 中国红 */
+.boblog-text-titan { color: var(--boblog-red-titan) !important; }         /* 提香红 */
+.boblog-text-prussian { color: var(--boblog-blue-prussian) !important; }  /* 普鲁士蓝 */
+.boblog-text-sennelier { color: var(--boblog-yellow-sennelier) !important; } /* 申布伦黄 */
+.boblog-text-vandyke { color: var(--boblog-brown-vandyke) !important; }   /* 凡戴克棕 */
+.boblog-text-tiffany { color: var(--boblog-blue-tiffany) !important; }    /* 蒂芙尼蓝 */
+
 /* ========== 强调 ========== */
 strong,
 b {
@@ -277,6 +289,10 @@ hr {
     text-overflow: ellipsis;
     white-space: nowrap;
 }
+
+/* ========== 文本工具 ========== */
+/* 保留换行 — FAQ 内容等需要保留原始换行的场景 */
+.boblog-pre-wrap { white-space: pre-wrap !important; }
 
 /* ========== 间距清除工具类 ========== */
 .boblog-clear-m {

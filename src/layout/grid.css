@@ -166,3 +166,20 @@
   padding-left: 0;
   padding-right: 0;
 }
+
+/* ========== 宽度容器 ========== */
+/* 百分比宽度 + 水平居中 — FAQ、Help、Terms 页面内容区 */
+.boblog-w-80 { width: 80% !important; margin-left: auto !important; margin-right: auto !important; }
+
+/* 最大宽度 + 水平居中 — Login、Register 页面 */
+.boblog-max-w-500 { max-width: 500px !important; margin-left: auto !important; margin-right: auto !important; }
+
+/* 最大宽度 + 水平居中 — Contact 页面 */
+.boblog-max-w-600 { max-width: 600px !important; margin-left: auto !important; margin-right: auto !important; }
+
+/* 最小宽度 — 版本切换下拉框等 */
+.boblog-min-w-280 { min-width: 280px !important; }
+
+/* ========== 显示类型 ========== */
+/* 行内块显示 — select 容器等 */
+.boblog-inline-block { display: inline-block !important; }

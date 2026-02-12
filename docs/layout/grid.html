@@ -474,6 +474,152 @@
         </div>
     </div>
 
+    <!-- ====== 宽度容器 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="宽度容器">宽度容器</h2>
+
+        <div class="boblog-doc-spec">
+            <p>页面内容区居中的宽度限制工具类，自带 <code>margin-left: auto; margin-right: auto</code> 水平居中。</p>
+            <table class="boblog-table">
+                <thead>
+                    <tr>
+                        <th>类名</th>
+                        <th>CSS 效果</th>
+                        <th>使用场景</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>.boblog-w-80</code></td>
+                        <td>width: 80% + 水平居中</td>
+                        <td>FAQ、Help、Terms 页面内容区</td>
+                    </tr>
+                    <tr>
+                        <td><code>.boblog-max-w-500</code></td>
+                        <td>max-width: 500px + 水平居中</td>
+                        <td>Login、Register 页面</td>
+                    </tr>
+                    <tr>
+                        <td><code>.boblog-max-w-600</code></td>
+                        <td>max-width: 600px + 水平居中</td>
+                        <td>Contact 页面</td>
+                    </tr>
+                    <tr>
+                        <td><code>.boblog-min-w-280</code></td>
+                        <td>min-width: 280px</td>
+                        <td>版本切换下拉框最小宽度</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <p style="font-size:12px; color:#999; margin-bottom:8px;">不同宽度容器的居中效果：</p>
+                    <div style="border:1px dashed var(--boblog-border-light, #DDE8F0); padding:10px; background:#fafafa;">
+                        <div class="boblog-w-80" style="background:var(--boblog-bg-panel, #F5FBFE); border:1px solid var(--boblog-border-light, #DDE8F0); padding:8px; margin-bottom:8px; text-align:center; font-size:12px;">
+                            .boblog-w-80（80% 宽度居中）
+                        </div>
+                        <div class="boblog-max-w-500" style="background:var(--boblog-bg-panel, #F5FBFE); border:1px solid var(--boblog-border-light, #DDE8F0); padding:8px; margin-bottom:8px; text-align:center; font-size:12px;">
+                            .boblog-max-w-500（最大 500px 居中）
+                        </div>
+                        <div class="boblog-max-w-600" style="background:var(--boblog-bg-panel, #F5FBFE); border:1px solid var(--boblog-border-light, #DDE8F0); padding:8px; text-align:center; font-size:12px;">
+                            .boblog-max-w-600（最大 600px 居中）
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-w-80"&gt;80% 宽度居中内容&lt;/div&gt;
+&lt;div class="boblog-max-w-500"&gt;最大 500px 居中内容&lt;/div&gt;
+&lt;div class="boblog-max-w-600"&gt;最大 600px 居中内容&lt;/div&gt;
+&lt;div class="boblog-min-w-280"&gt;最小宽度 280px&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-css">/* 百分比宽度 + 水平居中 — FAQ、Help、Terms 页面内容区 */
+.boblog-w-80 { width: 80% !important; margin-left: auto !important; margin-right: auto !important; }
+
+/* 最大宽度 + 水平居中 — Login、Register 页面 */
+.boblog-max-w-500 { max-width: 500px !important; margin-left: auto !important; margin-right: auto !important; }
+
+/* 最大宽度 + 水平居中 — Contact 页面 */
+.boblog-max-w-600 { max-width: 600px !important; margin-left: auto !important; margin-right: auto !important; }
+
+/* 最小宽度 — 版本切换下拉框等 */
+.boblog-min-w-280 { min-width: 280px !important; }</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 显示类型 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="显示类型">显示类型</h2>
+
+        <div class="boblog-doc-spec">
+            <table class="boblog-table">
+                <thead>
+                    <tr>
+                        <th>类名</th>
+                        <th>CSS 效果</th>
+                        <th>使用场景</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>.boblog-inline-block</code></td>
+                        <td>display: inline-block</td>
+                        <td>select 容器等需要行内块显示的元素</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <span class="boblog-inline-block" style="background:var(--boblog-bg-panel, #F5FBFE); border:1px solid var(--boblog-border-light, #DDE8F0); padding:6px 12px; font-size:12px;">
+                        .boblog-inline-block 元素 A
+                    </span>
+                    <span class="boblog-inline-block" style="background:var(--boblog-bg-panel, #F5FBFE); border:1px solid var(--boblog-border-light, #DDE8F0); padding:6px 12px; font-size:12px;">
+                        .boblog-inline-block 元素 B
+                    </span>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;span class="boblog-inline-block"&gt;行内块元素&lt;/span&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-css">/* 行内块显示 — select 容器等 */
+.boblog-inline-block { display: inline-block !important; }</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div><!-- /.boblog-doc-container -->
 
 <script src="../../dist/boblog-ui.js"></script>
