@@ -35,6 +35,94 @@
   flex-shrink: 0;
 }
 
+/* ========== 前台经典 Bo-Blog 三栏布局 ========== */
+/* 参考 Bo-Blog V2.1 Default Skin：主内容区 + 侧栏宽列(~200px) + 侧栏窄列(~140px) */
+
+/* 侧栏容器：包裹两列侧栏，总宽约 360px */
+.boblog-page-sidebar-group {
+  width: 360px;
+  flex-shrink: 0;
+  display: flex;
+  gap: 10px;
+}
+
+/* 侧栏列A：宽列，蓝色边框 + 浅蓝背景，约 200px */
+/* 整体一个蓝色大框，内部面板无独立边框 */
+.boblog-page-sidebar-one {
+  width: 200px;
+  flex-shrink: 0;
+  border: 1px solid var(--boblog-border-blue, #9EC9FF);
+  background-color: var(--boblog-bg-panel, #F5FBFE);
+  padding: 0 10px;
+  order: 2;
+  align-self: flex-start;
+}
+
+/* 侧栏列A 内的面板：去掉独立边框和背景，用间距分隔 */
+.boblog-page-sidebar-one .boblog-sidebar-panel {
+  border: none;
+  background: none;
+  margin-bottom: 0;
+}
+
+/* 侧栏列A 内的面板标题：黑色粗体，字距 1.5pt，无背景无边框 */
+.boblog-page-sidebar-one .boblog-sidebar-title {
+  background: none;
+  border-bottom: none;
+  padding: 0;
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--boblog-text-dark, #000);
+  letter-spacing: 1.5pt;
+  cursor: pointer;
+}
+
+/* 侧栏列A 内的面板内容：底部留 25px 间距 */
+.boblog-page-sidebar-one .boblog-sidebar-content {
+  padding: 0;
+  margin-bottom: 25px;
+  line-height: 1.5;
+  color: var(--boblog-text-dark, #333);
+  font-size: 12px;
+}
+
+/* 侧栏列B：窄列，约 140px，无边框无背景 */
+.boblog-page-sidebar-two {
+  width: 140px;
+  flex-shrink: 0;
+  order: 1;
+}
+
+/* 侧栏列B 内的面板：去掉独立边框和背景 */
+.boblog-page-sidebar-two .boblog-sidebar-panel {
+  border: none;
+  background: none;
+  margin-bottom: 0;
+}
+
+/* 侧栏列B 内的面板标题：黑色粗体，字距 1.5pt，无背景无边框 */
+.boblog-page-sidebar-two .boblog-sidebar-title {
+  background: none;
+  border-bottom: none;
+  padding: 0;
+  margin: 0 0 4px 0;
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--boblog-text-dark, #000);
+  letter-spacing: 1.5pt;
+  cursor: pointer;
+}
+
+/* 侧栏列B 内的面板内容：底部留 25px 间距 */
+.boblog-page-sidebar-two .boblog-sidebar-content {
+  padding: 0;
+  margin-bottom: 25px;
+  line-height: 1.5;
+  color: var(--boblog-text-dark, #333);
+  font-size: 12px;
+}
+
 .boblog-page-footer {
   background-color: var(--boblog-bg-white, #fff);
   border-top: 10px solid #BEE6FD;
@@ -104,6 +192,17 @@
 
 .boblog-admin-sidebar.collapsed ~ .boblog-admin-main {
   margin-left: 0;
+}
+
+/* ========== 公告条（Bo-Blog announce 样式） ========== */
+/* 浅蓝背景的简洁内容条，用于主内容区顶部公告 */
+.boblog-announce {
+  background-color: var(--boblog-bg-content, #F4FBFF);
+  padding: 10px;
+  margin-bottom: 10px;
+  color: var(--boblog-text-dark, #333);
+  font-size: 12px;
+  line-height: 1.5;
 }
 
 /* ========== 公共页面元素 ========== */

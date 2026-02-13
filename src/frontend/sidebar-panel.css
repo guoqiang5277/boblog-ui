@@ -35,15 +35,38 @@
 }
 
 .boblog-sidebar-list-item {
-    padding: 5px 0;
-    border-bottom: 1px dashed var(--boblog-border-blue-lighter, #D3E7FC);
+    padding: 1px 0;
+    border-bottom: 1px solid var(--boblog-border-blue-lighter, #D3E7FC);
     font-size: var(--boblog-font-size-sm, 12px);
     line-height: 1.6;
     position: relative;
+    list-style: none;
 }
 
 .boblog-sidebar-list-item:last-child {
     border-bottom: none;
+}
+
+/* 缩进子项：前面带 » 符号，文字缩进 15px */
+/* 参考 Bo-Blog V2.1 .panel-content li.indent */
+.boblog-sidebar-list-item.indent {
+    padding-left: 15px;
+}
+
+.boblog-sidebar-list-item.indent::before {
+    content: "»";
+    position: absolute;
+    left: 2px;
+    color: var(--boblog-text-gray, #999);
+}
+
+/* 链接内 favicon 小图标 */
+.boblog-sidebar-list-item a img {
+    display: inline;
+    width: 16px;
+    height: 16px;
+    vertical-align: middle;
+    margin-right: 2px;
 }
 
 .boblog-sidebar-list-item a {

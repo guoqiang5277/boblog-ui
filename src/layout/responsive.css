@@ -221,6 +221,18 @@
   .boblog-page-main {
     order: 1;
   }
+
+  /* 三栏布局响应式：窄屏时侧栏容器变为纵向堆叠 */
+  .boblog-page-sidebar-group {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .boblog-page-sidebar-one,
+  .boblog-page-sidebar-two {
+    width: 100%;
+    order: unset;
+  }
 }
 
 /* 768px - 992px: 容器全宽，侧边栏移到底部 */
@@ -235,6 +247,18 @@
 
   .boblog-page-sidebar {
     width: 100%;
+  }
+
+  /* 三栏布局响应式：中等屏幕时侧栏容器也变为纵向堆叠 */
+  .boblog-page-sidebar-group {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .boblog-page-sidebar-one,
+  .boblog-page-sidebar-two {
+    width: 100%;
+    order: unset;
   }
 }
 
