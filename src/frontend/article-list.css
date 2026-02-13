@@ -1,37 +1,92 @@
 /**
  * Bo-Blog 文章列表组件
- * 包含日期卡片、标题、元信息、摘要和标签
- * 风格：Bo-Blog V2.1 经典列表布局
+ * 包含日期卡片、标题、元信息、摘要、标签和操作区
+ * 风格：Bo-Blog V2.1 经典卡片式列表布局
+ *
+ * 结构：
+ *   .boblog-article-list             — 列表容器
+ *     .boblog-article-item           — 单篇文章卡片（蓝色边框 + 浅蓝背景）
+ *       .boblog-article-date         — 日期区域（左侧浮动）
+ *         .boblog-date-card-article  — 日期卡片组件
+ *       .boblog-article-content      — 内容区域
+ *         .boblog-article-title      — 文章标题
+ *         .boblog-article-meta       — 元信息（作者/分类/日期，自动加分隔符）
+ *         .boblog-article-summary    — 摘要
+ *         .boblog-article-tags       — 标签容器（带上边框和背景）
+ *           .boblog-article-tags-label — 标签前缀文字（"标签:"）
+ *           .boblog-article-tag      — 单个标签
+ *         .boblog-article-actions    — 操作区（阅读全文链接，带上边框）
+ *   .boblog-article-header          — 页面标题区（蓝色边框 + 浅蓝背景 + 底部粗蓝线）
+ *     h2                            — 蓝色标题
+ *     p                             — 灰色副标题
+ *   .boblog-article-meta .category  — 分类名高亮（蓝色加粗）
  */
 
+/* ========== 页面标题区 ========== */
+/* Bo-Blog 经典风格：浅蓝背景 + 蓝色边框 + 底部粗蓝线 */
+.boblog-article-header {
+    background: var(--boblog-bg-content, #F4FBFF);
+    border: 1px solid var(--boblog-border-blue, #9EC9FF);
+    border-bottom: 3px solid #BEE6FD;
+    padding: 20px 25px;
+    margin-bottom: 25px;
+}
+
+.boblog-article-header h2 {
+    color: var(--boblog-blue-primary, #0D80BD);
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 0 8px 0;
+    padding: 0;
+}
+
+.boblog-article-header p {
+    color: var(--boblog-text-secondary, #666);
+    font-size: var(--boblog-font-size-sm, 13px);
+    margin: 0;
+    padding: 0;
+}
+
+/* ========== 列表容器 ========== */
 .boblog-article-list {
     width: 100%;
 }
 
+/* ========== 单篇文章卡片 ========== */
+/* Bo-Blog 经典风格：蓝色边框 + 浅蓝背景 + hover 变白 */
 .boblog-article-item {
     display: flex;
-    padding: 15px 0;
-    border-bottom: 1px dashed var(--boblog-border-blue-lighter, #D3E7FC);
+    border: 1px solid var(--boblog-border-blue, #9EC9FF);
+    background: var(--boblog-bg-content, #F4FBFF);
+    padding: 15px;
+    margin-bottom: 18px;
+    position: relative;
+    min-height: 80px;
 }
 
-.boblog-article-item:last-child {
-    border-bottom: none;
+.boblog-article-item:hover {
+    background: var(--boblog-bg, #ffffff);
+    border-color: var(--boblog-blue-primary, #0D80BD);
 }
 
+/* ========== 日期区域 ========== */
 .boblog-article-date {
     flex-shrink: 0;
-    margin-right: 15px;
+    margin-right: 12px;
 }
 
+/* ========== 内容区域 ========== */
 .boblog-article-content {
     flex: 1;
     min-width: 0;
 }
 
+/* ========== 文章标题 ========== */
 .boblog-article-title {
     font-size: var(--boblog-font-size-lg, 16px);
     font-weight: bold;
     margin: 0 0 8px 0;
+    padding: 0;
     line-height: 1.4;
 }
 
@@ -41,51 +96,102 @@
 }
 
 .boblog-article-title a:hover {
+    color: var(--boblog-black, #000);
     text-decoration: underline;
 }
 
+/* ========== 元信息（作者/分类/日期） ========== */
+/* span 之间自动添加 "|" 分隔符 */
 .boblog-article-meta {
-    font-size: var(--boblog-font-size-sm, 12px);
+    font-size: var(--boblog-font-size-xs, 11px);
     color: var(--boblog-text-gray, #999);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     line-height: 1.5;
 }
 
 .boblog-article-meta > span {
-    margin-right: 8px;
+    color: var(--boblog-text-secondary, #666);
 }
 
 .boblog-article-meta > span:not(:last-child)::after {
     content: " | ";
-    margin-left: 8px;
+    color: var(--boblog-border-light, #ccc);
+    margin: 0 6px;
 }
 
+/* 分类名高亮（蓝色加粗） */
+.boblog-article-meta .category {
+    color: var(--boblog-blue-primary, #0D80BD);
+    font-weight: bold;
+}
+
+/* ========== 文章摘要 ========== */
 .boblog-article-summary {
-    font-size: var(--boblog-font-size-sm, 12px);
     color: var(--boblog-text-dark, #333);
-    line-height: 1.8;
-    margin-top: 8px;
+    font-size: var(--boblog-font-size-sm, 13px);
+    line-height: 1.7;
+    margin: 10px 0;
+    padding: 8px 0;
     word-wrap: break-word;
 }
 
+/* ========== 标签区域 ========== */
+/* 带上边框和浅蓝背景，与原版 articles-list.css 一致 */
 .boblog-article-tags {
+    clear: both;
+    padding: 10px 8px 8px 8px;
+    font-size: var(--boblog-font-size-xs, 11px);
+    color: var(--boblog-text-dark, #333);
+    background: var(--boblog-bg-content, #F4FBFF);
+    border-top: 1px solid var(--boblog-border-blue-lighter, #D3E7FC);
     margin-top: 8px;
     display: flex;
     flex-wrap: wrap;
     gap: 5px;
 }
 
+/* 标签前缀文字（"标签:"） */
+.boblog-article-tags-label {
+    color: var(--boblog-text-secondary, #666);
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+/* 单个标签 */
 .boblog-article-tag {
-    font-size: var(--boblog-font-size-xs, 11px);
-    background-color: var(--boblog-bg-content, #F4FBFF);
-    border: 1px solid var(--boblog-border-blue, #9EC9FF);
-    padding: 1px 6px;
-    color: var(--boblog-blue-primary, #0D80BD);
-    text-decoration: none;
     display: inline-block;
-    line-height: 1.6;
+    color: var(--boblog-text-secondary, #666);
+    text-decoration: none;
+    padding: 3px 10px;
+    background: #EFF6FE;
+    border: 1px solid var(--boblog-border-blue-light, #A9DBF6);
+    border-radius: 3px;
+    font-size: var(--boblog-font-size-xs, 11px);
+    transition: all 0.2s ease;
 }
 
 .boblog-article-tag:hover {
-    background-color: var(--boblog-bg-panel, #F5FBFE);
+    color: var(--boblog-bg-white, #fff);
+    background: var(--boblog-blue-primary, #0D80BD);
+    border-color: var(--boblog-blue-primary, #0D80BD);
+    text-decoration: none;
+}
+
+/* ========== 操作区（阅读全文） ========== */
+.boblog-article-actions {
+    margin-top: 10px;
+    padding-top: 8px;
+    border-top: 1px solid var(--boblog-border-blue-lighter, #D3E7FC);
+}
+
+.boblog-article-actions a {
+    color: var(--boblog-blue-primary, #0D80BD);
+    font-size: var(--boblog-font-size-sm, 12px);
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.boblog-article-actions a:hover {
+    color: var(--boblog-black, #000);
+    text-decoration: underline;
 }
