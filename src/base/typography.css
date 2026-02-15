@@ -295,15 +295,55 @@ hr {
 .boblog-pre-wrap { white-space: pre-wrap !important; }
 
 /* ========== 间距清除工具类 ========== */
+/* 使用 !important 确保能覆盖组件级选择器 */
 .boblog-clear-m {
-    margin: 0;
+    margin: 0 !important;
 }
 
 .boblog-clear-p {
-    padding: 0;
+    padding: 0 !important;
 }
 
 .boblog-clear-mp {
-    margin: 0;
-    padding: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+/* ========== 尺寸清除工具类 ========== */
+/* 使用 !important 确保能覆盖组件级选择器（如 .boblog-panel .boblog-btn） */
+
+/* 清除 width，恢复为 auto */
+.boblog-clear-w {
+    width: auto !important;
+}
+
+/* 清除 height，恢复为 auto */
+.boblog-clear-h {
+    height: auto !important;
+}
+
+/* 清除 width + height */
+.boblog-clear-wh {
+    width: auto !important;
+    height: auto !important;
+}
+
+/* 清除 max-width */
+.boblog-clear-mw {
+    max-width: none !important;
+}
+
+/* 清除 max-height */
+.boblog-clear-mh {
+    max-height: none !important;
+}
+
+/* 清除 min-width */
+.boblog-clear-minw {
+    min-width: 0 !important;
+}
+
+/* 清除 min-height */
+.boblog-clear-minh {
+    min-height: 0 !important;
 }
