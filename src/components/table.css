@@ -200,3 +200,15 @@
   border-bottom: 5px solid var(--boblog-blue-accent); /* 强调蓝 #0D80BD */
   opacity: 1;
 }
+
+/* ========== 行状态类 ========== */
+/* 高亮行：红色系背景，用于标记未读/需关注的行 */
+.boblog-tr-highlight {
+  background-color: var(--boblog-danger-bg) !important;  /* 错误消息背景 #FFF0F0 */
+  color: var(--boblog-danger);                           /* 危险红 #CC3333 */
+}
+
+/* 置灰行：灰色背景，用于标记已归档/回收站的行 */
+.boblog-tr-muted {
+  background-color: var(--boblog-disabled-bg) !important; /* 禁用背景 #F5F5F5 */
+}

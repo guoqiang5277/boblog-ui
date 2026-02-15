@@ -347,3 +347,9 @@ hr {
 .boblog-clear-minh {
     min-height: 0 !important;
 }
+
+/* ========== 显示控制工具类 ========== */
+/* 隐藏元素（用于 JS 动态切换显示/隐藏） */
+.boblog-hidden {
+    display: none !important;
+}
