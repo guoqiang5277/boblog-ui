@@ -163,3 +163,45 @@
 .boblog-form-group.boblog-has-error .boblog-form-label {
   color: var(--boblog-red-error);
 }
+
+/* ========== 表单验证状态 ========== */
+/* 替代 Bootstrap 的 was-validated / is-valid / is-invalid 验证机制 */
+/* 用法：JS 在表单提交时给 <form> 添加 .boblog-form-validated 类，
+   然后通过 :valid / :invalid 伪类自动显示验证反馈 */
+
+/* 成功提示文字（与 .boblog-form-error 对称） */
+.boblog-form-success {
+  display: block;
+  font-size: 11px;
+  color: var(--boblog-success);                    /* 成功绿 #3C8C30 */
+  margin-top: var(--boblog-spacing-xs);
+  line-height: 1.4;
+}
+
+/* 已验证表单内：有效输入框显示绿色边框 */
+.boblog-form-validated .boblog-input:valid,
+.boblog-form-validated .boblog-textarea:valid,
+.boblog-form-validated select:valid {
+  border-color: var(--boblog-success);             /* 成功绿 #3C8C30 */
+}
+
+/* 已验证表单内：无效输入框显示红色边框 */
+.boblog-form-validated .boblog-input:invalid,
+.boblog-form-validated .boblog-textarea:invalid,
+.boblog-form-validated select:invalid {
+  border-color: var(--boblog-danger);              /* 危险红 #CC3333 */
+}
+
+/* 已验证表单内：无效输入框聚焦时红色 outline */
+.boblog-form-validated .boblog-input:invalid:focus,
+.boblog-form-validated .boblog-textarea:invalid:focus {
+  border-color: var(--boblog-danger);
+  outline: 2px solid rgba(224, 62, 45, 0.1);
+}
+
+/* 已验证表单内：有效输入框聚焦时绿色 outline */
+.boblog-form-validated .boblog-input:valid:focus,
+.boblog-form-validated .boblog-textarea:valid:focus {
+  border-color: var(--boblog-success);
+  outline: 2px solid rgba(60, 140, 48, 0.1);
+}

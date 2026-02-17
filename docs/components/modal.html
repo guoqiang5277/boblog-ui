@@ -905,6 +905,80 @@
         </div>
     </div>
 
+    <!-- ====== JavaScript API ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="JS-API">JavaScript API</h2>
+
+        <div class="boblog-doc-section-3">
+            <h3>1. 自动初始化</h3>
+            <ul class="boblog-doc-spec">
+                <li>引入 <code>boblog-ui.js</code> 后，DOMContentLoaded 自动扫描页面中的模态框</li>
+                <li>自动绑定 <code>.boblog-modal-close</code> 关闭按钮的点击事件</li>
+                <li>自动绑定遮罩层空白区域（<code>.boblog-modal-backdrop</code>）的点击关闭事件</li>
+                <li>自动绑定 ESC 键关闭当前打开的模态框</li>
+                <li>打开时自动禁止 body 滚动，关闭后恢复</li>
+            </ul>
+        </div>
+
+        <div class="boblog-doc-section-3">
+            <h3>2. 手动调用</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-js">// 显示模态框（参数为 backdrop 元素的 ID）
+BoblogUI.Modal.show('myModal');
+
+// 隐藏模态框
+BoblogUI.Modal.hide('myModal');
+
+// 切换显示/隐藏
+BoblogUI.Modal.toggle('myModal');
+
+// 手动初始化新添加的模态框（动态 DOM 场景）
+BoblogUI.Modal.init(document.getElementById('container'));</code></pre>
+            </div>
+            <table class="boblog-table boblog-table-bordered boblog-table-striped">
+                <thead>
+                    <tr>
+                        <th>方法</th>
+                        <th>参数</th>
+                        <th>说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>show(id)</code></td>
+                        <td>backdrop 元素的 ID</td>
+                        <td>显示模态框，禁止 body 滚动</td>
+                    </tr>
+                    <tr>
+                        <td><code>hide(id)</code></td>
+                        <td>backdrop 元素的 ID</td>
+                        <td>隐藏模态框，无其他模态框时恢复 body 滚动</td>
+                    </tr>
+                    <tr>
+                        <td><code>toggle(id)</code></td>
+                        <td>backdrop 元素的 ID</td>
+                        <td>切换显示/隐藏状态</td>
+                    </tr>
+                    <tr>
+                        <td><code>init([container])</code></td>
+                        <td>HTMLElement（可选，默认 document）</td>
+                        <td>初始化指定容器内模态框的事件绑定</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="boblog-doc-section-3">
+            <h3>3. 引入方式</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-html">&lt;!-- CSS --&gt;
+&lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;!-- JS（必须引入，提供 Modal show/hide/toggle API 和自动事件绑定） --&gt;
+&lt;script src="boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+
 </div><!-- /.boblog-doc-container -->
 
 <script src="../../dist/boblog-ui.js"></script>

@@ -5,7 +5,8 @@
  *
  * 包含：
  *   - .boblog-input          — 基础输入框
- *   - .boblog-input-error    — 错误状态
+ *   - .boblog-input-error    — 错误状态（红色边框）
+ *   - .boblog-input-success  — 成功状态（绿色边框）
  *   - .boblog-input-icon     — 带图标输入框容器
  *   - .boblog-input-group    — 输入框组（前缀/后缀插件）
  *   - .boblog-input-sm/lg    — 尺寸变体
@@ -73,6 +74,19 @@
 .boblog-input.error:focus {
   border-color: var(--boblog-danger);
   outline: 2px solid rgba(224, 62, 45, 0.1);
+}
+
+/* ========== 成功状态 ========== */
+/* 验证通过时的绿色边框，与错误状态对称 */
+.boblog-input-success,
+.boblog-input.success {
+  border-color: var(--boblog-success);            /* 成功绿 #3C8C30 */
+}
+
+.boblog-input-success:focus,
+.boblog-input.success:focus {
+  border-color: var(--boblog-success);
+  outline: 2px solid rgba(60, 140, 48, 0.1);
 }
 
 /* ========== 带图标输入框 ========== */

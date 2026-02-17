@@ -1127,6 +1127,169 @@
         </div>
     </div>
 
+    <!-- ====== 表单验证 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="表单验证">表单验证</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>验证触发</strong>: 给 &lt;form&gt; 添加 .boblog-form-validated 类后，:valid/:invalid 伪类样式自动生效</li>
+                <li><strong>成功状态</strong>: .boblog-input-success / .boblog-input.success — 绿色边框 #3C8C30 (--boblog-success)</li>
+                <li><strong>错误状态</strong>: .boblog-input-error / .boblog-input.error — 红色边框 #CC3333 (--boblog-danger)</li>
+                <li><strong>成功提示</strong>: .boblog-form-success — 绿色提示文字 11px</li>
+                <li><strong>错误提示</strong>: .boblog-form-error — 红色提示文字 11px（已有）</li>
+                <li>搭配 boblog-ui.js 使用时，提交和输入事件自动处理</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <form class="boblog-form boblog-form-validated" onsubmit="return false;">
+                        <div class="boblog-form-group">
+                            <label class="boblog-form-label boblog-form-required">用户名</label>
+                            <input type="text" class="boblog-input" required placeholder="必填字段" value="admin" style="width: 300px;">
+                            <div class="boblog-form-success">验证通过</div>
+                        </div>
+                        <div class="boblog-form-group">
+                            <label class="boblog-form-label boblog-form-required">邮箱</label>
+                            <input type="email" class="boblog-input" required placeholder="必填字段（空值触发错误）" style="width: 300px;">
+                            <div class="boblog-form-error">请输入有效的邮箱地址</div>
+                        </div>
+                        <div class="boblog-form-group">
+                            <label class="boblog-form-label">手动错误状态</label>
+                            <input type="text" class="boblog-input boblog-input-error" value="错误输入" style="width: 300px;">
+                            <div class="boblog-form-error">此字段有误</div>
+                        </div>
+                        <div class="boblog-form-group">
+                            <label class="boblog-form-label">手动成功状态</label>
+                            <input type="text" class="boblog-input boblog-input-success" value="正确输入" style="width: 300px;">
+                            <div class="boblog-form-success">验证通过</div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 自动验证：给 form 加 .boblog-form-validated 后 :valid/:invalid 伪类生效 --&gt;
+&lt;form class="boblog-form boblog-form-validated"&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label boblog-form-required"&gt;用户名&lt;/label&gt;
+        &lt;input type="text" class="boblog-input" required&gt;
+        &lt;div class="boblog-form-success"&gt;验证通过&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label boblog-form-required"&gt;邮箱&lt;/label&gt;
+        &lt;input type="email" class="boblog-input" required&gt;
+        &lt;div class="boblog-form-error"&gt;请输入有效的邮箱地址&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+
+&lt;!-- 手动验证：直接给 input 加错误/成功类 --&gt;
+&lt;input type="text" class="boblog-input boblog-input-error"&gt;
+&lt;div class="boblog-form-error"&gt;此字段有误&lt;/div&gt;
+
+&lt;input type="text" class="boblog-input boblog-input-success"&gt;
+&lt;div class="boblog-form-success"&gt;验证通过&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;表单验证示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;form class="boblog-form boblog-form-validated"&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label boblog-form-required"&gt;用户名&lt;/label&gt;
+        &lt;input type="text" class="boblog-input" required placeholder="必填字段" value="admin" style="width: 300px;"&gt;
+        &lt;div class="boblog-form-success"&gt;验证通过&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label boblog-form-required"&gt;邮箱&lt;/label&gt;
+        &lt;input type="email" class="boblog-input" required placeholder="必填字段（空值触发错误）" style="width: 300px;"&gt;
+        &lt;div class="boblog-form-error"&gt;请输入有效的邮箱地址&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;手动错误状态&lt;/label&gt;
+        &lt;input type="text" class="boblog-input boblog-input-error" value="错误输入" style="width: 300px;"&gt;
+        &lt;div class="boblog-form-error"&gt;此字段有误&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-form-group"&gt;
+        &lt;label class="boblog-form-label"&gt;手动成功状态&lt;/label&gt;
+        &lt;input type="text" class="boblog-input boblog-input-success" value="正确输入" style="width: 300px;"&gt;
+        &lt;div class="boblog-form-success"&gt;验证通过&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/form&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== JavaScript API ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="JS-API">JavaScript API</h2>
+
+        <div class="boblog-doc-section-3">
+            <h3>1. 自动初始化</h3>
+            <ul class="boblog-doc-spec">
+                <li>引入 <code>boblog-ui.js</code> 后，DOMContentLoaded 自动扫描所有 <code>&lt;form&gt;</code></li>
+                <li>包含 <code>required</code> 或 <code>data-val="true"</code> 字段的表单自动绑定验证</li>
+                <li>提交时自动给 form 添加 <code>.boblog-form-validated</code> 类</li>
+                <li>输入时自动给字段添加 <code>.boblog-input-error</code> 或 <code>.boblog-input-success</code></li>
+            </ul>
+        </div>
+
+        <div class="boblog-doc-section-3">
+            <h3>2. 手动调用</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-js">// 初始化新添加的表单（动态 DOM 场景）
+BoblogUI.FormValidation.init(document.getElementById('container'));</code></pre>
+            </div>
+            <table class="boblog-table boblog-table-bordered boblog-table-striped">
+                <thead>
+                    <tr>
+                        <th>方法</th>
+                        <th>参数</th>
+                        <th>说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>init([container])</code></td>
+                        <td>HTMLElement（可选，默认 document）</td>
+                        <td>初始化指定容器内所有表单的验证事件绑定</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="boblog-doc-section-3">
+            <h3>3. 引入方式</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-html">&lt;!-- CSS --&gt;
+&lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;!-- JS（必须引入，提供自动表单验证） --&gt;
+&lt;script src="boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+
 </div><!-- /.boblog-doc-container -->
 
 <script src="../../dist/boblog-ui.js"></script>

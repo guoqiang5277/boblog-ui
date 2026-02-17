@@ -204,6 +204,8 @@ JS_FILES=(
     "$SRC_DIR/js/rating.js"
     "$SRC_DIR/js/editor.js"
     "$SRC_DIR/js/accordion.js"
+    "$SRC_DIR/js/modal.js"
+    "$SRC_DIR/js/form-validation.js"
 )
 
 JS_OUTPUT="$DIST_DIR/boblog-ui.js"
