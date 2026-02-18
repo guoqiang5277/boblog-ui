@@ -454,8 +454,27 @@
             </ul>
         </div>
 
-        <!-- 2. 手动调用 -->
-        <h3>2. 手动调用</h3>
+        <!-- 1.5 data 参数 -->
+        <h3>2. HTML data 参数</h3>
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>data-fixed-width="false"</strong>：禁用自动宽度固定。默认行为是自动计算所有选项中最大宽度并固定容器，防止切换选项时宽度跳动。设为 <code>false</code> 后宽度由 CSS/style 自行控制。</li>
+            </ul>
+        </div>
+        <div class="boblog-codeblock">
+            <pre><code class="language-html">&lt;!-- 默认：自动固定宽度为最大选项宽度 --&gt;
+&lt;div class="boblog-select"&gt;
+    &lt;select&gt;...&lt;/select&gt;
+&lt;/div&gt;
+
+&lt;!-- 禁用自动宽度固定，宽度由 style 控制 --&gt;
+&lt;div class="boblog-select" data-fixed-width="false" style="width: 200px;"&gt;
+    &lt;select&gt;...&lt;/select&gt;
+&lt;/div&gt;</code></pre>
+        </div>
+
+        <!-- 3. 手动调用 -->
+        <h3>3. 手动调用</h3>
         <div class="boblog-codeblock">
             <pre><code class="language-javascript">// 初始化页面所有下拉选择
 BoblogUI.select.init();
@@ -464,8 +483,8 @@ BoblogUI.select.init();
 BoblogUI.select.init(document.getElementById('myForm'));</code></pre>
         </div>
 
-        <!-- 3. 引入方式 -->
-        <h3>3. 引入方式</h3>
+        <!-- 4. 引入方式 -->
+        <h3>4. 引入方式</h3>
         <div class="boblog-codeblock">
             <pre><code class="language-html">&lt;!-- 引入 CSS（包含下拉选择样式） --&gt;
 &lt;link rel="stylesheet" href="dist/boblog-ui.css"&gt;

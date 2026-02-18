@@ -31,6 +31,11 @@
  * 公开 API：
  *   BoblogUI.select.init([container])  — 初始化指定容器（默认 document）内所有下拉
  *
+ * 参数（HTML data 属性）：
+ *   data-fixed-width="false"  — 禁用自动宽度固定，容器宽度由 CSS/style 控制
+ *                               默认行为：自动计算所有选项最大宽度并固定容器宽度，
+ *                               防止切换选项时宽度跳动
+ *
  * 依赖：
  *   - src/controls/select.css（基础样式）
  */
@@ -91,6 +96,29 @@
         var selectedOption = nativeSelect.options[nativeSelect.selectedIndex];
         display.textContent = selectedOption ? selectedOption.textContent : '';
         container.appendChild(display);
+
+        /* ---------- 固定容器宽度为所有选项最大宽度 ---------- */
+        /* 默认开启，可通过 data-fixed-width="false" 禁用 */
+        if (container.dataset.fixedWidth !== 'false') {
+            /* 将 display 元素临时设为 visibility:hidden + white-space:nowrap，
+               逐一填入每个选项文字，用 offsetWidth 测量实际渲染宽度（含 padding/箭头），
+               取最大值后固定容器宽度 */
+            var origVisibility = display.style.visibility;
+            var origWhiteSpace = display.style.whiteSpace;
+            display.style.visibility = 'hidden';
+            display.style.whiteSpace = 'nowrap';
+            var maxW = 0;
+            for (var j = 0; j < nativeSelect.options.length; j++) {
+                display.textContent = nativeSelect.options[j].textContent;
+                var w = display.offsetWidth;
+                if (w > maxW) maxW = w;
+            }
+            /* 还原显示文字 */
+            display.textContent = selectedOption ? selectedOption.textContent : '';
+            display.style.visibility = origVisibility;
+            display.style.whiteSpace = origWhiteSpace;
+            if (maxW > 0) container.style.width = maxW + 'px';
+        }
 
         /* ---------- 创建下拉面板 ---------- */
         var dropdown = document.createElement('div');
