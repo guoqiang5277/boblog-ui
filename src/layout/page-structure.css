@@ -186,12 +186,12 @@
 .boblog-admin-main {
   flex: 1;
   padding: var(--boblog-spacing-lg, 20px);
-  margin-left: var(--boblog-admin-sidebar-width, 240px);
+  margin-left: var(--boblog-admin-sidebar-width, 270px);
   transition: margin-left 0.3s ease;
 }
 
 .boblog-admin-sidebar.collapsed ~ .boblog-admin-main {
-  margin-left: 0;
+  margin-left: 30px;
 }
 
 /* ========== 公告条（Bo-Blog announce 样式） ========== */
