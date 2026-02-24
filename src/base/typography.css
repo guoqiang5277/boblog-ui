@@ -129,50 +129,7 @@ small,
     font-size: var(--boblog-font-size-3xl, 24px);
 }
 
-/* ========== 文字颜色工具类 ========== */
-.boblog-text-primary {
-    color: var(--boblog-blue-primary, #0D80BD);
-}
-
-.boblog-text-gray {
-    color: var(--boblog-text-gray, #999999);
-}
-
-.boblog-text-light {
-    color: var(--boblog-text-light, #666666);
-}
-
-.boblog-text-dark {
-    color: var(--boblog-text-dark, #333333);
-}
-
-.boblog-text-danger {
-    color: var(--boblog-red-error, #e03e2d);
-}
-
-.boblog-text-success {
-    color: var(--boblog-green-success, #52c41a);
-}
-
-.boblog-text-warning {
-    color: var(--boblog-orange-warning, #faad14);
-}
-
-.boblog-text-info {
-    color: var(--boblog-info, #1677B5);
-}
-
-/* 世界经典名色（10 色）— 引用 variables.css 中定义的 CSS 变量 */
-.boblog-text-klein { color: var(--boblog-blue-klein) !important; }         /* 克莱因蓝 */
-.boblog-text-burgundy { color: var(--boblog-red-burgundy) !important; }   /* 勃艮第红 */
-.boblog-text-mars { color: var(--boblog-green-mars) !important; }         /* 马尔斯绿 */
-.boblog-text-bordeaux { color: var(--boblog-red-bordeaux) !important; }   /* 波尔多红 */
-.boblog-text-chinese { color: var(--boblog-red-chinese) !important; }     /* 中国红 */
-.boblog-text-titan { color: var(--boblog-red-titan) !important; }         /* 提香红 */
-.boblog-text-prussian { color: var(--boblog-blue-prussian) !important; }  /* 普鲁士蓝 */
-.boblog-text-sennelier { color: var(--boblog-yellow-sennelier) !important; } /* 申布伦黄 */
-.boblog-text-vandyke { color: var(--boblog-brown-vandyke) !important; }   /* 凡戴克棕 */
-.boblog-text-tiffany { color: var(--boblog-blue-tiffany) !important; }    /* 蒂芙尼蓝 */
+/* 文字颜色工具类已迁移至 src/controls/color.scss */
 
 /* ========== 强调 ========== */
 strong,

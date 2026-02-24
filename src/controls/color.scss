@@ -1,0 +1,179 @@
+/**
+ * Bo-Blog UI 控件 - 颜色工具类 (Color Utilities)
+ *
+ * 通用可组合的颜色工具类，可与任意控件（button、checkbox、input 等）自由组合。
+ * 三层结构：前景色（文字色）+ 语义边框色 + 背景色
+ *
+ * 使用场景：
+ *   - 设置文字颜色（语义色、经典名色）
+ *   - 设置语义边框颜色（primary/success/warning/danger/info）
+ *   - 设置背景色（实底/浅底，可与任意控件组合）
+ *
+ * HTML 示例：
+ *   <span class="boblog-text-danger">错误文字</span>
+ *   <div class="boblog-bg-success-light boblog-border boblog-border-success">成功区域</div>
+ *   <div class="boblog-bg-danger-light boblog-text-danger boblog-border boblog-border-danger">组合使用</div>
+ *
+ * 依赖：
+ *   - src/base/variables.css（颜色变量定义）
+ */
+
+
+/* ==========================================================================
+   前景色（文字色）工具类
+   ========================================================================== */
+
+/* 语义文字色 */
+.boblog-text-primary {
+    color: var(--boblog-blue-primary, #0D80BD);
+}
+
+.boblog-text-gray {
+    color: var(--boblog-text-gray, #999999);
+}
+
+.boblog-text-light {
+    color: var(--boblog-text-light, #666666);
+}
+
+.boblog-text-dark {
+    color: var(--boblog-text-dark, #333333);
+}
+
+.boblog-text-danger {
+    color: var(--boblog-red-error, #e03e2d);
+}
+
+.boblog-text-success {
+    color: var(--boblog-green-success, #52c41a);
+}
+
+.boblog-text-warning {
+    color: var(--boblog-orange-warning, #faad14);
+}
+
+.boblog-text-info {
+    color: var(--boblog-info, #1677B5);
+}
+
+
+/* ==========================================================================
+   世界经典名色（10 色）— 引用 variables.css 中定义的 CSS 变量
+   ========================================================================== */
+
+.boblog-text-klein { color: var(--boblog-blue-klein) !important; }         /* 克莱因蓝 */
+.boblog-text-burgundy { color: var(--boblog-red-burgundy) !important; }   /* 勃艮第红 */
+.boblog-text-mars { color: var(--boblog-green-mars) !important; }         /* 马尔斯绿 */
+.boblog-text-bordeaux { color: var(--boblog-red-bordeaux) !important; }   /* 波尔多红 */
+.boblog-text-chinese { color: var(--boblog-red-chinese) !important; }     /* 中国红 */
+.boblog-text-titan { color: var(--boblog-red-titan) !important; }         /* 提香红 */
+.boblog-text-prussian { color: var(--boblog-blue-prussian) !important; }  /* 普鲁士蓝 */
+.boblog-text-sennelier { color: var(--boblog-yellow-sennelier) !important; } /* 申布伦黄 */
+.boblog-text-vandyke { color: var(--boblog-brown-vandyke) !important; }   /* 凡戴克棕 */
+.boblog-text-tiffany { color: var(--boblog-blue-tiffany) !important; }    /* 蒂芙尼蓝 */
+
+
+/* ==========================================================================
+   语义边框色工具类
+   ========================================================================== */
+
+/* 主色边框 — 品牌蓝 */
+.boblog-border-primary {
+    border-color: var(--boblog-blue, #0D6EAA);
+}
+
+/* 成功边框 — 绿色 */
+.boblog-border-success {
+    border-color: var(--boblog-success, #3C8C30);
+}
+
+/* 警告边框 — 黄色 */
+.boblog-border-warning {
+    border-color: var(--boblog-warning, #D4A017);
+}
+
+/* 危险边框 — 红色 */
+.boblog-border-danger {
+    border-color: var(--boblog-danger, #CC3333);
+}
+
+/* 信息边框 — 信息蓝 */
+.boblog-border-info {
+    border-color: var(--boblog-info, #1677B5);
+}
+
+
+/* ==========================================================================
+   背景色工具类 — 实底（深色背景，搭配白色文字）
+   可与任意控件组合使用，如：<div class="boblog-bg-success boblog-border boblog-border-success">
+   ========================================================================== */
+
+/* 主色背景 — 品牌蓝 */
+.boblog-bg-primary {
+    background-color: var(--boblog-blue, #0D6EAA) !important;
+}
+
+/* 成功背景 — 绿色 */
+.boblog-bg-success {
+    background-color: var(--boblog-success, #3C8C30) !important;
+}
+
+/* 警告背景 — 黄色 */
+.boblog-bg-warning {
+    background-color: var(--boblog-warning, #D4A017) !important;
+}
+
+/* 危险背景 — 红色 */
+.boblog-bg-danger {
+    background-color: var(--boblog-danger, #CC3333) !important;
+}
+
+/* 信息背景 — 信息蓝 */
+.boblog-bg-info {
+    background-color: var(--boblog-info, #1677B5) !important;
+}
+
+/* 浅色背景 */
+.boblog-bg-light {
+    background-color: var(--boblog-bg-subtle, #F5F8FB) !important;
+}
+
+/* 深色背景 */
+.boblog-bg-dark {
+    background-color: var(--boblog-text-dark, #333333) !important;
+}
+
+/* 白色背景 */
+.boblog-bg-white {
+    background-color: var(--boblog-white, #FFFFFF) !important;
+}
+
+
+/* ==========================================================================
+   背景色工具类 — 浅底（浅色背景，搭配深色文字）
+   ========================================================================== */
+
+/* 主色浅底 — 极浅蓝 */
+.boblog-bg-primary-light {
+    background-color: var(--boblog-blue-wash, #F4FBFF) !important;
+}
+
+/* 成功浅底 — 浅绿 */
+.boblog-bg-success-light {
+    background-color: var(--boblog-success-bg, #F0F8EE) !important;
+}
+
+/* 警告浅底 — 浅黄 */
+.boblog-bg-warning-light {
+    background-color: var(--boblog-warning-bg, #FFF8E6) !important;
+}
+
+/* 危险浅底 — 浅红 */
+.boblog-bg-danger-light {
+    background-color: var(--boblog-danger-bg, #FFF0F0) !important;
+}
+
+/* 信息浅底 — 浅蓝 */
+.boblog-bg-info-light {
+    background-color: var(--boblog-info-bg, #EDF5FB) !important;
+}
