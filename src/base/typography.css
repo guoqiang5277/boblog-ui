@@ -158,6 +158,10 @@ small,
     color: var(--boblog-orange-warning, #faad14);
 }
 
+.boblog-text-info {
+    color: var(--boblog-info, #1677B5);
+}
+
 /* 世界经典名色（10 色）— 引用 variables.css 中定义的 CSS 变量 */
 .boblog-text-klein { color: var(--boblog-blue-klein) !important; }         /* 克莱因蓝 */
 .boblog-text-burgundy { color: var(--boblog-red-burgundy) !important; }   /* 勃艮第红 */

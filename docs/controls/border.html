@@ -372,6 +372,174 @@
         </div>
     </div>
 
+    <!-- 语义边框色 -->
+    <div class="boblog-doc-section">
+        <h2 id="语义边框色">语义边框色 (.boblog-border-*)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>.boblog-border-primary</strong>: 品牌蓝边框 #0D6EAA (--boblog-blue)</li>
+                <li><strong>.boblog-border-success</strong>: 成功绿边框 #3C8C30 (--boblog-success)</li>
+                <li><strong>.boblog-border-warning</strong>: 警告黄边框 #D4A017 (--boblog-warning)</li>
+                <li><strong>.boblog-border-danger</strong>: 危险红边框 #CC3333 (--boblog-danger)</li>
+                <li><strong>.boblog-border-info</strong>: 信息蓝边框 #1677B5 (--boblog-info)</li>
+                <li>需要配合 .boblog-border 基础类使用</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-border boblog-border-primary boblog-p-2 boblog-mb-2">boblog-border-primary</div>
+                    <div class="boblog-border boblog-border-success boblog-p-2 boblog-mb-2">boblog-border-success</div>
+                    <div class="boblog-border boblog-border-warning boblog-p-2 boblog-mb-2">boblog-border-warning</div>
+                    <div class="boblog-border boblog-border-danger boblog-p-2 boblog-mb-2">boblog-border-danger</div>
+                    <div class="boblog-border boblog-border-info boblog-p-2 boblog-mb-2">boblog-border-info</div>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-border boblog-border-primary"&gt;主色边框&lt;/div&gt;
+&lt;div class="boblog-border boblog-border-success"&gt;成功边框&lt;/div&gt;
+&lt;div class="boblog-border boblog-border-warning"&gt;警告边框&lt;/div&gt;
+&lt;div class="boblog-border boblog-border-danger"&gt;危险边框&lt;/div&gt;
+&lt;div class="boblog-border boblog-border-info"&gt;信息边框&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;语义边框色示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="boblog-border boblog-border-primary boblog-p-2 boblog-mb-2"&gt;boblog-border-primary&lt;/div&gt;
+    &lt;div class="boblog-border boblog-border-success boblog-p-2 boblog-mb-2"&gt;boblog-border-success&lt;/div&gt;
+    &lt;div class="boblog-border boblog-border-warning boblog-p-2 boblog-mb-2"&gt;boblog-border-warning&lt;/div&gt;
+    &lt;div class="boblog-border boblog-border-danger boblog-p-2 boblog-mb-2"&gt;boblog-border-danger&lt;/div&gt;
+    &lt;div class="boblog-border boblog-border-info boblog-p-2 boblog-mb-2"&gt;boblog-border-info&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 背景色工具类 -->
+    <div class="boblog-doc-section">
+        <h2 id="背景色">背景色工具类 (.boblog-bg-*)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>实底（深色背景）</strong>: .boblog-bg-primary | -success | -warning | -danger | -info | -dark</li>
+                <li><strong>浅底（浅色背景）</strong>: .boblog-bg-primary-light | -success-light | -warning-light | -danger-light | -info-light</li>
+                <li><strong>中性</strong>: .boblog-bg-light | -white</li>
+                <li>可与 .boblog-text-*、.boblog-border-* 自由组合</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <p class="boblog-text-sm boblog-text-gray boblog-mb-2">实底背景（搭配白色文字）：</p>
+                    <div class="boblog-bg-primary boblog-p-2 boblog-mb-1" style="color:#fff">boblog-bg-primary</div>
+                    <div class="boblog-bg-success boblog-p-2 boblog-mb-1" style="color:#fff">boblog-bg-success</div>
+                    <div class="boblog-bg-warning boblog-p-2 boblog-mb-1">boblog-bg-warning</div>
+                    <div class="boblog-bg-danger boblog-p-2 boblog-mb-1" style="color:#fff">boblog-bg-danger</div>
+                    <div class="boblog-bg-info boblog-p-2 boblog-mb-1" style="color:#fff">boblog-bg-info</div>
+                    <div class="boblog-bg-dark boblog-p-2 boblog-mb-1" style="color:#fff">boblog-bg-dark</div>
+                    <div class="boblog-bg-light boblog-p-2 boblog-mb-2">boblog-bg-light</div>
+
+                    <p class="boblog-text-sm boblog-text-gray boblog-mb-2">浅底背景（搭配深色文字）：</p>
+                    <div class="boblog-bg-primary-light boblog-p-2 boblog-mb-1">boblog-bg-primary-light</div>
+                    <div class="boblog-bg-success-light boblog-p-2 boblog-mb-1">boblog-bg-success-light</div>
+                    <div class="boblog-bg-warning-light boblog-p-2 boblog-mb-1">boblog-bg-warning-light</div>
+                    <div class="boblog-bg-danger-light boblog-p-2 boblog-mb-1">boblog-bg-danger-light</div>
+                    <div class="boblog-bg-info-light boblog-p-2 boblog-mb-2">boblog-bg-info-light</div>
+
+                    <p class="boblog-text-sm boblog-text-gray boblog-mb-2">组合使用示例：</p>
+                    <div class="boblog-bg-danger-light boblog-border boblog-border-danger boblog-text-danger boblog-p-2 boblog-mb-1">浅红背景 + 红色边框 + 红色文字</div>
+                    <div class="boblog-bg-success-light boblog-border boblog-border-success boblog-text-success boblog-p-2 boblog-mb-1">浅绿背景 + 绿色边框 + 绿色文字</div>
+                    <div class="boblog-bg-warning-light boblog-border boblog-border-warning boblog-p-2 boblog-mb-1">浅黄背景 + 黄色边框</div>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 实底背景 --&gt;
+&lt;div class="boblog-bg-primary"&gt;品牌蓝&lt;/div&gt;
+&lt;div class="boblog-bg-success"&gt;成功绿&lt;/div&gt;
+&lt;div class="boblog-bg-warning"&gt;警告黄&lt;/div&gt;
+&lt;div class="boblog-bg-danger"&gt;危险红&lt;/div&gt;
+&lt;div class="boblog-bg-info"&gt;信息蓝&lt;/div&gt;
+
+&lt;!-- 浅底背景 --&gt;
+&lt;div class="boblog-bg-primary-light"&gt;浅蓝&lt;/div&gt;
+&lt;div class="boblog-bg-success-light"&gt;浅绿&lt;/div&gt;
+&lt;div class="boblog-bg-warning-light"&gt;浅黄&lt;/div&gt;
+&lt;div class="boblog-bg-danger-light"&gt;浅红&lt;/div&gt;
+&lt;div class="boblog-bg-info-light"&gt;浅蓝&lt;/div&gt;
+
+&lt;!-- 组合使用：bg + border + text --&gt;
+&lt;div class="boblog-bg-danger-light boblog-border boblog-border-danger boblog-text-danger"&gt;
+    浅红背景 + 红色边框 + 红色文字
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;背景色工具类示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h3&gt;实底背景&lt;/h3&gt;
+    &lt;div class="boblog-bg-primary boblog-p-2 boblog-mb-1" style="color:#fff"&gt;boblog-bg-primary&lt;/div&gt;
+    &lt;div class="boblog-bg-success boblog-p-2 boblog-mb-1" style="color:#fff"&gt;boblog-bg-success&lt;/div&gt;
+    &lt;div class="boblog-bg-warning boblog-p-2 boblog-mb-1"&gt;boblog-bg-warning&lt;/div&gt;
+    &lt;div class="boblog-bg-danger boblog-p-2 boblog-mb-1" style="color:#fff"&gt;boblog-bg-danger&lt;/div&gt;
+    &lt;div class="boblog-bg-info boblog-p-2 boblog-mb-1" style="color:#fff"&gt;boblog-bg-info&lt;/div&gt;
+    &lt;div class="boblog-bg-dark boblog-p-2 boblog-mb-1" style="color:#fff"&gt;boblog-bg-dark&lt;/div&gt;
+    &lt;div class="boblog-bg-light boblog-p-2 boblog-mb-2"&gt;boblog-bg-light&lt;/div&gt;
+
+    &lt;h3&gt;浅底背景&lt;/h3&gt;
+    &lt;div class="boblog-bg-primary-light boblog-p-2 boblog-mb-1"&gt;boblog-bg-primary-light&lt;/div&gt;
+    &lt;div class="boblog-bg-success-light boblog-p-2 boblog-mb-1"&gt;boblog-bg-success-light&lt;/div&gt;
+    &lt;div class="boblog-bg-warning-light boblog-p-2 boblog-mb-1"&gt;boblog-bg-warning-light&lt;/div&gt;
+    &lt;div class="boblog-bg-danger-light boblog-p-2 boblog-mb-1"&gt;boblog-bg-danger-light&lt;/div&gt;
+    &lt;div class="boblog-bg-info-light boblog-p-2 boblog-mb-2"&gt;boblog-bg-info-light&lt;/div&gt;
+
+    &lt;h3&gt;组合使用&lt;/h3&gt;
+    &lt;div class="boblog-bg-danger-light boblog-border boblog-border-danger boblog-text-danger boblog-p-2 boblog-mb-1"&gt;
+        浅红背景 + 红色边框 + 红色文字
+    &lt;/div&gt;
+    &lt;div class="boblog-bg-success-light boblog-border boblog-border-success boblog-text-success boblog-p-2 boblog-mb-1"&gt;
+        浅绿背景 + 绿色边框 + 绿色文字
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <script src="../../dist/boblog-ui.js"></script>

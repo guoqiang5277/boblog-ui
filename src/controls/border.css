@@ -1,20 +1,22 @@
 /**
- * Bo-Blog UI 控件 - 边框 (Border)
+ * Bo-Blog UI 控件 - 边框与背景 (Border & Background)
  *
- * 提供统一的边框样式工具类
+ * 提供统一的边框样式和背景色工具类
  *
  * 使用场景：
- *   - 为元素添加边框
+ *   - 为元素添加边框和背景色
  *   - 设置边框方向（上/下/左/右）
- *   - 设置边框颜色（主题蓝/浅蓝/灰色）
+ *   - 设置边框颜色（主题蓝/浅蓝/灰色/语义色）
+ *   - 设置背景色（实底/浅底，可与任意控件组合）
  *
  * HTML 示例：
  *   <div class="boblog-border">四边边框</div>
- *   <div class="boblog-border-top">上边框</div>
- *   <div class="boblog-border-blue">蓝色边框</div>
+ *   <div class="boblog-border-success">成功绿色边框</div>
+ *   <div class="boblog-bg-danger-light">浅红背景</div>
+ *   <div class="boblog-bg-primary-light boblog-border-primary boblog-text-primary">组合使用</div>
  *
  * 依赖：
- *   - src/base/variables.css（边框颜色变量）
+ *   - src/base/variables.css（边框颜色、语义色、背景色变量）
  */
 
 
@@ -105,4 +107,109 @@
 /* 点状边框 */
 .boblog-border-dotted {
     border-style: dotted;
+}
+
+
+/* ==========================================================================
+   语义边框颜色
+   ========================================================================== */
+
+/* 主色边框 — 品牌蓝 */
+.boblog-border-primary {
+    border-color: var(--boblog-blue, #0D6EAA);
+}
+
+/* 成功边框 — 绿色 */
+.boblog-border-success {
+    border-color: var(--boblog-success, #3C8C30);
+}
+
+/* 警告边框 — 黄色 */
+.boblog-border-warning {
+    border-color: var(--boblog-warning, #D4A017);
+}
+
+/* 危险边框 — 红色 */
+.boblog-border-danger {
+    border-color: var(--boblog-danger, #CC3333);
+}
+
+/* 信息边框 — 信息蓝 */
+.boblog-border-info {
+    border-color: var(--boblog-info, #1677B5);
+}
+
+
+/* ==========================================================================
+   背景色工具类
+   可与任意控件组合使用，如：<div class="boblog-bg-success-light boblog-border-success">
+   ========================================================================== */
+
+/* --- 实底背景（深色，搭配白色文字） --- */
+
+/* 主色背景 — 品牌蓝 */
+.boblog-bg-primary {
+    background-color: var(--boblog-blue, #0D6EAA) !important;
+}
+
+/* 成功背景 — 绿色 */
+.boblog-bg-success {
+    background-color: var(--boblog-success, #3C8C30) !important;
+}
+
+/* 警告背景 — 黄色 */
+.boblog-bg-warning {
+    background-color: var(--boblog-warning, #D4A017) !important;
+}
+
+/* 危险背景 — 红色 */
+.boblog-bg-danger {
+    background-color: var(--boblog-danger, #CC3333) !important;
+}
+
+/* 信息背景 — 信息蓝 */
+.boblog-bg-info {
+    background-color: var(--boblog-info, #1677B5) !important;
+}
+
+/* 浅色背景 */
+.boblog-bg-light {
+    background-color: var(--boblog-bg-subtle, #F5F8FB) !important;
+}
+
+/* 深色背景 */
+.boblog-bg-dark {
+    background-color: var(--boblog-text-dark, #333333) !important;
+}
+
+/* 白色背景 */
+.boblog-bg-white {
+    background-color: var(--boblog-white, #FFFFFF) !important;
+}
+
+/* --- 浅底背景（浅色，搭配深色文字） --- */
+
+/* 主色浅底 — 极浅蓝 */
+.boblog-bg-primary-light {
+    background-color: var(--boblog-blue-wash, #F4FBFF) !important;
+}
+
+/* 成功浅底 — 浅绿 */
+.boblog-bg-success-light {
+    background-color: var(--boblog-success-bg, #F0F8EE) !important;
+}
+
+/* 警告浅底 — 浅黄 */
+.boblog-bg-warning-light {
+    background-color: var(--boblog-warning-bg, #FFF8E6) !important;
+}
+
+/* 危险浅底 — 浅红 */
+.boblog-bg-danger-light {
+    background-color: var(--boblog-danger-bg, #FFF0F0) !important;
+}
+
+/* 信息浅底 — 浅蓝 */
+.boblog-bg-info-light {
+    background-color: var(--boblog-info-bg, #EDF5FB) !important;
 }

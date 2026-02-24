@@ -2,6 +2,17 @@
  * Bo-Blog Button Control
  * 按钮控件 - 基于 Bo-Blog V2.1 经典风格
  * 无圆角设计，蓝白配色
+ *
+ * 类名清单：
+ *   基础：.boblog-btn
+ *   颜色：.boblog-btn-primary | -secondary | -danger | -success | -warning | -info
+ *   轮廓：.boblog-btn-outline | -outline-primary | -outline-success | -outline-warning | -outline-danger | -outline-info
+ *   样式：.boblog-btn-text | -ghost
+ *   尺寸：.boblog-btn-xs | -sm | -lg | -block
+ *   状态：:disabled | .disabled | .boblog-btn-loading | .boblog-btn-active
+ *   组合：.boblog-btn-group | -group-vertical | .boblog-btn-toolbar
+ *   图标：.boblog-btn-icon
+ *   间距：.boblog-btn + .boblog-btn（自动 margin-left: 8px）
  */
 
 /* 基础按钮 */
@@ -183,4 +194,333 @@
 .boblog-btn-group .boblog-btn:focus,
 .boblog-btn-group .boblog-btn:active {
   z-index: 1;
+}
+
+/* ==========================================================================
+   颜色变体
+   ========================================================================== */
+
+/* 成功按钮 — 绿底白字 */
+.boblog-btn-success {
+  background-color: var(--boblog-success);
+  border-color: var(--boblog-success);
+  color: var(--boblog-white);
+}
+
+.boblog-btn-success:hover {
+  background-color: #337A29;
+  border-color: #337A29;
+  color: var(--boblog-white);
+}
+
+.boblog-btn-success:active {
+  background-color: #2A6822;
+}
+
+.boblog-btn-success:disabled,
+.boblog-btn-success.disabled {
+  background-color: #8CC084;
+  border-color: #8CC084;
+  color: var(--boblog-white);
+}
+
+/* 警告按钮 — 黄底深色字 */
+.boblog-btn-warning {
+  background-color: var(--boblog-warning);
+  border-color: var(--boblog-warning);
+  color: var(--boblog-text-dark);
+}
+
+.boblog-btn-warning:hover {
+  background-color: #B88D14;
+  border-color: #B88D14;
+  color: var(--boblog-text-dark);
+}
+
+.boblog-btn-warning:active {
+  background-color: #9C7811;
+}
+
+.boblog-btn-warning:disabled,
+.boblog-btn-warning.disabled {
+  background-color: #E8CC73;
+  border-color: #E8CC73;
+  color: var(--boblog-text-dark);
+}
+
+/* 信息按钮 — 信息蓝底白字 */
+.boblog-btn-info {
+  background-color: var(--boblog-info);
+  border-color: var(--boblog-info);
+  color: var(--boblog-white);
+}
+
+.boblog-btn-info:hover {
+  background-color: #12659C;
+  border-color: #12659C;
+  color: var(--boblog-white);
+}
+
+.boblog-btn-info:active {
+  background-color: #0E5483;
+}
+
+.boblog-btn-info:disabled,
+.boblog-btn-info.disabled {
+  background-color: #7BB5D4;
+  border-color: #7BB5D4;
+  color: var(--boblog-white);
+}
+
+
+/* ==========================================================================
+   轮廓变体 — 各色轮廓按钮
+   ========================================================================== */
+
+/* 蓝色轮廓（与现有 .boblog-btn-outline 相同，提供语义命名） */
+.boblog-btn-outline-primary {
+  background-color: transparent;
+  border-color: var(--boblog-blue);
+  color: var(--boblog-blue);
+}
+
+.boblog-btn-outline-primary:hover {
+  background-color: var(--boblog-blue-pale);
+  border-color: var(--boblog-blue);
+  color: var(--boblog-blue);
+}
+
+/* 绿色轮廓 */
+.boblog-btn-outline-success {
+  background-color: transparent;
+  border-color: var(--boblog-success);
+  color: var(--boblog-success);
+}
+
+.boblog-btn-outline-success:hover {
+  background-color: var(--boblog-success-bg);
+  border-color: var(--boblog-success);
+  color: var(--boblog-success);
+}
+
+/* 黄色轮廓 */
+.boblog-btn-outline-warning {
+  background-color: transparent;
+  border-color: var(--boblog-warning);
+  color: var(--boblog-warning);
+}
+
+.boblog-btn-outline-warning:hover {
+  background-color: var(--boblog-warning-bg);
+  border-color: var(--boblog-warning);
+  color: var(--boblog-warning);
+}
+
+/* 红色轮廓 */
+.boblog-btn-outline-danger {
+  background-color: transparent;
+  border-color: var(--boblog-danger);
+  color: var(--boblog-danger);
+}
+
+.boblog-btn-outline-danger:hover {
+  background-color: var(--boblog-danger-bg);
+  border-color: var(--boblog-danger);
+  color: var(--boblog-danger);
+}
+
+/* 信息蓝轮廓 */
+.boblog-btn-outline-info {
+  background-color: transparent;
+  border-color: var(--boblog-info);
+  color: var(--boblog-info);
+}
+
+.boblog-btn-outline-info:hover {
+  background-color: var(--boblog-info-bg);
+  border-color: var(--boblog-info);
+  color: var(--boblog-info);
+}
+
+
+/* ==========================================================================
+   样式变体
+   ========================================================================== */
+
+/* 文本按钮 — 无边框无背景，仅文字 */
+.boblog-btn-text {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--boblog-blue);
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.boblog-btn-text:hover {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--boblog-blue-light);
+}
+
+.boblog-btn-text:active {
+  color: #0a6699;
+}
+
+.boblog-btn-text:disabled,
+.boblog-btn-text.disabled {
+  background-color: transparent;
+  border-color: transparent;
+  color: var(--boblog-text-muted);
+}
+
+/* 幽灵按钮 — 透明背景+白色边框/文字，用于深色背景 */
+.boblog-btn-ghost {
+  background-color: transparent;
+  border-color: var(--boblog-white);
+  color: var(--boblog-white);
+}
+
+.boblog-btn-ghost:hover {
+  background-color: rgba(255, 255, 255, 0.15);
+  border-color: var(--boblog-white);
+  color: var(--boblog-white);
+}
+
+.boblog-btn-ghost:active {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+.boblog-btn-ghost:disabled,
+.boblog-btn-ghost.disabled {
+  background-color: transparent;
+  border-color: rgba(255, 255, 255, 0.4);
+  color: rgba(255, 255, 255, 0.4);
+}
+
+
+/* ==========================================================================
+   尺寸
+   ========================================================================== */
+
+/* 极小按钮 — 用于表格行内操作 */
+.boblog-btn-xs {
+  padding: 2px 6px;
+  font-size: var(--boblog-font-size-xs);
+}
+
+
+/* ==========================================================================
+   状态
+   ========================================================================== */
+
+/* 加载中 — CSS 旋转动画 + 禁止交互 */
+.boblog-btn-loading {
+  position: relative;
+  pointer-events: none;
+  opacity: 0.75;
+}
+
+.boblog-btn-loading::before {
+  content: '';
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-right: 6px;
+  border: 2px solid currentColor;
+  border-top-color: transparent;
+  border-radius: 50%;
+  vertical-align: middle;
+  animation: boblog-btn-spin 0.6s linear infinite;
+}
+
+@keyframes boblog-btn-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* 激活/选中状态 — 保持按下外观 */
+.boblog-btn-active {
+  background-color: var(--boblog-blue-pale);
+  border-color: var(--boblog-blue);
+  color: var(--boblog-blue);
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+
+/* ==========================================================================
+   按钮组增强
+   ========================================================================== */
+
+/* 垂直按钮组 */
+.boblog-btn-group-vertical {
+  display: inline-flex;
+  flex-direction: column;
+  vertical-align: middle;
+}
+
+.boblog-btn-group-vertical .boblog-btn {
+  margin-left: 0;
+  margin-top: -1px;
+}
+
+.boblog-btn-group-vertical .boblog-btn:first-child {
+  margin-top: 0;
+}
+
+.boblog-btn-group-vertical .boblog-btn:hover,
+.boblog-btn-group-vertical .boblog-btn:focus,
+.boblog-btn-group-vertical .boblog-btn:active {
+  z-index: 1;
+}
+
+/* 按钮工具栏 — 多组按钮间距容器 */
+.boblog-btn-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+
+/* ==========================================================================
+   图标按钮
+   ========================================================================== */
+
+/* 纯图标正方形按钮 */
+.boblog-btn-icon {
+  padding: 6px;
+  line-height: 1;
+}
+
+.boblog-btn-icon.boblog-btn-xs {
+  padding: 2px;
+}
+
+.boblog-btn-icon.boblog-btn-sm {
+  padding: 4px;
+}
+
+.boblog-btn-icon.boblog-btn-lg {
+  padding: 8px;
+}
+
+
+/* ==========================================================================
+   间距辅助
+   ========================================================================== */
+
+/* 相邻按钮自动间距 */
+.boblog-btn + .boblog-btn {
+  margin-left: 8px;
+}
+
+/* 按钮组内不需要额外间距 */
+.boblog-btn-group .boblog-btn + .boblog-btn,
+.boblog-btn-group-vertical .boblog-btn + .boblog-btn {
+  margin-left: 0;
+}
+
+/* 垂直按钮组内不需要左间距 */
+.boblog-btn-group-vertical .boblog-btn + .boblog-btn {
+  margin-left: 0;
 }
