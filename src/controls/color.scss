@@ -56,6 +56,11 @@
     color: var(--boblog-info, #1677B5);
 }
 
+/* 白色文字 — 用于深色背景上的文字 */
+.boblog-text-white {
+    color: var(--boblog-white, #FFFFFF);
+}
+
 
 /* ==========================================================================
    世界经典名色（10 色）— 引用 variables.css 中定义的 CSS 变量
