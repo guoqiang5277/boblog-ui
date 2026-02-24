@@ -1472,6 +1472,1465 @@
         </div>
     </div>
 
+    <!-- ====== 无边框表格 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="无边框表格">无边框表格 (.boblog-table-borderless)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>附加类名</strong>: .boblog-table-borderless（与 .boblog-table 配合使用）</li>
+                <li><strong>效果</strong>: 去掉所有行分隔线，仅保留表头与内容的视觉区分</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <table class="boblog-table boblog-table-borderless">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>文章标题</th>
+                                <th>作者</th>
+                                <th>状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Bo-Blog 经典界面设计回顾</td>
+                                <td>管理员</td>
+                                <td>已发布</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>2000年代中文博客发展史</td>
+                                <td>编辑</td>
+                                <td>草稿</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>经典Web设计的魅力</td>
+                                <td>管理员</td>
+                                <td>已发布</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;table class="boblog-table boblog-table-borderless"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;ID&lt;/th&gt;
+            &lt;th&gt;文章标题&lt;/th&gt;
+            &lt;th&gt;作者&lt;/th&gt;
+            &lt;th&gt;状态&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;Bo-Blog 经典界面设计回顾&lt;/td&gt;
+            &lt;td&gt;管理员&lt;/td&gt;
+            &lt;td&gt;已发布&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;2000年代中文博客发展史&lt;/td&gt;
+            &lt;td&gt;编辑&lt;/td&gt;
+            &lt;td&gt;草稿&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;经典Web设计的魅力&lt;/td&gt;
+            &lt;td&gt;管理员&lt;/td&gt;
+            &lt;td&gt;已发布&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;无边框表格示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;table class="boblog-table boblog-table-borderless"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;ID&lt;/th&gt;
+            &lt;th&gt;文章标题&lt;/th&gt;
+            &lt;th&gt;作者&lt;/th&gt;
+            &lt;th&gt;状态&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;Bo-Blog 经典界面设计回顾&lt;/td&gt;
+            &lt;td&gt;管理员&lt;/td&gt;
+            &lt;td&gt;已发布&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;2000年代中文博客发展史&lt;/td&gt;
+            &lt;td&gt;编辑&lt;/td&gt;
+            &lt;td&gt;草稿&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;经典Web设计的魅力&lt;/td&gt;
+            &lt;td&gt;管理员&lt;/td&gt;
+            &lt;td&gt;已发布&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 小尺寸表格 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="小尺寸表格">小尺寸表格 (.boblog-table-sm)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>附加类名</strong>: .boblog-table-sm（与 .boblog-table 配合使用）</li>
+                <li><strong>单元格内边距</strong>: 4px 6px（标准为 10px），适用于数据密集的管理后台场景</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <table class="boblog-table boblog-table-sm">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>文章标题</th>
+                                <th>作者</th>
+                                <th>状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Bo-Blog 经典界面设计回顾</td>
+                                <td>管理员</td>
+                                <td>已发布</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>2000年代中文博客发展史</td>
+                                <td>编辑</td>
+                                <td>草稿</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>经典Web设计的魅力</td>
+                                <td>管理员</td>
+                                <td>已发布</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;table class="boblog-table boblog-table-sm"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;ID&lt;/th&gt;
+            &lt;th&gt;文章标题&lt;/th&gt;
+            &lt;th&gt;作者&lt;/th&gt;
+            &lt;th&gt;状态&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;Bo-Blog 经典界面设计回顾&lt;/td&gt;
+            &lt;td&gt;管理员&lt;/td&gt;
+            &lt;td&gt;已发布&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;2000年代中文博客发展史&lt;/td&gt;
+            &lt;td&gt;编辑&lt;/td&gt;
+            &lt;td&gt;草稿&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;经典Web设计的魅力&lt;/td&gt;
+            &lt;td&gt;管理员&lt;/td&gt;
+            &lt;td&gt;已发布&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;小尺寸表格示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;table class="boblog-table boblog-table-sm"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;ID&lt;/th&gt;
+            &lt;th&gt;文章标题&lt;/th&gt;
+            &lt;th&gt;作者&lt;/th&gt;
+            &lt;th&gt;状态&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;Bo-Blog 经典界面设计回顾&lt;/td&gt;
+            &lt;td&gt;管理员&lt;/td&gt;
+            &lt;td&gt;已发布&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;2000年代中文博客发展史&lt;/td&gt;
+            &lt;td&gt;编辑&lt;/td&gt;
+            &lt;td&gt;草稿&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;经典Web设计的魅力&lt;/td&gt;
+            &lt;td&gt;管理员&lt;/td&gt;
+            &lt;td&gt;已发布&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 大尺寸表格 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="大尺寸表格">大尺寸表格 (.boblog-table-lg)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>附加类名</strong>: .boblog-table-lg（与 .boblog-table 配合使用）</li>
+                <li><strong>单元格内边距</strong>: 14px（标准为 10px），适用于需要舒展阅读体验的场景</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <table class="boblog-table boblog-table-lg">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>文章标题</th>
+                                <th>作者</th>
+                                <th>状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Bo-Blog 经典界面设计回顾</td>
+                                <td>管理员</td>
+                                <td>已发布</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>2000年代中文博客发展史</td>
+                                <td>编辑</td>
+                                <td>草稿</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>经典Web设计的魅力</td>
+                                <td>管理员</td>
+                                <td>已发布</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;table class="boblog-table boblog-table-lg"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;ID&lt;/th&gt;
+            &lt;th&gt;文章标题&lt;/th&gt;
+            &lt;th&gt;作者&lt;/th&gt;
+            &lt;th&gt;状态&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;Bo-Blog 经典界面设计回顾&lt;/td&gt;
+            &lt;td&gt;管理员&lt;/td&gt;
+            &lt;td&gt;已发布&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;2000年代中文博客发展史&lt;/td&gt;
+            &lt;td&gt;编辑&lt;/td&gt;
+            &lt;td&gt;草稿&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;经典Web设计的魅力&lt;/td&gt;
+            &lt;td&gt;管理员&lt;/td&gt;
+            &lt;td&gt;已发布&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;大尺寸表格示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;table class="boblog-table boblog-table-lg"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;ID&lt;/th&gt;
+            &lt;th&gt;文章标题&lt;/th&gt;
+            &lt;th&gt;作者&lt;/th&gt;
+            &lt;th&gt;状态&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;Bo-Blog 经典界面设计回顾&lt;/td&gt;
+            &lt;td&gt;管理员&lt;/td&gt;
+            &lt;td&gt;已发布&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;2000年代中文博客发展史&lt;/td&gt;
+            &lt;td&gt;编辑&lt;/td&gt;
+            &lt;td&gt;草稿&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;经典Web设计的魅力&lt;/td&gt;
+            &lt;td&gt;管理员&lt;/td&gt;
+            &lt;td&gt;已发布&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 表单表格 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="表单表格">表单表格 (.boblog-table-form)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>独立使用</strong>: 不需要 .boblog-table，单独使用 .boblog-table-form</li>
+                <li><strong>单元格内边距</strong>: 3px，极紧凑布局，参考帝国CMS后台风格</li>
+                <li><strong>无表头/Hover/行分隔线</strong>: 纯粹用于设置页面标签+控件布局</li>
+                <li><strong>典型用途</strong>: 设置页面表单，左列为标签，右列为控件</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <table class="boblog-table-form">
+                        <tr>
+                            <td>站点名称</td>
+                            <td><input type="text" class="boblog-input" value="我的博客"></td>
+                        </tr>
+                        <tr>
+                            <td>每页显示</td>
+                            <td><input type="number" class="boblog-input" value="10"> <span class="boblog-text-xs boblog-text-gray boblog-ml-1">条记录</span></td>
+                        </tr>
+                        <tr>
+                            <td>启用评论</td>
+                            <td><label class="boblog-checkbox"><input class="boblog-checkbox-input" type="checkbox" checked><span class="boblog-checkbox-label"></span></label></td>
+                        </tr>
+                        <tr>
+                            <td>默认排序</td>
+                            <td>
+                                <div class="boblog-select">
+                                    <select>
+                                        <option>按时间倒序</option>
+                                        <option>按时间正序</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;table class="boblog-table-form"&gt;
+    &lt;tr&gt;
+        &lt;td&gt;站点名称&lt;/td&gt;
+        &lt;td&gt;&lt;input type="text" class="boblog-input" value="我的博客"&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;每页显示&lt;/td&gt;
+        &lt;td&gt;
+            &lt;input type="number" class="boblog-input" value="10"&gt;
+            &lt;span class="boblog-text-xs boblog-text-gray boblog-ml-1"&gt;条记录&lt;/span&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;启用评论&lt;/td&gt;
+        &lt;td&gt;&lt;label class="boblog-checkbox"&gt;&lt;input class="boblog-checkbox-input" type="checkbox" checked&gt;&lt;span class="boblog-checkbox-label"&gt;&lt;/span&gt;&lt;/label&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;默认排序&lt;/td&gt;
+        &lt;td&gt;
+            &lt;div class="boblog-select"&gt;
+                &lt;select&gt;
+                    &lt;option&gt;按时间倒序&lt;/option&gt;
+                    &lt;option&gt;按时间正序&lt;/option&gt;
+                &lt;/select&gt;
+            &lt;/div&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;表单表格示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;table class="boblog-table-form"&gt;
+    &lt;tr&gt;
+        &lt;td&gt;站点名称&lt;/td&gt;
+        &lt;td&gt;&lt;input type="text" class="boblog-input" value="我的博客"&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;每页显示&lt;/td&gt;
+        &lt;td&gt;
+            &lt;input type="number" class="boblog-input" value="10"&gt;
+            &lt;span class="boblog-text-xs boblog-text-gray boblog-ml-1"&gt;条记录&lt;/span&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;启用评论&lt;/td&gt;
+        &lt;td&gt;&lt;label class="boblog-checkbox"&gt;&lt;input class="boblog-checkbox-input" type="checkbox" checked&gt;&lt;span class="boblog-checkbox-label"&gt;&lt;/span&gt;&lt;/label&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td&gt;默认排序&lt;/td&gt;
+        &lt;td&gt;
+            &lt;div class="boblog-select"&gt;
+                &lt;select&gt;
+                    &lt;option&gt;按时间倒序&lt;/option&gt;
+                    &lt;option&gt;按时间正序&lt;/option&gt;
+                &lt;/select&gt;
+            &lt;/div&gt;
+        &lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 固定列宽表格 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="固定列宽表格">固定列宽表格 (.boblog-table-fixed)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>附加类名</strong>: .boblog-table-fixed（与 .boblog-table 配合使用）</li>
+                <li><strong>布局算法</strong>: table-layout: fixed，列宽由表头 &lt;th&gt; 上设置的 width 属性决定</li>
+                <li><strong>典型用途</strong>: 防止内容过长撑开列宽，保证界面布局稳定</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <table class="boblog-table boblog-table-fixed">
+                        <thead>
+                            <tr>
+                                <th width="50">ID</th>
+                                <th width="300">文章标题</th>
+                                <th width="80">作者</th>
+                                <th width="100">状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Bo-Blog 经典界面设计回顾（这是一段很长很长的标题，固定列宽会截断而不是撑开）</td>
+                                <td>管理员</td>
+                                <td>已发布</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>2000年代中文博客发展史</td>
+                                <td>编辑</td>
+                                <td>草稿</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>经典Web设计的魅力</td>
+                                <td>管理员</td>
+                                <td>已发布</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;table class="boblog-table boblog-table-fixed"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th width="50"&gt;ID&lt;/th&gt;
+            &lt;th width="300"&gt;文章标题&lt;/th&gt;
+            &lt;th width="80"&gt;作者&lt;/th&gt;
+            &lt;th width="100"&gt;状态&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;Bo-Blog 经典界面设计回顾（这是一段很长很长的标题，固定列宽会截断而不是撑开）&lt;/td&gt;
+            &lt;td&gt;管理员&lt;/td&gt;
+            &lt;td&gt;已发布&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;2000年代中文博客发展史&lt;/td&gt;
+            &lt;td&gt;编辑&lt;/td&gt;
+            &lt;td&gt;草稿&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;经典Web设计的魅力&lt;/td&gt;
+            &lt;td&gt;管理员&lt;/td&gt;
+            &lt;td&gt;已发布&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;固定列宽表格示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;table class="boblog-table boblog-table-fixed"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th width="50"&gt;ID&lt;/th&gt;
+            &lt;th width="300"&gt;文章标题&lt;/th&gt;
+            &lt;th width="80"&gt;作者&lt;/th&gt;
+            &lt;th width="100"&gt;状态&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;Bo-Blog 经典界面设计回顾（这是一段很长很长的标题，固定列宽会截断而不是撑开）&lt;/td&gt;
+            &lt;td&gt;管理员&lt;/td&gt;
+            &lt;td&gt;已发布&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;2000年代中文博客发展史&lt;/td&gt;
+            &lt;td&gt;编辑&lt;/td&gt;
+            &lt;td&gt;草稿&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;经典Web设计的魅力&lt;/td&gt;
+            &lt;td&gt;管理员&lt;/td&gt;
+            &lt;td&gt;已发布&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 列斑马纹 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="列斑马纹">列斑马纹 (.boblog-table-striped-columns)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>附加类名</strong>: .boblog-table-striped-columns（与 .boblog-table 配合使用）</li>
+                <li><strong>偶数列背景</strong>: #F5F8FB (--boblog-bg-subtle)，奇数列正常白底</li>
+                <li><strong>典型用途</strong>: 多列数据表格，列多时帮助视线横向跟踪</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <table class="boblog-table boblog-table-striped-columns">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>标题</th>
+                                <th>作者</th>
+                                <th>分类</th>
+                                <th>日期</th>
+                                <th>阅读数</th>
+                                <th>状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Bo-Blog 经典界面设计</td>
+                                <td>管理员</td>
+                                <td>技术</td>
+                                <td>2026-01-15</td>
+                                <td>1024</td>
+                                <td>已发布</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>2000年代中文博客史</td>
+                                <td>编辑</td>
+                                <td>历史</td>
+                                <td>2026-01-20</td>
+                                <td>768</td>
+                                <td>草稿</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>经典Web设计的魅力</td>
+                                <td>管理员</td>
+                                <td>设计</td>
+                                <td>2026-01-25</td>
+                                <td>512</td>
+                                <td>已发布</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;table class="boblog-table boblog-table-striped-columns"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;ID&lt;/th&gt;
+            &lt;th&gt;标题&lt;/th&gt;
+            &lt;th&gt;作者&lt;/th&gt;
+            &lt;th&gt;分类&lt;/th&gt;
+            &lt;th&gt;日期&lt;/th&gt;
+            &lt;th&gt;阅读数&lt;/th&gt;
+            &lt;th&gt;状态&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;Bo-Blog 经典界面设计&lt;/td&gt;
+            &lt;td&gt;管理员&lt;/td&gt;
+            &lt;td&gt;技术&lt;/td&gt;
+            &lt;td&gt;2026-01-15&lt;/td&gt;
+            &lt;td&gt;1024&lt;/td&gt;
+            &lt;td&gt;已发布&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;2000年代中文博客史&lt;/td&gt;
+            &lt;td&gt;编辑&lt;/td&gt;
+            &lt;td&gt;历史&lt;/td&gt;
+            &lt;td&gt;2026-01-20&lt;/td&gt;
+            &lt;td&gt;768&lt;/td&gt;
+            &lt;td&gt;草稿&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;经典Web设计的魅力&lt;/td&gt;
+            &lt;td&gt;管理员&lt;/td&gt;
+            &lt;td&gt;设计&lt;/td&gt;
+            &lt;td&gt;2026-01-25&lt;/td&gt;
+            &lt;td&gt;512&lt;/td&gt;
+            &lt;td&gt;已发布&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;列斑马纹表格示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;table class="boblog-table boblog-table-striped-columns"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;ID&lt;/th&gt;
+            &lt;th&gt;标题&lt;/th&gt;
+            &lt;th&gt;作者&lt;/th&gt;
+            &lt;th&gt;分类&lt;/th&gt;
+            &lt;th&gt;日期&lt;/th&gt;
+            &lt;th&gt;阅读数&lt;/th&gt;
+            &lt;th&gt;状态&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;Bo-Blog 经典界面设计&lt;/td&gt;
+            &lt;td&gt;管理员&lt;/td&gt;
+            &lt;td&gt;技术&lt;/td&gt;
+            &lt;td&gt;2026-01-15&lt;/td&gt;
+            &lt;td&gt;1024&lt;/td&gt;
+            &lt;td&gt;已发布&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;2000年代中文博客史&lt;/td&gt;
+            &lt;td&gt;编辑&lt;/td&gt;
+            &lt;td&gt;历史&lt;/td&gt;
+            &lt;td&gt;2026-01-20&lt;/td&gt;
+            &lt;td&gt;768&lt;/td&gt;
+            &lt;td&gt;草稿&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;经典Web设计的魅力&lt;/td&gt;
+            &lt;td&gt;管理员&lt;/td&gt;
+            &lt;td&gt;设计&lt;/td&gt;
+            &lt;td&gt;2026-01-25&lt;/td&gt;
+            &lt;td&gt;512&lt;/td&gt;
+            &lt;td&gt;已发布&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 表头颜色 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="表头颜色">表头颜色变体 (.boblog-thead-*)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>用法</strong>: 将颜色类应用在 &lt;thead&gt; 元素上，与 .boblog-table 配合使用</li>
+                <li><strong>可用类名</strong>: .boblog-thead-dark、.boblog-thead-primary、.boblog-thead-success、.boblog-thead-warning、.boblog-thead-danger、.boblog-thead-info</li>
+                <li><strong>效果</strong>: 改变表头背景色和文字颜色，其余样式不变</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <p class="boblog-form-section-title">boblog-thead-dark</p>
+                    <table class="boblog-table">
+                        <thead class="boblog-thead-dark">
+                            <tr><th>ID</th><th>标题</th><th>状态</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>经典设计回顾</td><td>已发布</td></tr>
+                            <tr><td>2</td><td>博客发展史</td><td>草稿</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="boblog-form-section-title">boblog-thead-primary</p>
+                    <table class="boblog-table">
+                        <thead class="boblog-thead-primary">
+                            <tr><th>ID</th><th>标题</th><th>状态</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>经典设计回顾</td><td>已发布</td></tr>
+                            <tr><td>2</td><td>博客发展史</td><td>草稿</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="boblog-form-section-title">boblog-thead-success</p>
+                    <table class="boblog-table">
+                        <thead class="boblog-thead-success">
+                            <tr><th>ID</th><th>标题</th><th>状态</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>经典设计回顾</td><td>已发布</td></tr>
+                            <tr><td>2</td><td>博客发展史</td><td>草稿</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="boblog-form-section-title">boblog-thead-warning</p>
+                    <table class="boblog-table">
+                        <thead class="boblog-thead-warning">
+                            <tr><th>ID</th><th>标题</th><th>状态</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>经典设计回顾</td><td>已发布</td></tr>
+                            <tr><td>2</td><td>博客发展史</td><td>草稿</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="boblog-form-section-title">boblog-thead-danger</p>
+                    <table class="boblog-table">
+                        <thead class="boblog-thead-danger">
+                            <tr><th>ID</th><th>标题</th><th>状态</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>经典设计回顾</td><td>已发布</td></tr>
+                            <tr><td>2</td><td>博客发展史</td><td>草稿</td></tr>
+                        </tbody>
+                    </table>
+                    <p class="boblog-form-section-title">boblog-thead-info</p>
+                    <table class="boblog-table">
+                        <thead class="boblog-thead-info">
+                            <tr><th>ID</th><th>标题</th><th>状态</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>1</td><td>经典设计回顾</td><td>已发布</td></tr>
+                            <tr><td>2</td><td>博客发展史</td><td>草稿</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 深色表头 --&gt;
+&lt;table class="boblog-table"&gt;
+    &lt;thead class="boblog-thead-dark"&gt;
+        &lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;标题&lt;/th&gt;&lt;th&gt;状态&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;...&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!-- 主色调表头 --&gt;
+&lt;table class="boblog-table"&gt;
+    &lt;thead class="boblog-thead-primary"&gt;
+        &lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;标题&lt;/th&gt;&lt;th&gt;状态&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;...&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!-- 成功/绿色表头 --&gt;
+&lt;table class="boblog-table"&gt;
+    &lt;thead class="boblog-thead-success"&gt;...&lt;/thead&gt;
+    &lt;tbody&gt;...&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!-- 警告/橙色表头 --&gt;
+&lt;table class="boblog-table"&gt;
+    &lt;thead class="boblog-thead-warning"&gt;...&lt;/thead&gt;
+    &lt;tbody&gt;...&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!-- 危险/红色表头 --&gt;
+&lt;table class="boblog-table"&gt;
+    &lt;thead class="boblog-thead-danger"&gt;...&lt;/thead&gt;
+    &lt;tbody&gt;...&lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!-- 信息/蓝色表头 --&gt;
+&lt;table class="boblog-table"&gt;
+    &lt;thead class="boblog-thead-info"&gt;...&lt;/thead&gt;
+    &lt;tbody&gt;...&lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;表头颜色变体示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;p class="boblog-form-section-title"&gt;boblog-thead-dark&lt;/p&gt;
+&lt;table class="boblog-table"&gt;
+    &lt;thead class="boblog-thead-dark"&gt;
+        &lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;标题&lt;/th&gt;&lt;th&gt;状态&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;经典设计回顾&lt;/td&gt;&lt;td&gt;已发布&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;博客发展史&lt;/td&gt;&lt;td&gt;草稿&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p class="boblog-form-section-title"&gt;boblog-thead-primary&lt;/p&gt;
+&lt;table class="boblog-table"&gt;
+    &lt;thead class="boblog-thead-primary"&gt;
+        &lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;标题&lt;/th&gt;&lt;th&gt;状态&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;经典设计回顾&lt;/td&gt;&lt;td&gt;已发布&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;博客发展史&lt;/td&gt;&lt;td&gt;草稿&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p class="boblog-form-section-title"&gt;boblog-thead-success&lt;/p&gt;
+&lt;table class="boblog-table"&gt;
+    &lt;thead class="boblog-thead-success"&gt;
+        &lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;标题&lt;/th&gt;&lt;th&gt;状态&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;经典设计回顾&lt;/td&gt;&lt;td&gt;已发布&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;博客发展史&lt;/td&gt;&lt;td&gt;草稿&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p class="boblog-form-section-title"&gt;boblog-thead-warning&lt;/p&gt;
+&lt;table class="boblog-table"&gt;
+    &lt;thead class="boblog-thead-warning"&gt;
+        &lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;标题&lt;/th&gt;&lt;th&gt;状态&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;经典设计回顾&lt;/td&gt;&lt;td&gt;已发布&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;博客发展史&lt;/td&gt;&lt;td&gt;草稿&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p class="boblog-form-section-title"&gt;boblog-thead-danger&lt;/p&gt;
+&lt;table class="boblog-table"&gt;
+    &lt;thead class="boblog-thead-danger"&gt;
+        &lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;标题&lt;/th&gt;&lt;th&gt;状态&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;经典设计回顾&lt;/td&gt;&lt;td&gt;已发布&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;博客发展史&lt;/td&gt;&lt;td&gt;草稿&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p class="boblog-form-section-title"&gt;boblog-thead-info&lt;/p&gt;
+&lt;table class="boblog-table"&gt;
+    &lt;thead class="boblog-thead-info"&gt;
+        &lt;tr&gt;&lt;th&gt;ID&lt;/th&gt;&lt;th&gt;标题&lt;/th&gt;&lt;th&gt;状态&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;&lt;td&gt;1&lt;/td&gt;&lt;td&gt;经典设计回顾&lt;/td&gt;&lt;td&gt;已发布&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr&gt;&lt;td&gt;2&lt;/td&gt;&lt;td&gt;博客发展史&lt;/td&gt;&lt;td&gt;草稿&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 行状态 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="行状态">行状态 (.boblog-tr-*)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>用法</strong>: 将状态类应用在 &lt;tr&gt; 元素上</li>
+                <li><strong>新增类名</strong>: .boblog-tr-active、.boblog-tr-success、.boblog-tr-warning、.boblog-tr-danger、.boblog-tr-info、.boblog-tr-disabled</li>
+                <li><strong>已有类名</strong>: .boblog-tr-highlight（红色背景+红字）、.boblog-tr-muted（灰色背景）</li>
+                <li><strong>.boblog-tr-disabled</strong>: 灰底+灰字+cursor: not-allowed，视觉上表示不可操作行</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <table class="boblog-table">
+                        <thead>
+                            <tr>
+                                <th>类名</th>
+                                <th>效果</th>
+                                <th>说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="boblog-tr-active"><td>.boblog-tr-active</td><td>选中行</td><td>蓝色浅底</td></tr>
+                            <tr class="boblog-tr-success"><td>.boblog-tr-success</td><td>成功行</td><td>绿色浅底</td></tr>
+                            <tr class="boblog-tr-warning"><td>.boblog-tr-warning</td><td>警告行</td><td>黄色浅底</td></tr>
+                            <tr class="boblog-tr-danger"><td>.boblog-tr-danger</td><td>危险行</td><td>红色浅底</td></tr>
+                            <tr class="boblog-tr-info"><td>.boblog-tr-info</td><td>信息行</td><td>蓝色浅底</td></tr>
+                            <tr class="boblog-tr-highlight"><td>.boblog-tr-highlight</td><td>高亮行</td><td>红色背景+红字（已有）</td></tr>
+                            <tr class="boblog-tr-muted"><td>.boblog-tr-muted</td><td>置灰行</td><td>灰色背景（已有）</td></tr>
+                            <tr class="boblog-tr-disabled"><td>.boblog-tr-disabled</td><td>禁用行</td><td>灰底+灰字+不可点击</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;table class="boblog-table"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;&lt;th&gt;类名&lt;/th&gt;&lt;th&gt;效果&lt;/th&gt;&lt;th&gt;说明&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr class="boblog-tr-active"&gt;&lt;td&gt;.boblog-tr-active&lt;/td&gt;&lt;td&gt;选中行&lt;/td&gt;&lt;td&gt;蓝色浅底&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr class="boblog-tr-success"&gt;&lt;td&gt;.boblog-tr-success&lt;/td&gt;&lt;td&gt;成功行&lt;/td&gt;&lt;td&gt;绿色浅底&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr class="boblog-tr-warning"&gt;&lt;td&gt;.boblog-tr-warning&lt;/td&gt;&lt;td&gt;警告行&lt;/td&gt;&lt;td&gt;黄色浅底&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr class="boblog-tr-danger"&gt;&lt;td&gt;.boblog-tr-danger&lt;/td&gt;&lt;td&gt;危险行&lt;/td&gt;&lt;td&gt;红色浅底&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr class="boblog-tr-info"&gt;&lt;td&gt;.boblog-tr-info&lt;/td&gt;&lt;td&gt;信息行&lt;/td&gt;&lt;td&gt;蓝色浅底&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr class="boblog-tr-highlight"&gt;&lt;td&gt;.boblog-tr-highlight&lt;/td&gt;&lt;td&gt;高亮行&lt;/td&gt;&lt;td&gt;红色背景+红字（已有）&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr class="boblog-tr-muted"&gt;&lt;td&gt;.boblog-tr-muted&lt;/td&gt;&lt;td&gt;置灰行&lt;/td&gt;&lt;td&gt;灰色背景（已有）&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr class="boblog-tr-disabled"&gt;&lt;td&gt;.boblog-tr-disabled&lt;/td&gt;&lt;td&gt;禁用行&lt;/td&gt;&lt;td&gt;灰底+灰字+不可点击&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;行状态示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;table class="boblog-table"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;&lt;th&gt;类名&lt;/th&gt;&lt;th&gt;效果&lt;/th&gt;&lt;th&gt;说明&lt;/th&gt;&lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr class="boblog-tr-active"&gt;&lt;td&gt;.boblog-tr-active&lt;/td&gt;&lt;td&gt;选中行&lt;/td&gt;&lt;td&gt;蓝色浅底&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr class="boblog-tr-success"&gt;&lt;td&gt;.boblog-tr-success&lt;/td&gt;&lt;td&gt;成功行&lt;/td&gt;&lt;td&gt;绿色浅底&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr class="boblog-tr-warning"&gt;&lt;td&gt;.boblog-tr-warning&lt;/td&gt;&lt;td&gt;警告行&lt;/td&gt;&lt;td&gt;黄色浅底&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr class="boblog-tr-danger"&gt;&lt;td&gt;.boblog-tr-danger&lt;/td&gt;&lt;td&gt;危险行&lt;/td&gt;&lt;td&gt;红色浅底&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr class="boblog-tr-info"&gt;&lt;td&gt;.boblog-tr-info&lt;/td&gt;&lt;td&gt;信息行&lt;/td&gt;&lt;td&gt;蓝色浅底&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr class="boblog-tr-highlight"&gt;&lt;td&gt;.boblog-tr-highlight&lt;/td&gt;&lt;td&gt;高亮行&lt;/td&gt;&lt;td&gt;红色背景+红字（已有）&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr class="boblog-tr-muted"&gt;&lt;td&gt;.boblog-tr-muted&lt;/td&gt;&lt;td&gt;置灰行&lt;/td&gt;&lt;td&gt;灰色背景（已有）&lt;/td&gt;&lt;/tr&gt;
+        &lt;tr class="boblog-tr-disabled"&gt;&lt;td&gt;.boblog-tr-disabled&lt;/td&gt;&lt;td&gt;禁用行&lt;/td&gt;&lt;td&gt;灰底+灰字+不可点击&lt;/td&gt;&lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 单元格工具 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="单元格工具">单元格工具类 (.boblog-td-*)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>.boblog-td-nowrap</strong>: white-space: nowrap，禁止单元格内容换行（已有）</li>
+                <li><strong>.boblog-td-break</strong>: word-break: break-all，强制长内容换行</li>
+                <li><strong>.boblog-td-top</strong>: vertical-align: top，单元格内容顶部对齐</li>
+                <li><strong>.boblog-td-middle</strong>: vertical-align: middle，单元格内容垂直居中</li>
+                <li><strong>.boblog-td-bottom</strong>: vertical-align: bottom，单元格内容底部对齐</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <p class="boblog-text-sm boblog-text-gray boblog-mb-2">换行控制：</p>
+                    <table class="boblog-table boblog-mb-4">
+                        <thead>
+                            <tr>
+                                <th width="120">类名</th>
+                                <th width="200">效果演示</th>
+                                <th>说明</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>.boblog-td-nowrap</td>
+                                <td class="boblog-td-nowrap">这段文字不会换行即使内容很长也会保持在同一行</td>
+                                <td>禁止换行（已有）</td>
+                            </tr>
+                            <tr>
+                                <td>.boblog-td-break</td>
+                                <td class="boblog-td-break">VeryLongWordWithoutSpacesWillBreakHereAbcdefghijklmnopqrstuvwxyz</td>
+                                <td>强制换行</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p class="boblog-text-sm boblog-text-gray boblog-mb-2">垂直对齐（同一行对比）：</p>
+                    <table class="boblog-table">
+                        <thead>
+                            <tr>
+                                <th>.boblog-td-top</th>
+                                <th>.boblog-td-middle</th>
+                                <th>.boblog-td-bottom</th>
+                                <th>参照列（撑高行高）</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td class="boblog-td-top">顶部对齐</td>
+                                <td class="boblog-td-middle">垂直居中</td>
+                                <td class="boblog-td-bottom">底部对齐</td>
+                                <td>第一行<br>第二行<br>第三行<br>第四行<br>第五行</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 禁止换行 --&gt;
+&lt;td class="boblog-td-nowrap"&gt;长内容不换行&lt;/td&gt;
+
+&lt;!-- 强制换行 --&gt;
+&lt;td class="boblog-td-break"&gt;VeryLongWord...&lt;/td&gt;
+
+&lt;!-- 垂直对齐：放在同一行才能对比效果 --&gt;
+&lt;tr&gt;
+    &lt;td class="boblog-td-top"&gt;顶部对齐&lt;/td&gt;
+    &lt;td class="boblog-td-middle"&gt;垂直居中&lt;/td&gt;
+    &lt;td class="boblog-td-bottom"&gt;底部对齐&lt;/td&gt;
+    &lt;td&gt;第一行&lt;br&gt;第二行&lt;br&gt;第三行&lt;br&gt;第四行&lt;br&gt;第五行&lt;/td&gt;
+&lt;/tr&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;单元格工具类示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;table class="boblog-table"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th width="120"&gt;类名&lt;/th&gt;
+            &lt;th width="200"&gt;效果演示&lt;/th&gt;
+            &lt;th&gt;说明&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;.boblog-td-nowrap&lt;/td&gt;
+            &lt;td class="boblog-td-nowrap"&gt;这段文字不会换行即使内容很长也会保持在同一行&lt;/td&gt;
+            &lt;td&gt;禁止换行（已有）&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;.boblog-td-break&lt;/td&gt;
+            &lt;td class="boblog-td-break"&gt;VeryLongWordWithoutSpacesWillBreakHereAbcdefghijklmnopqrstuvwxyz&lt;/td&gt;
+            &lt;td&gt;强制换行&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;!-- 垂直对齐：同一行对比 --&gt;
+&lt;table class="boblog-table"&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;.boblog-td-top&lt;/th&gt;
+            &lt;th&gt;.boblog-td-middle&lt;/th&gt;
+            &lt;th&gt;.boblog-td-bottom&lt;/th&gt;
+            &lt;th&gt;参照列（撑高行高）&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td class="boblog-td-top"&gt;顶部对齐&lt;/td&gt;
+            &lt;td class="boblog-td-middle"&gt;垂直居中&lt;/td&gt;
+            &lt;td class="boblog-td-bottom"&gt;底部对齐&lt;/td&gt;
+            &lt;td&gt;第一行&lt;br&gt;第二行&lt;br&gt;第三行&lt;br&gt;第四行&lt;br&gt;第五行&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== caption置顶 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="caption置顶">Caption 置顶 (.boblog-caption-top)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>附加类名</strong>: .boblog-caption-top（与 .boblog-table 配合使用）</li>
+                <li><strong>效果</strong>: caption-side: top，将 &lt;caption&gt; 元素显示在表格顶部（默认浏览器行为通常是底部）</li>
+                <li><strong>典型用途</strong>: 为表格添加说明标题，如"用户列表 - 2026年2月"</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <table class="boblog-table boblog-caption-top">
+                        <caption>用户列表 - 2026年2月</caption>
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>用户名</th>
+                                <th>注册日期</th>
+                                <th>状态</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>管理员</td>
+                                <td>2025-01-01</td>
+                                <td>正常</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>编辑</td>
+                                <td>2025-03-15</td>
+                                <td>正常</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>访客</td>
+                                <td>2026-01-10</td>
+                                <td>禁用</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;table class="boblog-table boblog-caption-top"&gt;
+    &lt;caption&gt;用户列表 - 2026年2月&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;ID&lt;/th&gt;
+            &lt;th&gt;用户名&lt;/th&gt;
+            &lt;th&gt;注册日期&lt;/th&gt;
+            &lt;th&gt;状态&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;管理员&lt;/td&gt;
+            &lt;td&gt;2025-01-01&lt;/td&gt;
+            &lt;td&gt;正常&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;编辑&lt;/td&gt;
+            &lt;td&gt;2025-03-15&lt;/td&gt;
+            &lt;td&gt;正常&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;访客&lt;/td&gt;
+            &lt;td&gt;2026-01-10&lt;/td&gt;
+            &lt;td&gt;禁用&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Caption 置顶示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;table class="boblog-table boblog-caption-top"&gt;
+    &lt;caption&gt;用户列表 - 2026年2月&lt;/caption&gt;
+    &lt;thead&gt;
+        &lt;tr&gt;
+            &lt;th&gt;ID&lt;/th&gt;
+            &lt;th&gt;用户名&lt;/th&gt;
+            &lt;th&gt;注册日期&lt;/th&gt;
+            &lt;th&gt;状态&lt;/th&gt;
+        &lt;/tr&gt;
+    &lt;/thead&gt;
+    &lt;tbody&gt;
+        &lt;tr&gt;
+            &lt;td&gt;1&lt;/td&gt;
+            &lt;td&gt;管理员&lt;/td&gt;
+            &lt;td&gt;2025-01-01&lt;/td&gt;
+            &lt;td&gt;正常&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;2&lt;/td&gt;
+            &lt;td&gt;编辑&lt;/td&gt;
+            &lt;td&gt;2025-03-15&lt;/td&gt;
+            &lt;td&gt;正常&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;3&lt;/td&gt;
+            &lt;td&gt;访客&lt;/td&gt;
+            &lt;td&gt;2026-01-10&lt;/td&gt;
+            &lt;td&gt;禁用&lt;/td&gt;
+        &lt;/tr&gt;
+    &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ====== JavaScript API ====== -->
     <div class="boblog-doc-section">
         <h2 id="JS-API">JavaScript API</h2>

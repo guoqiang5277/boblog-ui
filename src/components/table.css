@@ -11,6 +11,39 @@
  *   - .boblog-table-wrapper        — 响应式滚动容器
  *   - .boblog-th-sortable          — 可排序表头
  *   - .boblog-sort-asc/desc        — 排序方向标记
+ *
+ * 表格变体：
+ *   - .boblog-table-borderless     — 无边框表格
+ *   - .boblog-table-sm             — 小尺寸表格
+ *   - .boblog-table-lg             — 大尺寸表格
+ *   - .boblog-table-form           — 表单表格（帝国CMS后台风格）
+ *   - .boblog-table-fixed          — 固定列宽表格
+ *   - .boblog-table-striped-columns — 列斑马纹表格
+ *
+ * 表头颜色变体：
+ *   - .boblog-thead-dark           — 深色表头
+ *   - .boblog-thead-primary        — 品牌蓝表头
+ *   - .boblog-thead-success        — 成功绿表头
+ *   - .boblog-thead-warning        — 警告黄表头
+ *   - .boblog-thead-danger         — 危险红表头
+ *   - .boblog-thead-info           — 信息蓝表头
+ *
+ * 行状态扩展：
+ *   - .boblog-tr-active            — 选中行（蓝色）
+ *   - .boblog-tr-success           — 成功行（绿色）
+ *   - .boblog-tr-warning           — 警告行（黄色）
+ *   - .boblog-tr-danger            — 危险行（红色）
+ *   - .boblog-tr-info              — 信息行（蓝色）
+ *   - .boblog-tr-disabled          — 禁用行
+ *
+ * 单元格工具：
+ *   - .boblog-td-break             — 强制换行
+ *   - .boblog-td-top               — 垂直对齐顶部
+ *   - .boblog-td-middle            — 垂直对齐居中
+ *   - .boblog-td-bottom            — 垂直对齐底部
+ *
+ * 其他：
+ *   - .boblog-caption-top          — Caption 置顶
  */
 
 /* ========== 基础表格 ========== */
@@ -211,4 +244,201 @@
 /* 置灰行：灰色背景，用于标记已归档/回收站的行 */
 .boblog-tr-muted {
   background-color: var(--boblog-disabled-bg) !important; /* 禁用背景 #F5F5F5 */
+}
+
+/* ========== 无边框表格 ========== */
+/* 去掉行分隔线，适合简洁展示场景 */
+.boblog-table-borderless tbody tr {
+  border-bottom: none;
+}
+
+/* ========== 小尺寸表格 ========== */
+/* 单元格内边距缩小，适合数据密集场景 */
+.boblog-table-sm th,
+.boblog-table-sm td {
+  padding: 4px 6px;
+}
+
+/* ========== 大尺寸表格 ========== */
+/* 单元格内边距增大，适合宽松展示场景 */
+.boblog-table-lg th,
+.boblog-table-lg td {
+  padding: 14px;
+}
+
+/* ========== 表单表格（帝国CMS后台风格） ========== */
+/* 极紧凑的「标签列 + 控件列」布局，用于后台设置页面 */
+/* 特点：无 thead 背景、无 hover、无行分隔线、极小 padding */
+.boblog-table-form {
+  border-collapse: collapse;
+  font-size: var(--boblog-font-size-sm);              /* 12px */
+  margin-bottom: var(--boblog-spacing-md);             /* 15px */
+}
+
+/* 表单表格：去掉数据表格装饰 */
+.boblog-table-form tbody tr {
+  border-bottom: none;
+}
+
+.boblog-table-form tbody tr:hover {
+  background-color: transparent;
+}
+
+/* 表单表格：标签列 — 固定宽度、加粗、不换行、极紧凑 */
+.boblog-table-form td:first-child {
+  width: 120px;
+  padding: 3px 8px 3px 0;
+  white-space: nowrap;
+  font-weight: 600;
+}
+
+/* 表单表格：值列 — 极紧凑 */
+.boblog-table-form td:last-child {
+  padding: 3px 0;
+}
+
+/* 表单表格：input 不撑满 */
+.boblog-table-form .boblog-input {
+  width: 160px;
+}
+
+/* 表单表格：select 自适应宽度 */
+.boblog-table-form .boblog-select {
+  width: auto;
+  min-width: 120px;
+  display: inline-block;
+}
+
+/* ========== 固定列宽表格 ========== */
+/* 列宽由表头宽度决定，不随内容自适应 */
+.boblog-table-fixed {
+  table-layout: fixed;
+}
+
+/* ========== 列斑马纹 ========== */
+/* 偶数列浅色底纹，提高宽表格可读性 */
+.boblog-table-striped-columns td:nth-child(even),
+.boblog-table-striped-columns th:nth-child(even) {
+  background-color: var(--boblog-bg-subtle);           /* 次背景 #F5F8FB */
+}
+
+/* ========== 表头颜色变体 ========== */
+/* 深色表头：深灰背景 + 白色文字 */
+.boblog-thead-dark {
+  background-color: var(--boblog-text-dark) !important; /* 深色文字 #333333 */
+  color: var(--boblog-white);                           /* 纯白 #FFFFFF */
+}
+
+.boblog-thead-dark th {
+  color: var(--boblog-white);
+}
+
+/* 品牌蓝表头 */
+.boblog-thead-primary {
+  background-color: var(--boblog-blue) !important;     /* 品牌蓝 #0D6EAA */
+  color: var(--boblog-white);
+}
+
+.boblog-thead-primary th {
+  color: var(--boblog-white);
+}
+
+/* 成功绿表头 */
+.boblog-thead-success {
+  background-color: var(--boblog-success) !important;  /* 成功状态 #3C8C30 */
+  color: var(--boblog-white);
+}
+
+.boblog-thead-success th {
+  color: var(--boblog-white);
+}
+
+/* 警告黄表头（深色文字，黄色背景上白字不清晰） */
+.boblog-thead-warning {
+  background-color: var(--boblog-warning) !important;  /* 警告状态 #D4A017 */
+  color: var(--boblog-text);                           /* 正文文字 #1A1A1A */
+}
+
+.boblog-thead-warning th {
+  color: var(--boblog-text);
+}
+
+/* 危险红表头 */
+.boblog-thead-danger {
+  background-color: var(--boblog-danger) !important;   /* 危险/错误状态 #CC3333 */
+  color: var(--boblog-white);
+}
+
+.boblog-thead-danger th {
+  color: var(--boblog-white);
+}
+
+/* 信息蓝表头 */
+.boblog-thead-info {
+  background-color: var(--boblog-info) !important;     /* 信息状态 #1677B5 */
+  color: var(--boblog-white);
+}
+
+.boblog-thead-info th {
+  color: var(--boblog-white);
+}
+
+/* ========== 行状态扩展 ========== */
+/* 选中行：蓝色系浅底 */
+.boblog-tr-active {
+  background-color: var(--boblog-blue-wash) !important; /* 极浅蓝底 #F4FBFF */
+}
+
+/* 成功行：绿色系浅底 */
+.boblog-tr-success {
+  background-color: var(--boblog-success-bg) !important; /* 成功消息背景 #F0F8EE */
+}
+
+/* 警告行：黄色系浅底 */
+.boblog-tr-warning {
+  background-color: var(--boblog-warning-bg) !important; /* 警告消息背景 #FFF8E6 */
+}
+
+/* 危险行：红色系浅底 */
+.boblog-tr-danger {
+  background-color: var(--boblog-danger-bg) !important;  /* 错误消息背景 #FFF0F0 */
+}
+
+/* 信息行：蓝色系浅底 */
+.boblog-tr-info {
+  background-color: var(--boblog-info-bg) !important;    /* 信息消息背景 #EDF5FB */
+}
+
+/* 禁用行：灰色背景 + 灰色文字 + 不可点击 */
+.boblog-tr-disabled {
+  background-color: var(--boblog-disabled-bg) !important; /* 禁用控件背景 #F5F5F5 */
+  color: var(--boblog-text-disabled);                     /* 禁用文字 #AAAAAA */
+  pointer-events: none;
+}
+
+/* ========== 单元格工具类 ========== */
+/* 强制换行：长文本自动断行 */
+.boblog-td-break {
+  word-break: break-all;
+}
+
+/* 垂直对齐：顶部 */
+.boblog-td-top {
+  vertical-align: top !important;
+}
+
+/* 垂直对齐：居中 */
+.boblog-td-middle {
+  vertical-align: middle !important;
+}
+
+/* 垂直对齐：底部 */
+.boblog-td-bottom {
+  vertical-align: bottom !important;
+}
+
+/* ========== Caption 置顶 ========== */
+/* 默认 caption 在表格底部，此类将其移到顶部 */
+.boblog-caption-top {
+  caption-side: top;
 }
