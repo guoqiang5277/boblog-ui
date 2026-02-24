@@ -70,6 +70,7 @@ CSS_FILES=(
     "$SRC_DIR/controls/progress-bar.css"
     "$SRC_DIR/controls/border.css"
     "$SRC_DIR/controls/color.scss"
+    "$SRC_DIR/controls/icon.scss"
 
     # 组件层
     "$SRC_DIR/components/editor.css"

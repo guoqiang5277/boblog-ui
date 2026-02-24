@@ -1,0 +1,291 @@
+/**
+ * Bo-Blog UI 控件 - 图标工具类 (Icon Utilities)
+ *
+ * 纯 CSS 绘制的文件系统图标、文件类型图标、功能图标等。
+ * 不依赖图标字体或 SVG sprite，全部通过 CSS 伪元素实现。
+ *
+ * 七组图标：
+ *   A. 文件系统图标（文件夹/文件，CSS 纯绘制）
+ *   B. 文件类型图标（图片/音频/视频/附件，彩色背景方块）
+ *   C. 上传区域图标（大字号 emoji 容器）
+ *   D. 文件缩略图标（小尺寸文件列表图标）
+ *   E. 文件占位图标（无法预览时的占位方块，大/小两种尺寸）
+ *   F. 确认框图标（警告/危险提示大图标）
+ *   G. 侧栏手柄图标（折叠/展开箭头）
+ *
+ * HTML 示例：
+ *   <span class="boblog-icon-fs boblog-icon-folder"></span>
+ *   <div class="boblog-icon-type boblog-icon-type-image"><svg>...</svg></div>
+ *   <div class="boblog-icon-upload">📁</div>
+ *   <div class="boblog-icon-placeholder"><span>PDF</span></div>
+ *
+ * 依赖：
+ *   - src/base/variables.css（颜色变量定义）
+ */
+
+
+/* ==========================================================================
+   A. 文件系统图标 — 文件夹与文件（CSS 纯绘制）
+   用于分类目录树等场景，14×12px 微型图标
+   ========================================================================== */
+
+/* 文件系统图标基础类：固定宽高，inline-block 行内排列 */
+.boblog-icon-fs {
+    flex-shrink: 0;
+    display: inline-block;
+    width: 14px;
+    height: 12px;
+    margin-right: 4px;
+    position: relative;
+}
+
+/* ---------- 文件夹图标（展开态）：黄色打开的文件夹 ---------- */
+
+/* 文件夹主体：黄色矩形，右侧和底部圆角 */
+.boblog-icon-folder {
+    background: #f0c040;
+    border: 1px solid #d4a520;
+    border-radius: 0 1px 1px 1px;
+}
+
+/* 文件夹标签页：左上角凸出的小耳朵，模拟文件夹翻页 */
+.boblog-icon-folder::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: 6px;
+    height: 4px;
+    background: #f0c040;
+    border: 1px solid #d4a520;
+    border-bottom: none;
+    border-radius: 1px 1px 0 0;
+}
+
+/* 文件夹展开标记：底部浅色条，表示文件夹处于打开状态 */
+.boblog-icon-folder::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 1px;
+    right: 1px;
+    height: 3px;
+    background: #fae6a0;
+}
+
+/* ---------- 文件夹图标（翻盖打开态）：打开的黄色文件夹 ---------- */
+/* 经典 Windows 风格：后壁 + 标签页在上方，前盖板向右倾斜露出内部 */
+
+/* 后壁：浅黄色矩形，代表文件夹的后背板 */
+.boblog-icon-folder-open {
+    background: #fae6a0;
+    border: 1px solid #d4a520;
+    border-radius: 0 1px 1px 1px;
+}
+
+/* 标签页：左上角小耳朵，与后壁连接 */
+.boblog-icon-folder-open::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: 6px;
+    height: 4px;
+    background: #fae6a0;
+    border: 1px solid #d4a520;
+    border-bottom: none;
+    border-radius: 1px 1px 0 0;
+}
+
+/* 前盖板：深黄色，向右倾斜覆盖下半部分，模拟打开后的前挡板 */
+.boblog-icon-folder-open::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 2px;
+    right: -2px;
+    height: 9px;
+    background: #f0c040;
+    border: 1px solid #d4a520;
+    border-radius: 0 1px 1px 0;
+    transform: skewX(-12deg);
+    transform-origin: bottom left;
+}
+
+/* ---------- 文件夹图标（折叠态）：黄色关闭的文件夹 ---------- */
+
+/* 折叠态主体：与展开态相同的黄色矩形 */
+.boblog-icon-folder-closed {
+    background: #f0c040;
+    border: 1px solid #d4a520;
+    border-radius: 0 1px 1px 1px;
+}
+
+/* 折叠态标签页：左上角小耳朵 */
+.boblog-icon-folder-closed::before {
+    content: "";
+    position: absolute;
+    top: -4px;
+    left: 0;
+    width: 6px;
+    height: 4px;
+    background: #f0c040;
+    border: 1px solid #d4a520;
+    border-bottom: none;
+    border-radius: 1px 1px 0 0;
+}
+
+/* 折叠态无 ::after 伪元素，与展开态区分 */
+
+/* ---------- 文件图标：灰蓝色文件页 ---------- */
+
+/* 文件主体：白色矩形，灰蓝色边框，右上圆角模拟折角 */
+.boblog-icon-file {
+    background: #fff;
+    border: 1px solid #a0b8cc;
+    border-radius: 0 2px 1px 1px;
+}
+
+/* 文件折角：右上角三角形，模拟纸张翻折效果 */
+.boblog-icon-file::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 4px;
+    background: linear-gradient(135deg, #a0b8cc 50%, #e8f0f5 50%);
+}
+
+/* 文件内容线条：模拟文件中的文字行 */
+.boblog-icon-file::after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 2px;
+    right: 2px;
+    height: 1px;
+    background: #c0d0dd;
+    box-shadow: 0 3px 0 #c0d0dd;
+}
+
+
+/* ==========================================================================
+   B. 文件类型图标 — 用于编辑器配置等场景
+   48×48px 彩色方块，内含 SVG 图标
+   ========================================================================== */
+
+/* 文件类型图标基础类：48×48px flex 居中容器 */
+.boblog-icon-type {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* 图片类型：蓝色系（Material Design Blue 50/800） */
+.boblog-icon-type-image { background: #e3f2fd; color: #1976d2; }
+
+/* 音频类型：紫色系（Material Design Purple 50/700） */
+.boblog-icon-type-audio { background: #f3e5f5; color: #7b1fa2; }
+
+/* 视频类型：粉红色系（Material Design Pink 50/700） */
+.boblog-icon-type-video { background: #fce4ec; color: #c2185b; }
+
+/* 附件类型：橙色系（Material Design Orange 50/800） */
+.boblog-icon-type-attachment { background: #fff3e0; color: #f57c00; }
+
+
+/* ==========================================================================
+   C. 上传区域图标 — 上传拖拽区的大图标容器
+   ========================================================================== */
+
+/* 上传图标：大字号，品牌蓝色，用于拖拽上传区域的 emoji 或字符图标 */
+.boblog-icon-upload {
+    font-size: 36px;
+    color: var(--boblog-blue-primary, #0D80BD);
+    margin-bottom: 8px;
+}
+
+
+/* ==========================================================================
+   D. 文件缩略图标 — 文件列表中的小尺寸图标
+   24×24px，用于上传管理器等文件列表的行内图标
+   ========================================================================== */
+
+/* 文件缩略图标：24×24px 灰色方块，居中显示文件类型字符或 emoji */
+.boblog-icon-file-thumb {
+    width: 24px;
+    height: 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f0f0;
+    border-radius: 2px;
+    font-size: 14px;
+}
+
+
+/* ==========================================================================
+   E. 文件占位图标 — 无法预览时的占位方块
+   两种尺寸：默认（80×80px）和大号（120×120px）
+   ========================================================================== */
+
+/* 占位图标外层容器：居中内边距 */
+.boblog-icon-placeholder {
+    padding: 20px;
+}
+
+/* 占位图标方块：默认尺寸 80×80px，蓝色边框，居中显示文件类型文字 */
+.boblog-icon-placeholder-box {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    background: #E8F4F8;
+    border: 1px solid #9EC9FF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+    color: var(--boblog-blue-primary, #0D80BD);
+}
+
+/* 大号占位图标：120×120px，用于详情页等宽敞区域 */
+.boblog-icon-placeholder-lg .boblog-icon-placeholder-box {
+    width: 120px;
+    height: 120px;
+    margin-bottom: 15px;
+    border-width: 2px;
+    font-size: 18px;
+}
+
+/* 大号占位图标外层：更大的内边距 */
+.boblog-icon-placeholder-lg {
+    padding: 40px;
+}
+
+
+/* ==========================================================================
+   F. 确认框图标 — 删除/危险操作确认对话框中的大图标
+   ========================================================================== */
+
+/* 确认框图标：48px 大字号，红色警告色，用于显示 ⚠ 等符号 */
+.boblog-icon-confirm {
+    font-size: 48px;
+    color: var(--boblog-red-error, #e03e2d);
+    margin-bottom: 15px;
+}
+
+
+/* ==========================================================================
+   G. 侧栏手柄图标 — 侧栏折叠/展开按钮中的箭头
+   ========================================================================== */
+
+/* 手柄图标：12px 字号，紧凑行高，用于显示 « » 等箭头字符 */
+.boblog-icon-handle {
+    font-size: 12px;
+    line-height: 1;
+}
