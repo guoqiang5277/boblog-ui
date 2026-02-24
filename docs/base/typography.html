@@ -362,6 +362,7 @@
                             <p>这是一个段落。Bo-Blog UI 是基于 Bo-Blog V2.1 Default Skin 的经典设计风格，采用浅蓝白色调，清爽简洁的视觉效果。适用于 2000 年代风格的独立博客和内容管理系统。</p>
                             <p>这是包含<a href="#">链接</a>的段落文本。链接使用品牌蓝色，鼠标悬停时显示下划线。</p>
                             <p>这是包含<strong>粗体文字</strong>和<em>斜体文字</em>的段落。还可以使用<code>行内代码</code>样式。</p>
+                            <p>使用工具类：<span class="boblog-text-bold">boblog-text-bold 粗体</span></p>
                         </div>
                     </div>
                     <div class="boblog-tabs-panel">
@@ -369,7 +370,8 @@
                         <div class="boblog-codeblock">
                             <pre><code class="language-html">&lt;p&gt;这是一个段落。Bo-Blog UI 是基于 Bo-Blog V2.1 Default Skin 的经典设计风格，采用浅蓝白色调，清爽简洁的视觉效果。适用于 2000 年代风格的独立博客和内容管理系统。&lt;/p&gt;
 &lt;p&gt;这是包含&lt;a href="#"&gt;链接&lt;/a&gt;的段落文本。链接使用品牌蓝色，鼠标悬停时显示下划线。&lt;/p&gt;
-&lt;p&gt;这是包含&lt;strong&gt;粗体文字&lt;/strong&gt;和&lt;em&gt;斜体文字&lt;/em&gt;的段落。还可以使用&lt;code&gt;行内代码&lt;/code&gt;样式。&lt;/p&gt;</code></pre>
+&lt;p&gt;这是包含&lt;strong&gt;粗体文字&lt;/strong&gt;和&lt;em&gt;斜体文字&lt;/em&gt;的段落。还可以使用&lt;code&gt;行内代码&lt;/code&gt;样式。&lt;/p&gt;
+&lt;p&gt;使用工具类：&lt;span class="boblog-text-bold"&gt;boblog-text-bold 粗体&lt;/span&gt;&lt;/p&gt;</code></pre>
                         </div>
                     </div>
                     <div class="boblog-tabs-panel">
@@ -387,6 +389,7 @@
     &lt;p&gt;这是一个段落。Bo-Blog UI 是基于 Bo-Blog V2.1 Default Skin 的经典设计风格，采用浅蓝白色调，清爽简洁的视觉效果。适用于 2000 年代风格的独立博客和内容管理系统。&lt;/p&gt;
     &lt;p&gt;这是包含&lt;a href="#"&gt;链接&lt;/a&gt;的段落文本。链接使用品牌蓝色，鼠标悬停时显示下划线。&lt;/p&gt;
     &lt;p&gt;这是包含&lt;strong&gt;粗体文字&lt;/strong&gt;和&lt;em&gt;斜体文字&lt;/em&gt;的段落。还可以使用&lt;code&gt;行内代码&lt;/code&gt;样式。&lt;/p&gt;
+    &lt;p&gt;使用工具类：&lt;span class="boblog-text-bold"&gt;boblog-text-bold 粗体&lt;/span&gt;&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
                         </div>
@@ -405,6 +408,7 @@
                     <li><strong>默认状态</strong>: #333333，无下划线</li>
                     <li><strong>悬停状态</strong>: #000000，有下划线</li>
                     <li><strong>蓝色链接</strong>: 使用 <code>.boblog-link-blue</code> 类</li>
+                    <li><strong>红色危险链接</strong>: 使用 <code>.boblog-link-danger</code> 类，用于删除等危险操作</li>
                 </ul>
             </div>
 
@@ -421,13 +425,15 @@
                         <div class="boblog-doc-demo">
                             <p>普通链接：<a href="#">这是一个链接</a></p>
                             <p>蓝色链接：<a href="#" class="boblog-link-blue">这是蓝色链接</a></p>
+                            <p>危险链接：<a href="#" class="boblog-link-danger">这是危险链接</a></p>
                         </div>
                     </div>
                     <div class="boblog-tabs-panel">
                         <!-- 关键源码 -->
                         <div class="boblog-codeblock">
                             <pre><code class="language-html">&lt;p&gt;普通链接：&lt;a href="#"&gt;这是一个链接&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;蓝色链接：&lt;a href="#" class="boblog-link-blue"&gt;这是蓝色链接&lt;/a&gt;&lt;/p&gt;</code></pre>
+&lt;p&gt;蓝色链接：&lt;a href="#" class="boblog-link-blue"&gt;这是蓝色链接&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;危险链接：&lt;a href="#" class="boblog-link-danger"&gt;这是危险链接&lt;/a&gt;&lt;/p&gt;</code></pre>
                         </div>
                     </div>
                     <div class="boblog-tabs-panel">
@@ -444,6 +450,7 @@
 &lt;body&gt;
     &lt;p&gt;普通链接：&lt;a href="#"&gt;这是一个链接&lt;/a&gt;&lt;/p&gt;
     &lt;p&gt;蓝色链接：&lt;a href="#" class="boblog-link-blue"&gt;这是蓝色链接&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;危险链接：&lt;a href="#" class="boblog-link-danger"&gt;这是危险链接&lt;/a&gt;&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
                         </div>
@@ -851,6 +858,7 @@ function hello() {
             <div class="boblog-doc-section-3">
                 <h3>1. 规范说明</h3>
                 <ul class="boblog-doc-spec">
+                    <li><strong>.boblog-text-bold</strong>: 粗体（font-weight: bold），用于非语义强调场景（如标题链接、统计数字等）</li>
                     <li><strong>.boblog-pre-wrap</strong>: 保留换行（white-space: pre-wrap），用于 FAQ 内容等需要保留原始换行的场景</li>
                 </ul>
             </div>

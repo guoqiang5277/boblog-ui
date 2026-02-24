@@ -99,6 +99,15 @@ a.boblog-link-blue:hover {
     color: var(--boblog-blue-header, #2E93C9);
 }
 
+/* 红色危险链接变体：用于删除等危险操作的链接 */
+a.boblog-link-danger {
+    color: var(--boblog-red-error, #e03e2d);
+}
+
+a.boblog-link-danger:hover {
+    color: #c02e1d;
+}
+
 /* ========== 小文字 ========== */
 small,
 .boblog-text-sm {
@@ -134,6 +143,11 @@ small,
 /* ========== 强调 ========== */
 strong,
 b {
+    font-weight: bold;
+}
+
+/* 粗体工具类：用于非语义强调场景（如标题链接、统计数字等） */
+.boblog-text-bold {
     font-weight: bold;
 }
 
