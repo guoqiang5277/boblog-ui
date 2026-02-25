@@ -58,6 +58,7 @@ CSS_FILES=(
     "$SRC_DIR/base/reset.css"
     "$SRC_DIR/base/typography.css"
     "$SRC_DIR/base/size.css"
+    "$SRC_DIR/base/color.scss"
 
     # 控件层
     "$SRC_DIR/controls/button.css"
@@ -69,7 +70,6 @@ CSS_FILES=(
     "$SRC_DIR/controls/image.css"
     "$SRC_DIR/controls/progress-bar.css"
     "$SRC_DIR/controls/border.css"
-    "$SRC_DIR/controls/color.scss"
     "$SRC_DIR/controls/icon.scss"
 
     # 组件层

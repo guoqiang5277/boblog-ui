@@ -58,11 +58,11 @@
 
 /* 语义色链接 hover：颜色类用在 <a> 标签上时，hover 自动加深/变浅 */
 a.boblog-text-primary:hover { color: var(--boblog-blue-header, #2E93C9); }
-a.boblog-text-danger:hover  { color: #c02e1d; }
-a.boblog-text-success:hover { color: #3a9614; }
-a.boblog-text-warning:hover { color: #d49a12; }
-a.boblog-text-info:hover    { color: #125d8f; }
-a.boblog-text-gray:hover    { color: #777777; }
+a.boblog-text-danger:hover  { color: var(--boblog-red-error-hover, #c02e1d); }
+a.boblog-text-success:hover { color: var(--boblog-green-success-hover, #3a9614); }
+a.boblog-text-warning:hover { color: var(--boblog-orange-warning-hover, #d49a12); }
+a.boblog-text-info:hover    { color: var(--boblog-info-hover, #125d8f); }
+a.boblog-text-gray:hover    { color: var(--boblog-text-gray-hover, #777777); }
 a.boblog-text-dark:hover    { color: var(--boblog-blue-primary, #0D80BD); }
 
 /* 白色文字 — 用于深色背景上的文字 */

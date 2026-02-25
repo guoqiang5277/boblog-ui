@@ -44,6 +44,7 @@
     --boblog-text-disabled: #AAAAAA;      /* 禁用文字 */
     --boblog-text-dark: #333333;          /* 深色文字 */
     --boblog-text-gray: #999999;          /* 灰色文字 */
+    --boblog-text-gray-hover: #777777;    /* 灰色文字 hover：链接悬停加深 */
     --boblog-text-link: #333333;          /* 链接默认颜色 */
     --boblog-text-link-hover: #000000;    /* 链接悬停颜色 */
     --boblog-text-link-active: #7B5EA7;   /* 链接点击时颜色 */
@@ -52,9 +53,12 @@
     /* 2000 年代博客风格，沉稳不鲜艳 */
     --boblog-red: #CC3333;                /* 红色：删除、必填星号、错误文字 */
     --boblog-red-error: #E03E2D;          /* 错误红：表单错误提示 */
+    --boblog-red-error-hover: #c02e1d;    /* 错误红 hover：链接悬停加深 */
     --boblog-green: #3C8C30;              /* 绿色：成功、通过、在线 */
+    --boblog-green-success-hover: #3a9614;/* 成功绿 hover：链接悬停加深 */
     --boblog-yellow: #D4A017;             /* 黄色：警告、星标、置顶 */
     --boblog-orange: #D07020;             /* 橙色：待审核、提醒、关注 */
+    --boblog-orange-warning-hover: #d49a12;/* 警告橙 hover：链接悬停加深 */
     --boblog-cyan: #1BA8A8;               /* 青色：标签、分类、辅助信息 */
     --boblog-purple: #7B5EA7;             /* 紫色：管理员、特殊标记 */
 
@@ -80,6 +84,7 @@
     --boblog-danger: #CC3333;             /* 危险/错误状态 */
     --boblog-danger-bg: #FFF0F0;          /* 错误消息背景 */
     --boblog-info: #1677B5;               /* 信息状态 */
+    --boblog-info-hover: #125d8f;         /* 信息蓝 hover：链接悬停加深 */
     --boblog-info-bg: #EDF5FB;            /* 信息消息背景 */
 
     /* ========== 控件状态（2 个） ========== */
