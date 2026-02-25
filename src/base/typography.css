@@ -90,7 +90,11 @@ a:active {
     color: var(--boblog-text-link-active, #000000);
 }
 
-/* 蓝色链接变体 */
+/*
+ * 链接颜色变体（别名，向后兼容）
+ * 推荐使用颜色工具类替代：<a class="boblog-text-primary">、<a class="boblog-text-danger"> 等
+ * 颜色类自带 hover 效果（定义在 color.scss 的"语义色链接 hover"部分）
+ */
 a.boblog-link-blue {
     color: var(--boblog-blue-primary, #0D80BD);
 }
@@ -99,7 +103,6 @@ a.boblog-link-blue:hover {
     color: var(--boblog-blue-header, #2E93C9);
 }
 
-/* 红色危险链接变体：用于删除等危险操作的链接 */
 a.boblog-link-danger {
     color: var(--boblog-red-error, #e03e2d);
 }

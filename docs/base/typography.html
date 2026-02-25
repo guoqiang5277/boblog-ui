@@ -405,10 +405,10 @@
             <div class="boblog-doc-section-3">
                 <h3>1. 规范说明</h3>
                 <ul class="boblog-doc-spec">
-                    <li><strong>默认状态</strong>: #333333，无下划线</li>
-                    <li><strong>悬停状态</strong>: #000000，有下划线</li>
-                    <li><strong>蓝色链接</strong>: 使用 <code>.boblog-link-blue</code> 类</li>
-                    <li><strong>红色危险链接</strong>: 使用 <code>.boblog-link-danger</code> 类，用于删除等危险操作</li>
+                    <li><strong>默认状态</strong>: #333333，无下划线，hover 变 #000000 + 下划线</li>
+                    <li><strong>颜色类叠加</strong>: 在 <code>&lt;a&gt;</code> 上直接使用 <code>boblog-text-*</code> 颜色类，hover 自动加深</li>
+                    <li><strong>可用颜色</strong>: <code>boblog-text-primary</code>（蓝）、<code>boblog-text-danger</code>（红）、<code>boblog-text-success</code>（绿）、<code>boblog-text-warning</code>（橙）、<code>boblog-text-info</code>（信息蓝）、<code>boblog-text-gray</code>（灰）、<code>boblog-text-dark</code>（深色，hover 变蓝）</li>
+                    <li><strong>旧别名</strong>: <code>boblog-link-blue</code> = <code>boblog-text-primary</code>，<code>boblog-link-danger</code> = <code>boblog-text-danger</code>（向后兼容，推荐用颜色类）</li>
                 </ul>
             </div>
 
@@ -424,16 +424,25 @@
                         <!-- 预览 -->
                         <div class="boblog-doc-demo">
                             <p>普通链接：<a href="#">这是一个链接</a></p>
-                            <p>蓝色链接：<a href="#" class="boblog-link-blue">这是蓝色链接</a></p>
-                            <p>危险链接：<a href="#" class="boblog-link-danger">这是危险链接</a></p>
+                            <p>蓝色链接：<a href="#" class="boblog-text-primary">boblog-text-primary</a></p>
+                            <p>危险链接：<a href="#" class="boblog-text-danger">boblog-text-danger</a></p>
+                            <p>成功链接：<a href="#" class="boblog-text-success">boblog-text-success</a></p>
+                            <p>警告链接：<a href="#" class="boblog-text-warning">boblog-text-warning</a></p>
+                            <p>信息链接：<a href="#" class="boblog-text-info">boblog-text-info</a></p>
+                            <p>灰色链接：<a href="#" class="boblog-text-gray">boblog-text-gray</a></p>
+                            <p>深色链接：<a href="#" class="boblog-text-dark">boblog-text-dark（hover 变蓝）</a></p>
                         </div>
                     </div>
                     <div class="boblog-tabs-panel">
                         <!-- 关键源码 -->
                         <div class="boblog-codeblock">
-                            <pre><code class="language-html">&lt;p&gt;普通链接：&lt;a href="#"&gt;这是一个链接&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;蓝色链接：&lt;a href="#" class="boblog-link-blue"&gt;这是蓝色链接&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;危险链接：&lt;a href="#" class="boblog-link-danger"&gt;这是危险链接&lt;/a&gt;&lt;/p&gt;</code></pre>
+                            <pre><code class="language-html">&lt;a href="#" class="boblog-text-primary"&gt;蓝色链接&lt;/a&gt;
+&lt;a href="#" class="boblog-text-danger"&gt;危险链接&lt;/a&gt;
+&lt;a href="#" class="boblog-text-success"&gt;成功链接&lt;/a&gt;
+&lt;a href="#" class="boblog-text-warning"&gt;警告链接&lt;/a&gt;
+&lt;a href="#" class="boblog-text-info"&gt;信息链接&lt;/a&gt;
+&lt;a href="#" class="boblog-text-gray"&gt;灰色链接&lt;/a&gt;
+&lt;a href="#" class="boblog-text-dark"&gt;深色链接&lt;/a&gt;</code></pre>
                         </div>
                     </div>
                     <div class="boblog-tabs-panel">
@@ -448,9 +457,14 @@
     &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;p&gt;普通链接：&lt;a href="#"&gt;这是一个链接&lt;/a&gt;&lt;/p&gt;
-    &lt;p&gt;蓝色链接：&lt;a href="#" class="boblog-link-blue"&gt;这是蓝色链接&lt;/a&gt;&lt;/p&gt;
-    &lt;p&gt;危险链接：&lt;a href="#" class="boblog-link-danger"&gt;这是危险链接&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;a href="#"&gt;普通链接&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;a href="#" class="boblog-text-primary"&gt;蓝色链接&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;a href="#" class="boblog-text-danger"&gt;危险链接&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;a href="#" class="boblog-text-success"&gt;成功链接&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;a href="#" class="boblog-text-warning"&gt;警告链接&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;a href="#" class="boblog-text-info"&gt;信息链接&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;a href="#" class="boblog-text-gray"&gt;灰色链接&lt;/a&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;a href="#" class="boblog-text-dark"&gt;深色链接（hover 变蓝）&lt;/a&gt;&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
                         </div>
