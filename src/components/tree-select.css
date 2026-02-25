@@ -229,7 +229,7 @@
 
 /* 搜索高亮 */
 .boblog-tree-select-item .highlight {
-    background: var(--boblog-warning-bg, #FFF8E6);
+    background: var(--boblog-highlight-bg, #FFFF00);
     padding: 0 1px;
 }
 
@@ -241,10 +241,23 @@
     font-size: var(--boblog-font-size-sm, 12px);
 }
 
-/* 目录型分类 — 不可选，灰色弱化 */
+/* 目录型节点 — 禁用态 */
 .boblog-tree-select-item.directory-type {
-    cursor: default;
-    opacity: 0.7;
+    cursor: not-allowed;
+    color: var(--boblog-text-gray, #999999);
+    background: var(--boblog-disabled-bg, #F5F5F5) !important;
+    pointer-events: none;
+}
+
+.boblog-tree-select-item.directory-type .boblog-tree-select-name {
+    color: var(--boblog-text-gray, #999999);
+}
+
+/* 目录节点的展开/折叠三角保持可点击 */
+.boblog-tree-select-item.directory-type .tree-item-toggle {
+    pointer-events: auto;
+    cursor: pointer;
+    color: var(--boblog-text-dark, #333333);
 }
 
 /* 类型徽章 */

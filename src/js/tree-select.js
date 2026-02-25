@@ -3,7 +3,7 @@
  *
  * 通用的树形下拉选择器，支持：
  * - 展开/折叠树节点
- * - 搜索过滤（按名称匹配，可扩展拼音等）
+ * - 搜索过滤（默认拼音匹配，支持首字母/完整拼音/直接文本）
  * - 单选节点
  * - 键盘操作（ESC 关闭面板）
  * - 点击外部区域关闭面板
@@ -14,9 +14,9 @@
  *       treeData: [{ id, name, slug?, description?, type?, articleCount?, children? }, ...],
  *       selectedId: null,
  *       onSelect: function(id, name, path) { ... },
- *       nodeMatches: function(node, search) { return true/false; }, // 可选：自定义搜索匹配
+ *       nodeMatches: function(node, search) { return true/false; }, // 可选：自定义搜索匹配（默认拼音匹配 name+slug）
  *       renderNodeExtra: function(node) { return ''; },            // 可选：自定义节点额外 HTML
- *       isSelectable: function(node) { return true; }              // 可选：节点是否可选
+ *       isSelectable: function(node) { return true; }              // 可选：节点是否可选（默认叶子节点可选）
  *   });
  *
  * DOM 结构要求（container 内部）：
@@ -30,6 +30,7 @@
  *
  * 依赖：
  *   - src/components/tree-select.css
+ *   - src/js/pinyin.js（BoblogUI.pinyin，用于默认拼音搜索）
  */
 const BoblogTreeSelect = {
 
@@ -55,7 +56,10 @@ const BoblogTreeSelect = {
         instance.onSelect = config.onSelect || function() {};
         instance.nodeMatches = config.nodeMatches || null;
         instance.renderNodeExtra = config.renderNodeExtra || null;
-        instance.isSelectable = config.isSelectable || null;
+        /* 默认：有子节点的为目录，不可选；用户传入则覆盖 */
+        instance.isSelectable = config.isSelectable !== undefined
+            ? config.isSelectable
+            : function(node) { return !node.hasChildren; };
         instance.placeholder = config.placeholder || '请选择';
         instance.emptyOptionText = config.emptyOptionText || null;
 
@@ -198,7 +202,7 @@ const BoblogTreeSelect = {
             this.flatNodes.forEach(function(node) {
                 var matches = self.nodeMatches
                     ? self.nodeMatches(node, searchTerm)
-                    : node.name.toLowerCase().indexOf(searchTerm.toLowerCase()) !== -1;
+                    : self._defaultNodeMatches(node, searchTerm);
                 if (matches) {
                     matchedIds.add(node.id);
                     var currentParentId = node.parentId;
@@ -404,17 +408,52 @@ const BoblogTreeSelect = {
 
         /* ---------- 工具方法 ---------- */
 
+        /**
+         * 默认搜索匹配：使用拼音模块匹配 name 和 slug
+         * 如果 BoblogUI.pinyin 不可用，fallback 为简单 indexOf
+         */
+        _defaultNodeMatches(node, searchTerm) {
+            var pinyin = window.BoblogUI && window.BoblogUI.pinyin;
+            if (pinyin) {
+                /* 拼音匹配：同时搜索 name 和 slug */
+                return pinyin.matches(node.name, searchTerm)
+                    || (node.slug && pinyin.matches(node.slug, searchTerm));
+            }
+            /* fallback：简单子串匹配 */
+            var s = searchTerm.toLowerCase();
+            return node.name.toLowerCase().indexOf(s) !== -1
+                || (node.slug && node.slug.toLowerCase().indexOf(s) !== -1);
+        },
+
         _escapeHtml(text) {
             var div = document.createElement('div');
             div.textContent = text || '';
             return div.innerHTML;
         },
 
+        /**
+         * 高亮匹配文字
+         * 直接匹配时高亮匹配部分，拼音匹配时高亮整个文本
+         */
         _highlightText(text, search) {
             if (!search || !text) return this._escapeHtml(text);
             var escapedText = this._escapeHtml(text);
-            var escapedSearch = search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-            return escapedText.replace(new RegExp('(' + escapedSearch + ')', 'gi'), '<span class="highlight">$1</span>');
+
+            /* 先尝试直接文本匹配高亮 */
+            var lowerText = text.toLowerCase();
+            var lowerSearch = search.toLowerCase();
+            if (lowerText.indexOf(lowerSearch) !== -1) {
+                var escapedSearch = search.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+                return escapedText.replace(new RegExp('(' + escapedSearch + ')', 'gi'), '<span class="highlight">$1</span>');
+            }
+
+            /* 拼音匹配时：高亮整个文本 */
+            var pinyin = window.BoblogUI && window.BoblogUI.pinyin;
+            if (pinyin && pinyin.matches(text, search)) {
+                return '<span class="highlight">' + escapedText + '</span>';
+            }
+
+            return escapedText;
         }
     }
 };

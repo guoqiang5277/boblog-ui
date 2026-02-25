@@ -242,7 +242,7 @@ BoblogTreeSelect.create({
                     <td><code>nodeMatches</code></td>
                     <td>Function | null</td>
                     <td>否</td>
-                    <td>自定义搜索匹配函数，签名：function(flatNode, search) → boolean。不传时默认按节点名称进行不区分大小写的子串匹配</td>
+                    <td>自定义搜索匹配函数，签名：function(flatNode, search) → boolean。不传时默认使用拼音匹配（支持首字母/完整拼音/直接文本），同时匹配 name 和 slug</td>
                 </tr>
                 <tr>
                     <td><code>renderNodeExtra</code></td>
@@ -254,7 +254,7 @@ BoblogTreeSelect.create({
                     <td><code>isSelectable</code></td>
                     <td>Function | null</td>
                     <td>否</td>
-                    <td>判断节点是否可选函数，签名：function(flatNode) → boolean。返回 false 时节点不响应点击选中，并添加 .directory-type 样式（弱化显示），默认所有节点可选</td>
+                    <td>判断节点是否可选函数，签名：function(flatNode) → boolean。返回 false 时节点不响应点击选中，并添加 .directory-type 样式（弱化显示）。默认：有子节点的为目录不可选，叶子节点可选</td>
                 </tr>
             </tbody>
         </table>

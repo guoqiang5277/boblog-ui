@@ -201,6 +201,7 @@ JS_FILES=(
     "$SRC_DIR/js/textarea.js"
     "$SRC_DIR/js/table.js"
     "$SRC_DIR/js/lunar.js"
+    "$SRC_DIR/js/pinyin.js"
     "$SRC_DIR/js/date-picker.js"
     "$SRC_DIR/js/tree.js"
     "$SRC_DIR/js/image.js"
