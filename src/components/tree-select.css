@@ -1,0 +1,269 @@
+/**
+ * Bo-Blog UI 组件 - 树形选择器 (Tree Select)
+ *
+ * 带下拉面板的树形选择器，支持搜索过滤、展开/折叠、单选。
+ * 适用于分类选择、部门选择等树形数据的单选场景。
+ *
+ * 结构：
+ *   .boblog-tree-select              — 最外层容器
+ *     .boblog-tree-select-display    — 选择器显示框（模拟 input）
+ *       文字 + .boblog-tree-select-arrow — 下拉箭头
+ *     .boblog-tree-select-dropdown   — 下拉面板（绝对定位）
+ *       .boblog-tree-select-search   — 搜索框区域
+ *       .boblog-tree-select-list     — 树节点列表
+ *         .boblog-tree-select-item   — 单个树节点
+ *           .boblog-tree-select-name  — 节点名称
+ *           .boblog-tree-select-count — 计数徽章
+ *           .boblog-tree-select-slug  — 别名标签
+ *
+ * HTML 示例：
+ *   <div class="boblog-tree-select">
+ *       <div class="boblog-tree-select-display boblog-input">
+ *           <span>请选择分类</span>
+ *           <span class="boblog-tree-select-arrow">&#9660;</span>
+ *       </div>
+ *       <div class="boblog-tree-select-dropdown">
+ *           <div class="boblog-tree-select-search">
+ *               <input type="text" class="boblog-input" placeholder="搜索...">
+ *           </div>
+ *           <div class="boblog-tree-select-list">
+ *               <div class="boblog-tree-select-item selected" data-id="1">
+ *                   <span class="boblog-tree-select-name">分类名</span>
+ *                   <span class="boblog-tree-select-slug">slug</span>
+ *                   <span class="boblog-tree-select-count has-articles">5</span>
+ *               </div>
+ *           </div>
+ *       </div>
+ *   </div>
+ *
+ * 依赖：
+ *   - src/base/variables.css（颜色、间距变量）
+ *   - src/controls/input.css（.boblog-input 基础样式）
+ */
+
+
+/* ========== 容器 ========== */
+
+/* 最外层容器 — 相对定位，作为下拉面板的锚点 */
+.boblog-tree-select {
+    display: inline-block;
+    position: relative;
+}
+
+
+/* ========== 显示框 ========== */
+
+/* 选择器显示框 — flex 布局，文字和箭头左右分布 */
+/* 搭配 .boblog-input 使用，获得默认边框和字号 */
+.boblog-tree-select-display {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    width: 100%;
+}
+
+/* hover 状态 — 边框加深 */
+.boblog-tree-select-display:hover {
+    border-color: var(--boblog-border-blue, #9EC9FF);
+}
+
+/* 展开状态 — 边框加深 + 浅蓝背景 */
+.boblog-tree-select-display.active {
+    border-color: var(--boblog-border-blue, #9EC9FF);
+    box-shadow: none;
+    background: var(--boblog-bg-content, #F4FBFF);
+}
+
+/* 下拉箭头 — 字号加大使其清晰 */
+.boblog-tree-select-arrow {
+    font-size: 16px;
+}
+
+
+/* ========== 下拉面板 ========== */
+
+/* 下拉面板 — 绝对定位，默认隐藏 */
+.boblog-tree-select-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: var(--boblog-z-index-dropdown, 1100);
+    border: 1px solid var(--boblog-border-blue, #9EC9FF);
+    background: var(--boblog-bg, #FFFFFF);
+    box-shadow: var(--boblog-shadow-light, 0 2px 4px rgba(0, 0, 0, 0.12));
+    font-family: var(--boblog-font-family, Tahoma, Arial, sans-serif);
+    display: none;
+    max-height: 350px;
+    overflow-y: auto;
+}
+
+/* 面板展开状态 */
+.boblog-tree-select-dropdown.show {
+    display: block;
+}
+
+
+/* ========== 搜索框 ========== */
+
+/* 搜索框区域 — 面板顶部固定 */
+.boblog-tree-select-search {
+    padding: 8px;
+    border-bottom: 1px solid var(--boblog-border-blue-lighter, #D3E7FC);
+}
+
+.boblog-tree-select-search input {
+    width: 100%;
+    border: 1px solid var(--boblog-border-blue-light, #A9DBF6);
+    font-size: var(--boblog-font-size-sm, 12px);
+    font-family: var(--boblog-font-family, Tahoma, Arial, sans-serif);
+    padding: 4px 8px;
+}
+
+.boblog-tree-select-search input:focus {
+    border-color: var(--boblog-border-blue, #9EC9FF);
+    box-shadow: none;
+    outline: none;
+}
+
+
+/* ========== 树节点 ========== */
+
+/* 单个树节点 — 点击选中 */
+.boblog-tree-select-item {
+    padding: 6px 10px;
+    border-bottom: 1px solid var(--boblog-border-blue-lighter, #D3E7FC);
+    font-size: var(--boblog-font-size-sm, 12px);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.boblog-tree-select-item:last-child {
+    border-bottom: none;
+}
+
+/* hover 状态 */
+.boblog-tree-select-item:hover {
+    background-color: var(--boblog-bg-content, #F4FBFF);
+}
+
+/* 选中状态 */
+.boblog-tree-select-item.selected {
+    background-color: var(--boblog-bg-content, #F4FBFF);
+}
+
+/* 展开/折叠按钮 — 三角箭头 */
+.boblog-tree-select-item .tree-item-toggle {
+    display: inline-block;
+    width: 16px;
+    font-size: 10px;
+    cursor: pointer;
+    text-align: center;
+    flex-shrink: 0;
+    transition: transform var(--boblog-transition-fast, 100ms) var(--boblog-transition-timing, ease-in-out);
+}
+
+/* 折叠状态 — 箭头向右 */
+.boblog-tree-select-item .tree-item-toggle.collapsed {
+    transform: rotate(-90deg);
+}
+
+/* 叶子节点 — 隐藏箭头但保留占位 */
+.boblog-tree-select-item .tree-item-toggle.invisible {
+    visibility: hidden;
+}
+
+/* 节点内容区 */
+.boblog-tree-select-item .tree-item-content {
+    flex: 1;
+    min-width: 0;
+}
+
+/* 节点头部 — flex 布局 */
+.boblog-tree-select-item .tree-item-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* 节点名称 */
+.boblog-tree-select-name {
+    color: var(--boblog-text-dark, #333333);
+}
+
+/* 计数徽章 — 圆形数字标记 */
+.boblog-tree-select-count {
+    display: inline-block;
+    min-width: 18px;
+    height: 18px;
+    line-height: 18px;
+    text-align: center;
+    font-size: var(--boblog-font-size-xs, 11px);
+    background: var(--boblog-bg-muted, #EBF0F5);
+    color: var(--boblog-text-gray, #999999);
+}
+
+/* 有文章的计数 — 蓝色底白字 */
+.boblog-tree-select-count.has-articles {
+    background: var(--boblog-blue-primary, #0D80BD);
+    color: var(--boblog-white, #FFFFFF);
+}
+
+/* 别名标签 — 浅蓝底灰字 */
+.boblog-tree-select-slug {
+    display: inline-block;
+    background: var(--boblog-bg-content, #F4FBFF);
+    color: var(--boblog-text-gray, #999999);
+    padding: 1px 6px;
+    font-size: var(--boblog-font-size-xs, 11px);
+}
+
+/* 节点描述 — 灰色小字 */
+.boblog-tree-select-item .tree-item-desc {
+    font-size: var(--boblog-font-size-xs, 11px);
+    color: var(--boblog-text-gray, #999999);
+    margin-top: 2px;
+}
+
+/* 搜索高亮 */
+.boblog-tree-select-item .highlight {
+    background: var(--boblog-warning-bg, #FFF8E6);
+    padding: 0 1px;
+}
+
+/* 无匹配结果提示 */
+.boblog-tree-select-list .no-results-message {
+    padding: 12px 10px;
+    text-align: center;
+    color: var(--boblog-text-gray, #999999);
+    font-size: var(--boblog-font-size-sm, 12px);
+}
+
+/* 目录型分类 — 不可选，灰色弱化 */
+.boblog-tree-select-item.directory-type {
+    cursor: default;
+    opacity: 0.7;
+}
+
+/* 类型徽章 */
+.boblog-tree-select-item .tree-item-type-badge {
+    display: inline-block;
+    font-size: 10px;
+    padding: 0 4px;
+    border: 1px solid var(--boblog-border-light, #DDE8F0);
+    color: var(--boblog-text-gray, #999999);
+}
+
+/* 目录型徽章 */
+.boblog-tree-select-item .tree-item-type-badge.type-directory {
+    color: var(--boblog-orange, #D07020);
+    border-color: var(--boblog-orange, #D07020);
+}
+
+/* 终极型徽章 */
+.boblog-tree-select-item .tree-item-type-badge.type-final {
+    color: var(--boblog-green, #3C8C30);
+    border-color: var(--boblog-green, #3C8C30);
+}

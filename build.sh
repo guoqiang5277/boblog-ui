@@ -93,6 +93,8 @@ CSS_FILES=(
     "$SRC_DIR/components/empty-state.css"
     "$SRC_DIR/components/panel.css"
     "$SRC_DIR/components/accordion.css"
+    "$SRC_DIR/components/tag-input.css"
+    "$SRC_DIR/components/tree-select.css"
 
     # 布局层
     "$SRC_DIR/layout/grid.css"
@@ -208,6 +210,8 @@ JS_FILES=(
     "$SRC_DIR/js/accordion.js"
     "$SRC_DIR/js/modal.js"
     "$SRC_DIR/js/form-validation.js"
+    "$SRC_DIR/js/tag-input.js"
+    "$SRC_DIR/js/tree-select.js"
 )
 
 JS_OUTPUT="$DIST_DIR/boblog-ui.js"

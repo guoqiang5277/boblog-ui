@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>树形选择器 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+<!-- 浮动目录 -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <!-- 导航栏 -->
+    <div class="boblog-doc-nav">
+        <a href="../index.html">&larr; 返回总纲</a>
+    </div>
+
+    <h1>树形选择器 (Tree Select)</h1>
+
+    <!-- ====== 基础用法 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="基础用法">基础用法</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>最外层容器</strong>: .boblog-tree-select（inline-block，相对定位，作为下拉面板的定位锚点）</li>
+                <li><strong>显示框</strong>: .boblog-tree-select-display + .boblog-input（flex 布局，左侧显示选中名称，右侧显示箭头）</li>
+                <li><strong>选中名称元素</strong>: 需添加 data-display-name 属性，JS 通过此属性更新显示文字</li>
+                <li><strong>下拉箭头</strong>: .boblog-tree-select-arrow（&#9660;）</li>
+                <li><strong>下拉面板</strong>: .boblog-tree-select-dropdown（绝对定位，默认隐藏，展开时加 .show）</li>
+                <li><strong>搜索框区域</strong>: .boblog-tree-select-search（面板顶部固定，下方有分隔线）</li>
+                <li><strong>树节点容器</strong>: .boblog-tree-select-list</li>
+                <li><strong>单个树节点</strong>: .boblog-tree-select-item（flex 布局，可追加 .selected / .directory-type）</li>
+                <li><strong>展开/折叠按钮</strong>: .tree-item-toggle（无子节点时加 .invisible，折叠时加 .collapsed）</li>
+                <li><strong>节点内容区</strong>: .tree-item-content &gt; .tree-item-header（flex 布局，包含名称、别名、计数）</li>
+                <li><strong>节点名称</strong>: .boblog-tree-select-name</li>
+                <li><strong>别名标签</strong>: .boblog-tree-select-slug（浅蓝底灰字）</li>
+                <li><strong>计数徽章</strong>: .boblog-tree-select-count（有文章时加 .has-articles，蓝底白字）</li>
+                <li><strong>节点描述</strong>: .tree-item-desc（灰色小字，可选）</li>
+                <li><strong>类型徽章</strong>: .tree-item-type-badge（可追加 .type-directory / .type-final）</li>
+                <li><strong>搜索高亮</strong>: .highlight（黄底，由 JS 自动注入）</li>
+                <li><strong>无匹配提示</strong>: .no-results-message（由 JS 自动注入）</li>
+                <li><strong>层级缩进</strong>: 由 JS 通过 padding-left 动态计算（每层 16px）</li>
+                <li><strong>初始化</strong>: 需调用 BoblogTreeSelect.create(config) 完成功能绑定（见 API 说明章节）</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <!-- 树形选择器容器（初始化由底部 JS 完成） -->
+                    <div id="demoTreeSelect" class="boblog-tree-select" style="width:280px;">
+                        <!-- 显示框：点击打开/关闭下拉面板 -->
+                        <div class="boblog-tree-select-display boblog-input">
+                            <!-- data-display-name 属性标记名称显示元素，JS 选中后更新此处文字 -->
+                            <span data-display-name>请选择分类</span>
+                            <!-- 下拉箭头 -->
+                            <span class="boblog-tree-select-arrow">&#9660;</span>
+                        </div>
+                        <!-- 下拉面板：默认隐藏，展开时由 JS 添加 .show -->
+                        <div class="boblog-tree-select-dropdown">
+                            <!-- 搜索框区域 -->
+                            <div class="boblog-tree-select-search">
+                                <input type="text" placeholder="搜索分类...">
+                            </div>
+                            <!-- 树节点列表：由 JS 渲染填充 -->
+                            <div class="boblog-tree-select-list"></div>
+                        </div>
+                    </div>
+                    <p class="boblog-help-text">已选中：<span id="demoSelected">（未选择）</span></p>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 最外层容器，relative 定位用于锚定下拉面板 --&gt;
+&lt;div id="myTreeSelect" class="boblog-tree-select" style="width:280px;"&gt;
+
+    &lt;!-- 显示框：点击打开/关闭面板 --&gt;
+    &lt;div class="boblog-tree-select-display boblog-input"&gt;
+        &lt;!-- data-display-name 标记名称元素，JS 选中后更新文字 --&gt;
+        &lt;span data-display-name&gt;请选择分类&lt;/span&gt;
+        &lt;!-- 下拉箭头 --&gt;
+        &lt;span class="boblog-tree-select-arrow"&gt;&amp;#9660;&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 下拉面板：默认隐藏，展开时 JS 添加 .show --&gt;
+    &lt;div class="boblog-tree-select-dropdown"&gt;
+        &lt;!-- 搜索框区域 --&gt;
+        &lt;div class="boblog-tree-select-search"&gt;
+            &lt;input type="text" placeholder="搜索分类..."&gt;
+        &lt;/div&gt;
+        &lt;!-- 树节点列表：由 JS 渲染 --&gt;
+        &lt;div class="boblog-tree-select-list"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+BoblogTreeSelect.create({
+    container: document.getElementById('myTreeSelect'),
+    treeData: [
+        { id: 1, name: '前端开发', slug: 'frontend', articleCount: 0, children: [
+            { id: 2, name: 'HTML', slug: 'html', articleCount: 5 },
+            { id: 3, name: 'CSS',  slug: 'css',  articleCount: 3 }
+        ]},
+        { id: 4, name: '后端开发', slug: 'backend', articleCount: 8 }
+    ],
+    selectedId: null,
+    onSelect: function(id, name, path) {
+        console.log('选中：', id, name, path);
+    }
+});
+&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;树形选择器示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div id="myTreeSelect" class="boblog-tree-select" style="width:280px;"&gt;
+    &lt;div class="boblog-tree-select-display boblog-input"&gt;
+        &lt;span data-display-name&gt;请选择分类&lt;/span&gt;
+        &lt;span class="boblog-tree-select-arrow"&gt;&amp;#9660;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-tree-select-dropdown"&gt;
+        &lt;div class="boblog-tree-select-search"&gt;
+            &lt;input type="text" placeholder="搜索分类..."&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-tree-select-list"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+BoblogTreeSelect.create({
+    container: document.getElementById('myTreeSelect'),
+    treeData: [
+        {
+            id: 1, name: '前端开发', slug: 'frontend', articleCount: 0,
+            children: [
+                { id: 2, name: 'HTML', slug: 'html', articleCount: 5 },
+                { id: 3, name: 'CSS',  slug: 'css',  articleCount: 3 }
+            ]
+        },
+        { id: 4, name: '后端开发', slug: 'backend', articleCount: 8 }
+    ],
+    selectedId: null,
+    onSelect: function(id, name, path) {
+        console.log('选中：', id, name, path);
+    }
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== API 说明 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="API说明">API 说明</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>入口方法</strong>: BoblogTreeSelect.create(config) — 创建并初始化一个树形选择器实例</li>
+                <li><strong>返回值</strong>: 实例对象，可调用公共方法</li>
+            </ul>
+        </div>
+
+        <!-- create() 配置项 -->
+        <h3 id="create配置项">create() 配置项</h3>
+
+        <table class="boblog-table">
+            <thead>
+                <tr>
+                    <th>参数</th>
+                    <th>类型</th>
+                    <th>必填</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>container</code></td>
+                    <td>HTMLElement</td>
+                    <td>是</td>
+                    <td>最外层 .boblog-tree-select 容器 DOM 元素</td>
+                </tr>
+                <tr>
+                    <td><code>treeData</code></td>
+                    <td>Array</td>
+                    <td>是</td>
+                    <td>树形数据数组，每项结构见下方"节点数据格式"</td>
+                </tr>
+                <tr>
+                    <td><code>selectedId</code></td>
+                    <td>number | null</td>
+                    <td>否</td>
+                    <td>初始选中的节点 ID，null 表示未选中，默认 null</td>
+                </tr>
+                <tr>
+                    <td><code>onSelect</code></td>
+                    <td>Function</td>
+                    <td>否</td>
+                    <td>选中回调，签名：function(id, name, fullPath)。id 为节点 ID（number），name 为节点名称，fullPath 为完整路径字符串（如"前端开发 &gt; CSS"）</td>
+                </tr>
+                <tr>
+                    <td><code>placeholder</code></td>
+                    <td>string</td>
+                    <td>否</td>
+                    <td>未选中时显示框的占位文字，默认 '请选择'</td>
+                </tr>
+                <tr>
+                    <td><code>emptyOptionText</code></td>
+                    <td>string | null</td>
+                    <td>否</td>
+                    <td>空选项文字（如"-- 不限分类 --"），null 表示不显示空选项，默认 null</td>
+                </tr>
+                <tr>
+                    <td><code>nodeMatches</code></td>
+                    <td>Function | null</td>
+                    <td>否</td>
+                    <td>自定义搜索匹配函数，签名：function(flatNode, search) → boolean。不传时默认按节点名称进行不区分大小写的子串匹配</td>
+                </tr>
+                <tr>
+                    <td><code>renderNodeExtra</code></td>
+                    <td>Function | null</td>
+                    <td>否</td>
+                    <td>自定义节点额外 HTML 渲染函数，签名：function(flatNode) → string。返回的 HTML 会插入节点名称之后，可用于追加类型徽章等</td>
+                </tr>
+                <tr>
+                    <td><code>isSelectable</code></td>
+                    <td>Function | null</td>
+                    <td>否</td>
+                    <td>判断节点是否可选函数，签名：function(flatNode) → boolean。返回 false 时节点不响应点击选中，并添加 .directory-type 样式（弱化显示），默认所有节点可选</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 节点数据格式 -->
+        <h3 id="节点数据格式">节点数据格式（treeData 每项）</h3>
+
+        <table class="boblog-table">
+            <thead>
+                <tr>
+                    <th>字段</th>
+                    <th>类型</th>
+                    <th>必填</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>id</code></td>
+                    <td>number</td>
+                    <td>是</td>
+                    <td>节点唯一 ID</td>
+                </tr>
+                <tr>
+                    <td><code>name</code></td>
+                    <td>string</td>
+                    <td>是</td>
+                    <td>节点显示名称</td>
+                </tr>
+                <tr>
+                    <td><code>slug</code></td>
+                    <td>string</td>
+                    <td>否</td>
+                    <td>别名，显示为浅蓝底灰字标签，传空字符串或不传则不显示</td>
+                </tr>
+                <tr>
+                    <td><code>description</code></td>
+                    <td>string</td>
+                    <td>否</td>
+                    <td>节点描述，显示为节点名称下方的灰色小字，不传则不显示</td>
+                </tr>
+                <tr>
+                    <td><code>type</code></td>
+                    <td>string</td>
+                    <td>否</td>
+                    <td>节点类型，传入值存入 flatNode.type，可配合 renderNodeExtra 渲染类型徽章，默认 'final'</td>
+                </tr>
+                <tr>
+                    <td><code>articleCount</code></td>
+                    <td>number</td>
+                    <td>否</td>
+                    <td>文章数量，大于 0 时计数徽章显示蓝底白字（.has-articles），默认 0</td>
+                </tr>
+                <tr>
+                    <td><code>children</code></td>
+                    <td>Array</td>
+                    <td>否</td>
+                    <td>子节点数组，结构与父节点相同，支持多级嵌套，不传或空数组则为叶子节点</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 实例公共方法 -->
+        <h3 id="实例公共方法">实例公共方法</h3>
+
+        <table class="boblog-table">
+            <thead>
+                <tr>
+                    <th>方法</th>
+                    <th>返回值</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>getSelectedId()</code></td>
+                    <td>number | null</td>
+                    <td>获取当前选中节点的 ID，未选中时返回 null</td>
+                </tr>
+                <tr>
+                    <td><code>selectById(id)</code></td>
+                    <td>void</td>
+                    <td>程序化选中指定 ID 的节点，同时触发 onSelect 回调并更新显示框文字</td>
+                </tr>
+                <tr>
+                    <td><code>refreshData(treeData)</code></td>
+                    <td>void</td>
+                    <td>刷新树形数据并重新渲染节点列表，用于动态更新数据场景</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 代码示例 -->
+        <div class="boblog-tabs boblog-mt-2">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">高级用法示例</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-javascript">// 创建实例并保存引用
+var treeSelect = BoblogTreeSelect.create({
+    container: document.getElementById('myTreeSelect'),
+    treeData: [
+        {
+            id: 1, name: '技术文章', slug: 'tech', type: 'directory',
+            articleCount: 0,
+            description: '目录型分类，不可直接归档',
+            children: [
+                { id: 2, name: 'JavaScript', slug: 'js', type: 'final', articleCount: 12 },
+                { id: 3, name: 'C#',         slug: 'csharp', type: 'final', articleCount: 8 }
+            ]
+        },
+        { id: 4, name: '生活随笔', slug: 'life', type: 'final', articleCount: 5 }
+    ],
+    selectedId: 2,                    // 初始选中 JavaScript
+    placeholder: '请选择分类',
+    emptyOptionText: '不限分类',       // 显示空选项
+    // 自定义：目录型分类不可选
+    isSelectable: function(node) {
+        return node.type !== 'directory';
+    },
+    // 自定义：追加类型徽章 HTML
+    renderNodeExtra: function(node) {
+        if (node.type === 'directory') {
+            return '&lt;span class="tree-item-type-badge type-directory"&gt;目录&lt;/span&gt;';
+        }
+        if (node.type === 'final') {
+            return '&lt;span class="tree-item-type-badge type-final"&gt;归档&lt;/span&gt;';
+        }
+        return '';
+    },
+    // 自定义：搜索时同时匹配名称和别名
+    nodeMatches: function(node, search) {
+        var s = search.toLowerCase();
+        return node.name.toLowerCase().indexOf(s) !== -1
+            || (node.slug && node.slug.toLowerCase().indexOf(s) !== -1);
+    },
+    onSelect: function(id, name, path) {
+        console.log('选中节点 ID:', id);
+        console.log('节点名称:', name);
+        console.log('完整路径:', path);  // 如 "技术文章 > JavaScript"
+        document.getElementById('hiddenCategoryId').value = id || '';
+    }
+});
+
+// 程序化选中节点
+treeSelect.selectById(3);
+
+// 获取当前选中 ID
+var currentId = treeSelect.getSelectedId();
+
+// 动态刷新数据
+treeSelect.refreshData([
+    { id: 10, name: '新分类', slug: 'new', articleCount: 0 }
+]);</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+<script>
+    /* 初始化文档页演示用的树形选择器 */
+    BoblogTreeSelect.create({
+        container: document.getElementById('demoTreeSelect'),
+        treeData: [
+            {
+                id: 1, name: '前端开发', slug: 'frontend', articleCount: 0,
+                children: [
+                    { id: 2, name: 'HTML', slug: 'html', articleCount: 5 },
+                    { id: 3, name: 'CSS',  slug: 'css',  articleCount: 3 },
+                    { id: 4, name: 'JavaScript', slug: 'js', articleCount: 12 }
+                ]
+            },
+            {
+                id: 5, name: '后端开发', slug: 'backend', articleCount: 0,
+                children: [
+                    { id: 6, name: 'C#',   slug: 'csharp', articleCount: 8 },
+                    { id: 7, name: 'SQL',  slug: 'sql',    articleCount: 4 }
+                ]
+            },
+            { id: 8, name: '生活随笔', slug: 'life', articleCount: 6 }
+        ],
+        selectedId: null,
+        placeholder: '请选择分类',
+        onSelect: function(id, name, path) {
+            /* 选中后更新演示区显示 */
+            document.getElementById('demoSelected').textContent = name + '（ID: ' + id + '，路径: ' + path + '）';
+        }
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,173 @@
+/**
+ * Bo-Blog UI 组件 - 标签输入器 (Tag Input)
+ *
+ * 带搜索建议的标签输入组件，支持输入、选择、删除标签。
+ * 下拉建议面板支持键盘导航（上下箭头、回车选中、ESC 关闭）。
+ *
+ * 结构：
+ *   .boblog-tag-input           — 最外层容器（定位锚点）
+ *     .boblog-tag-input-wrapper  — 输入区域（边框容器，flex 布局）
+ *       .boblog-tag-input-tags   — 已选标签列表
+ *         .boblog-badge          — 单个标签（复用 badge 组件）
+ *           .boblog-tag-input-remove — 删除按钮 ×
+ *       .boblog-tag-input-field  — 文本输入框
+ *     .boblog-tag-input-suggestions — 下拉建议面板（绝对定位）
+ *       .boblog-tag-input-option — 单条建议项
+ *         .boblog-tag-input-name  — 标签名
+ *         .boblog-tag-input-count — 使用次数
+ *         .boblog-tag-input-new   — "新建标签"提示
+ *
+ * HTML 示例：
+ *   <div class="boblog-tag-input">
+ *       <div class="boblog-tag-input-wrapper boblog-input">
+ *           <div class="boblog-tag-input-tags">
+ *               <span class="boblog-badge primary">
+ *                   标签1 <span class="boblog-tag-input-remove">&times;</span>
+ *               </span>
+ *           </div>
+ *           <input type="text" class="boblog-tag-input-field" placeholder="输入标签...">
+ *       </div>
+ *       <div class="boblog-tag-input-suggestions">
+ *           <div class="boblog-tag-input-option">
+ *               <span class="boblog-tag-input-name">标签名</span>
+ *               <span class="boblog-tag-input-count">5 篇文章</span>
+ *           </div>
+ *       </div>
+ *   </div>
+ *
+ * 依赖：
+ *   - src/base/variables.css（颜色、间距变量）
+ *   - src/controls/input.css（.boblog-input 基础样式）
+ *   - src/components/badge.css（.boblog-badge 标签样式）
+ */
+
+
+/* ========== 容器 ========== */
+
+/* 最外层容器 — 相对定位，作为下拉面板的锚点 */
+.boblog-tag-input {
+    position: relative;
+    display: inline-block;
+}
+
+/* 输入区域 — flex 布局，包含已选标签和输入框 */
+/* 搭配 .boblog-input 使用，获得默认边框和字号 */
+.boblog-tag-input-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    min-height: 34px;
+    height: auto;
+    padding: 4px 8px;
+    cursor: text;
+    width: 100%;
+}
+
+/* 聚焦状态 — 输入框获焦时高亮边框 */
+.boblog-tag-input-wrapper:focus-within {
+    border-color: var(--boblog-border-blue, #9EC9FF);
+    background: var(--boblog-bg-content, #F4FBFF);
+}
+
+
+/* ========== 已选标签区域 ========== */
+
+/* 已选标签列表 — flex 布局，自动换行 */
+.boblog-tag-input-tags {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px;
+}
+
+/* 标签删除按钮 — 标签内的 × 按钮 */
+.boblog-tag-input-remove {
+    margin-left: 6px;
+    cursor: pointer;
+    opacity: 0.8;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.boblog-tag-input-remove:hover {
+    opacity: 1;
+}
+
+
+/* ========== 文本输入框 ========== */
+
+/* 文本输入框 — 无边框透明背景，融入 wrapper */
+.boblog-tag-input-field {
+    flex: 1;
+    min-width: 120px;
+    border: none;
+    outline: none;
+    padding: 2px 4px;
+    font-size: var(--boblog-font-size-sm, 12px);
+    font-family: var(--boblog-font-family, Tahoma, Arial, sans-serif);
+    background: transparent;
+}
+
+.boblog-tag-input-field::placeholder {
+    color: var(--boblog-text-gray, #999999);
+}
+
+
+/* ========== 下拉建议面板 ========== */
+
+/* 建议面板 — 绝对定位，默认隐藏 */
+.boblog-tag-input-suggestions {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 250px;
+    overflow-y: auto;
+    z-index: var(--boblog-z-index-dropdown, 1100);
+    border: 1px solid var(--boblog-border-blue, #9EC9FF);
+    background: var(--boblog-bg, #FFFFFF);
+    box-shadow: var(--boblog-shadow-light, 0 2px 4px rgba(0, 0, 0, 0.12));
+    display: none;
+}
+
+/* 单条建议项 — flex 布局，名称和计数左右分布 */
+.boblog-tag-input-option {
+    cursor: pointer;
+    padding: 8px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: var(--boblog-font-size-sm, 12px);
+    color: var(--boblog-text-dark, #333333);
+    font-family: var(--boblog-font-family, Tahoma, Arial, sans-serif);
+    border-bottom: 1px solid var(--boblog-border-blue-lighter, #D3E7FC);
+}
+
+/* 最后一项无底部边框 */
+.boblog-tag-input-option:last-child {
+    border-bottom: none;
+}
+
+/* hover / 键盘导航激活状态 */
+.boblog-tag-input-option:hover,
+.boblog-tag-input-option.active {
+    background-color: var(--boblog-bg-content, #F4FBFF);
+}
+
+/* 标签名 — 占据剩余空间 */
+.boblog-tag-input-name {
+    flex: 1;
+}
+
+/* 使用次数 — 灰色小字，右侧对齐 */
+.boblog-tag-input-count {
+    color: var(--boblog-text-gray, #999999);
+    font-size: var(--boblog-font-size-xs, 11px);
+    margin-left: 10px;
+}
+
+/* "新建标签"提示 — 绿色小字 */
+.boblog-tag-input-new {
+    color: var(--boblog-green, #3C8C30);
+    font-size: var(--boblog-font-size-xs, 11px);
+}

@@ -141,7 +141,7 @@ small,
     font-size: var(--boblog-font-size-3xl, 24px);
 }
 
-/* 文字颜色工具类已迁移至 src/controls/color.scss */
+/* 文字颜色工具类已迁移至 src/base/color.scss */
 
 /* ========== 强调 ========== */
 strong,
@@ -271,6 +271,26 @@ hr {
 /* ========== 文本工具 ========== */
 /* 保留换行 — FAQ 内容等需要保留原始换行的场景 */
 .boblog-pre-wrap { white-space: pre-wrap !important; }
+
+/* ========== 公共提示文字工具类 ========== */
+
+/* 错误提示 — 红色小字，用于表单验证、操作失败等场景 */
+.boblog-error {
+    display: block;
+    font-size: var(--boblog-font-size-xs, 11px);
+    color: var(--boblog-red-error, #e03e2d);
+    margin-top: var(--boblog-spacing-xs, 5px);
+    line-height: 1.4;
+}
+
+/* 帮助文字 — 灰色小字，用于字段说明、操作提示等场景 */
+.boblog-help-text {
+    display: block;
+    font-size: var(--boblog-font-size-xs, 11px);
+    color: var(--boblog-text-gray, #999999);
+    margin-top: var(--boblog-spacing-xs, 5px);
+    line-height: 1.4;
+}
 
 /* ========== 显示控制工具类 ========== */
 /* 隐藏元素（用于 JS 动态切换显示/隐藏） */

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>标签输入器 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-white">
+<!-- 浮动目录 -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <!-- 导航栏 -->
+    <div class="boblog-doc-nav">
+        <a href="../index.html">&larr; 返回总纲</a>
+    </div>
+
+    <h1>标签输入器 (Tag Input)</h1>
+
+    <!-- ====== 基础用法 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="基础用法">基础用法</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>最外层容器</strong>: .boblog-tag-input（相对定位，作为下拉面板的锚点）</li>
+                <li><strong>输入区域</strong>: .boblog-tag-input-wrapper .boblog-input（flex 布局，包含已选标签和输入框）</li>
+                <li><strong>已选标签列表</strong>: .boblog-tag-input-tags（flex 布局，自动换行）</li>
+                <li><strong>单个标签</strong>: .boblog-badge.primary（复用 badge 组件，蓝底白字）</li>
+                <li><strong>删除按钮</strong>: .boblog-tag-input-remove（标签内的 &times; 按钮）</li>
+                <li><strong>文本输入框</strong>: .boblog-tag-input-field（无边框透明背景，融入 wrapper）</li>
+                <li><strong>下拉建议面板</strong>: .boblog-tag-input-suggestions（绝对定位，默认 display:none）</li>
+                <li><strong>单条建议项</strong>: .boblog-tag-input-option（flex 布局，名称和计数左右分布）</li>
+                <li><strong>标签名</strong>: .boblog-tag-input-name（占据剩余空间）</li>
+                <li><strong>使用次数</strong>: .boblog-tag-input-count（灰色小字，右侧对齐）</li>
+                <li><strong>新建标签提示</strong>: .boblog-tag-input-new（绿色小字，仅在无完全匹配时显示）</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <!-- 标签输入器：已有两个已选标签，下方显示建议面板静态示例 -->
+                    <div class="boblog-tag-input" id="demoTagInput">
+                        <div class="boblog-tag-input-wrapper boblog-input">
+                            <!-- 已选标签列表 -->
+                            <div class="boblog-tag-input-tags"></div>
+                            <!-- 文本输入框 -->
+                            <input type="text" class="boblog-tag-input-field" placeholder="输入标签...">
+                        </div>
+                        <!-- 下拉建议面板（由 JS 控制显示/隐藏） -->
+                        <div class="boblog-tag-input-suggestions"></div>
+                    </div>
+                    <p class="boblog-help-text">
+                        在输入框中键入内容可触发建议列表；按 Enter 或逗号确认添加标签；点击标签内的 &times; 删除；Backspace 删除最后一个标签。
+                    </p>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 最外层容器（相对定位，作为下拉面板锚点） --&gt;
+&lt;div class="boblog-tag-input" id="myTagInput"&gt;
+    &lt;!-- 输入区域（.boblog-input 提供边框和字号） --&gt;
+    &lt;div class="boblog-tag-input-wrapper boblog-input"&gt;
+        &lt;!-- 已选标签列表（由 JS 动态渲染） --&gt;
+        &lt;div class="boblog-tag-input-tags"&gt;&lt;/div&gt;
+        &lt;!-- 文本输入框 --&gt;
+        &lt;input type="text" class="boblog-tag-input-field" placeholder="输入标签..."&gt;
+    &lt;/div&gt;
+    &lt;!-- 下拉建议面板（由 JS 动态渲染，默认隐藏） --&gt;
+    &lt;div class="boblog-tag-input-suggestions"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+BoblogTagInput.create({
+    container: document.getElementById('myTagInput'),
+    availableTags: [
+        { id: 1, name: 'ASP.NET', categoryName: '后端', articleCount: 12 },
+        { id: 2, name: 'C#',      categoryName: '后端', articleCount: 8  },
+        { id: 3, name: 'CSS',     categoryName: '前端', articleCount: 5  }
+    ],
+    selectedTags: [{ id: 1, name: 'ASP.NET' }],
+    onTagsChange: function(tags) {
+        console.log('当前标签:', tags);
+    }
+});
+&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;标签输入器示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-tag-input" id="myTagInput"&gt;
+    &lt;div class="boblog-tag-input-wrapper boblog-input"&gt;
+        &lt;div class="boblog-tag-input-tags"&gt;&lt;/div&gt;
+        &lt;input type="text" class="boblog-tag-input-field" placeholder="输入标签..."&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-tag-input-suggestions"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+BoblogTagInput.create({
+    container: document.getElementById('myTagInput'),
+    availableTags: [
+        { id: 1, name: 'ASP.NET',    categoryName: '后端', articleCount: 12 },
+        { id: 2, name: 'C#',         categoryName: '后端', articleCount: 8  },
+        { id: 3, name: 'CSS',        categoryName: '前端', articleCount: 5  },
+        { id: 4, name: 'JavaScript', categoryName: '前端', articleCount: 20 },
+        { id: 5, name: 'SQL Server', categoryName: '数据库', articleCount: 6 }
+    ],
+    selectedTags: [{ id: 1, name: 'ASP.NET' }],
+    onTagsChange: function(tags) {
+        console.log('当前已选标签:', tags);
+    }
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== API 说明 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="API 说明">API 说明</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>全局对象</strong>: BoblogTagInput（挂载在 window 上，由 boblog-ui.js 提供）</li>
+                <li><strong>入口方法</strong>: BoblogTagInput.create(config) — 初始化并返回实例</li>
+                <li><strong>返回值</strong>: 实例对象，包含 addTag / removeTag / getSelectedTags 公共方法</li>
+            </ul>
+        </div>
+
+        <!-- create() 配置参数 -->
+        <h3 id="create() 配置参数">create() 配置参数</h3>
+
+        <table class="boblog-table">
+            <thead>
+                <tr>
+                    <th>参数</th>
+                    <th>类型</th>
+                    <th>必填</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>container</code></td>
+                    <td>HTMLElement</td>
+                    <td>是</td>
+                    <td>最外层 .boblog-tag-input 容器 DOM 元素</td>
+                </tr>
+                <tr>
+                    <td><code>availableTags</code></td>
+                    <td>Array</td>
+                    <td>否</td>
+                    <td>可用标签列表，每项格式：<code>{ id, name, categoryName?, articleCount? }</code>。输入时在此列表中搜索建议。</td>
+                </tr>
+                <tr>
+                    <td><code>selectedTags</code></td>
+                    <td>Array</td>
+                    <td>否</td>
+                    <td>初始已选标签列表，每项格式：<code>{ id?, name }</code>。默认为空数组。</td>
+                </tr>
+                <tr>
+                    <td><code>onTagsChange</code></td>
+                    <td>Function</td>
+                    <td>否</td>
+                    <td>标签变化回调，签名：<code>function(selectedTags)</code>。每次添加或删除标签后触发，参数为当前已选标签数组的副本。</td>
+                </tr>
+                <tr>
+                    <td><code>renderOption</code></td>
+                    <td>Function</td>
+                    <td>否</td>
+                    <td>自定义渲染建议项，签名：<code>function(tag, inputValue) → HTML string</code>。返回完整的 .boblog-tag-input-option HTML 字符串。未传则使用内置渲染逻辑。</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- availableTags 字段说明 -->
+        <h3 id="availableTags 字段说明">availableTags 字段说明</h3>
+
+        <table class="boblog-table">
+            <thead>
+                <tr>
+                    <th>字段</th>
+                    <th>类型</th>
+                    <th>必填</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>id</code></td>
+                    <td>number / string</td>
+                    <td>否</td>
+                    <td>标签 ID，选中后会携带到 selectedTags 中</td>
+                </tr>
+                <tr>
+                    <td><code>name</code></td>
+                    <td>string</td>
+                    <td>是</td>
+                    <td>标签名称，用于搜索匹配和显示</td>
+                </tr>
+                <tr>
+                    <td><code>categoryName</code></td>
+                    <td>string</td>
+                    <td>否</td>
+                    <td>所属分类名，显示在建议项左侧，以小型 badge 形式呈现</td>
+                </tr>
+                <tr>
+                    <td><code>articleCount</code></td>
+                    <td>number</td>
+                    <td>否</td>
+                    <td>使用该标签的文章数，显示在建议项右侧（格式：N 篇文章）</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 实例公共方法 -->
+        <h3 id="实例公共方法">实例公共方法</h3>
+
+        <table class="boblog-table">
+            <thead>
+                <tr>
+                    <th>方法</th>
+                    <th>参数</th>
+                    <th>说明</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>addTag(name, id)</code></td>
+                    <td>name: string, id?: number</td>
+                    <td>程序化添加标签。已存在同名标签时自动去重，添加后触发 onTagsChange。</td>
+                </tr>
+                <tr>
+                    <td><code>removeTag(name)</code></td>
+                    <td>name: string</td>
+                    <td>程序化删除指定名称的标签，删除后触发 onTagsChange。</td>
+                </tr>
+                <tr>
+                    <td><code>getSelectedTags()</code></td>
+                    <td>无</td>
+                    <td>返回当前已选标签数组的副本（不影响内部状态）。</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- 键盘交互说明 -->
+        <h3 id="键盘交互">键盘交互</h3>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>Enter</strong>：若有高亮建议项则选中该项；否则将输入框文字作为新标签添加</li>
+                <li><strong>逗号（, 或 ，）</strong>：将逗号前的文字作为新标签添加</li>
+                <li><strong>Backspace</strong>：输入框为空时删除最后一个已选标签</li>
+                <li><strong>ArrowDown / ArrowUp</strong>：在建议列表中上下导航，循环选中</li>
+                <li><strong>Escape</strong>：关闭建议面板</li>
+                <li><strong>点击外部区域</strong>：关闭建议面板</li>
+            </ul>
+        </div>
+
+        <!-- 新建标签逻辑 -->
+        <h3 id="新建标签逻辑">新建标签逻辑</h3>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>输入内容与 availableTags 无完全匹配时，建议面板末尾自动追加"+ 创建新标签: ..."选项</li>
+                <li>新建标签的 id 为 null，name 为当前输入值</li>
+                <li>通过 onTagsChange 回调可识别 id 为 null 的项，在保存时向后端创建新标签</li>
+            </ul>
+        </div>
+
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<script src="../../dist/boblog-ui.js"></script>
+<script>
+    /* 初始化文档页演示用的标签输入器 */
+    BoblogTagInput.create({
+        container: document.getElementById('demoTagInput'),
+        /* 预设可用标签列表 */
+        availableTags: [
+            { id: 1, name: 'ASP.NET',    categoryName: '后端',  articleCount: 12 },
+            { id: 2, name: 'C#',         categoryName: '后端',  articleCount: 8  },
+            { id: 3, name: 'CSS',        categoryName: '前端',  articleCount: 5  },
+            { id: 4, name: 'JavaScript', categoryName: '前端',  articleCount: 20 },
+            { id: 5, name: 'SQL Server', categoryName: '数据库', articleCount: 6 },
+            { id: 6, name: 'Razor',      categoryName: '前端',  articleCount: 3  },
+            { id: 7, name: 'ADO.NET',    categoryName: '后端',  articleCount: 4  }
+        ],
+        /* 初始已选标签 */
+        selectedTags: [
+            { id: 1, name: 'ASP.NET' },
+            { id: 3, name: 'CSS' }
+        ],
+        /* 标签变化时在控制台输出当前结果 */
+        onTagsChange: function(tags) {
+            console.log('当前已选标签:', tags);
+        }
+    });
+</script>
+</body>
+</html>

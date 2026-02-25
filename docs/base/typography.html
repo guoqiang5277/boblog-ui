@@ -1053,6 +1053,43 @@ function hello() {
             </div>
         </div>
 
+        <!-- ====== 公共提示文字 ====== -->
+        <div class="boblog-doc-section">
+            <h2 id="section-tips">公共提示文字</h2>
+            <div class="boblog-doc-spec">
+                <ul>
+                    <li><strong>.boblog-error</strong> — 错误提示（红色 11px），用于表单验证、操作失败等场景</li>
+                    <li><strong>.boblog-help-text</strong> — 帮助文字（灰色 11px），用于字段说明、操作提示等场景</li>
+                    <li>两者均为 block 显示，margin-top: 5px，line-height: 1.4</li>
+                    <li>不绑定表单布局，可在任意场景使用</li>
+                </ul>
+            </div>
+            <div class="boblog-tabs">
+                <div class="boblog-tabs-bar">
+                    <button class="boblog-tabs-btn active">预览</button>
+                    <button class="boblog-tabs-btn">关键源码</button>
+                </div>
+                <div class="boblog-tabs-panel active">
+                    <div class="boblog-doc-demo">
+                        <div style="margin-bottom: 10px;">
+                            <input type="text" class="boblog-input" value="错误输入" style="width:200px;">
+                            <span class="boblog-error">用户名不能为空</span>
+                        </div>
+                        <div>
+                            <input type="text" class="boblog-input" placeholder="输入别名..." style="width:200px;">
+                            <span class="boblog-help-text">别名只能包含小写字母、数字和连字符</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="boblog-tabs-panel">
+                    <div class="boblog-codeblock">
+                        <pre><code class="language-html">&lt;span class="boblog-error"&gt;用户名不能为空&lt;/span&gt;
+&lt;span class="boblog-help-text"&gt;别名只能包含小写字母、数字和连字符&lt;/span&gt;</code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
     <script src="../../dist/boblog-ui.js"></script>
