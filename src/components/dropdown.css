@@ -1,0 +1,220 @@
+/**
+ * Bo-Blog UI 组件 - Dropdown 下拉菜单
+ *
+ * 统一了以下两处现有实现：
+ *   1. 后台 admin-user-dropdown-*（_AdminLayout.cshtml 中的用户菜单）
+ *   2. 前台 site-nav-dropdown-*（_Layout.cshtml 中的帮助菜单和用户菜单）
+ *
+ * 使用方式：
+ *   - 在 toggle 元素上绑定点击事件，切换 .boblog-dropdown-menu 的 .show 类
+ *   - 右对齐（默认）：面板直接使用 .boblog-dropdown-menu
+ *   - 左对齐：在面板上额外加 .boblog-dropdown-menu-left
+ */
+
+/* ========== 容器 ========== */
+
+/* 下拉菜单的根容器，为面板提供定位上下文 */
+.boblog-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+/* ========== 触发按钮 ========== */
+
+/* 用于切换下拉面板显示/隐藏的按钮或链接 */
+.boblog-dropdown-toggle {
+    cursor: pointer;
+    /* 重置 <button> 元素的浏览器默认样式 */
+    background: none;
+    border: 1px solid var(--boblog-border-light, #DDE8F0);
+    padding: 6px 10px;
+    /* 字号和字体继承父容器 */
+    font-size: inherit;
+    font-family: inherit;
+    color: inherit;
+    /* 防止文字被选中（点击时视觉更干净） */
+    user-select: none;
+    /* 过渡背景色，给 hover 反馈一个短暂动画 */
+    transition: background-color var(--boblog-transition-normal, 150ms) var(--boblog-transition-timing, ease-in-out);
+}
+
+/* toggle 悬停时叠加透明白色背景
+   使用 rgba 而非变量，因为它是"在任意背景色上叠加半透明白层"的通用效果，
+   适合深色顶栏上的白色文字按钮场景 */
+.boblog-dropdown-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ========== 下拉面板 ========== */
+
+/* 下拉面板，默认隐藏；添加 .show 类后显示
+   默认右对齐（right: 0），因为当前所有使用场景均为右对齐 */
+.boblog-dropdown-menu {
+    display: none;
+    position: absolute;
+    /* 默认右对齐：面板右边与容器右边对齐 */
+    right: 0;
+    left: auto;
+    /* 紧贴 toggle 按钮底部展开 */
+    top: 100%;
+    /* 面板至少与触发按钮（容器）等宽，避免面板比按钮窄或无端过宽 */
+    min-width: 100%;
+    background-color: var(--boblog-bg-white, #fff);
+    border: 1px solid var(--boblog-border-light, #DDE8F0);
+    /* Bo-Blog 经典风格：无圆角 */
+    border-radius: 0;
+    /* 轻微阴影，让面板从背景中浮起 */
+    box-shadow: var(--boblog-shadow-light, 0 2px 4px rgba(0, 0, 0, 0.12));
+    /* 确保面板遮盖下方内容 */
+    z-index: var(--boblog-z-index-dropdown, 1100);
+    /* 消除默认列表 margin/padding */
+    margin: 0;
+    padding: 0;
+    /* 字号与全站基础字号保持一致 */
+    font-size: var(--boblog-font-size-base, 12px);
+    font-family: var(--boblog-font-family, Tahoma, Arial, sans-serif);
+}
+
+/* 面板显示状态：由 JS 切换此类名 */
+.boblog-dropdown-menu.show {
+    display: block;
+}
+
+/* ========== 对齐变体 ========== */
+
+/* 左对齐变体：面板左边与容器左边对齐
+   覆盖默认的右对齐行为 */
+.boblog-dropdown-menu-left {
+    left: 0;
+    right: auto;
+}
+
+/* 右对齐变体：显式声明右对齐，语义更清晰
+   与默认行为相同，可用于文档和模板中明确标注意图 */
+.boblog-dropdown-menu-right {
+    left: auto;
+    right: 0;
+}
+
+/* ========== 等宽变体 ========== */
+
+/* 强制按钮与面板等宽：加在 .boblog-dropdown 容器上
+   原理：隐藏状态下面板改为 static 定位参与容器宽度计算（height:0 不占高度），
+   容器宽度由按钮和面板中较宽者决定；按钮 width:100% 撑满容器。
+   展开后面板恢复 absolute 浮层定位 */
+.boblog-dropdown-match-width > .boblog-dropdown-toggle {
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box;
+}
+
+/* 面板隐藏时：static 定位参与宽度计算，高度为 0 不占垂直空间 */
+.boblog-dropdown-match-width > .boblog-dropdown-menu {
+    position: static;
+    visibility: hidden;
+    height: 0;
+    overflow: hidden;
+    /* 去掉 border 和 shadow 避免隐藏时占空间 */
+    border: none;
+    box-shadow: none;
+}
+
+/* 面板展开时：恢复 absolute 浮层定位和全部样式 */
+.boblog-dropdown-match-width > .boblog-dropdown-menu.show {
+    position: absolute;
+    visibility: visible;
+    height: auto;
+    overflow: visible;
+    border: 1px solid var(--boblog-border-light, #DDE8F0);
+    box-shadow: var(--boblog-shadow-light, 0 2px 4px rgba(0, 0, 0, 0.12));
+    /* 宽度等于容器宽度（由按钮和面板中较宽者决定） */
+    min-width: 100%;
+}
+
+/* ========== 菜单项 ========== */
+
+/* 单个菜单项，支持 <a>、<button> 等元素 */
+.boblog-dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 6px var(--boblog-spacing-sm, 10px);
+    color: var(--boblog-text-dark, #333333);
+    text-decoration: none;
+    /* 防止文字换行导致菜单项高度不一致 */
+    white-space: nowrap;
+    background-color: transparent;
+    /* 重置 button 默认边框 */
+    border: none;
+    /* 文字左对齐（button 默认居中） */
+    text-align: left;
+    cursor: pointer;
+    /* 字号继承自面板 */
+    font-size: inherit;
+    font-family: inherit;
+    line-height: var(--boblog-line-height-normal, 1.5);
+    /* 过渡背景色，hover 切换更流畅 */
+    transition: background-color var(--boblog-transition-normal, 150ms) var(--boblog-transition-timing, ease-in-out);
+    /* box-sizing 确保 padding 不撑破宽度 */
+    box-sizing: border-box;
+}
+
+/* 菜单项悬停/焦点状态：浅蓝底色，符合 Bo-Blog 配色 */
+.boblog-dropdown-item:hover,
+.boblog-dropdown-item:focus {
+    background-color: var(--boblog-bg-content, #F4FBFF);
+    color: var(--boblog-blue-accent, #0D80BD);
+    text-decoration: none;
+    /* 去掉 focus 默认轮廓，改由背景色提示焦点 */
+    outline: none;
+}
+
+/* 禁用状态的菜单项 */
+.boblog-dropdown-item:disabled,
+.boblog-dropdown-item.disabled {
+    color: var(--boblog-text-gray, #999999);
+    cursor: not-allowed;
+    pointer-events: none;
+    background-color: transparent;
+}
+
+/* ========== 分割线 ========== */
+
+/* 菜单项之间的水平分割线 */
+.boblog-dropdown-divider {
+    display: block;
+    height: 0;
+    margin: 4px 0;
+    overflow: hidden;
+    border-top: 1px solid var(--boblog-border-light, #DDE8F0);
+}
+
+/* ========== 移动端适配 ========== */
+
+/* 屏幕宽度 ≤ 767.98px 时，下拉面板改为静态展开，融入导航流
+   适用于移动端竖屏导航收起后展开子菜单的场景 */
+@media (max-width: 767.98px) {
+    .boblog-dropdown-menu {
+        /* 脱离绝对定位，回归文档流 */
+        position: static;
+        /* 移除浮层阴影，与导航背景融合 */
+        box-shadow: none;
+        /* 移除边框，避免在导航内产生多余线框 */
+        border: none;
+        /* 使用内容区背景色替代纯白，与移动导航面板协调 */
+        background-color: var(--boblog-bg-content, #F4FBFF);
+        /* 面板宽度撑满父容器 */
+        width: 100%;
+        /* 重置右对齐偏移量，避免静态定位下产生偏移 */
+        right: auto;
+        left: auto;
+        /* 重置 z-index，静态流中无需层级控制 */
+        z-index: auto;
+        /* 去掉最小宽度限制，由父容器决定宽度 */
+        min-width: 0;
+    }
+
+    /* 移动端菜单项增大点击区域，提升触摸体验 */
+    .boblog-dropdown-item {
+        padding: 8px var(--boblog-spacing-sm, 10px);
+    }
+}

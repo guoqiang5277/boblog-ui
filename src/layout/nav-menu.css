@@ -310,11 +310,12 @@
   color: var(--boblog-border-blue);
 }
 
-/* 禁用状态 */
+/* 禁用状态：不可点击 + 半透明 + 禁止鼠标事件 */
 .boblog-sidebar-link.boblog-sidebar-disabled {
   color: var(--boblog-text-muted);
   cursor: not-allowed;
   opacity: 0.5;
+  pointer-events: none; /* 禁止鼠标点击事件，防止用户误点置灰项 */
 }
 
 .boblog-sidebar-link.boblog-sidebar-disabled:hover {

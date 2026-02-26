@@ -95,6 +95,7 @@ CSS_FILES=(
     "$SRC_DIR/components/accordion.css"
     "$SRC_DIR/components/tag-input.css"
     "$SRC_DIR/components/tree-select.css"
+    "$SRC_DIR/components/dropdown.css"
 
     # 布局层
     "$SRC_DIR/layout/grid.css"

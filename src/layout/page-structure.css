@@ -194,6 +194,75 @@
   margin-left: 30px;
 }
 
+/* ========== 后台侧栏折叠手柄 ========== */
+/* 固定定位在侧栏右边缘的折叠/展开按钮，桌面端（992px+）显示 */
+
+/* 手柄容器：固定定位，垂直居中，跟随侧栏右边缘 */
+.boblog-sidebar-handle {
+  display: none; /* 默认隐藏，桌面端媒体查询显示 */
+  position: fixed;
+  top: calc(50px + 40vh); /* 垂直居中，50px 避开顶栏 */
+  left: calc(var(--boblog-admin-sidebar-width, 240px) - 12px); /* 贴着侧栏右边缘 */
+  z-index: 1050;
+  transition: left 0.3s ease; /* 折叠时平滑移动 */
+}
+
+/* 侧栏折叠时手柄移到左边缘 */
+.boblog-admin-body.sidebar-collapsed .boblog-sidebar-handle {
+  left: 0;
+}
+
+/* 手柄按钮：固定尺寸，flex 居中内容 */
+.boblog-sidebar-handle .handle-button {
+  padding: 0;
+  width: 24px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* 桌面端（992px+）显示手柄 */
+@media (min-width: 992px) {
+  .boblog-sidebar-handle {
+    display: flex;
+  }
+}
+
+/* ========== 移动端侧栏遮罩层 ========== */
+/* 移动端（<992px）侧栏滑出时的半透明遮罩，点击关闭侧栏 */
+
+@media (max-width: 991.98px) {
+  /* 移动端侧栏滑出：添加 .show 后侧栏从左侧滑入 */
+  .boblog-admin-sidebar.show {
+    transform: translateX(0);
+  }
+
+  /* 遮罩层：覆盖除顶栏外的整个视口 */
+  .boblog-sidebar-backdrop {
+    display: none; /* 默认隐藏 */
+    position: fixed;
+    top: 50px; /* 避开 50px 高的顶栏 */
+    left: 0;
+    width: 100%;
+    height: calc(100vh - 50px);
+    background: rgba(0, 0, 0, 0.3); /* 半透明黑色遮罩 */
+    z-index: 1039; /* 在侧栏（z-index 未设）下方 */
+  }
+
+  /* 遮罩激活状态：添加 .active 后显示 */
+  .boblog-sidebar-backdrop.active {
+    display: block;
+  }
+}
+
+/* ========== 侧栏树形菜单内边距 ========== */
+/* 侧栏内的 boblog-tree 组件与边缘保持间距 */
+.boblog-admin-sidebar .boblog-tree {
+  padding: 10px 0 10px 10px;
+}
+
 /* ========== 公告条（Bo-Blog announce 样式） ========== */
 /* 浅蓝背景的简洁内容条，用于主内容区顶部公告 */
 .boblog-announce {

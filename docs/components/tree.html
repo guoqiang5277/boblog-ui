@@ -918,6 +918,129 @@
         </div>
     </div>
 
+    <!-- ====== 链接标签 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="链接标签">链接标签</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>用法</strong>: 将 .boblog-tree-label 从 &lt;span&gt; 换成 &lt;a&gt; 标签</li>
+                <li><strong>默认样式</strong>: 去掉下划线，继承深色文字（与普通 span 标签一致）</li>
+                <li><strong>hover 状态</strong>: 蓝色文字 + 下划线</li>
+                <li><strong>激活状态</strong>: 加 .active 类，蓝色文字 + 加粗</li>
+                <li><strong>适用场景</strong>: 分类目录树、导航目录等需要点击跳转的节点</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-tree">
+                        <!-- 父节点：文章分类 -->
+                        <div class="boblog-tree-node expanded">
+                            <div class="boblog-tree-node-content">
+                                <span class="boblog-tree-toggle"></span>
+                                <span class="boblog-tree-label">文章分类</span>
+                            </div>
+                            <div class="boblog-tree-children">
+                                <!-- 链接标签：普通状态 -->
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <a href="/category/tech" class="boblog-tree-label">技术博客</a>
+                                    </div>
+                                </div>
+                                <!-- 链接标签：激活状态 -->
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <a href="/category/life" class="boblog-tree-label active">生活随笔</a>
+                                    </div>
+                                </div>
+                                <!-- 链接标签：普通状态 -->
+                                <div class="boblog-tree-node">
+                                    <div class="boblog-tree-node-content">
+                                        <span class="boblog-tree-toggle leaf"></span>
+                                        <a href="/category/books" class="boblog-tree-label">读书笔记</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 链接标签：将 span 换成 a 标签 --&gt;
+&lt;div class="boblog-tree-node"&gt;
+    &lt;div class="boblog-tree-node-content"&gt;
+        &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+        &lt;a href="/category/tech" class="boblog-tree-label"&gt;技术博客&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 激活状态：加 .active 类 --&gt;
+&lt;a href="/category/life" class="boblog-tree-label active"&gt;生活随笔&lt;/a&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;树形组件 — 链接标签&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-tree"&gt;
+    &lt;div class="boblog-tree-node expanded"&gt;
+        &lt;div class="boblog-tree-node-content"&gt;
+            &lt;span class="boblog-tree-toggle"&gt;&lt;/span&gt;
+            &lt;span class="boblog-tree-label"&gt;文章分类&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-tree-children"&gt;
+            &lt;div class="boblog-tree-node"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                    &lt;a href="/category/tech" class="boblog-tree-label"&gt;技术博客&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-tree-node"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                    &lt;a href="/category/life" class="boblog-tree-label active"&gt;生活随笔&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-tree-node"&gt;
+                &lt;div class="boblog-tree-node-content"&gt;
+                    &lt;span class="boblog-tree-toggle leaf"&gt;&lt;/span&gt;
+                    &lt;a href="/category/books" class="boblog-tree-label"&gt;读书笔记&lt;/a&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script src="../boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ====== JavaScript API ====== -->
     <div class="boblog-doc-section">
         <h2 id="JS-API">JavaScript API</h2>

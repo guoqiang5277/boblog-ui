@@ -113,6 +113,24 @@
   color: var(--boblog-text-dark); /* 深色文字 */
 }
 
+/* 节点标签为链接时：去掉下划线，继承颜色 */
+a.boblog-tree-label {
+  text-decoration: none;
+  color: var(--boblog-text-dark); /* 默认深色 */
+}
+
+/* 链接标签 hover：蓝色 + 下划线 */
+a.boblog-tree-label:hover {
+  color: var(--boblog-blue-primary, #0D80BD);
+  text-decoration: underline;
+}
+
+/* 链接标签激活态：蓝色 + 加粗（由 JS 添加 .active class） */
+a.boblog-tree-label.active {
+  color: var(--boblog-blue-primary, #0D80BD);
+  font-weight: bold;
+}
+
 /* ========== 子节点容器 ========== */
 
 /* 子节点容器（默认隐藏） */

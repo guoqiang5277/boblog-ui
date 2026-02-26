@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>下拉菜单组件 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-gray">
+<!-- 浮动目录（自动扫描 .boblog-doc-section 内的 h2） -->
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <!-- 导航栏 -->
+    <div class="boblog-doc-nav">
+        <a href="../index.html">← 返回总纲</a>
+    </div>
+
+    <h1>下拉菜单组件</h1>
+
+    <!-- ====== 基础用法 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="基础用法">基础用法</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>容器</strong>: .boblog-dropdown（相对定位，inline-block）</li>
+                <li><strong>触发按钮</strong>: .boblog-dropdown-toggle（点击切换面板显示/隐藏）</li>
+                <li><strong>下拉面板</strong>: .boblog-dropdown-menu（默认隐藏，加 .show 类后显示）</li>
+                <li><strong>菜单项</strong>: .boblog-dropdown-item（块级，hover 时浅蓝背景）</li>
+                <li><strong>分割线</strong>: .boblog-dropdown-divider（水平分割线）</li>
+                <li><strong>对齐方式</strong>: 面板默认右对齐（right: 0），符合顶栏右侧菜单布局</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <!-- 基础下拉菜单示例 -->
+                    <div class="boblog-dropdown boblog-dropdown-match-width" id="demo-basic">
+                        <!-- 触发按钮：点击展开/折叠菜单 -->
+                        <button class="boblog-dropdown-toggle"
+                                onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')">
+                            个人资料 ▼
+                        </button>
+                        <!-- 下拉面板：默认隐藏，通过 .show 类控制显示；左对齐展开 -->
+                        <div class="boblog-dropdown-menu boblog-dropdown-menu-left">
+                            <!-- 菜单项：修改密码 -->
+                            <a class="boblog-dropdown-item" href="#">修改密码</a>
+                            <!-- 分割线 -->
+                            <div class="boblog-dropdown-divider"></div>
+                            <!-- 菜单项：退出登录 -->
+                            <a class="boblog-dropdown-item" href="#">退出登录</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 基础下拉菜单示例 --&gt;
+&lt;div class="boblog-dropdown boblog-dropdown-match-width" id="demo-basic"&gt;
+    &lt;!-- 触发按钮：点击展开/折叠菜单 --&gt;
+    &lt;button class="boblog-dropdown-toggle"
+            onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
+        个人资料 ▼
+    &lt;/button&gt;
+    &lt;!-- 下拉面板：默认隐藏，通过 .show 类控制显示；左对齐展开 --&gt;
+    &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
+        &lt;!-- 菜单项：修改密码 --&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;修改密码&lt;/a&gt;
+        &lt;!-- 分割线 --&gt;
+        &lt;div class="boblog-dropdown-divider"&gt;&lt;/div&gt;
+        &lt;!-- 菜单项：退出登录 --&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;退出登录&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;下拉菜单示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 基础下拉菜单示例 --&gt;
+&lt;div class="boblog-dropdown boblog-dropdown-match-width" id="demo-basic"&gt;
+    &lt;!-- 触发按钮：点击展开/折叠菜单 --&gt;
+    &lt;button class="boblog-dropdown-toggle"
+            onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
+        个人资料 ▼
+    &lt;/button&gt;
+    &lt;!-- 下拉面板：默认隐藏，通过 .show 类控制显示；左对齐展开 --&gt;
+    &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
+        &lt;!-- 菜单项：修改密码 --&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;修改密码&lt;/a&gt;
+        &lt;!-- 分割线 --&gt;
+        &lt;div class="boblog-dropdown-divider"&gt;&lt;/div&gt;
+        &lt;!-- 菜单项：退出登录 --&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;退出登录&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 对齐方式 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="对齐方式">对齐方式</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>默认右对齐</strong>: .boblog-dropdown-menu（right: 0，left: auto）</li>
+                <li><strong>左对齐</strong>: .boblog-dropdown-menu-left（left: 0，right: auto）</li>
+                <li><strong>显式右对齐</strong>: .boblog-dropdown-menu-right（等同默认，right: 0）</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <!-- 两个菜单并排演示对齐方式，space-between 让右对齐效果更直观 -->
+                    <div class="boblog-flex boblog-justify-between">
+                        <!-- 左对齐菜单 -->
+                        <div class="boblog-dropdown boblog-mr-3" id="demo-align-left">
+                            <button class="boblog-dropdown-toggle"
+                                    onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')">
+                                左对齐 ▼
+                            </button>
+                            <!-- 面板左对齐：left: 0 -->
+                            <div class="boblog-dropdown-menu boblog-dropdown-menu-left">
+                                <a class="boblog-dropdown-item" href="#">菜单项一</a>
+                                <a class="boblog-dropdown-item" href="#">菜单项二</a>
+                                <a class="boblog-dropdown-item" href="#">菜单项三</a>
+                            </div>
+                        </div>
+                        <!-- 右对齐菜单（默认） -->
+                        <div class="boblog-dropdown" id="demo-align-right">
+                            <button class="boblog-dropdown-toggle"
+                                    onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')">
+                                右对齐 ▼
+                            </button>
+                            <!-- 面板右对齐：right: 0（默认，也可加 .boblog-dropdown-menu-right） -->
+                            <div class="boblog-dropdown-menu boblog-dropdown-menu-right">
+                                <a class="boblog-dropdown-item" href="#">菜单项一</a>
+                                <a class="boblog-dropdown-item" href="#">菜单项二</a>
+                                <a class="boblog-dropdown-item" href="#">菜单项三</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 两个菜单并排演示对齐方式，space-between 让右对齐效果更直观 --&gt;
+&lt;div class="boblog-flex boblog-justify-between"&gt;
+    &lt;!-- 左对齐菜单 --&gt;
+    &lt;div class="boblog-dropdown boblog-mr-3" id="demo-align-left"&gt;
+        &lt;button class="boblog-dropdown-toggle"
+                onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
+            左对齐 ▼
+        &lt;/button&gt;
+        &lt;!-- 面板左对齐：left: 0 --&gt;
+        &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;菜单项一&lt;/a&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;菜单项二&lt;/a&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;菜单项三&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- 右对齐菜单（默认） --&gt;
+    &lt;div class="boblog-dropdown" id="demo-align-right"&gt;
+        &lt;button class="boblog-dropdown-toggle"
+                onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
+            右对齐 ▼
+        &lt;/button&gt;
+        &lt;!-- 面板右对齐：right: 0（默认，也可加 .boblog-dropdown-menu-right） --&gt;
+        &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-right"&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;菜单项一&lt;/a&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;菜单项二&lt;/a&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;菜单项三&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;下拉菜单对齐方式&lt;/title&gt;
+    &lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 两个菜单并排演示对齐方式，space-between 让右对齐效果更直观 --&gt;
+&lt;div class="boblog-flex boblog-justify-between"&gt;
+    &lt;!-- 左对齐菜单 --&gt;
+    &lt;div class="boblog-dropdown boblog-mr-3" id="demo-align-left"&gt;
+        &lt;button class="boblog-dropdown-toggle"
+                onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
+            左对齐 ▼
+        &lt;/button&gt;
+        &lt;!-- 面板左对齐：left: 0 --&gt;
+        &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;菜单项一&lt;/a&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;菜单项二&lt;/a&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;菜单项三&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- 右对齐菜单（默认） --&gt;
+    &lt;div class="boblog-dropdown" id="demo-align-right"&gt;
+        &lt;button class="boblog-dropdown-toggle"
+                onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
+            右对齐 ▼
+        &lt;/button&gt;
+        &lt;!-- 面板右对齐：right: 0（默认，也可加 .boblog-dropdown-menu-right） --&gt;
+        &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-right"&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;菜单项一&lt;/a&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;菜单项二&lt;/a&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;菜单项三&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 禁用菜单项 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="禁用菜单项">禁用菜单项</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>禁用方式</strong>: 在 .boblog-dropdown-item 上添加 .disabled 类，或使用 disabled 属性</li>
+                <li><strong>视觉效果</strong>: 灰色文字（--boblog-text-gray），光标变为 not-allowed</li>
+                <li><strong>交互禁用</strong>: pointer-events: none，点击无效</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <!-- 含禁用项的菜单 -->
+                    <div class="boblog-dropdown boblog-dropdown-match-width" id="demo-disabled">
+                        <button class="boblog-dropdown-toggle"
+                                onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')">
+                            账号管理 ▼
+                        </button>
+                        <div class="boblog-dropdown-menu boblog-dropdown-menu-left">
+                            <!-- 正常菜单项 -->
+                            <a class="boblog-dropdown-item" href="#">编辑资料</a>
+                            <!-- 禁用菜单项：灰色、不可点击 -->
+                            <a class="boblog-dropdown-item disabled" href="#">修改邮箱（未验证）</a>
+                            <div class="boblog-dropdown-divider"></div>
+                            <!-- 正常菜单项 -->
+                            <a class="boblog-dropdown-item" href="#">退出登录</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 含禁用项的菜单 --&gt;
+&lt;div class="boblog-dropdown boblog-dropdown-match-width" id="demo-disabled"&gt;
+    &lt;button class="boblog-dropdown-toggle"
+            onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
+        账号管理 ▼
+    &lt;/button&gt;
+    &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
+        &lt;!-- 正常菜单项 --&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;编辑资料&lt;/a&gt;
+        &lt;!-- 禁用菜单项：灰色、不可点击 --&gt;
+        &lt;a class="boblog-dropdown-item disabled" href="#"&gt;修改邮箱（未验证）&lt;/a&gt;
+        &lt;div class="boblog-dropdown-divider"&gt;&lt;/div&gt;
+        &lt;!-- 正常菜单项 --&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;退出登录&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;禁用菜单项示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 含禁用项的菜单 --&gt;
+&lt;div class="boblog-dropdown boblog-dropdown-match-width" id="demo-disabled"&gt;
+    &lt;button class="boblog-dropdown-toggle"
+            onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
+        账号管理 ▼
+    &lt;/button&gt;
+    &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
+        &lt;!-- 正常菜单项 --&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;编辑资料&lt;/a&gt;
+        &lt;!-- 禁用菜单项：灰色、不可点击 --&gt;
+        &lt;a class="boblog-dropdown-item disabled" href="#"&gt;修改邮箱（未验证）&lt;/a&gt;
+        &lt;div class="boblog-dropdown-divider"&gt;&lt;/div&gt;
+        &lt;!-- 正常菜单项 --&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;退出登录&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 深色背景用法 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="深色背景用法">深色背景用法</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>toggle hover 效果</strong>: 使用 rgba(255,255,255,0.12) 半透明白色叠加，不限定底色</li>
+                <li><strong>适用场景</strong>: 深色顶栏、深色导航栏，toggle 文字应为白色</li>
+                <li><strong>白色文字</strong>: 在 toggle 上添加 .boblog-text-white 类</li>
+                <li><strong>下拉面板</strong>: 仍为浅色背景，保持可读性</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板：使用 iframe 隔离 position:fixed 的顶栏 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <iframe src="_dropdown-dark-preview.html" width="100%" height="200" frameborder="0"></iframe>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 深色顶栏容器 --&gt;
+&lt;div class="boblog-admin-topbar" id="demo-dark"&gt;
+    &lt;!-- 下拉菜单 --&gt;
+    &lt;div class="boblog-dropdown boblog-dropdown-match-width"&gt;
+        &lt;!-- toggle 添加 .boblog-text-white 使文字为白色 --&gt;
+        &lt;button class="boblog-dropdown-toggle boblog-text-white"
+                onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
+            管理员 ▼
+        &lt;/button&gt;
+        &lt;!-- 下拉面板保持浅色背景，保证菜单项可读性 --&gt;
+        &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;个人资料&lt;/a&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;修改密码&lt;/a&gt;
+            &lt;div class="boblog-dropdown-divider"&gt;&lt;/div&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;退出登录&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;深色背景下拉菜单&lt;/title&gt;
+    &lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 深色顶栏容器 --&gt;
+&lt;div class="boblog-admin-topbar" id="demo-dark"&gt;
+    &lt;!-- 下拉菜单 --&gt;
+    &lt;div class="boblog-dropdown boblog-dropdown-match-width"&gt;
+        &lt;!-- toggle 添加 .boblog-text-white 使文字为白色 --&gt;
+        &lt;button class="boblog-dropdown-toggle boblog-text-white"
+                onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
+            管理员 ▼
+        &lt;/button&gt;
+        &lt;!-- 下拉面板保持浅色背景，保证菜单项可读性 --&gt;
+        &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;个人资料&lt;/a&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;修改密码&lt;/a&gt;
+            &lt;div class="boblog-dropdown-divider"&gt;&lt;/div&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;退出登录&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 移动端适配 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="移动端适配">移动端适配</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>触发条件</strong>: 屏幕宽度 &le; 767.98px 时自动生效</li>
+                <li><strong>面板定位</strong>: position 变为 static，脱离绝对定位流</li>
+                <li><strong>外观变化</strong>: 无 box-shadow、无 border，背景色改为 var(--boblog-bg-content)</li>
+                <li><strong>适用场景</strong>: 移动端折叠导航栏，下拉菜单展开后融入导航流</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板：使用 iframe 模拟移动端窄屏（<= 767.98px 触发媒体查询） -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <iframe src="_dropdown-mobile-preview.html" width="375" height="200" frameborder="0"></iframe>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 移动端导航栏中的下拉菜单 --&gt;
+&lt;!-- 在 &lt;= 767.98px 时，.boblog-dropdown-menu 自动变为静态展开 --&gt;
+&lt;nav class="boblog-nav" id="demo-mobile"&gt;
+    &lt;div class="boblog-dropdown"&gt;
+        &lt;button class="boblog-dropdown-toggle"
+                onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
+            帮助 ▼
+        &lt;/button&gt;
+        &lt;div class="boblog-dropdown-menu"&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;使用文档&lt;/a&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;常见问题&lt;/a&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;联系我们&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;移动端下拉菜单&lt;/title&gt;
+    &lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 移动端导航栏中的下拉菜单 --&gt;
+&lt;!-- 在 &lt;= 767.98px 时，.boblog-dropdown-menu 自动变为静态展开 --&gt;
+&lt;nav class="boblog-nav" id="demo-mobile"&gt;
+    &lt;div class="boblog-dropdown"&gt;
+        &lt;button class="boblog-dropdown-toggle"
+                onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
+            帮助 ▼
+        &lt;/button&gt;
+        &lt;div class="boblog-dropdown-menu"&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;使用文档&lt;/a&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;常见问题&lt;/a&gt;
+            &lt;a class="boblog-dropdown-item" href="#"&gt;联系我们&lt;/a&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/nav&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== JavaScript API ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="JS-API">JavaScript API</h2>
+
+        <div class="boblog-doc-spec">
+            <h3>1. 自动初始化</h3>
+            <ul>
+                <li>Dropdown 组件目前为纯 HTML + CSS 实现，<strong>不依赖</strong> boblog-ui.js 自动初始化</li>
+                <li>需要业务方自行绑定 toggle 点击事件，切换 .boblog-dropdown-menu 的 .show 类</li>
+            </ul>
+        </div>
+
+        <div class="boblog-doc-spec">
+            <h3>2. 手动调用</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-js">// 打开下拉菜单
+var menu = document.querySelector('#my-dropdown .boblog-dropdown-menu');
+menu.classList.add('show');
+
+// 关闭下拉菜单
+menu.classList.remove('show');
+
+// 切换下拉菜单
+menu.classList.toggle('show');
+
+// 点击页面空白处关闭所有菜单
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.boblog-dropdown')) {
+        document.querySelectorAll('.boblog-dropdown-menu.show').forEach(function(m) {
+            m.classList.remove('show');
+        });
+    }
+});</code></pre>
+            </div>
+        </div>
+
+        <div class="boblog-doc-spec">
+            <h3>3. 引入方式</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-html">&lt;!-- 引入 CSS（包含 Dropdown 样式） --&gt;
+&lt;link rel="stylesheet" href="dist/boblog-ui.css"&gt;
+
+&lt;!-- Dropdown 为纯 CSS 组件，无需额外引入 JS --&gt;
+&lt;!-- 但如需 Tab 切换等其他功能，仍需引入 --&gt;
+&lt;script src="dist/boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+            </div>
+            <ul>
+                <li>Dropdown 样式已包含在 boblog-ui.css 中，无需单独引入</li>
+                <li>展开/关闭交互需要业务方自行实现（切换 .show 类）</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- ====== 使用说明 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="使用说明">使用说明</h2>
+
+        <div class="boblog-doc-spec">
+            <p><strong>适用场景：</strong></p>
+            <ul>
+                <li>后台顶栏用户菜单（头像右侧的操作菜单）</li>
+                <li>前台导航栏帮助菜单、用户菜单</li>
+                <li>任何需要点击弹出操作列表的场景</li>
+            </ul>
+
+            <p><strong>设计要点：</strong></p>
+            <ul>
+                <li>Bo-Blog 经典风格：无圆角，Tahoma 字体，12px 基础字号</li>
+                <li>默认右对齐，符合顶栏右侧菜单的常见布局习惯</li>
+                <li>toggle hover 使用半透明白色叠加（rgba(255,255,255,0.12)），不限定底色，深浅背景均可用</li>
+                <li>移动端回退为静态展开，融入导航流，不遮挡内容</li>
+            </ul>
+
+            <p><strong>CSS 变量：</strong></p>
+            <ul>
+                <li><code>--boblog-bg-white</code> — 下拉面板背景色</li>
+                <li><code>--boblog-border-light</code> — 面板边框颜色</li>
+                <li><code>--boblog-shadow-light</code> — 面板投影</li>
+                <li><code>--boblog-z-index-dropdown</code> — 面板层叠顺序</li>
+                <li><code>--boblog-font-size-base</code> — 基础字号（12px）</li>
+                <li><code>--boblog-font-family</code> — 字体栈（Tahoma, Arial）</li>
+                <li><code>--boblog-spacing-sm</code> — 菜单项内边距</li>
+                <li><code>--boblog-text-dark</code> — 菜单项文字颜色</li>
+                <li><code>--boblog-bg-content</code> — 移动端面板背景色</li>
+                <li><code>--boblog-blue-accent</code> — 菜单项 hover 背景色</li>
+                <li><code>--boblog-text-gray</code> — 禁用菜单项文字颜色</li>
+                <li><code>--boblog-transition-normal</code> — 过渡时长</li>
+                <li><code>--boblog-transition-timing</code> — 过渡缓动函数</li>
+                <li><code>--boblog-line-height-normal</code> — 行高</li>
+            </ul>
+
+            <p><strong>注意事项：</strong></p>
+            <ul>
+                <li>点击页面其他区域应关闭已打开的菜单，可通过监听 document click 事件实现</li>
+                <li>同一页面多个下拉菜单互斥时，打开一个应关闭其他，需业务层自行处理</li>
+                <li>面板使用 absolute 定位，父容器需确保有足够的 overflow 可见区域</li>
+            </ul>
+        </div>
+    </div>
+
+</div><!-- /.boblog-doc-container -->
+
+<!-- 引入 JS（Tab 切换、浮动目录等） -->
+<script src="../../dist/boblog-ui.js"></script>
+
+<!-- 点击页面空白处关闭所有已打开的下拉菜单（文档内演示用） -->
+<script>
+    document.addEventListener('click', function (e) {
+        if (!e.target.closest('.boblog-dropdown')) {
+            document.querySelectorAll('.boblog-dropdown-menu.show').forEach(function (m) {
+                m.classList.remove('show');
+            });
+        }
+    });
+</script>
+</body>
+</html>

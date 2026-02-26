@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>移动端下拉菜单预览</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+</head>
+<body style="margin:0;">
+
+<!-- 移动端导航栏中的下拉菜单 -->
+<!-- 在 <= 767.98px 时，.boblog-dropdown-menu 自动变为静态展开 -->
+<nav class="boblog-nav" id="demo-mobile">
+    <div class="boblog-dropdown">
+        <button class="boblog-dropdown-toggle"
+                onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')">
+            帮助 ▼
+        </button>
+        <div class="boblog-dropdown-menu">
+            <a class="boblog-dropdown-item" href="#">使用文档</a>
+            <a class="boblog-dropdown-item" href="#">常见问题</a>
+            <a class="boblog-dropdown-item" href="#">联系我们</a>
+        </div>
+    </div>
+</nav>
+
+<!-- 点击空白区域关闭下拉菜单 -->
+<script>
+document.addEventListener('click', function(e) {
+    if (!e.target.closest('.boblog-dropdown')) {
+        document.querySelectorAll('.boblog-dropdown-menu.show').forEach(function(m) {
+            m.classList.remove('show');
+        });
+    }
+});
+</script>
+
+</body>
+</html>
