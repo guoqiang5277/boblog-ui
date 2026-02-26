@@ -214,6 +214,7 @@ JS_FILES=(
     "$SRC_DIR/js/form-validation.js"
     "$SRC_DIR/js/tag-input.js"
     "$SRC_DIR/js/tree-select.js"
+    "$SRC_DIR/js/dropdown.js"
 )
 
 JS_OUTPUT="$DIST_DIR/boblog-ui.js"

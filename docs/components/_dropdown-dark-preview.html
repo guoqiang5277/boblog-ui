@@ -11,7 +11,7 @@
 <!-- 深色顶栏容器 -->
 <div class="boblog-admin-topbar" id="demo-dark">
     <!-- 下拉菜单 -->
-    <div class="boblog-dropdown boblog-dropdown-match-width">
+    <div class="boblog-dropdown">
         <!-- toggle 添加 .boblog-text-white 使文字为白色 -->
         <button class="boblog-dropdown-toggle boblog-text-white"
                 onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')">
@@ -26,6 +26,9 @@
         </div>
     </div>
 </div>
+
+<!-- 引入 JS（等宽模式需要 JS 初始化） -->
+<script src="../../dist/boblog-ui.js"></script>
 
 <!-- 点击空白区域关闭下拉菜单 -->
 <script>

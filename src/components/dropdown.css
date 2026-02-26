@@ -5,6 +5,16 @@
  *   1. 后台 admin-user-dropdown-*（_AdminLayout.cshtml 中的用户菜单）
  *   2. 前台 site-nav-dropdown-*（_Layout.cshtml 中的帮助菜单和用户菜单）
  *
+ * 宽度模式：
+ *   - 默认等宽模式：按钮与面板等宽（由 JS 初始化时计算面板宽度并锁定容器 min-width）
+ *   - 自适应模式：在容器上加 .boblog-dropdown-auto，按钮与面板各自独立宽度
+ *
+ * 等宽模式原理：
+ *   JS 初始化时临时显示面板（visibility:hidden），测量面板自然宽度，
+ *   将该宽度设为容器的 min-width，然后面板恢复隐藏。
+ *   面板使用传统 display:none/block + position:absolute 弹出，
+ *   容器 min-width 保证按钮至少与面板等宽。
+ *
  * 使用方式：
  *   - 在 toggle 元素上绑定点击事件，切换 .boblog-dropdown-menu 的 .show 类
  *   - 右对齐（默认）：面板直接使用 .boblog-dropdown-menu
@@ -21,7 +31,8 @@
 
 /* ========== 触发按钮 ========== */
 
-/* 用于切换下拉面板显示/隐藏的按钮或链接 */
+/* 用于切换下拉面板显示/隐藏的按钮或链接
+   默认等宽模式下，按钮撑满容器宽度，文字左对齐 */
 .boblog-dropdown-toggle {
     cursor: pointer;
     /* 重置 <button> 元素的浏览器默认样式 */
@@ -36,6 +47,10 @@
     user-select: none;
     /* 过渡背景色，给 hover 反馈一个短暂动画 */
     transition: background-color var(--boblog-transition-normal, 150ms) var(--boblog-transition-timing, ease-in-out);
+    /* 默认等宽模式：按钮撑满容器宽度（容器 min-width 由 JS 设定） */
+    width: 100%;
+    text-align: left;
+    box-sizing: border-box;
 }
 
 /* toggle 悬停时叠加透明白色背景
@@ -57,7 +72,7 @@
     left: auto;
     /* 紧贴 toggle 按钮底部展开 */
     top: 100%;
-    /* 面板至少与触发按钮（容器）等宽，避免面板比按钮窄或无端过宽 */
+    /* 面板至少与触发按钮（容器）等宽，避免面板比按钮窄 */
     min-width: 100%;
     background-color: var(--boblog-bg-white, #fff);
     border: 1px solid var(--boblog-border-light, #DDE8F0);
@@ -96,39 +111,16 @@
     right: 0;
 }
 
-/* ========== 等宽变体 ========== */
+/* ========== 自适应模式 ========== */
 
-/* 强制按钮与面板等宽：加在 .boblog-dropdown 容器上
-   原理：隐藏状态下面板改为 static 定位参与容器宽度计算（height:0 不占高度），
-   容器宽度由按钮和面板中较宽者决定；按钮 width:100% 撑满容器。
-   展开后面板恢复 absolute 浮层定位 */
-.boblog-dropdown-match-width > .boblog-dropdown-toggle {
-    width: 100%;
-    text-align: left;
-    box-sizing: border-box;
-}
+/* 自适应模式：加在 .boblog-dropdown 容器上
+   按钮和面板各自独立宽度，面板使用传统 absolute 浮层定位
+   JS 初始化时会跳过带此类的容器（不设 min-width）
+   适用于按钮文字较短、面板内容较多的场景 */
 
-/* 面板隐藏时：static 定位参与宽度计算，高度为 0 不占垂直空间 */
-.boblog-dropdown-match-width > .boblog-dropdown-menu {
-    position: static;
-    visibility: hidden;
-    height: 0;
-    overflow: hidden;
-    /* 去掉 border 和 shadow 避免隐藏时占空间 */
-    border: none;
-    box-shadow: none;
-}
-
-/* 面板展开时：恢复 absolute 浮层定位和全部样式 */
-.boblog-dropdown-match-width > .boblog-dropdown-menu.show {
-    position: absolute;
-    visibility: visible;
-    height: auto;
-    overflow: visible;
-    border: 1px solid var(--boblog-border-light, #DDE8F0);
-    box-shadow: var(--boblog-shadow-light, 0 2px 4px rgba(0, 0, 0, 0.12));
-    /* 宽度等于容器宽度（由按钮和面板中较宽者决定） */
-    min-width: 100%;
+/* 自适应模式下按钮恢复自然宽度（不撑满容器） */
+.boblog-dropdown-auto > .boblog-dropdown-toggle {
+    width: auto;
 }
 
 /* ========== 菜单项 ========== */
@@ -190,30 +182,9 @@
 
 /* ========== 移动端适配 ========== */
 
-/* 屏幕宽度 ≤ 767.98px 时，下拉面板改为静态展开，融入导航流
-   适用于移动端竖屏导航收起后展开子菜单的场景 */
+/* 屏幕宽度 ≤ 767.98px 时，菜单项增大点击区域，提升触摸体验
+   面板仍使用 absolute 弹出定位（不改为 static），确保覆盖内容而非推开 */
 @media (max-width: 767.98px) {
-    .boblog-dropdown-menu {
-        /* 脱离绝对定位，回归文档流 */
-        position: static;
-        /* 移除浮层阴影，与导航背景融合 */
-        box-shadow: none;
-        /* 移除边框，避免在导航内产生多余线框 */
-        border: none;
-        /* 使用内容区背景色替代纯白，与移动导航面板协调 */
-        background-color: var(--boblog-bg-content, #F4FBFF);
-        /* 面板宽度撑满父容器 */
-        width: 100%;
-        /* 重置右对齐偏移量，避免静态定位下产生偏移 */
-        right: auto;
-        left: auto;
-        /* 重置 z-index，静态流中无需层级控制 */
-        z-index: auto;
-        /* 去掉最小宽度限制，由父容器决定宽度 */
-        min-width: 0;
-    }
-
-    /* 移动端菜单项增大点击区域，提升触摸体验 */
     .boblog-dropdown-item {
         padding: 8px var(--boblog-spacing-sm, 10px);
     }

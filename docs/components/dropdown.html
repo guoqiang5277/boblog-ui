@@ -33,6 +33,7 @@
                 <li><strong>下拉面板</strong>: .boblog-dropdown-menu（默认隐藏，加 .show 类后显示）</li>
                 <li><strong>菜单项</strong>: .boblog-dropdown-item（块级，hover 时浅蓝背景）</li>
                 <li><strong>分割线</strong>: .boblog-dropdown-divider（水平分割线）</li>
+                <li><strong>默认等宽</strong>: 按钮与面板等宽，由两者中较宽者决定容器宽度</li>
                 <li><strong>对齐方式</strong>: 面板默认右对齐（right: 0），符合顶栏右侧菜单布局</li>
             </ul>
         </div>
@@ -48,7 +49,7 @@
             <div class="boblog-tabs-panel active">
                 <div class="boblog-doc-demo">
                     <!-- 基础下拉菜单示例 -->
-                    <div class="boblog-dropdown boblog-dropdown-match-width" id="demo-basic">
+                    <div class="boblog-dropdown" id="demo-basic">
                         <!-- 触发按钮：点击展开/折叠菜单 -->
                         <button class="boblog-dropdown-toggle"
                                 onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')">
@@ -70,7 +71,7 @@
             <div class="boblog-tabs-panel">
                 <div class="boblog-codeblock">
                     <pre><code class="language-html">&lt;!-- 基础下拉菜单示例 --&gt;
-&lt;div class="boblog-dropdown boblog-dropdown-match-width" id="demo-basic"&gt;
+&lt;div class="boblog-dropdown" id="demo-basic"&gt;
     &lt;!-- 触发按钮：点击展开/折叠菜单 --&gt;
     &lt;button class="boblog-dropdown-toggle"
             onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
@@ -102,7 +103,7 @@
 &lt;body&gt;
 
 &lt;!-- 基础下拉菜单示例 --&gt;
-&lt;div class="boblog-dropdown boblog-dropdown-match-width" id="demo-basic"&gt;
+&lt;div class="boblog-dropdown" id="demo-basic"&gt;
     &lt;!-- 触发按钮：点击展开/折叠菜单 --&gt;
     &lt;button class="boblog-dropdown-toggle"
             onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
@@ -262,6 +263,146 @@
         </div>
     </div>
 
+    <!-- ====== 自适应模式 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="自适应模式">自适应模式</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>默认等宽</strong>: 不加类名时，按钮与面板等宽（由 JS 自动计算面板宽度并锁定容器 min-width）</li>
+                <li><strong>自适应模式</strong>: 在 .boblog-dropdown 上加 .boblog-dropdown-auto，按钮与面板各自独立宽度</li>
+                <li><strong>适用场景</strong>: 按钮文字较短、面板内容较多，不需要强制等宽时使用</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <!-- 左侧：默认等宽模式（对比用） -->
+                    <div class="boblog-flex boblog-gap-lg">
+                        <div>
+                            <p class="boblog-text-gray boblog-mb-1">默认等宽</p>
+                            <div class="boblog-dropdown" id="demo-equal">
+                                <button class="boblog-dropdown-toggle"
+                                        onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')">
+                                    操作 ▼
+                                </button>
+                                <div class="boblog-dropdown-menu boblog-dropdown-menu-left">
+                                    <a class="boblog-dropdown-item" href="#">编辑资料</a>
+                                    <a class="boblog-dropdown-item" href="#">修改密码</a>
+                                    <div class="boblog-dropdown-divider"></div>
+                                    <a class="boblog-dropdown-item" href="#">退出登录</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 右侧：自适应模式 -->
+                        <div>
+                            <p class="boblog-text-gray boblog-mb-1">自适应模式</p>
+                            <div class="boblog-dropdown boblog-dropdown-auto" id="demo-auto">
+                                <button class="boblog-dropdown-toggle"
+                                        onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')">
+                                    操作 ▼
+                                </button>
+                                <div class="boblog-dropdown-menu boblog-dropdown-menu-left">
+                                    <a class="boblog-dropdown-item" href="#">编辑资料</a>
+                                    <a class="boblog-dropdown-item" href="#">修改密码</a>
+                                    <div class="boblog-dropdown-divider"></div>
+                                    <a class="boblog-dropdown-item" href="#">退出登录</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 默认等宽模式：按钮与面板等宽（不加类名） --&gt;
+&lt;div class="boblog-dropdown"&gt;
+    &lt;button class="boblog-dropdown-toggle"
+            onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
+        操作 ▼
+    &lt;/button&gt;
+    &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;编辑资料&lt;/a&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;修改密码&lt;/a&gt;
+        &lt;div class="boblog-dropdown-divider"&gt;&lt;/div&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;退出登录&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 自适应模式：按钮和面板各自独立宽度 --&gt;
+&lt;div class="boblog-dropdown boblog-dropdown-auto"&gt;
+    &lt;button class="boblog-dropdown-toggle"
+            onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
+        操作 ▼
+    &lt;/button&gt;
+    &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;编辑资料&lt;/a&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;修改密码&lt;/a&gt;
+        &lt;div class="boblog-dropdown-divider"&gt;&lt;/div&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;退出登录&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;自适应模式示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 默认等宽模式：按钮与面板等宽（不加类名） --&gt;
+&lt;div class="boblog-dropdown"&gt;
+    &lt;button class="boblog-dropdown-toggle"
+            onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
+        操作 ▼
+    &lt;/button&gt;
+    &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;编辑资料&lt;/a&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;修改密码&lt;/a&gt;
+        &lt;div class="boblog-dropdown-divider"&gt;&lt;/div&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;退出登录&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 自适应模式：按钮和面板各自独立宽度 --&gt;
+&lt;div class="boblog-dropdown boblog-dropdown-auto"&gt;
+    &lt;button class="boblog-dropdown-toggle"
+            onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
+        操作 ▼
+    &lt;/button&gt;
+    &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;编辑资料&lt;/a&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;修改密码&lt;/a&gt;
+        &lt;div class="boblog-dropdown-divider"&gt;&lt;/div&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;退出登录&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 引入 JS（等宽模式需要 JS 初始化） --&gt;
+&lt;script src="boblog-ui.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ====== 禁用菜单项 ====== -->
     <div class="boblog-doc-section">
         <h2 id="禁用菜单项">禁用菜单项</h2>
@@ -284,7 +425,7 @@
             <div class="boblog-tabs-panel active">
                 <div class="boblog-doc-demo">
                     <!-- 含禁用项的菜单 -->
-                    <div class="boblog-dropdown boblog-dropdown-match-width" id="demo-disabled">
+                    <div class="boblog-dropdown" id="demo-disabled">
                         <button class="boblog-dropdown-toggle"
                                 onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')">
                             账号管理 ▼
@@ -305,7 +446,7 @@
             <div class="boblog-tabs-panel">
                 <div class="boblog-codeblock">
                     <pre><code class="language-html">&lt;!-- 含禁用项的菜单 --&gt;
-&lt;div class="boblog-dropdown boblog-dropdown-match-width" id="demo-disabled"&gt;
+&lt;div class="boblog-dropdown" id="demo-disabled"&gt;
     &lt;button class="boblog-dropdown-toggle"
             onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
         账号管理 ▼
@@ -336,7 +477,7 @@
 &lt;body&gt;
 
 &lt;!-- 含禁用项的菜单 --&gt;
-&lt;div class="boblog-dropdown boblog-dropdown-match-width" id="demo-disabled"&gt;
+&lt;div class="boblog-dropdown" id="demo-disabled"&gt;
     &lt;button class="boblog-dropdown-toggle"
             onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
         账号管理 ▼
@@ -390,7 +531,7 @@
                     <pre><code class="language-html">&lt;!-- 深色顶栏容器 --&gt;
 &lt;div class="boblog-admin-topbar" id="demo-dark"&gt;
     &lt;!-- 下拉菜单 --&gt;
-    &lt;div class="boblog-dropdown boblog-dropdown-match-width"&gt;
+    &lt;div class="boblog-dropdown"&gt;
         &lt;!-- toggle 添加 .boblog-text-white 使文字为白色 --&gt;
         &lt;button class="boblog-dropdown-toggle boblog-text-white"
                 onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
@@ -423,7 +564,7 @@
 &lt;!-- 深色顶栏容器 --&gt;
 &lt;div class="boblog-admin-topbar" id="demo-dark"&gt;
     &lt;!-- 下拉菜单 --&gt;
-    &lt;div class="boblog-dropdown boblog-dropdown-match-width"&gt;
+    &lt;div class="boblog-dropdown"&gt;
         &lt;!-- toggle 添加 .boblog-text-white 使文字为白色 --&gt;
         &lt;button class="boblog-dropdown-toggle boblog-text-white"
                 onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
@@ -595,6 +736,8 @@ document.addEventListener('click', function(e) {
             <p><strong>设计要点：</strong></p>
             <ul>
                 <li>Bo-Blog 经典风格：无圆角，Tahoma 字体，12px 基础字号</li>
+                <li>默认等宽模式：按钮与面板等宽，由两者中较宽者决定容器宽度</li>
+                <li>自适应模式（.boblog-dropdown-auto）：按钮与面板各自独立宽度</li>
                 <li>默认右对齐，符合顶栏右侧菜单的常见布局习惯</li>
                 <li>toggle hover 使用半透明白色叠加（rgba(255,255,255,0.12)），不限定底色，深浅背景均可用</li>
                 <li>移动端回退为静态展开，融入导航流，不遮挡内容</li>
@@ -622,7 +765,7 @@ document.addEventListener('click', function(e) {
             <ul>
                 <li>点击页面其他区域应关闭已打开的菜单，可通过监听 document click 事件实现</li>
                 <li>同一页面多个下拉菜单互斥时，打开一个应关闭其他，需业务层自行处理</li>
-                <li>面板使用 absolute 定位，父容器需确保有足够的 overflow 可见区域</li>
+                <li>默认等宽模式下面板使用 relative + overflow:visible 定位；自适应模式使用 absolute 定位，父容器需确保有足够的 overflow 可见区域</li>
             </ul>
         </div>
     </div>
