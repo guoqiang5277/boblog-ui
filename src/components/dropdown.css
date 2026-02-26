@@ -49,8 +49,23 @@
     transition: background-color var(--boblog-transition-normal, 150ms) var(--boblog-transition-timing, ease-in-out);
     /* 默认等宽模式：按钮撑满容器宽度（容器 min-width 由 JS 设定） */
     width: 100%;
-    text-align: left;
     box-sizing: border-box;
+    /* flex 布局：文字左对齐，▼ 三角右对齐 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* toggle 右侧的下三角指示器，由 CSS 伪元素自动生成
+   等宽模式下 flex 布局使其靠右对齐，自适应模式下紧跟文字 */
+.boblog-dropdown-toggle::after {
+    content: '▼';
+    /* 与按钮文字保持间距 */
+    margin-left: 6px;
+    /* 三角比正文稍小，视觉更协调 */
+    font-size: 0.75em;
+    /* 防止三角被选中 */
+    pointer-events: none;
 }
 
 /* toggle 悬停时叠加透明白色背景
@@ -111,6 +126,28 @@
     right: 0;
 }
 
+/* ========== 按钮内容对齐 ========== */
+
+/* 默认对齐（不加类）：文字靠左，▼ 三角靠右（flex space-between）
+   以下变体仅在等宽模式下有视觉差异，自适应模式下按钮自然宽度无多余空间 */
+
+/* 居中对齐：文字居中，▼ 三角固定在最右侧
+   原理：保持 space-between 不变，左侧插入与 ::after 等宽的隐形占位符（::before），
+   三个 flex 子项（::before、文字、::after）均匀分布，文字自然居中 */
+.boblog-dropdown-toggle-center::before {
+    content: '▼';
+    font-size: 0.75em;
+    /* 与 ::after 的 margin-left 对称 */
+    margin-right: 6px;
+    /* 占位但不可见 */
+    visibility: hidden;
+}
+
+/* 居右对齐：文字靠右，▼ 三角紧跟文字右侧 */
+.boblog-dropdown-toggle-right {
+    justify-content: flex-end;
+}
+
 /* ========== 自适应模式 ========== */
 
 /* 自适应模式：加在 .boblog-dropdown 容器上
@@ -118,9 +155,10 @@
    JS 初始化时会跳过带此类的容器（不设 min-width）
    适用于按钮文字较短、面板内容较多的场景 */
 
-/* 自适应模式下按钮恢复自然宽度（不撑满容器） */
+/* 自适应模式下按钮恢复自然宽度，取消 flex 布局 */
 .boblog-dropdown-auto > .boblog-dropdown-toggle {
     width: auto;
+    display: inline-block;
 }
 
 /* ========== 菜单项 ========== */

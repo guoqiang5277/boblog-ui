@@ -53,7 +53,7 @@
                         <!-- 触发按钮：点击展开/折叠菜单 -->
                         <button class="boblog-dropdown-toggle"
                                 onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')">
-                            个人资料 ▼
+                            个人资料
                         </button>
                         <!-- 下拉面板：默认隐藏，通过 .show 类控制显示；左对齐展开 -->
                         <div class="boblog-dropdown-menu boblog-dropdown-menu-left">
@@ -75,7 +75,7 @@
     &lt;!-- 触发按钮：点击展开/折叠菜单 --&gt;
     &lt;button class="boblog-dropdown-toggle"
             onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
-        个人资料 ▼
+        个人资料
     &lt;/button&gt;
     &lt;!-- 下拉面板：默认隐藏，通过 .show 类控制显示；左对齐展开 --&gt;
     &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
@@ -107,7 +107,7 @@
     &lt;!-- 触发按钮：点击展开/折叠菜单 --&gt;
     &lt;button class="boblog-dropdown-toggle"
             onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
-        个人资料 ▼
+        个人资料
     &lt;/button&gt;
     &lt;!-- 下拉面板：默认隐藏，通过 .show 类控制显示；左对齐展开 --&gt;
     &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
@@ -119,6 +119,9 @@
         &lt;a class="boblog-dropdown-item" href="#"&gt;退出登录&lt;/a&gt;
     &lt;/div&gt;
 &lt;/div&gt;
+
+&lt;!-- 引入 JS（等宽模式需要 JS 初始化） --&gt;
+&lt;script src="boblog-ui.js"&gt;&lt;/script&gt;
 
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
@@ -154,7 +157,7 @@
                         <div class="boblog-dropdown boblog-mr-3" id="demo-align-left">
                             <button class="boblog-dropdown-toggle"
                                     onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')">
-                                左对齐 ▼
+                                左对齐
                             </button>
                             <!-- 面板左对齐：left: 0 -->
                             <div class="boblog-dropdown-menu boblog-dropdown-menu-left">
@@ -167,7 +170,7 @@
                         <div class="boblog-dropdown" id="demo-align-right">
                             <button class="boblog-dropdown-toggle"
                                     onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')">
-                                右对齐 ▼
+                                右对齐
                             </button>
                             <!-- 面板右对齐：right: 0（默认，也可加 .boblog-dropdown-menu-right） -->
                             <div class="boblog-dropdown-menu boblog-dropdown-menu-right">
@@ -188,7 +191,7 @@
     &lt;div class="boblog-dropdown boblog-mr-3" id="demo-align-left"&gt;
         &lt;button class="boblog-dropdown-toggle"
                 onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
-            左对齐 ▼
+            左对齐
         &lt;/button&gt;
         &lt;!-- 面板左对齐：left: 0 --&gt;
         &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
@@ -201,7 +204,7 @@
     &lt;div class="boblog-dropdown" id="demo-align-right"&gt;
         &lt;button class="boblog-dropdown-toggle"
                 onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
-            右对齐 ▼
+            右对齐
         &lt;/button&gt;
         &lt;!-- 面板右对齐：right: 0（默认，也可加 .boblog-dropdown-menu-right） --&gt;
         &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-right"&gt;
@@ -232,7 +235,7 @@
     &lt;div class="boblog-dropdown boblog-mr-3" id="demo-align-left"&gt;
         &lt;button class="boblog-dropdown-toggle"
                 onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
-            左对齐 ▼
+            左对齐
         &lt;/button&gt;
         &lt;!-- 面板左对齐：left: 0 --&gt;
         &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
@@ -245,7 +248,7 @@
     &lt;div class="boblog-dropdown" id="demo-align-right"&gt;
         &lt;button class="boblog-dropdown-toggle"
                 onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
-            右对齐 ▼
+            右对齐
         &lt;/button&gt;
         &lt;!-- 面板右对齐：right: 0（默认，也可加 .boblog-dropdown-menu-right） --&gt;
         &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-right"&gt;
@@ -255,6 +258,162 @@
         &lt;/div&gt;
     &lt;/div&gt;
 &lt;/div&gt;
+
+&lt;!-- 引入 JS（等宽模式需要 JS 初始化） --&gt;
+&lt;script src="boblog-ui.js"&gt;&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====== 按钮内容对齐 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="按钮内容对齐">按钮内容对齐</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>默认（不加类）</strong>: 文字靠左，▼ 三角靠右（flex space-between）</li>
+                <li><strong>居中</strong>: .boblog-dropdown-toggle-center（文字居中，▼ 三角仍靠右）</li>
+                <li><strong>居右</strong>: .boblog-dropdown-toggle-right（文字靠右，▼ 三角仍靠右）</li>
+                <li><strong>适用范围</strong>: 仅在等宽模式下有视觉差异，自适应模式下按钮自然宽度无多余空间</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <!-- 三种对齐方式并排对比，使用含禁用项的长文字菜单使空间差异更明显 -->
+                    <div class="boblog-flex boblog-gap-lg">
+                        <!-- 默认：文字左，▼ 右 -->
+                        <div>
+                            <p class="boblog-text-gray boblog-mb-1">默认（左对齐）</p>
+                            <div class="boblog-dropdown" id="demo-toggle-left">
+                                <button class="boblog-dropdown-toggle"
+                                        onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')">
+                                    账号管理
+                                </button>
+                                <div class="boblog-dropdown-menu boblog-dropdown-menu-left">
+                                    <a class="boblog-dropdown-item" href="#">编辑资料</a>
+                                    <a class="boblog-dropdown-item disabled" href="#">修改邮箱（未验证）</a>
+                                    <div class="boblog-dropdown-divider"></div>
+                                    <a class="boblog-dropdown-item" href="#">退出登录</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 居中 -->
+                        <div>
+                            <p class="boblog-text-gray boblog-mb-1">居中</p>
+                            <div class="boblog-dropdown" id="demo-toggle-center">
+                                <button class="boblog-dropdown-toggle boblog-dropdown-toggle-center"
+                                        onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')">
+                                    账号管理
+                                </button>
+                                <div class="boblog-dropdown-menu boblog-dropdown-menu-left">
+                                    <a class="boblog-dropdown-item" href="#">编辑资料</a>
+                                    <a class="boblog-dropdown-item disabled" href="#">修改邮箱（未验证）</a>
+                                    <div class="boblog-dropdown-divider"></div>
+                                    <a class="boblog-dropdown-item" href="#">退出登录</a>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 居右 -->
+                        <div>
+                            <p class="boblog-text-gray boblog-mb-1">居右</p>
+                            <div class="boblog-dropdown" id="demo-toggle-right">
+                                <button class="boblog-dropdown-toggle boblog-dropdown-toggle-right"
+                                        onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')">
+                                    账号管理
+                                </button>
+                                <div class="boblog-dropdown-menu boblog-dropdown-menu-left">
+                                    <a class="boblog-dropdown-item" href="#">编辑资料</a>
+                                    <a class="boblog-dropdown-item disabled" href="#">修改邮箱（未验证）</a>
+                                    <div class="boblog-dropdown-divider"></div>
+                                    <a class="boblog-dropdown-item" href="#">退出登录</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 默认：文字靠左，▼ 靠右（不加类） --&gt;
+&lt;button class="boblog-dropdown-toggle"&gt;账号管理&lt;/button&gt;
+
+&lt;!-- 居中：文字居中，▼ 三角仍靠右 --&gt;
+&lt;button class="boblog-dropdown-toggle boblog-dropdown-toggle-center"&gt;账号管理&lt;/button&gt;
+
+&lt;!-- 居右：文字靠右，▼ 三角仍靠右 --&gt;
+&lt;button class="boblog-dropdown-toggle boblog-dropdown-toggle-right"&gt;账号管理&lt;/button&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;按钮内容对齐示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;!-- 默认：文字靠左，▼ 靠右 --&gt;
+&lt;div class="boblog-dropdown"&gt;
+    &lt;button class="boblog-dropdown-toggle"
+            onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
+        账号管理
+    &lt;/button&gt;
+    &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;编辑资料&lt;/a&gt;
+        &lt;a class="boblog-dropdown-item disabled" href="#"&gt;修改邮箱（未验证）&lt;/a&gt;
+        &lt;div class="boblog-dropdown-divider"&gt;&lt;/div&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;退出登录&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 居中 --&gt;
+&lt;div class="boblog-dropdown"&gt;
+    &lt;button class="boblog-dropdown-toggle boblog-dropdown-toggle-center"
+            onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
+        账号管理
+    &lt;/button&gt;
+    &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;编辑资料&lt;/a&gt;
+        &lt;a class="boblog-dropdown-item disabled" href="#"&gt;修改邮箱（未验证）&lt;/a&gt;
+        &lt;div class="boblog-dropdown-divider"&gt;&lt;/div&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;退出登录&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 居右 --&gt;
+&lt;div class="boblog-dropdown"&gt;
+    &lt;button class="boblog-dropdown-toggle boblog-dropdown-toggle-right"
+            onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
+        账号管理
+    &lt;/button&gt;
+    &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;编辑资料&lt;/a&gt;
+        &lt;a class="boblog-dropdown-item disabled" href="#"&gt;修改邮箱（未验证）&lt;/a&gt;
+        &lt;div class="boblog-dropdown-divider"&gt;&lt;/div&gt;
+        &lt;a class="boblog-dropdown-item" href="#"&gt;退出登录&lt;/a&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;!-- 引入 JS（等宽模式需要 JS 初始化） --&gt;
+&lt;script src="boblog-ui.js"&gt;&lt;/script&gt;
 
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
@@ -284,18 +443,18 @@
             <!-- 预览面板 -->
             <div class="boblog-tabs-panel active">
                 <div class="boblog-doc-demo">
-                    <!-- 左侧：默认等宽模式（对比用） -->
+                    <!-- 左右对比：等宽 vs 自适应，使用含禁用项的长文字菜单使差异更明显 -->
                     <div class="boblog-flex boblog-gap-lg">
                         <div>
                             <p class="boblog-text-gray boblog-mb-1">默认等宽</p>
                             <div class="boblog-dropdown" id="demo-equal">
                                 <button class="boblog-dropdown-toggle"
                                         onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')">
-                                    操作 ▼
+                                    账号管理
                                 </button>
                                 <div class="boblog-dropdown-menu boblog-dropdown-menu-left">
                                     <a class="boblog-dropdown-item" href="#">编辑资料</a>
-                                    <a class="boblog-dropdown-item" href="#">修改密码</a>
+                                    <a class="boblog-dropdown-item disabled" href="#">修改邮箱（未验证）</a>
                                     <div class="boblog-dropdown-divider"></div>
                                     <a class="boblog-dropdown-item" href="#">退出登录</a>
                                 </div>
@@ -307,11 +466,11 @@
                             <div class="boblog-dropdown boblog-dropdown-auto" id="demo-auto">
                                 <button class="boblog-dropdown-toggle"
                                         onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')">
-                                    操作 ▼
+                                    账号管理
                                 </button>
                                 <div class="boblog-dropdown-menu boblog-dropdown-menu-left">
                                     <a class="boblog-dropdown-item" href="#">编辑资料</a>
-                                    <a class="boblog-dropdown-item" href="#">修改密码</a>
+                                    <a class="boblog-dropdown-item disabled" href="#">修改邮箱（未验证）</a>
                                     <div class="boblog-dropdown-divider"></div>
                                     <a class="boblog-dropdown-item" href="#">退出登录</a>
                                 </div>
@@ -327,11 +486,11 @@
 &lt;div class="boblog-dropdown"&gt;
     &lt;button class="boblog-dropdown-toggle"
             onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
-        操作 ▼
+        账号管理
     &lt;/button&gt;
     &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
         &lt;a class="boblog-dropdown-item" href="#"&gt;编辑资料&lt;/a&gt;
-        &lt;a class="boblog-dropdown-item" href="#"&gt;修改密码&lt;/a&gt;
+        &lt;a class="boblog-dropdown-item disabled" href="#"&gt;修改邮箱（未验证）&lt;/a&gt;
         &lt;div class="boblog-dropdown-divider"&gt;&lt;/div&gt;
         &lt;a class="boblog-dropdown-item" href="#"&gt;退出登录&lt;/a&gt;
     &lt;/div&gt;
@@ -341,11 +500,11 @@
 &lt;div class="boblog-dropdown boblog-dropdown-auto"&gt;
     &lt;button class="boblog-dropdown-toggle"
             onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
-        操作 ▼
+        账号管理
     &lt;/button&gt;
     &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
         &lt;a class="boblog-dropdown-item" href="#"&gt;编辑资料&lt;/a&gt;
-        &lt;a class="boblog-dropdown-item" href="#"&gt;修改密码&lt;/a&gt;
+        &lt;a class="boblog-dropdown-item disabled" href="#"&gt;修改邮箱（未验证）&lt;/a&gt;
         &lt;div class="boblog-dropdown-divider"&gt;&lt;/div&gt;
         &lt;a class="boblog-dropdown-item" href="#"&gt;退出登录&lt;/a&gt;
     &lt;/div&gt;
@@ -369,11 +528,11 @@
 &lt;div class="boblog-dropdown"&gt;
     &lt;button class="boblog-dropdown-toggle"
             onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
-        操作 ▼
+        账号管理
     &lt;/button&gt;
     &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
         &lt;a class="boblog-dropdown-item" href="#"&gt;编辑资料&lt;/a&gt;
-        &lt;a class="boblog-dropdown-item" href="#"&gt;修改密码&lt;/a&gt;
+        &lt;a class="boblog-dropdown-item disabled" href="#"&gt;修改邮箱（未验证）&lt;/a&gt;
         &lt;div class="boblog-dropdown-divider"&gt;&lt;/div&gt;
         &lt;a class="boblog-dropdown-item" href="#"&gt;退出登录&lt;/a&gt;
     &lt;/div&gt;
@@ -383,11 +542,11 @@
 &lt;div class="boblog-dropdown boblog-dropdown-auto"&gt;
     &lt;button class="boblog-dropdown-toggle"
             onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
-        操作 ▼
+        账号管理
     &lt;/button&gt;
     &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
         &lt;a class="boblog-dropdown-item" href="#"&gt;编辑资料&lt;/a&gt;
-        &lt;a class="boblog-dropdown-item" href="#"&gt;修改密码&lt;/a&gt;
+        &lt;a class="boblog-dropdown-item disabled" href="#"&gt;修改邮箱（未验证）&lt;/a&gt;
         &lt;div class="boblog-dropdown-divider"&gt;&lt;/div&gt;
         &lt;a class="boblog-dropdown-item" href="#"&gt;退出登录&lt;/a&gt;
     &lt;/div&gt;
@@ -428,7 +587,7 @@
                     <div class="boblog-dropdown" id="demo-disabled">
                         <button class="boblog-dropdown-toggle"
                                 onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')">
-                            账号管理 ▼
+                            账号管理
                         </button>
                         <div class="boblog-dropdown-menu boblog-dropdown-menu-left">
                             <!-- 正常菜单项 -->
@@ -449,7 +608,7 @@
 &lt;div class="boblog-dropdown" id="demo-disabled"&gt;
     &lt;button class="boblog-dropdown-toggle"
             onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
-        账号管理 ▼
+        账号管理
     &lt;/button&gt;
     &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
         &lt;!-- 正常菜单项 --&gt;
@@ -480,7 +639,7 @@
 &lt;div class="boblog-dropdown" id="demo-disabled"&gt;
     &lt;button class="boblog-dropdown-toggle"
             onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
-        账号管理 ▼
+        账号管理
     &lt;/button&gt;
     &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
         &lt;!-- 正常菜单项 --&gt;
@@ -492,6 +651,9 @@
         &lt;a class="boblog-dropdown-item" href="#"&gt;退出登录&lt;/a&gt;
     &lt;/div&gt;
 &lt;/div&gt;
+
+&lt;!-- 引入 JS（等宽模式需要 JS 初始化） --&gt;
+&lt;script src="boblog-ui.js"&gt;&lt;/script&gt;
 
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
@@ -535,7 +697,7 @@
         &lt;!-- toggle 添加 .boblog-text-white 使文字为白色 --&gt;
         &lt;button class="boblog-dropdown-toggle boblog-text-white"
                 onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
-            管理员 ▼
+            管理员
         &lt;/button&gt;
         &lt;!-- 下拉面板保持浅色背景，保证菜单项可读性 --&gt;
         &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
@@ -568,7 +730,7 @@
         &lt;!-- toggle 添加 .boblog-text-white 使文字为白色 --&gt;
         &lt;button class="boblog-dropdown-toggle boblog-text-white"
                 onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
-            管理员 ▼
+            管理员
         &lt;/button&gt;
         &lt;!-- 下拉面板保持浅色背景，保证菜单项可读性 --&gt;
         &lt;div class="boblog-dropdown-menu boblog-dropdown-menu-left"&gt;
@@ -579,6 +741,9 @@
         &lt;/div&gt;
     &lt;/div&gt;
 &lt;/div&gt;
+
+&lt;!-- 引入 JS（等宽模式需要 JS 初始化） --&gt;
+&lt;script src="boblog-ui.js"&gt;&lt;/script&gt;
 
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
@@ -594,9 +759,9 @@
         <div class="boblog-doc-spec">
             <ul>
                 <li><strong>触发条件</strong>: 屏幕宽度 &le; 767.98px 时自动生效</li>
-                <li><strong>面板定位</strong>: position 变为 static，脱离绝对定位流</li>
-                <li><strong>外观变化</strong>: 无 box-shadow、无 border，背景色改为 var(--boblog-bg-content)</li>
-                <li><strong>适用场景</strong>: 移动端折叠导航栏，下拉菜单展开后融入导航流</li>
+                <li><strong>面板定位</strong>: 保持 absolute 定位，面板浮于内容之上</li>
+                <li><strong>触摸优化</strong>: 菜单项 padding 增大至 8px，提升触摸体验</li>
+                <li><strong>适用场景</strong>: 移动端导航栏中的下拉菜单</li>
             </ul>
         </div>
 
@@ -616,12 +781,12 @@
             <div class="boblog-tabs-panel">
                 <div class="boblog-codeblock">
                     <pre><code class="language-html">&lt;!-- 移动端导航栏中的下拉菜单 --&gt;
-&lt;!-- 在 &lt;= 767.98px 时，.boblog-dropdown-menu 自动变为静态展开 --&gt;
+&lt;!-- 在 &lt;= 767.98px 时，菜单项 padding 增大以优化触摸体验 --&gt;
 &lt;nav class="boblog-nav" id="demo-mobile"&gt;
     &lt;div class="boblog-dropdown"&gt;
         &lt;button class="boblog-dropdown-toggle"
                 onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
-            帮助 ▼
+            帮助
         &lt;/button&gt;
         &lt;div class="boblog-dropdown-menu"&gt;
             &lt;a class="boblog-dropdown-item" href="#"&gt;使用文档&lt;/a&gt;
@@ -646,12 +811,12 @@
 &lt;body&gt;
 
 &lt;!-- 移动端导航栏中的下拉菜单 --&gt;
-&lt;!-- 在 &lt;= 767.98px 时，.boblog-dropdown-menu 自动变为静态展开 --&gt;
+&lt;!-- 在 &lt;= 767.98px 时，菜单项 padding 增大以优化触摸体验 --&gt;
 &lt;nav class="boblog-nav" id="demo-mobile"&gt;
     &lt;div class="boblog-dropdown"&gt;
         &lt;button class="boblog-dropdown-toggle"
                 onclick="this.closest('.boblog-dropdown').querySelector('.boblog-dropdown-menu').classList.toggle('show')"&gt;
-            帮助 ▼
+            帮助
         &lt;/button&gt;
         &lt;div class="boblog-dropdown-menu"&gt;
             &lt;a class="boblog-dropdown-item" href="#"&gt;使用文档&lt;/a&gt;
@@ -660,6 +825,9 @@
         &lt;/div&gt;
     &lt;/div&gt;
 &lt;/nav&gt;
+
+&lt;!-- 引入 JS（等宽模式需要 JS 初始化） --&gt;
+&lt;script src="boblog-ui.js"&gt;&lt;/script&gt;
 
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
@@ -675,15 +843,22 @@
         <div class="boblog-doc-spec">
             <h3>1. 自动初始化</h3>
             <ul>
-                <li>Dropdown 组件目前为纯 HTML + CSS 实现，<strong>不依赖</strong> boblog-ui.js 自动初始化</li>
-                <li>需要业务方自行绑定 toggle 点击事件，切换 .boblog-dropdown-menu 的 .show 类</li>
+                <li>引入 boblog-ui.js 后，Dropdown 会在 DOMContentLoaded 时<strong>自动初始化</strong>等宽模式</li>
+                <li>JS 会扫描所有 .boblog-dropdown（排除 .boblog-dropdown-auto），测量面板宽度并设为容器 min-width</li>
+                <li>展开/关闭交互仍需业务方自行绑定 toggle 点击事件，切换 .boblog-dropdown-menu 的 .show 类</li>
             </ul>
         </div>
 
         <div class="boblog-doc-spec">
             <h3>2. 手动调用</h3>
             <div class="boblog-codeblock">
-                <pre><code class="language-js">// 打开下拉菜单
+                <pre><code class="language-js">// 重新初始化等宽模式（动态插入新 Dropdown 后调用）
+BoblogUI.dropdown.init();
+
+// 仅初始化指定容器内的 Dropdown
+BoblogUI.dropdown.init(document.querySelector('#my-container'));
+
+// 打开下拉菜单
 var menu = document.querySelector('#my-dropdown .boblog-dropdown-menu');
 menu.classList.add('show');
 
@@ -710,12 +885,12 @@ document.addEventListener('click', function(e) {
                 <pre><code class="language-html">&lt;!-- 引入 CSS（包含 Dropdown 样式） --&gt;
 &lt;link rel="stylesheet" href="dist/boblog-ui.css"&gt;
 
-&lt;!-- Dropdown 为纯 CSS 组件，无需额外引入 JS --&gt;
-&lt;!-- 但如需 Tab 切换等其他功能，仍需引入 --&gt;
+&lt;!-- 引入 JS（等宽模式需要 JS 自动初始化） --&gt;
 &lt;script src="dist/boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
             </div>
             <ul>
-                <li>Dropdown 样式已包含在 boblog-ui.css 中，无需单独引入</li>
+                <li>Dropdown 样式包含在 boblog-ui.css 中</li>
+                <li>等宽模式（默认）需要 boblog-ui.js 自动初始化，测量面板宽度并锁定容器 min-width</li>
                 <li>展开/关闭交互需要业务方自行实现（切换 .show 类）</li>
             </ul>
         </div>
@@ -740,7 +915,7 @@ document.addEventListener('click', function(e) {
                 <li>自适应模式（.boblog-dropdown-auto）：按钮与面板各自独立宽度</li>
                 <li>默认右对齐，符合顶栏右侧菜单的常见布局习惯</li>
                 <li>toggle hover 使用半透明白色叠加（rgba(255,255,255,0.12)），不限定底色，深浅背景均可用</li>
-                <li>移动端回退为静态展开，融入导航流，不遮挡内容</li>
+                <li>移动端保持浮层弹出，菜单项 padding 增大以优化触摸体验</li>
             </ul>
 
             <p><strong>CSS 变量：</strong></p>
@@ -765,7 +940,9 @@ document.addEventListener('click', function(e) {
             <ul>
                 <li>点击页面其他区域应关闭已打开的菜单，可通过监听 document click 事件实现</li>
                 <li>同一页面多个下拉菜单互斥时，打开一个应关闭其他，需业务层自行处理</li>
-                <li>默认等宽模式下面板使用 relative + overflow:visible 定位；自适应模式使用 absolute 定位，父容器需确保有足够的 overflow 可见区域</li>
+                <li>默认等宽模式由 JS 自动初始化（测量面板宽度 → 设为容器 min-width），按钮 width:100% 撑满容器</li>
+                <li>自适应模式（.boblog-dropdown-auto）跳过 JS 初始化，按钮和面板各自独立宽度</li>
+                <li>面板使用 absolute 定位浮于内容之上，父容器需确保有足够的 overflow 可见区域</li>
             </ul>
         </div>
     </div>
