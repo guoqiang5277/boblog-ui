@@ -96,6 +96,7 @@ CSS_FILES=(
     "$SRC_DIR/components/tag-input.css"
     "$SRC_DIR/components/tree-select.css"
     "$SRC_DIR/components/dropdown.css"
+    "$SRC_DIR/components/upload-area.scss"
 
     # 布局层
     "$SRC_DIR/layout/grid.css"
@@ -215,6 +216,7 @@ JS_FILES=(
     "$SRC_DIR/js/tag-input.js"
     "$SRC_DIR/js/tree-select.js"
     "$SRC_DIR/js/dropdown.js"
+    "$SRC_DIR/js/upload-area.js"
 )
 
 JS_OUTPUT="$DIST_DIR/boblog-ui.js"

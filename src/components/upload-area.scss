@@ -1,0 +1,48 @@
+/**
+ * Bo-Blog UI 组件 - Upload Area 上传区域
+ *
+ * 可复用的拖拽/点击上传区域组件。
+ * 提供虚线边框容器、hover/拖拽状态反馈、文件类型图标、大小格式化等通用功能。
+ *
+ * 结构：
+ *   <div class="boblog-upload-area" data-file-input="#fileInput">
+ *       <div class="boblog-icon-upload">📁</div>
+ *       <div class="boblog-text-md">点击或拖拽文件到此处上传</div>
+ *       <div class="boblog-text-xs boblog-text-gray">支持多种格式</div>
+ *   </div>
+ *   <input type="file" id="fileInput" multiple hidden />
+ *
+ * 状态类：
+ *   .dragging — 文件拖入区域时的高亮状态（由 JS 自动切换）
+ *
+ * 依赖：
+ *   - boblog-ui.js 中的 BoblogUI.uploadArea 模块（自动初始化拖拽/点击交互）
+ *   - 或手动调用 BoblogUI.uploadArea.init(options) 配置回调
+ */
+
+/* ========== 上传区域容器 ========== */
+
+/* 虚线边框 + 浅蓝背景的上传区域
+   cursor:pointer 提示用户可点击，flex-shrink:0 防止在 flex 布局中被压缩 */
+.boblog-upload-area {
+    border: var(--boblog-border-width-thick, 2px) dashed var(--boblog-blue-accent, #0D80BD);
+    padding: var(--boblog-spacing-md, 15px) var(--boblog-spacing-lg, 20px);
+    text-align: center;
+    cursor: pointer;
+    transition: all var(--boblog-transition-normal, 150ms) var(--boblog-transition-timing, ease-in-out);
+    background: var(--boblog-bg-content, #F4FBFF);
+    flex-shrink: 0;
+}
+
+/* 鼠标悬停：边框加深、背景加深，给予视觉反馈 */
+.boblog-upload-area:hover {
+    border-color: var(--boblog-blue-light, #2E93C9);
+    background: var(--boblog-blue-pale, #E8F0F7);
+}
+
+/* 文件拖入区域时的高亮状态
+   背景进一步加深，明确提示"可以松手放下" */
+.boblog-upload-area.dragging {
+    border-color: var(--boblog-blue-light, #2E93C9);
+    background: var(--boblog-border-blue-lighter, #D3E7FC);
+}

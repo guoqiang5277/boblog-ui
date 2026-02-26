@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>上传区域 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-gray">
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+<div class="boblog-doc-container">
+    <div class="boblog-doc-nav">
+        <a href="../index.html">← 返回总纲</a>
+    </div>
+    <h1>上传区域 (Upload Area)</h1>
+
+    <!-- 1. 基础用法 -->
+    <div class="boblog-doc-section">
+        <h2 id="基础用法">基础用法</h2>
+        <p>虚线边框 + 浅蓝背景，支持点击选择文件和拖拽上传。鼠标悬停时背景变深，拖拽文件进入时进一步加深背景。</p>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>结构</strong>: .boblog-upload-area > .boblog-icon-upload + .boblog-text-md + .boblog-text-xs.boblog-text-gray</li>
+                <li><strong>边框</strong>: 2px dashed (--boblog-blue-accent)</li>
+                <li><strong>背景</strong>: --boblog-bg-content (#F4FBFF)</li>
+                <li><strong>hover 背景</strong>: --boblog-blue-pale (#E8F0F7)</li>
+                <li><strong>dragging 背景</strong>: --boblog-border-blue-lighter (#D3E7FC)</li>
+                <li><strong>关联输入框</strong>: 通过 <code>data-file-input</code> 属性指定选择器</li>
+            </ul>
+        </div>
+
+        <!-- 预览/关键源码/完整源码 Tab -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-upload-area" data-file-input="#demoFileInput">
+                        <div class="boblog-icon-upload">📁</div>
+                        <div class="boblog-text-md">点击或拖拽文件到此处上传</div>
+                        <div class="boblog-text-xs boblog-text-gray">支持图片、音频、视频、附件等多种格式</div>
+                    </div>
+                    <input type="file" id="demoFileInput" multiple hidden />
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-upload-area" data-file-input="#demoFileInput"&gt;
+    &lt;div class="boblog-icon-upload"&gt;📁&lt;/div&gt;
+    &lt;div class="boblog-text-md"&gt;点击或拖拽文件到此处上传&lt;/div&gt;
+    &lt;div class="boblog-text-xs boblog-text-gray"&gt;支持图片、音频、视频、附件等多种格式&lt;/div&gt;
+&lt;/div&gt;
+&lt;input type="file" id="demoFileInput" multiple hidden /&gt;
+
+&lt;script src="boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;上传区域示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="boblog-upload-area" data-file-input="#demoFileInput"&gt;
+        &lt;div class="boblog-icon-upload"&gt;📁&lt;/div&gt;
+        &lt;div class="boblog-text-md"&gt;点击或拖拽文件到此处上传&lt;/div&gt;
+        &lt;div class="boblog-text-xs boblog-text-gray"&gt;支持图片、音频、视频、附件等多种格式&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;input type="file" id="demoFileInput" multiple hidden /&gt;
+
+    &lt;script src="boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. JavaScript API -->
+    <div class="boblog-doc-section">
+        <h2 id="JS-API">JavaScript API</h2>
+
+        <div class="boblog-doc-spec">
+            <h3>1. 自动初始化</h3>
+            <p>页面加载后，<code>boblog-ui.js</code> 自动扫描所有 <code>.boblog-upload-area</code> 元素，绑定拖拽和点击事件。上传区域通过 <code>data-file-input</code> 属性指定关联的文件输入框选择器。</p>
+            <div class="boblog-codeblock">
+                <pre><code class="language-html">&lt;!-- data-file-input 指向关联的 input[type="file"] --&gt;
+&lt;div class="boblog-upload-area" data-file-input="#myFileInput"&gt;
+    &lt;div class="boblog-icon-upload"&gt;📁&lt;/div&gt;
+    &lt;div class="boblog-text-md"&gt;点击或拖拽文件到此处上传&lt;/div&gt;
+    &lt;div class="boblog-text-xs boblog-text-gray"&gt;支持多种格式&lt;/div&gt;
+&lt;/div&gt;
+&lt;input type="file" id="myFileInput" multiple hidden /&gt;</code></pre>
+            </div>
+        </div>
+
+        <div class="boblog-doc-spec">
+            <h3>2. 手动调用</h3>
+            <p>如需在动态生成的元素上初始化，或需要监听文件选择回调，可手动调用 API。</p>
+            <div class="boblog-codeblock">
+                <pre><code class="language-js">// 初始化上传区域
+BoblogUI.uploadArea.init({
+    uploadAreaEl: '#uploadArea',
+    fileInputEl: '#fileInput',
+    onFilesSelected: function(files) {
+        // 处理选中的文件
+    }
+});
+
+// 工具函数
+BoblogUI.uploadArea.formatFileSize(1024);        // "1 KB"
+BoblogUI.uploadArea.getFileIcon('image/png');     // "🖼️"
+BoblogUI.uploadArea.getFileIconByType('video');   // "🎬"
+
+// 消息提示
+var msgEl = document.getElementById('message');
+BoblogUI.uploadArea.showMessage(msgEl, '上传成功', 'success');
+
+// 列表容器显隐
+var listEl = document.getElementById('fileList');
+BoblogUI.uploadArea.updateListVisibility(listEl, true);</code></pre>
+            </div>
+        </div>
+
+        <div class="boblog-doc-spec">
+            <h3>3. 引入方式</h3>
+            <div class="boblog-codeblock">
+                <pre><code class="language-html">&lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;script src="boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="../../dist/boblog-ui.js"></script>
+</body>
+</html>

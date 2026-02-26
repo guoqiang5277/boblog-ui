@@ -45,6 +45,7 @@
 
 ## SCSS 编码规范
 
-1. **颜色、尺寸用 CSS 变量** — 颜色和尺寸值必须使用 CSS 自定义属性（`var(--boblog-xxx)`），不得硬编码
-2. **禁止 SCSS 变量和颜色函数** — 禁止使用 `$variable`、`darken()`、`lighten()` 等 SCSS 变量和颜色函数
-3. **其他 SCSS 特性随意用** — 嵌套、`&` 选择器、`@mixin`、`@include`、`@extend`、循环等均可自由使用
+1. **新增文件必须使用 .scss** — 新增的样式文件一律使用 `.scss` 扩展名，不能使用 `.css`。已有的 `.css` 文件保持不变。
+2. **颜色、尺寸用 CSS 变量** — 颜色和尺寸值必须使用 CSS 自定义属性（`var(--boblog-xxx)`），不得硬编码
+3. **禁止 SCSS 变量和颜色函数** — 禁止使用 `$variable`、`darken()`、`lighten()` 等 SCSS 变量和颜色函数
+4. **其他 SCSS 特性随意用** — 嵌套、`&` 选择器、`@mixin`、`@include`、`@extend`、循环等均可自由使用
