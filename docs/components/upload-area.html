@@ -92,7 +92,383 @@
         </div>
     </div>
 
-    <!-- 2. JavaScript API -->
+    <!-- 2. 尺寸变体 -->
+    <div class="boblog-doc-section">
+        <h2 id="尺寸变体">尺寸变体</h2>
+        <p>通过添加 <code>-h-sm</code> 或 <code>-h-xs</code> 修饰类缩小上传区域高度，适配不同布局场景。</p>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>默认</strong>: padding 15px 20px，图标 36px（独立上传页面）</li>
+                <li><strong>.boblog-upload-area-h-sm</strong>: padding 8px 12px，图标 24px，隐藏提示文字（表单内嵌）</li>
+                <li><strong>.boblog-upload-area-h-xs</strong>: padding 5px 10px，图标 18px，单行横排（紧凑布局）</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <!-- 默认尺寸 -->
+                    <p class="boblog-text-gray boblog-mb-1">默认</p>
+                    <div class="boblog-upload-area boblog-mb-2" data-file-input="#sizeDefault">
+                        <div class="boblog-icon-upload">📁</div>
+                        <div class="boblog-text-md">点击或拖拽文件到此处上传</div>
+                        <div class="boblog-text-xs boblog-text-gray">默认尺寸</div>
+                    </div>
+                    <input type="file" id="sizeDefault" multiple hidden />
+                    <!-- 小尺寸 -->
+                    <p class="boblog-text-gray boblog-mb-1">小尺寸 (-h-sm)</p>
+                    <div class="boblog-upload-area boblog-upload-area-h-sm boblog-mb-2" data-file-input="#sizeSm">
+                        <div class="boblog-icon-upload">📁</div>
+                        <div class="boblog-text-md">点击或拖拽文件到此处上传</div>
+                        <div class="boblog-text-xs boblog-text-gray">小尺寸，适合表单内嵌</div>
+                    </div>
+                    <input type="file" id="sizeSm" multiple hidden />
+                    <!-- 极小尺寸 -->
+                    <p class="boblog-text-gray boblog-mb-1">极小尺寸 (-h-xs)</p>
+                    <div class="boblog-upload-area boblog-upload-area-h-xs" data-file-input="#sizeXs">
+                        <div class="boblog-icon-upload">📁</div>
+                        <div class="boblog-text-md">点击或拖拽文件到此处上传</div>
+                        <div class="boblog-text-xs boblog-text-gray">极小尺寸，适合紧凑布局</div>
+                    </div>
+                    <input type="file" id="sizeXs" multiple hidden />
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 默认尺寸 --&gt;
+&lt;div class="boblog-upload-area" data-file-input="#sizeDefault"&gt;
+    &lt;div class="boblog-icon-upload"&gt;📁&lt;/div&gt;
+    &lt;div class="boblog-text-md"&gt;点击或拖拽文件到此处上传&lt;/div&gt;
+    &lt;div class="boblog-text-xs boblog-text-gray"&gt;默认尺寸&lt;/div&gt;
+&lt;/div&gt;
+&lt;input type="file" id="sizeDefault" multiple hidden /&gt;
+
+&lt;!-- 小尺寸 --&gt;
+&lt;div class="boblog-upload-area boblog-upload-area-h-sm" data-file-input="#sizeSm"&gt;
+    &lt;div class="boblog-icon-upload"&gt;📁&lt;/div&gt;
+    &lt;div class="boblog-text-md"&gt;点击或拖拽文件到此处上传&lt;/div&gt;
+    &lt;div class="boblog-text-xs boblog-text-gray"&gt;小尺寸，适合表单内嵌&lt;/div&gt;
+&lt;/div&gt;
+&lt;input type="file" id="sizeSm" multiple hidden /&gt;
+
+&lt;!-- 极小尺寸 --&gt;
+&lt;div class="boblog-upload-area boblog-upload-area-h-xs" data-file-input="#sizeXs"&gt;
+    &lt;div class="boblog-icon-upload"&gt;📁&lt;/div&gt;
+    &lt;div class="boblog-text-md"&gt;点击或拖拽文件到此处上传&lt;/div&gt;
+    &lt;div class="boblog-text-xs boblog-text-gray"&gt;极小尺寸，适合紧凑布局&lt;/div&gt;
+&lt;/div&gt;
+&lt;input type="file" id="sizeXs" multiple hidden /&gt;
+
+&lt;script src="boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;上传区域尺寸变体&lt;/title&gt;
+    &lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- 默认尺寸 --&gt;
+    &lt;div class="boblog-upload-area" data-file-input="#sizeDefault"&gt;
+        &lt;div class="boblog-icon-upload"&gt;📁&lt;/div&gt;
+        &lt;div class="boblog-text-md"&gt;点击或拖拽文件到此处上传&lt;/div&gt;
+        &lt;div class="boblog-text-xs boblog-text-gray"&gt;默认尺寸&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;input type="file" id="sizeDefault" multiple hidden /&gt;
+
+    &lt;!-- 小尺寸 --&gt;
+    &lt;div class="boblog-upload-area boblog-upload-area-h-sm" data-file-input="#sizeSm"&gt;
+        &lt;div class="boblog-icon-upload"&gt;📁&lt;/div&gt;
+        &lt;div class="boblog-text-md"&gt;点击或拖拽文件到此处上传&lt;/div&gt;
+        &lt;div class="boblog-text-xs boblog-text-gray"&gt;小尺寸，适合表单内嵌&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;input type="file" id="sizeSm" multiple hidden /&gt;
+
+    &lt;!-- 极小尺寸 --&gt;
+    &lt;div class="boblog-upload-area boblog-upload-area-h-xs" data-file-input="#sizeXs"&gt;
+        &lt;div class="boblog-icon-upload"&gt;📁&lt;/div&gt;
+        &lt;div class="boblog-text-md"&gt;点击或拖拽文件到此处上传&lt;/div&gt;
+        &lt;div class="boblog-text-xs boblog-text-gray"&gt;极小尺寸，适合紧凑布局&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;input type="file" id="sizeXs" multiple hidden /&gt;
+
+    &lt;script src="boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. 宽度变体 -->
+    <div class="boblog-doc-section">
+        <h2 id="宽度变体">宽度变体</h2>
+        <p>通过添加 <code>-w-full</code>、<code>-w-md</code>、<code>-w-sm</code> 修饰类控制上传区域宽度。可与高度变体（<code>-h-sm</code>/<code>-h-xs</code>）组合使用。</p>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>默认</strong>: width:auto（撑满父容器）</li>
+                <li><strong>.boblog-upload-area-w-full</strong>: width:100%（显式撑满，用于 flex/grid 子元素）</li>
+                <li><strong>.boblog-upload-area-w-md</strong>: max-width:400px（中等宽度，适合表单内嵌）</li>
+                <li><strong>.boblog-upload-area-w-sm</strong>: max-width:250px（较窄，适合侧栏或紧凑区域）</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <!-- 默认宽度 -->
+                    <p class="boblog-text-gray boblog-mb-1">默认 (auto)</p>
+                    <div class="boblog-upload-area boblog-upload-area-h-sm boblog-mb-2" data-file-input="#widthDefault">
+                        <div class="boblog-icon-upload">📁</div>
+                        <div class="boblog-text-md">点击或拖拽文件到此处上传</div>
+                        <div class="boblog-text-xs boblog-text-gray">默认宽度</div>
+                    </div>
+                    <input type="file" id="widthDefault" multiple hidden />
+                    <!-- 中等宽度 -->
+                    <p class="boblog-text-gray boblog-mb-1">中等宽度 (-w-md) max-width:400px</p>
+                    <div class="boblog-upload-area boblog-upload-area-h-sm boblog-upload-area-w-md boblog-mb-2" data-file-input="#widthMd">
+                        <div class="boblog-icon-upload">📁</div>
+                        <div class="boblog-text-md">点击或拖拽文件到此处上传</div>
+                        <div class="boblog-text-xs boblog-text-gray">中等宽度</div>
+                    </div>
+                    <input type="file" id="widthMd" multiple hidden />
+                    <!-- 较窄宽度 -->
+                    <p class="boblog-text-gray boblog-mb-1">较窄宽度 (-w-sm) max-width:250px</p>
+                    <div class="boblog-upload-area boblog-upload-area-h-sm boblog-upload-area-w-sm" data-file-input="#widthSm">
+                        <div class="boblog-icon-upload">📁</div>
+                        <div class="boblog-text-md">点击或拖拽文件到此处上传</div>
+                        <div class="boblog-text-xs boblog-text-gray">较窄宽度</div>
+                    </div>
+                    <input type="file" id="widthSm" multiple hidden />
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 默认宽度 --&gt;
+&lt;div class="boblog-upload-area" data-file-input="#widthDefault"&gt;
+    &lt;div class="boblog-icon-upload"&gt;📁&lt;/div&gt;
+    &lt;div class="boblog-text-md"&gt;点击或拖拽文件到此处上传&lt;/div&gt;
+&lt;/div&gt;
+&lt;input type="file" id="widthDefault" multiple hidden /&gt;
+
+&lt;!-- 中等宽度 --&gt;
+&lt;div class="boblog-upload-area boblog-upload-area-w-md" data-file-input="#widthMd"&gt;
+    &lt;div class="boblog-icon-upload"&gt;📁&lt;/div&gt;
+    &lt;div class="boblog-text-md"&gt;点击或拖拽文件到此处上传&lt;/div&gt;
+&lt;/div&gt;
+&lt;input type="file" id="widthMd" multiple hidden /&gt;
+
+&lt;!-- 较窄宽度 --&gt;
+&lt;div class="boblog-upload-area boblog-upload-area-w-sm" data-file-input="#widthSm"&gt;
+    &lt;div class="boblog-icon-upload"&gt;📁&lt;/div&gt;
+    &lt;div class="boblog-text-md"&gt;点击或拖拽文件到此处上传&lt;/div&gt;
+&lt;/div&gt;
+&lt;input type="file" id="widthSm" multiple hidden /&gt;
+
+&lt;script src="boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;上传区域宽度变体&lt;/title&gt;
+    &lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- 默认宽度 --&gt;
+    &lt;div class="boblog-upload-area" data-file-input="#widthDefault"&gt;
+        &lt;div class="boblog-icon-upload"&gt;📁&lt;/div&gt;
+        &lt;div class="boblog-text-md"&gt;点击或拖拽文件到此处上传&lt;/div&gt;
+        &lt;div class="boblog-text-xs boblog-text-gray"&gt;默认宽度&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;input type="file" id="widthDefault" multiple hidden /&gt;
+
+    &lt;!-- 中等宽度 --&gt;
+    &lt;div class="boblog-upload-area boblog-upload-area-w-md" data-file-input="#widthMd"&gt;
+        &lt;div class="boblog-icon-upload"&gt;📁&lt;/div&gt;
+        &lt;div class="boblog-text-md"&gt;点击或拖拽文件到此处上传&lt;/div&gt;
+        &lt;div class="boblog-text-xs boblog-text-gray"&gt;中等宽度&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;input type="file" id="widthMd" multiple hidden /&gt;
+
+    &lt;!-- 较窄宽度 --&gt;
+    &lt;div class="boblog-upload-area boblog-upload-area-w-sm" data-file-input="#widthSm"&gt;
+        &lt;div class="boblog-icon-upload"&gt;📁&lt;/div&gt;
+        &lt;div class="boblog-text-md"&gt;点击或拖拽文件到此处上传&lt;/div&gt;
+        &lt;div class="boblog-text-xs boblog-text-gray"&gt;较窄宽度&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;input type="file" id="widthSm" multiple hidden /&gt;
+
+    &lt;script src="boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4. 组合使用 -->
+    <div class="boblog-doc-section">
+        <h2 id="组合使用">组合使用</h2>
+        <p>高度变体（<code>-h-sm</code>/<code>-h-xs</code>）和宽度变体（<code>-w-md</code>/<code>-w-sm</code>）可自由叠加，组合出不同尺寸的上传区域。</p>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <!-- 小高度 + 中等宽度 -->
+                    <p class="boblog-text-gray boblog-mb-1">-h-sm + -w-md</p>
+                    <div class="boblog-upload-area boblog-upload-area-h-sm boblog-upload-area-w-md boblog-mb-2" data-file-input="#comboSmMd">
+                        <div class="boblog-icon-upload">📁</div>
+                        <div class="boblog-text-md">点击或拖拽文件到此处上传</div>
+                        <div class="boblog-text-xs boblog-text-gray">小高度 + 中等宽度</div>
+                    </div>
+                    <input type="file" id="comboSmMd" multiple hidden />
+                    <!-- 小高度 + 较窄宽度 -->
+                    <p class="boblog-text-gray boblog-mb-1">-h-sm + -w-sm</p>
+                    <div class="boblog-upload-area boblog-upload-area-h-sm boblog-upload-area-w-sm boblog-mb-2" data-file-input="#comboSmSm">
+                        <div class="boblog-icon-upload">📁</div>
+                        <div class="boblog-text-md">点击或拖拽文件到此处上传</div>
+                        <div class="boblog-text-xs boblog-text-gray">小高度 + 较窄宽度</div>
+                    </div>
+                    <input type="file" id="comboSmSm" multiple hidden />
+                    <!-- 极小高度 + 中等宽度 -->
+                    <p class="boblog-text-gray boblog-mb-1">-h-xs + -w-md</p>
+                    <div class="boblog-upload-area boblog-upload-area-h-xs boblog-upload-area-w-md boblog-mb-2" data-file-input="#comboXsMd">
+                        <div class="boblog-icon-upload">📁</div>
+                        <div class="boblog-text-md">点击或拖拽文件到此处上传</div>
+                        <div class="boblog-text-xs boblog-text-gray">极小高度 + 中等宽度</div>
+                    </div>
+                    <input type="file" id="comboXsMd" multiple hidden />
+                    <!-- 极小高度 + 较窄宽度 -->
+                    <p class="boblog-text-gray boblog-mb-1">-h-xs + -w-sm</p>
+                    <div class="boblog-upload-area boblog-upload-area-h-xs boblog-upload-area-w-sm" data-file-input="#comboXsSm">
+                        <div class="boblog-icon-upload">📁</div>
+                        <div class="boblog-text-md">点击或拖拽文件到此处上传</div>
+                        <div class="boblog-text-xs boblog-text-gray">极小高度 + 较窄宽度</div>
+                    </div>
+                    <input type="file" id="comboXsSm" multiple hidden />
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 小高度 + 中等宽度 --&gt;
+&lt;div class="boblog-upload-area boblog-upload-area-h-sm boblog-upload-area-w-md" data-file-input="#comboSmMd"&gt;
+    &lt;div class="boblog-icon-upload"&gt;📁&lt;/div&gt;
+    &lt;div class="boblog-text-md"&gt;点击或拖拽文件到此处上传&lt;/div&gt;
+&lt;/div&gt;
+&lt;input type="file" id="comboSmMd" multiple hidden /&gt;
+
+&lt;!-- 小高度 + 较窄宽度 --&gt;
+&lt;div class="boblog-upload-area boblog-upload-area-h-sm boblog-upload-area-w-sm" data-file-input="#comboSmSm"&gt;
+    &lt;div class="boblog-icon-upload"&gt;📁&lt;/div&gt;
+    &lt;div class="boblog-text-md"&gt;点击或拖拽文件到此处上传&lt;/div&gt;
+&lt;/div&gt;
+&lt;input type="file" id="comboSmSm" multiple hidden /&gt;
+
+&lt;!-- 极小高度 + 中等宽度 --&gt;
+&lt;div class="boblog-upload-area boblog-upload-area-h-xs boblog-upload-area-w-md" data-file-input="#comboXsMd"&gt;
+    &lt;div class="boblog-icon-upload"&gt;📁&lt;/div&gt;
+    &lt;div class="boblog-text-md"&gt;点击或拖拽文件到此处上传&lt;/div&gt;
+&lt;/div&gt;
+&lt;input type="file" id="comboXsMd" multiple hidden /&gt;
+
+&lt;!-- 极小高度 + 较窄宽度 --&gt;
+&lt;div class="boblog-upload-area boblog-upload-area-h-xs boblog-upload-area-w-sm" data-file-input="#comboXsSm"&gt;
+    &lt;div class="boblog-icon-upload"&gt;📁&lt;/div&gt;
+    &lt;div class="boblog-text-md"&gt;点击或拖拽文件到此处上传&lt;/div&gt;
+&lt;/div&gt;
+&lt;input type="file" id="comboXsSm" multiple hidden /&gt;
+
+&lt;script src="boblog-ui.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;上传区域组合使用&lt;/title&gt;
+    &lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- 小高度 + 中等宽度 --&gt;
+    &lt;div class="boblog-upload-area boblog-upload-area-h-sm boblog-upload-area-w-md" data-file-input="#comboSmMd"&gt;
+        &lt;div class="boblog-icon-upload"&gt;📁&lt;/div&gt;
+        &lt;div class="boblog-text-md"&gt;点击或拖拽文件到此处上传&lt;/div&gt;
+        &lt;div class="boblog-text-xs boblog-text-gray"&gt;小高度 + 中等宽度&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;input type="file" id="comboSmMd" multiple hidden /&gt;
+
+    &lt;!-- 小高度 + 较窄宽度 --&gt;
+    &lt;div class="boblog-upload-area boblog-upload-area-h-sm boblog-upload-area-w-sm" data-file-input="#comboSmSm"&gt;
+        &lt;div class="boblog-icon-upload"&gt;📁&lt;/div&gt;
+        &lt;div class="boblog-text-md"&gt;点击或拖拽文件到此处上传&lt;/div&gt;
+        &lt;div class="boblog-text-xs boblog-text-gray"&gt;小高度 + 较窄宽度&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;input type="file" id="comboSmSm" multiple hidden /&gt;
+
+    &lt;!-- 极小高度 + 中等宽度 --&gt;
+    &lt;div class="boblog-upload-area boblog-upload-area-h-xs boblog-upload-area-w-md" data-file-input="#comboXsMd"&gt;
+        &lt;div class="boblog-icon-upload"&gt;📁&lt;/div&gt;
+        &lt;div class="boblog-text-md"&gt;点击或拖拽文件到此处上传&lt;/div&gt;
+        &lt;div class="boblog-text-xs boblog-text-gray"&gt;极小高度 + 中等宽度&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;input type="file" id="comboXsMd" multiple hidden /&gt;
+
+    &lt;!-- 极小高度 + 较窄宽度 --&gt;
+    &lt;div class="boblog-upload-area boblog-upload-area-h-xs boblog-upload-area-w-sm" data-file-input="#comboXsSm"&gt;
+        &lt;div class="boblog-icon-upload"&gt;📁&lt;/div&gt;
+        &lt;div class="boblog-text-md"&gt;点击或拖拽文件到此处上传&lt;/div&gt;
+        &lt;div class="boblog-text-xs boblog-text-gray"&gt;极小高度 + 较窄宽度&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;input type="file" id="comboXsSm" multiple hidden /&gt;
+
+    &lt;script src="boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. JavaScript API -->
     <div class="boblog-doc-section">
         <h2 id="JS-API">JavaScript API</h2>
 

@@ -12,6 +12,17 @@
  *   </div>
  *   <input type="file" id="fileInput" multiple hidden />
  *
+ * 尺寸变体（高度维度）：
+ *   默认      — padding 15px 20px，图标 36px（适合独立上传页面）
+ *   .boblog-upload-area-h-sm — padding 8px 12px，图标 24px，隐藏提示文字（适合表单内嵌）
+ *   .boblog-upload-area-h-xs — padding 5px 10px，图标 18px，单行紧凑（适合紧凑布局）
+ *
+ * 宽度变体：
+ *   默认      — width:auto（撑满父容器）
+ *   .boblog-upload-area-w-full  — width:100%（显式撑满，用于 flex/grid 子元素）
+ *   .boblog-upload-area-w-md    — max-width:400px（中等宽度，适合表单内嵌）
+ *   .boblog-upload-area-w-sm    — max-width:250px（较窄，适合侧栏或紧凑区域）
+ *
  * 状态类：
  *   .dragging — 文件拖入区域时的高亮状态（由 JS 自动切换）
  *
@@ -32,17 +43,84 @@
     transition: all var(--boblog-transition-normal, 150ms) var(--boblog-transition-timing, ease-in-out);
     background: var(--boblog-bg-content, #F4FBFF);
     flex-shrink: 0;
+
+    /* 鼠标悬停：边框加深、背景加深，给予视觉反馈 */
+    &:hover {
+        border-color: var(--boblog-blue-light, #2E93C9);
+        background: var(--boblog-blue-pale, #E8F0F7);
+    }
+
+    /* 文件拖入区域时的高亮状态
+       背景进一步加深，明确提示"可以松手放下" */
+    &.dragging {
+        border-color: var(--boblog-blue-light, #2E93C9);
+        background: var(--boblog-border-blue-lighter, #D3E7FC);
+    }
 }
 
-/* 鼠标悬停：边框加深、背景加深，给予视觉反馈 */
-.boblog-upload-area:hover {
-    border-color: var(--boblog-blue-light, #2E93C9);
-    background: var(--boblog-blue-pale, #E8F0F7);
+/* ========== 尺寸变体 ========== */
+
+/* 小尺寸 — 适合表单内嵌场景
+   缩小内边距和图标，隐藏提示文字 */
+.boblog-upload-area-h-sm {
+    padding: 8px 12px;
+
+    /* 图标缩小到 24px，减少下方间距 */
+    .boblog-icon-upload {
+        font-size: 24px;
+        margin-bottom: 4px;
+    }
+
+    /* 主文字缩小到 12px */
+    .boblog-text-md {
+        font-size: var(--boblog-font-size-base, 12px);
+    }
+
+    /* 隐藏提示文字，减少垂直高度 */
+    .boblog-text-xs {
+        display: none;
+    }
 }
 
-/* 文件拖入区域时的高亮状态
-   背景进一步加深，明确提示"可以松手放下" */
-.boblog-upload-area.dragging {
-    border-color: var(--boblog-blue-light, #2E93C9);
-    background: var(--boblog-border-blue-lighter, #D3E7FC);
+/* 极小尺寸 — 适合紧凑布局
+   单行显示：图标和文字横排 */
+.boblog-upload-area-h-xs {
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--boblog-spacing-xs, 5px);
+
+    /* 图标缩小到 18px，取消下方间距 */
+    .boblog-icon-upload {
+        font-size: 18px;
+        margin-bottom: 0;
+    }
+
+    /* 主文字缩小到 11px */
+    .boblog-text-md {
+        font-size: var(--boblog-font-size-xs, 11px);
+    }
+
+    /* 隐藏提示文字 */
+    .boblog-text-xs {
+        display: none;
+    }
+}
+
+/* ========== 宽度变体 ========== */
+
+/* 显式撑满 — 用于 flex/grid 子元素，确保占满容器宽度 */
+.boblog-upload-area-w-full {
+    width: 100%;
+}
+
+/* 中等宽度 — 适合表单内嵌场景，限制最大宽度为 400px */
+.boblog-upload-area-w-md {
+    max-width: 400px;
+}
+
+/* 较窄宽度 — 适合侧栏或紧凑区域，限制最大宽度为 250px */
+.boblog-upload-area-w-sm {
+    max-width: 250px;
 }
