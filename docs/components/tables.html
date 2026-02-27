@@ -2931,6 +2931,107 @@
         </div>
     </div>
 
+    <!-- ====== 设置表格 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="设置表格">设置表格 (.boblog-table-setting)</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>用途</strong>: 后台设置页面的三列布局表格（标签列 + 控件列 + 说明列）</li>
+                <li><strong>边框</strong>: 所有单元格带边框，使用 --boblog-border-light</li>
+                <li><strong>分区标题行</strong>: <code>.boblog-table-setting-header</code>，跨三列合并，蓝色背景</li>
+                <li><strong>标签列</strong>: 建议固定宽度 120px，font-weight:600，white-space:nowrap</li>
+                <li><strong>控件列</strong>: 建议固定宽度 260px，放置 input / select / checkbox 等控件</li>
+                <li><strong>说明列</strong>: 自动撑满剩余宽度，使用 .boblog-text-gray + small 标签</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <table class="boblog-table-setting">
+                        <tr class="boblog-table-setting-header"><td colspan="3">输出控制</td></tr>
+                        <tr>
+                            <td style="width:120px; white-space:nowrap; font-weight:600; font-size:12px;">日志总开关</td>
+                            <td style="width:260px;"><label class="boblog-checkbox"><input class="boblog-checkbox-input" type="checkbox" checked /><span class="boblog-checkbox-label">启用</span></label></td>
+                            <td><small class="boblog-text-gray" style="font-size:11px;">关闭后所有日志输出均停止</small></td>
+                        </tr>
+                        <tr>
+                            <td style="white-space:nowrap; font-weight:600; font-size:12px;">控制台输出</td>
+                            <td><label class="boblog-checkbox"><input class="boblog-checkbox-input" type="checkbox" /><span class="boblog-checkbox-label">启用</span></label></td>
+                            <td><small class="boblog-text-gray" style="font-size:11px;">输出到控制台（Console.WriteLine）</small></td>
+                        </tr>
+                        <tr class="boblog-table-setting-header"><td colspan="3">日志等级</td></tr>
+                        <tr>
+                            <td style="white-space:nowrap; font-weight:600; font-size:12px;">最小输出等级</td>
+                            <td><div class="boblog-select" style="display:inline-block;"><select style="width:240px;"><option>KernInfo - 信息</option></select></div></td>
+                            <td><small class="boblog-text-gray" style="font-size:11px;">低于此等级的日志将被过滤</small></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!-- 关键源码面板：展示核心结构（table + 分区标题行 + 普通行各一个） -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 设置表格：三列布局（标签列 + 控件列 + 说明列） --&gt;
+&lt;table class="boblog-table-setting"&gt;
+    &lt;!-- 分区标题行：跨三列合并，蓝色背景 --&gt;
+    &lt;tr class="boblog-table-setting-header"&gt;&lt;td colspan="3"&gt;输出控制&lt;/td&gt;&lt;/tr&gt;
+    &lt;!-- 普通设置行：标签列 + 控件列 + 说明列 --&gt;
+    &lt;tr&gt;
+        &lt;td style="width:120px; white-space:nowrap; font-weight:600; font-size:12px;"&gt;日志总开关&lt;/td&gt;
+        &lt;td style="width:260px;"&gt;&lt;label class="boblog-checkbox"&gt;&lt;input class="boblog-checkbox-input" type="checkbox" checked /&gt;&lt;span class="boblog-checkbox-label"&gt;启用&lt;/span&gt;&lt;/label&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;small class="boblog-text-gray" style="font-size:11px;"&gt;关闭后所有日志输出均停止&lt;/small&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板：与预览面板 100% 一致 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;设置表格示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;table class="boblog-table-setting"&gt;
+    &lt;tr class="boblog-table-setting-header"&gt;&lt;td colspan="3"&gt;输出控制&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td style="width:120px; white-space:nowrap; font-weight:600; font-size:12px;"&gt;日志总开关&lt;/td&gt;
+        &lt;td style="width:260px;"&gt;&lt;label class="boblog-checkbox"&gt;&lt;input class="boblog-checkbox-input" type="checkbox" checked /&gt;&lt;span class="boblog-checkbox-label"&gt;启用&lt;/span&gt;&lt;/label&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;small class="boblog-text-gray" style="font-size:11px;"&gt;关闭后所有日志输出均停止&lt;/small&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td style="white-space:nowrap; font-weight:600; font-size:12px;"&gt;控制台输出&lt;/td&gt;
+        &lt;td&gt;&lt;label class="boblog-checkbox"&gt;&lt;input class="boblog-checkbox-input" type="checkbox" /&gt;&lt;span class="boblog-checkbox-label"&gt;启用&lt;/span&gt;&lt;/label&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;small class="boblog-text-gray" style="font-size:11px;"&gt;输出到控制台（Console.WriteLine）&lt;/small&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr class="boblog-table-setting-header"&gt;&lt;td colspan="3"&gt;日志等级&lt;/td&gt;&lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td style="white-space:nowrap; font-weight:600; font-size:12px;"&gt;最小输出等级&lt;/td&gt;
+        &lt;td&gt;&lt;div class="boblog-select" style="display:inline-block;"&gt;&lt;select style="width:240px;"&gt;&lt;option&gt;KernInfo - 信息&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;/td&gt;
+        &lt;td&gt;&lt;small class="boblog-text-gray" style="font-size:11px;"&gt;低于此等级的日志将被过滤&lt;/small&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- ====== JavaScript API ====== -->
     <div class="boblog-doc-section">
         <h2 id="JS-API">JavaScript API</h2>

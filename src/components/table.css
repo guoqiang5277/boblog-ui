@@ -19,6 +19,8 @@
  *   - .boblog-table-form           — 表单表格（帝国CMS后台风格）
  *   - .boblog-table-fixed          — 固定列宽表格
  *   - .boblog-table-striped-columns — 列斑马纹表格
+ *   - .boblog-table-setting        — 设置表格（带全边框 + 分区标题行）
+ *   - .boblog-table-setting-header — 设置表格分区标题行
  *
  * 表头颜色变体：
  *   - .boblog-thead-dark           — 深色表头
@@ -441,4 +443,33 @@
 /* 默认 caption 在表格底部，此类将其移到顶部 */
 .boblog-caption-top {
   caption-side: top;
+}
+
+/* ========== 设置表格（带全边框） ========== */
+/* 用于后台设置页面的三列表格布局（标签列 + 控件列 + 说明列）  */
+/* 所有单元格带边框，分区标题行蓝色高亮                        */
+/* 与 .boblog-table-form 的区别：table-form 无边框极紧凑，     */
+/* 而 table-setting 带全边框、有分区标题行                     */
+.boblog-table-setting {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: var(--boblog-font-size-sm);           /* 12px */
+}
+
+/* 设置表格单元格：全边框 + 白底 */
+.boblog-table-setting td {
+  border: 1px solid var(--boblog-border-blue-light); /* 浅蓝边框 */
+  padding: 6px 10px;
+  vertical-align: middle;
+  background: #fff;
+}
+
+/* 设置表格分区标题行：蓝色背景 + 加粗 + 字距 */
+/* 用法：<tr class="boblog-table-setting-header"><td colspan="3">分区标题</td></tr> */
+.boblog-table-setting .boblog-table-setting-header td {
+  background: var(--boblog-bg-content);              /* 内容区背景 */
+  font-weight: 600;
+  font-size: var(--boblog-font-size-sm);             /* 12px */
+  color: var(--boblog-blue-primary);                 /* 品牌蓝文字 */
+  letter-spacing: 1pt;                               /* 字距加宽 */
 }
