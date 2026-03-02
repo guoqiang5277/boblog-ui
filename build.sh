@@ -97,6 +97,7 @@ CSS_FILES=(
     "$SRC_DIR/components/tree-select.css"
     "$SRC_DIR/components/dropdown.css"
     "$SRC_DIR/components/upload-area.scss"
+    "$SRC_DIR/components/category-tree-selector.scss"
 
     # 布局层
     "$SRC_DIR/layout/grid.css"

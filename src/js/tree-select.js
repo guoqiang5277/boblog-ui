@@ -21,7 +21,8 @@
  *
  * DOM 结构要求（container 内部）：
  *   .boblog-tree-select-display     — 显示框
- *     第一个文字元素（显示选中名称）
+ *     [data-display-name]           — 显示选中名称的元素
+ *     [data-display-path]           — 显示选中路径的元素（可选，showPath=true 时使用）
  *     .boblog-tree-select-arrow     — 下拉箭头
  *   .boblog-tree-select-dropdown    — 下拉面板
  *     .boblog-tree-select-search    — 搜索框区域
@@ -46,6 +47,7 @@ const BoblogTreeSelect = {
      * @param {Function} config.isSelectable - 节点是否可选 function(flatNode) → boolean（可选）
      * @param {string} config.placeholder - 未选中时显示的占位文字（可选，默认 '请选择'）
      * @param {string} config.emptyOptionText - 空选项文字（可选，默认 null 不显示空选项）
+     * @param {boolean} config.showPath - 选中后是否在显示框显示完整路径（可选，默认 false）
      * @returns {Object} 实例对象
      */
     create(config) {
@@ -62,6 +64,8 @@ const BoblogTreeSelect = {
             : function(node) { return !node.hasChildren; };
         instance.placeholder = config.placeholder || '请选择';
         instance.emptyOptionText = config.emptyOptionText || null;
+        /* 选中后是否在显示框下方显示完整路径 */
+        instance.showPath = config.showPath || false;
 
         /* 内部状态 */
         instance.flatNodes = [];
@@ -382,6 +386,18 @@ const BoblogTreeSelect = {
                 nameEl.textContent = name || this.placeholder;
             }
 
+            /* 更新路径显示 */
+            var pathEl = this.display.querySelector('[data-display-path]');
+            if (pathEl) {
+                if (this.showPath && id !== null && path && path !== name) {
+                    pathEl.textContent = path;
+                    pathEl.style.display = '';
+                } else {
+                    pathEl.textContent = '';
+                    pathEl.style.display = 'none';
+                }
+            }
+
             /* 更新选中样式 */
             this.listContainer.querySelectorAll('.boblog-tree-select-item').forEach(function(item) {
                 item.classList.remove('selected');
@@ -401,6 +417,12 @@ const BoblogTreeSelect = {
                     var nameEl = this.display.querySelector('[data-display-name]');
                     if (nameEl) {
                         nameEl.textContent = node.name;
+                    }
+                    /* 初始化路径显示 */
+                    var pathEl = this.display.querySelector('[data-display-path]');
+                    if (pathEl && this.showPath && node.parentPath) {
+                        pathEl.textContent = node.fullPath;
+                        pathEl.style.display = '';
                     }
                 }
             }

@@ -284,3 +284,53 @@
 .boblog-clear-minh {
     min-height: 0 !important;
 }
+
+/* ========== 宽度工具类（百分比） ========== */
+/* 数字后缀 = 百分比值，5% 递增；auto = 浏览器默认；unset = 取消属性 */
+.boblog-w-auto  { width: auto !important; }
+.boblog-w-unset { width: unset !important; }
+.boblog-w-5  { width: 5% !important; }
+.boblog-w-10 { width: 10% !important; }
+.boblog-w-15 { width: 15% !important; }
+.boblog-w-20 { width: 20% !important; }
+.boblog-w-25 { width: 25% !important; }
+.boblog-w-30 { width: 30% !important; }
+.boblog-w-35 { width: 35% !important; }
+.boblog-w-40 { width: 40% !important; }
+.boblog-w-45 { width: 45% !important; }
+.boblog-w-50 { width: 50% !important; }
+.boblog-w-55 { width: 55% !important; }
+.boblog-w-60 { width: 60% !important; }
+.boblog-w-65 { width: 65% !important; }
+.boblog-w-70 { width: 70% !important; }
+.boblog-w-75 { width: 75% !important; }
+.boblog-w-80 { width: 80% !important; }
+.boblog-w-85 { width: 85% !important; }
+.boblog-w-90 { width: 90% !important; }
+.boblog-w-95 { width: 95% !important; }
+.boblog-w-100 { width: 100% !important; }
+
+/* ========== 高度工具类（百分比） ========== */
+/* 数字后缀 = 百分比值，5% 递增；auto = 浏览器默认；unset = 取消属性 */
+.boblog-h-auto  { height: auto !important; }
+.boblog-h-unset { height: unset !important; }
+.boblog-h-5  { height: 5% !important; }
+.boblog-h-10 { height: 10% !important; }
+.boblog-h-15 { height: 15% !important; }
+.boblog-h-20 { height: 20% !important; }
+.boblog-h-25 { height: 25% !important; }
+.boblog-h-30 { height: 30% !important; }
+.boblog-h-35 { height: 35% !important; }
+.boblog-h-40 { height: 40% !important; }
+.boblog-h-45 { height: 45% !important; }
+.boblog-h-50 { height: 50% !important; }
+.boblog-h-55 { height: 55% !important; }
+.boblog-h-60 { height: 60% !important; }
+.boblog-h-65 { height: 65% !important; }
+.boblog-h-70 { height: 70% !important; }
+.boblog-h-75 { height: 75% !important; }
+.boblog-h-80 { height: 80% !important; }
+.boblog-h-85 { height: 85% !important; }
+.boblog-h-90 { height: 90% !important; }
+.boblog-h-95 { height: 95% !important; }
+.boblog-h-100 { height: 100% !important; }

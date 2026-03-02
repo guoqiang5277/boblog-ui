@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>分类树形选择器 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-gray">
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+<div class="boblog-doc-container">
+    <div class="boblog-doc-nav">
+        <a href="../index.html">← 返回总纲</a>
+    </div>
+    <h1>分类树形选择器 (Category Tree Selector)</h1>
+
+    <!-- 概述 -->
+    <div class="boblog-doc-section">
+        <h2 id="概述">概述</h2>
+        <div class="boblog-doc-spec">
+            <p>后台管理系统中用于选择文章分类的交互组件。提供下拉树形选择器，替代传统的下拉列表。</p>
+            <ul>
+                <li><strong>树形展示</strong>：以层级结构显示所有分类，直观展示父子关系，最多支持4级嵌套</li>
+                <li><strong>路径显示</strong>：选中分类后显示完整的分类路径（如：技术 > 前端 > Vue）</li>
+                <li><strong>搜索过滤</strong>：支持按名称、别名、描述搜索，支持拼音搜索</li>
+                <li><strong>折叠展开</strong>：可折叠/展开有子分类的节点</li>
+                <li><strong>快速新建</strong>：可直接在选择器中新建分类（内置弹窗）</li>
+                <li><strong>单选模式</strong>：选中后自动关闭下拉面板</li>
+            </ul>
+            <p><strong>依赖</strong>：</p>
+            <ul>
+                <li><code>BoblogTreeSelect</code>（<code>tree-select.js</code>）通用树形选择器</li>
+                <li><code>BoblogUI.pinyin</code> 拼音搜索模块</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 基础预览 -->
+    <div class="boblog-doc-section">
+        <h2 id="基础预览">基础预览</h2>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-flex" style="align-items:center; gap:12px;">
+                    <div id="demoCategorySelector" class="boblog-tree-select" style="width:320px;">
+                        <!-- 显示框 -->
+                        <div id="demoCategoryDisplay" class="boblog-tree-select-display boblog-input">
+                            <div class="boblog-tree-select-info">
+                                <span class="boblog-tree-select-name" id="demoCategoryName" data-display-name="请选择分类">请选择分类</span>
+                                <span class="boblog-tree-select-path" id="demoCategoryPath" data-display-path="" style="display:none;"></span>
+                            </div>
+                            <span class="boblog-tree-select-arrow"></span>
+                        </div>
+                        <!-- 下拉面板（默认展开以便预览） -->
+                        <div id="demoCategoryPanel" class="boblog-tree-select-dropdown">
+                            <!-- 搜索框 + 新建按钮 -->
+                            <div class="boblog-tree-select-search">
+                                <div class="boblog-flex" style="gap:8px;">
+                                    <input type="text" class="boblog-input" id="demoCategorySearch" placeholder="搜索分类名称..." autocomplete="off">
+                                    <button type="button" class="boblog-btn boblog-btn-sm boblog-btn-primary" id="demoBtnCreateCategory" title="新建分类">+</button>
+                                </div>
+                            </div>
+                            <!-- 树节点列表 -->
+                            <div class="boblog-tree-select-list">
+                                <!-- "不选择分类"选项 -->
+                                <div class="boblog-tree-select-item no-category" data-id="" data-name="不选择分类" data-path="">
+                                    <span class="tree-item-toggle invisible"></span>
+                                    <div class="tree-item-content">
+                                        <div class="tree-item-header">
+                                            <span class="boblog-tree-select-name">— 不选择分类 —</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 技术（目录型，有子节点） -->
+                                <div class="boblog-tree-select-item directory-type" data-id="1" data-name="技术" data-path="技术" data-has-children="1">
+                                    <span class="tree-item-toggle" data-for="children-1">&#9660;</span>
+                                    <div class="tree-item-content">
+                                        <div class="tree-item-header">
+                                            <span class="boblog-tree-select-name">技术</span>
+                                            <span class="boblog-tree-select-slug">tech</span>
+                                            <span class="boblog-tree-select-count">0</span>
+                                            <span class="tree-item-type-badge type-directory">目录</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 前端（level 1，final 型） -->
+                                <div class="boblog-tree-select-item" data-level="1" data-id="2" data-name="前端" data-path="技术 > 前端" data-parent-group="children-1">
+                                    <span class="tree-item-toggle invisible"></span>
+                                    <div class="tree-item-content">
+                                        <div class="tree-item-header">
+                                            <span class="boblog-tree-select-name">前端</span>
+                                            <span class="boblog-tree-select-slug">frontend</span>
+                                            <span class="boblog-tree-select-count has-articles">12</span>
+                                            <span class="tree-item-type-badge type-final">归档</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 后端（level 1，final 型） -->
+                                <div class="boblog-tree-select-item" data-level="1" data-id="3" data-name="后端" data-path="技术 > 后端" data-parent-group="children-1">
+                                    <span class="tree-item-toggle invisible"></span>
+                                    <div class="tree-item-content">
+                                        <div class="tree-item-header">
+                                            <span class="boblog-tree-select-name">后端</span>
+                                            <span class="boblog-tree-select-slug">backend</span>
+                                            <span class="boblog-tree-select-count has-articles">8</span>
+                                            <span class="tree-item-type-badge type-final">归档</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 生活（final 型） -->
+                                <div class="boblog-tree-select-item" data-id="4" data-name="生活" data-path="生活">
+                                    <span class="tree-item-toggle invisible"></span>
+                                    <div class="tree-item-content">
+                                        <div class="tree-item-header">
+                                            <span class="boblog-tree-select-name">生活</span>
+                                            <span class="boblog-tree-select-slug">life</span>
+                                            <span class="boblog-tree-select-count has-articles">5</span>
+                                            <span class="tree-item-type-badge type-final">归档</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 随笔（final 型） -->
+                                <div class="boblog-tree-select-item" data-id="5" data-name="随笔" data-path="随笔">
+                                    <span class="tree-item-toggle invisible"></span>
+                                    <div class="tree-item-content">
+                                        <div class="tree-item-header">
+                                            <span class="boblog-tree-select-name">随笔</span>
+                                            <span class="boblog-tree-select-slug">essay</span>
+                                            <span class="boblog-tree-select-count has-articles">3</span>
+                                            <span class="tree-item-type-badge type-final">归档</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <span class="boblog-help-text">已选中：<span id="demoCategoryResult">（未选择）</span></span>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 根容器（relative 定位，锚定下拉面板） --&gt;
+&lt;div class="boblog-tree-select"&gt;
+
+    &lt;!-- 显示框：点击切换下拉面板，搭配 boblog-input 获得边框 --&gt;
+    &lt;div class="boblog-tree-select-display boblog-input"&gt;
+        &lt;div class="boblog-tree-select-info"&gt;
+            &lt;span class="boblog-tree-select-name" data-display-name="请选择分类"&gt;请选择分类&lt;/span&gt;
+            &lt;span class="boblog-tree-select-path" data-display-path=""&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;span class="boblog-tree-select-arrow"&gt;&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 下拉面板：.show 时显示 --&gt;
+    &lt;div class="boblog-tree-select-dropdown"&gt;
+        &lt;div class="boblog-tree-select-search"&gt;
+            &lt;div class="boblog-flex" style="gap:8px;"&gt;
+                &lt;input type="text" class="boblog-input" placeholder="搜索分类名称..." autocomplete="off"&gt;
+                &lt;button type="button" class="boblog-btn boblog-btn-sm boblog-btn-primary" title="新建分类"&gt;+&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-tree-select-list"&gt;
+
+            &lt;!-- 目录型节点（不可选，加 .directory-type） --&gt;
+            &lt;div class="boblog-tree-select-item directory-type" data-id="1"&gt;
+                &lt;span class="tree-item-toggle"&gt;&amp;#9660;&lt;/span&gt;
+                &lt;div class="tree-item-content"&gt;
+                    &lt;div class="tree-item-header"&gt;
+                        &lt;span class="boblog-tree-select-name"&gt;技术&lt;/span&gt;
+                        &lt;span class="boblog-tree-select-slug"&gt;tech&lt;/span&gt;
+                        &lt;span class="boblog-tree-select-count"&gt;0&lt;/span&gt;
+                        &lt;span class="tree-item-type-badge type-directory"&gt;目录&lt;/span&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- 子节点：data-level="1" 控制缩进（32px） --&gt;
+            &lt;div class="boblog-tree-select-item" data-level="1" data-id="2"&gt;
+                &lt;span class="tree-item-toggle invisible"&gt;&lt;/span&gt;
+                &lt;div class="tree-item-content"&gt;
+                    &lt;div class="tree-item-header"&gt;
+                        &lt;span class="boblog-tree-select-name"&gt;前端&lt;/span&gt;
+                        &lt;span class="boblog-tree-select-slug"&gt;frontend&lt;/span&gt;
+                        &lt;span class="boblog-tree-select-count has-articles"&gt;12&lt;/span&gt;
+                        &lt;span class="tree-item-type-badge type-final"&gt;归档&lt;/span&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+
+            &lt;!-- 选中状态：加 .selected --&gt;
+            &lt;div class="boblog-tree-select-item selected" data-id="4"&gt;
+                ...
+            &lt;/div&gt;
+
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;分类树形选择器示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class="boblog-tree-select" id="category-tree-selector"&gt;
+    &lt;!-- 显示框 --&gt;
+    &lt;div class="boblog-tree-select-display boblog-input"&gt;
+        &lt;div class="boblog-tree-select-info"&gt;
+            &lt;span data-display-name&gt;请选择分类&lt;/span&gt;
+            &lt;span data-display-path&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;span class="boblog-tree-select-arrow"&gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;!-- 下拉面板 --&gt;
+    &lt;div class="boblog-tree-select-dropdown"&gt;
+        &lt;div class="boblog-tree-select-search"&gt;
+            &lt;div class="boblog-flex" style="gap:8px;"&gt;
+                &lt;input type="text" class="boblog-input" placeholder="搜索分类名称..." autocomplete="off"&gt;
+                &lt;button type="button" class="boblog-btn boblog-btn-sm boblog-btn-primary" id="btn-create-category" title="新建分类"&gt;+&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- 树节点由 BoblogTreeSelect 动态渲染 --&gt;
+        &lt;div class="boblog-tree-select-list"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 新建分类弹窗 --&gt;
+    &lt;div class="boblog-category-create-modal" id="category-create-modal"&gt;
+        &lt;div class="boblog-category-create-dialog"&gt;
+            &lt;div class="boblog-category-create-header"&gt;
+                &lt;h5 class="boblog-category-create-title"&gt;新建分类&lt;/h5&gt;
+                &lt;button type="button" class="boblog-modal-close" id="btn-close-category-modal"&gt;&amp;times;&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-category-create-body"&gt;
+                &lt;div class="boblog-mb-3"&gt;
+                    &lt;label class="boblog-form-label"&gt;分类名称 &lt;span class="boblog-text-danger"&gt;*&lt;/span&gt;&lt;/label&gt;
+                    &lt;input type="text" class="boblog-input" id="new-category-name" placeholder="输入分类名称" /&gt;
+                &lt;/div&gt;
+                &lt;div class="boblog-mb-3"&gt;
+                    &lt;label class="boblog-form-label"&gt;分类别名 &lt;span class="boblog-text-danger"&gt;*&lt;/span&gt;&lt;/label&gt;
+                    &lt;input type="text" class="boblog-input" id="new-category-slug" placeholder="用于URL，只能包含小写字母、数字和连字符" /&gt;
+                &lt;/div&gt;
+                &lt;div class="boblog-mb-3"&gt;
+                    &lt;label class="boblog-form-label"&gt;分类类型 &lt;span class="boblog-text-danger"&gt;*&lt;/span&gt;&lt;/label&gt;
+                    &lt;label style="margin-right:16px; font-weight:normal; font-size:12px; cursor:pointer;"&gt;
+                        &lt;input type="radio" name="new-category-type" value="final" checked /&gt; 终极型
+                    &lt;/label&gt;
+                    &lt;label style="font-weight:normal; font-size:12px; cursor:pointer;"&gt;
+                        &lt;input type="radio" name="new-category-type" value="directory" /&gt; 目录型
+                    &lt;/label&gt;
+                &lt;/div&gt;
+                &lt;div class="boblog-mb-3"&gt;
+                    &lt;label class="boblog-form-label"&gt;父分类&lt;/label&gt;
+                    &lt;!-- 父分类选择器（嵌套的 BoblogTreeSelect，节点由 JS 动态渲染） --&gt;
+                    &lt;div class="boblog-tree-select" id="parent-category-selector"&gt;
+                        &lt;div class="boblog-tree-select-display boblog-input"&gt;
+                            &lt;span data-display-name&gt;（无父分类 - 作为顶级分类）&lt;/span&gt;
+                            &lt;span class="boblog-tree-select-arrow"&gt;&lt;/span&gt;
+                        &lt;/div&gt;
+                        &lt;div class="boblog-tree-select-dropdown"&gt;
+                            &lt;div class="boblog-tree-select-search"&gt;
+                                &lt;input type="text" class="boblog-input" placeholder="搜索分类..." autocomplete="off" /&gt;
+                            &lt;/div&gt;
+                            &lt;div class="boblog-tree-select-list"&gt;&lt;/div&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                    &lt;input type="hidden" id="new-category-parent" value="" /&gt;
+                &lt;/div&gt;
+                &lt;div class="boblog-mb-3"&gt;
+                    &lt;label class="boblog-form-label"&gt;描述&lt;/label&gt;
+                    &lt;textarea class="boblog-input" id="new-category-description" rows="2" placeholder="可选，简短描述该分类"&gt;&lt;/textarea&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-category-create-footer"&gt;
+                &lt;button type="button" class="boblog-btn" id="btn-cancel-category"&gt;取消&lt;/button&gt;
+                &lt;button type="button" class="boblog-btn boblog-btn-primary" id="btn-save-category"&gt;创建分类&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 隐藏字段 - 存储选中的分类 ID，随表单提交 --&gt;
+    &lt;input type="hidden" name="CategoryId" id="CategoryId" /&gt;
+&lt;/div&gt;
+
+&lt;script src="boblog-ui.js"&gt;&lt;/script&gt;
+&lt;script src="category-tree-selector.js"&gt;&lt;/script&gt;
+&lt;script&gt;
+// 分类树数据（通常由后端 API 返回）
+var categoryTree = [
+    { id: 1, name: '技术', slug: 'tech', type: 'directory', children: [
+        { id: 2, name: '前端', slug: 'frontend', type: 'final', description: 'HTML/CSS/JavaScript', articleCount: 12, children: [] },
+        { id: 3, name: '后端', slug: 'backend', type: 'final', description: 'C#/.NET/数据库', articleCount: 8, children: [] }
+    ]},
+    { id: 4, name: '生活', slug: 'life', type: 'final', articleCount: 5, children: [] },
+    { id: 5, name: '随笔', slug: 'essay', type: 'final', articleCount: 3, children: [] }
+];
+
+// 初始化（一行搞定，内部自动创建主选择器、父分类选择器、绑定新建弹窗事件）
+CategoryTreeSelector.init({
+    categoryTree: categoryTree,
+    selectedId: null              // 编辑页传文章已有的分类 ID，新建页传 null
+});
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 类名前缀 -->
+    <div class="boblog-doc-section">
+        <h2 id="类名前缀">类名前缀</h2>
+        <div class="boblog-doc-spec">
+            <ul>
+                <li>主选择器使用 <code>boblog-tree-select-</code> 通用前缀（复用 <code>BoblogTreeSelect</code> 库）</li>
+                <li>内部结构元素使用无前缀的 <code>tree-item-*</code> 类名</li>
+                <li>父分类选择器（新建弹窗内）同样使用 <code>boblog-tree-select-</code> 前缀</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- 搜索规则 -->
+    <div class="boblog-doc-section">
+        <h2 id="搜索规则">搜索规则</h2>
+        <div class="boblog-doc-spec">
+            <p>搜索框支持三种匹配方式，依赖 <code>BoblogUI.pinyin</code> 模块（已内置于 <code>boblog-ui.js</code>）：</p>
+            <table class="boblog-table">
+                <thead>
+                    <tr><th style="width:120px;">匹配方式</th><th style="width:180px;">示例</th><th>说明</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>直接文本</td><td>输入"前端" → 匹配"前端"</td><td>搜索词直接包含在分类名称或别名中</td></tr>
+                    <tr><td>拼音首字母</td><td>输入"qd" → 匹配"前端"</td><td>搜索词为目标文本的拼音首字母序列</td></tr>
+                    <tr><td>完整拼音</td><td>输入"qianduan" → 匹配"前端"</td><td>搜索词为目标文本的完整拼音拼写</td></tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="boblog-doc-spec">
+            <p><strong>匹配范围</strong>：依次匹配分类名称（<code>data-name</code>）和别名（<code>.boblog-tree-select-slug</code>），任一命中即显示。</p>
+            <p>详细 API 参见 <a href="../base/pinyin.html">拼音搜索模块文档</a>。</p>
+        </div>
+    </div>
+
+    <!-- 层级结构 / 状态类 / 层级缩进 / 新建分类弹窗 -->
+    <div class="boblog-doc-section">
+        <h2 id="类名参考">类名参考</h2>
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">层级结构</button>
+                <button class="boblog-tabs-btn">状态类</button>
+                <button class="boblog-tabs-btn">层级缩进</button>
+                <button class="boblog-tabs-btn">新建分类弹窗</button>
+            </div>
+            <!-- 层级结构 -->
+            <div class="boblog-tabs-panel active">
+                <table class="boblog-table">
+                    <thead>
+                        <tr><th>类名</th><th>说明</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>.boblog-tree-select</code></td><td>选择器根容器（position relative）</td></tr>
+                        <tr><td><code>.boblog-tree-select-display</code></td><td>显示框（模拟表单控件外观）</td></tr>
+                        <tr><td><code>.boblog-tree-select-info</code></td><td>选中分类信息区域（分类专有扩展）</td></tr>
+                        <tr><td><code>[data-display-name]</code></td><td>分类名称</td></tr>
+                        <tr><td><code>[data-display-path]</code></td><td>分类路径（灰色小字，showPath=true 时使用）</td></tr>
+                        <tr><td><code>.boblog-tree-select-arrow</code></td><td>下拉箭头</td></tr>
+                        <tr><td><code>.boblog-tree-select-dropdown</code></td><td>下拉面板（绝对定位）</td></tr>
+                        <tr><td><code>.boblog-tree-select-search</code></td><td>搜索框区域</td></tr>
+                        <tr><td><code>.boblog-tree-select-list</code></td><td>树形列表容器（max-height 350px，可滚动）</td></tr>
+                        <tr><td><code>.boblog-tree-select-item</code></td><td>树节点</td></tr>
+                        <tr><td><code>.tree-item-toggle</code></td><td>折叠/展开图标</td></tr>
+                        <tr><td><code>.tree-item-content</code></td><td>节点内容区域</td></tr>
+                        <tr><td><code>.tree-item-header</code></td><td>标题行（名称 + 别名 + 文章数）</td></tr>
+                        <tr><td><code>.boblog-tree-select-name</code></td><td>节点名称</td></tr>
+                        <tr><td><code>.boblog-tree-select-slug</code></td><td>别名标签（等宽字体）</td></tr>
+                        <tr><td><code>.boblog-tree-select-count</code></td><td>文章数量徽章</td></tr>
+                        <tr><td><code>.tree-item-type-badge</code></td><td>分类类型标签（目录型/终极型）</td></tr>
+                        <tr><td><code>.tree-item-desc</code></td><td>分类描述</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- 状态类 -->
+            <div class="boblog-tabs-panel">
+                <table class="boblog-table">
+                    <thead>
+                        <tr><th>类名</th><th>作用</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>.active</code></td><td>显示框激活状态（蓝色边框 + 阴影）</td></tr>
+                        <tr><td><code>.show</code></td><td>下拉面板/弹窗显示</td></tr>
+                        <tr><td><code>.selected</code></td><td>树节点选中状态（蓝色背景）</td></tr>
+                        <tr><td><code>.hidden</code></td><td>搜索过滤时隐藏不匹配的节点</td></tr>
+                        <tr><td><code>.collapsed</code></td><td>折叠图标旋转（指向右方）</td></tr>
+                        <tr><td><code>.invisible</code></td><td>无子节点时隐藏图标占位</td></tr>
+                        <tr><td><code>.directory-type</code></td><td>目录型分类不可选（置灰）</td></tr>
+                        <tr><td><code>.no-category</code></td><td>"不选择分类"特殊选项</td></tr>
+                        <tr><td><code>.highlight</code></td><td>搜索匹配文本高亮（黄色背景）</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- 层级缩进 -->
+            <div class="boblog-tabs-panel">
+                <p>通过 <code>data-level</code> 属性控制层级缩进：</p>
+                <table class="boblog-table">
+                    <thead>
+                        <tr><th>选择器</th><th>padding-left</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>.boblog-tree-select-item[data-level="1"]</code></td><td>由 JS 内联 padding-left 控制</td></tr>
+                        <tr><td><code>.boblog-tree-select-item[data-level="2"]</code></td><td>每级递增 16px</td></tr>
+                        <tr><td><code>.boblog-tree-select-item[data-level="3"]</code></td><td>由 BoblogTreeSelect 自动计算</td></tr>
+                        <tr><td><code>.boblog-tree-select-item[data-level="4"]</code></td><td>最多支持4级嵌套</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- 新建分类弹窗 -->
+            <div class="boblog-tabs-panel">
+                <table class="boblog-table">
+                    <thead>
+                        <tr><th>类名</th><th>说明</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>.boblog-category-create-modal</code></td><td>弹窗遮罩（z-index 1100，.show 时 display flex）</td></tr>
+                        <tr><td><code>.boblog-category-create-dialog</code></td><td>弹窗主体（max-width 500px，圆角8px）</td></tr>
+                        <tr><td><code>.boblog-category-create-header</code></td><td>弹窗头部（标题 + 关闭按钮）</td></tr>
+                        <tr><td><code>.boblog-category-create-body</code></td><td>弹窗内容区域（表单字段）</td></tr>
+                        <tr><td><code>.boblog-category-create-footer</code></td><td>弹窗底部（操作按钮，灰色背景）</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- 弹窗预览 -->
+    <div class="boblog-doc-section">
+        <h2 id="弹窗预览">弹窗预览</h2>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览面板 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <button class="boblog-btn boblog-btn-primary" id="demoOpenModalBtn">+ 新建分类</button>
+                    <p class="boblog-help-text">点击按钮打开新建分类弹窗</p>
+                </div>
+            </div>
+            <!-- 关键源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 弹窗遮罩：.show 时 display:flex --&gt;
+&lt;div class="boblog-category-create-modal"&gt;
+    &lt;div class="boblog-category-create-dialog"&gt;
+        &lt;div class="boblog-category-create-header"&gt;
+            &lt;h5 class="boblog-category-create-title"&gt;新建分类&lt;/h5&gt;
+            &lt;button type="button" class="boblog-modal-close"&gt;&amp;times;&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-category-create-body"&gt;
+            &lt;div class="boblog-mb-3"&gt;
+                &lt;label class="boblog-form-label"&gt;分类名称 &lt;span class="boblog-text-danger"&gt;*&lt;/span&gt;&lt;/label&gt;
+                &lt;input type="text" class="boblog-input" placeholder="输入分类名称" /&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-mb-3"&gt;
+                &lt;label class="boblog-form-label"&gt;分类别名 &lt;span class="boblog-text-danger"&gt;*&lt;/span&gt;&lt;/label&gt;
+                &lt;input type="text" class="boblog-input" placeholder="用于URL，只能包含小写字母、数字和连字符" /&gt;
+                &lt;span class="boblog-text-sm boblog-text-gray"&gt;别名用于URL路径（如：my-category）&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-mb-3"&gt;
+                &lt;label class="boblog-form-label"&gt;分类类型 &lt;span class="boblog-text-danger"&gt;*&lt;/span&gt;&lt;/label&gt;
+                &lt;label&gt;&lt;input type="radio" name="new-category-type" value="final" checked /&gt; 终极型&lt;/label&gt;
+                &lt;label&gt;&lt;input type="radio" name="new-category-type" value="directory" /&gt; 目录型&lt;/label&gt;
+                &lt;span class="boblog-text-sm boblog-text-gray"&gt;终极型可挂文章，目录型只能包含子分类&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-mb-3"&gt;
+                &lt;label class="boblog-form-label"&gt;父分类&lt;/label&gt;
+                &lt;!-- 父分类树形选择器 --&gt;
+                &lt;div class="boblog-tree-select"&gt;
+                    &lt;div class="boblog-tree-select-display boblog-input"&gt;
+                        &lt;span data-display-name&gt;（无父分类 - 作为顶级分类）&lt;/span&gt;
+                        &lt;span class="boblog-tree-select-arrow"&gt;&lt;/span&gt;
+                    &lt;/div&gt;
+                    &lt;div class="boblog-tree-select-dropdown"&gt;...&lt;/div&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-mb-3"&gt;
+                &lt;label class="boblog-form-label"&gt;描述&lt;/label&gt;
+                &lt;textarea class="boblog-input" rows="2" placeholder="可选，简短描述该分类"&gt;&lt;/textarea&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-category-create-footer"&gt;
+            &lt;button type="button" class="boblog-btn boblog-clear-w"&gt;取消&lt;/button&gt;
+            &lt;button type="button" class="boblog-btn boblog-btn-primary boblog-clear-w"&gt;创建分类&lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 完整源码面板 -->
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;新建分类弹窗示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;button class="boblog-btn boblog-btn-primary" id="openModalBtn"&gt;+ 新建分类&lt;/button&gt;
+
+&lt;!-- 新建分类弹窗（独立于选择器容器） --&gt;
+&lt;div class="boblog-category-create-modal" id="category-create-modal"&gt;
+    &lt;div class="boblog-category-create-dialog"&gt;
+        &lt;div class="boblog-category-create-header"&gt;
+            &lt;h5 class="boblog-category-create-title"&gt;新建分类&lt;/h5&gt;
+            &lt;button type="button" class="boblog-modal-close" id="btn-close-category-modal"&gt;&amp;times;&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-category-create-body"&gt;
+            &lt;div class="boblog-mb-3"&gt;
+                &lt;label class="boblog-form-label"&gt;分类名称 &lt;span class="boblog-text-danger"&gt;*&lt;/span&gt;&lt;/label&gt;
+                &lt;input type="text" class="boblog-input" id="new-category-name" placeholder="输入分类名称" /&gt;
+                &lt;div class="invalid-feedback" id="error-category-name"&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-mb-3"&gt;
+                &lt;label class="boblog-form-label"&gt;分类别名 &lt;span class="boblog-text-danger"&gt;*&lt;/span&gt;&lt;/label&gt;
+                &lt;input type="text" class="boblog-input" id="new-category-slug" placeholder="用于URL，只能包含小写字母、数字和连字符" /&gt;
+                &lt;span class="boblog-text-sm boblog-text-gray" style="display:block; margin-top:4px;"&gt;别名用于URL路径（如：my-category）&lt;/span&gt;
+                &lt;div class="invalid-feedback" id="error-category-slug"&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-mb-3"&gt;
+                &lt;label class="boblog-form-label"&gt;分类类型 &lt;span class="boblog-text-danger"&gt;*&lt;/span&gt;&lt;/label&gt;
+                &lt;label style="margin-right:16px; font-weight:normal; font-size:12px; cursor:pointer;"&gt;
+                    &lt;input type="radio" name="new-category-type" value="final" checked /&gt; 终极型
+                &lt;/label&gt;
+                &lt;label style="font-weight:normal; font-size:12px; cursor:pointer;"&gt;
+                    &lt;input type="radio" name="new-category-type" value="directory" /&gt; 目录型
+                &lt;/label&gt;
+                &lt;span class="boblog-text-sm boblog-text-gray" style="display:block; margin-top:4px;"&gt;终极型可挂文章，目录型只能包含子分类&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-mb-3"&gt;
+                &lt;label class="boblog-form-label"&gt;父分类&lt;/label&gt;
+                &lt;!-- 父分类树形选择器 --&gt;
+                &lt;div class="boblog-tree-select" id="parent-category-selector"&gt;
+                    &lt;div class="boblog-tree-select-display boblog-input" id="parent-selector-display"&gt;
+                        &lt;span data-display-name id="parent-selected-text"&gt;（无父分类 - 作为顶级分类）&lt;/span&gt;
+                        &lt;span class="boblog-tree-select-arrow"&gt;&lt;/span&gt;
+                    &lt;/div&gt;
+                    &lt;div class="boblog-tree-select-dropdown" id="parent-dropdown-panel"&gt;
+                        &lt;div class="boblog-tree-select-search"&gt;
+                            &lt;input type="text" class="boblog-input" id="parent-search-input" placeholder="搜索分类..." autocomplete="off" /&gt;
+                        &lt;/div&gt;
+                        &lt;div class="boblog-tree-select-list" id="parent-tree-container"&gt;
+                            &lt;!-- 由 BoblogTreeSelect 动态渲染 --&gt;
+                        &lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;input type="hidden" id="new-category-parent" value="" /&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-mb-3"&gt;
+                &lt;label class="boblog-form-label"&gt;描述&lt;/label&gt;
+                &lt;textarea class="boblog-input" id="new-category-description" rows="2" placeholder="可选，简短描述该分类"&gt;&lt;/textarea&gt;
+                &lt;div class="invalid-feedback" id="error-category-description"&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-message boblog-message-error" style="display:none;" id="category-create-error"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-category-create-footer"&gt;
+            &lt;button type="button" class="boblog-btn boblog-clear-w" id="btn-cancel-category"&gt;取消&lt;/button&gt;
+            &lt;button type="button" class="boblog-btn boblog-btn-primary boblog-clear-w" id="btn-save-category"&gt;
+                &lt;span class="boblog-spinner" style="display:none;" id="category-save-spinner"&gt;&lt;/span&gt;
+                创建分类
+            &lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;script&gt;
+(function() {
+    var modal = document.getElementById('category-create-modal');
+    // 打开弹窗
+    document.getElementById('btn-create-category').addEventListener('click', function() {
+        modal.classList.add('show');
+    });
+    // 关闭弹窗
+    document.getElementById('btn-close-category-modal').addEventListener('click', function() {
+        modal.classList.remove('show');
+    });
+    document.getElementById('btn-cancel-category').addEventListener('click', function() {
+        modal.classList.remove('show');
+    });
+    // 点击遮罩关闭
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) modal.classList.remove('show');
+    });
+})();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 弹窗 DOM（挂在 body 层，避免层叠问题） -->
+    <div class="boblog-category-create-modal" id="demoCategoryModal">
+        <div class="boblog-category-create-dialog">
+            <div class="boblog-category-create-header">
+                <h5 class="boblog-category-create-title">新建分类</h5>
+                <button type="button" class="boblog-modal-close" id="demoCloseModalBtn">&times;</button>
+            </div>
+            <div class="boblog-category-create-body">
+                <div class="boblog-mb-3">
+                    <label class="boblog-form-label">分类名称 <span class="boblog-text-danger">*</span></label>
+                    <input type="text" class="boblog-input" placeholder="输入分类名称" />
+                </div>
+                <div class="boblog-mb-3">
+                    <label class="boblog-form-label">分类别名 <span class="boblog-text-danger">*</span></label>
+                    <input type="text" class="boblog-input" placeholder="用于URL，只能包含小写字母、数字和连字符" />
+                    <span class="boblog-text-sm boblog-text-gray" style="display:block; margin-top:4px;">别名用于URL路径，只能包含小写字母、数字和连字符（如：my-category）</span>
+                </div>
+                <div class="boblog-mb-3">
+                    <label class="boblog-form-label">分类类型 <span class="boblog-text-danger">*</span></label>
+                    <label style="margin-right:16px; font-weight:normal; font-size:12px; cursor:pointer;">
+                        <input type="radio" name="demo-category-type" value="final" checked /> 终极型
+                    </label>
+                    <label style="font-weight:normal; font-size:12px; cursor:pointer;">
+                        <input type="radio" name="demo-category-type" value="directory" /> 目录型
+                    </label>
+                    <span class="boblog-text-sm boblog-text-gray" style="display:block; margin-top:4px;">终极型可挂文章，目录型只能包含子分类</span>
+                </div>
+                <div class="boblog-mb-3">
+                    <label class="boblog-form-label">父分类</label>
+                    <div class="boblog-tree-select" id="demoParentSelector">
+                        <div class="boblog-tree-select-display boblog-input" id="demoParentDisplay">
+                            <span data-display-name id="demoParentText">（无父分类 - 作为顶级分类）</span>
+                            <span class="boblog-tree-select-arrow"></span>
+                        </div>
+                        <div class="boblog-tree-select-dropdown" id="demoParentPanel">
+                            <div class="boblog-tree-select-search">
+                                <input type="text" class="boblog-input" id="demoParentSearch" placeholder="搜索分类..." autocomplete="off">
+                            </div>
+                            <div class="boblog-tree-select-list">
+                                <div class="boblog-tree-select-item no-category" data-pname="（无父分类 - 作为顶级分类）">
+                                    <span class="tree-item-toggle invisible"></span>
+                                    <div class="tree-item-content"><div class="tree-item-header"><span class="boblog-tree-select-name">— 无父分类 —</span></div></div>
+                                </div>
+                                <div class="boblog-tree-select-item" data-level="0" data-pname="技术">
+                                    <span class="tree-item-toggle invisible"></span>
+                                    <div class="tree-item-content"><div class="tree-item-header"><span class="boblog-tree-select-name">技术</span></div></div>
+                                </div>
+                                <div class="boblog-tree-select-item directory-type" data-level="1" data-pname="前端">
+                                    <span class="tree-item-toggle invisible"></span>
+                                    <div class="tree-item-content"><div class="tree-item-header"><span class="boblog-tree-select-name">前端（终极型，不可作为父分类）</span></div></div>
+                                </div>
+                                <div class="boblog-tree-select-item directory-type" data-level="1" data-pname="后端">
+                                    <span class="tree-item-toggle invisible"></span>
+                                    <div class="tree-item-content"><div class="tree-item-header"><span class="boblog-tree-select-name">后端（终极型，不可作为父分类）</span></div></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="boblog-mb-3">
+                    <label class="boblog-form-label">描述</label>
+                    <textarea class="boblog-input" rows="2" placeholder="可选，简短描述该分类"></textarea>
+                </div>
+            </div>
+            <div class="boblog-category-create-footer">
+                <button type="button" class="boblog-btn boblog-clear-w" id="demoCancelModalBtn">取消</button>
+                <button type="button" class="boblog-btn boblog-btn-primary boblog-clear-w">创建分类</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 父分类选择器 -->
+    <div class="boblog-doc-section">
+        <h2 id="父分类选择器">父分类选择器</h2>
+        <div class="boblog-doc-spec">
+            <p>新建分类弹窗内的父分类选择器，复用 <code>boblog-tree-select-*</code> 通用类名，由 <code>BoblogTreeSelect.create()</code> 创建实例：</p>
+            <table class="boblog-table">
+                <thead>
+                    <tr><th>类名</th><th>说明</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><code>.boblog-tree-select</code></td><td>父分类选择器根容器（与主选择器共用类名）</td></tr>
+                    <tr><td><code>.boblog-tree-select-display</code></td><td>显示框</td></tr>
+                    <tr><td><code>.boblog-tree-select-dropdown</code></td><td>下拉面板</td></tr>
+                    <tr><td><code>.boblog-tree-select-search</code></td><td>搜索框区域</td></tr>
+                    <tr><td><code>.boblog-tree-select-list</code></td><td>树容器</td></tr>
+                    <tr><td><code>.boblog-tree-select-item</code></td><td>树节点</td></tr>
+                    <tr><td><code>.boblog-tree-select-item.no-category</code></td><td>"无父分类"选项</td></tr>
+                    <tr><td><code>.boblog-tree-select-item.directory-type</code></td><td>终极型分类不可选为父分类（置灰）</td></tr>
+                </tbody>
+            </table>
+            <p><strong>与主选择器的区别</strong>：<code>isSelectable</code> 回调逻辑相反 — 主选择器禁选目录型，父分类选择器禁选终极型。</p>
+        </div>
+    </div>
+
+    <!-- 使用方式 -->
+    <div class="boblog-doc-section">
+        <h2 id="使用方式">使用方式</h2>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">调用关系</button>
+                <button class="boblog-tabs-btn">引入 &amp; 初始化</button>
+                <button class="boblog-tabs-btn">HTML 结构</button>
+                <button class="boblog-tabs-btn">配置项 API</button>
+                <button class="boblog-tabs-btn">数据格式</button>
+                <button class="boblog-tabs-btn">数据交互</button>
+            </div>
+            <!-- 预览 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <p class="boblog-text-sm boblog-text-gray boblog-mb-2">树形选择器效果演示（由 <code>BoblogTreeSelect.create()</code> 驱动，点击选择，支持拼音搜索）：</p>
+                    <div class="boblog-flex" style="align-items:center; gap:12px;">
+                        <div class="boblog-tree-select" id="demoUsageSelector" style="width:320px;">
+                            <div class="boblog-tree-select-display boblog-input">
+                                <div class="boblog-tree-select-info">
+                                    <span data-display-name>请选择分类</span>
+                                    <span data-display-path></span>
+                                </div>
+                                <span class="boblog-tree-select-arrow"></span>
+                            </div>
+                            <div class="boblog-tree-select-dropdown">
+                                <div class="boblog-tree-select-search">
+                                    <div class="boblog-flex" style="gap:8px;">
+                                        <input type="text" class="boblog-input" placeholder="搜索分类..." autocomplete="off" />
+                                        <button type="button" class="boblog-btn boblog-btn-sm boblog-btn-primary" id="demoUsageCreateBtn" title="新建分类">+</button>
+                                    </div>
+                                </div>
+                                <div class="boblog-tree-select-list"></div>
+                            </div>
+                        </div>
+                        <span class="boblog-help-text">已选中：<span id="demoUsageResult">（未选择）</span></span>
+                    </div>
+                    <p class="boblog-text-sm boblog-text-gray" style="margin-top:12px;">
+                        注：文档页仅演示 <code>BoblogTreeSelect</code>（库层）的交互效果。
+                        实际项目中通过 <code>CategoryTreeSelector.init()</code>（业务层）调用，额外包含新建弹窗、隐藏字段同步等业务逻辑。
+                    </p>
+                </div>
+            </div>
+            <!-- 调用关系 -->
+            <div class="boblog-tabs-panel">
+                <h4>两层架构</h4>
+                <table class="boblog-table">
+                    <thead>
+                        <tr><th style="width:120px;">层级</th><th style="width:240px;">模块</th><th>职责</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>库层</strong></td>
+                            <td><code>BoblogTreeSelect</code><br><span class="boblog-text-sm boblog-text-gray">boblog-ui.js 内置</span></td>
+                            <td>通用树形选择器引擎：树形渲染、展开折叠、搜索过滤（拼音）、节点选中、面板开关、键盘操作</td>
+                        </tr>
+                        <tr>
+                            <td><strong>业务层</strong></td>
+                            <td><code>CategoryTreeSelector</code><br><span class="boblog-text-sm boblog-text-gray">category-tree-selector.js</span></td>
+                            <td>分类专有业务逻辑：调用 <code>BoblogTreeSelect.create()</code> 创建主选择器和父分类选择器、新建分类弹窗（AJAX）、隐藏字段同步、类型徽章</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h4>调用方式</h4>
+                <p class="boblog-text-sm">调用方只需要接触<strong>业务层</strong>，不需要直接调用 <code>BoblogTreeSelect.create()</code>：</p>
+                <div class="boblog-codeblock">
+                    <pre><code class="language-javascript">// 调用方只需一行
+CategoryTreeSelector.init({
+    categoryTree: treeData,
+    selectedId: null
+});
+
+// init() 内部自动完成：
+// 1. BoblogTreeSelect.create() 创建主选择器（含类型徽章、路径显示、搜索配置）
+// 2. BoblogTreeSelect.create() 创建父分类选择器（弹窗内）
+// 3. 绑定新建弹窗事件
+// 4. 同步隐藏字段 #CategoryId</code></pre>
+                </div>
+            </div>
+            <!-- 引入 & 初始化 -->
+            <div class="boblog-tabs-panel">
+                <h4>1. 引入文件</h4>
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- boblog-ui 库（CSS 样式 + BoblogTreeSelect JS + 拼音搜索） --&gt;
+&lt;link rel="stylesheet" href="boblog-ui.css" /&gt;
+&lt;script src="boblog-ui.js"&gt;&lt;/script&gt;
+
+&lt;!-- 分类选择器业务脚本 --&gt;
+&lt;script src="category-tree-selector.js"&gt;&lt;/script&gt;</code></pre>
+                </div>
+
+                <h4>2. 放置 HTML</h4>
+                <p class="boblog-text-sm boblog-text-gray">选择器和新建弹窗是两个独立的 DOM 结构，详细 HTML 见"HTML 结构"Tab。</p>
+
+                <h4>3. 初始化</h4>
+                <div class="boblog-codeblock">
+                    <pre><code class="language-javascript">// 分类树数据（通常由后端 API 返回）
+var categoryTree = [
+    { id: 1, name: '技术', slug: 'tech', type: 'directory', children: [
+        { id: 2, name: '前端', slug: 'frontend', type: 'final', description: 'HTML/CSS/JavaScript', articleCount: 12, children: [] },
+        { id: 3, name: '后端', slug: 'backend', type: 'final', description: 'C#/.NET/数据库', articleCount: 8, children: [] }
+    ]},
+    { id: 4, name: '生活', slug: 'life', type: 'final', articleCount: 5, children: [] },
+    { id: 5, name: '随笔', slug: 'essay', type: 'final', articleCount: 3, children: [] }
+];
+
+// 初始化
+CategoryTreeSelector.init({
+    categoryTree: categoryTree,
+    selectedId: null              // 编辑页传文章已有的分类 ID，新建页传 null
+});</code></pre>
+                </div>
+            </div>
+            <!-- HTML 结构 -->
+            <div class="boblog-tabs-panel">
+                <h4>选择器 HTML</h4>
+                <p class="boblog-text-sm boblog-text-gray">选择器的外壳结构，<code>BoblogTreeSelect.create()</code> 在此基础上渲染树节点和绑定事件。</p>
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-tree-select" id="category-tree-selector"&gt;
+    &lt;!-- 显示框 --&gt;
+    &lt;div class="boblog-tree-select-display boblog-input"&gt;
+        &lt;div class="boblog-tree-select-info"&gt;
+            &lt;span data-display-name&gt;请选择分类&lt;/span&gt;
+            &lt;span data-display-path&gt;&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;span class="boblog-tree-select-arrow"&gt;&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;!-- 下拉面板 --&gt;
+    &lt;div class="boblog-tree-select-dropdown"&gt;
+        &lt;div class="boblog-tree-select-search"&gt;
+            &lt;div class="boblog-flex" style="gap:8px;"&gt;
+                &lt;input type="text" class="boblog-input" placeholder="搜索分类名称..." autocomplete="off"&gt;
+                &lt;button type="button" class="boblog-btn boblog-btn-sm boblog-btn-primary" id="btn-create-category" title="新建分类"&gt;+&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;!-- 树节点由 BoblogTreeSelect 动态渲染 --&gt;
+        &lt;div class="boblog-tree-select-list"&gt;&lt;/div&gt;
+    &lt;/div&gt;
+    &lt;!-- 隐藏字段 - 存储选中的分类 ID，随表单提交 --&gt;
+    &lt;input type="hidden" name="CategoryId" id="CategoryId" /&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+                <h4>必须的 DOM 元素</h4>
+                <p class="boblog-text-sm boblog-text-gray"><code>BoblogTreeSelect.create()</code> 通过以下选择器查找 DOM，这些元素必须存在：</p>
+                <table class="boblog-table">
+                    <thead>
+                        <tr><th style="width:320px;">选择器</th><th>说明</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>.boblog-tree-select-display</code></td><td>显示框（点击打开/关闭下拉面板）</td></tr>
+                        <tr><td><code>.boblog-tree-select-dropdown</code></td><td>下拉面板容器</td></tr>
+                        <tr><td><code>.boblog-tree-select-search input</code></td><td>搜索输入框</td></tr>
+                        <tr><td><code>.boblog-tree-select-list</code></td><td>树节点渲染容器（JS 在此生成节点 HTML）</td></tr>
+                        <tr><td><code>[data-display-name]</code></td><td>显示选中名称的元素</td></tr>
+                    </tbody>
+                </table>
+                <h4>可选的 DOM 元素</h4>
+                <table class="boblog-table">
+                    <thead>
+                        <tr><th style="width:320px;">选择器</th><th>说明</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>[data-display-path]</code></td><td>显示选中路径（配合 <code>showPath: true</code> 使用）</td></tr>
+                        <tr><td><code>#btn-create-category</code></td><td>新建按钮（业务层绑定事件，库层不关心）</td></tr>
+                        <tr><td><code>#CategoryId</code></td><td>隐藏字段（业务层同步选中 ID，库层不关心）</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>新建分类弹窗 HTML</h4>
+                <p class="boblog-text-sm boblog-text-gray">弹窗与选择器是<strong>独立的 DOM 结构</strong>，放在选择器容器外面，避免受父元素 position/overflow/z-index 影响。</p>
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 新建分类弹窗（独立于选择器容器） --&gt;
+&lt;div class="boblog-category-create-modal" id="category-create-modal"&gt;
+    &lt;div class="boblog-category-create-dialog"&gt;
+        &lt;div class="boblog-category-create-header"&gt;
+            &lt;h5 class="boblog-category-create-title"&gt;新建分类&lt;/h5&gt;
+            &lt;button type="button" class="boblog-modal-close" id="btn-close-category-modal"&gt;&amp;times;&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-category-create-body"&gt;
+            &lt;div class="boblog-mb-3"&gt;
+                &lt;label class="boblog-form-label"&gt;分类名称 &lt;span class="boblog-text-danger"&gt;*&lt;/span&gt;&lt;/label&gt;
+                &lt;input type="text" class="boblog-input" id="new-category-name" placeholder="输入分类名称" /&gt;
+                &lt;div class="invalid-feedback" id="error-category-name"&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-mb-3"&gt;
+                &lt;label class="boblog-form-label"&gt;分类别名 &lt;span class="boblog-text-danger"&gt;*&lt;/span&gt;&lt;/label&gt;
+                &lt;input type="text" class="boblog-input" id="new-category-slug" placeholder="用于URL，只能包含小写字母、数字和连字符" /&gt;
+                &lt;span class="boblog-text-sm boblog-text-gray" style="display:block; margin-top:4px;"&gt;别名用于URL路径，只能包含小写字母、数字和连字符（如：my-category）&lt;/span&gt;
+                &lt;div class="invalid-feedback" id="error-category-slug"&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-mb-3"&gt;
+                &lt;label class="boblog-form-label"&gt;分类类型 &lt;span class="boblog-text-danger"&gt;*&lt;/span&gt;&lt;/label&gt;
+                &lt;label style="margin-right:16px; font-weight:normal; font-size:12px; cursor:pointer;"&gt;
+                    &lt;input type="radio" name="new-category-type" value="final" checked /&gt; 终极型
+                &lt;/label&gt;
+                &lt;label style="font-weight:normal; font-size:12px; cursor:pointer;"&gt;
+                    &lt;input type="radio" name="new-category-type" value="directory" /&gt; 目录型
+                &lt;/label&gt;
+                &lt;span class="boblog-text-sm boblog-text-gray" style="display:block; margin-top:4px;"&gt;终极型可挂文章，目录型只能包含子分类&lt;/span&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-mb-3"&gt;
+                &lt;label class="boblog-form-label"&gt;父分类&lt;/label&gt;
+                &lt;!-- 父分类选择器（嵌套的 BoblogTreeSelect） --&gt;
+                &lt;div class="boblog-tree-select" id="parent-category-selector"&gt;
+                    &lt;div class="boblog-tree-select-display boblog-input"&gt;
+                        &lt;span data-display-name&gt;（无父分类 - 作为顶级分类）&lt;/span&gt;
+                        &lt;span class="boblog-tree-select-arrow"&gt;&lt;/span&gt;
+                    &lt;/div&gt;
+                    &lt;div class="boblog-tree-select-dropdown"&gt;
+                        &lt;div class="boblog-tree-select-search"&gt;
+                            &lt;input type="text" class="boblog-input" placeholder="搜索分类..." autocomplete="off" /&gt;
+                        &lt;/div&gt;
+                        &lt;div class="boblog-tree-select-list"&gt;&lt;/div&gt;
+                    &lt;/div&gt;
+                &lt;/div&gt;
+                &lt;input type="hidden" id="new-category-parent" value="" /&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-mb-3"&gt;
+                &lt;label class="boblog-form-label"&gt;描述&lt;/label&gt;
+                &lt;textarea class="boblog-input" id="new-category-description" rows="2" placeholder="可选，简短描述该分类"&gt;&lt;/textarea&gt;
+                &lt;div class="invalid-feedback" id="error-category-description"&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class="boblog-message boblog-message-error" style="display:none;" id="category-create-error"&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class="boblog-category-create-footer"&gt;
+            &lt;button type="button" class="boblog-btn boblog-clear-w" id="btn-cancel-category"&gt;取消&lt;/button&gt;
+            &lt;button type="button" class="boblog-btn boblog-btn-primary boblog-clear-w" id="btn-save-category"&gt;
+                &lt;span class="boblog-spinner" style="display:none;" id="category-save-spinner"&gt;&lt;/span&gt;
+                创建分类
+            &lt;/button&gt;
+        &lt;/div&gt;
+    &lt;/div&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+
+                <h4>尺寸控制</h4>
+                <p class="boblog-text-sm boblog-text-gray">选择器宽度由调用方通过 style 或业务 CSS 控制，库不限制尺寸：</p>
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- 固定宽度 --&gt;
+&lt;div class="boblog-tree-select" id="category-tree-selector" style="width:320px;"&gt;...&lt;/div&gt;
+
+&lt;!-- 自适应容器宽度 --&gt;
+&lt;div class="boblog-tree-select" id="category-tree-selector" style="width:100%;"&gt;...&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <!-- 配置项 API -->
+            <div class="boblog-tabs-panel">
+                <h4>BoblogTreeSelect.create(config) 配置项</h4>
+                <p class="boblog-text-sm boblog-text-gray">库层 API，由业务层 <code>CategoryTreeSelector.init()</code> 内部调用，调用方通常不需要直接使用。</p>
+                <table class="boblog-table">
+                    <thead>
+                        <tr><th style="width:200px;">配置项</th><th style="width:180px;">类型</th><th style="width:120px;">默认值</th><th>说明</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>container</td><td>HTMLElement</td><td>—</td><td>必填。最外层 <code>.boblog-tree-select</code> 容器元素</td></tr>
+                        <tr><td>treeData</td><td>Array</td><td>[]</td><td>必填。树形数据（见"数据格式"Tab）</td></tr>
+                        <tr><td>selectedId</td><td>number | null</td><td>null</td><td>初始选中的节点 ID</td></tr>
+                        <tr><td>placeholder</td><td>string</td><td>'请选择'</td><td>未选中时显示框的占位文字</td></tr>
+                        <tr><td>emptyOptionText</td><td>string | null</td><td>null</td><td>空选项文字（如"不选择分类"），null 则不显示空选项</td></tr>
+                        <tr><td>showPath</td><td>boolean</td><td>false</td><td>选中后是否在显示框下方显示完整路径</td></tr>
+                        <tr><td>onSelect</td><td>Function</td><td>空函数</td><td>选中回调 <code>function(id, name, fullPath)</code></td></tr>
+                        <tr><td>isSelectable</td><td>Function</td><td>叶子节点可选</td><td>判断节点是否可选 <code>function(node) → boolean</code>。不可选的节点置灰显示</td></tr>
+                        <tr><td>nodeMatches</td><td>Function | null</td><td>null（使用默认拼音匹配）</td><td>自定义搜索匹配 <code>function(node, search) → boolean</code></td></tr>
+                        <tr><td>renderNodeExtra</td><td>Function | null</td><td>null</td><td>自定义节点额外 HTML <code>function(node) → string</code>，如类型徽章</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>实例方法</h4>
+                <p class="boblog-text-sm boblog-text-gray"><code>BoblogTreeSelect.create()</code> 返回的实例对象上可调用：</p>
+                <table class="boblog-table">
+                    <thead>
+                        <tr><th style="width:280px;">方法</th><th>说明</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><code>getSelectedId()</code></td><td>获取当前选中的节点 ID</td></tr>
+                        <tr><td><code>selectById(id)</code></td><td>程序化选中指定节点</td></tr>
+                        <tr><td><code>refreshData(treeData)</code></td><td>用新的树数据刷新选择器（新建分类后使用）</td></tr>
+                    </tbody>
+                </table>
+                <p class="boblog-text-sm boblog-text-gray">通过 <code>CategoryTreeSelector.mainSelector</code> 可访问主选择器实例，<code>CategoryTreeSelector.parentSelector</code> 可访问父分类选择器实例。</p>
+            </div>
+            <!-- 数据格式 -->
+            <div class="boblog-tabs-panel">
+                <h4>treeData 数据结构</h4>
+                <p class="boblog-text-sm boblog-text-gray">传入 <code>categoryTree</code> 的数据格式，后端 API 需返回此结构的 JSON：</p>
+                <div class="boblog-codeblock">
+                    <pre><code class="language-javascript">[
+    {
+        id: 1,
+        name: "技术",
+        slug: "tech",
+        type: "directory",       // "directory"（目录型）或 "final"（终极型）
+        description: "",
+        articleCount: 0,
+        children: [
+            {
+                id: 2,
+                name: "前端",
+                slug: "frontend",
+                type: "final",
+                description: "HTML/CSS/JavaScript",
+                articleCount: 12,
+                children: []
+            },
+            {
+                id: 3,
+                name: "后端",
+                slug: "backend",
+                type: "final",
+                description: "C#/.NET/数据库",
+                articleCount: 8,
+                children: []
+            }
+        ]
+    },
+    {
+        id: 4,
+        name: "生活",
+        slug: "life",
+        type: "final",
+        articleCount: 5,
+        children: []
+    }
+]</code></pre>
+                </div>
+                <h4>节点字段说明</h4>
+                <table class="boblog-table">
+                    <thead>
+                        <tr><th style="width:160px;">字段</th><th style="width:100px;">类型</th><th style="width:80px;">必填</th><th>说明</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>id</td><td>number</td><td>是</td><td>分类 ID</td></tr>
+                        <tr><td>name</td><td>string</td><td>是</td><td>分类名称</td></tr>
+                        <tr><td>slug</td><td>string</td><td>否</td><td>别名（用于 URL），显示在节点名称右侧</td></tr>
+                        <tr><td>type</td><td>string</td><td>否</td><td>"directory" 或 "final"（默认 "final"）。目录型不可选，终极型可选</td></tr>
+                        <tr><td>description</td><td>string</td><td>否</td><td>分类描述，显示在节点名称下方，搜索时也会匹配</td></tr>
+                        <tr><td>articleCount</td><td>number</td><td>否</td><td>文章数量，显示为计数徽章</td></tr>
+                        <tr><td>children</td><td>array</td><td>是</td><td>子分类数组，无子分类时为空数组 <code>[]</code></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <!-- 数据交互 -->
+            <div class="boblog-tabs-panel">
+                <h4>数据输入（初始化参数）</h4>
+                <p class="boblog-text-sm boblog-text-gray"><code>CategoryTreeSelector.init(config)</code> 接受的参数：</p>
+                <table class="boblog-table">
+                    <thead>
+                        <tr><th style="width:160px;">参数</th><th style="width:120px;">类型</th><th>说明</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>categoryTree</td><td>Array</td><td>分类树形数据（见"数据格式"Tab），通常由后端接口返回</td></tr>
+                        <tr><td>selectedId</td><td>number | null</td><td>当前选中的分类 ID。编辑页传文章已有的分类 ID，新建页传 null</td></tr>
+                    </tbody>
+                </table>
+
+                <h4>数据输出（用户操作后）</h4>
+                <p class="boblog-text-sm">用户选中分类后，业务层自动将选中的分类 ID 写入隐藏字段：</p>
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;input type="hidden" name="CategoryId" id="CategoryId" value="2" /&gt;</code></pre>
+                </div>
+                <p class="boblog-text-sm boblog-text-gray">
+                    表单提交时，<code>CategoryId</code> 随表单一起提交到后端。选择"不选择分类"时 value 为空字符串。
+                </p>
+
+                <h4>新建分类（AJAX）</h4>
+                <p class="boblog-text-sm">用户点击"+"按钮打开新建弹窗，填写后提交：</p>
+                <table class="boblog-table">
+                    <thead>
+                        <tr><th style="width:160px;">步骤</th><th>说明</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>请求</td><td>POST 到后端创建接口，提交 name、slug、parentId、description、type</td></tr>
+                        <tr><td>成功后</td><td>新节点插入 treeData，调用 <code>refreshData()</code> 刷新两个选择器，终极型自动选中</td></tr>
+                        <tr><td>失败时</td><td>显示后端返回的错误信息到对应字段</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<script src="../../dist/boblog-ui.js"></script>
+<script>
+(function() {
+    /* ===== 基础预览：分类树形选择器 ===== */
+    var display     = document.getElementById('demoCategoryDisplay');
+    var panel       = document.getElementById('demoCategoryPanel');
+    var nameEl      = document.getElementById('demoCategoryName');
+    var pathEl      = document.getElementById('demoCategoryPath');
+    var searchEl    = document.getElementById('demoCategorySearch');
+    var resultEl    = document.getElementById('demoCategoryResult');
+    var items       = document.querySelectorAll('#demoCategorySelector .boblog-tree-select-item');
+
+    // 切换下拉面板
+    display.addEventListener('click', function() {
+        var open = panel.classList.toggle('show');
+        display.classList.toggle('active', open);
+        if (open) { searchEl.value = ''; filterDemoItems(''); searchEl.focus(); }
+    });
+
+    // 点击节点选中
+    items.forEach(function(item) {
+        // 折叠图标点击
+        var toggle = item.querySelector('.tree-item-toggle');
+        if (toggle && !toggle.classList.contains('invisible')) {
+            toggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                var groupId = toggle.dataset.for;
+                var children = document.querySelectorAll('[data-parent-group="' + groupId + '"]');
+                var collapsed = toggle.classList.toggle('collapsed');
+                children.forEach(function(c) {
+                    c.style.display = collapsed ? 'none' : '';
+                });
+            });
+        }
+
+        // 节点整体点击（目录型不可选）
+        item.addEventListener('click', function(e) {
+            if (e.target.classList.contains('tree-item-toggle')) return;
+            if (item.classList.contains('directory-type')) return;
+            items.forEach(function(i) { i.classList.remove('selected'); });
+            item.classList.add('selected');
+            var name = item.dataset.name || '';
+            var path = item.dataset.path || '';
+            nameEl.textContent = name || '请选择分类';
+            if (path && path !== name) {
+                pathEl.textContent = path;
+                pathEl.style.display = '';
+            } else {
+                pathEl.style.display = 'none';
+            }
+            resultEl.textContent = name ? name + '（路径：' + path + '）' : '（未选择）';
+            panel.classList.remove('show');
+            display.classList.remove('active');
+        });
+    });
+
+    // 搜索过滤（使用 BoblogUI.pinyin 支持拼音搜索）
+    function filterDemoItems(kw) {
+        var q = kw.trim();
+        items.forEach(function(item) {
+            if (!q) { item.classList.remove('hidden'); item.style.display = ''; return; }
+            var name = item.dataset.name || '';
+            var slugEl = item.querySelector('.boblog-tree-select-slug');
+            var slug = slugEl ? slugEl.textContent : '';
+            var match = BoblogUI.pinyin.matches(name, q) || BoblogUI.pinyin.matches(slug, q);
+            item.classList.toggle('hidden', !match);
+        });
+    }
+    searchEl.addEventListener('input', function() { filterDemoItems(this.value); });
+
+    // 点击面板外关闭
+    document.addEventListener('click', function(e) {
+        var selector = document.getElementById('demoCategorySelector');
+        if (!selector.contains(e.target)) {
+            panel.classList.remove('show');
+            display.classList.remove('active');
+        }
+    });
+
+    // 页面加载后默认展开面板，延迟确保 document click 监听器已绑定
+    setTimeout(function() {
+        panel.classList.add('show');
+        display.classList.add('active');
+    }, 100);
+
+    /* ===== 使用方式预览：通过 BoblogTreeSelect.create() 初始化 ===== */
+    var usageResult = document.getElementById('demoUsageResult');
+    BoblogTreeSelect.create({
+        container: document.getElementById('demoUsageSelector'),
+        treeData: [
+            { id: 1, name: '技术', slug: 'tech', type: 'directory', children: [
+                { id: 2, name: '前端', slug: 'frontend', type: 'final', description: 'HTML/CSS/JavaScript', articleCount: 12, children: [] },
+                { id: 3, name: '后端', slug: 'backend', type: 'final', description: 'C#/.NET/数据库', articleCount: 8, children: [] }
+            ]},
+            { id: 4, name: '生活', slug: 'life', type: 'final', articleCount: 5, children: [] },
+            { id: 5, name: '随笔', slug: 'essay', type: 'final', articleCount: 3, children: [] }
+        ],
+        selectedId: null,
+        placeholder: '请选择分类',
+        emptyOptionText: '不选择分类',
+        showPath: true,
+        isSelectable: function(node) {
+            return (node.type || 'final') !== 'directory';
+        },
+        renderNodeExtra: function(node) {
+            var isDir = (node.type || 'final') === 'directory';
+            var badgeClass = isDir ? 'type-directory' : 'type-final';
+            var badgeText = isDir ? '目录' : '终极';
+            return '<span class="tree-item-type-badge ' + badgeClass + '">' + badgeText + '</span>';
+        },
+        nodeMatches: function(node, search) {
+            return BoblogUI.pinyin.matches(node.name, search)
+                || (node.slug && BoblogUI.pinyin.matches(node.slug, search))
+                || (node.description && BoblogUI.pinyin.matches(node.description, search));
+        },
+        onSelect: function(id, name, path) {
+            usageResult.textContent = name ? name + '（路径：' + path + '）' : '（未选择）';
+        }
+    });
+
+    /* ===== 弹窗预览 ===== */
+    var modal        = document.getElementById('demoCategoryModal');
+    var openBtn      = document.getElementById('demoOpenModalBtn');
+    var closeBtn     = document.getElementById('demoCloseModalBtn');
+    var cancelBtn    = document.getElementById('demoCancelModalBtn');
+    var parentDisplay = document.getElementById('demoParentDisplay');
+    var parentPanel   = document.getElementById('demoParentPanel');
+    var parentText    = document.getElementById('demoParentText');
+    var parentSearch  = document.getElementById('demoParentSearch');
+    var parentItems   = document.querySelectorAll('#demoParentSelector .boblog-tree-select-item');
+
+    function openModal() { modal.classList.add('show'); }
+    function closeModal() {
+        modal.classList.remove('show');
+        parentPanel.classList.remove('show');
+        parentDisplay.classList.remove('active');
+    }
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    cancelBtn.addEventListener('click', closeModal);
+    // 基础预览中的新建按钮也打开弹窗
+    var createBtn = document.getElementById('demoBtnCreateCategory');
+    if (createBtn) createBtn.addEventListener('click', openModal);
+    // 使用方式预览中的新建按钮也打开弹窗
+    var usageCreateBtn = document.getElementById('demoUsageCreateBtn');
+    if (usageCreateBtn) usageCreateBtn.addEventListener('click', openModal);
+    // 点击遮罩关闭
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeModal();
+    });
+
+    // 父分类选择器切换
+    parentDisplay.addEventListener('click', function() {
+        var open = parentPanel.classList.toggle('show');
+        parentDisplay.classList.toggle('active', open);
+        if (open) { parentSearch.value = ''; parentSearch.focus(); }
+    });
+
+    // 父分类节点点击
+    parentItems.forEach(function(item) {
+        item.addEventListener('click', function() {
+            if (item.classList.contains('directory-type')) return;
+            parentItems.forEach(function(i) { i.classList.remove('selected'); });
+            item.classList.add('selected');
+            parentText.textContent = item.dataset.pname || '无父分类';
+            parentPanel.classList.remove('show');
+            parentDisplay.classList.remove('active');
+        });
+    });
+
+    // 点击父分类面板外关闭
+    document.addEventListener('click', function(e) {
+        var ps = document.getElementById('demoParentSelector');
+        if (ps && !ps.contains(e.target)) {
+            parentPanel.classList.remove('show');
+            parentDisplay.classList.remove('active');
+        }
+    });
+})();
+</script>
+</body>
+</html>
