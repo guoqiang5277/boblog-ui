@@ -134,3 +134,38 @@
   justify-content: center;
   text-align: center;
 }
+
+
+/* ==========================================================================
+   复合消息类 — 后台管理常用消息组合的语义化封装
+   ========================================================================== */
+
+/* 错误消息（可关闭） — message + message-error + message-dismissible 的组合 */
+.boblog-msg-error {
+  display: flex;
+  align-items: center;
+  padding: var(--boblog-spacing-sm) var(--boblog-spacing-md);
+  margin-bottom: var(--boblog-spacing-md);
+  border: 1px solid var(--boblog-danger);
+  background-color: var(--boblog-danger-bg);
+  color: var(--boblog-danger);
+  font-size: var(--boblog-font-size-sm);
+  line-height: var(--boblog-line-height-normal);
+  position: relative;
+  padding-right: var(--boblog-spacing-2xl);
+}
+
+/* 成功消息（可关闭） — message + message-success + message-dismissible 的组合 */
+.boblog-msg-success {
+  display: flex;
+  align-items: center;
+  padding: var(--boblog-spacing-sm) var(--boblog-spacing-md);
+  margin-bottom: var(--boblog-spacing-md);
+  border: 1px solid var(--boblog-success);
+  background-color: var(--boblog-success-bg);
+  color: var(--boblog-success);
+  font-size: var(--boblog-font-size-sm);
+  line-height: var(--boblog-line-height-normal);
+  position: relative;
+  padding-right: var(--boblog-spacing-2xl);
+}

@@ -116,6 +116,9 @@
     --boblog-font-size-2xl: 20px;          /* 超大字 */
     --boblog-font-size-3xl: 24px;          /* 巨大字 */
 
+    /* ========== 字重 ========== */
+    --boblog-font-weight-semibold: 600;    /* 半粗体 */
+
     /* ========== 行高 ========== */
     --boblog-line-height-tight: 1.2;       /* 紧凑行高 */
     --boblog-line-height-normal: 1.5;      /* 标准行高 - Bo-Blog 使用 150% */
@@ -123,6 +126,7 @@
 
     /* ========== 间距体系 ========== */
     /* 基于 5px 递增 */
+    --boblog-spacing-2xs: 8px;             /* 超小间距 — 筛选栏、按钮工具栏等紧凑 gap */
     --boblog-spacing-xs: 5px;              /* 极小间距 */
     --boblog-spacing-sm: 10px;             /* 小间距 */
     --boblog-spacing-md: 15px;             /* 中等间距 */

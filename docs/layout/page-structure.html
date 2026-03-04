@@ -667,6 +667,132 @@ document.querySelector('.boblog-restart-overlay').classList.add('show');
         </div>
     </div>
 
+    <!-- ====== 复合布局类 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="复合布局类">复合布局类</h2>
+
+        <div class="boblog-doc-spec">
+            <p>后台管理常用布局组合的语义化封装，一个类名即可替代多个组合类。</p>
+            <table class="boblog-table">
+                <thead>
+                    <tr>
+                        <th>类名</th>
+                        <th>等效组合</th>
+                        <th>使用场景</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>.boblog-panel-footer-bar</code></td>
+                        <td>panel-footer + flex + align-center + justify-between</td>
+                        <td>面板底栏（分页、操作按钮等）</td>
+                    </tr>
+                    <tr>
+                        <td><code>.boblog-toolbar</code></td>
+                        <td>page-toolbar + py-3 + border-bottom + mb-4</td>
+                        <td>页面工具栏（标题 + 操作按钮）</td>
+                    </tr>
+                    <tr>
+                        <td><code>.boblog-filter-bar</code></td>
+                        <td>flex + align-center + mb-3 + flex-nowrap</td>
+                        <td>筛选栏（筛选条件 + 按钮）</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 三栏演示：预览 + 关键源码 + 完整源码 -->
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <!-- 预览 -->
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <p class="boblog-text-sm boblog-text-gray boblog-mb-2">面板底栏 (.boblog-panel-footer-bar)：</p>
+                    <div class="boblog-panel-footer-bar">
+                        <span>共 50 条记录</span>
+                        <span>第 1/5 页</span>
+                    </div>
+
+                    <p class="boblog-text-sm boblog-text-gray boblog-mb-2 boblog-mt-3">工具栏 (.boblog-toolbar)：</p>
+                    <div class="boblog-toolbar">
+                        <span class="boblog-text-bold">文章管理</span>
+                        <button class="boblog-btn-action">新建文章</button>
+                    </div>
+
+                    <p class="boblog-text-sm boblog-text-gray boblog-mb-2">筛选栏 (.boblog-filter-bar)：</p>
+                    <div class="boblog-filter-bar">
+                        <span class="boblog-text-semibold">状态：</span>
+                        <div class="boblog-select"><select><option>全部</option></select></div>
+                        <button class="boblog-btn-action">搜索</button>
+                    </div>
+                </div>
+            </div>
+            <!-- 关键源码 -->
+            <div class="boblog-tabs-panel">
+                <pre class="boblog-doc-code"><code>&lt;!-- 面板底栏 --&gt;
+&lt;div class="boblog-panel-footer-bar"&gt;
+    &lt;span&gt;共 50 条记录&lt;/span&gt;
+    &lt;span&gt;第 1/5 页&lt;/span&gt;
+&lt;/div&gt;
+
+&lt;!-- 工具栏 --&gt;
+&lt;div class="boblog-toolbar"&gt;
+    &lt;span class="boblog-text-bold"&gt;文章管理&lt;/span&gt;
+    &lt;button class="boblog-btn-action"&gt;新建文章&lt;/button&gt;
+&lt;/div&gt;
+
+&lt;!-- 筛选栏 --&gt;
+&lt;div class="boblog-filter-bar"&gt;
+    &lt;span class="boblog-text-semibold"&gt;状态：&lt;/span&gt;
+    &lt;div class="boblog-select"&gt;&lt;select&gt;&lt;option&gt;全部&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+    &lt;button class="boblog-btn-action"&gt;搜索&lt;/button&gt;
+&lt;/div&gt;</code></pre>
+            </div>
+            <!-- 完整源码 -->
+            <div class="boblog-tabs-panel">
+                <pre class="boblog-doc-code"><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;复合布局类示例&lt;/title&gt;
+    &lt;link rel="stylesheet" href="boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+    &lt;!-- 面板底栏 --&gt;
+    &lt;p class="boblog-text-sm boblog-text-gray boblog-mb-2"&gt;面板底栏 (.boblog-panel-footer-bar)：&lt;/p&gt;
+    &lt;div class="boblog-panel-footer-bar"&gt;
+        &lt;span&gt;共 50 条记录&lt;/span&gt;
+        &lt;span&gt;第 1/5 页&lt;/span&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 工具栏 --&gt;
+    &lt;p class="boblog-text-sm boblog-text-gray boblog-mb-2 boblog-mt-3"&gt;工具栏 (.boblog-toolbar)：&lt;/p&gt;
+    &lt;div class="boblog-toolbar"&gt;
+        &lt;span class="boblog-text-bold"&gt;文章管理&lt;/span&gt;
+        &lt;button class="boblog-btn-action"&gt;新建文章&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;!-- 筛选栏 --&gt;
+    &lt;p class="boblog-text-sm boblog-text-gray boblog-mb-2"&gt;筛选栏 (.boblog-filter-bar)：&lt;/p&gt;
+    &lt;div class="boblog-filter-bar"&gt;
+        &lt;span class="boblog-text-semibold"&gt;状态：&lt;/span&gt;
+        &lt;div class="boblog-select"&gt;&lt;select&gt;&lt;option&gt;全部&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+        &lt;button class="boblog-btn-action"&gt;搜索&lt;/button&gt;
+    &lt;/div&gt;
+
+    &lt;script src="boblog-ui.js"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+            </div>
+        </div>
+    </div>
+
 </div><!-- /.boblog-doc-container -->
 
 <script src="../../dist/boblog-ui.js"></script>
@@ -679,20 +805,20 @@ document.querySelector('.boblog-restart-overlay').classList.add('show');
     /* 各页面对应的主内容区 HTML */
     var pageContents = {
         /* 内容管理模块 */
-        'dashboard': '<div class="boblog-page-title">仪表盘</div><div class="boblog-content-block"><div class="boblog-content-block-title">站点概况</div><p style="font-size:12px;color:#666;">文章: 128 &nbsp;&nbsp; 评论: 356 &nbsp;&nbsp; 分类: 12</p></div><div class="boblog-content-block"><div class="boblog-content-block-title">最近文章</div><p style="font-size:12px;color:#999;">暂无更多内容...</p></div>',
-        'posts': '<div class="boblog-page-title">所有文章</div><div class="boblog-content-block"><div class="boblog-content-block-title">文章列表</div><p style="font-size:12px;color:#666;">共 128 篇文章</p></div>',
-        'new-post': '<div class="boblog-page-title">写新文章</div><div class="boblog-content-block"><p style="font-size:12px;color:#666;">标题、正文、分类...</p></div>',
-        'categories': '<div class="boblog-page-title">分类管理</div><div class="boblog-content-block"><div class="boblog-content-block-title">分类列表</div><p style="font-size:12px;color:#666;">共 12 个分类</p></div>',
-        'comments': '<div class="boblog-page-title">评论管理</div><div class="boblog-content-block"><div class="boblog-content-block-title">待审评论</div><p style="font-size:12px;color:#666;">共 5 条待审</p></div>',
+        'dashboard': '<div class="boblog-page-title">仪表盘</div><div class="boblog-content-block"><div class="boblog-content-block-title">站点概况</div><p class="boblog-text-sm boblog-text-gray">文章: 128 &nbsp;&nbsp; 评论: 356 &nbsp;&nbsp; 分类: 12</p></div><div class="boblog-content-block"><div class="boblog-content-block-title">最近文章</div><p class="boblog-text-sm boblog-text-gray">暂无更多内容...</p></div>',
+        'posts': '<div class="boblog-page-title">所有文章</div><div class="boblog-content-block"><div class="boblog-content-block-title">文章列表</div><p class="boblog-text-sm boblog-text-gray">共 128 篇文章</p></div>',
+        'new-post': '<div class="boblog-page-title">写新文章</div><div class="boblog-content-block"><p class="boblog-text-sm boblog-text-gray">标题、正文、分类...</p></div>',
+        'categories': '<div class="boblog-page-title">分类管理</div><div class="boblog-content-block"><div class="boblog-content-block-title">分类列表</div><p class="boblog-text-sm boblog-text-gray">共 12 个分类</p></div>',
+        'comments': '<div class="boblog-page-title">评论管理</div><div class="boblog-content-block"><div class="boblog-content-block-title">待审评论</div><p class="boblog-text-sm boblog-text-gray">共 5 条待审</p></div>',
         /* 系统设置模块 */
-        'general': '<div class="boblog-page-title">基本设置</div><div class="boblog-content-block"><div class="boblog-content-block-title">站点信息</div><p style="font-size:12px;color:#666;">站点名称、描述、关键词...</p></div>',
-        'theme': '<div class="boblog-page-title">主题选择</div><div class="boblog-content-block"><p style="font-size:12px;color:#666;">当前主题: Bo-Blog Default</p></div>',
-        'layout': '<div class="boblog-page-title">布局设置</div><div class="boblog-content-block"><p style="font-size:12px;color:#666;">侧边栏位置、宽度...</p></div>',
-        'plugins': '<div class="boblog-page-title">插件管理</div><div class="boblog-content-block"><div class="boblog-content-block-title">已安装插件</div><p style="font-size:12px;color:#666;">共 3 个插件</p></div>',
+        'general': '<div class="boblog-page-title">基本设置</div><div class="boblog-content-block"><div class="boblog-content-block-title">站点信息</div><p class="boblog-text-sm boblog-text-gray">站点名称、描述、关键词...</p></div>',
+        'theme': '<div class="boblog-page-title">主题选择</div><div class="boblog-content-block"><p class="boblog-text-sm boblog-text-gray">当前主题: Bo-Blog Default</p></div>',
+        'layout': '<div class="boblog-page-title">布局设置</div><div class="boblog-content-block"><p class="boblog-text-sm boblog-text-gray">侧边栏位置、宽度...</p></div>',
+        'plugins': '<div class="boblog-page-title">插件管理</div><div class="boblog-content-block"><div class="boblog-content-block-title">已安装插件</div><p class="boblog-text-sm boblog-text-gray">共 3 个插件</p></div>',
         /* 用户管理模块 */
-        'user-list': '<div class="boblog-page-title">用户列表</div><div class="boblog-content-block"><div class="boblog-content-block-title">注册用户</div><p style="font-size:12px;color:#666;">共 56 位用户</p></div>',
-        'roles': '<div class="boblog-page-title">角色权限</div><div class="boblog-content-block"><p style="font-size:12px;color:#666;">管理员、编辑、作者、订阅者</p></div>',
-        'profile': '<div class="boblog-page-title">个人资料</div><div class="boblog-content-block"><p style="font-size:12px;color:#666;">用户名: admin</p></div>'
+        'user-list': '<div class="boblog-page-title">用户列表</div><div class="boblog-content-block"><div class="boblog-content-block-title">注册用户</div><p class="boblog-text-sm boblog-text-gray">共 56 位用户</p></div>',
+        'roles': '<div class="boblog-page-title">角色权限</div><div class="boblog-content-block"><p class="boblog-text-sm boblog-text-gray">管理员、编辑、作者、订阅者</p></div>',
+        'profile': '<div class="boblog-page-title">个人资料</div><div class="boblog-content-block"><p class="boblog-text-sm boblog-text-gray">用户名: admin</p></div>'
     };
 
     /* 各模块的默认首页 */

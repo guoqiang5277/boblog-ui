@@ -112,4 +112,9 @@
 }
 
 
+/* 蓝色强调边框 — Tab 栏底线、积分面板等 border:1px solid #9EC9FF 场景 */
+.boblog-border-accent {
+    border: 1px solid var(--boblog-border-blue, #9EC9FF) !important;
+}
+
 /* 语义边框色和背景色工具类已迁移至 src/controls/color.scss */

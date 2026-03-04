@@ -477,6 +477,91 @@
         </div>
     </div>
 
+    <!-- ====== 复合消息类 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="复合消息类">复合消息类</h2>
+
+        <div class="boblog-doc-spec">
+            <p>后台管理常用消息组合的语义化封装，一个类名即可替代多个组合类。</p>
+            <table class="boblog-table">
+                <thead>
+                    <tr>
+                        <th>类名</th>
+                        <th>等效组合</th>
+                        <th>使用场景</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>.boblog-msg-error</code></td>
+                        <td>message + message-error + message-dismissible</td>
+                        <td>可关闭的错误消息提示</td>
+                    </tr>
+                    <tr>
+                        <td><code>.boblog-msg-success</code></td>
+                        <td>message + message-success + message-dismissible</td>
+                        <td>可关闭的成功消息提示</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <div class="boblog-msg-error">
+                        <span class="boblog-message-icon">✕</span>
+                        <span class="boblog-message-content">操作失败，请稍后重试</span>
+                    </div>
+                    <div class="boblog-msg-success">
+                        <span class="boblog-message-icon">✓</span>
+                        <span class="boblog-message-content">保存成功</span>
+                    </div>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;div class="boblog-msg-error"&gt;
+    &lt;span class="boblog-message-icon"&gt;✕&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;操作失败，请稍后重试&lt;/span&gt;
+&lt;/div&gt;
+&lt;div class="boblog-msg-success"&gt;
+    &lt;span class="boblog-message-icon"&gt;✓&lt;/span&gt;
+    &lt;span class="boblog-message-content"&gt;保存成功&lt;/span&gt;
+&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;复合消息类示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;div class="boblog-msg-error"&gt;
+        &lt;span class="boblog-message-icon"&gt;✕&lt;/span&gt;
+        &lt;span class="boblog-message-content"&gt;操作失败，请稍后重试&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class="boblog-msg-success"&gt;
+        &lt;span class="boblog-message-icon"&gt;✓&lt;/span&gt;
+        &lt;span class="boblog-message-content"&gt;保存成功&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div><!-- /.boblog-doc-container -->
 
 <script src="../../dist/boblog-ui.js"></script>

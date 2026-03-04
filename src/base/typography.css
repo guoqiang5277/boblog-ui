@@ -154,6 +154,11 @@ b {
     font-weight: bold;
 }
 
+/* 半粗体工具类：用于表单标签、筛选栏标签等 font-weight:600 场景 */
+.boblog-text-semibold {
+    font-weight: var(--boblog-font-weight-semibold) !important;
+}
+
 em,
 i {
     font-style: italic;

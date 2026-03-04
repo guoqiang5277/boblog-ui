@@ -1244,6 +1244,110 @@
         </div>
     </div>
 
+    <!-- ====== 复合按钮类 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="复合按钮类">复合按钮类</h2>
+
+        <div class="boblog-doc-spec">
+            <p>后台管理常用按钮组合的语义化封装，一个类名即可替代多个组合类。</p>
+            <table class="boblog-table">
+                <thead>
+                    <tr>
+                        <th>类名</th>
+                        <th>等效组合</th>
+                        <th>使用场景</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>.boblog-btn-action</code></td>
+                        <td>btn + btn-sm + 清除宽度</td>
+                        <td>表格行内"编辑/查看"等操作按钮</td>
+                    </tr>
+                    <tr>
+                        <td><code>.boblog-btn-submit</code></td>
+                        <td>btn + btn-primary + 清除宽度</td>
+                        <td>表单提交"保存/创建"等主按钮</td>
+                    </tr>
+                    <tr>
+                        <td><code>.boblog-btn-action-xs</code></td>
+                        <td>btn + btn-sm + text-xs + 清除宽度</td>
+                        <td>表格行内紧凑操作按钮</td>
+                    </tr>
+                    <tr>
+                        <td><code>.boblog-btn-danger-action</code></td>
+                        <td>btn + btn-danger + btn-sm + 清除宽度</td>
+                        <td>表格行内"删除"等危险操作按钮</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <p class="boblog-text-sm boblog-text-gray boblog-mb-2">操作按钮：</p>
+                    <a class="boblog-btn-action">编辑</a>
+                    <a class="boblog-btn-action boblog-btn-outline-success">发布</a>
+                    <a class="boblog-btn-danger-action">删除</a>
+
+                    <p class="boblog-text-sm boblog-text-gray boblog-mb-2 boblog-mt-3">极小操作按钮：</p>
+                    <a class="boblog-btn-action-xs">查看</a>
+                    <a class="boblog-btn-action-xs">复制</a>
+
+                    <p class="boblog-text-sm boblog-text-gray boblog-mb-2 boblog-mt-3">提交按钮：</p>
+                    <button class="boblog-btn-submit">保存</button>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;p class="boblog-text-sm boblog-text-gray boblog-mb-2"&gt;操作按钮：&lt;/p&gt;
+&lt;a class="boblog-btn-action"&gt;编辑&lt;/a&gt;
+&lt;a class="boblog-btn-action boblog-btn-outline-success"&gt;发布&lt;/a&gt;
+&lt;a class="boblog-btn-danger-action"&gt;删除&lt;/a&gt;
+
+&lt;p class="boblog-text-sm boblog-text-gray boblog-mb-2 boblog-mt-3"&gt;极小操作按钮：&lt;/p&gt;
+&lt;a class="boblog-btn-action-xs"&gt;查看&lt;/a&gt;
+&lt;a class="boblog-btn-action-xs"&gt;复制&lt;/a&gt;
+
+&lt;p class="boblog-text-sm boblog-text-gray boblog-mb-2 boblog-mt-3"&gt;提交按钮：&lt;/p&gt;
+&lt;button class="boblog-btn-submit"&gt;保存&lt;/button&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;复合按钮类示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;p class="boblog-text-sm boblog-text-gray boblog-mb-2"&gt;操作按钮：&lt;/p&gt;
+    &lt;a class="boblog-btn-action"&gt;编辑&lt;/a&gt;
+    &lt;a class="boblog-btn-action boblog-btn-outline-success"&gt;发布&lt;/a&gt;
+    &lt;a class="boblog-btn-danger-action"&gt;删除&lt;/a&gt;
+
+    &lt;p class="boblog-text-sm boblog-text-gray boblog-mb-2 boblog-mt-3"&gt;极小操作按钮：&lt;/p&gt;
+    &lt;a class="boblog-btn-action-xs"&gt;查看&lt;/a&gt;
+    &lt;a class="boblog-btn-action-xs"&gt;复制&lt;/a&gt;
+
+    &lt;p class="boblog-text-sm boblog-text-gray boblog-mb-2 boblog-mt-3"&gt;提交按钮：&lt;/p&gt;
+    &lt;button class="boblog-btn-submit"&gt;保存&lt;/button&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div><!-- /.boblog-doc-container -->
 
 <script src="../../dist/boblog-ui.js"></script>

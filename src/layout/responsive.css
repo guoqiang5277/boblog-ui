@@ -269,6 +269,14 @@
   }
 }
 
+/* ========== 溢出控制 ========== */
+
+/* 隐藏溢出 — 表格容器、筛选栏容器等需要隐藏溢出的场景 */
+.boblog-overflow-hidden { overflow: hidden !important; }
+
+/* 行内显示 — 内联表单等需要 display:inline 的场景 */
+.boblog-inline { display: inline !important; }
+
 /* ========== 后台响应式布局 ========== */
 
 /* < 992px: 侧边栏滑出叠加层 */

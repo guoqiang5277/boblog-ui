@@ -156,6 +156,7 @@
                 <li><strong>.boblog-border-blue</strong>: 主题蓝色 #0D6EAA</li>
                 <li><strong>.boblog-border-light</strong>: 浅色 #DDE8F0</li>
                 <li><strong>.boblog-border-dark</strong>: 深色 #A0B5C8</li>
+                <li><strong>.boblog-border-accent</strong>: 蓝色强调边框 1px solid #9EC9FF — Tab 栏底线、积分面板等场景</li>
                 <li><strong>使用方式</strong>: 与基础边框类组合使用</li>
             </ul>
         </div>
@@ -169,28 +170,34 @@
             <div class="boblog-tabs-panel active">
                 <!-- 预览 -->
                 <div class="boblog-doc-demo">
-                    <div class="boblog-border boblog-border-blue" style="padding: 15px; margin-bottom: 10px;">
+                    <div class="boblog-border boblog-border-blue boblog-p-3 boblog-mb-2">
                         蓝色边框（.boblog-border-blue）
                     </div>
-                    <div class="boblog-border boblog-border-light" style="padding: 15px; margin-bottom: 10px;">
+                    <div class="boblog-border boblog-border-light boblog-p-3 boblog-mb-2">
                         浅色边框（.boblog-border-light）
                     </div>
-                    <div class="boblog-border boblog-border-dark" style="padding: 15px;">
+                    <div class="boblog-border boblog-border-dark boblog-p-3 boblog-mb-2">
                         深色边框（.boblog-border-dark）
+                    </div>
+                    <div class="boblog-border-accent boblog-p-3">
+                        蓝色强调边框（.boblog-border-accent）
                     </div>
                 </div>
             </div>
             <div class="boblog-tabs-panel">
                 <!-- 关键源码 -->
                 <div class="boblog-codeblock">
-                    <pre><code class="language-html">&lt;div class="boblog-border boblog-border-blue" style="padding: 15px; margin-bottom: 10px;"&gt;
+                    <pre><code class="language-html">&lt;div class="boblog-border boblog-border-blue boblog-p-3 boblog-mb-2"&gt;
     蓝色边框（.boblog-border-blue）
 &lt;/div&gt;
-&lt;div class="boblog-border boblog-border-light" style="padding: 15px; margin-bottom: 10px;"&gt;
+&lt;div class="boblog-border boblog-border-light boblog-p-3 boblog-mb-2"&gt;
     浅色边框（.boblog-border-light）
 &lt;/div&gt;
-&lt;div class="boblog-border boblog-border-dark" style="padding: 15px;"&gt;
+&lt;div class="boblog-border boblog-border-dark boblog-p-3 boblog-mb-2"&gt;
     深色边框（.boblog-border-dark）
+&lt;/div&gt;
+&lt;div class="boblog-border-accent boblog-p-3"&gt;
+    蓝色强调边框（.boblog-border-accent）
 &lt;/div&gt;</code></pre>
                 </div>
             </div>
@@ -206,14 +213,17 @@
     &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
 &lt;/head&gt;
 &lt;body&gt;
-    &lt;div class="boblog-border boblog-border-blue" style="padding: 15px; margin-bottom: 10px;"&gt;
+    &lt;div class="boblog-border boblog-border-blue boblog-p-3 boblog-mb-2"&gt;
         蓝色边框（.boblog-border-blue）
     &lt;/div&gt;
-    &lt;div class="boblog-border boblog-border-light" style="padding: 15px; margin-bottom: 10px;"&gt;
+    &lt;div class="boblog-border boblog-border-light boblog-p-3 boblog-mb-2"&gt;
         浅色边框（.boblog-border-light）
     &lt;/div&gt;
-    &lt;div class="boblog-border boblog-border-dark" style="padding: 15px;"&gt;
+    &lt;div class="boblog-border boblog-border-dark boblog-p-3 boblog-mb-2"&gt;
         深色边框（.boblog-border-dark）
+    &lt;/div&gt;
+    &lt;div class="boblog-border-accent boblog-p-3"&gt;
+        蓝色强调边框（.boblog-border-accent）
     &lt;/div&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>

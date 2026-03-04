@@ -281,7 +281,7 @@
             <!-- 预览面板 -->
             <div class="boblog-tabs-panel active">
                 <div class="boblog-doc-demo">
-                    <p style="font-size: 12px; color: #999; margin-bottom: 10px;">有间距（默认）：</p>
+                    <p class="boblog-text-sm boblog-text-gray boblog-mb-2">有间距（默认）：</p>
                     <div class="boblog-row">
                         <div class="boblog-col-4">
                             <div class="demo-box">col-4</div>
@@ -293,7 +293,7 @@
                             <div class="demo-box">col-4</div>
                         </div>
                     </div>
-                    <p style="font-size: 12px; color: #999; margin-bottom: 10px;">无间距：</p>
+                    <p class="boblog-text-sm boblog-text-gray boblog-mb-2">无间距：</p>
                     <div class="boblog-row boblog-no-gutters">
                         <div class="boblog-col-4">
                             <div class="demo-box">col-4</div>
@@ -352,6 +352,7 @@
         <!-- 规范说明 -->
         <div class="boblog-doc-spec">
             <ul>
+                <li><code>.boblog-gap-xs</code>: gap 8px — 筛选栏、批量操作栏等紧凑间距</li>
                 <li><code>.boblog-gap-sm</code>: gap 10px (--boblog-spacing-sm)</li>
                 <li><code>.boblog-gap-md</code>: gap 15px (--boblog-spacing-md)</li>
                 <li><code>.boblog-gap-lg</code>: gap 20px (--boblog-spacing-lg)</li>
@@ -369,7 +370,19 @@
             <!-- 预览面板 -->
             <div class="boblog-tabs-panel active">
                 <div class="boblog-doc-demo">
-                    <p style="font-size: 12px; color: #999; margin-bottom: 10px;">gap-sm（10px）：</p>
+                    <p class="boblog-text-sm boblog-text-gray boblog-mb-2">gap-xs（8px）：</p>
+                    <div class="boblog-row boblog-no-gutters boblog-gap-xs">
+                        <div class="boblog-col-4">
+                            <div class="demo-box">col-4</div>
+                        </div>
+                        <div class="boblog-col-4">
+                            <div class="demo-box">col-4</div>
+                        </div>
+                        <div class="boblog-col-4">
+                            <div class="demo-box">col-4</div>
+                        </div>
+                    </div>
+                    <p class="boblog-text-sm boblog-text-gray boblog-mb-2">gap-sm（10px）：</p>
                     <div class="boblog-row boblog-no-gutters boblog-gap-sm">
                         <div class="boblog-col-4">
                             <div class="demo-box">col-4</div>
@@ -381,7 +394,7 @@
                             <div class="demo-box">col-4</div>
                         </div>
                     </div>
-                    <p style="font-size: 12px; color: #999; margin-bottom: 10px;">gap-lg（20px）：</p>
+                    <p class="boblog-text-sm boblog-text-gray boblog-mb-2">gap-lg（20px）：</p>
                     <div class="boblog-row boblog-no-gutters boblog-gap-lg">
                         <div class="boblog-col-4">
                             <div class="demo-box">col-4</div>
@@ -398,7 +411,13 @@
             <!-- 关键源码面板 -->
             <div class="boblog-tabs-panel">
                 <div class="boblog-codeblock">
-                    <pre><code class="language-html">&lt;div class="boblog-row boblog-no-gutters boblog-gap-sm"&gt;
+                    <pre><code class="language-html">&lt;div class="boblog-row boblog-no-gutters boblog-gap-xs"&gt;
+    &lt;div class="boblog-col-4"&gt;8px 间距&lt;/div&gt;
+    &lt;div class="boblog-col-4"&gt;8px 间距&lt;/div&gt;
+    &lt;div class="boblog-col-4"&gt;8px 间距&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class="boblog-row boblog-no-gutters boblog-gap-sm"&gt;
     &lt;div class="boblog-col-4"&gt;10px 间距&lt;/div&gt;
     &lt;div class="boblog-col-4"&gt;10px 间距&lt;/div&gt;
     &lt;div class="boblog-col-4"&gt;10px 间距&lt;/div&gt;
@@ -425,6 +444,12 @@
 &lt;body&gt;
 
 &lt;div class="boblog-container"&gt;
+    &lt;div class="boblog-row boblog-no-gutters boblog-gap-xs"&gt;
+        &lt;div class="boblog-col-4"&gt;8px 间距&lt;/div&gt;
+        &lt;div class="boblog-col-4"&gt;8px 间距&lt;/div&gt;
+        &lt;div class="boblog-col-4"&gt;8px 间距&lt;/div&gt;
+    &lt;/div&gt;
+
     &lt;div class="boblog-row boblog-no-gutters boblog-gap-sm"&gt;
         &lt;div class="boblog-col-4"&gt;10px 间距&lt;/div&gt;
         &lt;div class="boblog-col-4"&gt;10px 间距&lt;/div&gt;

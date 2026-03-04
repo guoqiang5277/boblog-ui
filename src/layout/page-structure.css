@@ -360,3 +360,45 @@
   width: 3rem;
   height: 3rem;
 }
+
+
+/* ==========================================================================
+   复合布局类 — 后台管理常用布局组合的语义化封装
+   ========================================================================== */
+
+/* 面板底栏 — panel-footer + flex + align-center + justify-between 的组合 */
+.boblog-panel-footer-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--boblog-spacing-sm) var(--boblog-spacing-md);
+  border-top: 1px solid var(--boblog-border-blue, #9EC9FF);
+  background-color: var(--boblog-bg-subtle, #F5F8FB);
+}
+
+/* 页面工具栏 — page-toolbar + py-3 + border-bottom + mb-4 的组合 */
+.boblog-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--boblog-spacing-md);
+  padding-bottom: var(--boblog-spacing-md);
+  border-bottom: 1px solid var(--boblog-border, #C4D7E8);
+  margin-bottom: var(--boblog-spacing-lg);
+  gap: var(--boblog-spacing-sm, 10px);
+}
+
+/* 筛选栏 — flex + align-center + mb-3 + flex-nowrap 的组合 */
+.boblog-filter-bar {
+  display: flex;
+  align-items: center;
+  margin-bottom: var(--boblog-spacing-md);
+  flex-wrap: nowrap;
+  gap: var(--boblog-spacing-sm, 10px);
+}
+
+/* 筛选栏内下拉框 — 自动宽度，防止撑满整行 */
+.boblog-filter-bar .boblog-select {
+  width: auto;
+  min-width: 100px;
+}

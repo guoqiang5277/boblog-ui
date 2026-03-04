@@ -1336,6 +1336,98 @@
         </div>
     </div>
 
+    <!-- ====== 溢出与显示控制 ====== -->
+    <div class="boblog-doc-section">
+        <h2 id="溢出与显示控制">溢出与显示控制</h2>
+
+        <div class="boblog-doc-spec">
+            <table class="boblog-table">
+                <thead>
+                    <tr>
+                        <th>类名</th>
+                        <th>CSS 效果</th>
+                        <th>使用场景</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>.boblog-overflow-hidden</code></td>
+                        <td>overflow: hidden</td>
+                        <td>表格容器、筛选栏容器等需要隐藏溢出的场景</td>
+                    </tr>
+                    <tr>
+                        <td><code>.boblog-inline</code></td>
+                        <td>display: inline</td>
+                        <td>内联表单等需要 display:inline 的场景</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+            <div class="boblog-tabs-panel active">
+                <!-- 预览 -->
+                <div class="boblog-doc-demo">
+                    <p class="boblog-text-sm boblog-text-gray boblog-mb-1">boblog-overflow-hidden（固定高度 40px，超出内容被隐藏）：</p>
+                    <div class="boblog-overflow-hidden boblog-border boblog-p-2 boblog-mb-3" style="height:40px; width:260px;">
+                        <p style="margin:0;">第一行文字可以看到</p>
+                        <p style="margin:0;">第二行文字被隐藏了</p>
+                        <p style="margin:0;">第三行文字也被隐藏了</p>
+                    </div>
+                    <p class="boblog-text-sm boblog-text-gray boblog-mb-1">boblog-inline（将 block 元素变为 inline）：</p>
+                    <div class="boblog-inline boblog-border boblog-p-1 boblog-mr-1">原本是 div（block）</div>
+                    <div class="boblog-inline boblog-border boblog-p-1">现在并排显示</div>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <!-- 关键源码 -->
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!-- overflow:hidden — 固定高度容器，超出内容被裁切 --&gt;
+&lt;div class="boblog-overflow-hidden boblog-border boblog-p-2" style="height:40px; width:260px;"&gt;
+    &lt;p&gt;第一行文字可以看到&lt;/p&gt;
+    &lt;p&gt;第二行文字被隐藏了&lt;/p&gt;
+    &lt;p&gt;第三行文字也被隐藏了&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- display:inline — 将 block 元素变为 inline，实现并排 --&gt;
+&lt;div class="boblog-inline boblog-border boblog-p-1"&gt;原本是 div（block）&lt;/div&gt;
+&lt;div class="boblog-inline boblog-border boblog-p-1"&gt;现在并排显示&lt;/div&gt;</code></pre>
+                </div>
+            </div>
+            <div class="boblog-tabs-panel">
+                <!-- 完整源码 -->
+                <div class="boblog-codeblock">
+                    <pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html lang="zh-CN"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;溢出与显示控制示例 - Bo-Blog UI&lt;/title&gt;
+    &lt;link rel="stylesheet" href="../../dist/boblog-ui.css"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;!-- overflow:hidden — 固定高度容器，超出内容被裁切 --&gt;
+    &lt;div class="boblog-overflow-hidden boblog-border boblog-p-2" style="height:40px; width:260px;"&gt;
+        &lt;p&gt;第一行文字可以看到&lt;/p&gt;
+        &lt;p&gt;第二行文字被隐藏了&lt;/p&gt;
+        &lt;p&gt;第三行文字也被隐藏了&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;!-- display:inline — 将 block 元素变为 inline，实现并排 --&gt;
+    &lt;div class="boblog-inline boblog-border boblog-p-1"&gt;原本是 div（block）&lt;/div&gt;
+    &lt;div class="boblog-inline boblog-border boblog-p-1"&gt;现在并排显示&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
 
 </div> <!-- /.boblog-doc-container -->
 <script src="../../dist/boblog-ui.js"></script>

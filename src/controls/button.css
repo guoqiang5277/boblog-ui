@@ -524,3 +524,120 @@
 .boblog-btn-group-vertical .boblog-btn + .boblog-btn {
   margin-left: 0;
 }
+
+
+/* ==========================================================================
+   复合按钮类 — 后台管理常用按钮组合的语义化封装
+   ========================================================================== */
+
+/* 操作按钮 — 表格行内"编辑/删除/查看"等小按钮（btn + btn-sm + 清除宽度） */
+.boblog-btn-action {
+  display: inline-block;
+  padding: 4px 10px;
+  font-family: var(--boblog-font-family);
+  font-size: var(--boblog-font-size-sm);
+  line-height: var(--boblog-line-height-normal);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid var(--boblog-border);
+  border-radius: 0;
+  background-color: var(--boblog-bg);
+  color: var(--boblog-text);
+  transition: all var(--boblog-transition-normal);
+  outline: none;
+  width: auto;
+}
+
+.boblog-btn-action:hover {
+  border-color: var(--boblog-blue);
+  color: var(--boblog-blue);
+  background-color: var(--boblog-blue-pale);
+}
+
+/* 提交按钮 — 表单提交"保存/创建"等主按钮（btn + btn-primary + 清除宽度） */
+.boblog-btn-submit {
+  display: inline-block;
+  padding: 6px 15px;
+  font-family: var(--boblog-font-family);
+  font-size: var(--boblog-font-size-sm);
+  line-height: var(--boblog-line-height-normal);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid var(--boblog-blue);
+  border-radius: 0;
+  background-color: var(--boblog-blue);
+  color: var(--boblog-bg);
+  transition: all var(--boblog-transition-normal);
+  outline: none;
+  width: auto;
+}
+
+.boblog-btn-submit:hover {
+  background-color: var(--boblog-blue-light);
+  border-color: var(--boblog-blue-light);
+  color: var(--boblog-bg);
+}
+
+/* 极小操作按钮 — 表格行内紧凑操作（btn + btn-sm + text-xs + 清除宽度） */
+.boblog-btn-action-xs {
+  display: inline-block;
+  padding: 4px 10px;
+  font-family: var(--boblog-font-family);
+  font-size: var(--boblog-font-size-xs);
+  line-height: var(--boblog-line-height-normal);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid var(--boblog-border);
+  border-radius: 0;
+  background-color: var(--boblog-bg);
+  color: var(--boblog-text);
+  transition: all var(--boblog-transition-normal);
+  outline: none;
+  width: auto;
+}
+
+.boblog-btn-action-xs:hover {
+  border-color: var(--boblog-blue);
+  color: var(--boblog-blue);
+  background-color: var(--boblog-blue-pale);
+}
+
+/* 危险操作按钮 — 表格行内"删除"等危险操作（btn + btn-danger + btn-sm + 清除宽度） */
+.boblog-btn-danger-action {
+  display: inline-block;
+  padding: 4px 10px;
+  font-family: var(--boblog-font-family);
+  font-size: var(--boblog-font-size-sm);
+  line-height: var(--boblog-line-height-normal);
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  user-select: none;
+  border: 1px solid var(--boblog-danger);
+  border-radius: 0;
+  background-color: var(--boblog-danger);
+  color: var(--boblog-bg);
+  transition: all var(--boblog-transition-normal);
+  outline: none;
+  width: auto;
+}
+
+.boblog-btn-danger-action:hover {
+  background-color: #a82a22;
+  border-color: #a82a22;
+  color: var(--boblog-bg);
+}

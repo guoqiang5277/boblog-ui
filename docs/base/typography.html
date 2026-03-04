@@ -362,7 +362,7 @@
                             <p>这是一个段落。Bo-Blog UI 是基于 Bo-Blog V2.1 Default Skin 的经典设计风格，采用浅蓝白色调，清爽简洁的视觉效果。适用于 2000 年代风格的独立博客和内容管理系统。</p>
                             <p>这是包含<a href="#">链接</a>的段落文本。链接使用品牌蓝色，鼠标悬停时显示下划线。</p>
                             <p>这是包含<strong>粗体文字</strong>和<em>斜体文字</em>的段落。还可以使用<code>行内代码</code>样式。</p>
-                            <p>使用工具类：<span class="boblog-text-bold">boblog-text-bold 粗体</span></p>
+                            <p>使用工具类：<span class="boblog-text-bold">boblog-text-bold 粗体</span> | <span class="boblog-text-semibold">boblog-text-semibold 半粗体</span></p>
                         </div>
                     </div>
                     <div class="boblog-tabs-panel">
@@ -371,7 +371,7 @@
                             <pre><code class="language-html">&lt;p&gt;这是一个段落。Bo-Blog UI 是基于 Bo-Blog V2.1 Default Skin 的经典设计风格，采用浅蓝白色调，清爽简洁的视觉效果。适用于 2000 年代风格的独立博客和内容管理系统。&lt;/p&gt;
 &lt;p&gt;这是包含&lt;a href="#"&gt;链接&lt;/a&gt;的段落文本。链接使用品牌蓝色，鼠标悬停时显示下划线。&lt;/p&gt;
 &lt;p&gt;这是包含&lt;strong&gt;粗体文字&lt;/strong&gt;和&lt;em&gt;斜体文字&lt;/em&gt;的段落。还可以使用&lt;code&gt;行内代码&lt;/code&gt;样式。&lt;/p&gt;
-&lt;p&gt;使用工具类：&lt;span class="boblog-text-bold"&gt;boblog-text-bold 粗体&lt;/span&gt;&lt;/p&gt;</code></pre>
+&lt;p&gt;使用工具类：&lt;span class="boblog-text-bold"&gt;boblog-text-bold 粗体&lt;/span&gt; | &lt;span class="boblog-text-semibold"&gt;boblog-text-semibold 半粗体&lt;/span&gt;&lt;/p&gt;</code></pre>
                         </div>
                     </div>
                     <div class="boblog-tabs-panel">
@@ -389,7 +389,7 @@
     &lt;p&gt;这是一个段落。Bo-Blog UI 是基于 Bo-Blog V2.1 Default Skin 的经典设计风格，采用浅蓝白色调，清爽简洁的视觉效果。适用于 2000 年代风格的独立博客和内容管理系统。&lt;/p&gt;
     &lt;p&gt;这是包含&lt;a href="#"&gt;链接&lt;/a&gt;的段落文本。链接使用品牌蓝色，鼠标悬停时显示下划线。&lt;/p&gt;
     &lt;p&gt;这是包含&lt;strong&gt;粗体文字&lt;/strong&gt;和&lt;em&gt;斜体文字&lt;/em&gt;的段落。还可以使用&lt;code&gt;行内代码&lt;/code&gt;样式。&lt;/p&gt;
-    &lt;p&gt;使用工具类：&lt;span class="boblog-text-bold"&gt;boblog-text-bold 粗体&lt;/span&gt;&lt;/p&gt;
+    &lt;p&gt;使用工具类：&lt;span class="boblog-text-bold"&gt;boblog-text-bold 粗体&lt;/span&gt; | &lt;span class="boblog-text-semibold"&gt;boblog-text-semibold 半粗体&lt;/span&gt;&lt;/p&gt;
 &lt;/body&gt;
 &lt;/html&gt;</code></pre>
                         </div>
@@ -873,6 +873,7 @@ function hello() {
                 <h3>1. 规范说明</h3>
                 <ul class="boblog-doc-spec">
                     <li><strong>.boblog-text-bold</strong>: 粗体（font-weight: bold），用于非语义强调场景（如标题链接、统计数字等）</li>
+                    <li><strong>.boblog-text-semibold</strong>: 半粗体（font-weight: 600），用于表单标签、筛选栏标签等场景</li>
                     <li><strong>.boblog-pre-wrap</strong>: 保留换行（white-space: pre-wrap），用于 FAQ 内容等需要保留原始换行的场景</li>
                 </ul>
             </div>
@@ -888,7 +889,7 @@ function hello() {
                     <div class="boblog-tabs-panel active">
                         <!-- 预览 -->
                         <div class="boblog-doc-demo">
-                            <div class="boblog-pre-wrap" style="background:var(--boblog-bg-panel, #F5FBFE); border:1px solid var(--boblog-border-light, #DDE8F0); padding:10px; font-size:12px;">第一行内容
+                            <div class="boblog-pre-wrap boblog-bg-light boblog-border boblog-border-light boblog-p-2 boblog-text-sm">第一行内容
 第二行内容（换行被保留）
 第三行内容</div>
                         </div>

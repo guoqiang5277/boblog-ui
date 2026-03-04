@@ -155,6 +155,11 @@
   gap: var(--boblog-spacing-lg, 20px);
 }
 
+/* 极小间距 — 筛选栏、批量操作栏等 gap:8px 场景 */
+.boblog-gap-xs {
+  gap: var(--boblog-spacing-2xs);
+}
+
 /* 无间距行 */
 .boblog-row.boblog-no-gutters {
   margin-left: 0;
