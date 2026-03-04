@@ -50,14 +50,15 @@ cp -f "$SRC_DIR/vendor/marked.min.js" "$DIST_DIR/" 2>/dev/null || true
 # ==================================================
 # CSS 构建
 # 合并顺序：base → controls → components → frontend → layout
+# 注意：typography.css 和 table.scss 由 main.scss 统一编译（支持跨文件 @extend）
+#       它们的位置用 MAIN_SCSS 占位符标记，合并时替换为 main.scss 编译结果
 # ==================================================
 CSS_FILES=(
     # 基础层
     "$SRC_DIR/base/fonts.css"
     "$SRC_DIR/base/variables.css"
     "$SRC_DIR/base/reset.css"
-    "$SRC_DIR/base/typography.css"
-    "$SRC_DIR/base/size.css"
+    "$SRC_DIR/base/size.scss"
     "$SRC_DIR/base/color.scss"
 
     # 控件层
@@ -77,7 +78,7 @@ CSS_FILES=(
     "$SRC_DIR/components/date-picker.css"
     "$SRC_DIR/components/rating.css"
     "$SRC_DIR/components/slider.css"
-    "$SRC_DIR/components/table.css"
+    "MAIN_SCSS"
     "$SRC_DIR/components/tree.css"
     "$SRC_DIR/components/badge.css"
     "$SRC_DIR/components/stat-card.css"
@@ -121,20 +122,30 @@ echo "Building boblog-ui.css..."
 
 # ==================================================
 # SCSS 编译阶段
-# 扫描 src/ 下所有 .scss 文件，编译为 .css 到临时目录
-# 合并时优先使用编译后的版本，没有 .scss 的文件直接用原 .css
+# 1. main.scss 统一编译：包含需要跨文件 @extend 的文件（typography + table）
+# 2. 独立 SCSS 编译：其余 .scss 文件各自独立编译为 .css
 # ==================================================
 rm -rf "$SCSS_TMP"
-SCSS_COUNT=$(find "$SRC_DIR" -name "*.scss" 2>/dev/null | wc -l | tr -d ' ')
+MAIN_SCSS_OUTPUT="$DIST_DIR/.main-scss.css"
+
+# 检查 Dart Sass
+if [ ! -x "$SASS_BIN" ]; then
+    echo "ERROR: Dart Sass 未找到: $SASS_BIN"
+    echo "  请确认 bin/dart-sass/ 目录存在且包含 sass 可执行文件"
+    exit 1
+fi
+
+# main.scss 统一编译（跨文件 @extend）
+echo "  编译 main.scss（跨文件 @extend）..."
+"$SASS_BIN" --no-source-map --no-charset --silence-deprecation=import "$SRC_DIR/main.scss" "$MAIN_SCSS_OUTPUT"
+echo "    ✓ main.scss → css"
+
+# 独立 SCSS 编译（排除 main.scss 和已由 main.scss 编译的文件）
+SCSS_COUNT=$(find "$SRC_DIR" -name "*.scss" ! -name "main.scss" ! -path "*/components/table.scss" 2>/dev/null | wc -l | tr -d ' ')
 if [ "$SCSS_COUNT" -gt 0 ]; then
-    if [ ! -x "$SASS_BIN" ]; then
-        echo "ERROR: Dart Sass 未找到: $SASS_BIN"
-        echo "  请确认 bin/dart-sass/ 目录存在且包含 sass 可执行文件"
-        exit 1
-    fi
-    echo "  编译 SCSS 文件 ($SCSS_COUNT 个)..."
+    echo "  编译独立 SCSS 文件 ($SCSS_COUNT 个)..."
     mkdir -p "$SCSS_TMP"
-    find "$SRC_DIR" -name "*.scss" | while read -r scss_file; do
+    find "$SRC_DIR" -name "*.scss" ! -name "main.scss" ! -path "*/components/table.scss" | while read -r scss_file; do
         # 计算相对路径，生成对应的 .css 到临时目录
         rel_path="${scss_file#$SRC_DIR/}"
         css_path="$SCSS_TMP/${rel_path%.scss}.css"
@@ -155,22 +166,31 @@ cat > "$CSS_OUTPUT" << EOF
 EOF
 
 # 按顺序合并 CSS 文件
-# 如果存在 SCSS 编译版本（.scss-tmp/ 下），优先使用；否则使用原 .css
+# MAIN_SCSS 占位符 → 插入 main.scss 编译结果（typography + table，含跨文件 @extend）
+# .scss 文件 → 使用独立编译版本（.scss-tmp/ 下）
+# .css 文件 → 直接使用原文件
 for file in "${CSS_FILES[@]}"; do
-    rel_path="${file#"$SRC_DIR"/}"
-    scss_tmp_file="$SCSS_TMP/$rel_path"
-    if [ -d "$SCSS_TMP" ] && [ -f "$scss_tmp_file" ]; then
-        # 使用 SCSS 编译后的版本
+    if [ "$file" = "MAIN_SCSS" ]; then
+        # 插入 main.scss 编译结果（typography + table 合并输出）
         echo "" >> "$CSS_OUTPUT"
-        cat "$scss_tmp_file" >> "$CSS_OUTPUT"
-        echo "" >> "$CSS_OUTPUT"
-    elif [ -f "$file" ]; then
-        # 使用原 CSS 文件
-        echo "" >> "$CSS_OUTPUT"
-        cat "$file" >> "$CSS_OUTPUT"
+        cat "$MAIN_SCSS_OUTPUT" >> "$CSS_OUTPUT"
         echo "" >> "$CSS_OUTPUT"
     else
-        echo "WARNING: $file not found, skipping."
+        rel_path="${file#"$SRC_DIR"/}"
+        scss_tmp_file="$SCSS_TMP/${rel_path%.scss}.css"
+        if [ -d "$SCSS_TMP" ] && [ -f "$scss_tmp_file" ]; then
+            # 使用独立 SCSS 编译后的版本
+            echo "" >> "$CSS_OUTPUT"
+            cat "$scss_tmp_file" >> "$CSS_OUTPUT"
+            echo "" >> "$CSS_OUTPUT"
+        elif [ -f "$file" ]; then
+            # 使用原 CSS 文件
+            echo "" >> "$CSS_OUTPUT"
+            cat "$file" >> "$CSS_OUTPUT"
+            echo "" >> "$CSS_OUTPUT"
+        else
+            echo "WARNING: $file not found, skipping."
+        fi
     fi
 done
 
@@ -276,8 +296,9 @@ fi
 echo ""
 "$SCRIPT_DIR/build-docs.sh"
 
-# 清理 SCSS 临时目录
+# 清理临时文件
 rm -rf "$SCSS_TMP"
+rm -f "$MAIN_SCSS_OUTPUT"
 
 echo ""
 echo "Build complete."

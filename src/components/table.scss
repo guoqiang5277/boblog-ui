@@ -147,6 +147,16 @@
   white-space: nowrap;
   font-weight: var(--boblog-font-weight-semibold, 600);
 }
+/* ========== 字段名列 + 字号变体 ========== */
+/* 继承 .boblog-td-label（不换行 + 半粗体）+ typography 字号 class */
+/* 用于设置表格中需要不同字号的标签列 */
+.boblog-td-label-xs  { @extend .boblog-td-label; @extend .boblog-text-xs;  }
+.boblog-td-label-sm  { @extend .boblog-td-label; @extend .boblog-text-sm;  }
+.boblog-td-label-md  { @extend .boblog-td-label; @extend .boblog-text-md;  }
+.boblog-td-label-lg  { @extend .boblog-td-label; @extend .boblog-text-lg;  }
+.boblog-td-label-xl  { @extend .boblog-td-label; @extend .boblog-text-xl;  }
+.boblog-td-label-2xl { @extend .boblog-td-label; @extend .boblog-text-2xl; }
+.boblog-td-label-3xl { @extend .boblog-td-label; @extend .boblog-text-3xl; }
 
 /* ========== 响应式表格容器（水平滚动） ========== */
 /* 横向滚动容器，用于移动端或窄屏场景 */

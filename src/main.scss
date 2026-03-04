@@ -1,0 +1,10 @@
+// boblog-ui 跨文件 @extend 编译入口
+// 仅引入需要跨文件 @extend 的源文件
+// 其余文件仍走独立编译 + 合并流程
+//
+// 当前引入：
+//   - base/typography — 提供 .boblog-text-xs 等字号 class
+//   - components/table — 使用 @extend 引用 typography 的字号 class
+
+@import 'base/typography';
+@import 'components/table';
