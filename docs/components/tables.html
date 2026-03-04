@@ -2650,6 +2650,7 @@
         <div class="boblog-doc-spec">
             <ul>
                 <li><strong>.boblog-td-nowrap</strong>: white-space: nowrap，禁止单元格内容换行（已有）</li>
+                <li><strong>.boblog-td-label</strong>: white-space: nowrap + font-weight: 600，设置表格字段名列专用（不换行 + 半粗体）</li>
                 <li><strong>.boblog-td-break</strong>: word-break: break-all，强制长内容换行</li>
                 <li><strong>.boblog-td-top</strong>: vertical-align: top，单元格内容顶部对齐</li>
                 <li><strong>.boblog-td-middle</strong>: vertical-align: middle，单元格内容垂直居中</li>
@@ -2680,6 +2681,11 @@
                                 <td>.boblog-td-nowrap</td>
                                 <td class="boblog-td-nowrap">这段文字不会换行即使内容很长也会保持在同一行</td>
                                 <td>禁止换行（已有）</td>
+                            </tr>
+                            <tr>
+                                <td>.boblog-td-label</td>
+                                <td class="boblog-td-label">字段名列</td>
+                                <td>不换行 + 半粗体，用于 boblog-table-setting 第一列</td>
                             </tr>
                             <tr>
                                 <td>.boblog-td-break</td>
@@ -2714,6 +2720,9 @@
                 <div class="boblog-codeblock">
                     <pre><code class="language-html">&lt;!-- 禁止换行 --&gt;
 &lt;td class="boblog-td-nowrap"&gt;长内容不换行&lt;/td&gt;
+
+&lt;!-- 设置表格字段名列：不换行 + 半粗体 --&gt;
+&lt;td class="boblog-td-label"&gt;字段名&lt;/td&gt;
 
 &lt;!-- 强制换行 --&gt;
 &lt;td class="boblog-td-break"&gt;VeryLongWord...&lt;/td&gt;
@@ -2753,6 +2762,11 @@
             &lt;td&gt;.boblog-td-nowrap&lt;/td&gt;
             &lt;td class="boblog-td-nowrap"&gt;这段文字不会换行即使内容很长也会保持在同一行&lt;/td&gt;
             &lt;td&gt;禁止换行（已有）&lt;/td&gt;
+        &lt;/tr&gt;
+        &lt;tr&gt;
+            &lt;td&gt;.boblog-td-label&lt;/td&gt;
+            &lt;td class="boblog-td-label"&gt;字段名列&lt;/td&gt;
+            &lt;td&gt;不换行 + 半粗体，用于 boblog-table-setting 第一列&lt;/td&gt;
         &lt;/tr&gt;
         &lt;tr&gt;
             &lt;td&gt;.boblog-td-break&lt;/td&gt;
