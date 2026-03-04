@@ -9,7 +9,6 @@ SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 SRC_DIR="$SCRIPT_DIR/src"
 DIST_DIR="$SCRIPT_DIR/dist"
 SASS_BIN="$SCRIPT_DIR/bin/dart-sass/sass"   # Dart Sass 二进制路径
-SCSS_TMP="$SCRIPT_DIR/.scss-tmp"             # SCSS 编译临时目录
 
 # 读取版本号和构建号
 VERSION=$(cat "$SCRIPT_DIR/VERSION" | tr -d '[:space:]')
@@ -49,84 +48,14 @@ cp -f "$SRC_DIR/vendor/marked.min.js" "$DIST_DIR/" 2>/dev/null || true
 
 # ==================================================
 # CSS 构建
-# 合并顺序：base → controls → components → frontend → layout
-# 注意：typography.css 和 table.scss 由 main.scss 统一编译（支持跨文件 @extend）
-#       它们的位置用 MAIN_SCSS 占位符标记，合并时替换为 main.scss 编译结果
+# 通过 src/main.scss 统一编译（Dart Sass），支持跨文件 @extend
+# 合并顺序由 main.scss 中的 @import 声明控制
 # ==================================================
-CSS_FILES=(
-    # 基础层
-    "$SRC_DIR/base/fonts.css"
-    "$SRC_DIR/base/variables.css"
-    "$SRC_DIR/base/reset.css"
-    "$SRC_DIR/base/size.scss"
-    "$SRC_DIR/base/color.scss"
-
-    # 控件层
-    "$SRC_DIR/controls/button.css"
-    "$SRC_DIR/controls/input.css"
-    "$SRC_DIR/controls/select.css"
-    "$SRC_DIR/controls/checkbox.css"
-    "$SRC_DIR/controls/radio.css"
-    "$SRC_DIR/controls/textarea.css"
-    "$SRC_DIR/controls/image.css"
-    "$SRC_DIR/controls/progress-bar.css"
-    "$SRC_DIR/controls/border.css"
-    "$SRC_DIR/controls/icon.scss"
-
-    # 组件层
-    "$SRC_DIR/components/editor.css"
-    "$SRC_DIR/components/date-picker.css"
-    "$SRC_DIR/components/rating.css"
-    "$SRC_DIR/components/slider.css"
-    "MAIN_SCSS"
-    "$SRC_DIR/components/tree.css"
-    "$SRC_DIR/components/badge.css"
-    "$SRC_DIR/components/stat-card.css"
-    "$SRC_DIR/components/timeline.css"
-    "$SRC_DIR/components/codeblock.css"
-    "$SRC_DIR/components/blockquote.css"
-    "$SRC_DIR/components/tabs.css"
-    "$SRC_DIR/components/toc.css"
-    "$SRC_DIR/components/pagination.css"
-    "$SRC_DIR/components/breadcrumb.css"
-    "$SRC_DIR/components/modal.css"
-    "$SRC_DIR/components/message.css"
-    "$SRC_DIR/components/empty-state.css"
-    "$SRC_DIR/components/panel.css"
-    "$SRC_DIR/components/accordion.css"
-    "$SRC_DIR/components/tag-input.css"
-    "$SRC_DIR/components/tree-select.css"
-    "$SRC_DIR/components/dropdown.css"
-    "$SRC_DIR/components/upload-area.scss"
-    "$SRC_DIR/components/category-tree-selector.scss"
-
-    # 布局层
-    "$SRC_DIR/layout/grid.css"
-    "$SRC_DIR/layout/page-structure.css"
-    "$SRC_DIR/layout/responsive.css"
-    "$SRC_DIR/layout/form-layout.css"
-    "$SRC_DIR/layout/doc-layout.css"
-    "$SRC_DIR/layout/nav-menu.css"
-
-    # 前台专属
-    "$SRC_DIR/frontend/date-card.css"
-    "$SRC_DIR/frontend/sidebar-panel.css"
-    "$SRC_DIR/frontend/article-list.css"
-    "$SRC_DIR/frontend/comment.css"
-)
-
 CSS_OUTPUT="$DIST_DIR/boblog-ui.css"
 CSS_OUTPUT_MIN="$DIST_DIR/boblog-ui.min.css"
+CSS_TMP="$DIST_DIR/.boblog-ui-raw.css"
 
 echo "Building boblog-ui.css..."
-
-# ==================================================
-# SCSS 编译阶段
-# 1. main.scss 统一编译：包含需要跨文件 @extend 的文件（typography + table）
-# 2. 独立 SCSS 编译：其余 .scss 文件各自独立编译为 .css
-# ==================================================
-rm -rf "$SCSS_TMP"
-MAIN_SCSS_OUTPUT="$DIST_DIR/.main-scss.css"
 
 # 检查 Dart Sass
 if [ ! -x "$SASS_BIN" ]; then
@@ -135,27 +64,10 @@ if [ ! -x "$SASS_BIN" ]; then
     exit 1
 fi
 
-# main.scss 统一编译（跨文件 @extend）
-echo "  编译 main.scss（跨文件 @extend）..."
-"$SASS_BIN" --no-source-map --no-charset --silence-deprecation=import "$SRC_DIR/main.scss" "$MAIN_SCSS_OUTPUT"
-echo "    ✓ main.scss → css"
+# Dart Sass 统一编译 main.scss → 临时文件
+"$SASS_BIN" --no-source-map --no-charset --silence-deprecation=import "$SRC_DIR/main.scss" "$CSS_TMP"
 
-# 独立 SCSS 编译（排除 main.scss 和已由 main.scss 编译的文件）
-SCSS_COUNT=$(find "$SRC_DIR" -name "*.scss" ! -name "main.scss" ! -path "*/components/table.scss" 2>/dev/null | wc -l | tr -d ' ')
-if [ "$SCSS_COUNT" -gt 0 ]; then
-    echo "  编译独立 SCSS 文件 ($SCSS_COUNT 个)..."
-    mkdir -p "$SCSS_TMP"
-    find "$SRC_DIR" -name "*.scss" ! -name "main.scss" ! -path "*/components/table.scss" | while read -r scss_file; do
-        # 计算相对路径，生成对应的 .css 到临时目录
-        rel_path="${scss_file#$SRC_DIR/}"
-        css_path="$SCSS_TMP/${rel_path%.scss}.css"
-        mkdir -p "$(dirname "$css_path")"
-        "$SASS_BIN" --no-source-map --no-charset "$scss_file" "$css_path"
-        echo "    ✓ $rel_path → css"
-    done
-fi
-
-# 写入 CSS 文件头
+# 写入文件头 + 编译结果
 cat > "$CSS_OUTPUT" << EOF
 /**
  * Bo-Blog UI v${FULL_VERSION}
@@ -164,35 +76,8 @@ cat > "$CSS_OUTPUT" << EOF
  */
 
 EOF
-
-# 按顺序合并 CSS 文件
-# MAIN_SCSS 占位符 → 插入 main.scss 编译结果（typography + table，含跨文件 @extend）
-# .scss 文件 → 使用独立编译版本（.scss-tmp/ 下）
-# .css 文件 → 直接使用原文件
-for file in "${CSS_FILES[@]}"; do
-    if [ "$file" = "MAIN_SCSS" ]; then
-        # 插入 main.scss 编译结果（typography + table 合并输出）
-        echo "" >> "$CSS_OUTPUT"
-        cat "$MAIN_SCSS_OUTPUT" >> "$CSS_OUTPUT"
-        echo "" >> "$CSS_OUTPUT"
-    else
-        rel_path="${file#"$SRC_DIR"/}"
-        scss_tmp_file="$SCSS_TMP/${rel_path%.scss}.css"
-        if [ -d "$SCSS_TMP" ] && [ -f "$scss_tmp_file" ]; then
-            # 使用独立 SCSS 编译后的版本
-            echo "" >> "$CSS_OUTPUT"
-            cat "$scss_tmp_file" >> "$CSS_OUTPUT"
-            echo "" >> "$CSS_OUTPUT"
-        elif [ -f "$file" ]; then
-            # 使用原 CSS 文件
-            echo "" >> "$CSS_OUTPUT"
-            cat "$file" >> "$CSS_OUTPUT"
-            echo "" >> "$CSS_OUTPUT"
-        else
-            echo "WARNING: $file not found, skipping."
-        fi
-    fi
-done
+cat "$CSS_TMP" >> "$CSS_OUTPUT"
+rm -f "$CSS_TMP"
 
 echo "  → $CSS_OUTPUT ($(wc -c < "$CSS_OUTPUT" | tr -d ' ') bytes)"
 
@@ -295,10 +180,6 @@ fi
 # ==================================================
 echo ""
 "$SCRIPT_DIR/build-docs.sh"
-
-# 清理临时文件
-rm -rf "$SCSS_TMP"
-rm -f "$MAIN_SCSS_OUTPUT"
 
 echo ""
 echo "Build complete."

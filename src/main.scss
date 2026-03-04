@@ -1,10 +1,68 @@
-// boblog-ui 跨文件 @extend 编译入口
-// 仅引入需要跨文件 @extend 的源文件
-// 其余文件仍走独立编译 + 合并流程
+// boblog-ui 主入口
+// 统一编译入口，按依赖顺序引入所有源文件
+// 支持跨文件 @extend，由 Dart Sass 一次性编译
+// 顺序：基础层 → 控件层 → 组件层 → 布局层 → 前台专属
 //
-// 当前引入：
-//   - base/typography — 提供 .boblog-text-xs 等字号 class
-//   - components/table — 使用 @extend 引用 typography 的字号 class
+// @extend 引用规则：只有基础层的 class 才能被其他层 @extend 引用
+// 控件层、组件层、布局层、前台专属层之间不允许互相 @extend
 
+// ========== 基础层 ==========
+@import 'base/fonts';
+@import 'base/variables';
+@import 'base/reset';
 @import 'base/typography';
+@import 'base/size';
+@import 'base/color';
+
+// ========== 控件层 ==========
+@import 'controls/button';
+@import 'controls/input';
+@import 'controls/select';
+@import 'controls/checkbox';
+@import 'controls/radio';
+@import 'controls/textarea';
+@import 'controls/image';
+@import 'controls/progress-bar';
+@import 'controls/border';
+@import 'controls/icon';
+
+// ========== 组件层 ==========
+@import 'components/editor';
+@import 'components/date-picker';
+@import 'components/rating';
+@import 'components/slider';
 @import 'components/table';
+@import 'components/tree';
+@import 'components/badge';
+@import 'components/stat-card';
+@import 'components/timeline';
+@import 'components/codeblock';
+@import 'components/blockquote';
+@import 'components/tabs';
+@import 'components/toc';
+@import 'components/pagination';
+@import 'components/breadcrumb';
+@import 'components/modal';
+@import 'components/message';
+@import 'components/empty-state';
+@import 'components/panel';
+@import 'components/accordion';
+@import 'components/tag-input';
+@import 'components/tree-select';
+@import 'components/dropdown';
+@import 'components/upload-area';
+@import 'components/category-tree-selector';
+
+// ========== 布局层 ==========
+@import 'layout/grid';
+@import 'layout/page-structure';
+@import 'layout/responsive';
+@import 'layout/form-layout';
+@import 'layout/doc-layout';
+@import 'layout/nav-menu';
+
+// ========== 前台专属 ==========
+@import 'frontend/date-card';
+@import 'frontend/sidebar-panel';
+@import 'frontend/article-list';
+@import 'frontend/comment';
