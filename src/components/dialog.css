@@ -1,0 +1,39 @@
+/**
+ * Bo-Blog Dialog Component
+ * 对话框组件 - 基于现有 modal/message/input/button 体系的轻量封装
+ *
+ * 包含：
+ *   - .boblog-dialog-host       — 全局唯一对话框宿主
+ *   - .boblog-dialog-modal      — Dialog 专用尺寸和布局
+ *   - .boblog-dialog-message    — 主文案
+ *   - .boblog-dialog-input-wrap — 输入框容器
+ *   - .boblog-dialog-input      — 单行输入框
+ *   - .boblog-dialog-error      — 输入校验错误提示
+ */
+
+.boblog-dialog-host {
+  z-index: calc(var(--boblog-z-index-modal-backdrop) + 20);
+}
+
+.boblog-dialog-modal {
+  width: 420px;
+}
+
+.boblog-dialog-message {
+  margin: 0;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.boblog-dialog-input-wrap {
+  margin-top: 12px;
+}
+
+.boblog-dialog-input {
+  width: 100%;
+}
+
+.boblog-dialog-error {
+  margin-top: 12px;
+  margin-bottom: 0;
+}

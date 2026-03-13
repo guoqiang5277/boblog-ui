@@ -39,6 +39,27 @@
     window.BoblogUI = window.BoblogUI || {};
 
     /**
+     * 触发模态框生命周期事件
+     * 说明：
+     *   Dialog 组件需要感知“显示/隐藏”时机，才能把遮罩关闭、ESC 关闭等行为
+     *   正确映射为 Promise 结果。这里统一在 Modal 基础层派发生命周期事件，
+     *   避免 Dialog 重新实现一套关闭逻辑。
+     *
+     * @param {HTMLElement} backdrop - 当前模态框遮罩元素
+     * @param {string} eventName - 生命周期事件名
+     */
+    function dispatchLifecycleEvent(backdrop, eventName) {
+        if (!backdrop) return;
+
+        backdrop.dispatchEvent(new CustomEvent(eventName, {
+            bubbles: true,
+            detail: {
+                id: backdrop.id || ''
+            }
+        }));
+    }
+
+    /**
      * 显示模态框
      * 给 backdrop 元素添加 .boblog-modal-open 类，并禁止 body 滚动
      *
@@ -49,6 +70,7 @@
         if (!backdrop) return;
         backdrop.classList.add('boblog-modal-open');
         document.body.style.overflow = 'hidden';
+        dispatchLifecycleEvent(backdrop, 'boblog:modal:show');
     }
 
     /**
@@ -60,7 +82,9 @@
     function hide(id) {
         var backdrop = document.getElementById(id);
         if (!backdrop) return;
+        if (!backdrop.classList.contains('boblog-modal-open')) return;
         backdrop.classList.remove('boblog-modal-open');
+        dispatchLifecycleEvent(backdrop, 'boblog:modal:hide');
 
         /* 检查是否还有其他打开的模态框，如果没有则恢复 body 滚动 */
         var openModals = document.querySelectorAll('.boblog-modal-backdrop.boblog-modal-open');
@@ -92,7 +116,9 @@
      */
     function hideByElement(backdrop) {
         if (!backdrop) return;
+        if (!backdrop.classList.contains('boblog-modal-open')) return;
         backdrop.classList.remove('boblog-modal-open');
+        dispatchLifecycleEvent(backdrop, 'boblog:modal:hide');
 
         /* 检查是否还有其他打开的模态框 */
         var openModals = document.querySelectorAll('.boblog-modal-backdrop.boblog-modal-open');
@@ -133,7 +159,7 @@
 
             backdrop.addEventListener('click', function (e) {
                 /* 仅在直接点击 backdrop 本身时关闭（不是点击 modal 内部元素） */
-                if (e.target === backdrop) {
+                if (e.target === backdrop && backdrop.dataset.boblogCloseOnMask !== 'false') {
                     hideByElement(backdrop);
                 }
             });
@@ -145,8 +171,11 @@
         if (e.key === 'Escape' || e.keyCode === 27) {
             /* 查找所有打开的模态框，关闭最后一个（最上层的） */
             var openModals = document.querySelectorAll('.boblog-modal-backdrop.boblog-modal-open');
-            if (openModals.length > 0) {
-                hideByElement(openModals[openModals.length - 1]);
+            for (var i = openModals.length - 1; i >= 0; i--) {
+                if (openModals[i].dataset.boblogCloseOnEsc !== 'false') {
+                    hideByElement(openModals[i]);
+                    break;
+                }
             }
         }
     });

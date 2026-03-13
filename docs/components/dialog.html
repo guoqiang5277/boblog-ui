@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>对话框 - Bo-Blog UI</title>
+    <link rel="stylesheet" href="../../dist/boblog-ui.css">
+    <link rel="stylesheet" href="../docs.css">
+</head>
+<body class="boblog-doc-gray">
+<div class="boblog-toc">
+    <h4>目录</h4>
+    <ul id="tocList"></ul>
+</div>
+
+<div class="boblog-doc-container">
+    <div class="boblog-doc-nav">
+        <a href="../index.html"><- 返回总纲</a>
+    </div>
+
+    <h1>对话框</h1>
+
+    <div class="boblog-doc-section">
+        <h2 id="基础能力">基础能力</h2>
+
+        <div class="boblog-doc-spec">
+            <ul>
+                <li><strong>统一入口</strong>: <code>BoblogUI.Dialog.alert / confirm / prompt</code></li>
+                <li><strong>底层实现</strong>: 复用 <code>BoblogUI.Modal</code> 与现有 button / input / message 样式</li>
+                <li><strong>宿主策略</strong>: 页面首次调用时自动创建全局唯一宿主，不要求业务项目手写固定 DOM</li>
+                <li><strong>交互约定</strong>: ESC、右上角关闭、点击遮罩都会返回受控结果，而不是静默丢失状态</li>
+                <li><strong>声明式确认</strong>: 支持 <code>data-boblog-confirm</code> 直接绑定 form / a / button</li>
+            </ul>
+        </div>
+
+        <div class="boblog-tabs">
+            <div class="boblog-tabs-bar">
+                <button class="boblog-tabs-btn active">预览</button>
+                <button class="boblog-tabs-btn">关键源码</button>
+                <button class="boblog-tabs-btn">完整源码</button>
+            </div>
+
+            <div class="boblog-tabs-panel active">
+                <div class="boblog-doc-demo">
+                    <table class="boblog-table" style="width:auto;">
+                        <tbody>
+                            <tr>
+                                <td><button type="button" class="boblog-btn boblog-btn-primary" id="dialogAlertBtn">alert 示例</button></td>
+                                <td><button type="button" class="boblog-btn boblog-btn-danger" id="dialogConfirmBtn">confirm 示例</button></td>
+                                <td><button type="button" class="boblog-btn" id="dialogPromptBtn">prompt 示例</button></td>
+                                <td>
+                                    <form action="#" method="post" data-boblog-confirm="确认提交这个示例表单吗？" data-boblog-confirm-title="声明式确认" onsubmit="return false;">
+                                        <button type="submit" class="boblog-btn">data-boblog-confirm</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="boblog-message boblog-message-info boblog-mt-2" id="dialogDemoResult">点击按钮查看返回结果。</div>
+                </div>
+            </div>
+
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+<pre><code class="language-js">// alert
+await BoblogUI.Dialog.alert('保存成功');
+
+// confirm
+var ok = await BoblogUI.Dialog.confirm('确认删除此记录？', {
+    title: '删除确认',
+    confirmText: '确认删除',
+    cancelText: '取消',
+    danger: true
+});
+
+// prompt
+var reason = await BoblogUI.Dialog.prompt('请输入拒绝原因', {
+    title: '拒绝退款',
+    required: true,
+    errorMessage: '拒绝原因不能为空',
+    danger: true
+});</code></pre>
+                </div>
+            </div>
+
+            <div class="boblog-tabs-panel">
+                <div class="boblog-codeblock">
+<pre><code class="language-html">&lt;button type="button" class="boblog-btn boblog-btn-primary" id="alertBtn"&gt;alert 示例&lt;/button&gt;
+&lt;button type="button" class="boblog-btn boblog-btn-danger" id="confirmBtn"&gt;confirm 示例&lt;/button&gt;
+&lt;button type="button" class="boblog-btn" id="promptBtn"&gt;prompt 示例&lt;/button&gt;
+
+&lt;form action="/demo" method="post"
+      data-boblog-confirm="确认提交这个示例表单吗？"
+      data-boblog-confirm-title="声明式确认"&gt;
+    &lt;button type="submit" class="boblog-btn"&gt;提交&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+document.getElementById('alertBtn').addEventListener('click', async function () {
+    await BoblogUI.Dialog.alert('保存成功');
+});
+
+document.getElementById('confirmBtn').addEventListener('click', async function () {
+    var ok = await BoblogUI.Dialog.confirm('确认删除此记录？', {
+        title: '删除确认',
+        confirmText: '确认删除',
+        danger: true
+    });
+    console.log(ok);
+});
+
+document.getElementById('promptBtn').addEventListener('click', async function () {
+    var reason = await BoblogUI.Dialog.prompt('请输入拒绝原因', {
+        title: '拒绝退款',
+        required: true,
+        errorMessage: '拒绝原因不能为空',
+        danger: true
+    });
+    console.log(reason);
+});
+&lt;/script&gt;</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="boblog-doc-section">
+        <h2 id="JavaScript-API">JavaScript API</h2>
+
+        <div class="boblog-doc-spec">
+            <h3>1. alert</h3>
+            <div class="boblog-codeblock">
+<pre><code class="language-js">await BoblogUI.Dialog.alert('保存成功', {
+    title: '提示',
+    confirmText: '我知道了',
+    closeOnMask: true,
+    closeOnEsc: true
+});</code></pre>
+            </div>
+            <p>返回值：<code>Promise&lt;void&gt;</code></p>
+        </div>
+
+        <div class="boblog-doc-spec">
+            <h3>2. confirm</h3>
+            <div class="boblog-codeblock">
+<pre><code class="language-js">var ok = await BoblogUI.Dialog.confirm('确认删除此记录？', {
+    title: '删除确认',
+    confirmText: '确认删除',
+    cancelText: '取消',
+    danger: true,
+    closeOnMask: true,
+    closeOnEsc: true
+});</code></pre>
+            </div>
+            <p>返回值：<code>Promise&lt;boolean&gt;</code>。点击确认返回 <code>true</code>，关闭/取消返回 <code>false</code>。</p>
+        </div>
+
+        <div class="boblog-doc-spec">
+            <h3>3. prompt</h3>
+            <div class="boblog-codeblock">
+<pre><code class="language-js">var value = await BoblogUI.Dialog.prompt('请输入拒绝原因', {
+    title: '拒绝退款',
+    placeholder: '请输入拒绝原因',
+    defaultValue: '',
+    required: true,
+    errorMessage: '拒绝原因不能为空',
+    confirmText: '确认',
+    cancelText: '取消',
+    danger: true
+});</code></pre>
+            </div>
+            <p>返回值：<code>Promise&lt;string | null&gt;</code>。点击确认并校验通过后返回去首尾空格的字符串，取消/关闭返回 <code>null</code>。</p>
+        </div>
+
+        <div class="boblog-doc-spec">
+            <h3>4. 声明式确认</h3>
+            <div class="boblog-codeblock">
+<pre><code class="language-html">&lt;form method="post"
+      data-boblog-confirm="确认提交表单吗？"
+      data-boblog-confirm-title="二次确认"
+      data-boblog-confirm-confirm-text="确认提交"
+      data-boblog-confirm-cancel-text="取消"
+      data-boblog-confirm-danger="true"&gt;
+    &lt;button type="submit" class="boblog-btn"&gt;提交&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;a href="/delete/1"
+   data-boblog-confirm="确认删除这条记录吗？"
+   data-boblog-confirm-danger="true"&gt;删除&lt;/a&gt;</code></pre>
+            </div>
+            <p>页面加载时会自动初始化；若元素为动态插入，可调用 <code>BoblogUI.Dialog.init(container)</code> 重新扫描。</p>
+        </div>
+    </div>
+</div>
+
+<script src="../../dist/boblog-ui.js"></script>
+<script>
+    (function () {
+        var resultEl = document.getElementById('dialogDemoResult');
+
+        function setResult(message, type) {
+            resultEl.className = 'boblog-message boblog-mt-2 ' + type;
+            resultEl.textContent = message;
+        }
+
+        document.getElementById('dialogAlertBtn').addEventListener('click', async function () {
+            await BoblogUI.Dialog.alert('保存成功');
+            setResult('alert 已关闭。', 'boblog-message-success');
+        });
+
+        document.getElementById('dialogConfirmBtn').addEventListener('click', async function () {
+            var ok = await BoblogUI.Dialog.confirm('确认删除此记录？', {
+                title: '删除确认',
+                confirmText: '确认删除',
+                danger: true
+            });
+            setResult(ok ? 'confirm 返回 true。' : 'confirm 返回 false。', ok ? 'boblog-message-success' : 'boblog-message-warning');
+        });
+
+        document.getElementById('dialogPromptBtn').addEventListener('click', async function () {
+            var value = await BoblogUI.Dialog.prompt('请输入拒绝原因', {
+                title: '拒绝退款',
+                placeholder: '请输入拒绝原因',
+                required: true,
+                errorMessage: '拒绝原因不能为空',
+                danger: true
+            });
+            setResult(value === null ? 'prompt 返回 null。' : ('prompt 返回：' + value), value === null ? 'boblog-message-warning' : 'boblog-message-success');
+        });
+    })();
+</script>
+</body>
+</html>

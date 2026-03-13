@@ -118,6 +118,7 @@ JS_FILES=(
     "$SRC_DIR/js/editor.js"
     "$SRC_DIR/js/accordion.js"
     "$SRC_DIR/js/modal.js"
+    "$SRC_DIR/js/dialog.js"
     "$SRC_DIR/js/form-validation.js"
     "$SRC_DIR/js/tag-input.js"
     "$SRC_DIR/js/tree-select.js"
