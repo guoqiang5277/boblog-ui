@@ -19,8 +19,10 @@
  *   - .boblog-table-form           — 表单表格（帝国CMS后台风格）
  *   - .boblog-table-fixed          — 固定列宽表格
  *   - .boblog-table-striped-columns — 列斑马纹表格
- *   - .boblog-table-setting        — 设置表格（带全边框 + 分区标题行）
- *   - .boblog-table-setting-header — 设置表格分区标题行
+ *   - .boblog-table-setting         — 设置表格（带全边框 + 分区标题行）
+ *   - .boblog-table-setting-header  — 设置表格分区标题行（旧类名，保留向后兼容）
+ *   - .boblog-table-setting-header1 — 设置表格首行标题（仅第一行的 th 生效）
+ *   - .boblog-table-setting-header2 — 设置表格所有行标题（所有行的 th 生效）
  *
  * 表头颜色变体：
  *   - .boblog-thead-dark           — 深色表头
@@ -472,8 +474,9 @@
   font-size: var(--boblog-font-size-sm);           /* 12px */
 }
 
-/* 设置表格单元格：全边框 + 白底 */
-.boblog-table-setting td {
+/* 设置表格单元格：全边框 + 白底（td 和 th 均适用） */
+.boblog-table-setting td,
+.boblog-table-setting th {
   border: 1px solid var(--boblog-border-blue-light); /* 浅蓝边框 */
   padding: 6px 10px;
   vertical-align: middle;
@@ -482,7 +485,28 @@
 
 /* 设置表格分区标题行：蓝色背景 + 加粗 + 字距 */
 /* 用法：<tr class="boblog-table-setting-header"><td colspan="3">分区标题</td></tr> */
+/* 向后兼容旧类名，等同于 boblog-table-setting-header1 */
 .boblog-table-setting .boblog-table-setting-header td {
+  background: var(--boblog-bg-content);              /* 内容区背景 */
+  font-weight: 600;
+  font-size: var(--boblog-font-size-sm);             /* 12px */
+  color: var(--boblog-blue-primary);                 /* 品牌蓝文字 */
+  letter-spacing: 1pt;                               /* 字距加宽 */
+}
+
+/* 设置表格首行标题：仅对第一行的 th 生效 */
+/* 用法：<thead><tr class="boblog-table-setting-header1"><th>...</th></tr></thead> */
+.boblog-table-setting .boblog-table-setting-header1:first-child th {
+  background: var(--boblog-bg-content);              /* 内容区背景 */
+  font-weight: 600;
+  font-size: var(--boblog-font-size-sm);             /* 12px */
+  color: var(--boblog-blue-primary);                 /* 品牌蓝文字 */
+  letter-spacing: 1pt;                               /* 字距加宽 */
+}
+
+/* 设置表格所有行标题：对所有行的 th 生效 */
+/* 用法：表格内任意行包含 th 时自动高亮 */
+.boblog-table-setting .boblog-table-setting-header2 th {
   background: var(--boblog-bg-content);              /* 内容区背景 */
   font-weight: 600;
   font-size: var(--boblog-font-size-sm);             /* 12px */
