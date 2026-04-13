@@ -9,7 +9,7 @@
  *   - .boblog-input-success  — 成功状态（绿色边框）
  *   - .boblog-input-icon     — 带图标输入框容器
  *   - .boblog-input-group    — 输入框组（前缀/后缀插件）
- *   - .boblog-input-sm/lg    — 尺寸变体
+ *   - .boblog-input-xs/sm/lg — 尺寸变体
  */
 
 /* ========== 基础输入框 ========== */
@@ -249,6 +249,12 @@
 /* 小尺寸输入框 */
 .boblog-input-sm {
   padding: 4px 8px;
+  font-size: 12px;
+}
+
+/* 超小尺寸输入框 */
+.boblog-input-xs {
+  padding: 2px 4px;
   font-size: 12px;
 }
 

@@ -483,6 +483,12 @@
   background: #fff;
 }
 
+/* 含输入框的单元格：减少上下 padding，避免行高被撑大 */
+.boblog-table-setting td:has(.boblog-input) {
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
 /* 设置表格分区标题行：蓝色背景 + 加粗 + 字距 */
 /* 用法：<tr class="boblog-table-setting-header"><td colspan="3">分区标题</td></tr> */
 /* 向后兼容旧类名，等同于 boblog-table-setting-header1 */
