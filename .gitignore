@@ -17,3 +17,4 @@ Thumbs.db
 
 # Claude 工作目录
 .claude/
+.idea/

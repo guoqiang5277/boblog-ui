@@ -25,49 +25,49 @@
 
 /* 语义文字色 */
 .boblog-text-primary {
-    color: var(--boblog-blue-primary, #0D80BD);
+    color: var(--boblog-blue-primary, #0D80BD) !important;
 }
 
 .boblog-text-gray {
-    color: var(--boblog-text-gray, #999999);
+    color: var(--boblog-text-gray, #999999) !important;
 }
 
 .boblog-text-light {
-    color: var(--boblog-text-light, #666666);
+    color: var(--boblog-text-light, #666666) !important;
 }
 
 .boblog-text-dark {
-    color: var(--boblog-text-dark, #333333);
+    color: var(--boblog-text-dark, #333333) !important;
 }
 
 .boblog-text-danger {
-    color: var(--boblog-red-error, #e03e2d);
+    color: var(--boblog-red-error, #e03e2d) !important;
 }
 
 .boblog-text-success {
-    color: var(--boblog-green-success, #52c41a);
+    color: var(--boblog-green-success, #52c41a) !important;
 }
 
 .boblog-text-warning {
-    color: var(--boblog-orange-warning, #faad14);
+    color: var(--boblog-orange-warning, #faad14) !important;
 }
 
 .boblog-text-info {
-    color: var(--boblog-info, #1677B5);
+    color: var(--boblog-info, #1677B5) !important;
 }
 
 /* 语义色链接 hover：颜色类用在 <a> 标签上时，hover 自动加深/变浅 */
-a.boblog-text-primary:hover { color: var(--boblog-blue-header, #2E93C9); }
-a.boblog-text-danger:hover  { color: var(--boblog-red-error-hover, #c02e1d); }
-a.boblog-text-success:hover { color: var(--boblog-green-success-hover, #3a9614); }
-a.boblog-text-warning:hover { color: var(--boblog-orange-warning-hover, #d49a12); }
-a.boblog-text-info:hover    { color: var(--boblog-info-hover, #125d8f); }
-a.boblog-text-gray:hover    { color: var(--boblog-text-gray-hover, #777777); }
-a.boblog-text-dark:hover    { color: var(--boblog-blue-primary, #0D80BD); }
+a.boblog-text-primary:hover { color: var(--boblog-blue-header, #2E93C9) !important; }
+a.boblog-text-danger:hover  { color: var(--boblog-red-error-hover, #c02e1d) !important; }
+a.boblog-text-success:hover { color: var(--boblog-green-success-hover, #3a9614) !important; }
+a.boblog-text-warning:hover { color: var(--boblog-orange-warning-hover, #d49a12) !important; }
+a.boblog-text-info:hover    { color: var(--boblog-info-hover, #125d8f) !important; }
+a.boblog-text-gray:hover    { color: var(--boblog-text-gray-hover, #777777) !important; }
+a.boblog-text-dark:hover    { color: var(--boblog-blue-primary, #0D80BD) !important; }
 
 /* 白色文字 — 用于深色背景上的文字 */
 .boblog-text-white {
-    color: var(--boblog-white, #FFFFFF);
+    color: var(--boblog-white, #FFFFFF) !important;
 }
 
 
